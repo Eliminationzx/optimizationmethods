@@ -37,7 +37,7 @@ public:
 };
 
 //! Реализация целевой "овражной" функции.
-/*! 
+/*!  
  */
 class RavinaFunkcio : public QObject
 {

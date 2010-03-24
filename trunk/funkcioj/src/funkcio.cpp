@@ -6,5 +6,3 @@ funkcio::funkcio(  )
 	// TODO
 }
 //
-
-
