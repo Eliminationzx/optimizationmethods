@@ -37,23 +37,18 @@ public:
 };
 
 //! Реализация целевой "овражной" функции.
-/*!  
+/*!  A * pow((x2 - pow(x1, 2)), 2) + B * pow((1-x1), 2)
  */
 class RavinaFunkcio : public QObject
 {
 Q_OBJECT
 private:
   //! Коэффициенты.
-  double A, B, C, D, E, f, G;
+  double A, B;
 public:
   //! Возвращает результат вычисления функции в точке.
-  double rezulto(const double x1, const double x2) { };
-  RavinaFunkcio(){
-    A = 1; B = 1; C = 1; D = 1; E = 1; F = 1; G = 1;
-  };
-  RavinaFunkcio(double A, double B, double C, double D, double E, double F, double G){
-    this->A = A; this->B = B; this->C = C; this->D = D; this->E = E; this->F = F; this->G = G;
-  };
-  
+  double rezulto(const double x1, const double x2) { return A * pow((x2 - pow(x1, 2)), 2) + B * pow((1-x1), 2); };
+  RavinaFunkcio(){ A = 1; B = 1; };
+  RavinaFunkcio(double A, double B){ this->A = A; this->B = B; };
 };
 #endif
