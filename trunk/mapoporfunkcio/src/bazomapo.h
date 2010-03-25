@@ -3,6 +3,7 @@
 //
 #include <QGraphicsItem>
 //
+const int amplekso = 1000;
 //! Основа карты.
 /*! Класс реализует элемент QGraphicsScene. Рисует прямоугольник с картой высот функции. Является фоном всей сцены.
  * @author Василий Почкаенко.
@@ -10,9 +11,12 @@
  */
 class BazoMapo : public QGraphicsItem{
 //Q_OBJECT
+private:
+  double skalo;
 public:
+  // Возвращает размер области в которую заключена фигура.
   QRectF boundingRect() const;
-	BazoMapo(QGraphicsItem * parent = 0);
-	
+  BazoMapo(QGraphicsItem * parent = 0);
+  
 };
 #endif
