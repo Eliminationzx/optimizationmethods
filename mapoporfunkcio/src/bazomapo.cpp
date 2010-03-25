@@ -1,8 +1,9 @@
 #include "bazomapo.h"
+#include "funkcio.h"
 //
 BazoMapo::BazoMapo( QGraphicsItem * parent) 
 	: QGraphicsItem(parent), skalo(1){
-	// TODO
+  F = new funkcio(this->scene());
 }
 //
 
