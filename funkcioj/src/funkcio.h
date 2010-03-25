@@ -18,7 +18,7 @@ public:
 //! Реализация целевой квадратичной функции.
 /*! A*pow((x1 - B), 2) + C*pow((x2 - D), 2) + E*(x1 - F)*(x2 - G)
  */
-class KvadratigantoFunkcio : public QObject
+class KvadratigantoFunkcio : public funkcio
 {
 Q_OBJECT
 private:
@@ -39,7 +39,7 @@ public:
 //! Реализация целевой "овражной" функции.
 /*!  A * pow((x2 - pow(x1, 2)), 2) + B * pow((1-x1), 2)
  */
-class RavinaFunkcio : public QObject
+class RavinaFunkcio : public funkcio
 {
 Q_OBJECT
 private:
