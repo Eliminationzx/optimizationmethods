@@ -3,6 +3,11 @@
 //
 #include <QGraphicsItem>
 //
+//! Основа карты.
+/*! Класс реализует элемент QGraphicsScene. Рисует прямоугольник с картой высот функции. Является фоном всей сцены.
+ * @author Василий Почкаенко.
+ * @file bazomapo.h
+ */
 class BazoMapo : public QGraphicsItem{
 //Q_OBJECT
 public:
