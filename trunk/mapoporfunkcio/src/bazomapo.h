@@ -15,7 +15,9 @@ private:
   //! Целевая функция.
   funkcio *F;
 public:
-  // Возвращает размер области в которую заключена фигура.
+  //! Ресует элемент.
+  void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+  //! Возвращает размер области в которую заключена фигура.
   QRectF boundingRect() const;
   BazoMapo(QGraphicsItem * parent = 0);
   
