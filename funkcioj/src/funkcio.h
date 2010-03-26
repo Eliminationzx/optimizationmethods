@@ -16,7 +16,7 @@ private:
   //! Возвращает значение частной производной первого порядка по x2.
   virtual double df_dx2(const QVector<double> X) = 0;
   //! Возвращает длину шага для оптимизации функции одной переменной.
-  virtual double lengthOfStep(const QVector<double> X, const double e) = 0;
+  double lengthOfStep(const QVector<double> X, const double e);
   
 public:
   //! Возвращает результат вычисления функции в точке.
@@ -24,7 +24,7 @@ public:
   //! Возвращает результат вычисления функции в точке.
   virtual double rezulto(const QVector<double> X) = 0;
   //! Возвращает точку минимума функции.
-  virtual QVector<double> minPoint(const double e) = 0;
+  QVector<double> minPoint(const double e);
   funkcio(QObject * parent = 0) : QObject(parent){};
 };
 
@@ -44,8 +44,6 @@ private:
   //! Возвращает значение частной производной первого порядка по x2.
   double df_dx2(const QVector<double> X)
   { return 2*C*(X[1] - D) + E*(X[0] - F); }
-  //! Возвращает длину шага для оптимизации функции одной переменной.
-  double lengthOfStep(const QVector<double> X, const double e);
   	
 public:
   //! Возвращает результат вычисления функции в точке.
@@ -54,8 +52,7 @@ public:
   //! Возвращает результат вычисления функции в точке.
   double rezulto(const QVector<double> X)
   { return A*pow((X[0] - B), 2) + C*pow((X[1] - D), 2) + E*(X[0] - F)*(X[1] - G); };
-  //! Возвращает точку минимума функции.
-  QVector<double> minPoint(const double e);
+
   KvadratigantoFunkcio(QObject * parent = 0) : funkcio(parent){
     A = 1; B = 1; C = 1; D = 1; E = 1; F = 1; G = 1;
   };
@@ -82,8 +79,6 @@ private:
   //! Возвращает значение частной производной первого порядка по x2.
   double df_dx2(const QVector<double> X)
   { return 2*A*(X[1] - pow(X[0], 2)); };
-  //! Возвращает длину шага для оптимизации функции одной переменной.
-  double lengthOfStep(const QVector<double> X, const double e);
   
 public:
   //! Возвращает результат вычисления функции в точке.
@@ -92,8 +87,7 @@ public:
   //! Возвращает результат вычисления функции в точке.
   double rezulto(const QVector<double> X)
   { return A * pow((X[1] - pow(X[0], 2)), 2) + B * pow((1-X[0]), 2); };
-  //! Возвращает точку минимума функции.
-  QVector<double> minPoint(const double e);
+
   RavinaFunkcio(QObject * parent = 0) : funkcio(parent){ A = 1; B = 1; };
   RavinaFunkcio(double A, double B, QObject * parent = 0) : funkcio(parent){ this->A = A; this->B = B; };
 };
