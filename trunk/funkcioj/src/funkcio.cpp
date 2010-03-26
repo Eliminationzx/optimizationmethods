@@ -11,7 +11,7 @@
   	double mu = a + tau*(b - a);
   	while (abs(b - a) > e)
   	{
-  		if (KvadratigantoFunkcio::rezulto(X[0] - lam*KvadratigantoFunkcio::df_dx1(X), X[1] - lam*KvadratigantoFunkcio::df_dx2(X)) > KvadratigantoFunkcio::rezulto(X[0] - mu*KvadratigantoFunkcio::df_dx1(X), X[1] - mu*KvadratigantoFunkcio::df_dx2(X)))
+  		if (rezulto(X[0] - lam*df_dx1(X), X[1] - lam*df_dx2(X)) > rezulto(X[0] - mu*df_dx1(X), X[1] - mu*df_dx2(X)))
   		{
   			a = lam;
   			lam = mu;
@@ -29,12 +29,12 @@
   //! Возвращает точку минимума функции.
   QVector<double> KvadratigantoFunkcio::minPoint(const double e)
   {
-  	QVector<double> X(2);
-  	X[0] = 2; X[1] = 2;
-  	while ((KvadratigantoFunkcio::df_dx1(X) > e) || (KvadratigantoFunkcio::df_dx2(X)) > e)
+    QVector<double> X(2);
+    X[0] = 2; X[1] = 2;
+  	while ((df_dx1(X) > e) || (df_dx2(X)) > e)
   	{
-  		X[0] = X[0] - KvadratigantoFunkcio::lengthOfStep(X, e)*KvadratigantoFunkcio::df_dx1(X);
-  		X[1] = X[1] - KvadratigantoFunkcio::lengthOfStep(X, e)*KvadratigantoFunkcio::df_dx2(X);
+  		X[0] = X[0] - lengthOfStep(X, e)*df_dx1(X);
+  		X[1] = X[1] - lengthOfStep(X, e)*df_dx2(X);
  	}
  	return X;
   }
@@ -50,7 +50,7 @@
   	double mu = a + tau*(b - a);
   	while (abs(b - a) > e)
   	{
-  		if (RavinaFunkcio::rezulto(X[0] - lam*RavinaFunkcio::df_dx1(X), X[1] - lam*RavinaFunkcio::df_dx2(X)) > RavinaFunkcio::rezulto(X[0] - mu*RavinaFunkcio::df_dx1(X), X[1] - mu*RavinaFunkcio::df_dx2(X)))
+  		if (rezulto(X[0] - lam*df_dx1(X), X[1] - lam*df_dx2(X)) > rezulto(X[0] - mu*df_dx1(X), X[1] - mu*df_dx2(X)))
   		{
   			a = lam;
   			lam = mu;
@@ -70,10 +70,10 @@
   {
   	QVector<double> X(2);
   	X[0] = 2; X[1] = 2;
-  	while ((RavinaFunkcio::df_dx1(X) > e) || (RavinaFunkcio::df_dx2(X)) > e)
+  	while ((df_dx1(X) > e) || (df_dx2(X)) > e)
   	{
-  		X[0] = X[0] - RavinaFunkcio::lengthOfStep(X, e)*RavinaFunkcio::df_dx1(X);
-  		X[1] = X[1] - RavinaFunkcio::lengthOfStep(X, e)*RavinaFunkcio::df_dx2(X);
+  		X[0] = X[0] - lengthOfStep(X, e)*df_dx1(X);
+  		X[1] = X[1] - lengthOfStep(X, e)*df_dx2(X);
  	}
  	return X;
   }
