@@ -4,7 +4,6 @@
 #include <QGraphicsItem>
 //
 class funkcio;
-const int amplekso = 1000;
 //! Основа карты.
 /*! Класс реализует элемент QGraphicsScene. Рисует прямоугольник с картой высот функции. Является фоном всей сцены.
  * @author Василий Почкаенко.
@@ -13,8 +12,6 @@ const int amplekso = 1000;
 class BazoMapo : public QGraphicsItem{
 //Q_OBJECT
 private:
-  //! Масштаб.
-  double skalo;
   //! Целевая функция.
   funkcio *F;
 public:

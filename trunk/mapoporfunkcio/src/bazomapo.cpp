@@ -1,13 +1,14 @@
 #include "bazomapo.h"
 #include "funkcio.h"
+#include <limits>
 //
 BazoMapo::BazoMapo( QGraphicsItem * parent) 
-	: QGraphicsItem(parent), skalo(1){
-  F = new funkcio(this->scene());
-}
+	: QGraphicsItem(parent){}
 //
 
 QRectF BazoMapo::boundingRect() const{
-  return QRectF( -amplekso * skalo, -amplekso * skalo, amplekso * skalo, amplekso * skalo);
+  using namespace std;
+  return QRectF( numeric_limits<int>::min(), numeric_limits<int>::min(),
+                 numeric_limits<int>::max(), numeric_limits<int>::max());
 }
 
