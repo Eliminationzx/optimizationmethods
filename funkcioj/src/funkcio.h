@@ -12,19 +12,19 @@ Q_OBJECT
 
 private:
   //! Возвращает значение частной производной первого порядка по x1.
-  virtual double df_dx1(const QVector<double> X);
+  virtual double df_dx1(const QVector<double> X) = 0;
   //! Возвращает значение частной производной первого порядка по x2.
-  virtual double df_dx2(const QVector<double> X);
+  virtual double df_dx2(const QVector<double> X) = 0;
   //! Возвращает длину шага для оптимизации функции одной переменной.
-  virtual double lengthOfStep(const QVector<double> X, const double e);
+  virtual double lengthOfStep(const QVector<double> X, const double e) = 0;
   
 public:
   //! Возвращает результат вычисления функции в точке.
-  virtual double rezulto(const double x1, const double x2);
+  virtual double rezulto(const double x1, const double x2) = 0;
   //! Возвращает результат вычисления функции в точке.
-  virtual double rezulto(const QVector<double> X);
+  virtual double rezulto(const QVector<double> X) = 0;
   //! Возвращает точку минимума функции.
-  virtual QVector<double> minPoint(const double e);
+  virtual QVector<double> minPoint(const double e) = 0;
   funkcio(QObject * parent = 0) : QObject(parent){};
 };
 

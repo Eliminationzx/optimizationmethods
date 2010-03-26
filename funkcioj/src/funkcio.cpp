@@ -6,7 +6,17 @@
   //! Возвращает длину шага для оптимизации функции одной переменной.
   double KvadratigantoFunkcio::lengthOfStep(const QVector<double> X, const double e)
   {
-  	double a, b, tau = 0.618033988749894;
+    // Найдя антиградиент, мы ввели новую ось, вдоль которой теперь надо найти
+    // минимум. Текущая точка (х1;х2) соответствует 0 на новой оси.
+  	double a = 0;
+    // b надо взять такое, что бы в разрезе по новой оси функция имела форму
+    // чашки. 
+    double b = 1000;
+    // Изменяю b, пока не будет чашка.
+    while(rezulto(X[0] - b*df_dx1(X), X[1] - b*df_dx2(X)) < rezulto(X[0] - (b-500)*df_dx1(X), X[1] - (b-500)*df_dx2(X))){
+      b += 1000;
+    }
+    double tau = 0.618033988749894;
   	double lam = a + (1 - tau)*(b - a);
   	double mu = a + tau*(b - a);
   	while (abs(b - a) > e)
@@ -45,7 +55,17 @@
   //! Возвращает длину шага для оптимизации функции одной переменной.
   double RavinaFunkcio::lengthOfStep(const QVector<double> X, const double e)
   {
-  	double a, b, tau = 0.618033988749894;
+    // Найдя антиградиент, мы ввели новую ось, вдоль которой теперь надо найти
+    // минимум. Текущая точка (х1;х2) соответствует 0 на новой оси.
+  	double a = 0;
+    // b надо взять такое, что бы в разрезе по новой оси функция имела форму
+    // чашки. 
+    double b = 1000;
+    // Изменяю b, пока не будет чашка.
+    while(rezulto(X[0] - b*df_dx1(X), X[1] - b*df_dx2(X)) < rezulto(X[0] - (b-500)*df_dx1(X), X[1] - (b-500)*df_dx2(X))){
+      b += 1000;
+    }
+  	double tau = 0.618033988749894;
   	double lam = a + (1 - tau)*(b - a);
   	double mu = a + tau*(b - a);
   	while (abs(b - a) > e)
