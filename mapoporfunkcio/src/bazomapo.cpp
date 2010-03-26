@@ -12,3 +12,9 @@ QRectF BazoMapo::boundingRect() const{
                  numeric_limits<int>::max(), numeric_limits<int>::max());
 }
 
+
+void BazoMapo::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+{
+  // TODO
+}
+
