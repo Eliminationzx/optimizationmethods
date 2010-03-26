@@ -43,7 +43,7 @@ private:
   { return 2*A*(X[0] - B) + E*(X[1] - G); };
   //! Возвращает значение частной производной первого порядка по x2.
   double df_dx2(const QVector<double> X)
-  { return 2*C*(X[0] - D) + E*(X[1] - F); }
+  { return 2*C*(X[1] - D) + E*(X[0] - F); }
   //! Возвращает длину шага для оптимизации функции одной переменной.
   double lengthOfStep(const QVector<double> X, const double e);
   	
