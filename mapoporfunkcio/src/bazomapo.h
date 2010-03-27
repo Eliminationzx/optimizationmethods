@@ -15,11 +15,13 @@ private:
   //! Целевая функция.
   funkcio *F;
 public:
-  //! Ресует элемент.
+  //! Устанавлиает целевую функцию.
+  void setFunkcio(funkcio * Funkcio) { F = Funkcio; };
+  //! Рисует элемент.
   void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
   //! Возвращает размер области в которую заключена фигура.
   QRectF boundingRect() const;
-  BazoMapo(QGraphicsItem * parent = 0);
+  BazoMapo(funkcio * Funkcio, QGraphicsItem * parent = 0);
   
 };
 #endif
