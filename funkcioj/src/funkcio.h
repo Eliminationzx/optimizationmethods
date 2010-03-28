@@ -24,7 +24,9 @@ public:
   //! Возвращает результат вычисления функции в точке.
   virtual double rezulto(const QVector<double> X) = 0;
   //! Возвращает точку минимума функции.
-  QVector<double> minPoint(const double e);
+  virtual QVector<double> minPoint(
+                                   const double e //!< Точность.
+                                  );
   funkcio(QObject * parent = 0) : QObject(parent){};
 };
 
@@ -52,7 +54,6 @@ public:
   //! Возвращает результат вычисления функции в точке.
   double rezulto(const QVector<double> X)
   { return A*pow((X[0] - B), 2) + C*pow((X[1] - D), 2) + E*(X[0] - F)*(X[1] - G); };
-
   KvadratigantoFunkcio(QObject * parent = 0) : funkcio(parent){
     A = 1; B = 1; C = 1; D = 1; E = 1; F = 1; G = 1;
   };
@@ -87,7 +88,6 @@ public:
   //! Возвращает результат вычисления функции в точке.
   double rezulto(const QVector<double> X)
   { return A * pow((X[1] - pow(X[0], 2)), 2) + B * pow((1-X[0]), 2); };
-
   RavinaFunkcio(QObject * parent = 0) : funkcio(parent){ A = 1; B = 1; };
   RavinaFunkcio(double A, double B, QObject * parent = 0) : funkcio(parent){ this->A = A; this->B = B; };
 };
