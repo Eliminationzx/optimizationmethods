@@ -4,15 +4,19 @@
 #include <QGraphicsItem>
 #include "scenopormapo.h"
 #include <limits>
+#include <QGraphicsScene>
+#include <QColor>
+#include <QPainter>
+#include <QMessageBox>
 //
-MapoPorFunkcioImpl::MapoPorFunkcioImpl( QWidget * parent, Qt::WFlags f) 
-	: QWidget(parent, f)
-{
+MapoPorFunkcioImpl::MapoPorFunkcioImpl( funkcio * Funkcio, QWidget * parent, Qt::WFlags f) 
+	: QWidget(parent, f), F(Funkcio){
   setupUi(this);
-  s = new ScenoPorMapo(new KvadratigantoFunkcio(1, 0, 1, 0, 0, 0, 0, parent), parent);
+  s = new ScenoPorMapo(F, parent);
   s->setSceneRect(numeric_limits<int>::min(), numeric_limits<int>::min(),
                    numeric_limits<int>::max(), numeric_limits<int>::max());
   grphVw->setScene(s);
+//  s->addEllipse(-10, -10, 10, 10);
 }
 //
 

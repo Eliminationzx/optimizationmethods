@@ -6,6 +6,7 @@
 //
 class ScenoPorMapo;
 class QGraphicsItem;
+class funkcio;
 //
 using namespace std;
 
@@ -13,10 +14,13 @@ class MapoPorFunkcioImpl : public QWidget, public Ui::MapoPorFunkcio
 {
 Q_OBJECT
 private:
+  //! Целевая функция.
+  funkcio *F;
+  //! Сцена
   ScenoPorMapo *s;
-  QGraphicsItem *mapo;
 public:
-	MapoPorFunkcioImpl( QWidget * parent = 0, Qt::WFlags f = 0 );
+	MapoPorFunkcioImpl( funkcio * Funkcio, QWidget * parent = 0, Qt::WFlags f = 0 );
+protected:
 private slots:
 };
 #endif

@@ -15,13 +15,12 @@ Q_OBJECT
 private:
   //! Целевая функция.
   funkcio *F;
-public slots:
-  //! Планирует перерисовку области сцены rect.
-  void update(const QRectF & rect = QRectF());
 public:
   ScenoPorMapo( funkcio * Funkcio, QObject * parent = 0);
   ScenoPorMapo( funkcio * Funkcio, const QRectF & sceneRect, QObject * parent = 0);
   ScenoPorMapo( funkcio * Funkcio, qreal x, qreal y, qreal width, qreal height, QObject * parent = 0);
-  
+protected:
+  //! Отрисовывает фон сцены с использованием painter перед отрисовкой любого элемента или переднего плана.
+  void drawBackground(QPainter * painter, const QRectF & rect);
 };
 #endif
