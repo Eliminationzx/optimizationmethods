@@ -1,5 +1,4 @@
 #include <QApplication>
-#include "mainwindowimpl.h"
 #include "mapoporfunkcioimpl.h"
 #include "funkcio.h"
 //
