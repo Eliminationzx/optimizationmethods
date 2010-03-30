@@ -15,6 +15,11 @@ Q_OBJECT
 private:
   //! Целевая функция.
   funkcio *F;
+  //! Вся карта целиком.
+  QImage mapo;
+  
+  //! Пердварительная прорисовка карты. 
+  void designiMapo();
 public:
   ScenoPorMapo( funkcio * Funkcio, QObject * parent = 0);
   ScenoPorMapo( funkcio * Funkcio, const QRectF & sceneRect, QObject * parent = 0);
