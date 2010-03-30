@@ -23,7 +23,8 @@ void ScenoPorMapo::drawBackground(QPainter * painter, const QRectF & rect){
   QRect r(rect.toRect());
   // Перебираю видимую область и каждую точку заполняю цветом в соответствии
   // со значением целевой функции.
-  QMessageBox msg(QMessageBox::Information, trUtf8("Границы области"), QString::number(r.x()) + " " + QString::number(r.y()) + " " + QString::number(r.right()) + " " + QString::number(r.bottom()));
+//  QMessageBox msg(QMessageBox::Information, trUtf8("Границы области"), QString::number(r.x()) + " " + QString::number(r.y()) + " " + QString::number(r.right()) + " " + QString::number(r.bottom()));
+//  msg.exec();
   for(int i = r.x(); i <= r.right(); ++i){
     for(int j = r.y(); j <= r.bottom(); ++j){
       koloro.setHsvF(h, s, F->rezulto(i, j));

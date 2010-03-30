@@ -13,8 +13,7 @@ MapoPorFunkcioImpl::MapoPorFunkcioImpl( funkcio * Funkcio, QWidget * parent, Qt:
 	: QWidget(parent, f), F(Funkcio){
   setupUi(this);
   s = new ScenoPorMapo(F, parent);
-  s->setSceneRect(numeric_limits<int>::min(), numeric_limits<int>::min(),
-                   numeric_limits<int>::max(), numeric_limits<int>::max());
+  s->setSceneRect(-2000, -2000, 4000, 4000);
   grphVw->setScene(s);
 //  s->addEllipse(-10, -10, 10, 10);
 }
