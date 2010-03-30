@@ -9,13 +9,19 @@
 //
 ScenoPorMapo::ScenoPorMapo( funkcio * Funkcio, QObject * parent)
   : QGraphicsScene(parent), F(Funkcio),
-    mapo(4000, 4000, QImage::Format_ARGB32_Premultiplied){}
+    mapo(4000, 4000, QImage::Format_ARGB32_Premultiplied){
+  designiMapo();
+}
 ScenoPorMapo::ScenoPorMapo( funkcio * Funkcio, const QRectF & sceneRect, QObject * parent)
 	: QGraphicsScene(sceneRect, parent), F(Funkcio),
-    mapo(4000, 4000, QImage::Format_ARGB32_Premultiplied){}
+    mapo(4000, 4000, QImage::Format_ARGB32_Premultiplied){
+  designiMapo();
+}
 ScenoPorMapo::ScenoPorMapo( funkcio * Funkcio, qreal x, qreal y, qreal width, qreal height, QObject * parent)
 	: QGraphicsScene(x, y, width, height, parent), F(Funkcio),
-    mapo(4000, 4000, QImage::Format_ARGB32_Premultiplied){}
+    mapo(4000, 4000, QImage::Format_ARGB32_Premultiplied){
+  designiMapo();
+}
 //
 
 
