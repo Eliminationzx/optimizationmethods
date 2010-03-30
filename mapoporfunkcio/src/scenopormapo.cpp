@@ -2,10 +2,9 @@
 #include <QRect>
 #include "funkcio.h"
 #include <QColor>
-#include <QImage>
 #include <QPainter>
-#include <QString>
-#include <QMessageBox>
+//#include <QString>
+//#include <QMessageBox>
 //
 ScenoPorMapo::ScenoPorMapo( funkcio * Funkcio, QObject * parent)
 	: QGraphicsScene(parent), F(Funkcio){}
