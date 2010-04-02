@@ -1,12 +1,9 @@
 #include "mapoporfunkcioimpl.h"
-#include "bazomapo.h"
 #include "funkcio.h"
-#include <QGraphicsItem>
+//#include <QGraphicsItem>
 #include "scenopormapo.h"
 #include <limits>
 #include <QGraphicsScene>
-#include <QColor>
-#include <QPainter>
 #include <QMessageBox>
 //
 MapoPorFunkcioImpl::MapoPorFunkcioImpl( funkcio * Funkcio, QWidget * parent, Qt::WFlags f) 
