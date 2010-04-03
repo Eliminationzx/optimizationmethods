@@ -29,8 +29,7 @@ void ScenoPorMapo::drawBackground(QPainter * painter, const QRectF & rect){
 //  msg.exec();
   for(int i = r.x(); i <= r.right(); ++i){
     for(int j = r.y(); j <= r.bottom(); ++j){
-//      v = F->rezulto(i, j)-min;
-      v = 1;
+      v = (F->rezulto(i, j)-min)/100000;
       if(v > 1){
         v = 1;
       }else if(v < 0){
