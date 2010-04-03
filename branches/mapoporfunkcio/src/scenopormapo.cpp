@@ -18,15 +18,25 @@ ScenoPorMapo::ScenoPorMapo( funkcio * Funkcio, qreal x, qreal y, qreal width, qr
 
 void ScenoPorMapo::drawBackground(QPainter * painter, const QRectF & rect){
   QColor koloro(Qt::red);
-  qreal h, s;
-  koloro.getHsvF(&h, &s, 0);
+  qreal h, s, v;
+  koloro.getHsvF(&h, &s, &v);
+//  QMessageBox msg(QMessageBox::Information, trUtf8("Цвет"), QString::number(v));
   QRect r(rect.toRect());
+  double min = F->rezulto(F->minPoint(0.1));
   // Перебираю видимую область и каждую точку заполняю цветом в соответствии
   // со значением целевой функции.
-  QMessageBox msg(QMessageBox::Information, trUtf8("Границы области"), QString::number(r.x()) + " " + QString::number(r.y()) + " " + QString::number(r.right()) + " " + QString::number(r.bottom()));
+//  QMessageBox msg(QMessageBox::Information, trUtf8("Границы области"), QString::number(r.x()) + " " + QString::number(r.y()) + " " + QString::number(r.right()) + " " + QString::number(r.bottom()));
+//  msg.exec();
   for(int i = r.x(); i <= r.right(); ++i){
     for(int j = r.y(); j <= r.bottom(); ++j){
-      koloro.setHsvF(h, s, F->rezulto(i, j));
+//      v = F->rezulto(i, j)-min;
+      v = 1;
+      if(v > 1){
+        v = 1;
+      }else if(v < 0){
+        v = 0;
+      }
+      koloro.setHsvF(h, s, v);
       painter->setPen(koloro);
       painter->drawPoint(i, j);
     }
