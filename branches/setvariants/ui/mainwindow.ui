@@ -476,7 +476,7 @@
        <string>Выберите вариант:</string>
       </property>
      </widget>
-     <widget class="QComboBox" name="comboBox_2">
+     <widget class="QComboBox" name="comboBox_ravin">
       <property name="geometry">
        <rect>
         <x>160</x>
@@ -742,7 +742,7 @@
      <x>0</x>
      <y>0</y>
      <width>450</width>
-     <height>20</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu">
@@ -796,7 +796,7 @@
   <tabstop>x1</tabstop>
   <tabstop>x2</tabstop>
   <tabstop>save_button</tabstop>
-  <tabstop>comboBox_2</tabstop>
+  <tabstop>comboBox_ravin</tabstop>
   <tabstop>a_ravin</tabstop>
   <tabstop>b_ravin</tabstop>
   <tabstop>accuracy_ravin</tabstop>
