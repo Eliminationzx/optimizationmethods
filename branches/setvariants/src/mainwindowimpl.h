@@ -41,7 +41,3 @@ private slots:
 	void on_save_button_clicked();
 };
 #endif
-
-
-
-

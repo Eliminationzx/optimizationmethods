@@ -84,7 +84,7 @@ QVector<double> MainWindowImpl::ReadVariants(const QString typeFunction, const i
 		}
 	}
 	else
-		data.fill(0, 13);
+		data.fill(NULL, 13);
 	return data;
 }
 
@@ -111,7 +111,7 @@ QVector<double> MainWindowImpl::ReadVariants(const int typeFunction, const int n
 		}
 	}
 	else
-		data.fill(0, 13);
+		data.fill(NULL, 13);
 	return data;
 }
 
@@ -206,8 +206,10 @@ void MainWindowImpl::on_save_button_clicked()
 	{
 		comboBox->clear();
 		initializationQuadComboBox();
-//		QStatusBar::showMessage("Вариант записан", 250);
+		statusbar->showMessage(trUtf8("Вариант успешно записан"), 1000);
 	}
+	else
+		statusbar->showMessage(trUtf8("Ошибка при записи - возможно отсутствует директория"), 2000);
 }
 
 // Нажата кнопка сохранить в овражной функции
@@ -228,7 +230,10 @@ void MainWindowImpl::on_save_button_ravin_clicked()
 	{
 		comboBox_ravin->clear();
 		initializationRavinComboBox();
+		statusbar->showMessage(trUtf8("Вариант успешно записан"), 1000);
 	}
+	else
+		statusbar->showMessage(trUtf8("Ошибка при записи - возможно отсутствует директория"), 2000);
 }
 
 // Выбран существующий вариант в квадратичной функции
