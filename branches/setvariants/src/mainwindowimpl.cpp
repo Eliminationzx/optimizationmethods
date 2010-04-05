@@ -7,9 +7,9 @@ MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WFlags f)
 }
 
 //! Запись данных варианта в текстовый файл
-bool MainWindowImpl::WriteVariants(const QString typeFunction, const QVector<QString> data)
+bool MainWindowImpl::WriteVariants(const QString typeFunction, const QVector<double> data)
 {
-	QFile file(QDir::toNativeSeparators("variants/" + typeFunction + "/" + data[0]));
+	QFile file(QDir::toNativeSeparators("variants/" + typeFunction + "/" + QString::number(data[0])));
 	if(file.open(QIODevice::WriteOnly))
 	{
 		QTextStream stream(&file);
@@ -33,7 +33,7 @@ bool MainWindowImpl::WriteVariants(const QString typeFunction, const QVector<QSt
 }
 
 //! Запись данных варианта в текстовый файл
-bool MainWindowImpl::WriteVariants(const int typeFunction, const QVector<QString> data)
+bool MainWindowImpl::WriteVariants(const int typeFunction, const QVector<double> data)
 {
 	QString path;
 	switch (typeFunction)
@@ -44,7 +44,7 @@ bool MainWindowImpl::WriteVariants(const int typeFunction, const QVector<QString
 		case 1:
 			path = "variants/ravinFunction/";
 	}
-	QFile file(QDir::toNativeSeparators(path + data[0]));
+	QFile file(QDir::toNativeSeparators(path + QString::number(data[0])));
 	if(file.open(QIODevice::WriteOnly))
 	{
 		QTextStream stream(&file);
@@ -68,25 +68,25 @@ bool MainWindowImpl::WriteVariants(const int typeFunction, const QVector<QString
 }
 
 //! Чтение данных варианта из текстового файла
-QVector<QString> MainWindowImpl::ReadVariants(const QString typeFunction, const int numberVariants)
+QVector<double> MainWindowImpl::ReadVariants(const QString typeFunction, const int numberVariants)
 {
-	QVector<QString> data(0);
+	QVector<double> data(0);
 	QFile file(QDir::toNativeSeparators("variants/" + typeFunction + "/" + QString::number(numberVariants)));
 	if(file.open(QIODevice::ReadOnly))
 	{
 		QTextStream stream(&file);
 		while(!stream.atEnd())
 		{
-			data.append(stream.readLine());
+			data.append(stream.readLine().toDouble());
 		}
 	}
 	return data;
 }
 
 //! Чтение данных варианта из текстового файла
-QVector<QString> MainWindowImpl::ReadVariants(const int typeFunction, const int numberVariants)
+QVector<double> MainWindowImpl::ReadVariants(const int typeFunction, const int numberVariants)
 {
-	QVector<QString> data(0);
+	QVector<double> data(0);
 	QString path;
 	switch (typeFunction)
 	{
@@ -102,7 +102,7 @@ QVector<QString> MainWindowImpl::ReadVariants(const int typeFunction, const int 
 		QTextStream stream(&file);
 		while(!stream.atEnd())
 		{
-			data.append(stream.readLine());
+			data.append(stream.readLine().toDouble());
 		}
 	}
 	return data;
@@ -113,21 +113,21 @@ QVector<QString> MainWindowImpl::ReadVariants(const int typeFunction, const int 
 void MainWindowImpl::on_save_button_clicked()
 {
 	// TODO
-	QVector<QString> data(14);
-	data[0] = QString::number(comboBox->currentIndex());
-	data[1] = a->text();
-	data[2] = b->text();
-	data[3] = c->text();
-	data[4] = d->text();
-	data[5] = e->text();
-	data[6] = f->text();
-	data[7] = g->text();
-	data[8] = accuracy->text();
-	data[9] = stepx1->text();
-	data[10] = stepx2->text();
-	data[11] = stepChange->text();
-	data[12] = x1->text();
-	data[13] = x2->text();
+	QVector<double> data(14);
+	data[0] = comboBox->currentIndex();
+	data[1] = a->text().toDouble();
+	data[2] = b->text().toDouble();
+	data[3] = c->text().toDouble();
+	data[4] = d->text().toDouble();
+	data[5] = e->text().toDouble();
+	data[6] = f->text().toDouble();
+	data[7] = g->text().toDouble();
+	data[8] = accuracy->text().toDouble();
+	data[9] = stepx1->text().toDouble();
+	data[10] = stepx2->text().toDouble();
+	data[11] = stepChange->text().toDouble();
+	data[12] = x1->text().toDouble();
+	data[13] = x2->text().toDouble();
 	WriteVariants(0, data);
 //	if(WriteVariants(0, data))
 //		QStatusBar::showMessage("Вариант записан", 250);
@@ -137,16 +137,16 @@ void MainWindowImpl::on_save_button_clicked()
 void MainWindowImpl::on_save_button_ravin_clicked()
 {
 	// TODO
-	QVector<QString> data(9);
-	data[0] = QString::number(comboBox_ravin->currentIndex());
-	data[1] = a_ravin->text();
-	data[2] = b_ravin->text();
-	data[3] = accuracy_ravin->text();
-	data[4] = stepx1_ravin->text();
-	data[5] = stepx2_ravin->text();
-	data[6] = stepChange_ravin->text();
-	data[7] = x1_ravin->text();
-	data[8] = x2_ravin->text();
+	QVector<double> data(9);
+	data[0] = comboBox_ravin->currentIndex();
+	data[1] = a_ravin->text().toDouble();
+	data[2] = b_ravin->text().toDouble();
+	data[3] = accuracy_ravin->text().toDouble();
+	data[4] = stepx1_ravin->text().toDouble();
+	data[5] = stepx2_ravin->text().toDouble();
+	data[6] = stepChange_ravin->text().toDouble();
+	data[7] = x1_ravin->text().toDouble();
+	data[8] = x2_ravin->text().toDouble();
 	WriteVariants(1, data);
 }
 
@@ -154,35 +154,35 @@ void MainWindowImpl::on_save_button_ravin_clicked()
 void MainWindowImpl::on_comboBox_activated(int index)
 {
 	// TODO
-	QVector<QString> data(13);
+	QVector<double> data(13);
 	data = ReadVariants(0, index);
-	a->setText(data[0]);
-	b->setText(data[1]);
-	c->setText(data[2]);
-	d->setText(data[3]);
-	e->setText(data[4]);
-	f->setText(data[5]);
-	g->setText(data[6]);
-	accuracy->setText(data[7]);
-	stepx1->setText(data[8]);
-	stepx2->setText(data[9]);
-	stepChange->setText(data[10]);
-	x1->setText(data[11]);
-	x2->setText(data[12]);
+	a->setText(QString::number(data[0]));
+	b->setText(QString::number(data[1]));
+	c->setText(QString::number(data[2]));
+	d->setText(QString::number(data[3]));
+	e->setText(QString::number(data[4]));
+	f->setText(QString::number(data[5]));
+	g->setText(QString::number(data[6]));
+	accuracy->setText(QString::number(data[7]));
+	stepx1->setText(QString::number(data[8]));
+	stepx2->setText(QString::number(data[9]));
+	stepChange->setText(QString::number(data[10]));
+	x1->setText(QString::number(data[11]));
+	x2->setText(QString::number(data[12]));
 }
 
 // Выбран существующий вариант в овражной функции
 void MainWindowImpl::on_comboBox_ravin_activated(int index)
 {
 	// TODO
-	QVector<QString> data(13);
-	data = ReadVariants(0, index);
-	a_ravin->setText(data[0]);
-	b_ravin->setText(data[1]);
-	accuracy_ravin->setText(data[2]);
-	stepx1_ravin->setText(data[3]);
-	stepx2_ravin->setText(data[4]);
-	stepChange_ravin->setText(data[5]);
-	x1_ravin->setText(data[6]);
-	x2_ravin->setText(data[7]);
+	QVector<double> data(8);
+	data = ReadVariants(1, index);
+	a_ravin->setText(QString::number(data[0]));
+	b_ravin->setText(QString::number(data[1]));
+	accuracy_ravin->setText(QString::number(data[2]));
+	stepx1_ravin->setText(QString::number(data[3]));
+	stepx2_ravin->setText(QString::number(data[4]));
+	stepChange_ravin->setText(QString::number(data[5]));
+	x1_ravin->setText(QString::number(data[6]));
+	x2_ravin->setText(QString::number(data[7]));
 }

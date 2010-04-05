@@ -14,14 +14,15 @@ Q_OBJECT
 
 private:
 	//! Запись данных варинта в текстовый файл
-	bool WriteVariants(const QString typeFunction, const QVector<QString> data);
+	bool WriteVariants(const QString typeFunction, const QVector<double> data);
 	//! Запись данных варинта в текстовый файл
-	bool WriteVariants(const int typeFunction, const QVector<QString> data);
-	public:
+	bool WriteVariants(const int typeFunction, const QVector<double> data);
 	//! Чтение данных варианта из текстового файла
-	QVector<QString> ReadVariants(const QString typeFunction, const int numberVariants);
+	QVector<double> ReadVariants(const QString typeFunction, const int numberVariants);
 	//! Чтение данных варианта из текстового файла
-	QVector<QString> ReadVariants(const int typeFunction, const int numberVariants);
+	QVector<double> ReadVariants(const int typeFunction, const int numberVariants);
+	//! Проверка уже существующих вариантов
+//	QVector<>
 
 public:
 	MainWindowImpl( QWidget * parent = 0, Qt::WFlags f = 0 );
