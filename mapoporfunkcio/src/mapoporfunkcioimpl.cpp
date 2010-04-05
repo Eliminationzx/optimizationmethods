@@ -16,7 +16,17 @@ MapoPorFunkcioImpl::MapoPorFunkcioImpl( funkcio * Funkcio, QWidget * parent, Qt:
   s->setSceneRect(-numeric_limits<int>::max()/2, -numeric_limits<int>::max()/2,
                   numeric_limits<int>::max(), numeric_limits<int>::max());
   grphVw->setScene(s);
-//  s->addEllipse(-10, -10, 10, 10);
 }
 //
+
+
+void MapoPorFunkcioImpl::on_PligrandigiBtn_clicked()
+{
+  s->setScale((s->scale() + 0.1));
+}
+
+void MapoPorFunkcioImpl::on_MalpliigiBtn_clicked()
+{
+  s->setScale((s->scale() - 0.1));
+}
 
