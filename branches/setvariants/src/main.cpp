@@ -7,9 +7,9 @@ int main(int argc, char ** argv)
 	QApplication app( argc, argv );
 	MainWindowImpl win;
 
-//	QString str = "hr";
-//	double s = str.toDouble();
-//	QLabel lbl(QString::number(s));
+//	QVector<double> str;
+//	str = win.AnalysisDirVariants(0);
+//	QLabel lbl(QString::number(str[0]));
 //	lbl.show();
 	win.show();
 

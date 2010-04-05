@@ -4,6 +4,9 @@ MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WFlags f)
 	: QMainWindow(parent, f)
 {
 	setupUi(this);
+	
+	initializationQuadComboBox();
+	initializationRavinComboBox();
 }
 
 //! Запись данных варианта в текстовый файл
@@ -80,6 +83,8 @@ QVector<double> MainWindowImpl::ReadVariants(const QString typeFunction, const i
 			data.append(stream.readLine().toDouble());
 		}
 	}
+	else
+		data.fill(0, 13);
 	return data;
 }
 
@@ -105,7 +110,76 @@ QVector<double> MainWindowImpl::ReadVariants(const int typeFunction, const int n
 			data.append(stream.readLine().toDouble());
 		}
 	}
+	else
+		data.fill(0, 13);
 	return data;
+}
+
+//! Возвращает список уже существующих вариантов
+QVector<int> MainWindowImpl::AnalysisDirVariants(const QString typeFunction)
+{
+	QVector<int> variants(0);
+	QDir dir(QDir::toNativeSeparators("variants/" + typeFunction));
+	QStringList listFiles = dir.entryList(QDir::Files);
+	foreach(QString str, listFiles)
+	{
+		variants.append(str.toInt());
+	}
+	return variants;
+}
+
+//! Возвращает список уже существующих вариантов
+QVector<int> MainWindowImpl::AnalysisDirVariants(const int typeFunction)
+{
+	QVector<int> variants(0);
+	QString path;
+	switch (typeFunction)
+	{
+		case 0:
+			path = "variants/quadFunction/";
+			break;
+		case 1:
+			path = "variants/ravinFunction/";
+	}
+	QDir dir(QDir::toNativeSeparators(path));
+	QStringList listFiles = dir.entryList(QDir::Files);
+	foreach(QString str, listFiles)
+	{
+		variants.append(str.toInt());
+	}
+	return variants;
+}
+
+//! Инициализация выпадающего списка варинтов для квадратичной функции
+void MainWindowImpl::initializationQuadComboBox()
+{
+	QVector<int> data;
+	QString str;
+	QVariant var;
+	data = AnalysisDirVariants(0);
+	foreach(int i, data)
+	{
+		var.setValue(i);
+		comboBox->addItem(trUtf8("Вариант ").append(QString::number(i + 1)), var);
+	}
+	var.setValue(data.size() + 1);
+	comboBox->addItem(trUtf8("Вариант ").append(QString::number(data.size() + 1)));
+}
+
+//! Инициализация выпадающего списка варинтов для овражной функции
+void MainWindowImpl::initializationRavinComboBox()
+{
+	QVector<int> data_ravin;
+	QString str;
+	QVariant var;
+	data_ravin = AnalysisDirVariants(1);
+	foreach(int i, data_ravin)
+	{
+		var.setValue(i);
+		comboBox_ravin->addItem(trUtf8("Вариант ").append(QString::number(i + 1)), var);
+	}
+	var.setValue(data_ravin.size() + 1);
+	comboBox_ravin->addItem(trUtf8("Вариант ").append(QString::number(data_ravin.size() + 1)));
 }
 
 //
@@ -128,9 +202,12 @@ void MainWindowImpl::on_save_button_clicked()
 	data[11] = stepChange->text().toDouble();
 	data[12] = x1->text().toDouble();
 	data[13] = x2->text().toDouble();
-	WriteVariants(0, data);
-//	if(WriteVariants(0, data))
+	if(WriteVariants(0, data))
+	{
+		comboBox->clear();
+		initializationQuadComboBox();
 //		QStatusBar::showMessage("Вариант записан", 250);
+	}
 }
 
 // Нажата кнопка сохранить в овражной функции
@@ -147,7 +224,11 @@ void MainWindowImpl::on_save_button_ravin_clicked()
 	data[6] = stepChange_ravin->text().toDouble();
 	data[7] = x1_ravin->text().toDouble();
 	data[8] = x2_ravin->text().toDouble();
-	WriteVariants(1, data);
+	if(WriteVariants(1, data))
+	{
+		comboBox_ravin->clear();
+		initializationRavinComboBox();
+	}
 }
 
 // Выбран существующий вариант в квадратичной функции

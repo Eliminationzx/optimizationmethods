@@ -6,6 +6,7 @@
 #include <QFile>
 #include <QTextStream>
 #include <QVector>
+#include <QVariant>
 #include "ui_mainwindow.h"
 //
 class MainWindowImpl : public QMainWindow, public Ui::MainWindow
@@ -21,8 +22,14 @@ private:
 	QVector<double> ReadVariants(const QString typeFunction, const int numberVariants);
 	//! Чтение данных варианта из текстового файла
 	QVector<double> ReadVariants(const int typeFunction, const int numberVariants);
-	//! Проверка уже существующих вариантов
-//	QVector<>
+	//! Возвращает список уже существующих вариантов
+	QVector<int> AnalysisDirVariants(const QString typeFunction);
+	//! Возвращает список уже существующих вариантов
+	QVector<int> AnalysisDirVariants(const int typeFunction);
+	//! Инициализация выпадающего списка варинтов для квадратичной функции
+	void initializationQuadComboBox();
+	//! Инициализация выпадающего списка варинтов для овражной функции
+	void initializationRavinComboBox();
 
 public:
 	MainWindowImpl( QWidget * parent = 0, Qt::WFlags f = 0 );
