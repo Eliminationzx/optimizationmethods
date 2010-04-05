@@ -457,6 +457,11 @@
         <height>26</height>
        </rect>
       </property>
+      <item>
+       <property name="text">
+        <string>&lt;номер варианта&gt;</string>
+       </property>
+      </item>
      </widget>
     </widget>
     <widget class="QWidget" name="ravinFunction">
@@ -485,6 +490,11 @@
         <height>26</height>
        </rect>
       </property>
+      <item>
+       <property name="text">
+        <string>&lt;номер варианта&gt;</string>
+       </property>
+      </item>
      </widget>
      <widget class="QGroupBox" name="ravinSimpleCon">
       <property name="geometry">

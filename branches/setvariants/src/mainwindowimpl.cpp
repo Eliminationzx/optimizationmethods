@@ -68,7 +68,7 @@ bool MainWindowImpl::WriteVariants(const int typeFunction, const QVector<QString
 }
 
 //! Чтение данных варианта из текстового файла
-QVector<QString> ReadVariants(const QString typeFunction, const int numberVariants)
+QVector<QString> MainWindowImpl::ReadVariants(const QString typeFunction, const int numberVariants)
 {
 	QVector<QString> data(0);
 	QFile file(QDir::toNativeSeparators("variants/" + typeFunction + "/" + QString::number(numberVariants)));
@@ -84,7 +84,7 @@ QVector<QString> ReadVariants(const QString typeFunction, const int numberVarian
 }
 
 //! Чтение данных варианта из текстового файла
-QVector<QString> ReadVariants(const int typeFunction, const int numberVariants)
+QVector<QString> MainWindowImpl::ReadVariants(const int typeFunction, const int numberVariants)
 {
 	QVector<QString> data(0);
 	QString path;
@@ -148,4 +148,41 @@ void MainWindowImpl::on_save_button_ravin_clicked()
 	data[7] = x1_ravin->text();
 	data[8] = x2_ravin->text();
 	WriteVariants(1, data);
+}
+
+// Выбран существующий вариант в квадратичной функции
+void MainWindowImpl::on_comboBox_activated(int index)
+{
+	// TODO
+	QVector<QString> data(13);
+	data = ReadVariants(0, index);
+	a->setText(data[0]);
+	b->setText(data[1]);
+	c->setText(data[2]);
+	d->setText(data[3]);
+	e->setText(data[4]);
+	f->setText(data[5]);
+	g->setText(data[6]);
+	accuracy->setText(data[7]);
+	stepx1->setText(data[8]);
+	stepx2->setText(data[9]);
+	stepChange->setText(data[10]);
+	x1->setText(data[11]);
+	x2->setText(data[12]);
+}
+
+// Выбран существующий вариант в овражной функции
+void MainWindowImpl::on_comboBox_ravin_activated(int index)
+{
+	// TODO
+	QVector<QString> data(13);
+	data = ReadVariants(0, index);
+	a_ravin->setText(data[0]);
+	b_ravin->setText(data[1]);
+	accuracy_ravin->setText(data[2]);
+	stepx1_ravin->setText(data[3]);
+	stepx2_ravin->setText(data[4]);
+	stepChange_ravin->setText(data[5]);
+	x1_ravin->setText(data[6]);
+	x2_ravin->setText(data[7]);
 }

@@ -17,6 +17,7 @@ private:
 	bool WriteVariants(const QString typeFunction, const QVector<QString> data);
 	//! Запись данных варинта в текстовый файл
 	bool WriteVariants(const int typeFunction, const QVector<QString> data);
+	public:
 	//! Чтение данных варианта из текстового файла
 	QVector<QString> ReadVariants(const QString typeFunction, const int numberVariants);
 	//! Чтение данных варианта из текстового файла
@@ -26,6 +27,8 @@ public:
 	MainWindowImpl( QWidget * parent = 0, Qt::WFlags f = 0 );
 
 private slots:
+	void on_comboBox_ravin_activated(int index);
+	void on_comboBox_activated(int index);
 	void on_save_button_ravin_clicked();
 	void on_save_button_clicked();
 };
