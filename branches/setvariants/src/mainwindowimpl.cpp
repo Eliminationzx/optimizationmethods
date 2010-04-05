@@ -6,7 +6,9 @@ MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WFlags f)
 	setupUi(this);
 	
 	initializationQuadComboBox();
+	comboBox->setCurrentIndex(1);
 	initializationRavinComboBox();
+	comboBox_ravin->setCurrentIndex(1);
 }
 
 //! Запись данных варианта в текстовый файл
@@ -206,6 +208,7 @@ void MainWindowImpl::on_save_button_clicked()
 	{
 		comboBox->clear();
 		initializationQuadComboBox();
+		comboBox->setCurrentIndex(data[0]);
 		statusbar->showMessage(trUtf8("Вариант успешно записан"), 1000);
 	}
 	else
@@ -230,6 +233,7 @@ void MainWindowImpl::on_save_button_ravin_clicked()
 	{
 		comboBox_ravin->clear();
 		initializationRavinComboBox();
+		comboBox_ravin->setCurrentIndex(data[0]);
 		statusbar->showMessage(trUtf8("Вариант успешно записан"), 1000);
 	}
 	else
