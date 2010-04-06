@@ -14,15 +14,22 @@ class spuro : public QGraphicsItem
 private:
   //! Основной цвет "следа".
   QColor BazaKoloro;
-  //! Название алгоритма.
-  QString Nomo;
+  //! Порядковый номер алгоритма.
+  /*! 0) метод покоординатного спуска с дискретным шагом
+   * 1) метод покоординатного спуска с минимизацией по направлению
+   * 2) метод наискорейшего спуска
+   * 3) метод Хука-Дживса
+   * 4) метод Нелдера-Мида
+   * 5) метод Ньютона
+   */
+  int IDAlgoritmo;
 public:
   //! Возвращает название алгоритма.
-  inline QString proviziNomo(){ return Nomo; };
+  inline int proviziIdAlgoritmo(){ return IDAlgoritmo; };
   //! Возвращает значение основного цвета.
   inline QColor proviziBazaKoloro(){ return BazaKoloro; };
   
-  spuro(QString nomo, //!< Название алгоритма.
+  spuro(int IdAlgoritmo, //!< Порядковый номер алгоритма.
         QColor bazaKoloro, //!< Основной цвет "следа".
         QGraphicsItem * parent = 0 //!< Элемент родитель.
        );
