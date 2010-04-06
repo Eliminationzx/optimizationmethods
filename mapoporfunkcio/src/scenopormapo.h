@@ -27,6 +27,12 @@ public:
   ScenoPorMapo( funkcio * Funkcio, QObject * parent = 0);
   ScenoPorMapo( funkcio * Funkcio, const QRectF & sceneRect, QObject * parent = 0);
   ScenoPorMapo( funkcio * Funkcio, qreal x, qreal y, qreal width, qreal height, QObject * parent = 0);
+public slots:
+  //! Создает на сцене "след" алгоритма.
+  void kreiSpuro(
+                 int IdAlgoritmo, //!< Порядковый номер алгоритма.
+                 QColor bazaKoloro //!< Основной цвет "следа".
+                );
 protected:
   //! Отрисовывает фон сцены с использованием painter перед отрисовкой любого элемента или переднего плана.
   void drawBackground(QPainter * painter, const QRectF & rect);
