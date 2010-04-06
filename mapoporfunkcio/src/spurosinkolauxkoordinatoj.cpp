@@ -56,7 +56,7 @@ QPolygonF spuroSinkoLauxKoordinatoj::aplikiScalo(QPolygonF p)
 {
   QPolygonF rez;
   for(int i; i < p.count(); ++i){
-    rez.append(p[i] / skalo);
+    rez.append(p[i] * skalo);
   }
   return rez;
 }
