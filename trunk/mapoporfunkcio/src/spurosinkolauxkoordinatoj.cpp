@@ -16,7 +16,7 @@ void spuroSinkoLauxKoordinatoj::finisxiIteracio(){
 }
 
 void spuroSinkoLauxKoordinatoj::reveniAlMomentoPointo(){
-  
+  MomentaPointioj.append(MomentaPointio);
 }
 
 void spuroSinkoLauxKoordinatoj::aldoniSercxantaPointo(QPointF p){
