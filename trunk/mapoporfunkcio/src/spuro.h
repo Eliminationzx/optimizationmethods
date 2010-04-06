@@ -9,8 +9,9 @@
  * @author Василий Почкаенко.
  * @file spuro.h
  */
-class spuro : public QGraphicsItem
+class spuro : public QGraphicsItem , public QObject
 {
+Q_OBJECT
 private:
   //! Основной цвет "следа".
   QColor BazaKoloro;
