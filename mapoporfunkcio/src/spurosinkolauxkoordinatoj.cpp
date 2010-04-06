@@ -1,4 +1,5 @@
 #include "spurosinkolauxkoordinatoj.h"
+#include <QPolygonF>
 //
 spuroSinkoLauxKoordinatoj::spuroSinkoLauxKoordinatoj(QColor momentaKoloro, QColor bazaKoloro, QGraphicsItem * parent) 
 	: spuro( 0, bazaKoloro, parent), MomentaKoloro(momentaKoloro){
@@ -26,7 +27,8 @@ void spuroSinkoLauxKoordinatoj::paint(QPainter *painter, const QStyleOptionGraph
 }
 
 void spuroSinkoLauxKoordinatoj::difiniUnuaPointo(QPointF p){
-  // TODO
+  MomentaPointio = p;
+  MomentaPointioj.append(p);
 }
 
 void spuroSinkoLauxKoordinatoj::difiniUnuaPointo( qreal x, qreal y ){
