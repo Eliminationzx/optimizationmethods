@@ -6,6 +6,8 @@ MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WFlags f)
 {
 	setupUi(this);
 	
+	takeQuadFun = false;
+	
 	QVariant var;
 	var.setValue(0);
 	choiceMethods->addItem(trUtf8("Метод покоординатного спуска с дискретным шагом"), var);
@@ -22,3 +24,21 @@ MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WFlags f)
 	choiceMethods->setCurrentIndex(-1);
 }
 //
+
+//! Нажата кнопка "Далее".
+void MainWindowImpl::on_next_button_clicked()
+{
+	// TODO
+	QVector<int> data(2);
+	data[0] = choiceMethods->currentIndex();
+	if(quadFunction->isChecked())
+	{
+		data[1] = 0;
+	}
+	else if(ravinFunction->isChecked() && takeQuadFun)
+	{
+		data[1] = 1;
+	}
+	getvariantsImpl getV(data);
+	getV.show();
+}
