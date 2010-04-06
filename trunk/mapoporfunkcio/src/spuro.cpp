@@ -1,5 +1,5 @@
 #include "spuro.h"
 //
-spuro::spuro(QString nomo, QColor bazaKoloro, QGraphicsItem * parent)
-  : QGraphicsItem(parent), BazaKoloro(bazaKoloro), Nomo(nomo){};
+spuro::spuro(int IdAlgoritmo, QColor bazaKoloro, QGraphicsItem * parent)
+  : QGraphicsItem(parent), BazaKoloro(bazaKoloro), IDAlgoritmo(IdAlgoritmo){};
 //
