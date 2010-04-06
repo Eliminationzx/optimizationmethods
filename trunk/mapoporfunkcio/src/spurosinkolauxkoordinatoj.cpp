@@ -9,7 +9,10 @@ spuroSinkoLauxKoordinatoj::spuroSinkoLauxKoordinatoj(QColor momentaKoloro, QColo
 //
 
 QRectF spuroSinkoLauxKoordinatoj::boundingRect() const{
-  return MomentaPointioj.boundingRect() | Vosto.boundingRect();
+  QRectF rez = MomentaPointioj.boundingRect() | Vosto.boundingRect();
+  rez.setTopLeft(rez.topLeft() * skalo);
+  rez.setBottomRight(rez.bottomRight() * skalo);
+  return rez;
 }
 
 void spuroSinkoLauxKoordinatoj::finisxiIteracio(QPointF p){
