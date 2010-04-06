@@ -11,8 +11,11 @@ QRectF spuroSinkoLauxKoordinatoj::boundingRect() const{
   
 }
 
-void spuroSinkoLauxKoordinatoj::finisxiIteracio(){
-  
+void spuroSinkoLauxKoordinatoj::finisxiIteracio(QPointF p){
+  MomentaPointio = p;
+  Vosto += MomentaPointioj;
+  MomentaPointioj.clear();
+  MomentaPointioj.append(p);
 }
 
 void spuroSinkoLauxKoordinatoj::reveniAlMomentoPointo(){

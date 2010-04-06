@@ -46,11 +46,11 @@ public slots:
   //! Перегружает difiniUnuaPointo(QPointF &p).
   void difiniUnuaPointo( qreal x, qreal y );
   //! Завершить итерацию.
-  /*! Делает последнюю используованную в итерации точку текущей. 
+  /*! Делает полученную точку текущей. 
    * Переносит точки завершаемой итерации в "хвост".
    * Заменяет список точек текущей итерации на вновь полученную текущую точку.
    */
-  void finisxiIteracio();
+  void finisxiIteracio(QPointF p);
   //! Вернуться к текущей точке.
   void reveniAlMomentoPointo();
   //! Добавить точку поиска.
