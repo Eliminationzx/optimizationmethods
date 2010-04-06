@@ -156,7 +156,6 @@ QVector<int> MainWindowImpl::AnalysisDirVariants(const int typeFunction)
 void MainWindowImpl::initializationQuadComboBox()
 {
 	QVector<int> data;
-	QString str;
 	QVariant var;
 	data = AnalysisDirVariants(0);
 	foreach(int i, data)
@@ -164,7 +163,6 @@ void MainWindowImpl::initializationQuadComboBox()
 		var.setValue(i);
 		comboBox->addItem(trUtf8("Вариант ").append(QString::number(i + 1)), var);
 	}
-	var.setValue(data.size() + 1);
 	comboBox->addItem(trUtf8("Вариант ").append(QString::number(data.size() + 1)));
 }
 
@@ -172,7 +170,6 @@ void MainWindowImpl::initializationQuadComboBox()
 void MainWindowImpl::initializationRavinComboBox()
 {
 	QVector<int> data_ravin;
-	QString str;
 	QVariant var;
 	data_ravin = AnalysisDirVariants(1);
 	foreach(int i, data_ravin)
@@ -180,7 +177,6 @@ void MainWindowImpl::initializationRavinComboBox()
 		var.setValue(i);
 		comboBox_ravin->addItem(trUtf8("Вариант ").append(QString::number(i + 1)), var);
 	}
-	var.setValue(data_ravin.size() + 1);
 	comboBox_ravin->addItem(trUtf8("Вариант ").append(QString::number(data_ravin.size() + 1)));
 }
 
