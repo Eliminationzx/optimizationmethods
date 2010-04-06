@@ -31,14 +31,24 @@ void MainWindowImpl::on_next_button_clicked()
 	// TODO
 	QVector<int> data(2);
 	data[0] = choiceMethods->currentIndex();
-	if(quadFunction->isChecked())
+	if(data[0] != -1 && quadFunction->isChecked())
 	{
 		data[1] = 0;
+		getvariantsImpl getV(data);
+		getV.show();
 	}
-	else if(ravinFunction->isChecked() && takeQuadFun)
+	else if(data[0] != -1 && ravinFunction->isChecked() && takeQuadFun)
 	{
 		data[1] = 1;
+		getvariantsImpl getV(data);
+		getV.show();
 	}
-	getvariantsImpl getV(data);
-	getV.show();
+	else if(data[0] == -1)
+	{
+		statusbar->showMessage(trUtf8("Выберите метод оптимизации"), 2000);
+	}
+	else
+	{
+		statusbar->showMessage(trUtf8("Вы не прошли квадратичную функцию"), 2000);
+	}
 }

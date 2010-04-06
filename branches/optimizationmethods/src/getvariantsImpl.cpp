@@ -123,3 +123,51 @@ void getvariantsImpl::on_comboBox_activated(int index)
 		x2->setText(QString::number(data[7]));
 	}
 }
+
+//! Нажата кнопка "Далее".
+void getvariantsImpl::on_next_button_clicked()
+{
+	// TODO
+	if(methFunc[1] == 0)
+	{
+		QVector<double> data(13);
+		data = ReadVariants(methFunc[1], comboBox->currentIndex());
+		funkcio * funck = new KvadratigantoFunkcio(data);
+	}
+	else if(methFunc[1] == 1)
+	{
+		QVector<double> data(8);
+		data = ReadVariants(methFunc[1], comboBox->currentIndex());
+		funkcio * funck = new RavinaFunkcio(data);
+	}
+//	QVector<double> simpleCon = data.mid(data.size()-6);
+/*	
+	switch(methFunc[0])
+	{
+		case 0:
+			CWdescent_fixImpl obj(funck, simpleCon);
+			obj.show();
+			break;
+		case 1:
+			CWdescent_mdImpl obj(funck, simpleCon);
+			obj.show();
+			break;
+		case 2:
+			FasterDescentImpl obj(funck, simpleCon);
+			obj.show();
+			break;
+		case 3:
+			HuGiImpl obj(funck, simpleCon);
+			obj.show();
+			break;
+		case 4:
+			NeMiImpl obj(funck, simpleCon);
+			obj.show();
+			break;
+		case 5:
+			NotWeNImpl obj(funck, simpleCon);
+			obj.show();
+	}
+*/	
+	//a->setText(QString::number(data.size()));
+}

@@ -7,6 +7,14 @@
 #include <QTextStream>
 #include <QVector>
 #include <QVariant>
+#include "funkcio.h"
+/*#include "CWdescent_fixImpl.h"
+#include "CWdescent_mdImpl.h"
+#include "FasterDescentImpl.h"
+#include "HuGiImpl.h"
+#include "NeMiImpl.h"
+#include "NotWeNImpl.h"
+*/
 #include "ui_getvariants.h"
 //
 //! Производный класс от класса формы выбора варианта приложения optimizationmethods.
@@ -51,6 +59,12 @@ public:
 	getvariantsImpl(QVector<int> data, QWidget * parent = 0, Qt::WFlags f = 0 );
 	
 private slots:
+	//! Слот класса, получающий сигнал при нажатии кнопки "Далее".
+	/*! Считывает данные варианта из файла,
+	 * создает объект целевого класса и объект формы метода оптимизации
+	 */
+	void on_next_button_clicked();
+
 	//! Слот класса, получающий сигнал при выборе варианта функции.
 	/*! В своей работе использует метод ReadVariants(const int typeFunction, const int numberVariants).
 	 * Заполняет lineEdit-ы данными варианта.
@@ -58,8 +72,3 @@ private slots:
 	void on_comboBox_activated(int index);
 };
 #endif
-
-
-
-
-
