@@ -128,19 +128,18 @@ void getvariantsImpl::on_comboBox_activated(int index)
 void getvariantsImpl::on_next_button_clicked()
 {
 	// TODO
+	QVector<double> data;
 	if(methFunc[1] == 0)
 	{
-		QVector<double> data(13);
 		data = ReadVariants(methFunc[1], comboBox->currentIndex());
 		funkcio * funck = new KvadratigantoFunkcio(data);
 	}
 	else if(methFunc[1] == 1)
 	{
-		QVector<double> data(8);
 		data = ReadVariants(methFunc[1], comboBox->currentIndex());
 		funkcio * funck = new RavinaFunkcio(data);
 	}
-//	QVector<double> simpleCon = data.mid(data.size()-6);
+	QVector<double> simpleCon = data.mid(data.size()-6);
 /*	
 	switch(methFunc[0])
 	{
@@ -168,6 +167,5 @@ void getvariantsImpl::on_next_button_clicked()
 			NotWeNImpl obj(funck, simpleCon);
 			obj.show();
 	}
-*/	
-	//a->setText(QString::number(data.size()));
+*/
 }
