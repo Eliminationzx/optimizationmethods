@@ -6,12 +6,12 @@ MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WFlags f)
 	setupUi(this);
 	
 	initializationQuadComboBox();
-	comboBox->setCurrentIndex(0);
+	comboBox->setCurrentIndex(-1);
 	initializationRavinComboBox();
-	comboBox_ravin->setCurrentIndex(0);
+	comboBox_ravin->setCurrentIndex(-1);
 }
 
-//! Запись данных варианта в текстовый файл
+//! Запись данных варианта в текстовый файл.
 bool MainWindowImpl::WriteVariants(const QString typeFunction, const QVector<double> data)
 {
 	QFile file(QDir::toNativeSeparators("variants/" + typeFunction + "/" + QString::number(data[0])));
@@ -37,7 +37,7 @@ bool MainWindowImpl::WriteVariants(const QString typeFunction, const QVector<dou
 		return false;
 }
 
-//! Запись данных варианта в текстовый файл
+//! Запись данных варианта в текстовый файл.
 bool MainWindowImpl::WriteVariants(const int typeFunction, const QVector<double> data)
 {
 	QString path;
@@ -72,7 +72,7 @@ bool MainWindowImpl::WriteVariants(const int typeFunction, const QVector<double>
 		return false;
 }
 
-//! Чтение данных варианта из текстового файла
+//! Чтение данных варианта из текстового файла.
 QVector<double> MainWindowImpl::ReadVariants(const QString typeFunction, const int numberVariants)
 {
 	QVector<double> data(0);
@@ -90,7 +90,7 @@ QVector<double> MainWindowImpl::ReadVariants(const QString typeFunction, const i
 	return data;
 }
 
-//! Чтение данных варианта из текстового файла
+//! Чтение данных варианта из текстового файла.
 QVector<double> MainWindowImpl::ReadVariants(const int typeFunction, const int numberVariants)
 {
 	QVector<double> data(0);
@@ -117,7 +117,7 @@ QVector<double> MainWindowImpl::ReadVariants(const int typeFunction, const int n
 	return data;
 }
 
-//! Возвращает список уже существующих вариантов
+//! Анализ директории вариантов целевой функции.
 QVector<int> MainWindowImpl::AnalysisDirVariants(const QString typeFunction)
 {
 	QVector<int> variants(0);
@@ -130,7 +130,7 @@ QVector<int> MainWindowImpl::AnalysisDirVariants(const QString typeFunction)
 	return variants;
 }
 
-//! Возвращает список уже существующих вариантов
+//! Анализ директории вариантов целевой функции.
 QVector<int> MainWindowImpl::AnalysisDirVariants(const int typeFunction)
 {
 	QVector<int> variants(0);
@@ -152,7 +152,7 @@ QVector<int> MainWindowImpl::AnalysisDirVariants(const int typeFunction)
 	return variants;
 }
 
-//! Инициализация выпадающего списка варинтов для квадратичной функции
+//! Инициализация выпадающего списка варинтов для квадратичной функции.
 void MainWindowImpl::initializationQuadComboBox()
 {
 	QVector<int> data;
@@ -168,7 +168,7 @@ void MainWindowImpl::initializationQuadComboBox()
 	comboBox->addItem(trUtf8("Вариант ").append(QString::number(data.size() + 1)));
 }
 
-//! Инициализация выпадающего списка варинтов для овражной функции
+//! Инициализация выпадающего списка варинтов для овражной функции.
 void MainWindowImpl::initializationRavinComboBox()
 {
 	QVector<int> data_ravin;
@@ -185,7 +185,7 @@ void MainWindowImpl::initializationRavinComboBox()
 }
 
 //
-// Нажата кнопка сохранить в квадратичной функции
+// Нажата кнопка сохранить в квадратичной функции.
 void MainWindowImpl::on_save_button_clicked()
 {
 	// TODO
@@ -215,7 +215,7 @@ void MainWindowImpl::on_save_button_clicked()
 		statusbar->showMessage(trUtf8("Ошибка при записи - возможно отсутствует директория"), 2000);
 }
 
-// Нажата кнопка сохранить в овражной функции
+// Нажата кнопка сохранить в овражной функции.
 void MainWindowImpl::on_save_button_ravin_clicked()
 {
 	// TODO
@@ -240,7 +240,7 @@ void MainWindowImpl::on_save_button_ravin_clicked()
 		statusbar->showMessage(trUtf8("Ошибка при записи - возможно отсутствует директория"), 2000);
 }
 
-// Выбран существующий вариант в квадратичной функции
+// Выбран существующий вариант в квадратичной функции.
 void MainWindowImpl::on_comboBox_activated(int index)
 {
 	// TODO
@@ -261,7 +261,7 @@ void MainWindowImpl::on_comboBox_activated(int index)
 	x2->setText(QString::number(data[12]));
 }
 
-// Выбран существующий вариант в овражной функции
+// Выбран существующий вариант в овражной функции.
 void MainWindowImpl::on_comboBox_ravin_activated(int index)
 {
 	// TODO
