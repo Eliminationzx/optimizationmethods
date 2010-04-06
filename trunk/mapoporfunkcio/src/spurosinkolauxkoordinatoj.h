@@ -26,10 +26,6 @@ protected:
   //! Применяет масштаб к полигонам.
   virtual QPolygonF aplikiScalo(QPolygonF p);
 public:
-  //! Возвращает масштаб.
-  qreal scale() const;
-  //! Устанавливает масштаб.
-  void setScale(qreal factor);
   //! Реализует отрисовку элемента.
   void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widge);
   //! Возвращает приблизительную площадь отрисовываемую элементом.
