@@ -22,12 +22,12 @@ void ScenoPorMapo::drawBackground(QPainter * painter, const QRectF & rect){
   QColor koloro(Qt::red);
   qreal h, s, v;
   koloro.getHsvF(&h, &s, &v);
-//  QMessageBox msg(QMessageBox::Information, trUtf8("Цвет"), QString::number(v));
+//  QMessageBox msg(QMessageBox::Information, trUtf8("Ð¦Ð²ÐµÑ"), QString::number(v));
   QRect r(rect.toRect());
   double min = F->rezulto(F->minPoint(0.1));
-  // Перебираю видимую область и каждую точку заполняю цветом в соответствии
-  // со значением целевой функции.
-//  QMessageBox msg(QMessageBox::Information, trUtf8("Границы области"), QString::number(r.x()) + " " + QString::number(r.y()) + " " + QString::number(r.right()) + " " + QString::number(r.bottom()));
+  // ÐÐµÑÐµÐ±Ð¸ÑÐ°Ñ Ð²Ð¸Ð´Ð¸Ð¼ÑÑ Ð¾Ð±Ð»Ð°ÑÑÑ Ð¸ ÐºÐ°Ð¶Ð´ÑÑ ÑÐ¾ÑÐºÑ Ð·Ð°Ð¿Ð¾Ð»Ð½ÑÑ ÑÐ²ÐµÑÐ¾Ð¼ Ð² ÑÐ¾Ð¾ÑÐ²ÐµÑÑÑÐ²Ð¸Ð¸
+  // ÑÐ¾ Ð·Ð½Ð°ÑÐµÐ½Ð¸ÐµÐ¼ ÑÐµÐ»ÐµÐ²Ð¾Ð¹ ÑÑÐ½ÐºÑÐ¸Ð¸.
+//  QMessageBox msg(QMessageBox::Information, trUtf8("ÐÑÐ°Ð½Ð¸ÑÑ Ð¾Ð±Ð»Ð°ÑÑÐ¸"), QString::number(r.x()) + " " + QString::number(r.y()) + " " + QString::number(r.right()) + " " + QString::number(r.bottom()));
 //  msg.exec();
   for(int i = r.x(); i <= r.right(); ++i){
     for(int j = r.y(); j <= r.bottom(); ++j){
@@ -57,3 +57,8 @@ qreal ScenoPorMapo::scale() const{
   return skalo;
 }
 
+
+void ScenoPorMapo::kreiSpuro(int IdAlgoritmo, QColor bazaKoloro)
+{
+	// TODO
+}
