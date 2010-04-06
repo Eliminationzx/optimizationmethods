@@ -28,6 +28,10 @@ protected:
    */
   int IDAlgoritmo;
 public:
+  //! Возвращает масштаб.
+  qreal scale() const;
+  //! Устанавливает масштаб.
+  void setScale(qreal factor);
   //! Возвращает название алгоритма.
   inline int proviziIdAlgoritmo(){ return IDAlgoritmo; };
   //! Возвращает значение основного цвета.
