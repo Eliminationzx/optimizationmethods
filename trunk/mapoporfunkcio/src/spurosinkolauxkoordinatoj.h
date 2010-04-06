@@ -17,9 +17,9 @@ private:
   //! Цвет текущей итерации.
   QColor MomentaKoloro;
   //! Точки прошедьших итераций.
-  QPolygon Vosto;
+  QPolygonF Vosto;
   //! Точки текущей итерации.
-  QPolygon MomentaPointioj;
+  QPolygonF MomentaPointioj;
   //! Текущая точка.
   /*! Вокруг неё ведётся поиск.
   */
@@ -40,6 +40,8 @@ public:
                            );
 public slots:
   //! Установить первую точку.
+  /*! Устанавливает точку с которой начинается поиск.
+   */
   void difiniUnuaPointo( QPointF p );
   //! Перегружает difiniUnuaPointo(QPointF &p).
   void difiniUnuaPointo( qreal x, qreal y );
