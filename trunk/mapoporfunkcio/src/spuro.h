@@ -13,7 +13,7 @@
 class spuro : public QObject , public QGraphicsItem
 {
 Q_OBJECT
-private:
+protected:
   //! Основной цвет "следа".
   QColor BazaKoloro;
   //! Порядковый номер алгоритма.
