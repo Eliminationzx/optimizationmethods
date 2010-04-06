@@ -12,8 +12,6 @@
 class spuroSinkoLauxKoordinatoj : public spuro
 {
 private:
-  //! Коэффициент масштаба.
-  qreal skalo;
   //! Цвет текущей итерации.
   QColor MomentaKoloro;
   //! Точки прошедьших итераций.
@@ -24,6 +22,9 @@ private:
   /*! Вокруг неё ведётся поиск.
   */
   QPointF MomentaPointio;
+protected:
+  //! Применяет масштаб к полигонам.
+  virtual QPolygonF aplikiScalo(QPolygonF p);
 public:
   //! Возвращает масштаб.
   qreal scale() const;

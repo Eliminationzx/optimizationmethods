@@ -14,6 +14,8 @@ class spuro : public QObject , public QGraphicsItem
 {
 Q_OBJECT
 protected:
+  //! Коэффициент масштаба.
+  qreal skalo;
   //! Основной цвет "следа".
   QColor BazaKoloro;
   //! Порядковый номер алгоритма.
