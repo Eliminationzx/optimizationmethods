@@ -19,8 +19,8 @@ void spuroSinkoLauxKoordinatoj::reveniAlMomentoPointo(){
   
 }
 
-void spuroSinkoLauxKoordinatoj::aldoniSercxantaPointo(QPointF){
-  
+void spuroSinkoLauxKoordinatoj::aldoniSercxantaPointo(QPointF p){
+  MomentaPointioj.append(p);
 }
 void spuroSinkoLauxKoordinatoj::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widge){
   // TODO
