@@ -2,6 +2,7 @@
 #define SPURO_H
 //
 #include <QGraphicsItem>
+#include <QObject>
 //
 //! Базовый класс для отображения "следа" алгоритма.
 /*! 
@@ -9,7 +10,7 @@
  * @author Василий Почкаенко.
  * @file spuro.h
  */
-class spuro : public QGraphicsItem , public QObject
+class spuro : public QObject , public QGraphicsItem
 {
 Q_OBJECT
 private:
