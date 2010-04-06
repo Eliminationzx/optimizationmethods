@@ -5,6 +5,6 @@ DESTDIR = bin
 OBJECTS_DIR = build
 MOC_DIR = build
 UI_DIR = build
-FORMS = ui/mainwindow.ui
+FORMS = ui/mainwindow.ui ui/getvariants.ui
 HEADERS = src/mainwindowimpl.h
 SOURCES = src/mainwindowimpl.cpp src/main.cpp
