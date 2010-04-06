@@ -39,6 +39,10 @@ public:
                             QGraphicsItem * parent = 0 //!< Элемент родитель.
                            );
 public slots:
+  //! Установить первую точку.
+  void difiniUnuaPointo( QPointF p );
+  //! Перегружает difiniUnuaPointo(QPointF &p).
+  void difiniUnuaPointo( qreal x, qreal y );
   //! Завершить итерацию.
   /*! Делает последнюю используованную в итерации точку текущей. 
    * Переносит точки завершаемой итерации в "хвост".

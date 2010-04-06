@@ -21,8 +21,15 @@ void spuroSinkoLauxKoordinatoj::reveniAlMomentoPointo(){
 void spuroSinkoLauxKoordinatoj::aldoniSercxantaPointo(QPointF){
   
 }
-void spuroSinkoLauxKoordinatoj::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widge)
-{
+void spuroSinkoLauxKoordinatoj::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widge){
   // TODO
+}
+
+void spuroSinkoLauxKoordinatoj::difiniUnuaPointo(QPointF p){
+  // TODO
+}
+
+void spuroSinkoLauxKoordinatoj::difiniUnuaPointo( qreal x, qreal y ){
+  difiniUnuaPointo(QPointF(x, y));
 }
 
