@@ -14,6 +14,8 @@
 class MainWindowImpl : public QMainWindow, public Ui::MainWindow
 {
 Q_OBJECT
+//! Указатель на объект формы выбора варинта.
+getvariantsImpl * getV;
 
 //! Была ли пройдена квадратичная функция
 bool takeQuadFun;

@@ -21,7 +21,7 @@ MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WFlags f)
 	choiceMethods->addItem(trUtf8("Метод Нелдера-Мида"), var);
 	var.setValue(5);
 	choiceMethods->addItem(trUtf8("Метод Ньютона"), var);
-	choiceMethods->setCurrentIndex(-1);
+	choiceMethods->setCurrentIndex(0);
 }
 //
 
@@ -34,14 +34,14 @@ void MainWindowImpl::on_next_button_clicked()
 	if(data[0] != -1 && quadFunction->isChecked())
 	{
 		data[1] = 0;
-		getvariantsImpl getV(data);
-		getV.show();
+		getV = new getvariantsImpl(data);
+		getV->show();
 	}
 	else if(data[0] != -1 && ravinFunction->isChecked() && takeQuadFun)
 	{
 		data[1] = 1;
-		getvariantsImpl getV(data);
-		getV.show();
+		getV = new getvariantsImpl(data);
+		getV->show();
 	}
 	else if(data[0] == -1)
 	{

@@ -22,7 +22,7 @@ getvariantsImpl::getvariantsImpl(QVector<int> data, QWidget * parent, Qt::WFlags
 	}
 	
 	initializationComboBox(methFunc[1]);
-	comboBox->setCurrentIndex(-1);
+	on_comboBox_activated(0);
 }
 
 //! Чтение данных варианта из текстового файла.
@@ -144,28 +144,28 @@ void getvariantsImpl::on_next_button_clicked()
 	switch(methFunc[0])
 	{
 		case 0:
-			CWdescent_fixImpl obj(funck, simpleCon);
-			obj.show();
+			CWDF = new CWdescent_fixImpl(funck, simpleCon);
+			CWDF.show();
 			break;
 		case 1:
-			CWdescent_mdImpl obj(funck, simpleCon);
-			obj.show();
+			CWDM = new CWdescent_mdImpl(funck, simpleCon);
+			CWDM.show();
 			break;
 		case 2:
-			FasterDescentImpl obj(funck, simpleCon);
-			obj.show();
+			FS = new FasterDescentImpl(funck, simpleCon);
+			FS.show();
 			break;
 		case 3:
-			HuGiImpl obj(funck, simpleCon);
-			obj.show();
+			HG = new HuGiImpl(funck, simpleCon);
+			HG.show();
 			break;
 		case 4:
-			NeMiImpl obj(funck, simpleCon);
-			obj.show();
+			NM = new NeMiImpl(funck, simpleCon);
+			NM.show();
 			break;
 		case 5:
-			NotWeNImpl obj(funck, simpleCon);
-			obj.show();
+			N = NotWeNImpl(funck, simpleCon);
+			N.show();
 	}
 */
 }
