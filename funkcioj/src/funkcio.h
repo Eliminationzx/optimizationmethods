@@ -4,6 +4,7 @@
 #include <QObject>
 #include <math.h>
 #include <QVector>
+#include <QPointF>
 //
 //! Класс для целевой функции.
 class funkcio : public QObject
@@ -23,10 +24,16 @@ public:
   virtual double rezulto(const double x1, const double x2) = 0;
   //! Возвращает результат вычисления функции в точке.
   virtual double rezulto(const QVector<double> X) = 0;
+  //! Возвращает результат вычисления функции в точке.
+  virtual double rezulto(const QPointF X){ return rezulto(X.x(), X.y()); };
   //! Возвращает точку минимума функции.
   virtual QVector<double> minPoint(
                                    const double e //!< Точность.
                                   );
+  //! Возвращает точку минимума функции.
+//  virtual QPointF minPoint(
+//                           const double e //!< Точность.
+//                          ){ return QPointF(minPoint(e)[0], return QPointF(minPoint(e)[1]); };
   funkcio(QObject * parent = 0) : QObject(parent){};
 };
 
