@@ -6,9 +6,9 @@ MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WFlags f)
 	setupUi(this);
 	
 	initializationQuadComboBox();
-	comboBox->setCurrentIndex(-1);
+	on_comboBox_activated(0);
 	initializationRavinComboBox();
-	comboBox_ravin->setCurrentIndex(-1);
+	on_comboBox_ravin_activated(0);
 }
 
 //! Запись данных варианта в текстовый файл.
