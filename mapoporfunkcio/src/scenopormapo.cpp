@@ -58,7 +58,3 @@ qreal ScenoPorMapo::scale() const{
 }
 
 
-void ScenoPorMapo::kreiSpuro(int IdAlgoritmo, QColor bazaKoloro)
-{
-	// TODO
-}
