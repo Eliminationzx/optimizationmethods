@@ -1,0 +1,10 @@
+TEMPLATE = app
+QT = gui core
+CONFIG += qt release warn_on console
+DESTDIR = bin
+OBJECTS_DIR = build
+MOC_DIR = build
+UI_DIR = build
+FORMS = ui/mainwindow.ui ui/getvariants.ui
+HEADERS = src/mainwindowimpl.h src/getvariantsImpl.h src/funkcio.h
+SOURCES = src/mainwindowimpl.cpp src/main.cpp src/getvariantsImpl.cpp src/funkcio.cpp
