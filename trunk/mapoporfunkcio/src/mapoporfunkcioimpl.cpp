@@ -4,6 +4,8 @@
 #include "scenopormapo.h"
 #include <limits>
 #include <QGraphicsScene>
+#include "spurosinkolauxkoordinatoj.h"
+#include <QColor>
 #include <QString>
 #include <QMessageBox>
 //
@@ -17,6 +19,9 @@ MapoPorFunkcioImpl::MapoPorFunkcioImpl( funkcio * Funkcio, QWidget * parent, Qt:
                   numeric_limits<int>::max(), numeric_limits<int>::max());
   grphVw->setScene(s);
 }
+MapoPorFunkcioImpl::MapoPorFunkcioImpl( QWidget * parent, Qt::WFlags f){
+  MapoPorFunkcioImpl(new KvadratigantoFunkcio(0,0,0,0,0,0,0,parent), parent, f);
+}
 //
 
 
@@ -28,5 +33,27 @@ void MapoPorFunkcioImpl::on_PligrandigiBtn_clicked()
 void MapoPorFunkcioImpl::on_MalpliigiBtn_clicked()
 {
   s->setScale((s->scale() - 0.1));
+}
+
+
+void MapoPorFunkcioImpl::difiniFunkcio(funkcio * f){
+  F = f;
+}
+
+void MapoPorFunkcioImpl::kreiSpuro(int IdAlgoritmo, QColor bazaKoloro){
+  // Создаю "след" в соответствии с указаным алгоритмом.
+  switch(IdAlgoritmo){
+    case 0:{
+      Spuro = new spuroSinkoLauxKoordinatoj(Qt::white, bazaKoloro);
+      break;
+    }
+  }
+  s->addItem(Spuro);
+  
+}
+
+const spuro * MapoPorFunkcioImpl::proviziSpuro()
+{
+  return Spuro;
 }
 
