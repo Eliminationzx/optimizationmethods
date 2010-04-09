@@ -2,7 +2,7 @@
 #include <QString>
 //
 DemonstrataQPointF::DemonstrataQPointF( qreal x, qreal y ) 
-	: QPointF(x, y){
+  : QPointF(x, y), QObject(parent){
   emit proviziXValoro((int)(this->x()));
   emit proviziXValoro((double)(this->x()));  
   emit proviziXValoro(QString::number(this->x()));  
@@ -10,8 +10,8 @@ DemonstrataQPointF::DemonstrataQPointF( qreal x, qreal y )
   emit proviziYValoro((double)(this->y()));  
   emit proviziYValoro(QString::number(this->y()));  
 }
-DemonstrataQPointF::DemonstrataQPointF( const QPoint & point ) 
-	: QPointF(point){
+DemonstrataQPointF::DemonstrataQPointF( const QPoint & point, const QObject * parent ) 
+  : QPointF(point), QObject(parent){
   emit proviziXValoro((int)(this->x()));
   emit proviziXValoro((double)(this->x()));  
   emit proviziXValoro(QString::number(this->x()));  

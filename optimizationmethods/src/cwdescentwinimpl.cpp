@@ -2,7 +2,7 @@
 #include "mapoporfunkcioimpl.h"
 //
 CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * parent, Qt::WFlags flags) 
-	: AlgoritmoWin(f, d, parent, flags){
+	: AlgoritmoWin(f, d, parent, flags), MomentaPointo((*d)[4],(*d)[5]), NovaPointo(MomentaPointo){
 	setupUi(this);
   
   // Создаю карту.

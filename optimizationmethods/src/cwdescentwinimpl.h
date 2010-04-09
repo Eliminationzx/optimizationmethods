@@ -3,6 +3,7 @@
 //
 #include "algoritmowin.h"
 #include "ui_CWdescent_fixwindow.h"
+#include "demonstrataqpointf.h"
 //
 //! Окно для прохождения Покоординатного спуска с фиксированным шагом.
 /*! Алгоритм:
@@ -21,9 +22,9 @@ class CWdescentWinImpl : public AlgoritmoWin, public Ui::CWdescentWin
 Q_OBJECT
 protected:
   //! Текущая точка.
-  QPointF MomentaPointo;
+  DemonstrataQPointF MomentaPointo;
   //! Новая точка.
-  QPointF NovaPointo;
+  DemonstrataQPointF NovaPointo;
 public:
 	CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * parent = 0, Qt::WFlags flags = 0 );
 private slots:
