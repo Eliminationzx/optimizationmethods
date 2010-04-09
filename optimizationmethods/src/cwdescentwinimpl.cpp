@@ -1,8 +1,7 @@
 #include "cwdescentwinimpl.h"
 //
-CWdescentWinImpl::CWdescentWinImpl( QWidget * parent, Qt::WFlags f) 
-	: QMainWindow(parent, f)
-{
+CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * parent, Qt::WFlags flags) 
+	: AlgoritmoWin(f, d, parent, flags){
 	setupUi(this);
 }
 //

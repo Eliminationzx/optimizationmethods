@@ -13,7 +13,8 @@ HEADERS = src/mainwindowimpl.h \
  src/scenopormapo.h \
  src/spuro.h \
  src/spurosinkolauxkoordinatoj.h \
- src/cwdescentwinimpl.h
+ src/cwdescentwinimpl.h \
+ src/algoritmowin.h
 SOURCES = src/mainwindowimpl.cpp \
  src/main.cpp \
  src/getvariantsImpl.cpp \
@@ -22,4 +23,5 @@ SOURCES = src/mainwindowimpl.cpp \
  src/scenopormapo.cpp \
  src/spuro.cpp \
  src/spurosinkolauxkoordinatoj.cpp \
- src/cwdescentwinimpl.cpp
+ src/cwdescentwinimpl.cpp \
+ src/algoritmowin.cpp
