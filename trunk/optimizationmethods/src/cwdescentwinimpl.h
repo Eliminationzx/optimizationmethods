@@ -1,14 +1,19 @@
 #ifndef CWDESCENTWINIMPL_H
 #define CWDESCENTWINIMPL_H
 //
-#include <QMainWindow>
+#include "algoritmowin.h"
 #include "ui_CWdescent_fixwindow.h"
 //
-class CWdescentWinImpl : public QMainWindow, public Ui::CWdescentWin
+//! Окно для прохождения Покоординатного спуска с фиксированным шагом.
+/*!
+ * @author Александр Белоконь, Василий Почкаенко.
+ * @file cwdescentwinimpl.h
+ */
+class CWdescentWinImpl : public AlgoritmoWin, public Ui::CWdescentWin
 {
 Q_OBJECT
 public:
-	CWdescentWinImpl( QWidget * parent = 0, Qt::WFlags f = 0 );
+	CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * parent = 0, Qt::WFlags flags = 0 );
 private slots:
 };
 #endif
