@@ -27,15 +27,16 @@ signals:
   void proviziYValoro(QString valoro);
 public: 
   QPointF & operator*=(qreal factor);
-  QPointF & operator+=(const QPointF & point);
-  QPointF & operator-=(const QPointF & point);
+  QPointF & operator+=(const DemonstrataQPointF & point);
+  QPointF & operator-=(const DemonstrataQPointF & point);
   QPointF & operator/=(qreal divisor);
   //! Устанавливает новое значение X.
   void setX(qreal x);
   //! Устанавливает новое значение Y.
   void setY(qreal y);
-  DemonstrataQPointF(qreal x, qreal y, const QObject * parent = 0);
-  DemonstrataQPointF(const QPoint & point, const QObject * parent = 0);
+  DemonstrataQPointF(qreal x, qreal y, QObject * parent = 0);
+  DemonstrataQPointF(const DemonstrataQPointF & point, QObject * parent = 0);
+  DemonstrataQPointF(const QPointF & point, QObject * parent = 0);
   
 };
 #endif

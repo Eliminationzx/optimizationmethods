@@ -1,8 +1,8 @@
 #include "demonstrataqpointf.h"
 #include <QString>
 //
-DemonstrataQPointF::DemonstrataQPointF( qreal x, qreal y ) 
-  : QPointF(x, y), QObject(parent){
+DemonstrataQPointF::DemonstrataQPointF( qreal x, qreal y, QObject * parent ) 
+  : QObject(parent), QPointF(x, y){
   emit proviziXValoro((int)(this->x()));
   emit proviziXValoro((double)(this->x()));  
   emit proviziXValoro(QString::number(this->x()));  
@@ -10,8 +10,17 @@ DemonstrataQPointF::DemonstrataQPointF( qreal x, qreal y )
   emit proviziYValoro((double)(this->y()));  
   emit proviziYValoro(QString::number(this->y()));  
 }
-DemonstrataQPointF::DemonstrataQPointF( const QPoint & point, const QObject * parent ) 
-  : QPointF(point), QObject(parent){
+DemonstrataQPointF::DemonstrataQPointF( const DemonstrataQPointF & point, QObject * parent ) 
+  : QObject(parent), QPointF(point){
+  emit proviziXValoro((int)(this->x()));
+  emit proviziXValoro((double)(this->x()));  
+  emit proviziXValoro(QString::number(this->x()));  
+  emit proviziYValoro((int)(this->y()));
+  emit proviziYValoro((double)(this->y()));  
+  emit proviziYValoro(QString::number(this->y()));  
+}
+DemonstrataQPointF::DemonstrataQPointF( const QPointF & point, QObject * parent ) 
+  : QObject(parent), QPointF(point){
   emit proviziXValoro((int)(this->x()));
   emit proviziXValoro((double)(this->x()));  
   emit proviziXValoro(QString::number(this->x()));  
@@ -63,7 +72,7 @@ QPointF & DemonstrataQPointF::operator/=(qreal divisor)
 }
 
 
-QPointF & DemonstrataQPointF::operator+=(const QPointF & point)
+QPointF & DemonstrataQPointF::operator+=(const DemonstrataQPointF & point)
 {
   QPointF::operator+=(point);
   emit proviziXValoro((int)(this->x()));
@@ -76,7 +85,7 @@ QPointF & DemonstrataQPointF::operator+=(const QPointF & point)
 }
 
 
-QPointF & DemonstrataQPointF::operator-=(const QPointF & point)
+QPointF & DemonstrataQPointF::operator-=(const DemonstrataQPointF & point)
 {
   QPointF::operator-=(point);
   emit proviziXValoro((int)(this->x()));
