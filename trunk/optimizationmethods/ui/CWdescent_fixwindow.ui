@@ -6,17 +6,17 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>633</width>
-    <height>456</height>
+    <width>735</width>
+    <height>473</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout_3" rowstretch="4,0">
-    <item row="0" column="0">
-     <widget class="QWidget" name="widget" native="true"/>
+   <layout class="QGridLayout" name="gridLayout_3" rowstretch="0,1" columnstretch="1,1">
+    <item row="1" column="0">
+     <widget class="QListView" name="listView"/>
     </item>
     <item row="0" column="1">
      <widget class="QGroupBox" name="groupBox_2">
@@ -117,7 +117,7 @@
          <item row="0" column="1">
           <widget class="QLabel" name="distance_lb">
            <property name="text">
-            <string/>
+            <string>ы</string>
            </property>
           </widget>
          </item>
@@ -135,7 +135,7 @@
          <item row="0" column="1">
           <widget class="QLabel" name="precision_lb">
            <property name="text">
-            <string/>
+            <string>ы</string>
            </property>
           </widget>
          </item>
@@ -149,7 +149,7 @@
          <item row="1" column="1">
           <widget class="QLabel" name="x1_step_lb">
            <property name="text">
-            <string/>
+            <string>ы</string>
            </property>
           </widget>
          </item>
@@ -163,7 +163,7 @@
          <item row="2" column="1">
           <widget class="QLabel" name="x2_step_lb">
            <property name="text">
-            <string/>
+            <string>ы</string>
            </property>
           </widget>
          </item>
@@ -172,7 +172,7 @@
       </layout>
      </widget>
     </item>
-    <item row="1" column="1">
+    <item row="0" column="0">
      <widget class="QGroupBox" name="groupBox_3">
       <property name="title">
        <string>Действия</string>
@@ -261,9 +261,6 @@
       </layout>
      </widget>
     </item>
-    <item row="1" column="0">
-     <widget class="QListView" name="listView"/>
-    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -271,7 +268,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>633</width>
+     <width>735</width>
      <height>24</height>
     </rect>
    </property>
