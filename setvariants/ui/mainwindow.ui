@@ -10,6 +10,12 @@
     <height>399</height>
    </rect>
   </property>
+  <property name="maximumSize">
+   <size>
+    <width>800</width>
+    <height>460</height>
+   </size>
+  </property>
   <property name="font">
    <font>
     <family>Times New Roman</family>
