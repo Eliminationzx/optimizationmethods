@@ -15,7 +15,8 @@ HEADERS = src/mainwindowimpl.h \
  src/spurosinkolauxkoordinatoj.h \
  src/cwdescentwinimpl.h \
  src/algoritmowin.h \
- src/Konstantoj.h
+ src/Konstantoj.h \
+ src/demonstrataqpointf.h
 SOURCES = src/mainwindowimpl.cpp \
  src/main.cpp \
  src/getvariantsImpl.cpp \
@@ -25,4 +26,5 @@ SOURCES = src/mainwindowimpl.cpp \
  src/spuro.cpp \
  src/spurosinkolauxkoordinatoj.cpp \
  src/cwdescentwinimpl.cpp \
- src/algoritmowin.cpp
+ src/algoritmowin.cpp \
+ src/demonstrataqpointf.cpp
