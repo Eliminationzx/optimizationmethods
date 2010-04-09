@@ -25,6 +25,14 @@ protected:
   DemonstrataQPointF MomentaPointo;
   //! Новая точка.
   DemonstrataQPointF NovaPointo;
+  //! Шаг по х1.
+  /*! Для удобства задаю в виде точки (длина, 0).
+   */
+  DemonstrataQPointF PasxoX1;
+  //! Шаг по х1.
+  /*! Для удобства задаю в виде точки (0, длина).
+   */
+  DemonstrataQPointF PasxoX2;
 public:
 	CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * parent = 0, Qt::WFlags flags = 0 );
 private slots:
