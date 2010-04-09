@@ -2,6 +2,20 @@
 <ui version="4.0">
  <class>getvariants</class>
  <widget class="QMainWindow" name="getvariants">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>491</width>
+    <height>413</height>
+   </rect>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>800</width>
+    <height>440</height>
+   </size>
+  </property>
   <property name="font">
    <font>
     <family>Times New Roman</family>
@@ -380,8 +394,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>468</width>
-     <height>24</height>
+     <width>491</width>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu">
