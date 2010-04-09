@@ -14,7 +14,8 @@ HEADERS = src/mainwindowimpl.h \
  src/spuro.h \
  src/spurosinkolauxkoordinatoj.h \
  src/cwdescentwinimpl.h \
- src/algoritmowin.h
+ src/algoritmowin.h \
+ src/Konstantoj.h
 SOURCES = src/mainwindowimpl.cpp \
  src/main.cpp \
  src/getvariantsImpl.cpp \
