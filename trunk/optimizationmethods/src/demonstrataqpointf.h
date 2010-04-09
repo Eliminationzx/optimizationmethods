@@ -10,8 +10,7 @@
  * @author Василий Почкаенко.
  * @file demonstrataqpointf.h
  */
-class DemonstrataQPointF : public QObject, public QPointF
-{
+class DemonstrataQPointF : public QObject, public QPointF{
 Q_OBJECT
 signals:
   //! Предоставляет значение в виде целого числа.
@@ -35,8 +34,8 @@ public:
   void setX(qreal x);
   //! Устанавливает новое значение Y.
   void setY(qreal y);
-  DemonstrataQPointF(qreal x, qreal y);
-  DemonstrataQPointF(const QPoint & point);
+  DemonstrataQPointF(qreal x, qreal y, const QObject * parent = 0);
+  DemonstrataQPointF(const QPoint & point, const QObject * parent = 0);
   
 };
 #endif
