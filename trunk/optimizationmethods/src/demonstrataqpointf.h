@@ -14,17 +14,17 @@ class DemonstrataQPointF : public QObject, public QPointF{
 Q_OBJECT
 signals:
   //! Предоставляет значение в виде целого числа.
-  void proviziXValoro(int valoro);
+  void proviziXValoro(int);
   //! Предоставляет значение в виде десятичной дроби.
   void proviziXValoro(double valoro);
   //! Предоставляет значение в виде строки.
-  void proviziXValoro(QString valoro);
+  void proviziXValoro(QString &);
   //! Предоставляет значение в виде целого числа.
-  void proviziYValoro(int valoro);
+  void proviziYValoro(int);
   //! Предоставляет значение в виде десятичной дроби.
   void proviziYValoro(double valoro);
   //! Предоставляет значение в виде виде строки.
-  void proviziYValoro(QString valoro);
+  void proviziYValoro(QString &);
 public: 
   QPointF & operator*=(qreal factor);
   QPointF & operator+=(const DemonstrataQPointF & point);
