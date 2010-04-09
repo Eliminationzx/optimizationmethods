@@ -16,16 +16,21 @@
 #include "NotWeNImpl.h"
 */
 #include "ui_getvariants.h"
+class AlgoritmoWin;
+class funkcio;
 //
 //! Производный класс от класса формы выбора варианта приложения optimizationmethods.
 /*! Предназначен для выбора варианта целевой функции и предоставления модулям объекта функции.
- * @author Проскурин Александр Викторович
+ * @author Александр Викторович Проскурин
  * @file mainwindowimpl.h
  */
 class getvariantsImpl : public QMainWindow, public Ui::getvariants
 {
 Q_OBJECT
 
+private:
+  //! Окно прохождения алгоритма.
+  AlgoritmoWin *AW;
 QVector<int> methFunc;
 
 //! Указатель на объект формы метода покоординатного спуска с дискрентым шагом

@@ -1,4 +1,7 @@
 #include "getvariantsImpl.h"
+#include "Konstantoj.h"
+#include <QMessageBox>
+#include "cwdescentwinimpl.h"
 //
 getvariantsImpl::getvariantsImpl(QVector<int> data, QWidget * parent, Qt::WFlags z) 
 	: QMainWindow(parent, z)
@@ -140,32 +143,29 @@ void getvariantsImpl::on_next_button_clicked()
 		funkcio * funck = new RavinaFunkcio(data);
 	}
 	QVector<double> simpleCon = data.mid(data.size()-6);
-/*	
+	
 	switch(methFunc[0])
 	{
-		case 0:
-			CWDF = new CWdescent_fixImpl(funck, simpleCon);
-			CWDF.show();
-			break;
-		case 1:
-			CWDM = new CWdescent_mdImpl(funck, simpleCon);
-			CWDM.show();
-			break;
-		case 2:
-			FS = new FasterDescentImpl(funck, simpleCon);
-			FS.show();
-			break;
-		case 3:
-			HG = new HuGiImpl(funck, simpleCon);
-			HG.show();
-			break;
-		case 4:
-			NM = new NeMiImpl(funck, simpleCon);
-			NM.show();
-			break;
-		case 5:
-			N = NotWeNImpl(funck, simpleCon);
-			N.show();
+		case A::CWdescent_fix:
+//			AW = new CWdescentWinImpl(указатель на фукцию, вектор с данными, this, Qt::Window);
+//			break;
+		case A::CWdescent_md:
+//			
+//			break;
+		case A::FasterDescent:
+//			AW = new 
+//			break;
+		case A::HuGi:
+//			AW = new 
+//			break;
+		case A::NeMiImpl:
+//			AW = new 
+//			break;
+		case A::NotWen:
+//			AW = new 
+      QMessageBox msg(QMessageBox::Warning, trUtf8("Ошибка"), trUtf8("Алгоритм ещё не реализован"));
+      msg.exec();
 	}
-*/
+  AW->show();
+
 }
