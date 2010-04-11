@@ -5,11 +5,6 @@
 #include <QObject>
 //
 //! Расширение QPointF, дла автоматического отображения его значений в окне.
-/*! К QPointF добавлены сигалы передающие его значение. Эти сигналы вызываются во всех методах изменяющих значение точки.
- * 
- * @author Василий Почкаенко.
- * @file demonstrataqpointf.h
- */
 class DemonstrataQPointF : public QObject, public QPointF{
 Q_OBJECT
 signals:
@@ -40,3 +35,10 @@ public:
   
 };
 #endif
+
+/*! @class DemonstrataQPointF
+ * К QPointF добавлены сигалы передающие его значение. Эти сигналы вызываются во всех методах изменяющих значение точки.
+ * 
+ * @author Василий Почкаенко.
+ * @file demonstrataqpointf.h
+ */

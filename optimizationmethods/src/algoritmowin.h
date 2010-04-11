@@ -5,10 +5,6 @@
 class funkcio;
 //
 //! Базовый класс для окна прохождения алгоритма.
-/*!
- * @author Василий Почкаенко.
- * @file algoritmowin.h
- */
 class AlgoritmoWin : public QMainWindow
 {
 Q_OBJECT
@@ -22,3 +18,8 @@ public:
 	
 };
 #endif
+
+/*! @class AlgoritmoWin
+ * @author Василий Почкаенко.
+ * @file algoritmowin.h
+ */

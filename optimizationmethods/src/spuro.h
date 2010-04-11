@@ -6,11 +6,6 @@
 #include "Konstantoj.h"
 //
 //! Базовый класс для отображения "следа" алгоритма.
-/*! Этот класс не проверяет логику прохождения алгоритма. Он лишь позволяет нарисовать "след" на сцене.
- * 
- * @author Василий Почкаенко.
- * @file spuro.h
- */
 class spuro : public QObject , public QGraphicsItem
 {
 Q_OBJECT
@@ -37,9 +32,16 @@ public:
    */
   inline QColor proviziBazaKoloro(){ return BazaKoloro; };
   
-  spuro(int IdAlgoritmo, //!< Порядковый номер алгоритма(@see A).
+  spuro(int IdAlgoritmo, //!< Порядковый номер алгоритма(см. A).
         QColor bazaKoloro, //!< Основной цвет "следа".
         QGraphicsItem * parent = 0 //!< Элемент родитель.
        );
 };
 #endif
+
+/*! @class spuro
+ * Этот класс не проверяет логику прохождения алгоритма. Он лишь позволяет нарисовать "след" на сцене.
+ * 
+ * @author Василий Почкаенко.
+ * @file spuro.h
+ */
