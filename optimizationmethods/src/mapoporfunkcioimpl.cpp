@@ -6,6 +6,7 @@
 #include <QGraphicsScene>
 #include "spurosinkolauxkoordinatoj.h"
 #include <QColor>
+#include "Konstantoj.h"
 #include <QString>
 #include <QMessageBox>
 //
