@@ -1,0 +1,47 @@
+digraph G
+{
+  edge [fontname="FreeSans",fontsize="10",labelfontname="FreeSans",labelfontsize="10"];
+  node [fontname="FreeSans",fontsize="10",shape=record];
+  Node1 [label="/home/vasya/qqq/src/getvariantsImpl.cpp",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="FreeSans"];
+  Node2 [label="getvariantsImpl.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d9/d8d/getvariantsImpl_8h.html"];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="FreeSans"];
+  Node3 [label="QMainWindow",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node2 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="FreeSans"];
+  Node4 [label="QDir",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node2 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="FreeSans"];
+  Node5 [label="QFile",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node2 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="FreeSans"];
+  Node6 [label="QTextStream",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node2 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="FreeSans"];
+  Node7 [label="QVector",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node2 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="FreeSans"];
+  Node8 [label="QVariant",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node2 -> Node9 [color="midnightblue",fontsize="10",style="solid",fontname="FreeSans"];
+  Node9 [label="funkcio.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dd/dad/funkcio_8h.html"];
+  Node9 -> Node10 [color="midnightblue",fontsize="10",style="solid",fontname="FreeSans"];
+  Node10 [label="QObject",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node9 -> Node11 [color="midnightblue",fontsize="10",style="solid",fontname="FreeSans"];
+  Node11 [label="math.h",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node9 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="FreeSans"];
+  Node9 -> Node12 [color="midnightblue",fontsize="10",style="solid",fontname="FreeSans"];
+  Node12 [label="QPointF",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node2 -> Node13 [color="midnightblue",fontsize="10",style="solid",fontname="FreeSans"];
+  Node13 [label="cwdescentwinimpl.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d8/dd9/cwdescentwinimpl_8h.html"];
+  Node13 -> Node14 [color="midnightblue",fontsize="10",style="solid",fontname="FreeSans"];
+  Node14 [label="algoritmowin.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d9/d02/algoritmowin_8h.html"];
+  Node14 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="FreeSans"];
+  Node13 -> Node15 [color="midnightblue",fontsize="10",style="solid",fontname="FreeSans"];
+  Node15 [label="ui_CWdescent_fixwindow.h",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node13 -> Node16 [color="midnightblue",fontsize="10",style="solid",fontname="FreeSans"];
+  Node16 [label="demonstrataqpointf.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d5/d89/demonstrataqpointf_8h.html"];
+  Node16 -> Node12 [color="midnightblue",fontsize="10",style="solid",fontname="FreeSans"];
+  Node16 -> Node10 [color="midnightblue",fontsize="10",style="solid",fontname="FreeSans"];
+  Node2 -> Node17 [color="midnightblue",fontsize="10",style="solid",fontname="FreeSans"];
+  Node17 [label="ui_getvariants.h",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node1 -> Node18 [color="midnightblue",fontsize="10",style="solid",fontname="FreeSans"];
+  Node18 [label="Konstantoj.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d0/d47/Konstantoj_8h.html"];
+  Node1 -> Node19 [color="midnightblue",fontsize="10",style="solid",fontname="FreeSans"];
+  Node19 [label="QMessageBox",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node1 -> Node13 [color="midnightblue",fontsize="10",style="solid",fontname="FreeSans"];
+}

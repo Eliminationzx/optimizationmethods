@@ -1,0 +1,12 @@
+digraph G
+{
+  edge [fontname="FreeSans",fontsize="10",labelfontname="FreeSans",labelfontsize="10"];
+  node [fontname="FreeSans",fontsize="10",shape=record];
+  Node1 [label="MainWindowImpl",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node2 -> Node1 [dir=back,color="darkorchid3",fontsize="10",style="dashed",label="getV",fontname="FreeSans"];
+  Node2 [label="getvariantsImpl",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d5/d83/classgetvariantsImpl.html"];
+  Node3 -> Node2 [dir=back,color="darkorchid3",fontsize="10",style="dashed",label="AW",fontname="FreeSans"];
+  Node3 [label="AlgoritmoWin",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d4/d19/classAlgoritmoWin.html",tooltip="Базовый класс для окна прохождения алгоритма..."];
+  Node4 -> Node3 [dir=back,color="darkorchid3",fontsize="10",style="dashed",label="F",fontname="FreeSans"];
+  Node4 [label="funkcio",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$db/d59/classfunkcio.html",tooltip="Класс для целевой функции."];
+}
