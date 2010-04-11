@@ -8,8 +8,8 @@
 #include <QVector>
 #include <QVariant>
 #include "funkcio.h"
-/*#include "CWdescent_fixImpl.h"
-#include "CWdescent_mdImpl.h"
+#include "CWdescentwinImpl.h"
+/*#include "CWdescent_mdImpl.h"
 #include "FasterDescentImpl.h"
 #include "HuGiImpl.h"
 #include "NeMiImpl.h"
@@ -31,19 +31,19 @@ Q_OBJECT
 private:
   //! Окно прохождения алгоритма.
   AlgoritmoWin *AW;
-QVector<int> methFunc;
-
-//! Указатель на объект формы метода покоординатного спуска с дискрентым шагом
-//CWdescent_fixImpl * CWDF;
-//! Указатель на объект формы метода покоординатного спуска с минимизацией п направлению
-//CWdescent_mdImpl * CWDM;
-//! Указатель на объект формы метода наискорейшего спуска
-//FasterDescentImpl * FS;
-//! Указатель на объект формы метода Хука-Дживса
-//HuGiImpl * HG;
-//! Указатель на объект формы метода Нелдера-Мида
-//NeMiImpl * NM;
-//! Указатель на объект формы метода Ньютона
+	QVector<int> methFunc;
+	
+	//! Указатель на объект формы метода покоординатного спуска с дискрентым шагом
+	//CWdescent_fixImpl * CWDF;
+	//! Указатель на объект формы метода покоординатного спуска с минимизацией п направлению
+	//CWdescent_mdImpl * CWDM;
+	//! Указатель на объект формы метода наискорейшего спуска
+	//FasterDescentImpl * FS;
+	//! Указатель на объект формы метода Хука-Дживса
+	//HuGiImpl * HG;
+	//! Указатель на объект формы метода Нелдера-Мида
+	//NeMiImpl * NM;
+	//! Указатель на объект формы метода Ньютона
 //NotWeNImpl * N;
 
 private:
