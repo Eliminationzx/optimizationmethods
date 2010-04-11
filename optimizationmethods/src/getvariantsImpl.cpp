@@ -132,23 +132,24 @@ void getvariantsImpl::on_next_button_clicked()
 {
 	// TODO
 	QVector<double> data;
+	funkcio * funck;
 	if(methFunc[1] == 0)
 	{
 		data = ReadVariants(methFunc[1], comboBox->currentIndex());
-		funkcio * funck = new KvadratigantoFunkcio(data);
+		funck = new KvadratigantoFunkcio(data);
 	}
 	else if(methFunc[1] == 1)
 	{
 		data = ReadVariants(methFunc[1], comboBox->currentIndex());
-		funkcio * funck = new RavinaFunkcio(data);
+		funck = new RavinaFunkcio(data);
 	}
 	QVector<double> simpleCon = data.mid(data.size()-6);
 	
 	switch(methFunc[0])
 	{
 		case A::CWdescent_fix:
-//			AW = new CWdescentWinImpl(указатель на фукцию, вектор с данными, this, Qt::Window);
-//			break;
+			AW = new CWdescentWinImpl(funck, &simpleCon, this, Qt::Window);
+			break;
 		case A::CWdescent_md:
 //			
 //			break;
