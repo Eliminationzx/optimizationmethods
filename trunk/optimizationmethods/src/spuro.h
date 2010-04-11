@@ -3,9 +3,10 @@
 //
 #include <QGraphicsItem>
 #include <QObject>
+#include "Konstantoj.h"
 //
 //! Базовый класс для отображения "следа" алгоритма.
-/*! 
+/*! Этот класс не проверяет логику прохождения алгоритма. Он лишь позволяет нарисовать "след" на сцене.
  * 
  * @author Василий Почкаенко.
  * @file spuro.h
@@ -19,12 +20,8 @@ protected:
   //! Основной цвет "следа".
   QColor BazaKoloro;
   //! Порядковый номер алгоритма.
-  /*! 0) метод покоординатного спуска с дискретным шагом
-   * 1) метод покоординатного спуска с минимизацией по направлению
-   * 2) метод наискорейшего спуска
-   * 3) метод Хука-Дживса
-   * 4) метод Нелдера-Мида
-   * 5) метод Ньютона
+  /*! @see A.
+   * 
    */
   int IDAlgoritmo;
 public:
@@ -32,12 +29,15 @@ public:
   qreal scale() const;
   //! Устанавливает масштаб.
   void setScale(qreal factor);
-  //! Возвращает название алгоритма.
+  //! Возвращает порядковый номер алгоритма.
   inline int proviziIdAlgoritmo(){ return IDAlgoritmo; };
   //! Возвращает значение основного цвета.
+  /*! @see A.
+   * 
+   */
   inline QColor proviziBazaKoloro(){ return BazaKoloro; };
   
-  spuro(int IdAlgoritmo, //!< Порядковый номер алгоритма.
+  spuro(int IdAlgoritmo, //!< Порядковый номер алгоритма(@see A).
         QColor bazaKoloro, //!< Основной цвет "следа".
         QGraphicsItem * parent = 0 //!< Элемент родитель.
        );

@@ -6,7 +6,6 @@
 #include <QGraphicsScene>
 #include "spurosinkolauxkoordinatoj.h"
 #include <QColor>
-#include "Konstantoj.h"
 #include <QString>
 #include <QMessageBox>
 //
@@ -44,7 +43,7 @@ void MapoPorFunkcioImpl::difiniFunkcio(funkcio * f){
 void MapoPorFunkcioImpl::kreiSpuro(int IdAlgoritmo, QColor bazaKoloro){
   // Создаю "след" в соответствии с указаным алгоритмом.
   switch(IdAlgoritmo){
-    case 0:{
+    case A::CWdescent_fix :{
       Spuro = new spuroSinkoLauxKoordinatoj(Qt::white, bazaKoloro);
       break;
     }
