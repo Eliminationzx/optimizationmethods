@@ -15,11 +15,11 @@ QRectF spuroSinkoLauxKoordinatoj::boundingRect() const{
   return rez;
 }
 
-void spuroSinkoLauxKoordinatoj::finisxiIteracio(QPointF p){
-  MomentaPointio = p;
+void spuroSinkoLauxKoordinatoj::finisxiIteracio(){
+  MomentaPointio = MomentaPointioj.back();
   Vosto += MomentaPointioj;
   MomentaPointioj.clear();
-  MomentaPointioj.append(p);
+  MomentaPointioj.append(MomentaPointio);
 }
 
 void spuroSinkoLauxKoordinatoj::reveniAlMomentoPointo(){
@@ -29,7 +29,7 @@ void spuroSinkoLauxKoordinatoj::reveniAlMomentoPointo(){
 void spuroSinkoLauxKoordinatoj::aldoniSercxantaPointo(QPointF p){
   MomentaPointioj.append(p);
 }
-void spuroSinkoLauxKoordinatoj::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widge){
+void spuroSinkoLauxKoordinatoj::paint(QPainter *painter, const QStyleOptionGraphicsItem */*option*/, QWidget */*widge*/){
   painter->save();
   
   painter->setPen(BazaKoloro);
@@ -55,7 +55,7 @@ void spuroSinkoLauxKoordinatoj::difiniUnuaPointo( qreal x, qreal y ){
 QPolygonF spuroSinkoLauxKoordinatoj::aplikiScalo(QPolygonF p)
 {
   QPolygonF rez;
-  for(int i; i < p.count(); ++i){
+  for(int i=0; i < p.count(); ++i){
     rez.append(p[i] * skalo);
   }
   return rez;

@@ -6,7 +6,7 @@
 class funkcio;
 //! Сцена для карты высот целевой функции.
 /*! Отличается от стандартной QGraphicsScene тем, что рисует на фоне карту высот.
- * В классе собственая реализация масштабирования. Работа с масштабом подобна работе в QPainter. @see scale();
+ * В классе собственная реализация масштабирования. Работа с масштабом подобна работе в QPainter. @see scale();
  * @author Василий Почкаенко.
  * @file scenopormapo.h
  */
@@ -23,7 +23,7 @@ public:
   qreal scale() const;
   //! Устанавливает масштаб.
   void setScale(qreal factor);
-  
+
   ScenoPorMapo( funkcio * Funkcio, QObject * parent = 0);
   ScenoPorMapo( funkcio * Funkcio, const QRectF & sceneRect, QObject * parent = 0);
   ScenoPorMapo( funkcio * Funkcio, qreal x, qreal y, qreal width, qreal height, QObject * parent = 0);
