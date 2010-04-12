@@ -8,6 +8,7 @@ class optimizationmethodsImpl : public QStackedWidget, public Ui::Main
 {
 Q_OBJECT
 public:
+	//! Конструктор класса
 	optimizationmethodsImpl( QWidget * parent = 0, Qt::WFlags f = 0 );
 private slots:
 };
