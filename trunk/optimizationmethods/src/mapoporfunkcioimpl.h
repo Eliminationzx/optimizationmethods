@@ -63,8 +63,3 @@ private slots:
  * @author Василий Почкаенко.
  * @file mapoporfunkcioimpl.h
  */
-
-
-
-
-
