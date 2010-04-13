@@ -28,3 +28,4 @@ SOURCES = src/mainwindowimpl.cpp \
  src/cwdescentwinimpl.cpp \
  src/algoritmowin.cpp \
  src/demonstrataqpointf.cpp
+RESOURCES += ui/data.qrc

@@ -17,11 +17,8 @@
    <string>Покоординатный спуск с фиксированным шагом</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout_3" rowstretch="0,1" columnstretch="1,2">
-    <item row="1" column="0">
-     <widget class="QListView" name="listView"/>
-    </item>
-    <item row="0" column="1">
+   <layout class="QGridLayout" name="gridLayout_3" rowstretch="0,1" columnstretch="1,2,0">
+    <item row="0" column="0">
      <widget class="QGroupBox" name="groupBox_2">
       <property name="title">
        <string>Информация о выполнении</string>
@@ -175,7 +172,14 @@
       </layout>
      </widget>
     </item>
-    <item row="0" column="0">
+    <item row="1" column="1">
+     <widget class="QListView" name="listView">
+      <property name="focusPolicy">
+       <enum>Qt::NoFocus</enum>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
      <widget class="QGroupBox" name="groupBox_3">
       <property name="font">
        <font>
@@ -408,6 +412,16 @@ p, li { white-space: pre-wrap; }
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <tabstops>
+  <tabstop>up_x1_btn</tabstop>
+  <tabstop>down_x1_btn</tabstop>
+  <tabstop>up_x2_btn</tabstop>
+  <tabstop>down_x2_btn</tabstop>
+  <tabstop>accept_bt</tabstop>
+  <tabstop>not_accept_bt</tabstop>
+  <tabstop>change_step_bt</tabstop>
+  <tabstop>end_bt</tabstop>
+ </tabstops>
  <resources>
   <include location="data.qrc"/>
  </resources>
