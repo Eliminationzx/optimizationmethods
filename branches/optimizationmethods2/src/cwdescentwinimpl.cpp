@@ -18,7 +18,7 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * pa
   connect( &NovaPointo, SIGNAL(proviziXValoro(QString & )), new_x1_lb, SLOT(setText(const QString & ))); 
   connect( &NovaPointo, SIGNAL(proviziYValoro(QString & )), new_x2_lb, SLOT(setText(const QString & ))); 
   connect( &PasxoX1, SIGNAL(proviziXValoro(QString & )), x1_step_lb, SLOT(setText(const QString & ))); 
-  connect( &PasxoX2, SIGNAL(proviziYValoro(QString & )), x2_step_lb, SLOT(setText(const QString & ))); 
+  connect( &PasxoX2, SIGNAL(proviziYValoro(QString & )), x2_step_lb, SLOT(setText(const QString & )));
 }
 //
 
