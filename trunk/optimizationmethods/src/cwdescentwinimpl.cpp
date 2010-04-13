@@ -10,8 +10,8 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * pa
   // Создаю карту.
   // centralwidget->layout() - указатель на компановщик центрального виджета
   // static_cast<QGridLayout*>(centralwidget->layout()) - обьясняю компилятору, что это именно QGridLayout
-  // добавляю вижет карты в позицию 1,0. Компановщик сам позаботится о назначении новому виджету родителя.
-  static_cast<QGridLayout*>(centralwidget->layout())->addWidget(new MapoPorFunkcioImpl(F), 1, 0);
+  // добавляю вижет карты в позицию 1,1. Компановщик сам позаботится о назначении новому виджету родителя.
+  static_cast<QGridLayout*>(centralwidget->layout())->addWidget(new MapoPorFunkcioImpl(F), 1, 1);
   
   // Присоединяю точки к надписям для отображения их значения.
   connect( &MomentaPointo, SIGNAL(proviziXValoro(QString & )), x1_lb, SLOT(setText(const QString & ))); 
