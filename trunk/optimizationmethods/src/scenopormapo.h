@@ -4,6 +4,7 @@
 #include <QGraphicsScene>
 //
 class funkcio;
+class spuro;
 //! Сцена для карты высот целевой функции.
 class ScenoPorMapo : public QGraphicsScene
 {
@@ -13,15 +14,18 @@ private:
   funkcio *F;
   //! Коэффициент масштаба.
   qreal skalo;
+  //! Указатель на след.
+  spuro * Sp;
 public:
   //! Возвращает масштаб.
   qreal scale() const;
-  //! Устанавливает масштаб.
-  void setScale(qreal factor);
 
   ScenoPorMapo( funkcio * Funkcio, QObject * parent = 0);
   ScenoPorMapo( funkcio * Funkcio, const QRectF & sceneRect, QObject * parent = 0);
   ScenoPorMapo( funkcio * Funkcio, qreal x, qreal y, qreal width, qreal height, QObject * parent = 0);
+public slots:
+  //! Устанавливает масштаб.
+  void setScale(qreal factor);
 protected:
   //! Отрисовывает фон сцены с использованием painter перед отрисовкой любого элемента или переднего плана.
   void drawBackground(QPainter * painter, const QRectF & rect);
