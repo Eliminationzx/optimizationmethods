@@ -16,6 +16,9 @@
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0" colspan="2">
     <widget class="QGraphicsView" name="grphVw">
+     <property name="cursor" stdset="0">
+      <cursorShape>OpenHandCursor</cursorShape>
+     </property>
      <property name="dragMode">
       <enum>QGraphicsView::ScrollHandDrag</enum>
      </property>
