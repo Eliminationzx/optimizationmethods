@@ -16,8 +16,14 @@
     <height>350</height>
    </size>
   </property>
+  <property name="font">
+   <font>
+    <family>Times New Roman</family>
+    <pointsize>11</pointsize>
+   </font>
+  </property>
   <property name="windowTitle">
-   <string>StackedWidget</string>
+   <string>Методы оптимизации 2010</string>
   </property>
   <property name="windowIcon">
    <iconset resource="data.qrc">
@@ -68,6 +74,9 @@
             <widget class="QRadioButton" name="ravinFunction">
              <property name="text">
               <string>Овражная функция</string>
+             </property>
+             <property name="checkable">
+              <bool>false</bool>
              </property>
             </widget>
            </item>

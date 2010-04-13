@@ -1,6 +1,5 @@
 #include <QApplication>
 #include "mainwindowimpl.h"
-#include "getvariantsImpl.h"
 //
 int main(int argc, char ** argv)
 {
