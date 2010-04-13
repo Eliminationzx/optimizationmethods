@@ -177,86 +177,78 @@
       <property name="title">
        <string>Действия</string>
       </property>
-      <layout class="QGridLayout" name="gridLayout_5">
+      <layout class="QGridLayout" name="gridLayout">
        <item row="0" column="0">
-        <layout class="QGridLayout" name="gridLayout_2">
-         <item row="0" column="0">
-          <layout class="QGridLayout" name="gridLayout">
-           <item row="0" column="0">
-            <widget class="QPushButton" name="calculate_bt">
-             <property name="text">
-              <string>Вычислить</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0">
-            <widget class="QPushButton" name="accept_bt">
-             <property name="text">
-              <string>Принять</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="0">
-            <widget class="QPushButton" name="not_accept_bt">
-             <property name="text">
-              <string>Не принимать</string>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="0">
-            <widget class="QPushButton" name="end_bt">
-             <property name="text">
-              <string>Закончить</string>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="0">
-            <widget class="QPushButton" name="change_step_bt">
-             <property name="text">
-              <string>Изменить шаг</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-         <item row="0" column="1">
-          <widget class="QGroupBox" name="groupBox">
-           <property name="title">
-            <string>Направление движения</string>
-           </property>
-           <layout class="QGridLayout" name="gridLayout_4">
-            <item row="0" column="0">
-             <widget class="QRadioButton" name="up_x1_rb">
-              <property name="text">
-               <string>+ по Х1</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QRadioButton" name="down_x1_rb">
-              <property name="text">
-               <string>- по Х1</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="0">
-             <widget class="QRadioButton" name="up_x2_rb">
-              <property name="text">
-               <string>+ по Х2</string>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="0">
-             <widget class="QRadioButton" name="down_x2_rb">
-              <property name="text">
-               <string>- по Х2</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </item>
-        </layout>
+        <widget class="QPushButton" name="calculate_bt">
+         <property name="text">
+          <string>Вычислить</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1" rowspan="5">
+        <widget class="QGroupBox" name="groupBox">
+         <property name="title">
+          <string>Направление движения</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_4">
+          <item row="0" column="0">
+           <widget class="QRadioButton" name="up_x1_rb">
+            <property name="text">
+             <string>+ по Х1</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QRadioButton" name="down_x1_rb">
+            <property name="text">
+             <string>- по Х1</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QRadioButton" name="up_x2_rb">
+            <property name="text">
+             <string>+ по Х2</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QRadioButton" name="down_x2_rb">
+            <property name="text">
+             <string>- по Х2</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QPushButton" name="accept_bt">
+         <property name="text">
+          <string>Принять</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QPushButton" name="not_accept_bt">
+         <property name="text">
+          <string>Не принимать</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QPushButton" name="end_bt">
+         <property name="text">
+          <string>Закончить</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QPushButton" name="change_step_bt">
+         <property name="text">
+          <string>Изменить шаг</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
