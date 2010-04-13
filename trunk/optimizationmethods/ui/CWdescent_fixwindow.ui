@@ -6,15 +6,9 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>735</width>
-    <height>473</height>
+    <width>743</width>
+    <height>525</height>
    </rect>
-  </property>
-  <property name="font">
-   <font>
-    <family>Times New Roman</family>
-    <pointsize>11</pointsize>
-   </font>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
@@ -23,12 +17,23 @@
    <layout class="QGridLayout" name="gridLayout_2" rowstretch="0,1" columnstretch="1,1">
     <item row="0" column="0">
      <widget class="QGroupBox" name="groupBox_2">
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
       <property name="title">
        <string>Информация о выполнении</string>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
+       <property name="spacing">
+        <number>15</number>
+       </property>
        <item>
         <layout class="QGridLayout" name="gridLayout_6">
+         <property name="spacing">
+          <number>10</number>
+         </property>
          <item row="0" column="1">
           <widget class="QLabel" name="label_11">
            <property name="text">
@@ -109,15 +114,18 @@
         </layout>
        </item>
        <item>
-        <layout class="QGridLayout" name="gridLayout_8">
-         <item row="0" column="0">
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <property name="spacing">
+          <number>10</number>
+         </property>
+         <item>
           <widget class="QLabel" name="label_4">
            <property name="text">
             <string>Расстояние от стартовой до текущей точки</string>
            </property>
           </widget>
          </item>
-         <item row="0" column="1">
+         <item>
           <widget class="QLabel" name="distance_lb">
            <property name="text">
             <string>ы</string>
@@ -128,6 +136,9 @@
        </item>
        <item>
         <layout class="QGridLayout" name="gridLayout_7">
+         <property name="verticalSpacing">
+          <number>10</number>
+         </property>
          <item row="0" column="0">
           <widget class="QLabel" name="label">
            <property name="text">
@@ -177,15 +188,24 @@
     </item>
     <item row="0" column="1">
      <widget class="QGroupBox" name="groupBox_3">
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
       <property name="title">
-       <string>Действия</string>
+       <string>Выберите правильное действие</string>
       </property>
       <layout class="QGridLayout" name="gridLayout">
        <item row="0" column="0">
         <widget class="QPushButton" name="calculate_bt">
          <property name="font">
           <font>
-           <pointsize>15</pointsize>
+           <pointsize>12</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
           </font>
          </property>
          <property name="text">
@@ -195,32 +215,39 @@
        </item>
        <item row="0" column="1" rowspan="6">
         <widget class="QGroupBox" name="groupBox">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
          <property name="title">
           <string>Направление движения</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_4">
-          <item row="0" column="0">
+         <layout class="QVBoxLayout" name="verticalLayout_2">
+          <item>
            <widget class="QRadioButton" name="up_x1_rb">
             <property name="text">
              <string>+ по Х1</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="0">
+          <item>
            <widget class="QRadioButton" name="down_x1_rb">
             <property name="text">
              <string>- по Х1</string>
             </property>
            </widget>
           </item>
-          <item row="2" column="0">
+          <item>
            <widget class="QRadioButton" name="up_x2_rb">
             <property name="text">
              <string>+ по Х2</string>
             </property>
            </widget>
           </item>
-          <item row="3" column="0">
+          <item>
            <widget class="QRadioButton" name="down_x2_rb">
             <property name="text">
              <string>- по Х2</string>
@@ -234,7 +261,9 @@
         <widget class="QPushButton" name="accept_bt">
          <property name="font">
           <font>
-           <pointsize>15</pointsize>
+           <pointsize>12</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
           </font>
          </property>
          <property name="text">
@@ -246,7 +275,9 @@
         <widget class="QPushButton" name="not_accept_bt">
          <property name="font">
           <font>
-           <pointsize>15</pointsize>
+           <pointsize>12</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
           </font>
          </property>
          <property name="text">
@@ -258,7 +289,9 @@
         <widget class="QPushButton" name="end_bt">
          <property name="font">
           <font>
-           <pointsize>15</pointsize>
+           <pointsize>12</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
           </font>
          </property>
          <property name="text">
@@ -270,7 +303,9 @@
         <widget class="QPushButton" name="change_step_bt">
          <property name="font">
           <font>
-           <pointsize>15</pointsize>
+           <pointsize>12</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
           </font>
          </property>
          <property name="text">
@@ -282,7 +317,25 @@
      </widget>
     </item>
     <item row="1" column="0">
-     <widget class="QListView" name="listView"/>
+     <widget class="QListView" name="LogLstVw">
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::NoEditTriggers</set>
+      </property>
+      <property name="showDropIndicator" stdset="0">
+       <bool>false</bool>
+      </property>
+      <property name="selectionMode">
+       <enum>QAbstractItemView::NoSelection</enum>
+      </property>
+      <property name="selectionRectVisible">
+       <bool>true</bool>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
@@ -291,8 +344,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>735</width>
-     <height>23</height>
+     <width>743</width>
+     <height>24</height>
     </rect>
    </property>
   </widget>
