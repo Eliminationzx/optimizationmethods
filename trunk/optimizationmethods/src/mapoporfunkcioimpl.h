@@ -25,12 +25,12 @@ private:
 public:
   MapoPorFunkcioImpl( funkcio * Funkcio, QWidget * parent = 0, Qt::WFlags f = 0 );
   MapoPorFunkcioImpl( QWidget * parent = 0, Qt::WFlags f = 0 );
-public slots:
   //! Возвращает указатель на "след" прохождения алгоритма.
   /*! "Следы" разных алгоритмов имеют разные слоты.
    * @see spuro, spuroSinkoLauxKoordinatoj.
    */
-  const spuro * proviziSpuro();
+  spuro * proviziSpuro();
+public slots:
   //! Устанавливает целевую функцию.
   void difiniFunkcio(funkcio * f);
   //! Создает на сцене "след" алгоритма.

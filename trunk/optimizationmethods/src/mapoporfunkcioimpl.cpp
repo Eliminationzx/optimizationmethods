@@ -52,7 +52,7 @@ void MapoPorFunkcioImpl::kreiSpuro(int IdAlgoritmo, QColor bazaKoloro){
   
 }
 
-const spuro * MapoPorFunkcioImpl::proviziSpuro()
+spuro * MapoPorFunkcioImpl::proviziSpuro()
 {
   return Spuro;
 }
