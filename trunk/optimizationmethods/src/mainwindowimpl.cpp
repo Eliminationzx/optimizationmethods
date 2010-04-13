@@ -2,7 +2,7 @@
 //
 //! Конструктор класса.
 MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WFlags f) 
-	: QMainWindow(parent, f)
+	: QStackedWidget(parent)
 {
 	setupUi(this);
 	
@@ -25,30 +25,187 @@ MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WFlags f)
 }
 //
 
-//! Нажата кнопка "Далее".
+//! Чтение данных варианта из текстового файла.
+QVector<double> MainWindowImpl::ReadVariants(const int typeFunction, const int numberVariants)
+{
+	QVector<double> data(0);
+	QString path;
+	switch (typeFunction)
+	{
+		case 0:
+			path = "variants/quadFunction/";
+			break;
+		case 1:
+			path = "variants/ravinFunction/";
+	}
+	QFile file(QDir::toNativeSeparators(path + QString::number(numberVariants)));
+	if(file.open(QIODevice::ReadOnly))
+	{
+		QTextStream stream(&file);
+		while(!stream.atEnd())
+		{
+			data.append(stream.readLine().toDouble());
+		}
+	}
+	else
+		data.fill(NULL, 13);
+	return data;
+}
+
+//! Анализ директории вариантов целевой функции.
+QVector<int> MainWindowImpl::AnalysisDirVariants(const int typeFunction)
+{
+	QVector<int> variants(0);
+	QString path;
+	switch (typeFunction)
+	{
+		case 0:
+			path = "variants/quadFunction/";
+			break;
+		case 1:
+			path = "variants/ravinFunction/";
+	}
+	QDir dir(QDir::toNativeSeparators(path));
+	QStringList listFiles = dir.entryList(QDir::Files);
+	foreach(QString str, listFiles)
+	{
+		variants.append(str.toInt());
+	}
+	return variants;
+}
+
+//! Инициализация выпадающего списка варинтов.
+void MainWindowImpl::initializationComboBox(const int typeFunction)
+{
+	QVector<int> data;
+	QVariant var;
+	data = AnalysisDirVariants(typeFunction);
+	foreach(int i, data)
+	{
+		var.setValue(i);
+		comboBox->addItem(trUtf8("Вариант ").append(QString::number(i + 1)), var);
+	}
+}
+
+//! Нажата кнопка "Далее" (1-ая страница).
 void MainWindowImpl::on_next_button_clicked()
 {
 	// TODO
-	QVector<int> data(2);
-	data[0] = choiceMethods->currentIndex();
-	if(data[0] != -1 && quadFunction->isChecked())
+	methFunc.append(choiceMethods->currentIndex());
+	if(quadFunction->isChecked())
 	{
-		data[1] = 0;
-		getV = new getvariantsImpl(data);
-		getV->show();
+		methFunc.append(0);
+		
+		this->setCurrentIndex(1);
 	}
-	else if(data[0] != -1 && ravinFunction->isChecked() && takeQuadFun)
+	else if(ravinFunction->isChecked() && takeQuadFun == true)
 	{
-		data[1] = 1;
-		getV = new getvariantsImpl(data);
-		getV->show();
+		methFunc.append(1);
+		
+		c->setVisible(false);
+		d->setVisible(false);
+		e->setVisible(false);
+		f->setVisible(false);
+		g->setVisible(false);
+		label_4->setVisible(false);
+		label_5->setVisible(false);
+		label_6->setVisible(false);
+		label_7->setVisible(false);
+		label_8->setVisible(false);
+		
+		this->setCurrentIndex(1);
 	}
-	else if(data[0] == -1)
+	
+	initializationComboBox(methFunc[1]);
+
+	on_comboBox_activated(0);
+}
+
+//! Нажата кнопка "Далее" (2-ая страница).
+void MainWindowImpl::on_next_button_2_clicked()
+{
+	// TODO
+	QVector<double> data;
+	funkcio * funck;
+	if(methFunc[1] == 0)
 	{
-		statusbar->showMessage(trUtf8("Выберите метод оптимизации"), 2000);
+		data = ReadVariants(methFunc[1], comboBox->currentIndex());
+		funck = new KvadratigantoFunkcio(data);
 	}
-	else
+	else if(methFunc[1] == 1)
 	{
-		statusbar->showMessage(trUtf8("Вы не прошли квадратичную функцию"), 2000);
+		data = ReadVariants(methFunc[1], comboBox->currentIndex());
+		funck = new RavinaFunkcio(data);
+	}
+	QVector<double> simpleCon = data.mid(data.size()-6);
+	
+	switch(methFunc[0])
+	{
+		case A::CWdescent_fix:
+			AW = new CWdescentWinImpl(funck, &simpleCon, this, Qt::Window);
+			break;
+		case A::CWdescent_md:
+//			
+//			break;
+		case A::FasterDescent:
+//			AW = new 
+//			break;
+		case A::HuGi:
+//			AW = new 
+//			break;
+		case A::NeMiImpl:
+//			AW = new 
+//			break;
+		case A::NotWen:
+//			AW = new 
+      QMessageBox msg(QMessageBox::Warning, trUtf8("Ошибка"), trUtf8("Алгоритм ещё не реализован"));
+      msg.exec();
+	}
+  AW->show();
+}
+
+//! Нажата кнопка "Назад" (2-ая страница).
+void MainWindowImpl::on_back_button_clicked()
+{
+	// TODO
+	this->setCurrentIndex(0);
+}
+
+//! Выбран вариант функции.
+void MainWindowImpl::on_comboBox_activated(int index)
+{
+	// TODO
+	if(methFunc[1] == 0)
+	{
+		QVector<double> data(13);
+		data = ReadVariants(methFunc[0], index);
+		a->setText(QString::number(data[0]));
+		b->setText(QString::number(data[1]));
+		c->setText(QString::number(data[2]));
+		d->setText(QString::number(data[3]));
+		e->setText(QString::number(data[4]));
+		f->setText(QString::number(data[5]));
+		g->setText(QString::number(data[6]));
+
+		accuracy->setText(QString::number(data[7]));
+		stepx1->setText(QString::number(data[8]));
+		stepx2->setText(QString::number(data[9]));
+		stepChange->setText(QString::number(data[10]));
+		x1->setText(QString::number(data[11]));
+		x2->setText(QString::number(data[12]));
+	}
+	else if(methFunc[1] == 1)
+	{
+		QVector<double> data(8);
+		data = ReadVariants(methFunc[0], index);
+		a->setText(QString::number(data[0]));
+		b->setText(QString::number(data[1]));
+		accuracy->setText(QString::number(data[2]));
+		stepx1->setText(QString::number(data[3]));
+		stepx2->setText(QString::number(data[4]));
+		stepChange->setText(QString::number(data[5]));
+		x1->setText(QString::number(data[6]));
+		x2->setText(QString::number(data[7]));
 	}
 }
+
