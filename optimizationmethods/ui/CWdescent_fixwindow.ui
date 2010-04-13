@@ -183,12 +183,17 @@
       <layout class="QGridLayout" name="gridLayout">
        <item row="0" column="0">
         <widget class="QPushButton" name="calculate_bt">
+         <property name="font">
+          <font>
+           <pointsize>15</pointsize>
+          </font>
+         </property>
          <property name="text">
           <string>Вычислить</string>
          </property>
         </widget>
        </item>
-       <item row="0" column="1" rowspan="5">
+       <item row="0" column="1" rowspan="6">
         <widget class="QGroupBox" name="groupBox">
          <property name="title">
           <string>Направление движения</string>
@@ -227,6 +232,11 @@
        </item>
        <item row="1" column="0">
         <widget class="QPushButton" name="accept_bt">
+         <property name="font">
+          <font>
+           <pointsize>15</pointsize>
+          </font>
+         </property>
          <property name="text">
           <string>Принять</string>
          </property>
@@ -234,20 +244,35 @@
        </item>
        <item row="2" column="0">
         <widget class="QPushButton" name="not_accept_bt">
+         <property name="font">
+          <font>
+           <pointsize>15</pointsize>
+          </font>
+         </property>
          <property name="text">
           <string>Не принимать</string>
          </property>
         </widget>
        </item>
-       <item row="3" column="0">
+       <item row="4" column="0">
         <widget class="QPushButton" name="end_bt">
+         <property name="font">
+          <font>
+           <pointsize>15</pointsize>
+          </font>
+         </property>
          <property name="text">
           <string>Закончить</string>
          </property>
         </widget>
        </item>
-       <item row="4" column="0">
+       <item row="3" column="0">
         <widget class="QPushButton" name="change_step_bt">
+         <property name="font">
+          <font>
+           <pointsize>15</pointsize>
+          </font>
+         </property>
          <property name="text">
           <string>Изменить шаг</string>
          </property>
@@ -267,7 +292,7 @@
      <x>0</x>
      <y>0</y>
      <width>735</width>
-     <height>24</height>
+     <height>23</height>
     </rect>
    </property>
   </widget>
