@@ -22,6 +22,8 @@ MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WFlags f)
 	var.setValue(5);
 	choiceMethods->addItem(trUtf8("Метод Ньютона"), var);
 	choiceMethods->setCurrentIndex(0);
+	
+	ravinFunction->setCheckable(false);
 }
 //
 
@@ -98,7 +100,7 @@ void MainWindowImpl::on_next_button_clicked()
 		
 		this->setCurrentIndex(1);
 	}
-	else if(ravinFunction->isChecked() && takeQuadFun == true)
+	else if(ravinFunction->isChecked())
 	{
 		methFunc.append(1);
 		
