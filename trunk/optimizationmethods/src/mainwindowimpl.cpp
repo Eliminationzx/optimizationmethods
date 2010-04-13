@@ -163,7 +163,7 @@ void MainWindowImpl::on_next_button_2_clicked()
       QMessageBox msg(QMessageBox::Warning, trUtf8("Ошибка"), trUtf8("Алгоритм ещё не реализован"));
       msg.exec();
 	}
-  AW->show();
+	AW->showMaximized();
 }
 
 //! Нажата кнопка "Назад" (2-ая страница).
