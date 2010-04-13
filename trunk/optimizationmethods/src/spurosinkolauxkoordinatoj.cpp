@@ -33,9 +33,9 @@ void spuroSinkoLauxKoordinatoj::paint(QPainter *painter, const QStyleOptionGraph
   painter->save();
   
   painter->setPen(BazaKoloro);
-  painter->drawPolygon(aplikiScalo(Vosto));
+  painter->drawPolyline(aplikiScalo(Vosto));
   painter->setPen(MomentaKoloro);
-  painter->drawPolygon(aplikiScalo(MomentaPointioj));
+  painter->drawPolyline(aplikiScalo(MomentaPointioj));
   painter->setPen(BazaKoloro);
   painter->drawEllipse(MomentaPointioj.last() * skalo, 2, 2);
   
