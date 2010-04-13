@@ -1,5 +1,9 @@
 <RCC>
-  <qresource prefix="icon">
+  <qresource prefix="icon" >
+    <file>back.png</file>
+    <file>bottom.png</file>
+    <file>next.png</file>
+    <file>top.png</file>
     <file>icon.bmp</file>
   </qresource>
 </RCC>
