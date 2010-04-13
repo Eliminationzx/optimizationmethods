@@ -27,12 +27,12 @@ MapoPorFunkcioImpl::MapoPorFunkcioImpl( QWidget * parent, Qt::WFlags f){
 
 void MapoPorFunkcioImpl::on_PligrandigiBtn_clicked()
 {
-  s->setScale((s->scale() + 0.1));
+  s->setScale((s->scale() * 1.1));
 }
 
 void MapoPorFunkcioImpl::on_MalpliigiBtn_clicked()
 {
-  s->setScale((s->scale() - 0.1));
+  s->setScale((s->scale() * 0.9));
 }
 
 
