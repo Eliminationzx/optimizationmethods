@@ -2,9 +2,10 @@
 #include <QRect>
 #include "funkcio.h"
 #include <QColor>
-//#include <QImage>
 #include <QPainter>
+#include "spuro.h"
 #include <limits>
+#include <QGraphicsItem>
 #include <QString>
 #include <QMessageBox>
 //
@@ -27,8 +28,6 @@ void ScenoPorMapo::drawBackground(QPainter * painter, const QRectF & rect){
   double min = F->rezulto(F->minPoint(0.1));
   // ÐÐµÑÐµÐ±Ð¸ÑÐ°Ñ Ð²Ð¸Ð´Ð¸Ð¼ÑÑ Ð¾Ð±Ð»Ð°ÑÑÑ Ð¸ ÐºÐ°Ð¶Ð´ÑÑ ÑÐ¾ÑÐºÑ Ð·Ð°Ð¿Ð¾Ð»Ð½ÑÑ ÑÐ²ÐµÑÐ¾Ð¼ Ð² ÑÐ¾Ð¾ÑÐ²ÐµÑÑÑÐ²Ð¸Ð¸
   // ÑÐ¾ Ð·Ð½Ð°ÑÐµÐ½Ð¸ÐµÐ¼ ÑÐµÐ»ÐµÐ²Ð¾Ð¹ ÑÑÐ½ÐºÑÐ¸Ð¸.
-//  QMessageBox msg(QMessageBox::Information, trUtf8("ÐÑÐ°Ð½Ð¸ÑÑ Ð¾Ð±Ð»Ð°ÑÑÐ¸"), QString::number(r.x()) + " " + QString::number(r.y()) + " " + QString::number(r.right()) + " " + QString::number(r.bottom()));
-//  msg.exec();
   for(int i = r.x(); i <= r.right(); ++i){
     for(int j = r.y(); j <= r.bottom(); ++j){
       v = (F->rezulto(i / skalo, j / skalo)-min)/100000;
@@ -47,6 +46,8 @@ void ScenoPorMapo::drawBackground(QPainter * painter, const QRectF & rect){
 
 void ScenoPorMapo::setScale(qreal factor ){
   skalo = factor;
+  //Устанавливаю масштаб для "следа".
+  ((spuro*)(this->items()[0]))->setScale(factor);
   using namespace std;
   update(-numeric_limits<int>::max()/2, -numeric_limits<int>::max()/2,
          numeric_limits<int>::max(), numeric_limits<int>::max());
