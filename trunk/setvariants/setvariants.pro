@@ -8,3 +8,4 @@ UI_DIR = build
 FORMS = ui/mainwindow.ui
 HEADERS = src/mainwindowimpl.h
 SOURCES = src/mainwindowimpl.cpp src/main.cpp
+RESOURCES += ui/data.qrc
