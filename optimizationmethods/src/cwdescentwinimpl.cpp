@@ -26,7 +26,7 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * pa
   
   MapoWdg->kreiSpuro(A::CWdescent_fix, Qt::blue);
   Sp = MapoWdg->proviziSpuro();
-//=========Пример==============================================================
+/*//=========Пример==============================================================
   //------Итерация 1-----------------------------------------------------------
   static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->difiniUnuaPointo(QPoint(0, 0));
   static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->aldoniSercxantaPointo(QPoint(10, 0));
@@ -89,6 +89,7 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * pa
   //Пусть новый шаг меньше заданой тосности.
   //!!!!!!Ура, нашли минимум!!!!!!!!!!!!!!!!
 //=============================================================================
+*/
 }
 //
 
