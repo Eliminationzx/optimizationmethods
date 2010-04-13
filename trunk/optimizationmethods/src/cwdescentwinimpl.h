@@ -5,11 +5,25 @@
 #include "ui_CWdescent_fixwindow.h"
 #include "demonstrataqpointf.h"
 //
+//! Этапы итерации
+enum EtapojIteracio{
+  PasxiDekstren, //!< Шаг направо.
+  PasxiMaldekstren, //!< Шаг налево.
+  PasxiSupren, //!< Шаг вверх.
+  PasxiMalsupren, //!< Шаг вниз.
+  KonsideradoPointo, //!< Рассмотрение точки. Принимать а качестве новой текущей или нет.
+  MmalpliigiPasxo, //!< Уменьшение шага.
+  Finisxo //!< Конец алгоритма.
+};
 //! Окно для прохождения Покоординатного спуска с фиксированным шагом.
 class CWdescentWinImpl : public AlgoritmoWin, public Ui::CWdescentWin
 {
 Q_OBJECT
 protected:
+  //! Номер итерации.
+  int NumeroIteracio;
+  //! Флаг этапа итерации.
+  EtapojIteracio FlagEtapo;
   //! Текущая точка.
   DemonstrataQPointF MomentaPointo;
   //! Новая точка.
