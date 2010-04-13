@@ -35,10 +35,17 @@ public:
 //                           const double e //!< Точность.
 //                          ){ return QPointF(minPoint(e)[0], return QPointF(minPoint(e)[1]); };
   funkcio(QObject * parent = 0) : QObject(parent){};
+/*! @class funkcio
+ * 
+ * @author Александр Проскурин, Василий Почкаенко.
+ * @file funkcio.h
+ */
 };
 
 //! Реализация целевой квадратичной функции.
 /*! A*pow((x1 - B), 2) + C*pow((x2 - D), 2) + E*(x1 - F)*(x2 - G)
+ * @author Александр Проскурин, Василий Почкаенко.
+ * @file funkcio.h
  */
 class KvadratigantoFunkcio : public funkcio
 {
@@ -81,6 +88,8 @@ public:
 
 //! Реализация целевой "овражной" функции.
 /*!  A*pow((x2 - pow(x1, 2)), 2) + B*pow((1-x1), 2)
+ * @author Александр Проскурин, Василий Почкаенко.
+ * @file funkcio.h
  */
 class RavinaFunkcio : public funkcio
 {
