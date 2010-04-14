@@ -11,7 +11,7 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * pa
 	: AlgoritmoWin(f, d, parent, flags), MomentaPointo((*d)[4],(*d)[5]),
     NovaPointo(MomentaPointo), PasxoX1((*d)[1], 0), PasxoX2(0, (*d)[2]),
     NumeroIteracio(0), FlagEtapo(PasxiDekstren), KonsideradoPointo(false),
-    KvantoEraro(0) {
+    KvantoEraroj(0) {
 	setupUi(this);
   
   // Создаю карту.
@@ -127,18 +127,20 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * pa
 
 void CWdescentWinImpl::on_calculate_bt_clicked()
 {
+  //Проверяю соответствие состояния этапа алгоритма и действия пользователя.
+  //Перевожу этап в следующее состояние в соответствии с алгоритмом.
   if(FlagEtapo == PasxiDekstren && up_x1_rb->isChecked()){
     //Ожидается шаг в + по Х1 и выбран шаг в + по Х1.
-    KonsideradoPointo = true; // Начинаю ждать принятия.
+    KonsideradoPointo = true; // Начинаю ждать принятия точки.
   }else if(FlagEtapo == PasxiMaldekstren && down_x1_rb->isChecked()){
     //Ожидается шаг в - по Х1 и выбран шаг в - по Х1.
-    KonsideradoPointo = true; // Начинаю ждать принятия.
+    KonsideradoPointo = true; // Начинаю ждать принятия точки.
   }else if(FlagEtapo == PasxiSupren && up_x2_rb->isChecked()){
     //Ожидается шаг в + по Х2 и выбран шаг в + по Х2.
-    KonsideradoPointo = true; // Начинаю ждать принятия.
+    KonsideradoPointo = true; // Начинаю ждать принятия точки.
   }else if(FlagEtapo == PasxiMalsupren && down_x2_rb->isChecked()){
     //Ожидается шаг в - по Х2 и выбран шаг в - по Х2.
-    KonsideradoPointo = true; // Начинаю ждать принятия.
+    KonsideradoPointo = true; // Начинаю ждать принятия точки.
   }else{
     // Ползователь ошибся.
   }
@@ -146,7 +148,38 @@ void CWdescentWinImpl::on_calculate_bt_clicked()
 
 void CWdescentWinImpl::on_accept_bt_clicked()
 {
-  // TODO
+  //Проверяю соответствие состояния этапа алгоритма и действия пользователя.
+  //Перевожу этап в следующее состояние в соответствии с алгоритмом.
+  if(FlagEtapo == PasxiDekstren && KonsideradoPointo){
+    //На этапе шага в + по Х1 ожидается принятие точки.
+    MomentaPointo = NovaPointo;
+    //Итерация закончилась.
+    ++NumeroIteracio;
+    KonsideradoPointo = false; // Заканчиваю ждать принятия точки.
+  }else if(FlagEtapo == PasxiMaldekstren && KonsideradoPointo){
+    //На этапе шага в - по Х1 ожидается принятие точки.
+    MomentaPointo = NovaPointo;
+    //Итерация закончилась.
+    ++NumeroIteracio;
+    KonsideradoPointo = false; // Заканчиваю ждать принятия точки.
+    FlagEtapo = PasxiDekstren; // Начинаю ждать шага в + по Х1.
+  }else if(FlagEtapo == PasxiSupren && KonsideradoPointo){
+    //На этапе шага в + по Х2 ожидается принятие точки.
+    MomentaPointo = NovaPointo;
+    //Итерация закончилась.
+    ++NumeroIteracio;
+    KonsideradoPointo = false; // Заканчиваю ждать принятия точки.
+    FlagEtapo = PasxiDekstren; // Начинаю ждать шага в + по Х1.
+  }else if(FlagEtapo == PasxiMalsupren && KonsideradoPointo){
+    //На этапе шага в - по Х2 ожидается принятие точки.
+    MomentaPointo = NovaPointo;
+    //Итерация закончилась.
+    ++NumeroIteracio;
+    KonsideradoPointo = false; // Заканчиваю ждать принятия точки.
+    FlagEtapo = PasxiDekstren; // Начинаю ждать шага в + по Х1.
+  }else{
+    // Ползователь ошибся.
+  }
 }
 
 void CWdescentWinImpl::on_not_accept_bt_clicked()
