@@ -25,24 +25,24 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * pa
     QMessageBox msg(QMessageBox::Warning, trUtf8("Ошибка"), trUtf8("Не удалось соединить &MomentaPointo, SIGNAL(proviziXValoro(const QString & )), x1_lb, SLOT(setText(const QString & ))"));
     msg.exec();
   }
-  if(connect( &MomentaPointo, SIGNAL(proviziYValoro(QString & )), x2_lb, SLOT(setText(const QString & )))); else{
-    QMessageBox msg(QMessageBox::Warning, trUtf8("Ошибка"), trUtf8("Не удалось соединить &MomentaPointo, SIGNAL(proviziYValoro(QString & )), x2_lb, SLOT(setText(const QString & ))"));
+  if(connect( &MomentaPointo, SIGNAL(proviziYValoro(const QString & )), x2_lb, SLOT(setText(const QString & )))); else{
+    QMessageBox msg(QMessageBox::Warning, trUtf8("Ошибка"), trUtf8("Не удалось соединить &MomentaPointo, SIGNAL(proviziYValoro(const QString & )), x2_lb, SLOT(setText(const QString & ))"));
     msg.exec();
   }
-  if(connect( &NovaPointo, SIGNAL(proviziXValoro(QString & )), new_x1_lb, SLOT(setText(const QString & )))); else{
-    QMessageBox msg(QMessageBox::Warning, trUtf8("Ошибка"), trUtf8("Не удалось соединить &NovaPointo, SIGNAL(proviziXValoro(QString & )), new_x1_lb, SLOT(setText(const QString & ))"));
+  if(connect( &NovaPointo, SIGNAL(proviziXValoro(const QString & )), new_x1_lb, SLOT(setText(const QString & )))); else{
+    QMessageBox msg(QMessageBox::Warning, trUtf8("Ошибка"), trUtf8("Не удалось соединить &NovaPointo, SIGNAL(proviziXValoro(const QString & )), new_x1_lb, SLOT(setText(const QString & ))"));
     msg.exec();
   }
-  if(connect( &NovaPointo, SIGNAL(proviziYValoro(QString & )), new_x2_lb, SLOT(setText(const QString & )))); else{
-    QMessageBox msg(QMessageBox::Warning, trUtf8("Ошибка"), trUtf8("Не удалось соединить &NovaPointo, SIGNAL(proviziYValoro(QString & )), new_x2_lb, SLOT(setText(const QString & ))"));
+  if(connect( &NovaPointo, SIGNAL(proviziYValoro(const QString & )), new_x2_lb, SLOT(setText(const QString & )))); else{
+    QMessageBox msg(QMessageBox::Warning, trUtf8("Ошибка"), trUtf8("Не удалось соединить &NovaPointo, SIGNAL(proviziYValoro(const QString & )), new_x2_lb, SLOT(setText(const QString & ))"));
     msg.exec();
   }
-  if(connect( &PasxoX1, SIGNAL(proviziXValoro(QString & )), x1_step_lb, SLOT(setText(const QString & )))); else{
-    QMessageBox msg(QMessageBox::Warning, trUtf8("Ошибка"), trUtf8("Не удалось соединить &PasxoX1, SIGNAL(proviziXValoro(QString & )), x1_step_lb, SLOT(setText(const QString & ))"));
+  if(connect( &PasxoX1, SIGNAL(proviziXValoro(const QString & )), x1_step_lb, SLOT(setText(const QString & )))); else{
+    QMessageBox msg(QMessageBox::Warning, trUtf8("Ошибка"), trUtf8("Не удалось соединить &PasxoX1, SIGNAL(proviziXValoro(const QString & )), x1_step_lb, SLOT(setText(const QString & ))"));
     msg.exec();
   }
-  if(connect( &PasxoX2, SIGNAL(proviziYValoro(QString & )), x2_step_lb, SLOT(setText(const QString & ))));else{
-    QMessageBox msg(QMessageBox::Warning, trUtf8("Ошибка"), trUtf8("Не удалось соединить &PasxoX2, SIGNAL(proviziYValoro(QString & )), x2_step_lb, SLOT(setText(const QString & ))"));
+  if(connect( &PasxoX2, SIGNAL(proviziYValoro(const QString & )), x2_step_lb, SLOT(setText(const QString & ))));else{
+    QMessageBox msg(QMessageBox::Warning, trUtf8("Ошибка"), trUtf8("Не удалось соединить &PasxoX2, SIGNAL(proviziYValoro(const QString & )), x2_step_lb, SLOT(setText(const QString & ))"));
     msg.exec();
   }
   
