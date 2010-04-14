@@ -65,14 +65,14 @@ QPointF & DemonstrataQPointF::operator=(const DemonstrataQPointF & p){
 QPointF & DemonstrataQPointF::operator*=(qreal factor)
 {
   QPointF::operator*=(factor);
-  /*emit proviziXValoro((int)(this->x()));
+  emit proviziXValoro((int)(this->x()));
   emit proviziXValoro((double)(this->x()));  
   QString s = QString::number(this->x());
   emit proviziXValoro(s);  
   emit proviziYValoro((int)(this->y()));
   emit proviziYValoro((double)(this->y()));  
   s = QString::number(this->y());
-  emit proviziYValoro(s); */ 
+  emit proviziYValoro(s);
 
   return QPointF::operator*=(1);
 }
@@ -81,14 +81,14 @@ QPointF & DemonstrataQPointF::operator*=(qreal factor)
 QPointF & DemonstrataQPointF::operator/=(qreal divisor)
 {
   QPointF::operator/=(divisor);
-  /*emit proviziXValoro((int)(this->x()));
+  emit proviziXValoro((int)(this->x()));
   emit proviziXValoro((double)(this->x()));  
   QString s = QString::number(this->x());
   emit proviziXValoro(s);  
   emit proviziYValoro((int)(this->y()));
   emit proviziYValoro((double)(this->y()));  
   s = QString::number(this->y());
-  emit proviziYValoro(s);  */
+  emit proviziYValoro(s);
 
   return QPointF::operator*=(1);
 }
@@ -97,14 +97,14 @@ QPointF & DemonstrataQPointF::operator/=(qreal divisor)
 QPointF & DemonstrataQPointF::operator+=(const DemonstrataQPointF & point)
 {
   QPointF::operator+=(point);
-  /*emit proviziXValoro((int)(this->x()));
+  emit proviziXValoro((int)(this->x()));
   emit proviziXValoro((double)(this->x()));  
   QString s = QString::number(this->x());
   emit proviziXValoro(s);  
   emit proviziYValoro((int)(this->y()));
   emit proviziYValoro((double)(this->y()));  
   s = QString::number(this->y());
-  emit proviziYValoro(s);  */
+  emit proviziYValoro(s);
 
   return QPointF::operator*=(1);
 }
@@ -113,14 +113,14 @@ QPointF & DemonstrataQPointF::operator+=(const DemonstrataQPointF & point)
 QPointF & DemonstrataQPointF::operator-=(const DemonstrataQPointF & point)
 {
   QPointF::operator-=(point);
-/*  emit proviziXValoro((int)(this->x()));
+  emit proviziXValoro((int)(this->x()));
   emit proviziXValoro((double)(this->x()));  
   QString s = QString::number(this->x());
   emit proviziXValoro(s);  
   emit proviziYValoro((int)(this->y()));
   emit proviziYValoro((double)(this->y()));  
   s = QString::number(this->y());
-  emit proviziYValoro(s); */
+  emit proviziYValoro(s); 
   return QPointF::operator*=(1);
 }
 

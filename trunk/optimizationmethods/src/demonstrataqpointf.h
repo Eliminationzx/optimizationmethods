@@ -13,7 +13,7 @@ signals:
   //! Предоставляет значение в виде десятичной дроби.
   void proviziXValoro(double valoro);
   //! Предоставляет значение в виде строки.
-  void proviziXValoro(QString &);
+  void proviziXValoro(const QString &);
   //! Предоставляет значение в виде целого числа.
   void proviziYValoro(int);
   //! Предоставляет значение в виде десятичной дроби.
