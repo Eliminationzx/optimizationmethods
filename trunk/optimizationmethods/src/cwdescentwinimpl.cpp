@@ -131,18 +131,27 @@ void CWdescentWinImpl::on_calculate_bt_clicked()
   //Перевожу этап в следующее состояние в соответствии с алгоритмом.
   if(FlagEtapo == PasxiDekstren && up_x1_rb->isChecked()){
     //Ожидается шаг в + по Х1 и выбран шаг в + по Х1.
+    NovaPointo = MomentaPointo + PasxoX1;
+    static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->aldoniSercxantaPointo(NovaPointo);
     KonsideradoPointo = true; // Начинаю ждать принятия точки.
   }else if(FlagEtapo == PasxiMaldekstren && down_x1_rb->isChecked()){
     //Ожидается шаг в - по Х1 и выбран шаг в - по Х1.
+    NovaPointo = MomentaPointo - PasxoX1;
+    static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->aldoniSercxantaPointo(NovaPointo);
     KonsideradoPointo = true; // Начинаю ждать принятия точки.
   }else if(FlagEtapo == PasxiSupren && up_x2_rb->isChecked()){
     //Ожидается шаг в + по Х2 и выбран шаг в + по Х2.
+    NovaPointo = MomentaPointo + PasxoX2;
+    static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->aldoniSercxantaPointo(NovaPointo);
     KonsideradoPointo = true; // Начинаю ждать принятия точки.
   }else if(FlagEtapo == PasxiMalsupren && down_x2_rb->isChecked()){
     //Ожидается шаг в - по Х2 и выбран шаг в - по Х2.
+    NovaPointo = MomentaPointo - PasxoX2;
+    static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->aldoniSercxantaPointo(NovaPointo);
     KonsideradoPointo = true; // Начинаю ждать принятия точки.
   }else{
     // Ползователь ошибся.
+    registriEraro();
   }
 }
 
@@ -179,6 +188,7 @@ void CWdescentWinImpl::on_accept_bt_clicked()
     FlagEtapo = PasxiDekstren; // Начинаю ждать шага в + по Х1.
   }else{
     // Ползователь ошибся.
+    registriEraro();
   }
 }
 
