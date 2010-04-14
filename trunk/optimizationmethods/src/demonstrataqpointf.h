@@ -8,6 +8,8 @@
 class DemonstrataQPointF : public QObject, public QPointF{
 Q_OBJECT
 signals:
+  //! Предоставляет значение в виде точки.
+  void proviziValoro(QPointF);
   //! Предоставляет значение в виде целого числа.
   void proviziXValoro(int);
   //! Предоставляет значение в виде десятичной дроби.
