@@ -14,8 +14,6 @@ private:
   funkcio *F;
   //! Коэффициент масштаба.
   qreal skalo;
-  //! Указатель на след.
-  spuro * Sp;
 public:
   //! Возвращает масштаб.
   qreal scale() const;
