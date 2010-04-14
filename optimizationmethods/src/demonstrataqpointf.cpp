@@ -12,6 +12,7 @@ DemonstrataQPointF::DemonstrataQPointF( qreal x, qreal y, QObject * parent )
   emit proviziYValoro((double)(this->y())); 
   s = QString::number(this->y());
   emit proviziYValoro(s);  
+  emit proviziValoro(this->AlQPointF());  
 }
 DemonstrataQPointF::DemonstrataQPointF( const DemonstrataQPointF & point, QObject * parent ) 
   : QObject(parent), QPointF(point){
@@ -23,7 +24,7 @@ DemonstrataQPointF::DemonstrataQPointF( const DemonstrataQPointF & point, QObjec
   emit proviziYValoro((double)(this->y()));  
   s = QString::number(this->y());
   emit proviziYValoro(s);  
-
+  emit proviziValoro(this->AlQPointF());  
 }
 DemonstrataQPointF::DemonstrataQPointF( const QPointF & point, QObject * parent ) 
   : QObject(parent), QPointF(point){
@@ -35,7 +36,7 @@ DemonstrataQPointF::DemonstrataQPointF( const QPointF & point, QObject * parent 
   emit proviziYValoro((double)(this->y()));  
   s = QString::number(this->y());
   emit proviziYValoro(s);  
-
+  emit proviziValoro(this->AlQPointF());  
 }
 //
 
@@ -46,6 +47,7 @@ void DemonstrataQPointF::setX(qreal x){
   emit proviziXValoro((double)x);  
   QString s = QString::number(this->x());
   emit proviziXValoro(x);  
+  emit proviziValoro(this->AlQPointF());  
 }
 
 void DemonstrataQPointF::setY(qreal y){
@@ -54,6 +56,7 @@ void DemonstrataQPointF::setY(qreal y){
   emit proviziYValoro((double)y);  
   QString s = QString::number(this->y());
   emit proviziYValoro(s);  
+  emit proviziValoro(this->AlQPointF());  
 }
 
 
@@ -73,6 +76,7 @@ QPointF & DemonstrataQPointF::operator*=(qreal factor)
   emit proviziYValoro((double)(this->y()));  
   s = QString::number(this->y());
   emit proviziYValoro(s);
+  emit proviziValoro(this->AlQPointF());  
 
   return QPointF::operator*=(1);
 }
@@ -89,6 +93,7 @@ QPointF & DemonstrataQPointF::operator/=(qreal divisor)
   emit proviziYValoro((double)(this->y()));  
   s = QString::number(this->y());
   emit proviziYValoro(s);
+  emit proviziValoro(this->AlQPointF());  
 
   return QPointF::operator*=(1);
 }
@@ -105,6 +110,7 @@ QPointF & DemonstrataQPointF::operator+=(const DemonstrataQPointF & point)
   emit proviziYValoro((double)(this->y()));  
   s = QString::number(this->y());
   emit proviziYValoro(s);
+  emit proviziValoro(this->AlQPointF());  
 
   return QPointF::operator*=(1);
 }
@@ -121,6 +127,8 @@ QPointF & DemonstrataQPointF::operator-=(const DemonstrataQPointF & point)
   emit proviziYValoro((double)(this->y()));  
   s = QString::number(this->y());
   emit proviziYValoro(s); 
+  emit proviziValoro(this->AlQPointF());  
+
   return QPointF::operator*=(1);
 }
 
