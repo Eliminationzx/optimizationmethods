@@ -20,7 +20,7 @@ class CWdescentWinImpl : public AlgoritmoWin, public Ui::CWdescentWin
 Q_OBJECT
 protected:
   //! Количество ошибок.
-  int KvantoEraro;
+  int KvantoEraroj;
   //! Номер итерации.
   int NumeroIteracio;
   //! Флаг этапа итерации.
@@ -73,13 +73,30 @@ private slots:
  * 
  * 4) Если не приняли ни одно новое значения для x1 и x2, то уменьшаем длину шага.
  * 
- * 7) Если длина шага меньше требуемой точности, то завершаем поиск, иначе переходим к следующей итерации.
+ * 5) Если длина шага меньше требуемой точности, то завершаем поиск, иначе переходим к следующей итерации.
  * 
  * Реализация:
  * Работа программы идёт не линейно - разные этапы итерации разнесены в разные подпрограммы.
  * 
- * Имеются флаги состояния - FlagEtapo, KonsideradoPointo. Изначально FlagEtapo = PasxiDekstren, KonsideradoPointo = false, что соответствует ожиданию шагоа в + по Х1.
- * Если пользователь сделал ожидаемое действие - шаг в + по Х1, то KonsideradoPointo присвоить true, что соответствует ожиданию выбора точки. 
+ * Имеются флаги состояния - FlagEtapo, KonsideradoPointo. Каждая итерация начинаится со значениями FlagEtapo = PasxiDekstren, KonsideradoPointo = false, что соответствует ожиданию шага в + по Х1.
+ * Если пользователь сделал ожидаемое действие - шаг в + по Х1, то KonsideradoPointo присвоить true, что соответствует ожиданию выбора точки. Иначе зафиксировать ошибку, а состояние тапа алгоритма на изменять.
+ * Аналогично работаю с остальными этапами.
+ * 
+ * FlagEtapo = PasxiMaldekstren, KonsideradoPointo = false соответствует ожиданию шага в - по Х1.(см. шаг 2) алгоритма)
+ * 
+ * FlagEtapo = PasxiMaldekstren, KonsideradoPointo = true соответствует ожиданию выбора точки при шаге в - по Х1.(см. шаг 2) алгоритма)
+ * 
+ * FlagEtapo = PasxiSupren, KonsideradoPointo = false соответствует ожиданию шага в + по Х2.(см. шаг 1) алгоритма)
+ * 
+ * FlagEtapo = PasxiSupren, KonsideradoPointo = true соответствует ожиданию выбора точки при шаге в + по Х2.(см. шаг 1) алгоритма)
+ * 
+ * FlagEtapo = PasxiMalsupren, KonsideradoPointo = false соответствует ожиданию шага в - по Х2.(см. шаг 2) алгоритма)
+ * 
+ * FlagEtapo = PasxiMalsupren, KonsideradoPointo = true соответствует ожиданию выбора точки при шаге в 1 по Х2.(см. шаг 2) алгоритма)
+ * 
+ * FlagEtapo = MalpliigiPasxo соответствует ожиданию уменьшения шага.(см. шаг 4) алгоритма)
+ * 
+ * FlagEtapo = Finisxo соответствует ожиданию завершения алгоритма.(см. шаг 5) алгоритма)
  * 
  * @author Александр Белоконь.
  * @file cwdescentwinimpl.h

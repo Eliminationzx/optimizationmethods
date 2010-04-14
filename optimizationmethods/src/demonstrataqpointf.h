@@ -21,6 +21,8 @@ signals:
   //! Предоставляет значение в виде виде строки.
   void proviziYValoro(const QString &);
 public: 
+  QPointF & AlQPointF();
+  QPointF & operator=(const DemonstrataQPointF&);
   QPointF & operator*=(qreal factor);
   QPointF & operator+=(const DemonstrataQPointF & point);
   QPointF & operator-=(const DemonstrataQPointF & point);
@@ -31,6 +33,8 @@ public:
   void setY(qreal y);
   DemonstrataQPointF(qreal x, qreal y, QObject * parent = 0);
   DemonstrataQPointF(const DemonstrataQPointF & point, QObject * parent = 0);
+  DemonstrataQPointF(const DemonstrataQPointF & point,const QObject & , QObject * parent = 0)
+  {DemonstrataQPointF(point, parent);};
   DemonstrataQPointF(const QPointF & point, QObject * parent = 0);
   
 };
