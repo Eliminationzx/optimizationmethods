@@ -197,7 +197,9 @@
         <widget class="QPushButton" name="calculate_bt">
          <property name="font">
           <font>
-           <pointsize>15</pointsize>
+           <pointsize>13</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
           </font>
          </property>
          <property name="text">
@@ -252,7 +254,9 @@
         <widget class="QPushButton" name="accept_bt">
          <property name="font">
           <font>
-           <pointsize>15</pointsize>
+           <pointsize>13</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
           </font>
          </property>
          <property name="text">
@@ -264,7 +268,9 @@
         <widget class="QPushButton" name="not_accept_bt">
          <property name="font">
           <font>
-           <pointsize>15</pointsize>
+           <pointsize>13</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
           </font>
          </property>
          <property name="text">
@@ -276,7 +282,9 @@
         <widget class="QPushButton" name="end_bt">
          <property name="font">
           <font>
-           <pointsize>15</pointsize>
+           <pointsize>13</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
           </font>
          </property>
          <property name="text">
@@ -288,7 +296,9 @@
         <widget class="QPushButton" name="change_step_bt">
          <property name="font">
           <font>
-           <pointsize>15</pointsize>
+           <pointsize>13</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
           </font>
          </property>
          <property name="text">
