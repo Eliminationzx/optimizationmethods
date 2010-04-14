@@ -19,7 +19,7 @@ signals:
   //! Предоставляет значение в виде десятичной дроби.
   void proviziYValoro(double valoro);
   //! Предоставляет значение в виде виде строки.
-  void proviziYValoro(QString &);
+  void proviziYValoro(const QString &);
 public: 
   QPointF & operator*=(qreal factor);
   QPointF & operator+=(const DemonstrataQPointF & point);
