@@ -3,6 +3,9 @@
 #include "Konstantoj.h"
 #include "spuro.h"
 #include "spurosinkolauxkoordinatoj.h"
+#include "demonstrataqpointf.h"
+#include <QString>
+#include <QMessageBox>
 //
 CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * parent, Qt::WFlags flags) 
 	: AlgoritmoWin(f, d, parent, flags), MomentaPointo((*d)[4],(*d)[5]),
@@ -17,12 +20,39 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * pa
   static_cast<QGridLayout*>(centralwidget->layout())->addWidget(MapoWdg, 1, 1);
   
   // Присоединяю точки к надписям для отображения их значения.
-  connect( &MomentaPointo, SIGNAL(proviziXValoro(QString & )), x1_lb, SLOT(setText(const QString & ))); 
-  connect( &MomentaPointo, SIGNAL(proviziYValoro(QString & )), x2_lb, SLOT(setText(const QString & ))); 
-  connect( &NovaPointo, SIGNAL(proviziXValoro(QString & )), new_x1_lb, SLOT(setText(const QString & ))); 
-  connect( &NovaPointo, SIGNAL(proviziYValoro(QString & )), new_x2_lb, SLOT(setText(const QString & ))); 
-  connect( &PasxoX1, SIGNAL(proviziXValoro(QString & )), x1_step_lb, SLOT(setText(const QString & ))); 
-  connect( &PasxoX2, SIGNAL(proviziYValoro(QString & )), x2_step_lb, SLOT(setText(const QString & )));
+  if(connect( &MomentaPointo, SIGNAL(proviziXValoro(const QString & )), x1_lb, SLOT(setText(const QString & ))));else{
+    QMessageBox msg(QMessageBox::Warning, trUtf8("Ошибка"), trUtf8("Не удалось соединить &MomentaPointo, SIGNAL(proviziXValoro(const QString & )), x1_lb, SLOT(setText(const QString & ))"));
+    msg.exec();
+  }
+  if(connect( &MomentaPointo, SIGNAL(proviziYValoro(QString & )), x2_lb, SLOT(setText(const QString & )))); else{
+    QMessageBox msg(QMessageBox::Warning, trUtf8("Ошибка"), trUtf8("Не удалось соединить &MomentaPointo, SIGNAL(proviziYValoro(QString & )), x2_lb, SLOT(setText(const QString & ))"));
+    msg.exec();
+  }
+  if(connect( &NovaPointo, SIGNAL(proviziXValoro(QString & )), new_x1_lb, SLOT(setText(const QString & )))); else{
+    QMessageBox msg(QMessageBox::Warning, trUtf8("Ошибка"), trUtf8("Не удалось соединить &NovaPointo, SIGNAL(proviziXValoro(QString & )), new_x1_lb, SLOT(setText(const QString & ))"));
+    msg.exec();
+  }
+  if(connect( &NovaPointo, SIGNAL(proviziYValoro(QString & )), new_x2_lb, SLOT(setText(const QString & )))); else{
+    QMessageBox msg(QMessageBox::Warning, trUtf8("Ошибка"), trUtf8("Не удалось соединить &NovaPointo, SIGNAL(proviziYValoro(QString & )), new_x2_lb, SLOT(setText(const QString & ))"));
+    msg.exec();
+  }
+  if(connect( &PasxoX1, SIGNAL(proviziXValoro(QString & )), x1_step_lb, SLOT(setText(const QString & )))); else{
+    QMessageBox msg(QMessageBox::Warning, trUtf8("Ошибка"), trUtf8("Не удалось соединить &PasxoX1, SIGNAL(proviziXValoro(QString & )), x1_step_lb, SLOT(setText(const QString & ))"));
+    msg.exec();
+  }
+  if(connect( &PasxoX2, SIGNAL(proviziYValoro(QString & )), x2_step_lb, SLOT(setText(const QString & ))));else{
+    QMessageBox msg(QMessageBox::Warning, trUtf8("Ошибка"), trUtf8("Не удалось соединить &PasxoX2, SIGNAL(proviziYValoro(QString & )), x2_step_lb, SLOT(setText(const QString & ))"));
+    msg.exec();
+  }
+  
+  //Вывожу значения.
+  precision_lb->setText(QString::number((*d)[0]));
+  MomentaPointo *= 1;
+  NovaPointo *= 1;
+  PasxoX1 *= 1;
+  PasxoX2 *= 1;
+  
+  
   
   MapoWdg->kreiSpuro(A::CWdescent_fix, Qt::blue);
   Sp = MapoWdg->proviziSpuro();
