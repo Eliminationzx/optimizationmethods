@@ -42,6 +42,8 @@ protected:
 public:
 	CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * parent = 0, Qt::WFlags flags = 0 );
 private slots:
+  //! Фиксирует совершение пользователем ошики.
+  void registriEraro();
   //! Обработчик кнопки шага.
   void on_calculate_bt_clicked();
   //! Обработчик кнопки принятия точки.
