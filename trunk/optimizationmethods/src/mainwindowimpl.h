@@ -63,7 +63,7 @@ private:
 	/*! В своей работе использует метод AnalysisDirVariants(const int typeFunction).
 	 * Заполняет выпадающий список существующими вариантами.
 	 */
-	void initializationComboBox(const int typeFunction);
+	void initializationComboBox(const int );
 	
 public:
 	//! Конструктор класса.
