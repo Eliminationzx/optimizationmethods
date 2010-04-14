@@ -182,17 +182,22 @@ void CWdescentWinImpl::on_accept_bt_clicked()
   }
 }
 
-void CWdescentWinImpl::on_not_accept_bt_clicked()
-{
+void CWdescentWinImpl::on_not_accept_bt_clicked(){
   // TODO
 }
 
-void CWdescentWinImpl::on_end_bt_clicked()
-{
+void CWdescentWinImpl::on_end_bt_clicked(){
   // TODO
 }
 
-void CWdescentWinImpl::on_change_step_bt_clicked()
-{
+void CWdescentWinImpl::on_change_step_bt_clicked(){
   // TODO
+}
+
+
+void CWdescentWinImpl::registriEraro(){
+  ++KvantoEraroj;
+  LogLstWd->addItem(trUtf8("Совершена ошибка. Общее количество ошибок: %1").arg(KvantoEraroj));
+  QMessageBox msg(QMessageBox::Warning, trUtf8("Ошибка"), trUtf8("Неправильное действие"));
+  msg.exec();  
 }
