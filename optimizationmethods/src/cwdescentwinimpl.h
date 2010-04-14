@@ -11,8 +11,7 @@ enum EtapojIteracio{
   PasxiMaldekstren, //!< Шаг налево.
   PasxiSupren, //!< Шаг вверх.
   PasxiMalsupren, //!< Шаг вниз.
-  KonsideradoPointo, //!< Рассмотрение точки. Принимать в качестве новой текущей или нет.
-  MmalpliigiPasxo, //!< Уменьшение шага.
+  MalpliigiPasxo, //!< Уменьшение шага.
   Finisxo //!< Конец алгоритма.
 };
 //! Окно для прохождения Покоординатного спуска с фиксированным шагом.
@@ -20,10 +19,14 @@ class CWdescentWinImpl : public AlgoritmoWin, public Ui::CWdescentWin
 {
 Q_OBJECT
 protected:
+  //! Количество ошибок.
+  int KvantoEraro;
   //! Номер итерации.
   int NumeroIteracio;
   //! Флаг этапа итерации.
   EtapojIteracio FlagEtapo;
+  //! Флаг рассмотрения точки. Принимать в качестве новой текущей или нет.
+  bool KonsideradoPointo; 
   //! Текущая точка.
   DemonstrataQPointF MomentaPointo;
   //! Новая точка.
@@ -39,6 +42,16 @@ protected:
 public:
 	CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * parent = 0, Qt::WFlags flags = 0 );
 private slots:
+  //! Обработчик кнопки шага.
+  void on_calculate_bt_clicked();
+  //! Обработчик кнопки принятия точки.
+  void on_accept_bt_clicked();
+  //! Обработчик кнопки не принятия точки.
+  void on_not_accept_bt_clicked();
+  //! Обработчик кнопки завершения лгоритма.
+  void on_end_bt_clicked();
+  //! Обработчик кнопки уменьшения шага.
+  void on_change_step_bt_clicked();
 };
 #endif
 
@@ -62,16 +75,22 @@ private slots:
  * 
  * 7) Если длина шага меньше требуемой точности, то завершаем поиск, иначе переходим к следующей итерации.
  * 
+ * Реализация:
+ * Работа программы идёт не линейно - разные этапы итерации разнесены в разные подпрограммы.
+ * 
+ * Имеются флаги состояния - FlagEtapo, KonsideradoPointo. Изначально FlagEtapo = PasxiDekstren, KonsideradoPointo = false, что соответствует ожиданию шагоа в + по Х1.
+ * Если пользователь сделал ожидаемое действие - шаг в + по Х1, то KonsideradoPointo присвоить true, что соответствует ожиданию выбора точки. 
+ * 
  * @author Александр Белоконь.
  * @file cwdescentwinimpl.h
  */
  
  /*! @enum EtapojIteracio
   * 
-  * Из PasxiDekstren можно пеейти только в PasxiMaldekstren или KonsideradoPointo.
-  * Из PasxiMaldekstren можно пеейти только в PasxiSupren или KonsideradoPointo.
-  * Из PasxiSupren можно пеейти только в PasxiMalupren или KonsideradoPointo.
-  * Из PasxiMalupren можно пеейти только в KonsideradoPointo или MmalpliigiPasxo.
-  * Из KonsideradoPointo можно пеейти только в PasxiMaldekstren или .
+  * Из PasxiDekstren можно пеейти только в PasxiMaldekstren или PasxiDekstren.
+  * Из PasxiMaldekstren можно пеейти только в PasxiSupren или PasxiDekstren.
+  * Из PasxiSupren можно пеейти только в PasxiMalupren или PasxiDekstren.
+  * Из PasxiMalupren можно пеейти только в .
+  * Из MalpliigiPasxo можно перейти только в PasxiMaldekstren или Finisxo.
   * 
  */
