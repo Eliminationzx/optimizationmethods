@@ -1,5 +1,6 @@
 #include "demonstrataqpointf.h"
 #include <QString>
+#include <QMessageBox>
 //
 DemonstrataQPointF::DemonstrataQPointF( qreal x, qreal y, QObject * parent ) 
   : QObject(parent), QPointF(x, y){
