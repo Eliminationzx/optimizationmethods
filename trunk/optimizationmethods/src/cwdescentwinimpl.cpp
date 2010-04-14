@@ -10,7 +10,8 @@
 CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * parent, Qt::WFlags flags) 
 	: AlgoritmoWin(f, d, parent, flags), MomentaPointo((*d)[4],(*d)[5]),
     NovaPointo(MomentaPointo), PasxoX1((*d)[1], 0), PasxoX2(0, (*d)[2]),
-    NumeroIteracio(0), FlagEtapo(PasxiDekstren){
+    NumeroIteracio(0), FlagEtapo(PasxiDekstren), KonsideradoPointo(false),
+    KvantoEraro(0) {
 	setupUi(this);
   
   // Создаю карту.
@@ -123,3 +124,42 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * pa
 }
 //
 
+
+void CWdescentWinImpl::on_calculate_bt_clicked()
+{
+  if(FlagEtapo == PasxiDekstren && up_x1_rb->isChecked()){
+    //Ожидается шаг в + по Х1 и выбран шаг в + по Х1.
+    KonsideradoPointo = true; // Начинаю ждать принятия.
+  }else if(FlagEtapo == PasxiMaldekstren && down_x1_rb->isChecked()){
+    //Ожидается шаг в - по Х1 и выбран шаг в - по Х1.
+    KonsideradoPointo = true; // Начинаю ждать принятия.
+  }else if(FlagEtapo == PasxiSupren && up_x2_rb->isChecked()){
+    //Ожидается шаг в + по Х2 и выбран шаг в + по Х2.
+    KonsideradoPointo = true; // Начинаю ждать принятия.
+  }else if(FlagEtapo == PasxiMalsupren && down_x2_rb->isChecked()){
+    //Ожидается шаг в - по Х2 и выбран шаг в - по Х2.
+    KonsideradoPointo = true; // Начинаю ждать принятия.
+  }else{
+    // Ползователь ошибся.
+  }
+}
+
+void CWdescentWinImpl::on_accept_bt_clicked()
+{
+  // TODO
+}
+
+void CWdescentWinImpl::on_not_accept_bt_clicked()
+{
+  // TODO
+}
+
+void CWdescentWinImpl::on_end_bt_clicked()
+{
+  // TODO
+}
+
+void CWdescentWinImpl::on_change_step_bt_clicked()
+{
+  // TODO
+}
