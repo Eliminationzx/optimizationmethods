@@ -24,7 +24,10 @@ DemonstrataQPointF::DemonstrataQPointF( const DemonstrataQPointF & point, QObjec
   emit proviziYValoro((double)(this->y()));  
   s = QString::number(this->y());
   emit proviziYValoro(s);  
-  emit proviziValoro(this->AlQPointF());  
+  emit proviziValoro(this->AlQPointF()); 
+  
+//  QMessageBox msg(QMessageBox::Information,"",trUtf8("Выполняется конструктор DemonstrataQPointF"));
+//  msg.exec();
 }
 DemonstrataQPointF::DemonstrataQPointF( const QPointF & point, QObject * parent ) 
   : QObject(parent), QPointF(point){
@@ -61,6 +64,16 @@ void DemonstrataQPointF::setY(qreal y){
 
 
 QPointF & DemonstrataQPointF::operator=(const DemonstrataQPointF & p){
+  emit proviziXValoro((int)(this->x()));
+  emit proviziXValoro((double)(this->x()));  
+  QString s = QString::number(this->x());
+  emit proviziXValoro(s);  
+  emit proviziYValoro((int)(this->y()));
+  emit proviziYValoro((double)(this->y()));  
+  s = QString::number(this->y());
+  emit proviziYValoro(s);  
+  emit proviziValoro(this->AlQPointF()); 
+
   return QPointF::operator=(p);
 }
 
