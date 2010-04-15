@@ -30,7 +30,7 @@ class funkcio;
  * @author Проскурин Александр Викторович
  * @file mainwindowimpl.h
  */
-class MainWindowImpl : public QStackedWidget, public Ui::MainWindow
+class MainWindowImpl : public QMainWindow, public Ui::MainWindow
 {
 Q_OBJECT
 
@@ -45,17 +45,15 @@ Q_OBJECT
 
 private:
 	//! Чтение данных варианта из текстового файла.
-	/*! В качестве аргументов принимает:
-	 * typeFunction - индекс целевой функции (0 - quadFunction, 1 - ravinFunction);
-	 * numberVariants - номер варианта.
-	 * Возвращает вектор данных варианта при успешном чтении и вектор с нулевыми значениями в остальных случаях.
+	/*! Возвращает вектор данных варианта при успешном чтении и вектор с нулевыми значениями в остальных случаях.
+	 * @param typeFunction - индекс целевой функции (0 - quadFunction, 1 - ravinFunction);
+	 * @param numberVariants - номер варианта.
 	 */
 	QVector<double> ReadVariants(const int typeFunction, const int numberVariants);
 
 	//! Анализ директории вариантов целевой функции.
-	/*! В качестве аргумента принимает:
-	 * typeFunction - индекс целевой функции (0 - quadFunction, 1 - ravinFunction).
-	 * Возвращает вектор из существующих вариантов
+	/*! Возвращает вектор из существующих вариантов.
+	 * @param typeFunction - индекс целевой функции (0 - quadFunction, 1 - ravinFunction).
 	 */
 	QVector<int> AnalysisDirVariants(const int typeFunction);
 
@@ -92,7 +90,3 @@ private slots:
 	void on_comboBox_activated(int index);
 };
 #endif
-
-
-
-
