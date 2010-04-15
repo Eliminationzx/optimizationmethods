@@ -2,7 +2,7 @@
 //
 //! Конструктор класса.
 MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WFlags f) 
-	: QStackedWidget(parent)
+	: QMainWindow(parent, f)
 {
 	setupUi(this);
 	
@@ -98,7 +98,7 @@ void MainWindowImpl::on_next_button_clicked()
 	{
 		methFunc.append(0);
 		
-		this->setCurrentIndex(1);
+		stackedWidget->setCurrentIndex(1);
 	}
 	else if(ravinFunction->isChecked())
 	{
@@ -115,7 +115,7 @@ void MainWindowImpl::on_next_button_clicked()
 		label_7->setVisible(false);
 		label_8->setVisible(false);
 		
-		this->setCurrentIndex(1);
+		stackedWidget->setCurrentIndex(1);
 	}
 	
 	initializationComboBox(methFunc[1]);
@@ -170,7 +170,7 @@ void MainWindowImpl::on_next_button_2_clicked()
 void MainWindowImpl::on_back_button_clicked()
 {
 	// TODO
-	this->setCurrentIndex(0);
+	stackedWidget->setCurrentIndex(0);
 }
 
 //! Выбран вариант функции.
