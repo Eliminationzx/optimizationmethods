@@ -17,7 +17,11 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Методы оптимизации 2010</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="data.qrc">
+    <normaloff>:/icon/icon.bmp</normaloff>:/icon/icon.bmp</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_5">
@@ -568,7 +572,9 @@
    </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="data.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>exit</sender>

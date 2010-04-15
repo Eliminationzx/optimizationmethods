@@ -155,7 +155,7 @@ void MainWindowImpl::on_next_button_2_clicked()
 		case A::HuGi:
 //			AW = new 
 //			break;
-		case A::NeMiImpl:
+		case A::NeMi:
 //			AW = new 
 //			break;
 		case A::NotWen:
