@@ -20,48 +20,42 @@ Q_OBJECT
 
 private:
 	//! Запись данных варинта в текстовый файл.
-	/*! В качестве аргументов принимает:
-	 * typeFunction - название целевой функции (quadFunction или ravinFunction);
-	 * data - вектор данных варианта, первым элементом которого является номер варианта.
-	 * Возвращает true при успешной записи и false в остальных случаях.
+	/*! Возвращает true при успешной записи и false в остальных случаях.
+	 * @param typeFunction - название целевой функции (quadFunction или ravinFunction);
+	 * @param data - вектор данных варианта, первым элементом которого является номер варианта.
 	 */
 	bool WriteVariants(const QString typeFunction, const QVector<double> data);
 
 	//! Запись данных варинта в текстовый файл
-	/*! В качестве аргументов принимает:
-	 * typeFunction - индекс целевой функции (0 - quadFunction, 1 - ravinFunction);
-	 * data - вектор данных варианта, первым элементом которого является номер варианта.
-	 * Возвращает true при успешной записи и false в остальных случаях.
+	/*! Возвращает true при успешной записи и false в остальных случаях.
+	 * @param typeFunction - индекс целевой функции (0 - quadFunction, 1 - ravinFunction);
+	 * @param data - вектор данных варианта, первым элементом которого является номер варианта.
 	 */
 	bool WriteVariants(const int typeFunction, const QVector<double> data);
 
 	//! Чтение данных варианта из текстового файла.
-	/*! В качестве аргументов принимает:
-	 * typeFunction - название целевой функции (quadFunction или ravinFunction);
-	 * numberVariants - номер варианта.
-	 * Возвращает вектор данных варианта при успешном чтении и вектор с нулевыми значениями в остальных случаях.
+	/*! Возвращает вектор данных варианта при успешном чтении и вектор с нулевыми значениями в остальных случаях.
+	 * @param typeFunction - название целевой функции (quadFunction или ravinFunction);
+	 * @param numberVariants - номер варианта.
 	 */
 	QVector<double> ReadVariants(const QString typeFunction, const int numberVariants);
 
 	//! Чтение данных варианта из текстового файла.
-	/*! В качестве аргументов принимает:
-	 * typeFunction - индекс целевой функции (0 - quadFunction, 1 - ravinFunction);
-	 * numberVariants - номер варианта.
-	 * Возвращает вектор данных варианта при успешном чтении и вектор с нулевыми значениями в остальных случаях.
+	/*! Возвращает вектор данных варианта при успешном чтении и вектор с нулевыми значениями в остальных случаях.
+	 * @param typeFunction - индекс целевой функции (0 - quadFunction, 1 - ravinFunction);
+	 * @param numberVariants - номер варианта.
 	 */
 	QVector<double> ReadVariants(const int typeFunction, const int numberVariants);
 
 	//! Анализ директории вариантов целевой функции.
-	/*! В качестве аргумента принимает:
-	 * typeFunction - название целевой функции (quadFunction или ravinFunction).
-	 * Возвращает вектор из существующих вариантов
+	/*! Возвращает вектор из существующих вариантов.
+	 * @param typeFunction - название целевой функции (quadFunction или ravinFunction).
 	 */
 	QVector<int> AnalysisDirVariants(const QString typeFunction);
 
 	//! Анализ директории вариантов целевой функции.
-	/*! В качестве аргумента принимает:
-	 * typeFunction - индекс целевой функции (0 - quadFunction, 1 - ravinFunction).
-	 * Возвращает вектор из существующих вариантов
+	/*! Возвращает вектор из существующих вариантов.
+	 * @param typeFunction - индекс целевой функции (0 - quadFunction, 1 - ravinFunction).
 	 */
 	QVector<int> AnalysisDirVariants(const int typeFunction);
 
