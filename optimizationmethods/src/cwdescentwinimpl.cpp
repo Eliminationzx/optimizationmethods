@@ -11,8 +11,7 @@
 CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * parent, Qt::WFlags flags) 
 	: AlgoritmoWin(f, d, parent, flags), MomentaPointo((*d)[4],(*d)[5]),
     NovaPointo(MomentaPointo), PasxoX1((*d)[1], 0), PasxoX2(0, (*d)[2]),
-    NumeroIteracio(0), FlagEtapo(PasxiDekstren), KonsideradoPointo(false),
-    KvantoEraroj(0) {
+    NumeroIteracio(0), FlagEtapo(1), KvantoEraroj(0), strikteco((*d)[0]){
 	setupUi(this);
   
   // Создаю карту.
@@ -24,51 +23,16 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * pa
   MapoWdg->kreiSpuro(A::CWdescent_fix, Qt::blue);
   Sp = MapoWdg->proviziSpuro();
   
-  // Присоединяю точки к надписям для отображения их значения.
-  if(connect( &MomentaPointo, SIGNAL(proviziXValoro(const QString & )),
-              x1_lb, SLOT(setText(const QString & )) ));else{
-    QMessageBox msg(QMessageBox::Warning, trUtf8("Ошибка"), trUtf8("Не удалось соединить &MomentaPointo, SIGNAL(proviziXValoro(const QString & )), x1_lb, SLOT(setText(const QString & ))"));
-    msg.exec();
-  }
-  if(connect( &MomentaPointo, SIGNAL(proviziYValoro(const QString & )),
-              x2_lb, SLOT(setText(const QString & )) )); else{
-    QMessageBox msg(QMessageBox::Warning, trUtf8("Ошибка"), trUtf8("Не удалось соединить &MomentaPointo, SIGNAL(proviziYValoro(const QString & )), x2_lb, SLOT(setText(const QString & ))"));
-    msg.exec();
-  }
-  if(connect( &NovaPointo, SIGNAL(proviziXValoro(const QString & )),
-              new_x1_lb, SLOT(setText(const QString & )) )); else{
-    QMessageBox msg(QMessageBox::Warning, trUtf8("Ошибка"), trUtf8("Не удалось соединить &NovaPointo, SIGNAL(proviziXValoro(const QString & )), new_x1_lb, SLOT(setText(const QString & ))"));
-    msg.exec();
-  }
-  if(connect( &NovaPointo, SIGNAL(proviziYValoro(const QString & )),
-              new_x2_lb, SLOT(setText(const QString & )) )); else{
-    QMessageBox msg(QMessageBox::Warning, trUtf8("Ошибка"), trUtf8("Не удалось соединить &NovaPointo, SIGNAL(proviziYValoro(const QString & )), new_x2_lb, SLOT(setText(const QString & ))"));
-    msg.exec();
-  }
-  if(connect( &PasxoX1, SIGNAL(proviziXValoro(const QString & )),
-              x1_step_lb, SLOT(setText(const QString & )) )); else{
-    QMessageBox msg(QMessageBox::Warning, trUtf8("Ошибка"), trUtf8("Не удалось соединить &PasxoX1, SIGNAL(proviziXValoro(const QString & )), x1_step_lb, SLOT(setText(const QString & ))"));
-    msg.exec();
-  }
-  if(connect( &PasxoX2, SIGNAL(proviziYValoro(const QString & )),
-              x2_step_lb, SLOT(setText(const QString & )) ));else{
-    QMessageBox msg(QMessageBox::Warning, trUtf8("Ошибка"), trUtf8("Не удалось соединить &PasxoX2, SIGNAL(proviziYValoro(const QString & )), x2_step_lb, SLOT(setText(const QString & ))"));
-    msg.exec();
-  }
-  if(connect( &NovaPointo, SIGNAL(proviziValoro(QPointF)),
-              Sp, SLOT(aldoniSercxantaPointo(QPointF)) ));else{
-    QMessageBox msg(QMessageBox::Warning, trUtf8("Ошибка"), trUtf8("Не удалось соединить &NovaPointo, SIGNAL(proviziValoro(QPointF)), Sp, SLOT(aldoniSercxantaPointo(QPointF))"));
-    msg.exec();
-  }
-  
   //Вывожу значения.
   precision_lb->setText(QString::number((*d)[0]));
-  MomentaPointo *= 1;
-  NovaPointo *= 1;
-  PasxoX1 *= 1;
-  PasxoX2 *= 1;
+  x1_lb->setText(QString::number(MomentaPointo.x()));
+  x2_lb->setText(QString::number(MomentaPointo.y()));
+  new_x1_lb->setText(trUtf8("Неопределено"));
+  new_x2_lb->setText(trUtf8("Неопределено"));
+  x1_step_lb->setText(QString::number(PasxoX1.x()));
+  x2_step_lb->setText(QString::number(PasxoX2.y()));
   fsign_lb->setText(QString::number(F->rezulto(MomentaPointo)));
-  new_fsign_lb->setText(QString::number(F->rezulto(NovaPointo)));
+  new_fsign_lb->setText(trUtf8("Неопределено"));
   
   
   
@@ -142,74 +106,113 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * pa
 //Пользователь делает шаг вдоль оси.
 void CWdescentWinImpl::on_calculate_bt_clicked()
 {
-  //Проверяю соответствие состояния этапа алгоритма и действия пользователя.
-  //Перевожу этап в следующее состояние в соответствии с алгоритмом.
-  if(FlagEtapo == PasxiDekstren && up_x1_rb->isChecked()){
-    //Ожидается шаг в + по Х1 и выбран шаг в + по Х1.
+  if(FlagEtapo == 1 && up_x1_rb->isChecked()){
+    // Нажата calculate_bt и выбрана up_x1_rb - соответствует этапу 1.
     NovaPointo = MomentaPointo + PasxoX1;
-    KonsideradoPointo = true; // Начинаю ждать принятия точки.
-  }else if(FlagEtapo == PasxiMaldekstren && down_x1_rb->isChecked()){
-    //Ожидается шаг в - по Х1 и выбран шаг в - по Х1.
+    static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->aldoniSercxantaPointo(NovaPointo);
+    FlagEtapo = 2;
+  }else if(FlagEtapo == 3 && down_x1_rb->isChecked()){
+    // Нажата calculate_bt и выбрана down_x1_rb - соответствует этапу 3.
     NovaPointo = MomentaPointo - PasxoX1;
-    KonsideradoPointo = true; // Начинаю ждать принятия точки.
-  }else if(FlagEtapo == PasxiSupren && up_x2_rb->isChecked()){
-    //Ожидается шаг в + по Х2 и выбран шаг в + по Х2.
+    static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->aldoniSercxantaPointo(NovaPointo);
+    FlagEtapo = 4;
+  }else if(FlagEtapo == 5 && up_x2_rb->isChecked()){
+    // Нажата calculate_bt и выбрана up_x2_rb - соответствует этапу 5.
     NovaPointo = MomentaPointo + PasxoX2;
-    KonsideradoPointo = true; // Начинаю ждать принятия точки.
-  }else if(FlagEtapo == PasxiMalsupren && down_x2_rb->isChecked()){
-    //Ожидается шаг в - по Х2 и выбран шаг в - по Х2.
+    static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->aldoniSercxantaPointo(NovaPointo);
+    FlagEtapo = 6;
+  }else if(FlagEtapo == 7 && down_x2_rb->isChecked()){
+    // Нажата calculate_bt и выбрана down_x2_rb - соответствует этапу 7.
     NovaPointo = MomentaPointo - PasxoX2;
-    KonsideradoPointo = true; // Начинаю ждать принятия точки.
+    static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->aldoniSercxantaPointo(NovaPointo);
+    FlagEtapo = 8;
   }else{
-    // Ползователь ошибся.
+    //Пользователь ошибся.
     registriEraro();
   }
   
-  
+  new_x1_lb->setText(QString::number(NovaPointo.x()));
+  new_x2_lb->setText(QString::number(NovaPointo.y()));
   new_fsign_lb->setText(QString::number(F->rezulto(NovaPointo)));
 }
 
 //Пользователь принимает точку.
-void CWdescentWinImpl::on_accept_bt_clicked()
-{
-  //Проверяю соответствие состояния этапа алгоритма и действия пользователя.
-  //Перевожу этап в следующее состояние в соответствии с алгоритмом.
-  if(KonsideradoPointo){
-    //Ожидается принятие точки.
+void CWdescentWinImpl::on_accept_bt_clicked(){
+  if((FlagEtapo == 2 ||
+      FlagEtapo == 4 ||
+      FlagEtapo == 6 ||
+      FlagEtapo == 8) &&
+     F->rezulto(NovaPointo) < F->rezulto(MomentaPointo)
+    ){
     MomentaPointo = NovaPointo;
-    //Итерация закончилась.
-    ++NumeroIteracio;
+    x1_lb->setText(QString::number(MomentaPointo.x()));
+    x2_lb->setText(QString::number(MomentaPointo.y()));
+    fsign_lb->setText(QString::number(F->rezulto(MomentaPointo)));
     static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->finisxiIteracio();
-    KonsideradoPointo = false; // Заканчиваю ждать принятия точки.
+    FlagEtapo = 1;
   }else{
-    // Ползователь ошибся.
+    //Пользователь ошибся.
     registriEraro();
   }
 }
 
 //Пользователь не принимает точку.
 void CWdescentWinImpl::on_not_accept_bt_clicked(){
-  //Проверяю соответствие состояния этапа алгоритма и действия пользователя.
-  //Перевожу этап в следующее состояние в соответствии с алгоритмом.
-  if(KonsideradoPointo){
-    //Ожидается принятие точки.
-    MomentaPointo = NovaPointo;
-    //Итерация закончилась.
-    ++NumeroIteracio;
-    static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->finisxiIteracio();
-    KonsideradoPointo = false; // Заканчиваю ждать принятия точки.
+  bool flag = F->rezulto(NovaPointo) >= F->rezulto(MomentaPointo);
+  if(FlagEtapo == 2 && flag){
+    new_x1_lb->setText(trUtf8("Неопределено"));
+    new_x2_lb->setText(trUtf8("Неопределено"));
+    new_fsign_lb->setText(trUtf8("Неопределено"));
+    static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->reveniAlMomentoPointo();
+    FlagEtapo = 3;
+  }else if(FlagEtapo == 4 && flag){
+    new_x1_lb->setText(trUtf8("Неопределено"));
+    new_x2_lb->setText(trUtf8("Неопределено"));
+    new_fsign_lb->setText(trUtf8("Неопределено"));
+    static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->reveniAlMomentoPointo();
+    FlagEtapo = 5;
+  }else if(FlagEtapo == 6 && flag){
+    new_x1_lb->setText(trUtf8("Неопределено"));
+    new_x2_lb->setText(trUtf8("Неопределено"));
+    new_fsign_lb->setText(trUtf8("Неопределено"));
+    static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->reveniAlMomentoPointo();
+    FlagEtapo = 7;
+  }else if(FlagEtapo == 8 && flag){
+    new_x1_lb->setText(trUtf8("Неопределено"));
+    new_x2_lb->setText(trUtf8("Неопределено"));
+    new_fsign_lb->setText(trUtf8("Неопределено"));
+    static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->reveniAlMomentoPointo();
+    FlagEtapo = 9;
   }else{
-    // Ползователь ошибся.
+    //Пользователь ошибся.
     registriEraro();
   }
 }
 
 void CWdescentWinImpl::on_end_bt_clicked(){
-  // TODO
+  if(FlagEtapo == 10){
+    //Нажата end_bt - соответствует этапу 10.
+  }else{
+    //Пользователь ошибся.
+    registriEraro();
+  }
 }
 
 void CWdescentWinImpl::on_change_step_bt_clicked(){
-  // TODO
+  if(FlagEtapo == 9){
+    PasxoX1 *= strikteco;
+    PasxoX2 *= strikteco;
+    x1_step_lb->setText(QString::number(PasxoX1.x()));
+    x2_step_lb->setText(QString::number(PasxoX2.y()));
+    if(PasxoX1.x() < strikteco && PasxoX2.y() < strikteco){
+      FlagEtapo = 10;
+    }else{
+      FlagEtapo = 1;
+    }
+  }else{
+    //Пользователь ошибся.
+    registriEraro();
+  }
 }
 
 

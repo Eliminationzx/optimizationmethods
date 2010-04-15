@@ -5,40 +5,31 @@
 #include "ui_CWdescent_fixwindow.h"
 #include "demonstrataqpointf.h"
 //
-//! Этапы итерации
-enum EtapojIteracio{
-  PasxiDekstren, //!< Шаг направо.
-  PasxiMaldekstren, //!< Шаг налево.
-  PasxiSupren, //!< Шаг вверх.
-  PasxiMalsupren, //!< Шаг вниз.
-  MalpliigiPasxo, //!< Уменьшение шага.
-  Finisxo //!< Конец алгоритма.
-};
 //! Окно для прохождения Покоординатного спуска с фиксированным шагом.
 class CWdescentWinImpl : public AlgoritmoWin, public Ui::CWdescentWin
 {
 Q_OBJECT
 protected:
+  //! Точность.
+  qreal strikteco;
   //! Количество ошибок.
   int KvantoEraroj;
   //! Номер итерации.
   int NumeroIteracio;
   //! Флаг этапа итерации.
-  EtapojIteracio FlagEtapo;
-  //! Флаг рассмотрения точки. Принимать в качестве новой текущей или нет.
-  bool KonsideradoPointo;
+  int FlagEtapo;
   //! Текущая точка.
-  DemonstrataQPointF MomentaPointo;
+  QPointF MomentaPointo;
   //! Новая точка.
-  DemonstrataQPointF NovaPointo;
+  QPointF NovaPointo;
   //! Шаг по х1.
   /*! Для удобства задаю в виде точки (длина, 0).
    */
-  DemonstrataQPointF PasxoX1;
+  QPointF PasxoX1;
   //! Шаг по х1.
   /*! Для удобства задаю в виде точки (0, длина).
    */
-  DemonstrataQPointF PasxoX2;
+  QPointF PasxoX2;
 public:
 	CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * parent = 0, Qt::WFlags flags = 0 );
 private slots:
@@ -80,25 +71,27 @@ private slots:
  * Реализация:
  * Работа программы идёт не линейно - разные этапы итерации разнесены в разные подпрограммы.
  *
- * Имеются флаги состояния - FlagEtapo, KonsideradoPointo. Каждая итерация начинается со значениями FlagEtapo = PasxiDekstren, KonsideradoPointo = false, что соответствует ожиданию шага в + по Х1.
- * Если пользователь сделал ожидаемое действие - шаг в + по Х1, то KonsideradoPointo присвоить true, что соответствует ожиданию выбора точки. Иначе зафиксировать ошибку, а состояние этапа алгоритма на изменять.
- * Аналогично работаю с остальными этапами.
+ * Имеется флаг состояния - FlagEtapo, хранящий номер этапа итерации. При каждом действии пользователя провепяется соответствие его действия проходимому этапу.
  *
- * FlagEtapo = PasxiMaldekstren, KonsideradoPointo = false соответствует ожиданию шага в - по Х1.(см. шаг 2) алгоритма)
- *
- * FlagEtapo = PasxiMaldekstren, KonsideradoPointo = true соответствует ожиданию выбора точки при шаге в - по Х1.(см. шаг 2) алгоритма)
- *
- * FlagEtapo = PasxiSupren, KonsideradoPointo = false соответствует ожиданию шага в + по Х2.(см. шаг 1) алгоритма)
- *
- * FlagEtapo = PasxiSupren, KonsideradoPointo = true соответствует ожиданию выбора точки при шаге в + по Х2.(см. шаг 1) алгоритма)
- *
- * FlagEtapo = PasxiMalsupren, KonsideradoPointo = false соответствует ожиданию шага в - по Х2.(см. шаг 2) алгоритма)
- *
- * FlagEtapo = PasxiMalsupren, KonsideradoPointo = true соответствует ожиданию выбора точки при шаге в 1 по Х2.(см. шаг 2) алгоритма)
- *
- * FlagEtapo = MalpliigiPasxo соответствует ожиданию уменьшения шага.(см. шаг 4) алгоритма)
- *
- * FlagEtapo = Finisxo соответствует ожиданию завершения алгоритма.(см. шаг 5) алгоритма)
+ * 1 - нажата calculate_bt и выбрана up_x1_rb
+ * 
+ * 2 - нажата accept_bt или not_accept_bt
+ * 
+ * 3 - нажата calculate_bt и выбрана down_x1_rb
+ * 
+ * 4 - нажата accept_bt или not_accept_bt
+ * 
+ * 5 - нажата calculate_bt и выбрана up_x2_rb
+ * 
+ * 6 - нажата accept_bt или not_accept_bt
+ * 
+ * 7 - нажата calculate_bt и выбрана down_x2_rb
+ * 
+ * 8 - нажата accept_bt или not_accept_bt
+ * 
+ * 9 - нажата change_step_bt
+ * 
+ * 10 - нажата end_bt
  *
  * @author Александр Белоконь.
  * @file cwdescentwinimpl.h
