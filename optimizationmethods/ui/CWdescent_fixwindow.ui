@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>937</width>
+    <width>939</width>
     <height>569</height>
    </rect>
   </property>
@@ -17,7 +17,7 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Покоординатный спуск с фиксированным шагом.</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_2" rowstretch="0,1" columnstretch="1,1">
@@ -432,7 +432,7 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>937</width>
+     <width>939</width>
      <height>28</height>
     </rect>
    </property>
