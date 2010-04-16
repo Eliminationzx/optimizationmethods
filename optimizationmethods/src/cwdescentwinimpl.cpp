@@ -5,6 +5,7 @@
 #include "spuro.h"
 #include "spurosinkolauxkoordinatoj.h"
 #include "demonstrataqpointf.h"
+#include "math.h"
 #include <QString>
 #include <QMessageBox>
 //
@@ -109,21 +110,33 @@ void CWdescentWinImpl::on_calculate_bt_clicked()
   if(FlagEtapo == 1 && up_x1_rb->isChecked()){
     // Нажата calculate_bt и выбрана up_x1_rb - соответствует этапу 1.
     NovaPointo = MomentaPointo + PasxoX1;
+    new_x1_lb->setText(QString::number(NovaPointo.x()));
+    new_x2_lb->setText(QString::number(NovaPointo.y()));
+    new_fsign_lb->setText(QString::number(F->rezulto(NovaPointo)));
     static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->aldoniSercxantaPointo(NovaPointo);
     FlagEtapo = 2;
   }else if(FlagEtapo == 3 && down_x1_rb->isChecked()){
     // Нажата calculate_bt и выбрана down_x1_rb - соответствует этапу 3.
     NovaPointo = MomentaPointo - PasxoX1;
+    new_x1_lb->setText(QString::number(NovaPointo.x()));
+    new_x2_lb->setText(QString::number(NovaPointo.y()));
+    new_fsign_lb->setText(QString::number(F->rezulto(NovaPointo)));
     static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->aldoniSercxantaPointo(NovaPointo);
     FlagEtapo = 4;
   }else if(FlagEtapo == 5 && up_x2_rb->isChecked()){
     // Нажата calculate_bt и выбрана up_x2_rb - соответствует этапу 5.
     NovaPointo = MomentaPointo + PasxoX2;
+    new_x1_lb->setText(QString::number(NovaPointo.x()));
+    new_x2_lb->setText(QString::number(NovaPointo.y()));
+    new_fsign_lb->setText(QString::number(F->rezulto(NovaPointo)));
     static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->aldoniSercxantaPointo(NovaPointo);
     FlagEtapo = 6;
   }else if(FlagEtapo == 7 && down_x2_rb->isChecked()){
     // Нажата calculate_bt и выбрана down_x2_rb - соответствует этапу 7.
     NovaPointo = MomentaPointo - PasxoX2;
+    new_x1_lb->setText(QString::number(NovaPointo.x()));
+    new_x2_lb->setText(QString::number(NovaPointo.y()));
+    new_fsign_lb->setText(QString::number(F->rezulto(NovaPointo)));
     static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->aldoniSercxantaPointo(NovaPointo);
     FlagEtapo = 8;
   }else{
@@ -131,9 +144,8 @@ void CWdescentWinImpl::on_calculate_bt_clicked()
     registriEraro();
   }
   
-  new_x1_lb->setText(QString::number(NovaPointo.x()));
-  new_x2_lb->setText(QString::number(NovaPointo.y()));
-  new_fsign_lb->setText(QString::number(F->rezulto(NovaPointo)));
+  
+  emit proviziFlagEtapo(FlagEtapo);
 }
 
 //Пользователь принимает точку.
@@ -141,19 +153,35 @@ void CWdescentWinImpl::on_accept_bt_clicked(){
   if((FlagEtapo == 2 ||
       FlagEtapo == 4 ||
       FlagEtapo == 6 ||
-      FlagEtapo == 8) &&
-     F->rezulto(NovaPointo) < F->rezulto(MomentaPointo)
-    ){
-    MomentaPointo = NovaPointo;
+      FlagEtapo == 8)
+      // Нажата accept_bt - соответствует 2,4,6 или 8 этапу.
+     && F->rezulto(NovaPointo) < F->rezulto(MomentaPointo)
+  ){
+    // Ожидается приняте точки и пользователь нажал "Принять"
+    QPointF AntPnt = MomentaPointo;// Запоминаю предыдущую точку
+    MomentaPointo = NovaPointo;// Устанавливаю новую
     x1_lb->setText(QString::number(MomentaPointo.x()));
     x2_lb->setText(QString::number(MomentaPointo.y()));
+    distance_lb->setText( QString::number(abs(F->rezulto(MomentaPointo) - F->rezulto(AntPnt))) );
     fsign_lb->setText(QString::number(F->rezulto(MomentaPointo)));
-    static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->finisxiIteracio();
-    FlagEtapo = 1;
+    // Сразу выполняю этап 10 - проверяю условие выхода.
+    if(abs(F->rezulto(MomentaPointo) - F->rezulto(AntPnt)) < strikteco){
+      FlagEtapo = 11;//Перехожу к ожиданию выхода. 
+    }else{
+      static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->finisxiIteracio();
+      new_x1_lb->setText(trUtf8("Неопределено"));
+      new_x2_lb->setText(trUtf8("Неопределено"));
+      new_fsign_lb->setText(trUtf8("Неопределено"));
+      ++NumeroIteracio;
+      FlagEtapo = 1;//Перехожу к новой итерации.
+    }
+    
   }else{
     //Пользователь ошибся.
     registriEraro();
   }
+  
+  emit proviziFlagEtapo(FlagEtapo);
 }
 
 //Пользователь не принимает точку.
@@ -187,32 +215,35 @@ void CWdescentWinImpl::on_not_accept_bt_clicked(){
     //Пользователь ошибся.
     registriEraro();
   }
+  
+  emit proviziFlagEtapo(FlagEtapo);
 }
 
 void CWdescentWinImpl::on_end_bt_clicked(){
-  if(FlagEtapo == 10){
-    //Нажата end_bt - соответствует этапу 10.
+  if(FlagEtapo == 11){
+    //Нажата end_bt - соответствует этапу 11.
   }else{
     //Пользователь ошибся.
     registriEraro();
   }
+  
+  emit proviziFlagEtapo(FlagEtapo);
 }
 
 void CWdescentWinImpl::on_change_step_bt_clicked(){
   if(FlagEtapo == 9){
+    //Нажата change_step_bt - соответствует этапу 9.
     PasxoX1 *= strikteco;
     PasxoX2 *= strikteco;
     x1_step_lb->setText(QString::number(PasxoX1.x()));
     x2_step_lb->setText(QString::number(PasxoX2.y()));
-    if(PasxoX1.x() < strikteco && PasxoX2.y() < strikteco){
-      FlagEtapo = 10;
-    }else{
-      FlagEtapo = 1;
-    }
+    FlagEtapo = 1;
   }else{
     //Пользователь ошибся.
     registriEraro();
   }
+  
+  emit proviziFlagEtapo(FlagEtapo);
 }
 
 
