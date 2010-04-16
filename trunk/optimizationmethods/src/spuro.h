@@ -23,6 +23,8 @@ public:
   //! Возвращает масштаб.
   qreal scale() const;
   //! Устанавливает масштаб.
+  /*! @param factor Множитель масштабирования. factor = 1 - масштаб 1:1.
+   */
   void setScale(qreal factor);
   //! Возвращает порядковый номер алгоритма.
   inline int proviziIdAlgoritmo(){ return IDAlgoritmo; };
@@ -43,5 +45,4 @@ public:
  * Этот класс не проверяет логику прохождения алгоритма. Он лишь позволяет нарисовать "след" на сцене.
  * 
  * @author Василий Почкаенко.
- * @file spuro.h
  */

@@ -23,7 +23,10 @@ protected:
   virtual QPolygonF aplikiScalo(QPolygonF p);
 public:
   //! Реализует отрисовку элемента.
-  void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widge);
+  void paint(QPainter *painter, //!< Контекст рисования элемента.
+             const QStyleOptionGraphicsItem *option, //!< Опции стилей для элементов, такие как его состояние, область отображения и подсказки степени его детализации.
+             QWidget *widget = 0 //!< Указывает на виджет, который отрисовывается; в противном случае он равен 0. Для кэшированного рисования widget всегда равен 0.
+            );
   //! Возвращает приблизительную площадь отрисовываемую элементом.
   QRectF boundingRect() const;
 
@@ -135,5 +138,4 @@ public slots:
  * @endcode
  * В примере aldoniSercxantaPointo, reveniAlMomentoPointo, finisxiIteracio вызываются на прямую. Но все они являются слотами и могут быть соединены с сигналами.
  * @author Василий Почкаенко.
- * @file spurosinkolauxkoordinatoj.h
  */
