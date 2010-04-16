@@ -6,14 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>743</width>
-    <height>525</height>
+    <width>937</width>
+    <height>569</height>
    </rect>
   </property>
   <property name="font">
    <font>
     <family>Times New Roman</family>
-    <pointsize>12</pointsize>
+    <pointsize>16</pointsize>
    </font>
   </property>
   <property name="windowTitle">
@@ -38,7 +38,7 @@
          <item row="0" column="1">
           <widget class="QLabel" name="label_11">
            <property name="text">
-            <string>Текущая точка</string>
+            <string>Базовая точка</string>
            </property>
            <property name="textInteractionFlags">
             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
@@ -78,7 +78,7 @@
          <item row="1" column="2">
           <widget class="QLabel" name="new_x1_lb">
            <property name="text">
-            <string>я</string>
+            <string>Неопределено</string>
            </property>
            <property name="textInteractionFlags">
             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
@@ -108,7 +108,7 @@
          <item row="2" column="2">
           <widget class="QLabel" name="new_x2_lb">
            <property name="text">
-            <string>я</string>
+            <string>Неопределено</string>
            </property>
            <property name="textInteractionFlags">
             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
@@ -138,7 +138,7 @@
          <item row="3" column="2">
           <widget class="QLabel" name="new_fsign_lb">
            <property name="text">
-            <string>я</string>
+            <string>Неопределено</string>
            </property>
            <property name="textInteractionFlags">
             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
@@ -155,7 +155,7 @@
          <item>
           <widget class="QLabel" name="label_4">
            <property name="text">
-            <string>Расстояние от стартовой до текущей точки</string>
+            <string>Расстояние от предыдущей базовой точки до текущей.</string>
            </property>
            <property name="textInteractionFlags">
             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
@@ -165,7 +165,7 @@
          <item>
           <widget class="QLabel" name="distance_lb">
            <property name="text">
-            <string>ы</string>
+            <string>Неопределено</string>
            </property>
            <property name="textInteractionFlags">
             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
@@ -432,8 +432,8 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>743</width>
-     <height>24</height>
+     <width>937</width>
+     <height>28</height>
     </rect>
    </property>
   </widget>
