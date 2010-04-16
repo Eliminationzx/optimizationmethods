@@ -18,15 +18,30 @@ public:
   //! Возвращает масштаб.
   qreal scale() const;
 
-  ScenoPorMapo( funkcio * Funkcio, QObject * parent = 0);
-  ScenoPorMapo( funkcio * Funkcio, const QRectF & sceneRect, QObject * parent = 0);
-  ScenoPorMapo( funkcio * Funkcio, qreal x, qreal y, qreal width, qreal height, QObject * parent = 0);
+  ScenoPorMapo( funkcio * Funkcio, //!< Указатель на целевую функцию. ScenoPorMapo не заботится о назначении Funkcio родителя.
+                QObject * parent = 0 //!< Родитель.
+              );
+  ScenoPorMapo( funkcio * Funkcio, //!< Указатель на целевую функцию. ScenoPorMapo не заботится о назначении Funkcio родителя.
+                const QRectF & sceneRect, //!< Область сцены.
+                QObject * parent = 0 //!< Родитель.
+              );
+  ScenoPorMapo( funkcio * Funkcio, //!< Указатель на целевую функцию. ScenoPorMapo не заботится о назначении Funkcio родителя.
+                qreal x, //!< Горизонтальная координата левого верхнего угла сцены.
+                qreal y, //!< Вертиктальная координата левого верхнего угла сцены.
+                qreal width, //!< Ширина сцены.
+                qreal height, //!< Высота сцены.
+                QObject * parent = 0 //!< Родитель.
+              );
 public slots:
   //! Устанавливает масштаб.
+  /*! @param factor Множитель масштабирования. factor = 1 - масштаб 1:1.
+   */
   void setScale(qreal factor);
 protected:
   //! Отрисовывает фон сцены с использованием painter перед отрисовкой любого элемента или переднего плана.
-  void drawBackground(QPainter * painter, const QRectF & rect);
+  void drawBackground(QPainter * painter, //!< Контекст рисования фона сцены.
+                      const QRectF & rect //!< Область сцены.
+                     );
 };
 #endif
 
@@ -35,5 +50,4 @@ protected:
  * В классе собственная реализация масштабирования.
  * 
  * @author Василий Почкаенко.
- * @file scenopormapo.h
  */

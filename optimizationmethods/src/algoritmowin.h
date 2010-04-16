@@ -21,12 +21,15 @@ protected:
   //! Указатель на след.
   spuro * Sp;
 public:
-	AlgoritmoWin(funkcio *f, QVector<double> *d, QWidget * parent = 0, Qt::WindowFlags flags = 0);
+	AlgoritmoWin(funkcio *f, //!< Указатель на целевую функцию. ScenoPorMapo не заботится о назначении Funkcio родителя.
+               QVector<double> *d, //!< Массив с данными задания.
+               QWidget * parent = 0, //!< Родитель.
+               Qt::WindowFlags flags = 0 //!< Флаги парамметров окна.
+               );
 	
 };
 #endif
 
 /*! @class AlgoritmoWin
  * @author Василий Почкаенко.
- * @file algoritmowin.h
  */

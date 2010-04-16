@@ -23,8 +23,13 @@ private:
   //! "След"
   spuro * Spuro;
 public:
-  MapoPorFunkcioImpl( funkcio * Funkcio, QWidget * parent = 0, Qt::WFlags f = 0 );
-  MapoPorFunkcioImpl( QWidget * parent = 0, Qt::WFlags f = 0 );
+  MapoPorFunkcioImpl( funkcio * Funkcio, //!< Указатель на целевую функцию. ScenoPorMapo не заботится о назначении Funkcio родителя.
+                      QWidget * parent = 0, //!< Родитель.
+                      Qt::WFlags f = 0 //!< Флаги параметров окна.
+                    );
+  MapoPorFunkcioImpl( QWidget * parent = 0, //!< Родитель.
+                      Qt::WFlags f = 0 //!< Флаги параметров окна.
+                    );
   //! Возвращает указатель на "след" прохождения алгоритма.
   /*! "Следы" разных алгоритмов имеют разные слоты.
    * @see spuro, spuroSinkoLauxKoordinatoj.
@@ -61,5 +66,4 @@ private slots:
  * Метод const spuro * proviziSpuro() возвращает указатель на существующий "след" прохождения алгоритма.
  * 
  * @author Василий Почкаенко.
- * @file mapoporfunkcioimpl.h
  */

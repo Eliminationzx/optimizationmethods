@@ -37,7 +37,11 @@ protected:
    */
   QPointF PasxoX2;
 public:
-	CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * parent = 0, Qt::WFlags flags = 0 );
+	CWdescentWinImpl( funkcio *f, //!< Указатель на целевую функцию. CWdescentWinImpl не заботится о назначении Funkcio родителя.
+                    QVector<double> *d, //!< Массив с данными задания.
+                    QWidget * parent = 0, //!< Родитель.
+                    Qt::WFlags flags = 0 //!< Флаги парамметров окна.
+                  );
 private slots:
   //! Фиксирует совершение пользователем ошики.
   void registriEraro();
@@ -57,6 +61,8 @@ private slots:
 /*! @class CWdescentWinImpl
  * Алгоритм:
  *
+ * @image html "CWdescentFix.png" "Блок-схема"
+ * 
  * Операции алгоритма повторяются циклически, пока не значение не приблизится к минимуму на заданную точность.
  * Каждая итерация содержит следующие шаги:
  *
@@ -84,9 +90,8 @@ private slots:
  * 
  * 11) Конец поиска
  *
- * @image html Блок схема "Покоординатного спуска с фиксированным шагом.png" "Блок-схема"
- * 
  * Реализация:
+ * 
  * Работа программы идёт не линейно - разные этапы итерации разнесены в разные подпрограммы.
  *
  * Имеется флаг состояния - FlagEtapo, хранящий номер этапа итерации. При каждом действии пользователя провепяется соответствие его действия проходимому этапу.
@@ -116,15 +121,4 @@ private slots:
  * При не соответствии выдаётся ошибка. При соответствии выполияется действие и переход на следующий этап согласно алгоритму.
  * 
  * @author Александр Белоконь, Василий Почкаенко.
- * @file cwdescentwinimpl.h
- */
-
- /*! @enum EtapojIteracio
-  *
-  * Из PasxiDekstren можно пеейти только в PasxiMaldekstren или PasxiDekstren.
-  * Из PasxiMaldekstren можно пеейти только в PasxiSupren или PasxiDekstren.
-  * Из PasxiSupren можно пеейти только в PasxiMalupren или PasxiDekstren.
-  * Из PasxiMalupren можно пеейти только в .
-  * Из MalpliigiPasxo можно перейти только в PasxiMaldekstren или Finisxo.
-  *
  */
