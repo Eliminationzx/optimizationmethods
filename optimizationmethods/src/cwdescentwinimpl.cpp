@@ -6,6 +6,7 @@
 #include "spurosinkolauxkoordinatoj.h"
 #include "demonstrataqpointf.h"
 #include "math.h"
+#include <QTextBrowser>
 #include <QString>
 #include <QMessageBox>
 //
@@ -28,12 +29,12 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * pa
   precision_lb->setText(QString::number((*d)[0]));
   x1_lb->setText(QString::number(MomentaPointo.x()));
   x2_lb->setText(QString::number(MomentaPointo.y()));
-  new_x1_lb->setText(trUtf8("Неопределено"));
-  new_x2_lb->setText(trUtf8("Неопределено"));
+//  new_x1_lb->setText(trUtf8("Неопределено"));
+//  new_x2_lb->setText(trUtf8("Неопределено"));
   x1_step_lb->setText(QString::number(PasxoX1.x()));
   x2_step_lb->setText(QString::number(PasxoX2.y()));
   fsign_lb->setText(QString::number(F->rezulto(MomentaPointo)));
-  new_fsign_lb->setText(trUtf8("Неопределено"));
+//  new_fsign_lb->setText(trUtf8("Неопределено"));
   
   
   
@@ -249,7 +250,7 @@ void CWdescentWinImpl::on_change_step_bt_clicked(){
 
 void CWdescentWinImpl::registriEraro(){
   ++KvantoEraroj;
-  LogLstWd->addItem(trUtf8("Совершена ошибка. Общее количество ошибок: %1").arg(KvantoEraroj));
+  LogTxtBrsr->append(trUtf8("Совершена ошибка. Общее количество ошибок: %1").arg(KvantoEraroj));
   QMessageBox msg(QMessageBox::Warning, trUtf8("Ошибка"), trUtf8("Неправильное действие"));
   msg.exec();  
 }
