@@ -9,9 +9,11 @@ spuroSinkoLauxKoordinatoj::spuroSinkoLauxKoordinatoj(QColor momentaKoloro, QColo
 //
 
 QRectF spuroSinkoLauxKoordinatoj::boundingRect() const{
+  // Размер элемента - обьединённый размер "хвоста" и текущей итерации * на
+  // масштаб + поправка, чтоб не остался старый "указатель"
   QRectF rez = MomentaPointioj.boundingRect() | Vosto.boundingRect();
-  rez.setTopLeft(rez.topLeft() * skalo);
-  rez.setBottomRight(rez.bottomRight() * skalo);
+  rez.setTopLeft(rez.topLeft() * skalo - QPointF(2, 2));
+  rez.setBottomRight(rez.bottomRight() * skalo + QPointF(2, 2));
   return rez;
 }
 
