@@ -48,6 +48,7 @@ void MapoPorFunkcioImpl::kreiSpuro(int IdAlgoritmo, QColor bazaKoloro){
       break;
     }
   }
+  Spuro->setScale(s->scale());// Назначаю корректный масштаб вновь созданному "следу".
   s->addItem(Spuro);
   
 }
@@ -57,3 +58,8 @@ spuro * MapoPorFunkcioImpl::proviziSpuro()
   return Spuro;
 }
 
+
+void MapoPorFunkcioImpl::setScale(qreal factor){
+  s->setScale(factor);
+  // Масштаб бля следа установит сцена.
+}

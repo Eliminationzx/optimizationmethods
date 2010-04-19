@@ -22,8 +22,11 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * pa
   // добавляю вижет карты в позицию 1,1. Компановщик сам позаботится о назначении новому виджету родителя.
   static_cast<QGridLayout*>(centralwidget->layout())->addWidget(MapoWdg, 1, 1);
   
+  MapoWdg->setScale(3);// Ставлю масштаб побольше. Надо будет определться с оптимальным значением.
+  
   MapoWdg->kreiSpuro(A::CWdescent_fix, Qt::blue);
   Sp = MapoWdg->proviziSpuro();
+  
   
   //Вывожу значения.
   precision_lb->setText(QString::number((*d)[0]));
@@ -268,3 +271,4 @@ void CWdescentWinImpl::registriEraro(){
   QMessageBox msg(QMessageBox::Warning, trUtf8("Ошибка"), trUtf8("Неправильное действие"));
   msg.exec();  
 }
+

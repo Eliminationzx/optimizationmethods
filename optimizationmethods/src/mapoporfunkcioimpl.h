@@ -36,6 +36,10 @@ public:
    */
   spuro * proviziSpuro();
 public slots:
+  //! Устанавливает масштаб.
+  /*! @param factor Множитель масштабирования. factor = 1 - масштаб 1:1.
+   */
+  void setScale(qreal factor);
   //! Устанавливает целевую функцию.
   void difiniFunkcio(funkcio * f);
   //! Создает на сцене "след" алгоритма.
