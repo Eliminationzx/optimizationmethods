@@ -173,12 +173,12 @@ void CWdescentWinImpl::on_accept_bt_clicked(){
     distance_lb->setText( QString::number(abs(F->rezulto(MomentaPointo) - F->rezulto(AntPnt))) );
     fsign_lb->setText(QString::number(F->rezulto(MomentaPointo)));
     LogTxtBrsr->append(trUtf8("    Принята новая точка в качестве базовой."));
+    static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->finisxiIteracio();
     // Сразу выполняю этап 10 - проверяю условие выхода.
     LogTxtBrsr->append(trUtf8("    Расстояние от предыдущей базовой точки до текущей: %1, требуемая точность %2").arg(abs(F->rezulto(MomentaPointo) - F->rezulto(AntPnt))).arg(strikteco));
     if(abs(F->rezulto(MomentaPointo) - F->rezulto(AntPnt)) < strikteco){
       FlagEtapo = 11;//Перехожу к ожиданию выхода. 
     }else{
-      static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->finisxiIteracio();
       new_x1_lb->setText(trUtf8("Неопределено"));
       new_x2_lb->setText(trUtf8("Неопределено"));
       new_fsign_lb->setText(trUtf8("Неопределено"));
@@ -236,7 +236,7 @@ void CWdescentWinImpl::on_not_accept_bt_clicked(){
 void CWdescentWinImpl::on_end_bt_clicked(){
   if(FlagEtapo == 11){
     //Нажата end_bt - соответствует этапу 11.
-    LogTxtBrsr->append(trUtf8("Найдена точкаминимума F(%1; %2) = % 3. Финиш.").arg(MomentaPointo.x()).arg(MomentaPointo.y()).arg(F->rezulto(MomentaPointo)));
+    LogTxtBrsr->append(trUtf8("Найдена точка минимума F(%1; %2) = % 3. Финиш.").arg(MomentaPointo.x()).arg(MomentaPointo.y()).arg(F->rezulto(MomentaPointo)));
   }else{
     //Пользователь ошибся.
     registriEraro();
@@ -248,12 +248,13 @@ void CWdescentWinImpl::on_end_bt_clicked(){
 void CWdescentWinImpl::on_change_step_bt_clicked(){
   if(FlagEtapo == 9){
     //Нажата change_step_bt - соответствует этапу 9.
-    QString s = trUtf8("Валичина шагов по Х1 = %1 и Х2 = %2 заменена на %3 и %4 соответственно, согласно модификатогу %5").arg(PasxoX1.x()).arg(PasxoX2.y());
+    QString s = trUtf8("Величина шагов по Х1 = %1 и Х2 = %2 заменена на %3 и %4 соответственно, согласно модификатогу %5").arg(PasxoX1.x()).arg(PasxoX2.y());
     PasxoX1 *= strikteco;
     PasxoX2 *= strikteco;
     s.arg(PasxoX1.x()).arg(PasxoX2.y()).arg(strikteco);
     x1_step_lb->setText(QString::number(PasxoX1.x()));
     x2_step_lb->setText(QString::number(PasxoX2.y()));
+    static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->finisxiIteracio();
     LogTxtBrsr->append(s);
     FlagEtapo = 1;
   }else{
