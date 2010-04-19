@@ -20,14 +20,17 @@ void spuroSinkoLauxKoordinatoj::finisxiIteracio(){
   Vosto += MomentaPointioj;
   MomentaPointioj.clear();
   MomentaPointioj.append(MomentaPointio);
+  update();// Планирую перерисовку.
 }
 
 void spuroSinkoLauxKoordinatoj::reveniAlMomentoPointo(){
   MomentaPointioj.append(MomentaPointio);
+  update();// Планирую перерисовку.
 }
 
 void spuroSinkoLauxKoordinatoj::aldoniSercxantaPointo(QPointF p){
   MomentaPointioj.append(p);
+  update();// Планирую перерисовку.
 }
 void spuroSinkoLauxKoordinatoj::paint(QPainter *painter, const QStyleOptionGraphicsItem */*option*/, QWidget */*widge*/){
   painter->save();
@@ -45,6 +48,7 @@ void spuroSinkoLauxKoordinatoj::paint(QPainter *painter, const QStyleOptionGraph
 void spuroSinkoLauxKoordinatoj::difiniUnuaPointo(QPointF p){
   MomentaPointio = p;
   MomentaPointioj.append(p);
+  update();// Планирую перерисовку.
 }
 
 void spuroSinkoLauxKoordinatoj::difiniUnuaPointo( qreal x, qreal y ){
