@@ -112,9 +112,9 @@ int MainWindowImpl::ReadError(int method)
 }
 
 //! Открытие овражной функции.
-void openTakeQuadFun(QVector<int> flag)
+void MainWindowImpl::openTakeQuadFun(QVector<int> flag)
 {
-	takeQuadFun[flag[0]] = flag[1];
+  takeQuadFun[flag[0]] = flag[1];
 }
 
 //! Нажата кнопка "Далее" (1-ая страница).
