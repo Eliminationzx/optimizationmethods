@@ -2,6 +2,7 @@
 #define MAINWINDOWIMPL_H
 //
 #include <QMainWindow>
+#include <QMap>
 #include <QDir>
 #include <QFile>
 #include <QTextStream>
@@ -12,6 +13,7 @@
 #include "funkcio.h"
 #include "Konstantoj.h"
 
+#include "mainpassimpl.h"
 #include "cwdescentwinimpl.h"
 //#include "CWdescent_mdImpl.h"
 //#include "FasterDescentImpl.h"
@@ -34,11 +36,14 @@ class MainWindowImpl : public QMainWindow, public Ui::MainWindow
 {
 Q_OBJECT
 
-	//! Флаг для проверки пройдености квадратичной функции.
-	bool takeQuadFun;
+	//! Флаг для проверки пройдености квадратичной функции каждым методом.
+	QMap<int, bool> takeQuadFun;
+	
+	//! Объект-родитель для создания окна ввода пароля.
+	mainPassImpl * Pass;
 	
 	//! Объект-родитель для создания окон прохождения алгоритмов.
-	AlgoritmoWin *AW;
+	AlgoritmoWin * AW;
 
 	//! Индексы метода и типа функции.
 	QVector<int> methFunc;
@@ -68,6 +73,11 @@ public:
 	MainWindowImpl( QWidget * parent = 0, Qt::WFlags f = 0 );
 
 private slots:
+	//! Слот класса, получающий сигнал при выборе пункта меню "Разрешить функцию".
+	/*! Выводит форму с выбором метода оптимизации и полем для ввода пароля
+	 */
+	void on_allow_changed();
+
 	//! Слот класса, получающий сигнал при нажатии на кнопку "Далее" (1-ая страница).
 	/*! В начале считывает в поле methFunc индекс метода оптимизации и индекс типа функции,
 	 * а затем делает видимой вторую страницу формы.
