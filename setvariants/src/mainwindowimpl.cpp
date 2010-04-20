@@ -9,6 +9,7 @@ MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WFlags f)
 	on_comboBox_activated(0);
 	initializationRavinComboBox();
 	on_comboBox_ravin_activated(0);
+	initializationError();
 }
 
 //! Запись данных варианта в текстовый файл.
@@ -72,6 +73,32 @@ bool MainWindowImpl::WriteVariants(const int typeFunction, const QVector<double>
 		return false;
 }
 
+//! Запись максимального количества ошибок для перехода к овражной функции в текстовый файл.
+bool MainWindowImpl::WriteError(const QVector<int> data)
+{
+	QFile file(QDir::toNativeSeparators("variants/maxError"));
+	if(file.open(QIODevice::WriteOnly))
+	{
+		QTextStream stream(&file);
+		for(int i = 0; i < 6; ++i)
+		{
+			stream<<data[i]<<"\n";
+		}
+		if(stream.status() != QTextStream::Ok)
+		{
+			file.close();
+			return false;
+		}
+		else
+		{
+			file.close();
+			return true;
+		}
+	}
+	else
+		return false;
+}
+
 //! Чтение данных варианта из текстового файла.
 QVector<double> MainWindowImpl::ReadVariants(const QString typeFunction, const int numberVariants)
 {
@@ -114,6 +141,24 @@ QVector<double> MainWindowImpl::ReadVariants(const int typeFunction, const int n
 	}
 	else
 		data.fill(NULL, 13);
+	return data;
+}
+
+//! Чтение максимального количества ошибок для перехода к овражной функции из текстового файла.
+QVector<int> MainWindowImpl::ReadError()
+{
+	QVector<int> data(0);
+	QFile file(QDir::toNativeSeparators("variants/maxError"));
+	if(file.open(QIODevice::ReadOnly))
+	{
+		QTextStream stream(&file);
+		while(!stream.atEnd())
+		{
+			data.append(stream.readLine().toInt());
+		}
+	}
+	else
+		data.fill(NULL, 6);
 	return data;
 }
 
@@ -180,6 +225,19 @@ void MainWindowImpl::initializationRavinComboBox()
 	comboBox_ravin->addItem(trUtf8("Вариант ").append(QString::number(data_ravin.size() + 1)));
 }
 
+//! Инициализация формы для количества ошибок.
+void MainWindowImpl::initializationError()
+{
+	QVector<int> data;
+	data = ReadError();
+	CWdescent_fix->setText(QString::number(data[0]));
+	CWdescent_md->setText(QString::number(data[1]));
+	FasterDescent->setText(QString::number(data[2]));
+	HuGi->setText(QString::number(data[3]));
+	NeMi->setText(QString::number(data[4]));
+	NotWen->setText(QString::number(data[5]));
+}
+
 //
 // Нажата кнопка сохранить в квадратичной функции.
 void MainWindowImpl::on_save_button_clicked()
@@ -231,6 +289,25 @@ void MainWindowImpl::on_save_button_ravin_clicked()
 		initializationRavinComboBox();
 		comboBox_ravin->setCurrentIndex(data[0]);
 		statusbar->showMessage(trUtf8("Вариант успешно записан"), 1000);
+	}
+	else
+		statusbar->showMessage(trUtf8("Ошибка при записи - возможно отсутствует директория"), 2000);
+}
+
+//! Нажата кнопка сохранить при установке количества ошибок.
+void MainWindowImpl::on_save_button_err_clicked()
+{
+	// TODO
+	QVector<int> data(6);
+	data[0] = CWdescent_fix->text().toInt();
+	data[1] = CWdescent_md->text().toInt();
+	data[2] = FasterDescent->text().toInt();
+	data[3] = HuGi->text().toInt();
+	data[4] = NeMi->text().toInt();
+	data[5] = NotWen->text().toInt();
+	if(WriteError(data))
+	{
+		statusbar->showMessage(trUtf8("Информация успешно записана"), 1000);
 	}
 	else
 		statusbar->showMessage(trUtf8("Ошибка при записи - возможно отсутствует директория"), 2000);

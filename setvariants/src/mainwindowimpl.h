@@ -26,19 +26,25 @@ private:
 	 */
 	bool WriteVariants(const QString typeFunction, const QVector<double> data);
 
-	//! Запись данных варинта в текстовый файл
+	//! Запись данных варинта в текстовый файл.
 	/*! Возвращает true при успешной записи и false в остальных случаях.
 	 * @param typeFunction - индекс целевой функции (0 - quadFunction, 1 - ravinFunction);
 	 * @param data - вектор данных варианта, первым элементом которого является номер варианта.
 	 */
 	bool WriteVariants(const int typeFunction, const QVector<double> data);
 
+	//! Запись максимального количества ошибок для перехода к овражной функции в текстовый файл.
+	/*! Возвращает true при успешной записи и false в остальных случаях.
+	 * @param data - вектор количества ошибок.
+	 */
+	bool WriteError(const QVector<int> data);
+
 	//! Чтение данных варианта из текстового файла.
 	/*! Возвращает вектор данных варианта при успешном чтении и вектор с нулевыми значениями в остальных случаях.
 	 * @param typeFunction - название целевой функции (quadFunction или ravinFunction);
 	 * @param numberVariants - номер варианта.
 	 */
-	QVector<double> ReadVariants(const QString typeFunction, const int numberVariants);
+	 QVector<double> ReadVariants(const QString typeFunction, const int numberVariants);
 
 	//! Чтение данных варианта из текстового файла.
 	/*! Возвращает вектор данных варианта при успешном чтении и вектор с нулевыми значениями в остальных случаях.
@@ -46,6 +52,11 @@ private:
 	 * @param numberVariants - номер варианта.
 	 */
 	QVector<double> ReadVariants(const int typeFunction, const int numberVariants);
+	
+	//! Чтение максимального количества ошибок для перехода к овражной функции из текстового файла.
+	/*! Возвращает вектор количества ошибок при успешном чтении и вектор с нулевыми значениями в остальных случаях.
+	 */
+	QVector<int> ReadError();
 
 	//! Анализ директории вариантов целевой функции.
 	/*! Возвращает вектор из существующих вариантов.
@@ -70,6 +81,12 @@ private:
 	 * Заполняет выпадающий список существующими вариантами и добавляет последний пустой.
 	 */
 	void initializationRavinComboBox();
+	
+	//! Инициализация формы для количества ошибок.
+	/*! В своей работе использует метод ReadError().
+	 * Заполняет форму.
+	 */
+	void initializationError();
 
 public:
 	//! Конструктор класса.
@@ -87,6 +104,13 @@ private slots:
 	 * Заполняет lineEdit-ы данными варианта.
 	 */
 	void on_comboBox_activated(int index);
+
+	//! Слот класса, получающий сигнал при нажатии кнопки "Сохранить" при установке количества ошибок.
+	/*! В своей работе использует метод WriteError(const QVector<double> data).
+	 * Считывает данные из формы и записывает в файл.
+	 * При окончании работы выводит надпись об успешной записи или неудачи в statusBar.
+	 */
+	void on_save_button_err_clicked();
 
 	//! Слот класса, получающий сигнал при нажатии кнопки "Сохранить" в овражной функции.
 	/*! В своей работе использует методы WriteVariants(const int typeFunction, const QVector<double> data) и initializationRavinComboBox().
