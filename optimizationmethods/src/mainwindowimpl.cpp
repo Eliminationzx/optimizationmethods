@@ -115,6 +115,7 @@ void MainWindowImpl::openTakeQuadFun(QVector<int> flag)
 	takeQuadFun[flag[0]] = flag[1];
 	choiceMethods->setCurrentIndex(flag[0]);
 	on_choiceMethods_activated(flag[0]);
+	ravinFunction->setChecked(flag[1]);
 }
 
 //! Нажата кнопка "Далее" (1-ая страница).
@@ -244,8 +245,10 @@ void MainWindowImpl::on_comboBox_activated(int index)
 void MainWindowImpl::on_allow_activated()
 {
 	Pass = new mainPassImpl(this);
-	QObject::connect(Pass, SIGNAL(setFlag(QVector<int> flag)), this, SLOT(openTakeQuadFun(QVector<int> flag)));
-	Pass->show();
+	if(connect(Pass, SIGNAL(setFlag(QVector<int>)), SLOT(openTakeQuadFun(QVector<int>))))
+		Pass->show();
+	else
+		QMessageBox::warning(this, trUtf8("Ошибка"), trUtf8("Ошибка соединения MainWindowImpl и mainPassImpl."));
 }
 
 //! Проверка takeQuadFun.
