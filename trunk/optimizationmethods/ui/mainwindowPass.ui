@@ -7,13 +7,13 @@
     <x>0</x>
     <y>0</y>
     <width>189</width>
-    <height>92</height>
+    <height>97</height>
    </rect>
   </property>
   <property name="font">
    <font>
     <family>Times New Roman</family>
-    <pointsize>10</pointsize>
+    <pointsize>12</pointsize>
    </font>
   </property>
   <property name="windowTitle">
