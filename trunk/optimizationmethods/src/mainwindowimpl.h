@@ -76,6 +76,11 @@ public:
 	MainWindowImpl( QWidget * parent = 0, Qt::WFlags f = 0 );
 
 private slots:
+	//! Слот класса, получающий сигнал при выборе метода оптимизации.
+	/*! Проверяет takeQuadFun и открывает доступ к овражной функции для пройденных методов.
+	 */
+	void on_choiceMethods_activated(int index);
+
 	//! Слот класса, получающий сигнал при вводе пароля на открытие овражной функции.
 	void openTakeQuadFun(QVector<int> flag);
 

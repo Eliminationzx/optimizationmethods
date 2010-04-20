@@ -25,9 +25,7 @@ MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WFlags f)
 	{
 		takeQuadFun[i] = false;
 	}
-	ravinFunction->setCheckable(false);
-	
-	QObject::connect(Pass, SIGNAL(setFlag(QVector<int> flag)), this, SLOT(openTakeQuadFun(QVector<int> flag)));
+	on_choiceMethods_activated(0);
 }
 //
 
@@ -114,7 +112,9 @@ int MainWindowImpl::ReadError(int method)
 //! Открытие овражной функции.
 void MainWindowImpl::openTakeQuadFun(QVector<int> flag)
 {
-  takeQuadFun[flag[0]] = flag[1];
+	takeQuadFun[flag[0]] = flag[1];
+	choiceMethods->setCurrentIndex(flag[0]);
+	on_choiceMethods_activated(flag[0]);
 }
 
 //! Нажата кнопка "Далее" (1-ая страница).
@@ -189,8 +189,8 @@ void MainWindowImpl::on_next_button_2_clicked()
 //			break;
 		case A::NotWen:
 //			AW = new 
-      QMessageBox msg(QMessageBox::Warning, trUtf8("Ошибка"), trUtf8("Алгоритм ещё не реализован"));
-      msg.exec();
+		QMessageBox msg(QMessageBox::Warning, trUtf8("Ошибка"), trUtf8("Алгоритм ещё не реализован"));
+		msg.exec();
 	}
 	AW->showMaximized();
 }
@@ -243,6 +243,17 @@ void MainWindowImpl::on_comboBox_activated(int index)
 //! Выбран пункт меню "Разрешить функцию".
 void MainWindowImpl::on_allow_activated()
 {
-  Pass = new mainPassImpl(this);
-  Pass->show();
+	Pass = new mainPassImpl(this);
+	QObject::connect(Pass, SIGNAL(setFlag(QVector<int> flag)), this, SLOT(openTakeQuadFun(QVector<int> flag)));
+	Pass->show();
+}
+
+//! Проверка takeQuadFun.
+void MainWindowImpl::on_choiceMethods_activated(int index)
+{
+	// TODO
+	if(takeQuadFun[index] == false)
+		ravinFunction->setCheckable(false);
+	else if(takeQuadFun[index] == true)
+		ravinFunction->setCheckable(true);
 }
