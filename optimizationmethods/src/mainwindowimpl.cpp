@@ -216,7 +216,12 @@ void MainWindowImpl::on_comboBox_activated(int index)
 //! Выбран пункт меню "Разрешить функцию".
 void MainWindowImpl::on_allow_changed()
 {
-	// TODO
-	Pass = new mainPassImpl(this);
-	Pass->show();
+//	Pass = new mainPassImpl(this);
+//	Pass->show();
+}
+
+void MainWindowImpl::on_allow_activated()
+{
+  Pass = new mainPassImpl(this);
+  Pass->show();
 }
