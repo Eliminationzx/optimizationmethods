@@ -26,6 +26,8 @@ MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WFlags f)
 		takeQuadFun[i] = false;
 	}
 	ravinFunction->setCheckable(false);
+	
+	QObject::connect(Pass, SIGNAL(setFlag(QVector<int> flag)), this, SLOT(openTakeQuadFun(QVector<int> flag)));
 }
 //
 
@@ -89,6 +91,30 @@ void MainWindowImpl::initializationComboBox(const int typeFunction)
 		var.setValue(i);
 		comboBox->addItem(trUtf8("Вариант ").append(QString::number(i + 1)), var);
 	}
+}
+
+//! Чтение максимального количества ошибок для перехода к овражной функции из текстового файла.
+int MainWindowImpl::ReadError(int method)
+{
+	QVector<int> data(0);
+	QFile file(QDir::toNativeSeparators("variants/maxError"));
+	if(file.open(QIODevice::ReadOnly))
+	{
+		QTextStream stream(&file);
+		while(!stream.atEnd())
+		{
+			data.append(stream.readLine().toInt());
+		}
+	}
+	else
+		data.fill(NULL, 6);
+	return data[method];
+}
+
+//! Открытие овражной функции.
+void openTakeQuadFun(QVector<int> flag)
+{
+	takeQuadFun[flag[0]] = flag[1];
 }
 
 //! Нажата кнопка "Далее" (1-ая страница).
@@ -214,12 +240,6 @@ void MainWindowImpl::on_comboBox_activated(int index)
 }
 
 //! Выбран пункт меню "Разрешить функцию".
-void MainWindowImpl::on_allow_changed()
-{
-//	Pass = new mainPassImpl(this);
-//	Pass->show();
-}
-
 void MainWindowImpl::on_allow_activated()
 {
   Pass = new mainPassImpl(this);
