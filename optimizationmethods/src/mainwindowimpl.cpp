@@ -168,6 +168,7 @@ void MainWindowImpl::on_next_button_2_clicked()
 		funck = new RavinaFunkcio(data);
 	}
 	QVector<double> simpleCon = data.mid(data.size()-6);
+	simpleCon.append(ReadError(methFunc[0]));
 	
 	switch(methFunc[0])
 	{
@@ -175,7 +176,7 @@ void MainWindowImpl::on_next_button_2_clicked()
 			AW = new CWdescentWinImpl(funck, &simpleCon, this, Qt::Window);
 			break;
 		case A::CWdescent_md:
-//			
+//			AW = new 
 //			break;
 		case A::FasterDescent:
 //			AW = new 
