@@ -73,6 +73,7 @@ public:
 	MainWindowImpl( QWidget * parent = 0, Qt::WFlags f = 0 );
 
 private slots:
+	void on_allow_activated();
 	//! Слот класса, получающий сигнал при выборе пункта меню "Разрешить функцию".
 	/*! Выводит форму с выбором метода оптимизации и полем для ввода пароля
 	 */
