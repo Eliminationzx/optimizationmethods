@@ -2,25 +2,28 @@
 <ui version="4.0">
  <class>CWdescentWin</class>
  <widget class="QMainWindow" name="CWdescentWin">
+  <property name="windowModality">
+   <enum>Qt::ApplicationModal</enum>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>939</width>
-    <height>569</height>
+    <width>885</width>
+    <height>605</height>
    </rect>
   </property>
   <property name="font">
    <font>
     <family>Times New Roman</family>
-    <pointsize>16</pointsize>
+    <pointsize>18</pointsize>
    </font>
   </property>
   <property name="windowTitle">
    <string>Покоординатный спуск с фиксированным шагом.</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout_2" columnstretch="1,1">
+   <layout class="QGridLayout" name="gridLayout_2" columnstretch="2,1">
     <item row="0" column="0">
      <widget class="QGroupBox" name="groupBox_2">
       <property name="title">
@@ -33,10 +36,13 @@
        <item>
         <layout class="QGridLayout" name="gridLayout_6">
          <property name="spacing">
-          <number>10</number>
+          <number>0</number>
          </property>
          <item row="0" column="1">
           <widget class="QLabel" name="label_11">
+           <property name="frameShape">
+            <enum>QFrame::Box</enum>
+           </property>
            <property name="text">
             <string>Базовая точка</string>
            </property>
@@ -47,6 +53,9 @@
          </item>
          <item row="0" column="2">
           <widget class="QLabel" name="label_12">
+           <property name="frameShape">
+            <enum>QFrame::Box</enum>
+           </property>
            <property name="text">
             <string>Новая точка</string>
            </property>
@@ -57,6 +66,9 @@
          </item>
          <item row="1" column="0">
           <widget class="QLabel" name="label_5">
+           <property name="frameShape">
+            <enum>QFrame::Box</enum>
+           </property>
            <property name="text">
             <string>Х1</string>
            </property>
@@ -67,6 +79,9 @@
          </item>
          <item row="1" column="1">
           <widget class="QLabel" name="x1_lb">
+           <property name="frameShape">
+            <enum>QFrame::Box</enum>
+           </property>
            <property name="text">
             <string>я</string>
            </property>
@@ -77,6 +92,9 @@
          </item>
          <item row="1" column="2">
           <widget class="QLabel" name="new_x1_lb">
+           <property name="frameShape">
+            <enum>QFrame::Box</enum>
+           </property>
            <property name="text">
             <string>Неопределено</string>
            </property>
@@ -87,6 +105,9 @@
          </item>
          <item row="2" column="0">
           <widget class="QLabel" name="label_6">
+           <property name="frameShape">
+            <enum>QFrame::Box</enum>
+           </property>
            <property name="text">
             <string>Х2</string>
            </property>
@@ -97,6 +118,9 @@
          </item>
          <item row="2" column="1">
           <widget class="QLabel" name="x2_lb">
+           <property name="frameShape">
+            <enum>QFrame::Box</enum>
+           </property>
            <property name="text">
             <string>я</string>
            </property>
@@ -107,6 +131,9 @@
          </item>
          <item row="2" column="2">
           <widget class="QLabel" name="new_x2_lb">
+           <property name="frameShape">
+            <enum>QFrame::Box</enum>
+           </property>
            <property name="text">
             <string>Неопределено</string>
            </property>
@@ -117,6 +144,9 @@
          </item>
          <item row="3" column="0">
           <widget class="QLabel" name="label_10">
+           <property name="frameShape">
+            <enum>QFrame::Box</enum>
+           </property>
            <property name="text">
             <string>Значение функции</string>
            </property>
@@ -127,6 +157,9 @@
          </item>
          <item row="3" column="1">
           <widget class="QLabel" name="fsign_lb">
+           <property name="frameShape">
+            <enum>QFrame::Box</enum>
+           </property>
            <property name="text">
             <string>я</string>
            </property>
@@ -137,6 +170,9 @@
          </item>
          <item row="3" column="2">
           <widget class="QLabel" name="new_fsign_lb">
+           <property name="frameShape">
+            <enum>QFrame::Box</enum>
+           </property>
            <property name="text">
             <string>Неопределено</string>
            </property>
@@ -179,11 +215,14 @@
        </item>
        <item>
         <layout class="QGridLayout" name="gridLayout_7">
-         <property name="verticalSpacing">
-          <number>10</number>
+         <property name="spacing">
+          <number>0</number>
          </property>
          <item row="0" column="0">
           <widget class="QLabel" name="label">
+           <property name="frameShape">
+            <enum>QFrame::Box</enum>
+           </property>
            <property name="text">
             <string>Точность</string>
            </property>
@@ -194,6 +233,9 @@
          </item>
          <item row="0" column="1">
           <widget class="QLabel" name="precision_lb">
+           <property name="frameShape">
+            <enum>QFrame::Box</enum>
+           </property>
            <property name="text">
             <string>ы</string>
            </property>
@@ -204,6 +246,9 @@
          </item>
          <item row="1" column="0">
           <widget class="QLabel" name="label_3">
+           <property name="frameShape">
+            <enum>QFrame::Box</enum>
+           </property>
            <property name="text">
             <string>Шаг по Х1</string>
            </property>
@@ -214,6 +259,9 @@
          </item>
          <item row="1" column="1">
           <widget class="QLabel" name="x1_step_lb">
+           <property name="frameShape">
+            <enum>QFrame::Box</enum>
+           </property>
            <property name="text">
             <string>ы</string>
            </property>
@@ -224,6 +272,9 @@
          </item>
          <item row="2" column="0">
           <widget class="QLabel" name="label_7">
+           <property name="frameShape">
+            <enum>QFrame::Box</enum>
+           </property>
            <property name="text">
             <string>Шаг по Х2</string>
            </property>
@@ -234,6 +285,9 @@
          </item>
          <item row="2" column="1">
           <widget class="QLabel" name="x2_step_lb">
+           <property name="frameShape">
+            <enum>QFrame::Box</enum>
+           </property>
            <property name="text">
             <string>ы</string>
            </property>
@@ -258,13 +312,6 @@
       <layout class="QGridLayout" name="gridLayout">
        <item row="0" column="0">
         <widget class="QPushButton" name="calculate_bt">
-         <property name="font">
-          <font>
-           <pointsize>13</pointsize>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
          <property name="toolTip">
           <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -322,13 +369,6 @@ p, li { white-space: pre-wrap; }
        </item>
        <item row="1" column="0">
         <widget class="QPushButton" name="accept_bt">
-         <property name="font">
-          <font>
-           <pointsize>13</pointsize>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
          <property name="toolTip">
           <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -343,13 +383,6 @@ p, li { white-space: pre-wrap; }
        </item>
        <item row="2" column="0">
         <widget class="QPushButton" name="not_accept_bt">
-         <property name="font">
-          <font>
-           <pointsize>13</pointsize>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
          <property name="toolTip">
           <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -364,13 +397,6 @@ p, li { white-space: pre-wrap; }
        </item>
        <item row="4" column="0">
         <widget class="QPushButton" name="end_bt">
-         <property name="font">
-          <font>
-           <pointsize>13</pointsize>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
          <property name="toolTip">
           <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -385,13 +411,6 @@ p, li { white-space: pre-wrap; }
        </item>
        <item row="3" column="0">
         <widget class="QPushButton" name="change_step_bt">
-         <property name="font">
-          <font>
-           <pointsize>13</pointsize>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
          <property name="toolTip">
           <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -408,7 +427,13 @@ p, li { white-space: pre-wrap; }
      </widget>
     </item>
     <item row="1" column="0">
-     <widget class="QTextBrowser" name="LogTxtBrsr"/>
+     <widget class="QTextBrowser" name="LogTxtBrsr">
+      <property name="font">
+       <font>
+        <pointsize>16</pointsize>
+       </font>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
@@ -417,8 +442,8 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>939</width>
-     <height>28</height>
+     <width>885</width>
+     <height>31</height>
     </rect>
    </property>
   </widget>
