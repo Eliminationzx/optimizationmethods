@@ -6,8 +6,6 @@ MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WFlags f)
 {
 	setupUi(this);
 	
-	takeQuadFun = false;
-	
 	QVariant var;
 	var.setValue(0);
 	choiceMethods->addItem(trUtf8("Метод покоординатного спуска с дискретным шагом"), var);
@@ -23,6 +21,10 @@ MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WFlags f)
 	choiceMethods->addItem(trUtf8("Метод Ньютона"), var);
 	choiceMethods->setCurrentIndex(0);
 	
+	for(int i = 0; i < 6; ++i)
+	{
+		takeQuadFun[i] = false;
+	}
 	ravinFunction->setCheckable(false);
 }
 //
@@ -211,3 +213,10 @@ void MainWindowImpl::on_comboBox_activated(int index)
 	}
 }
 
+//! Выбран пункт меню "Разрешить функцию".
+void MainWindowImpl::on_allow_changed()
+{
+	// TODO
+	Pass = new mainPassImpl(this);
+	Pass->show();
+}

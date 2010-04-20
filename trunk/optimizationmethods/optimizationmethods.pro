@@ -5,7 +5,7 @@ DESTDIR = bin
 OBJECTS_DIR = build
 MOC_DIR = build
 UI_DIR = build
-FORMS = ui/mainwindow.ui ui/mapoporfunkcio.ui ui/CWdescent_fixwindow.ui
+FORMS = ui/mainwindow.ui ui/mapoporfunkcio.ui ui/CWdescent_fixwindow.ui ui/mainwindowPass.ui
 HEADERS = src/mainwindowimpl.h \
  src/funkcio.h \
  src/mapoporfunkcioimpl.h \
@@ -15,7 +15,8 @@ HEADERS = src/mainwindowimpl.h \
  src/cwdescentwinimpl.h \
  src/algoritmowin.h \
  src/Konstantoj.h \
- src/demonstrataqpointf.h
+ src/demonstrataqpointf.h \
+ src/mainpassimpl.h
 SOURCES = src/mainwindowimpl.cpp \
  src/main.cpp \
  src/funkcio.cpp \
@@ -25,5 +26,6 @@ SOURCES = src/mainwindowimpl.cpp \
  src/spurosinkolauxkoordinatoj.cpp \
  src/cwdescentwinimpl.cpp \
  src/algoritmowin.cpp \
- src/demonstrataqpointf.cpp
+ src/demonstrataqpointf.cpp \
+ src/mainpassimpl.cpp
 RESOURCES += ui/data.qrc
