@@ -6,6 +6,8 @@ MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WFlags f)
 {
 	setupUi(this);
 	
+	stackedWidget->setCurrentIndex(0);
+	
 	QVariant var;
 	var.setValue(0);
 	choiceMethods->addItem(trUtf8("Метод покоординатного спуска с дискретным шагом"), var);
@@ -25,7 +27,6 @@ MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WFlags f)
 	{
 		takeQuadFun[i] = false;
 	}
-	on_choiceMethods_activated(0);
 }
 //
 
@@ -110,12 +111,12 @@ int MainWindowImpl::ReadError(int method)
 }
 
 //! Открытие овражной функции.
-void MainWindowImpl::openTakeQuadFun(QVector<int> flag)
+void MainWindowImpl::openTakeQuadFun(int flag)
 {
-	takeQuadFun[flag[0]] = flag[1];
-	choiceMethods->setCurrentIndex(flag[0]);
-	on_choiceMethods_activated(flag[0]);
-	ravinFunction->setChecked(flag[1]);
+	takeQuadFun[flag] = true;
+	choiceMethods->setCurrentIndex(flag);
+	on_choiceMethods_activated(flag);
+	ravinFunction->setChecked(true);
 }
 
 //! Нажата кнопка "Далее" (1-ая страница).
@@ -193,7 +194,11 @@ void MainWindowImpl::on_next_button_2_clicked()
 		QMessageBox msg(QMessageBox::Warning, trUtf8("Ошибка"), trUtf8("Алгоритм ещё не реализован"));
 		msg.exec();
 	}
-	AW->showMaximized();
+/*	if(connect(AW, SIGNAL(setFlag(int)), SLOT(openTakeQuadFun(int))))
+		Pass->show();
+	else
+		QMessageBox::warning(this, trUtf8("Ошибка"), trUtf8("Ошибка соединения MainWindowImpl и AlgoritmoWin."));
+*/	AW->showMaximized();
 }
 
 //! Нажата кнопка "Назад" (2-ая страница).
@@ -245,7 +250,7 @@ void MainWindowImpl::on_comboBox_activated(int index)
 void MainWindowImpl::on_allow_activated()
 {
 	Pass = new mainPassImpl(this);
-	if(connect(Pass, SIGNAL(setFlag(QVector<int>)), SLOT(openTakeQuadFun(QVector<int>))))
+	if(connect(Pass, SIGNAL(setFlag(int)), SLOT(openTakeQuadFun(int))))
 		Pass->show();
 	else
 		QMessageBox::warning(this, trUtf8("Ошибка"), trUtf8("Ошибка соединения MainWindowImpl и mainPassImpl."));
@@ -259,4 +264,43 @@ void MainWindowImpl::on_choiceMethods_activated(int index)
 		ravinFunction->setCheckable(false);
 	else if(takeQuadFun[index] == true)
 		ravinFunction->setCheckable(true);
+}
+
+//! Выбор ввода информации через выбор варианта.
+void MainWindowImpl::on_choiceVar_clicked(bool checked)
+{
+	// TODOcombo
+	comboBox->setVisible(checked);
+	label->setVisible(checked);
+	
+	quadKoef->setEnabled(checked - 1);
+	quadSimpleCon->setEnabled(checked - 1);
+	
+	on_comboBox_activated(0);
+}
+
+//! Выбор ввода информации вручную.
+void MainWindowImpl::on_inArm_clicked(bool checked)
+{
+	// TODO
+	comboBox->setVisible(checked - 1);
+	label->setVisible(checked - 1);
+	
+	quadKoef->setEnabled(checked);
+	quadSimpleCon->setEnabled(checked);
+	
+	a->setText(" ");
+	b->setText(" ");
+	c->setText(" ");
+	d->setText(" ");
+	e->setText(" ");
+	f->setText(" ");
+	g->setText(" ");
+
+	accuracy->setText(" ");
+	stepx1->setText(" ");
+	stepx2->setText(" ");
+	stepChange->setText(" ");
+	x1->setText(" ");
+	x2->setText(" ");
 }

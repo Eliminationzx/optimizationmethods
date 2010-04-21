@@ -26,11 +26,9 @@ mainPassImpl::mainPassImpl( QWidget * parent, Qt::WFlags f)
 void mainPassImpl::on_Ok_clicked()
 {
 	// TODO
-	QVector<int> flag(2);
-	flag[0] = choiceMethods->currentIndex();
+	int flag = choiceMethods->currentIndex();
 	if (Password->text() == "qwerty")
 	{
-		flag[1] = 1;
 		emit setFlag(flag);
 		this->close();
 	}

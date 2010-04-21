@@ -15,7 +15,7 @@ public:
 	
 signals:
 	//! Сигнал класса, высылаемый при нажатии на кнопку "Ок".
-	void setFlag(QVector<int> flag);
+	void setFlag(int flag);
 
 private slots:
 	//! Слот класса, получающий сигнал при нажатии на кнопку "Ок".
