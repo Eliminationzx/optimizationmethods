@@ -157,25 +157,42 @@ void MainWindowImpl::on_next_button_clicked()
 void MainWindowImpl::on_next_button_2_clicked()
 {
 	// TODO
-	QVector<double> data;
+	QVector<double> data(7);
+	data[0] = accuracy->text().toDouble();
+	data[1] = stepx1->text().toDouble();
+	data[2] = stepx2->text().toDouble();
+	data[3] = stepChange->text().toDouble();
+	data[4] = x1->text().toDouble();
+	data[5] = x2->text().toDouble();
+	data[6] = ReadError(methFunc[0]);
+	
 	funkcio * funck;
 	if(methFunc[1] == 0)
 	{
-		data = ReadVariants(methFunc[1], comboBox->currentIndex());
-		funck = new KvadratigantoFunkcio(data);
+		QVector<double> koef(7);
+		koef[0] = a->text().toDouble();
+		koef[1] = b->text().toDouble();
+		koef[2] = c->text().toDouble();
+		koef[3] = d->text().toDouble();
+		koef[4] = e->text().toDouble();
+		koef[5] = f->text().toDouble();
+		koef[6] = g->text().toDouble();
+		
+		funck = new KvadratigantoFunkcio(koef);
 	}
 	else if(methFunc[1] == 1)
 	{
-		data = ReadVariants(methFunc[1], comboBox->currentIndex());
-		funck = new RavinaFunkcio(data);
+		QVector<double> koef(2);
+		koef[0] = a->text().toDouble();
+		koef[1] = b->text().toDouble();
+		
+		funck = new RavinaFunkcio(koef);
 	}
-	QVector<double> simpleCon = data.mid(data.size()-6);
-	simpleCon.append(ReadError(methFunc[0]));
 	
 	switch(methFunc[0])
 	{
 		case A::CWdescent_fix:
-			AW = new CWdescentWinImpl(funck, &simpleCon, this, Qt::Window);
+			AW = new CWdescentWinImpl(funck, &data, this, Qt::Window);
 			break;
 		case A::CWdescent_md:
 //			AW = new 
@@ -289,18 +306,18 @@ void MainWindowImpl::on_inArm_clicked(bool checked)
 	quadKoef->setEnabled(checked);
 	quadSimpleCon->setEnabled(checked);
 	
-	a->setText(" ");
-	b->setText(" ");
-	c->setText(" ");
-	d->setText(" ");
-	e->setText(" ");
-	f->setText(" ");
-	g->setText(" ");
+	a->setText("");
+	b->setText("");
+	c->setText("");
+	d->setText("");
+	e->setText("");
+	f->setText("");
+	g->setText("");
 
-	accuracy->setText(" ");
-	stepx1->setText(" ");
-	stepx2->setText(" ");
-	stepChange->setText(" ");
-	x1->setText(" ");
-	x2->setText(" ");
+	accuracy->setText("");
+	stepx1->setText("");
+	stepx2->setText("");
+	stepChange->setText("");
+	x1->setText("");
+	x2->setText("");
 }
