@@ -38,11 +38,20 @@ public slots:
    */
   void setScale(qreal factor);
 protected:
+  //! Обработчик перемещения мыши.
+  /*! Высылаются сигналы о положении мыши. Затем вызывается реализация поумолчанию.
+   */
+  void mouseMoveEvent(QGraphicsSceneMouseEvent * mouseEvent);
   //! Отрисовывает фон сцены с использованием painter перед отрисовкой любого элемента или переднего плана.
   void drawBackground(QPainter * painter, //!< Контекст рисования фона сцены.
                       const QRectF & rect //!< Область сцены.
                      );
+signals:
+  void MusaPosX(const qreal);
+  void MusaPosY(const qreal);
+  void MusaPos(const QString );
 };
+
 #endif
 
 /*! @class ScenoPorMapo
