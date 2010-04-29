@@ -34,6 +34,10 @@ void DemonstrataQPointF::setY(qreal y){
 qreal DemonstrataQPointF::x() const{ return p.x(); }
 qreal DemonstrataQPointF::y() const{ return p.y(); }
 
+QPoint DemonstrataQPointF::toPoint() const{ return p.toPoint(); }
+
+QPointF DemonstrataQPointF::toPointF() const{ return p; }
+
 QPointF & DemonstrataQPointF::operator*=(qreal factor){
 }
 
