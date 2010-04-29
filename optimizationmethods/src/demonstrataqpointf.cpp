@@ -15,11 +15,24 @@ DemonstrataQPointF::DemonstrataQPointF( DemonstrataQPointF & DP)
 
 void DemonstrataQPointF::setX(qreal x){
 	p.setX(x);
+  emit proviziValoro(p);
+  emit proviziValoro(trUtf8("%1; %2").arg(QString::number(p.x())).arg(QString::number(p.y())));
+  emit proviziXValoro(p.toPoint().x());
+  emit proviziXValoro(p.x());
+  emit proviziXValoro(QString::number(p.x()));
 }
 
 void DemonstrataQPointF::setY(qreal y){
 	p.setY(y);
+  emit proviziValoro(p);
+  emit proviziValoro(trUtf8("%1; %2").arg(QString::number(p.x())).arg(QString::number(p.y())));
+  emit proviziYValoro(p.toPoint().x());
+  emit proviziYValoro(p.x());
+  emit proviziYValoro(QString::number(p.x()));
 }
+
+qreal DemonstrataQPointF::x() const{ p.x(); }
+qreal DemonstrataQPointF::y() const{ p.y(); }
 
 QPointF & DemonstrataQPointF::operator*=(qreal factor){
 }
