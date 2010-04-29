@@ -46,6 +46,12 @@ QPoint DemonstrataQPointF::toPoint() const{ return p.toPoint(); }
 QPointF DemonstrataQPointF::toPointF() const{ return p; }
 
 QPointF & DemonstrataQPointF::operator*=(qreal factor){
+	p.operator*=(factor);
+  emit proviziValoro(p);
+  emit proviziValoro(trUtf8("%1; %2").arg(QString::number(p.x())).arg(QString::number(p.y())));
+  emit proviziYValoro(p.toPoint().x());
+  emit proviziYValoro(p.x());
+  emit proviziYValoro(QString::number(p.x()));
 }
 
 QPointF & DemonstrataQPointF::operator/=(qreal divisor){
