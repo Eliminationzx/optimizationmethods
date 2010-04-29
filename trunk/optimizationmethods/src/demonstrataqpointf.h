@@ -19,9 +19,9 @@ public:
   */ 
 	qreal manhattanLength() const;
   //! Возвращает значение X по ссылке.
-  qreal & rx();
+  qreal & rx() const;
   //! Возвращает значение Y по ссылке.
-  qreal & ry();
+  qreal & ry() const;
   //! Возвращает копию самой точки, округленой до целых.
 	QPoint toPoint () const;
   //! Возвращает копию самой точки.
@@ -37,9 +37,9 @@ public:
   QPointF & operator-=(const DemonstrataQPointF & point);
   QPointF & operator/=(qreal divisor);
   //! Возвращает значение X.
-  qreal x();
+  qreal x() const;
   //! Возвращает значение Y.
-  qreal y();
+  qreal y() const;
   DemonstrataQPointF( QObject * parent = 0);
   DemonstrataQPointF( const QPoint & point, QObject * parent = 0);
   DemonstrataQPointF( qreal x, qreal y, QObject * parent = 0);
@@ -49,7 +49,9 @@ public:
   DemonstrataQPointF( DemonstrataQPointF & DP);
 signals:
   //! Предоставляет значение в виде точки.
-  void proviziValoro(QPointF);
+  void proviziValoro(const QPointF&);
+  //! Предоставляет значение в виде строки содержащей точку.
+  void proviziValoro(const QString &);
   //! Предоставляет значение в виде целого числа.
   void proviziXValoro(int);
   //! Предоставляет значение в виде десятичной дроби.
