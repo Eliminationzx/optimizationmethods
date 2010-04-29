@@ -7,10 +7,12 @@
 //! Обёртка QPointF, дла автоматического отображения его значений в окне.
 class DemonstrataQPointF : public QObject{
 Q_OBJECT
+Q_PROPERTY(qreal x READ x WRITE setX)
+Q_PROPERTY(qreal y READ y WRITE setY)
 private:
 	QPointF p;
 public: 
-  /* @return истину если обе координаты, х и у, равны 0.0, в противном случае возвращает ложь.
+  /* @return истина если обе координаты, х и у, равны 0.0, в противном случае ложь.
   */
 	bool isNull() const;
   /*! @return сумма абсолютных величин x() и y(),
