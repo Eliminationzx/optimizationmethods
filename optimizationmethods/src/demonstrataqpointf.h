@@ -22,6 +22,7 @@ public:
   DemonstrataQPointF( QObject * parent = 0);
   DemonstrataQPointF( const QPoint & point, QObject * parent = 0);
   DemonstrataQPointF( qreal x, qreal y, QObject * parent = 0);
+  DemonstrataQPointF( DemonstrataQPointF & DP);
 signals:
   //! Предоставляет значение в виде точки.
   void proviziValoro(QPointF);
