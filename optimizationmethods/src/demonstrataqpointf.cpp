@@ -22,9 +22,6 @@ void DemonstrataQPointF::setY(qreal y){
 	p.setY(y);
 }
 
-QPointF & DemonstrataQPointF::operator=(const DemonstrataQPointF & p){
-}
-
 QPointF & DemonstrataQPointF::operator*=(qreal factor){
 }
 
