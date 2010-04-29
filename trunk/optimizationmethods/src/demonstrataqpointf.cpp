@@ -31,8 +31,8 @@ void DemonstrataQPointF::setY(qreal y){
   emit proviziYValoro(QString::number(p.x()));
 }
 
-qreal DemonstrataQPointF::x() const{ p.x(); }
-qreal DemonstrataQPointF::y() const{ p.y(); }
+qreal DemonstrataQPointF::x() const{ return p.x(); }
+qreal DemonstrataQPointF::y() const{ return p.y(); }
 
 QPointF & DemonstrataQPointF::operator*=(qreal factor){
 }
