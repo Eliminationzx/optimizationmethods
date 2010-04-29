@@ -4,9 +4,22 @@
 #include <QPointF>
 #include <QObject>
 //
-//! Расширение QPointF, дла автоматического отображения его значений в окне.
-class DemonstrataQPointF : public QObject, public QPointF{
+//! Обёртка QPointF, дла автоматического отображения его значений в окне.
+class DemonstrataQPointF : public QObject{
 Q_OBJECT
+private:
+	QPointF p;
+public: 
+  QPointF & operator=(const DemonstrataQPointF&);
+  QPointF & operator*=(qreal factor);
+  QPointF & operator+=(const DemonstrataQPointF & point);
+  QPointF & operator-=(const DemonstrataQPointF & point);
+  QPointF & operator/=(qreal divisor);
+  //! Устанавливает новое значение X.
+  void setX(qreal x);
+  //! Устанавливает новое значение Y.
+  void setY(qreal y);
+  DemonstrataQPointF(QObject * parent = 0);
 signals:
   //! Предоставляет значение в виде точки.
   void proviziValoro(QPointF);
@@ -21,24 +34,7 @@ signals:
   //! Предоставляет значение в виде десятичной дроби.
   void proviziYValoro(double valoro);
   //! Предоставляет значение в виде виде строки.
-  void proviziYValoro(const QString &);
-public: 
-  QPointF & AlQPointF();
-  QPointF & operator=(const DemonstrataQPointF&);
-  QPointF & operator*=(qreal factor);
-  QPointF & operator+=(const DemonstrataQPointF & point);
-  QPointF & operator-=(const DemonstrataQPointF & point);
-  QPointF & operator/=(qreal divisor);
-  //! Устанавливает новое значение X.
-  void setX(qreal x);
-  //! Устанавливает новое значение Y.
-  void setY(qreal y);
-  DemonstrataQPointF(qreal x, qreal y, QObject * parent = 0);
-  DemonstrataQPointF(const DemonstrataQPointF & point, QObject * parent = 0);
-  DemonstrataQPointF(const DemonstrataQPointF & point,const QObject & , QObject * parent = 0)
-  {DemonstrataQPointF(point, parent);};
-  DemonstrataQPointF(const QPointF & point, QObject * parent = 0);
-  
+  void proviziYValoro(const QString &);  
 };
 #endif
 
