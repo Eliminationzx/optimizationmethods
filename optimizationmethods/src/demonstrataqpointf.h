@@ -19,7 +19,9 @@ public:
   void setX(qreal x);
   //! Устанавливает новое значение Y.
   void setY(qreal y);
-  DemonstrataQPointF(QObject * parent = 0);
+  DemonstrataQPointF( QObject * parent = 0);
+  DemonstrataQPointF( const QPoint & point, QObject * parent = 0);
+  DemonstrataQPointF( qreal x, qreal y, QObject * parent = 0);
 signals:
   //! Предоставляет значение в виде точки.
   void proviziValoro(QPointF);
