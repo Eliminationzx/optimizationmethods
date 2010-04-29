@@ -8,9 +8,8 @@ DemonstrataQPointF::DemonstrataQPointF( const QPoint & point, QObject * parent )
 	:QObject(parent), p(point){}
 DemonstrataQPointF::DemonstrataQPointF( qreal x, qreal y, QObject * parent )
 	:QObject(parent), p(x, y){}
-DemonstrataQPointF::DemonstrataQPointF( DemonstrataQPointF & DP){
-	
-}
+DemonstrataQPointF::DemonstrataQPointF( DemonstrataQPointF & DP)
+	:p(DP.toPointF()){}
 //
 
 
