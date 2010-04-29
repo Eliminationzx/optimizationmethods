@@ -19,9 +19,9 @@ public:
   */ 
 	qreal manhattanLength() const;
   //! Возвращает значение X по ссылке.
-  qreal & rx() const;
+  qreal & rx();
   //! Возвращает значение Y по ссылке.
-  qreal & ry() const;
+  qreal & ry();
   //! Возвращает копию самой точки, округленой до целых.
 	QPoint toPoint () const;
   //! Возвращает копию самой точки.

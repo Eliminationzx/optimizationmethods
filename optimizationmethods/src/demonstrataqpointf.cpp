@@ -12,6 +12,13 @@ DemonstrataQPointF::DemonstrataQPointF( DemonstrataQPointF & DP)
 	:p(DP.toPointF()){}
 //
 
+bool DemonstrataQPointF::isNull() const{ return p.isNull(); }
+
+qreal DemonstrataQPointF::manhattanLength() const{ return p.manhattanLength(); }
+
+qreal & DemonstrataQPointF::rx(){ return p.rx(); }
+
+qreal & DemonstrataQPointF::ry(){ return p.ry(); }
 
 void DemonstrataQPointF::setX(qreal x){
 	p.setX(x);
