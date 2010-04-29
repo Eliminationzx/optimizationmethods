@@ -31,7 +31,9 @@ public:
   //! Устанавливает новое значение Y.
   void setY(qreal y);
   QPointF & operator*=(qreal factor);
+  QPointF & operator+=(const QPointF & point);
   QPointF & operator+=(const DemonstrataQPointF & point);
+  QPointF & operator-=(const QPointF & point);
   QPointF & operator-=(const DemonstrataQPointF & point);
   QPointF & operator/=(qreal divisor);
   //! Возвращает значение X.
