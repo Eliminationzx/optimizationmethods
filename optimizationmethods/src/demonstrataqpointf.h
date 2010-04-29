@@ -39,6 +39,9 @@ public:
   DemonstrataQPointF( QObject * parent = 0);
   DemonstrataQPointF( const QPoint & point, QObject * parent = 0);
   DemonstrataQPointF( qreal x, qreal y, QObject * parent = 0);
+  /*! Конструктор копирования.
+   * Копирует только точку. Поля унаследованные от QObject оставляет по умолчанию.
+	 */
   DemonstrataQPointF( DemonstrataQPointF & DP);
 signals:
   //! Предоставляет значение в виде точки.
@@ -56,6 +59,93 @@ signals:
   //! Предоставляет значение в виде виде строки.
   void proviziYValoro(const QString &);  
 };
+
+  //! Возвращает истину если p1 не равно p2; в противном случае возвращает ложь.
+	bool operator!= ( const DemonstrataQPointF & p1, const QPointF & p2 );
+  /*! Это перегруженная функция.
+	 * Возвращает истину если p1 не равно p2; в противном случае возвращает ложь.
+	 */
+	bool operator!= ( const QPointF & p1, const DemonstrataQPointF & p2 );
+  /*! Это перегруженная функция.
+	 *  Возвращает истину если p1 не равно p2; в противном случае возвращает ложь.
+	 */
+	bool operator!= ( const DemonstrataQPointF & p1, const DemonstrataQPointF & p2 );
+
+
+  //! Возвращает копию точки point, умноженной на factor.
+  const QPointF operator* ( const DemonstrataQPointF & point, qreal factor );
+  /*! Это перегруженная функция.
+	 * Возвращает копию точки point, умноженной на factor.
+	 */
+  const QPointF operator* ( qreal factor, const DemonstrataQPointF & point );
+
+
+  /*! Возвращает объект QPointF, который является суммой точек, p1 и p2; каждый
+   * компонент добавляется отдельно.
+	 */
+  const QPointF operator+( const DemonstrataQPointF & p1, const QPointF & p2 );
+  /*! Это перегруженная функция.
+	 * Возвращает объект QPointF, который является суммой точек, p1 и p2; каждый
+   * компонент добавляется отдельно.
+	 */
+  const QPointF operator+( const QPointF & p1, const DemonstrataQPointF & p2 );
+  /*! Это перегруженная функция.
+	 * Возвращает объект QPointF, который является суммой точек, p1 и p2; каждый
+   * компонент добавляется отдельно.
+	 */
+  const QPointF operator+ ( const DemonstrataQPointF & p1, const DemonstrataQPointF & p2 );
+
+
+  /*! Возвращает объект QPointF, который получается вычитанием p1 из p2; каждый
+   * компонент вычитается отдельно.
+	 */
+  const QPointF operator- ( const DemonstrataQPointF & p1, const QPointF & p2 );
+  /*! Это перегруженная функция.
+	 * Возвращает объект QPointF, который получается вычитанием p1 из p2; каждый
+   * компонент вычитается отдельно.
+	 */
+  const QPointF operator- ( const QPointF & p1, const DemonstrataQPointF & p2 );
+  /*! Это перегруженная функция.
+	 * Возвращает объект QPointF, который получается вычитанием p1 из p2; каждый
+   * компонент вычитается отдельно.
+	 */
+  const QPointF operator- ( const DemonstrataQPointF & p1, const DemonstrataQPointF & p2 );
+
+
+  /*! Это перегруженная функция.
+	 * Возвращает объект QPointF, который получается изменением знака обоих
+	 * компонентов точки point.
+	 */
+  const QPointF operator- ( const DemonstrataQPointF & point );
+
+
+  /*! Возвращает QPointF получаемый делением обоих компонентов точки point на
+   * заданный делитель divisor.
+   */
+  const QPointF operator/ ( const DemonstrataQPointF & point, qreal divisor );
+
+
+  //! Записывает точку point в заданный поток stream и возвращает ссылку на поток.
+  QDataStream & operator<< ( QDataStream & stream, const DemonstrataQPointF & point );
+ 
+ 
+  //! Возвращает истину если p1 равно p2 ; в противном случае возвращает ложь.
+  bool operator== ( const DemonstrataQPointF & p1, const QPointF & p2 );
+  /*! Это перегруженная функция.
+	 * Возвращает истину если p1 равно p2 ; в противном случае возвращает ложь.
+	 */
+  bool operator== ( const QPointF & p1, const DemonstrataQPointF & p2 );
+  /*! Это перегруженная функция.
+	 * Возвращает истину если p1 равно p2 ; в противном случае возвращает ложь.
+	 */
+  bool operator== ( const DemonstrataQPointF & p1, const DemonstrataQPointF & p2 );
+
+
+  /*! Читает точку из потока stream в заданную точку point и возвращает ссылку
+   * на поток.
+   */
+  QDataStream & operator>> ( QDataStream & stream, DemonstrataQPointF & point );
+
 #endif
 
 /*! @class DemonstrataQPointF
