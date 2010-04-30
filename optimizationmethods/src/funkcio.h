@@ -11,7 +11,7 @@ class funkcio : public QObject
 {
 Q_OBJECT
 
-private:
+protected:
   //! Возвращает значение частной производной первого порядка по x1.
   virtual double df_dx1(const QVector<double> X) = 0;
   //! Возвращает значение частной производной первого порядка по x2.
@@ -31,7 +31,7 @@ public:
   //! Возвращает результат вычисления функции в точке.
   /*! @param X Точка.
    */
-  virtual double rezulto(const QPointF X){ return rezulto(X.x(), X.y()); };
+  virtual double rezulto(const QPointF & X){ return rezulto(X.x(), X.y()); };
   //! Возвращает точку минимума функции.
   virtual QVector<double> minPoint(
                                    const double e //!< Точность.
@@ -88,8 +88,12 @@ public:
    */
   double rezulto(const QVector<double> X)
   { return A*pow((X[0] - B), 2) + C*pow((X[1] - D), 2) + E*(X[0] - F)*(X[1] - G); };
-  	
-  	//! Конструктор класса KvadratigantoFunkcio по умолчанию.
+  //! Возвращает результат вычисления функции в точке.
+  /*! @param X Точка.
+   */
+  double rezulto(const QPointF & X){ return rezulto(X.x(), X.y()); };
+
+ 	//! Конструктор класса KvadratigantoFunkcio по умолчанию.
   /*! @param parent Родитель.
    */
   KvadratigantoFunkcio(QObject * parent = 0) : funkcio(parent){
@@ -142,6 +146,10 @@ public:
    */
   double rezulto(const QVector<double> X)
   { return A * pow((X[1] - pow(X[0], 2)), 2) + B * pow((1-X[0]), 2); };
+  //! Возвращает результат вычисления функции в точке.
+  /*! @param X Точка.
+   */
+  double rezulto(const QPointF & X){ return rezulto(X.x(), X.y()); };
   	
   	//! Конструктор класса RavinaFunkcio по умолчанию.
   /*! @param parent Родитель.
