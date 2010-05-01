@@ -69,3 +69,13 @@ QPointF & DemonstrataQPointF::operator=(const QPoint & point){
 	sp->SendiSignaloj(this);
 	return *this;
 }
+
+bool DemonstrataQPointF::connectProviziValoro_QPointF(QObject * ricevanto, const char * slot)
+{
+	return QObject::connect(sp, SIGNAL(proviziValoro(const QPointF&)), ricevanto, slot);
+}
+
+bool DemonstrataQPointF::connectProviziValoro_QString(QObject * ricevanto, const char * slot)
+{
+	return QObject::connect(sp, SIGNAL(proviziValoro(const QString&)), ricevanto, slot);
+}
