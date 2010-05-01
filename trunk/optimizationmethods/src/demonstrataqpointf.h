@@ -8,6 +8,7 @@
  *
  * Функция SendiSignaloj принимает точку, чьё значение надо передать, и
  * заставляет объект SignalojPorPointF выслать сигналы.
+ * @author Василий Почкаенко.
  */
 class SignalojPorPointF: public QObject{
 Q_OBJECT
@@ -46,7 +47,7 @@ signals:
 //
 /*! Расширение QPointF, для высылки сигналов с информацией об изменениях.
  *
- * Для QObject запрещён оператор =, поэтому обьект высылающий согналы с новыми
+ * Для QObject запрещён оператор =, поэтому объект высылающий сигналы с новыми
  * значениями точки добавлен в DemonstrataQPointF в виде статического члена.
  * В результате сигналы скрыты внутри DemonstrataQPointF. Чтобы соединить слот 
  * с нужным сигналом, воспользуйтесь соответствующей функцией:
@@ -55,7 +56,19 @@ class DemonstrataQPointF : public QPointF{
 private:
 	//! Наследник QObject, высылающий сигналы при изменении точки.
 	SignalojPorPointF *sp;
-public: 
+public:
+	/*! Соединяет полученный слот с сигналом
+	 * SignalojPorPointF::proviziValoro(const QString&).
+	 *
+	 * @return true в случае успеха, иначе false.
+	 */
+	bool connectProviziValoro_QString(QObject * ricevanto, const char * slot);
+	/*! Соединяет полученный слот с сигналом
+	 * SignalojPorPointF::proviziValoro(const QPointF&).
+	 *
+	 * @return true в случае успеха, иначе false.
+	 */
+	bool connectProviziValoro_QPointF(QObject * ricevanto, const char * slot);
   //! Устанавливает новое значение X.
   void setX(qreal x);
   //! Устанавливает новое значение Y.
