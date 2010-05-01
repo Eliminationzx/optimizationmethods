@@ -70,12 +70,35 @@ QPointF & DemonstrataQPointF::operator=(const QPoint & point){
 	return *this;
 }
 
-bool DemonstrataQPointF::connectProviziValoro_QPointF(QObject * ricevanto, const char * slot)
-{
+bool DemonstrataQPointF::connectProviziValoro_QPointF(QObject * ricevanto, const char * slot){
 	return QObject::connect(sp, SIGNAL(proviziValoro(const QPointF&)), ricevanto, slot);
 }
 
-bool DemonstrataQPointF::connectProviziValoro_QString(QObject * ricevanto, const char * slot)
-{
+bool DemonstrataQPointF::connectProviziValoro_QString(QObject * ricevanto, const char * slot){
 	return QObject::connect(sp, SIGNAL(proviziValoro(const QString&)), ricevanto, slot);
 }
+
+bool DemonstrataQPointF::connectProviziXValoro_QString(QObject * ricevanto, const char * slot){
+	return QObject::connect(sp, SIGNAL(proviziXValoro(const QString&)), ricevanto, slot);
+}
+
+bool DemonstrataQPointF::connectProviziXValoro_double(QObject * ricevanto, const char * slot){
+	return QObject::connect(sp, SIGNAL(proviziXValoro(double)), ricevanto, slot);
+}
+
+bool DemonstrataQPointF::connectProviziXValoro_int(QObject * ricevanto, const char * slot){
+	return QObject::connect(sp, SIGNAL(proviziXValoro(int)), ricevanto, slot);
+}
+
+bool DemonstrataQPointF::connectProviziYValoro_QString(QObject * ricevanto, const char * slot){
+	return QObject::connect(sp, SIGNAL(proviziYValoro(const QString&)), ricevanto, slot);
+}
+
+bool DemonstrataQPointF::connectProviziYValoro_double(QObject * ricevanto, const char * slot){
+	return QObject::connect(sp, SIGNAL(proviziYValoro(double)), ricevanto, slot);
+}
+
+bool DemonstrataQPointF::connectProviziYValoro_int(QObject * ricevanto, const char * slot){
+	return QObject::connect(sp, SIGNAL(proviziYValoro(int)), ricevanto, slot);
+}
+
