@@ -58,6 +58,42 @@ private:
 	SignalojPorPointF *sp;
 public:
 	/*! Соединяет полученный слот с сигналом
+	 * SignalojPorPointF::proviziXValoro(QString).
+	 *
+	 * @return true в случае успеха, иначе false.
+	 */
+	bool connectProviziXValoro_QString(QObject * ricevanto, const char * slot);
+	/*! Соединяет полученный слот с сигналом
+	 * SignalojPorPointF::proviziXValoro(double).
+	 *
+	 * @return true в случае успеха, иначе false.
+	 */
+	bool connectProviziXValoro_double(QObject * ricevanto, const char * slot);
+	/*! Соединяет полученный слот с сигналом
+	 * SignalojPorPointF::proviziXValoro(int).
+	 *
+	 * @return true в случае успеха, иначе false.
+	 */
+	bool connectProviziXValoro_int(QObject * ricevanto, const char * slot);
+	/*! Соединяет полученный слот с сигналом
+	 * SignalojPorPointF::proviziYValoro(QString).
+	 *
+	 * @return true в случае успеха, иначе false.
+	 */
+	bool connectProviziYValoro_QString(QObject * ricevanto, const char * slot);
+	/*! Соединяет полученный слот с сигналом
+	 * SignalojPorPointF::proviziYValoro(double).
+	 *
+	 * @return true в случае успеха, иначе false.
+	 */
+	bool connectProviziYValoro_double(QObject * ricevanto, const char * slot);
+	/*! Соединяет полученный слот с сигналом
+	 * SignalojPorPointF::proviziXValoro(int).
+	 *
+	 * @return true в случае успеха, иначе false.
+	 */
+	bool connectProviziYValoro_int(QObject * ricevanto, const char * slot);
+	/*! Соединяет полученный слот с сигналом
 	 * SignalojPorPointF::proviziValoro(const QString&).
 	 *
 	 * @return true в случае успеха, иначе false.
