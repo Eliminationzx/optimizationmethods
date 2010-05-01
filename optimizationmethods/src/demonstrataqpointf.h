@@ -11,7 +11,6 @@
  */
 class SignalojPorPointF: public QObject{
 Q_OBJECT
-private:
 public:
 	//! Высылает все сигналы.
 	void SendiSignaloj( const QPointF * p){
@@ -54,8 +53,8 @@ signals:
  */
 class DemonstrataQPointF : public QPointF{
 private:
-	//! Ноаследник QObject, высылающий сигналы при изменении точки.
-	static SignalojPorPointF sp;
+	//! Наследник QObject, высылающий сигналы при изменении точки.
+	SignalojPorPointF *sp;
 public: 
   //! Устанавливает новое значение X.
   void setX(qreal x);
@@ -65,11 +64,13 @@ public:
   QPointF & operator+=(const QPointF & point);
   QPointF & operator-=(const QPointF & point);
   QPointF & operator/=(qreal divisor);
-  QPointF & operator=(QPointF & point);
+  QPointF & operator=(const QPointF & point);
+  QPointF & operator=(const QPoint & point);
   DemonstrataQPointF();
   DemonstrataQPointF( const QPoint & point);
   DemonstrataQPointF( const QPointF & point);
   DemonstrataQPointF( qreal x, qreal y );
+  ~DemonstrataQPointF();
 };
 #endif
 
