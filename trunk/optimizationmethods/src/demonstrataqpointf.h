@@ -4,7 +4,11 @@
 #include <QPointF>
 #include <QObject>
 //
-//! Используется внутри DemonstrataQPointF. Высылет сигналы при изменении точки.
+/*! Используется внутри DemonstrataQPointF. Высылет сигналы при изменении точки.
+ *
+ * Функция SendiSignaloj принимает точку, чьё значение надо передать, и
+ * заставляет объект SignalojPorPointF выслать сигналы.
+ */
 class SignalojPorPointF: public QObject{
 Q_OBJECT
 private:
@@ -16,6 +20,9 @@ public:
 	  emit proviziXValoro(p->x());
 	  emit proviziXValoro(p->x());
 	  emit proviziXValoro(QString::number(p->x()));
+	  emit proviziYValoro(p->y());
+	  emit proviziYValoro(p->y());
+	  emit proviziYValoro(QString::number(p->y()));
 	};
 	SignalojPorPointF( QObject * p = 0 )
 		:QObject(p){};
