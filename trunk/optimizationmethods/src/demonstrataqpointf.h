@@ -8,6 +8,7 @@
  *
  * Функция SendiSignaloj принимает точку, чьё значение надо передать, и
  * заставляет объект SignalojPorPointF выслать сигналы.
+ * 
  * @author Василий Почкаенко.
  */
 class SignalojPorPointF: public QObject{
@@ -47,10 +48,23 @@ signals:
 //
 /*! Расширение QPointF, для высылки сигналов с информацией об изменениях.
  *
+ * В этом классе переопределены все методы, изменяющие точку. В них добавлена
+ * высылка сигналов. Для самого изменения используется реализация из QPointF.
+ * 
  * Для QObject запрещён оператор =, поэтому объект высылающий сигналы с новыми
- * значениями точки добавлен в DemonstrataQPointF в виде статического члена.
- * В результате сигналы скрыты внутри DemonstrataQPointF. Чтобы соединить слот 
- * с нужным сигналом, воспользуйтесь соответствующей функцией:
+ * значениями точки добавлен в DemonstrataQPointF в виде члена. В результате
+ * сигналы скрыты внутри DemonstrataQPointF. Чтобы соединить слот с нужным
+ * сигналом, воспользуйтесь соответствующей функцией:
+ * - connectProviziXValoro_QString для SignalojPorPointF::proviziXValoro(QString&)
+ * - connectProviziXValoro_double для SignalojPorPointF::proviziXValoro(double)
+ * - connectProviziXValoro_int для SignalojPorPointF::proviziXValoro(int)
+ * - connectProviziYValoro_QString для SignalojPorPointF::proviziXValoro(QString&)
+ * - connectProviziYValoro_double для SignalojPorPointF::proviziXValoro(double)
+ * - connectProviziYValoro_int для SignalojPorPointF::proviziXValoro(int)
+ * - connectProviziValoro_QString для SignalojPorPointF::proviziValoro(const QString&)
+ * - connectProviziValoro_QPointF для SignalojPorPointF::proviziValoro(const QPointF&)
+ * 
+ * @author Василий Почкаенко.
  */
 class DemonstrataQPointF : public QPointF{
 private:
@@ -58,7 +72,7 @@ private:
 	SignalojPorPointF *sp;
 public:
 	/*! Соединяет полученный слот с сигналом
-	 * SignalojPorPointF::proviziXValoro(QString).
+	 * SignalojPorPointF::proviziXValoro(QString&).
 	 *
 	 * @return true в случае успеха, иначе false.
 	 */
@@ -123,8 +137,3 @@ public:
 };
 #endif
 
-/*! @class DemonstrataQPointF
- * К QPointF добавлены сигалы передающие его значение. Эти сигналы вызываются во всех методах изменяющих значение точки.
- * 
- * @author Василий Почкаенко.
- */
