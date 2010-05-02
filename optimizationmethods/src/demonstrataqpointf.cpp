@@ -102,3 +102,11 @@ bool DemonstrataQPointF::connectProviziYValoro_int(QObject * ricevanto, const ch
 	return QObject::connect(sp, SIGNAL(proviziYValoro(int)), ricevanto, slot);
 }
 
+bool DemonstrataQPointF::connectProviziValoroFukcioEnPointo_QString(QObject * ricevanto, const char * slot){
+	return QObject::connect(sp, SIGNAL(proviziValoroFukcioEnPointo(const QString &)), ricevanto, slot);
+}
+
+bool DemonstrataQPointF::connectProviziValoroFukcioEnPointo_double(QObject * ricevanto, const char * slot){
+	return QObject::connect(sp, SIGNAL(proviziValoroFukcioEnPointo(double)), ricevanto, slot);
+}
+
