@@ -3,6 +3,7 @@
 //
 #include <QPointF>
 #include <QObject>
+#include "funkcio.h"
 //
 /*! Используется внутри DemonstrataQPointF. Высылет сигналы при изменении точки.
  *
@@ -15,7 +16,7 @@ class SignalojPorPointF: public QObject{
 Q_OBJECT
 public:
 	//! Высылает все сигналы.
-	void SendiSignaloj( const QPointF * p){
+	void SendiSignaloj( const QPointF * p, funkcio *f = 0){
 		emit proviziValoro(*p);
 	  emit proviziValoro(trUtf8("%1; %2").arg(QString::number(p->x())).arg(QString::number(p->y())));
 	  emit proviziXValoro(p->x());
@@ -24,10 +25,18 @@ public:
 	  emit proviziYValoro(p->y());
 	  emit proviziYValoro(p->y());
 	  emit proviziYValoro(QString::number(p->y()));
+	  if(f != 0){
+		  emit proviziValoroFukcioEnPointo(f->rezulto(*p));
+		  emit proviziValoroFukcioEnPointo(QString::number(f->rezulto(*p)));
+	  }
 	};
 	SignalojPorPointF( QObject * p = 0 )
 		:QObject(p){};
 signals:
+  //! Предоставляет значение функции в точке.
+  void proviziValoroFukcioEnPointo(double);
+  //! Предоставляет значение функции в точке в виде строки.
+  void proviziValoroFukcioEnPointo(const QString &);
   //! Предоставляет значение в виде точки.
   void proviziValoro(const QPointF&);
   //! Предоставляет значение в виде строки содержащей точку.
@@ -63,6 +72,12 @@ signals:
  * - connectProviziYValoro_int для SignalojPorPointF::proviziXValoro(int)
  * - connectProviziValoro_QString для SignalojPorPointF::proviziValoro(const QString&)
  * - connectProviziValoro_QPointF для SignalojPorPointF::proviziValoro(const QPointF&)
+ * - connectProviziValoroFukcioEnPointo_double для SignalojPorPointF::ValoroFukcioEnPointo(double)
+ * - connectProviziValoroFukcioEnPointo_QString для SignalojPorPointF::proviziValoroFukcioEnPointo(const QString &)
+ * 
+ * Сигналы SignalojPorPointF::proviziValoroFukcioEnPointo(const QString &) и
+ * SignalojPorPointF::ValoroFukcioEnPointo(double) высылаются, только если 
+ * установлена целевая функция.
  * 
  * @author Василий Почкаенко.
  */
@@ -70,7 +85,23 @@ class DemonstrataQPointF : public QPointF{
 private:
 	//! Наследник QObject, высылающий сигналы при изменении точки.
 	SignalojPorPointF *sp;
+	//! Указатель на целевую функцию.
+	funkcio *f;
 public:
+	//! Устанавливает целевую функцию.
+	void difiniFunkcio(funkcio *F){ f = F; };
+	/*! Соединяет полученный слот с сигналом
+	 * SignalojPorPointF::ValoroFukcioEnPointo(double).
+	 *
+	 * @return true в случае успеха, иначе false.
+	 */
+	bool connectProviziValoroFukcioEnPointo_double(QObject * ricevanto, const char * slot);
+	/*! Соединяет полученный слот с сигналом
+	 * SignalojPorPointF::proviziValoroFukcioEnPointo(const QString &).
+	 *
+	 * @return true в случае успеха, иначе false.
+	 */
+	bool connectProviziValoroFukcioEnPointo_QString(QObject * ricevanto, const char * slot);
 	/*! Соединяет полученный слот с сигналом
 	 * SignalojPorPointF::proviziXValoro(QString&).
 	 *
