@@ -5,300 +5,11 @@
 #include "ui_CWdescent_fixwindow.h"
 #include "demonstrataqpointf.h"
 #include <QSignalTransition>
+#include <QState>
 #include <QRadioButton>
 //
-/*! В этом пространстве имён содержаться классы относящиеся к конечному автомату
- * для покоординатного спуска с фиксированным шагом.
- */ 
-namespace SinkoLauxKoordinatoj{
-	/*! Базовый класс переходов внутри конечного автомата для покоординатного спуска.
-	 *
-	 * Для принятия решения об исполнении всем переходам надо иметь информацию о
-	 * базовой точке итерации, текущей точке и новой. 
-	 * 
-	 * Переходы различаются, только реализацией метода bool eventTest(QEvent *e).
-	 * При разборе кода можно пропустить обявления классв, см. только реализаци
-	 * eventTest.
-	 */
-	class BasaTransiro: public QSignalTransition{
-		protected:
-		  //! Базовая точка итерации.
-		  DemonstrataQPointF *BP;
-		  //! Текущая базовая точка.
-		  DemonstrataQPointF *MP;
-		  //! Новая точка.
-		  DemonstrataQPointF *NP;
-		public:
-			BasaTransiro( DemonstrataQPointF *bp,
-			              DemonstrataQPointF *mp,
-			              DemonstrataQPointF *np,
-			              QState * sourceState = 0
-			            ) : QSignalTransition(sourceState), BP(bp), MP(mp), NP(np){};
-			BasaTransiro( DemonstrataQPointF *bp,
-			              DemonstrataQPointF *mp,
-			              DemonstrataQPointF *np,
-			              QObject * sender,
-			              const char * signal,
-			              QState * sourceState = 0
-			            ) : QSignalTransition(sender, signal, sourceState),
-			                BP(bp), MP(mp), NP(np){};
-	};
-	//! Переход от s1 к s2.
-	class s1s2Transiro: public QSignalTransition{
-		protected:
-			QRadioButton * up_x1;
-		public:
-			s1s2Transiro( QRadioButton *up_x1_rb, QState * sourceState = 0)
-				: QSignalTransition(sourceState), up_x1(up_x1_rb){};
-			s1s2Transiro( QRadioButton *up_x1_rb, QObject * sender,
-			              const char * signal,
-			              QState * sourceState = 0
-			            ) : QSignalTransition(sender, signal, sourceState), up_x1(up_x1_rb){};
-		protected:
-			//! Перход срабатывает, только если выбран шаг в + по Х1 
-    	bool eventTest(QEvent *e){
-    		return up_x1->isChecked() && QSignalTransition::eventTest(e);
-			};
-	};	
-	//! Переход от s2 к s3.
-	class s2s3Transiro: public BasaTransiro{
-		public:
-			s2s3Transiro( DemonstrataQPointF *bp,
-			              DemonstrataQPointF *mp,
-			              DemonstrataQPointF *np,
-			              QState * sourceState = 0
-			            ) : BasaTransiro(bp, mp, np, sourceState){};
-			s2s3Transiro( DemonstrataQPointF *bp,
-			              DemonstrataQPointF *mp,
-			              DemonstrataQPointF *np,
-			              QObject * sender,
-			              const char * signal,
-			              QState * sourceState = 0
-			            ) : BasaTransiro(bp, mp, np, sender, signal, sourceState){};
-		protected:
-    	bool eventTest(QEvent *e);
-	};	
-	//! Переход от s2 к s4.
-	class s2s4Transiro: public BasaTransiro{
-		public:
-			s2s4Transiro( DemonstrataQPointF *bp,
-			              DemonstrataQPointF *mp,
-			              DemonstrataQPointF *np,
-			              QState * sourceState = 0
-			            ) : BasaTransiro(bp, mp, np, sourceState){};
-			s2s4Transiro( DemonstrataQPointF *bp,
-			              DemonstrataQPointF *mp,
-			              DemonstrataQPointF *np,
-			              QObject * sender,
-			              const char * signal,
-			              QState * sourceState = 0
-			            ) : BasaTransiro(bp, mp, np, sender, signal, sourceState){};
-		protected:
-    	bool eventTest(QEvent *e);
-	};	
-	//! Переход от s3 к s4.
-	class s3s4Transiro: public BasaTransiro{
-		public:
-			s3s4Transiro( DemonstrataQPointF *bp,
-			              DemonstrataQPointF *mp,
-			              DemonstrataQPointF *np,
-			              QState * sourceState = 0
-			            ) : BasaTransiro(bp, mp, np, sourceState){};
-			s3s4Transiro( DemonstrataQPointF *bp,
-			              DemonstrataQPointF *mp,
-			              DemonstrataQPointF *np,
-			              QObject * sender,
-			              const char * signal,
-			              QState * sourceState = 0
-			            ) : BasaTransiro(bp, mp, np, sender, signal, sourceState){};
-		protected:
-    	bool eventTest(QEvent *e);
-	};	
-	//! Переход от s3 к s5.
-	class s3s5Transiro: public BasaTransiro{
-		public:
-			s3s5Transiro( DemonstrataQPointF *bp,
-			              DemonstrataQPointF *mp,
-			              DemonstrataQPointF *np,
-			              QState * sourceState = 0
-			            ) : BasaTransiro(bp, mp, np, sourceState){};
-			s3s5Transiro( DemonstrataQPointF *bp,
-			              DemonstrataQPointF *mp,
-			              DemonstrataQPointF *np,
-			              QObject * sender,
-			              const char * signal,
-			              QState * sourceState = 0
-			            ) : BasaTransiro(bp, mp, np, sender, signal, sourceState){};
-		protected:
-    	bool eventTest(QEvent *e);
-	};	
-	//! Переход от s4 к s5.
-	class s4s5Transiro: public BasaTransiro{
-		public:
-			s4s5Transiro( DemonstrataQPointF *bp,
-			              DemonstrataQPointF *mp,
-			              DemonstrataQPointF *np,
-			              QState * sourceState = 0
-			            ) : BasaTransiro(bp, mp, np, sourceState){};
-			s4s5Transiro( DemonstrataQPointF *bp,
-			              DemonstrataQPointF *mp,
-			              DemonstrataQPointF *np,
-			              QObject * sender,
-			              const char * signal,
-			              QState * sourceState = 0
-			            ) : BasaTransiro(bp, mp, np, sender, signal, sourceState){};
-		protected:
-    	bool eventTest(QEvent *e);
-	};	
-	//! Переход от s5 к s6.
-	class s5s6Transiro: public BasaTransiro{
-		public:
-			s5s6Transiro( DemonstrataQPointF *bp,
-			              DemonstrataQPointF *mp,
-			              DemonstrataQPointF *np,
-			              QState * sourceState = 0
-			            ) : BasaTransiro(bp, mp, np, sourceState){};
-			s5s6Transiro( DemonstrataQPointF *bp,
-			              DemonstrataQPointF *mp,
-			              DemonstrataQPointF *np,
-			              QObject * sender,
-			              const char * signal,
-			              QState * sourceState = 0
-			            ) : BasaTransiro(bp, mp, np, sender, signal, sourceState){};
-		protected:
-    	bool eventTest(QEvent *e);
-	};	
-	//! Переход от s5 к s7.
-	class s5s7Transiro: public BasaTransiro{
-		public:
-			s5s7Transiro( DemonstrataQPointF *bp,
-			              DemonstrataQPointF *mp,
-			              DemonstrataQPointF *np,
-			              QState * sourceState = 0
-			            ) : BasaTransiro(bp, mp, np, sourceState){};
-			s5s7Transiro( DemonstrataQPointF *bp,
-			              DemonstrataQPointF *mp,
-			              DemonstrataQPointF *np,
-			              QObject * sender,
-			              const char * signal,
-			              QState * sourceState = 0
-			            ) : BasaTransiro(bp, mp, np, sender, signal, sourceState){};
-		protected:
-    	bool eventTest(QEvent *e);
-	};	
-	//! Переход от s6 к s7.
-	class s6s7Transiro: public BasaTransiro{
-		public:
-			s6s7Transiro( DemonstrataQPointF *bp,
-			              DemonstrataQPointF *mp,
-			              DemonstrataQPointF *np,
-			              QState * sourceState = 0
-			            ) : BasaTransiro(bp, mp, np, sourceState){};
-			s6s7Transiro( DemonstrataQPointF *bp,
-			              DemonstrataQPointF *mp,
-			              DemonstrataQPointF *np,
-			              QObject * sender,
-			              const char * signal,
-			              QState * sourceState = 0
-			            ) : BasaTransiro(bp, mp, np, sender, signal, sourceState){};
-		protected:
-    	bool eventTest(QEvent *e);
-	};	
-	//! Переход от s6 к s8.
-	class s6s8Transiro: public BasaTransiro{
-		public:
-			s6s8Transiro( DemonstrataQPointF *bp,
-			              DemonstrataQPointF *mp,
-			              DemonstrataQPointF *np,
-			              QState * sourceState = 0
-			            ) : BasaTransiro(bp, mp, np, sourceState){};
-			s6s8Transiro( DemonstrataQPointF *bp,
-			              DemonstrataQPointF *mp,
-			              DemonstrataQPointF *np,
-			              QObject * sender,
-			              const char * signal,
-			              QState * sourceState = 0
-			            ) : BasaTransiro(bp, mp, np, sender, signal, sourceState){};
-		protected:
-    	bool eventTest(QEvent *e);
-	};	
-	//! Переход от s7 к sf.
-	class s7sfTransiro: public BasaTransiro{
-		public:
-			s7sfTransiro( DemonstrataQPointF *bp,
-			              DemonstrataQPointF *mp,
-			              DemonstrataQPointF *np,
-			              QState * sourceState = 0
-			            ) : BasaTransiro(bp, mp, np, sourceState){};
-			s7sfTransiro( DemonstrataQPointF *bp,
-			              DemonstrataQPointF *mp,
-			              DemonstrataQPointF *np,
-			              QObject * sender,
-			              const char * signal,
-			              QState * sourceState = 0
-			            ) : BasaTransiro(bp, mp, np, sender, signal, sourceState){};
-		protected:
-    	bool eventTest(QEvent *e);
-	};	
-	//! Переход от s8 к sf.
-	class s8sfTransiro: public BasaTransiro{
-		public:
-			s8sfTransiro( DemonstrataQPointF *bp,
-			              DemonstrataQPointF *mp,
-			              DemonstrataQPointF *np,
-			              QState * sourceState = 0
-			            ) : BasaTransiro(bp, mp, np, sourceState){};
-			s8sfTransiro( DemonstrataQPointF *bp,
-			              DemonstrataQPointF *mp,
-			              DemonstrataQPointF *np,
-			              QObject * sender,
-			              const char * signal,
-			              QState * sourceState = 0
-			            ) : BasaTransiro(bp, mp, np, sender, signal, sourceState){};
-		protected:
-    	bool eventTest(QEvent *e);
-	};	
-	//! Переход от s7 к s1.
-	class s7s1Transiro: public BasaTransiro{
-		public:
-			s7s1Transiro( DemonstrataQPointF *bp,
-			              DemonstrataQPointF *mp,
-			              DemonstrataQPointF *np,
-			              QState * sourceState = 0
-			            ) : BasaTransiro(bp, mp, np, sourceState){};
-			s7s1Transiro( DemonstrataQPointF *bp,
-			              DemonstrataQPointF *mp,
-			              DemonstrataQPointF *np,
-			              QObject * sender,
-			              const char * signal,
-			              QState * sourceState = 0
-			            ) : BasaTransiro(bp, mp, np, sender, signal, sourceState){};
-		protected:
-    	bool eventTest(QEvent *e);
-	};	
-	//! Переход от s8 к s1.
-	class s8s1Transiro: public BasaTransiro{
-		public:
-			s8s1Transiro( DemonstrataQPointF *bp,
-			              DemonstrataQPointF *mp,
-			              DemonstrataQPointF *np,
-			              QState * sourceState = 0
-			            ) : BasaTransiro(bp, mp, np, sourceState){};
-			s8s1Transiro( DemonstrataQPointF *bp,
-			              DemonstrataQPointF *mp,
-			              DemonstrataQPointF *np,
-			              QObject * sender,
-			              const char * signal,
-			              QState * sourceState = 0
-			            ) : BasaTransiro(bp, mp, np, sender, signal, sourceState){};
-		protected:
-    	bool eventTest(QEvent *e);
-	};	
-};
-//
 //! Окно для прохождения Покоординатного спуска с фиксированным шагом.
-class CWdescentWinImpl : public AlgoritmoWin, public Ui::CWdescentWin
-{
+class CWdescentWinImpl : public AlgoritmoWin, public Ui::CWdescentWin{
 Q_OBJECT
 protected:
   //! Точность.
@@ -330,6 +41,199 @@ public:
 private slots:
   //! Фиксирует совершение пользователем ошики.
   void registriEraro();
+};
+
+/*! В этом пространстве имён содержаться классы относящиеся к конечному автомату
+ * для покоординатного спуска с фиксированным шагом.
+ */ 
+namespace SinkoLauxKoordinatoj{
+	/*! Базовый класс переходов внутри конечного автомата для покоординатного спуска.
+	 * 
+	 * Переходы различаются, только реализацией метода bool eventTest(QEvent *e).
+	 * При разборе кода можно пропустить обявления классв, см. только реализаци
+	 * eventTest в cwdescentwinimpl.cpp.
+	 */
+	class BasaTransiro: public QSignalTransition{
+		protected:
+			CWdescentWinImpl * o;
+		public:
+			BasaTransiro( QState * sourceState = 0 )
+				: QSignalTransition(sourceState),
+					o(static_cast<CWdescentWinImpl*>(this->sourceState()->parentState()->parent())){};
+			BasaTransiro( QObject * sender, const char * signal,
+			              QState * sourceState = 0
+			            ) : QSignalTransition(sender, signal, sourceState), o(static_cast<CWdescentWinImpl*>(this->sourceState()->parentState()->parent())){};
+	};
+	//! Переход от s1 к s2.
+	class s1s2Transiro: public BasaTransiro{
+		public:
+			s1s2Transiro( QState * sourceState = 0)
+				: BasaTransiro(sourceState){};
+			s1s2Transiro( QObject * sender,
+			              const char * signal,
+			              QState * sourceState = 0
+			            )
+				: BasaTransiro(sender, signal, sourceState){};
+		protected:
+			//! Перход срабатывает, только если выбран шаг в + по Х1 
+    	bool eventTest(QEvent *e);
+	};	
+	//! Переход от s2 к s3.
+	class s2s3Transiro: public BasaTransiro{
+		public:
+			s2s3Transiro( QState * sourceState = 0
+			            ) : BasaTransiro(sourceState){};
+			s2s3Transiro( QObject * sender,
+			              const char * signal,
+			              QState * sourceState = 0
+			            ) : BasaTransiro(sender, signal, sourceState){};
+		protected:
+    	bool eventTest(QEvent *e);
+	};	
+	//! Переход от s2 к s4.
+	class s2s4Transiro: public BasaTransiro{
+		public:
+			s2s4Transiro( QState * sourceState = 0
+			            ) : BasaTransiro(sourceState){};
+			s2s4Transiro( QObject * sender,
+			              const char * signal,
+			              QState * sourceState = 0
+			            ) : BasaTransiro(sender, signal, sourceState){};
+		protected:
+    	bool eventTest(QEvent *e);
+	};	
+	//! Переход от s3 к s4.
+	class s3s4Transiro: public BasaTransiro{
+		public:
+			s3s4Transiro( QState * sourceState = 0
+			            ) : BasaTransiro(sourceState){};
+			s3s4Transiro( QObject * sender,
+			              const char * signal,
+			              QState * sourceState = 0
+			            ) : BasaTransiro(sender, signal, sourceState){};
+		protected:
+    	bool eventTest(QEvent *e);
+	};	
+	//! Переход от s3 к s5.
+	class s3s5Transiro: public BasaTransiro{
+		public:
+			s3s5Transiro( QState * sourceState = 0
+			            ) : BasaTransiro(sourceState){};
+			s3s5Transiro( QObject * sender,
+			              const char * signal,
+			              QState * sourceState = 0
+			            ) : BasaTransiro(sender, signal, sourceState){};
+		protected:
+    	bool eventTest(QEvent *e);
+	};	
+	//! Переход от s4 к s5.
+	class s4s5Transiro: public BasaTransiro{
+		public:
+			s4s5Transiro( QState * sourceState = 0
+			            ) : BasaTransiro(sourceState){};
+			s4s5Transiro( QObject * sender,
+			              const char * signal,
+			              QState * sourceState = 0
+			            ) : BasaTransiro(sender, signal, sourceState){};
+		protected:
+    	bool eventTest(QEvent *e);
+	};	
+	//! Переход от s5 к s6.
+	class s5s6Transiro: public BasaTransiro{
+		public:
+			s5s6Transiro( QState * sourceState = 0
+			            ) : BasaTransiro(sourceState){};
+			s5s6Transiro( QObject * sender,
+			              const char * signal,
+			              QState * sourceState = 0
+			            ) : BasaTransiro(sender, signal, sourceState){};
+		protected:
+    	bool eventTest(QEvent *e);
+	};	
+	//! Переход от s5 к s7.
+	class s5s7Transiro: public BasaTransiro{
+		public:
+			s5s7Transiro( QState * sourceState = 0
+			            ) : BasaTransiro(sourceState){};
+			s5s7Transiro( QObject * sender,
+			              const char * signal,
+			              QState * sourceState = 0
+			            ) : BasaTransiro(sender, signal, sourceState){};
+		protected:
+    	bool eventTest(QEvent *e);
+	};	
+	//! Переход от s6 к s7.
+	class s6s7Transiro: public BasaTransiro{
+		public:
+			s6s7Transiro( QState * sourceState = 0
+			            ) : BasaTransiro(sourceState){};
+			s6s7Transiro( QObject * sender,
+			              const char * signal,
+			              QState * sourceState = 0
+			            ) : BasaTransiro(sender, signal, sourceState){};
+		protected:
+    	bool eventTest(QEvent *e);
+	};	
+	//! Переход от s6 к s8.
+	class s6s8Transiro: public BasaTransiro{
+		public:
+			s6s8Transiro( QState * sourceState = 0
+			            ) : BasaTransiro(sourceState){};
+			s6s8Transiro( QObject * sender,
+			              const char * signal,
+			              QState * sourceState = 0
+			            ) : BasaTransiro(sender, signal, sourceState){};
+		protected:
+    	bool eventTest(QEvent *e);
+	};	
+	//! Переход от s7 к sf.
+	class s7sfTransiro: public BasaTransiro{
+		public:
+			s7sfTransiro( QState * sourceState = 0
+			            ) : BasaTransiro(sourceState){};
+			s7sfTransiro( QObject * sender,
+			              const char * signal,
+			              QState * sourceState = 0
+			            ) : BasaTransiro(sender, signal, sourceState){};
+		protected:
+    	bool eventTest(QEvent *e);
+	};	
+	//! Переход от s8 к sf.
+	class s8sfTransiro: public BasaTransiro{
+		public:
+			s8sfTransiro( QState * sourceState = 0
+			            ) : BasaTransiro(sourceState){};
+			s8sfTransiro( QObject * sender,
+			              const char * signal,
+			              QState * sourceState = 0
+			            ) : BasaTransiro(sender, signal, sourceState){};
+		protected:
+    	bool eventTest(QEvent *e);
+	};	
+	//! Переход от s7 к s1.
+	class s7s1Transiro: public BasaTransiro{
+		public:
+			s7s1Transiro( QState * sourceState = 0
+			            ) : BasaTransiro(sourceState){};
+			s7s1Transiro( QObject * sender,
+			              const char * signal,
+			              QState * sourceState = 0
+			            ) : BasaTransiro(sender, signal, sourceState){};
+		protected:
+    	bool eventTest(QEvent *e);
+	};	
+	//! Переход от s8 к s1.
+	class s8s1Transiro: public BasaTransiro{
+		public:
+			s8s1Transiro( QState * sourceState = 0
+			            ) : BasaTransiro(sourceState){};
+			s8s1Transiro( QObject * sender,
+			              const char * signal,
+			              QState * sourceState = 0
+			            ) : BasaTransiro(sender, signal, sourceState){};
+		protected:
+    	bool eventTest(QEvent *e);
+	};	
 };
 #endif
 
