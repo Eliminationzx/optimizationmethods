@@ -5,6 +5,7 @@
 #include "ui_CWdescent_fixwindow.h"
 #include "demonstrataqpointf.h"
 #include <QSignalTransition>
+#include <QRadioButton>
 //
 /*! В этом пространстве имён содержаться классы относящиеся к конечному автомату
  * для покоординатного спуска с фиксированным шагом.
@@ -43,22 +44,21 @@ namespace SinkoLauxKoordinatoj{
 			                BP(bp), MP(mp), NP(np){};
 	};
 	//! Переход от s1 к s2.
-	class s1s2Transiro: public BasaTransiro{
+	class s1s2Transiro: public QSignalTransition{
+		protected:
+			QRadioButton * up_x1;
 		public:
-			s1s2Transiro( DemonstrataQPointF *bp,
-			              DemonstrataQPointF *mp,
-			              DemonstrataQPointF *np,
-			              QState * sourceState = 0
-			            ) : BasaTransiro(bp, mp, np, sourceState){};
-			s1s2Transiro( DemonstrataQPointF *bp,
-			              DemonstrataQPointF *mp,
-			              DemonstrataQPointF *np,
-			              QObject * sender,
+			s1s2Transiro( QRadioButton *up_x1_rb, QState * sourceState = 0)
+				: QSignalTransition(sourceState), up_x1(up_x1_rb){};
+			s1s2Transiro( QRadioButton *up_x1_rb, QObject * sender,
 			              const char * signal,
 			              QState * sourceState = 0
-			            ) : BasaTransiro(bp, mp, np, sender, signal, sourceState){};
+			            ) : QSignalTransition(sender, signal, sourceState), up_x1(up_x1_rb){};
 		protected:
-    	bool eventTest(QEvent *e);
+			//! Перход срабатывает, только если выбран шаг в + по Х1 
+    	bool eventTest(QEvent *e){
+    		return up_x1->isChecked() && QSignalTransition::eventTest(e);
+			};
 	};	
 	//! Переход от s2 к s3.
 	class s2s3Transiro: public BasaTransiro{
