@@ -4,6 +4,41 @@
 #include "algoritmowin.h"
 #include "ui_CWdescent_fixwindow.h"
 #include "demonstrataqpointf.h"
+#include <QSignalTransition>
+//
+/*! В этом пространстве имён содержаться классы относящиеся к конечному автомату
+ * для покоординатного спуска с фиксированным шагом.
+ */ 
+namespace SinkoLauxKoordinatoj{
+	/*! Базовый класс переходов внутри конечного автомата для покоординатного спуска.
+	 *
+	 * Для принятия решения об исполнении всем переходам надо иметь информацию о
+	 * базовой точке итерации, текущей точке и новой.
+	 */
+	class BasaTransiro: public QSignalTransition{
+		protected:
+		  //! Базовая точка итерации.
+		  DemonstrataQPointF *BP;
+		  //! Текущая базовая точка.
+		  DemonstrataQPointF *MP;
+		  //! Новая точка.
+		  DemonstrataQPointF *NP;
+		public:
+			BasaTransiro( DemonstrataQPointF *bp,
+			              DemonstrataQPointF *mp,
+			              DemonstrataQPointF *np,
+			              QState * sourceState = 0
+			            ) : QSignalTransition(sourceState), BP(bp), MP(mp), NP(np){};
+			BasaTransiro( DemonstrataQPointF *bp,
+			              DemonstrataQPointF *mp,
+			              DemonstrataQPointF *np,
+			              QObject * sender,
+			              const char * signal,
+			              QState * sourceState = 0
+			            ) : QSignalTransition(sender, signal, sourceState),
+			                BP(bp), MP(mp), NP(np){};
+	};
+}
 //
 //! Окно для прохождения Покоординатного спуска с фиксированным шагом.
 class CWdescentWinImpl : public AlgoritmoWin, public Ui::CWdescentWin
@@ -17,11 +52,11 @@ protected:
   //! Номер итерации.
   int NumeroIteracio;
   //! Базовая точка итерации.
-  QPointF BP;
+  DemonstrataQPointF BP;
   //! Текущая базовая точка.
-  QPointF MP;
+  DemonstrataQPointF MP;
   //! Новая точка.
-  QPointF NP;
+  DemonstrataQPointF NP;
   //! Шаг по х1.
   /*! Для удобства задаю в виде точки (длина, 0).
    */
