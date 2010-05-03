@@ -9,15 +9,16 @@
 #include <QTextBrowser>
 #include <QString>
 #include <QMessageBox>
+#include <QStateMachine>
 //
 using namespace SinkoLauxKoordinatoj;
 
 CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * parent, Qt::WFlags flags) 
-	: AlgoritmoWin(f, d, parent, flags)/*, MP((*d)[4],(*d)[5]),
-    NovaPointo(MomentaPointo), PasxoX1((*d)[1], 0), PasxoX2(0, (*d)[2]),
-    NumeroIteracio(0), KvantoEraroj(0), strikteco((*d)[0])*/{
+	: AlgoritmoWin(f, d, parent, flags), strikteco((*d)[0]), KvantoEraroj(0),
+		NumeroIteracio(0), MP((*d)[4],(*d)[5]),
+    PX1((*d)[1], 0), PX2(0, (*d)[2]){
 	setupUi(this);
-/*  
+  
   // Создаю карту.
   // centralwidget->layout() - указатель на компановщик центрального виджета
   // static_cast<QGridLayout*>(centralwidget->layout()) - обьясняю компилятору, что это именно QGridLayout
@@ -29,6 +30,19 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * pa
   MapoWdg->kreiSpuro(A::CWdescent_fix, Qt::blue);
   Sp = MapoWdg->proviziSpuro();
   
+  // Создаю конечный автомат.
+  QStateMachine * SM = new QStateMachine(this); 
+  // Создаю состояния, согласно диаграмме.
+  QState * s1 = new QState();
+  QState * s2 = new QState();
+  QState * s3 = new QState();
+  QState * s4 = new QState();
+  QState * s5 = new QState();
+  QState * s6 = new QState();
+  QState * s7 = new QState();
+  QState * s8 = new QState();
+  QState * sf = new QState();
+/*  
   
   //Вывожу значения.
   precision_lb->setText(QString::number((*d)[0]));
@@ -117,6 +131,45 @@ void CWdescentWinImpl::registriEraro(){
   msg.exec();  
 }
 
+void CWdescentWinImpl::sf_entered(){
+	// TODO
+}
+
+void CWdescentWinImpl::s8_entered(){
+	// TODO
+}
+
+void CWdescentWinImpl::s7_entered(){
+	// TODO
+}
+
+void CWdescentWinImpl::s6_entered(){
+	// TODO
+}
+
+void CWdescentWinImpl::s5_entered(){
+	// TODO
+}
+
+void CWdescentWinImpl::s4_entered(){
+	// TODO
+}
+
+
+void CWdescentWinImpl::s3_entered(){
+	// TODO
+}
+
+void CWdescentWinImpl::s2_entered(){
+	// TODO
+}
+
+
+void CWdescentWinImpl::s1_entered(){
+	BP = MP;
+	NP = BP;
+}
+
 namespace SinkoLauxKoordinatoj{
 	bool s1s2Transiro::eventTest(QEvent *e){
 		// Проверяю своё условие и вызываю реализацию поумолчанию.
@@ -176,8 +229,7 @@ namespace SinkoLauxKoordinatoj{
 	
 	bool s8s1Transiro::eventTest(QEvent *e){
 		// Проверяю своё условие и вызываю реализацию поумолчанию.
-		return o->pX1().x() >= o->Strikteco()
-		       || o->pX2().x() >= o->Strikteco()
+		return (o->pX1().x() >= o->Strikteco() || o->pX2().x() >= o->Strikteco())
 		       && QSignalTransition::eventTest(e);	
 	}
 	
