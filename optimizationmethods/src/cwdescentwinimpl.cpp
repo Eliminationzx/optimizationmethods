@@ -10,6 +10,8 @@
 #include <QString>
 #include <QMessageBox>
 //
+using namespace SinkoLauxKoordinatoj;
+
 CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * parent, Qt::WFlags flags) 
 	: AlgoritmoWin(f, d, parent, flags)/*, MP((*d)[4],(*d)[5]),
     NovaPointo(MomentaPointo), PasxoX1((*d)[1], 0), PasxoX2(0, (*d)[2]),
@@ -115,3 +117,59 @@ void CWdescentWinImpl::registriEraro(){
   msg.exec();  
 }
 
+
+bool s1s2Transiro::eventTest(QEvent *e){
+
+}
+
+bool s2s3Transiro::eventTest(QEvent *e){
+
+}
+
+bool s2s4Transiro::eventTest(QEvent *e){
+
+}
+
+bool s3s4Transiro::eventTest(QEvent *e){
+
+}
+
+bool s3s5Transiro::eventTest(QEvent *e){
+
+}
+
+bool s4s5Transiro::eventTest(QEvent *e){
+
+}
+
+bool s5s6Transiro::eventTest(QEvent *e){
+
+}
+
+bool s5s7Transiro::eventTest(QEvent *e){
+
+}
+
+bool s6s7Transiro::eventTest(QEvent *e){
+
+}
+
+bool s6s8Transiro::eventTest(QEvent *e){
+
+}
+
+bool s7s1Transiro::eventTest(QEvent *e){
+
+}
+
+bool s7sfTransiro::eventTest(QEvent *e){
+
+}
+
+bool s8s1Transiro::eventTest(QEvent *e){
+
+}
+
+bool s8sfTransiro::eventTest(QEvent *e){
+
+}
