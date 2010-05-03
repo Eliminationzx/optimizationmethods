@@ -118,10 +118,6 @@ void CWdescentWinImpl::registriEraro(){
 }
 
 
-bool s1s2Transiro::eventTest(QEvent *e){
-
-}
-
 bool s2s3Transiro::eventTest(QEvent *e){
 
 }
