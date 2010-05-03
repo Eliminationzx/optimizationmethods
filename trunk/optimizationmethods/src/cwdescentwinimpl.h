@@ -9,12 +9,6 @@
 class CWdescentWinImpl : public AlgoritmoWin, public Ui::CWdescentWin
 {
 Q_OBJECT
-signals:
-  //! Через него высылается номер этапа.
-  /*! Вызывается в каждой кнопке.
-   * Удобен при отладке.
-   */
-  void proviziFlagEtapo(int);
 protected:
   //! Точность.
   qreal strikteco;
@@ -22,20 +16,20 @@ protected:
   int KvantoEraroj;
   //! Номер итерации.
   int NumeroIteracio;
-  //! Флаг этапа итерации.
-  int FlagEtapo;
+  //! Базовая точка итерации.
+  QPointF BP;
   //! Текущая базовая точка.
-  QPointF MomentaPointo;
+  QPointF MP;
   //! Новая точка.
-  QPointF NovaPointo;
+  QPointF NP;
   //! Шаг по х1.
   /*! Для удобства задаю в виде точки (длина, 0).
    */
-  QPointF PasxoX1;
+  QPointF PX1;
   //! Шаг по х1.
   /*! Для удобства задаю в виде точки (0, длина).
    */
-  QPointF PasxoX2;
+  QPointF PX2;
 public:
 	CWdescentWinImpl( funkcio *f, //!< Указатель на целевую функцию. CWdescentWinImpl не заботится о назначении Funkcio родителя.
                     QVector<double> *d, //!< Массив с данными задания.
@@ -45,16 +39,6 @@ public:
 private slots:
   //! Фиксирует совершение пользователем ошики.
   void registriEraro();
-  //! Обработчик кнопки шага.
-  void on_calculate_bt_clicked();
-  //! Обработчик кнопки принятия точки.
-  void on_accept_bt_clicked();
-  //! Обработчик кнопки не принятия точки.
-  void on_not_accept_bt_clicked();
-  //! Обработчик кнопки завершения алгоритма.
-  void on_end_bt_clicked();
-  //! Обработчик кнопки уменьшения шага.
-  void on_change_step_bt_clicked();
 };
 #endif
 
