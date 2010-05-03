@@ -132,42 +132,52 @@ void CWdescentWinImpl::registriEraro(){
 }
 
 void CWdescentWinImpl::sf_entered(){
-	// TODO
+  QMessageBox::information(this, trUtf8("Конец"), trUtf8("Найден минимум"));
+	
 }
 
 void CWdescentWinImpl::s8_entered(){
-	// TODO
+	PX1 *= ModPX;
+	PX2 *= ModPX;
+	LogTxtBrsr->append(trUtf8("  Изменена длина шагов: %1; %2.").arg(PX1.x()).arg(PX2.y()));
 }
 
 void CWdescentWinImpl::s7_entered(){
-	// TODO
+	MP = NP;
+	LogTxtBrsr->append(trUtf8("  Принята новая текущая точка. Текущая точка: %1; %2. Расстояние от базовой точки до текущей: %3").arg(MP.x()).arg(MP.y()).arg(Length(BP - MP)));
 }
 
 void CWdescentWinImpl::s6_entered(){
-	// TODO
+	NP = MP - PX2;
+	LogTxtBrsr->append(trUtf8("  Сделан шаг в - по оси Х2. Новая точка: %1; %2").arg(NP.x()).arg(NP.y()));
 }
 
 void CWdescentWinImpl::s5_entered(){
-	// TODO
+	NP = MP + PX2;
+	LogTxtBrsr->append(trUtf8("  Сделан шаг в + по оси Х2. Новая точка: %1; %2").arg(NP.x()).arg(NP.y()));
 }
 
 void CWdescentWinImpl::s4_entered(){
-	// TODO
+	MP = NP;
+	LogTxtBrsr->append(trUtf8("  Принята новая текущая точка. Текущая точка: %1; %2").arg(MP.x()).arg(MP.y()));
 }
 
 
 void CWdescentWinImpl::s3_entered(){
-	// TODO
+	NP = MP - PX1;
+	LogTxtBrsr->append(trUtf8("  Сделан шаг в - по оси Х1. Новая точка: %1; %2").arg(NP.x()).arg(NP.y()));
 }
 
 void CWdescentWinImpl::s2_entered(){
-	// TODO
+	NP = MP + PX1;
+	LogTxtBrsr->append(trUtf8("  Сделан шаг в + по оси Х1. Новая точка: %1; %2").arg(NP.x()).arg(NP.y()));
 }
 
 
 void CWdescentWinImpl::s1_entered(){
 	BP = MP;
 	NP = BP;
+	LogTxtBrsr->append(trUtf8("Начало итерации № %1. Базовая точка: %2; %3. Текущая точка: %4; %5. Новая точка: %6; %7. Длина шагов: %8; %9.").arg(++NumeroIteracio).arg(BP.x()).arg(BP.y()).arg(MP.x()).arg(MP.y()).arg(NP.x()).arg(NP.y()).arg(PX1.x()).arg(PX2.y()));
 }
 
 namespace SinkoLauxKoordinatoj{

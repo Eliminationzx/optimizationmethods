@@ -34,6 +34,8 @@ protected:
   /*! Для удобства задаю в виде точки (0, длина).
    */
   DemonstrataQPointF PX2; 
+  //! Модификатор шага.
+  qreal ModPX;
   //! Указатель на целевую функцию.
   funkcio *F; 
 public:
