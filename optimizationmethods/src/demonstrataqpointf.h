@@ -166,5 +166,7 @@ public:
   DemonstrataQPointF( qreal x, qreal y );
   ~DemonstrataQPointF();
 };
+
+qreal Length( const QPointF & point);
 #endif
 

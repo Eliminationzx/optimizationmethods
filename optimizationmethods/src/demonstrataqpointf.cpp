@@ -110,3 +110,6 @@ bool DemonstrataQPointF::connectProviziValoroFukcioEnPointo_double(QObject * ric
 	return QObject::connect(sp, SIGNAL(proviziValoroFukcioEnPointo(double)), ricevanto, slot);
 }
 
+qreal Length( const QPointF & p){
+	return sqrt(p.x()*p.x() + p.y()*p.y());
+}
