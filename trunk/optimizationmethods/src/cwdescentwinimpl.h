@@ -8,6 +8,8 @@
 #include <QState>
 #include <QRadioButton>
 //
+class funkcio;
+//
 //! Окно для прохождения Покоординатного спуска с фиксированным шагом.
 class CWdescentWinImpl : public AlgoritmoWin, public Ui::CWdescentWin{
 Q_OBJECT
@@ -27,12 +29,28 @@ protected:
   //! Шаг по х1.
   /*! Для удобства задаю в виде точки (длина, 0).
    */
-  QPointF PX1;
-  //! Шаг по х1.
+  DemonstrataQPointF PX1;
+  //! Шаг по х2.
   /*! Для удобства задаю в виде точки (0, длина).
    */
-  QPointF PX2;
+  DemonstrataQPointF PX2; 
+  //! Указатель на целевую функцию.
+  funkcio *F; 
 public:
+  //! Возвращает шаг по х1.
+  DemonstrataQPointF & pX1(){ return PX1; };
+  //! Возвращает шаг по х1.
+  DemonstrataQPointF & pX2(){ return PX2; }; 
+  //! Возвращает точность.
+  qreal & Strikteco(){ return strikteco; };
+	//! Возвращает указатель на целевую функцию.
+  funkcio * f(){ return F; }; 
+  //! Возвращает базовую точка итерации.
+  DemonstrataQPointF & bp(){ return BP; };
+  //! Возвращает текущую базовая точка.
+  DemonstrataQPointF & mp(){ return MP; };
+  //! Возвращает новую точка.
+  DemonstrataQPointF & np(){ return NP; };
 	CWdescentWinImpl( funkcio *f, //!< Указатель на целевую функцию. CWdescentWinImpl не заботится о назначении Funkcio родителя.
                     QVector<double> *d, //!< Массив с данными задания.
                     QWidget * parent = 0, //!< Родитель.
@@ -90,24 +108,15 @@ namespace SinkoLauxKoordinatoj{
 		protected:
     	bool eventTest(QEvent *e);
 	};	
-	//! Переход от s2 к s4.
-	class s2s4Transiro: public BasaTransiro{
+	/*! Переход принятия новой точки в качестве текщей.
+	 * 
+	 * Используется при переходе от s2 к s4, s3 к s4, s5 к s7, s6 к s7 .
+	 */
+	class KonsideriPointoTransiro: public BasaTransiro{
 		public:
-			s2s4Transiro( QState * sourceState = 0
+			KonsideriPointoTransiro( QState * sourceState = 0
 			            ) : BasaTransiro(sourceState){};
-			s2s4Transiro( QObject * sender,
-			              const char * signal,
-			              QState * sourceState = 0
-			            ) : BasaTransiro(sender, signal, sourceState){};
-		protected:
-    	bool eventTest(QEvent *e);
-	};	
-	//! Переход от s3 к s4.
-	class s3s4Transiro: public BasaTransiro{
-		public:
-			s3s4Transiro( QState * sourceState = 0
-			            ) : BasaTransiro(sourceState){};
-			s3s4Transiro( QObject * sender,
+			KonsideriPointoTransiro( QObject * sender,
 			              const char * signal,
 			              QState * sourceState = 0
 			            ) : BasaTransiro(sender, signal, sourceState){};
@@ -144,30 +153,6 @@ namespace SinkoLauxKoordinatoj{
 			s5s6Transiro( QState * sourceState = 0
 			            ) : BasaTransiro(sourceState){};
 			s5s6Transiro( QObject * sender,
-			              const char * signal,
-			              QState * sourceState = 0
-			            ) : BasaTransiro(sender, signal, sourceState){};
-		protected:
-    	bool eventTest(QEvent *e);
-	};	
-	//! Переход от s5 к s7.
-	class s5s7Transiro: public BasaTransiro{
-		public:
-			s5s7Transiro( QState * sourceState = 0
-			            ) : BasaTransiro(sourceState){};
-			s5s7Transiro( QObject * sender,
-			              const char * signal,
-			              QState * sourceState = 0
-			            ) : BasaTransiro(sender, signal, sourceState){};
-		protected:
-    	bool eventTest(QEvent *e);
-	};	
-	//! Переход от s6 к s7.
-	class s6s7Transiro: public BasaTransiro{
-		public:
-			s6s7Transiro( QState * sourceState = 0
-			            ) : BasaTransiro(sourceState){};
-			s6s7Transiro( QObject * sender,
 			              const char * signal,
 			              QState * sourceState = 0
 			            ) : BasaTransiro(sender, signal, sourceState){};
