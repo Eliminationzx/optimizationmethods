@@ -38,7 +38,26 @@ namespace SinkoLauxKoordinatoj{
 			            ) : QSignalTransition(sender, signal, sourceState),
 			                BP(bp), MP(mp), NP(np){};
 	};
-}
+	//! Переход от s1 к s2.
+	class s1s2Transiro: public BasaTransiro{
+		public:
+			s1s2Transiro( DemonstrataQPointF *bp,
+			              DemonstrataQPointF *mp,
+			              DemonstrataQPointF *np,
+			              QState * sourceState = 0
+			            ) : BasaTransiro(bp, mp, np, sourceState){};
+			s1s2Transiro( DemonstrataQPointF *bp,
+			              DemonstrataQPointF *mp,
+			              DemonstrataQPointF *np,
+			              QObject * sender,
+			              const char * signal,
+			              QState * sourceState = 0
+			            ) : BasaTransiro(bp, mp, np, sender, signal, sourceState){};
+		protected:
+    	bool eventTest(QEvent *e);
+	};
+	
+};
 //
 //! Окно для прохождения Покоординатного спуска с фиксированным шагом.
 class CWdescentWinImpl : public AlgoritmoWin, public Ui::CWdescentWin
