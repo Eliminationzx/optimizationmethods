@@ -154,38 +154,33 @@ void CWdescentWinImpl::registriEraro(){
 }
 
 void CWdescentWinImpl::sf_entered(){
+  LogTxtBrsr->append(trUtf8("Конец алгоритма. Найден: %1").arg(F->rezulto(MP)));
   QMessageBox::information(this, trUtf8("Конец"), trUtf8("Найден минимум"));
-	
 }
 
-void CWdescentWinImpl::s8_entered(){
+void CWdescentWinImpl::s12_entered(){
 	PX1 *= ModPX;
 	PX2 *= ModPX;
 	LogTxtBrsr->append(trUtf8("  Изменена длина шагов: %1; %2.").arg(PX1.x()).arg(PX2.y()));
 }
 
-void CWdescentWinImpl::s7_entered(){
-	MP = NP;
-	LogTxtBrsr->append(trUtf8("  Принята новая текущая точка. Текущая точка: %1; %2. Расстояние от базовой точки до текущей: %3").arg(MP.x()).arg(MP.y()).arg(Length(BP - MP)));
-}
-
-void CWdescentWinImpl::s6_entered(){
+void CWdescentWinImpl::s9_entered(){
 	NP = MP - PX2;
 	LogTxtBrsr->append(trUtf8("  Сделан шаг в - по оси Х2. Новая точка: %1; %2").arg(NP.x()).arg(NP.y()));
 }
 
-void CWdescentWinImpl::s5_entered(){
+void CWdescentWinImpl::s7_entered(){
 	NP = MP + PX2;
 	LogTxtBrsr->append(trUtf8("  Сделан шаг в + по оси Х2. Новая точка: %1; %2").arg(NP.x()).arg(NP.y()));
 }
 
-void CWdescentWinImpl::s4_entered(){
+void CWdescentWinImpl::s5_s10_entered(){
 	MP = NP;
 	LogTxtBrsr->append(trUtf8("  Принята новая текущая точка. Текущая точка: %1; %2").arg(MP.x()).arg(MP.y()));
 }
 
 
-void CWdescentWinImpl::s3_entered(){
+void CWdescentWinImpl::s4_entered(){
 	NP = MP - PX1;
 	LogTxtBrsr->append(trUtf8("  Сделан шаг в - по оси Х1. Новая точка: %1; %2").arg(NP.x()).arg(NP.y()));
 }
