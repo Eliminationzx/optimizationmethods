@@ -74,11 +74,11 @@ private slots:
 	 * В этом состоянии проверяется точка смещённая от текщей в - по Х1.
 	 */
 	void s4_entered();
-	/*! Обработчик входа в состояния s5 и s10.
+	/*! Обработчик входа в состояние s5.
 	 * 
-	 * В этих состояниях текущей точке присваевается значение новой.
+	 * В этом состоянии текущей точке присваевается значение новой.
 	 */
-	void s5_s10_entered();
+	void s5_entered();
 	/*! Обработчик входа в состояние s7.
 	 * 
 	 * В этом состоянии проверяется точка смещённая от текщей в + по Х2.
@@ -89,6 +89,11 @@ private slots:
 	 * В этом состоянии проверяется точка смещённая от текщей в - по Х2.
 	 */
 	void s9_entered();
+	/*! Обработчик входа в состояние s10.
+	 * 
+	 * В этом состоянии текущей точке присваевается значение новой.
+	 */
+	void s10_entered();
 	/*! Обработчик входа в состояние s12.
 	 * 
 	 * В этом состоянии изменяются длины шагов.
@@ -98,6 +103,8 @@ private slots:
 	void sf_entered();
   //! Фиксирует совершение пользователем ошики.
   void registriEraro();
+signals:
+	void stateHasEntered();
 };
 
 /*! В этом пространстве имён содержаться классы относящиеся к конечному автомату
@@ -115,13 +122,15 @@ namespace SinkoLauxKoordinatoj{
 			CWdescentWinImpl * o;
 		public:
 			BasaTransiro( QState * sourceState = 0 )
-				: QSignalTransition(sourceState),
-					o(static_cast<CWdescentWinImpl*>(this->sourceState()->parentState()->parent())){};
+				: QSignalTransition(sourceState){
+					o = static_cast<CWdescentWinImpl*>(this->sourceState()->parentState()->parent());
+				};
 			BasaTransiro( QObject * sender, const char * signal,
 			              QState * sourceState = 0
 			            )
-				: QSignalTransition(sender, signal, sourceState),
-					o(static_cast<CWdescentWinImpl*>(this->sourceState()->parentState()->parent())){};
+				: QSignalTransition(sender, signal, sourceState){
+					o = static_cast<CWdescentWinImpl*>(this->sourceState()->parentState()->parent());
+				};
 	};
 	/*! Переход принятия новой точки в качестве текщей.
 	 * 
