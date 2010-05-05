@@ -10,6 +10,8 @@
 #include <QString>
 #include <QMessageBox>
 #include <QStateMachine>
+#include <QFinalState>
+#include <QLabel>
 //
 using namespace SinkoLauxKoordinatoj;
 
@@ -18,7 +20,7 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * pa
 		NumeroIteracio(0), MP((*d)[4],(*d)[5]),
     PX1((*d)[1], 0), PX2(0, (*d)[2]){
 	setupUi(this);
-/*  
+  
   // Создаю карту.
   // centralwidget->layout() - указатель на компановщик центрального виджета
   // static_cast<QGridLayout*>(centralwidget->layout()) - обьясняю компилятору, что это именно QGridLayout
@@ -29,56 +31,94 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * pa
   
   MapoWdg->kreiSpuro(A::CWdescent_fix, Qt::blue);
   Sp = MapoWdg->proviziSpuro();
+
+//===Соединяю точки и надписи на форме==========================================
+	MP.connectProviziValoro_QString(x1_lb, SLOT(setText(const QString &)));
+	MP.connectProviziValoro_QString(x2_lb, SLOT(setText(const QString &)));
+	MP.connectProviziValoro_QString(fsign_lb, SLOT(setText(const QString &)));
+	NP.connectProviziValoro_QString(new_x1_lb, SLOT(setText(const QString &)));
+	NP.connectProviziValoro_QString(new_x2_lb, SLOT(setText(const QString &)));
+	NP.connectProviziValoro_QString(new_fsign_lb, SLOT(setText(const QString &)));
+//============================================================================= 
   
-  // Создаю конечный автомат.
+//===Создаю конечный автомат.==================================================
   QStateMachine * SM = new QStateMachine(this); 
-  // Создаю состояния, согласно диаграмме.
-  QState * s1 = new QState();
-  QState * s2 = new QState();
-  QState * s3 = new QState();
-  QState * s4 = new QState();
-  QState * s5 = new QState();
-  QState * s6 = new QState();
-  QState * s7 = new QState();
-  QState * s8 = new QState();
-  QState * sf = new QState();
+//---Создаю состояния, согласно диаграмме.-------------------------------------
+  QState * so = new QState();
+  QState * s1 = new QState(so);
+  QState * s2 = new QState(so);
+  QState * s3 = new QState(so);
+  QState * s4 = new QState(so);
+  QState * s5 = new QState(so);
+  QState * s6 = new QState(so);
+  QState * s7 = new QState(so);
+  QState * s8 = new QState(so);
+  QState * s9 = new QState(so);
+  QState * s10 = new QState(so);
+  QState * s11 = new QState(so);
+  QState * s12 = new QState(so);
+  QFinalState * sf = new QFinalState(so);
+  QFinalState * sfm = new QFinalState();
   
-  // Создаю переходы, согласно диаграмме.
+//---Создаю переходы, согласно диаграмме.--------------------------------------
   s1s2Transiro * s1s2 = new s1s2Transiro(calculate_bt, SIGNAL(clicked()), s1);
   s1s2->setTargetState(s2);
-  s2s3Transiro * s2s3 = new s2s3Transiro(calculate_bt, SIGNAL(clicked()), s2);
-  s2s3->setTargetState(s3);  
-  KonsideriPointoTransiro * s2s4 = new KonsideriPointoTransiro(accept_bt, SIGNAL(clicked()), s2);
-  s2s4->setTargetState(s4);  
-  KonsideriPointoTransiro * s3s4 = new KonsideriPointoTransiro(accept_bt, SIGNAL(clicked()), s3);
-  s3s4->setTargetState(s4);  
-  s3s5Transiro * s3s5 = new s3s5Transiro(calculate_bt, SIGNAL(clicked()), s3);
-  s3s5->setTargetState(s5);  
-  s4s5Transiro * s4s5 = new s4s5Transiro(calculate_bt, SIGNAL(clicked()), s4);
-  s4s5->setTargetState(s5);  
-  s5s6Transiro * s5s6 = new s5s6Transiro(calculate_bt, SIGNAL(clicked()), s5);
-  s5s6->setTargetState(s6);  
-  KonsideriPointoTransiro * s5s7 = new KonsideriPointoTransiro(accept_bt, SIGNAL(clicked()), s5);
-  s5s7->setTargetState(s7);  
-  KonsideriPointoTransiro * s6s7 = new KonsideriPointoTransiro(accept_bt, SIGNAL(clicked()), s6);
-  s6s7->setTargetState(s7);  
-  s6s8Transiro * s6s8 = new s6s8Transiro(end_bt, SIGNAL(clicked()), s6);
-  s6s8->setTargetState(s8);  
-/*  
-  
-  //Вывожу значения.
-  precision_lb->setText(QString::number((*d)[0]));
-  x1_lb->setText(QString::number(MomentaPointo.x()));
-  x2_lb->setText(QString::number(MomentaPointo.y()));
-//  new_x1_lb->setText(trUtf8("Неопределено"));
-//  new_x2_lb->setText(trUtf8("Неопределено"));
-  x1_step_lb->setText(QString::number(PasxoX1.x()));
-  x2_step_lb->setText(QString::number(PasxoX2.y()));
-  fsign_lb->setText(QString::number(F->rezulto(MomentaPointo)));
-//  new_fsign_lb->setText(trUtf8("Неопределено"));
-  
-  LogTxtBrsr->append(trUtf8("Начало поиска минимума Покоординатным спуском с  фиксированным шагом."));
-*/  
+  NoKonsideriPointoTransiro * s2s3 = new NoKonsideriPointoTransiro(not_accept_bt, SIGNAL(clicked()), s2);
+  s2s3->setTargetState(s3); 
+  s3s4Transiro * s3s4 = new s3s4Transiro(calculate_bt, SIGNAL(clicked()), s3);
+  s3s4->setTargetState(s4); 
+  KonsideriPointoTransiro * s2s5 = new KonsideriPointoTransiro(accept_bt, SIGNAL(clicked()), s2);
+  s2s5->setTargetState(s5);
+  KonsideriPointoTransiro * s4s5 = new KonsideriPointoTransiro(accept_bt, SIGNAL(clicked()), s4);
+  s4s5->setTargetState(s5);
+  NoKonsideriPointoTransiro * s4s6 = new NoKonsideriPointoTransiro(not_accept_bt, SIGNAL(clicked()), s4);
+  s4s6->setTargetState(s6);
+  s5s7_s6s7Transiro * s6s7 = new s5s7_s6s7Transiro(calculate_bt, SIGNAL(clicked()), s6);
+  s6s7->setTargetState(s7);
+  s5s7_s6s7Transiro * s5s7 = new s5s7_s6s7Transiro(calculate_bt, SIGNAL(clicked()), s5);
+  s5s7->setTargetState(s7);
+  NoKonsideriPointoTransiro * s7s8 = new NoKonsideriPointoTransiro(not_accept_bt, SIGNAL(clicked()), s7);
+  s7s8->setTargetState(s8);    
+  s8s9Transiro * s8s9 = new s8s9Transiro(calculate_bt, SIGNAL(clicked()), s8);
+  s8s9->setTargetState(s9);
+  KonsideriPointoTransiro * s9s10 = new KonsideriPointoTransiro(accept_bt, SIGNAL(clicked()), s9);
+  s9s10->setTargetState(s10);
+  KonsideriPointoTransiro * s7s10 = new KonsideriPointoTransiro(accept_bt, SIGNAL(clicked()), s7);
+  s7s10->setTargetState(s10);
+  NoKonsideriPointoTransiro * s9s11 = new NoKonsideriPointoTransiro(not_accept_bt, SIGNAL(clicked()), s9);
+  s9s11->setTargetState(s11);    
+  QSignalTransition * s11s12 = new QSignalTransition(change_step_bt, SIGNAL(clicked()), s11);
+  s11s12->setTargetState(s12);
+  s12sfTransiro * s12sf = new s12sfTransiro(end_bt, SIGNAL(clicked()), s12);
+  s12sf->setTargetState(sf); 
+  s10sfTransiro * s10sf = new s10sfTransiro(end_bt, SIGNAL(clicked()), s10);
+  s10sf->setTargetState(sf); 
+  s12s1Transiro * s12s1 = new s12s1Transiro(this, SIGNAL((stateHasEntered)), s12);
+  s12s1->setTargetState(s1); 
+  s10s1Transiro * s10s1 = new s10s1Transiro(this, SIGNAL((stateHasEntered)), s10);
+  s10s1->setTargetState(s1); 
+//---Создаю переходы не имеющие цели. С помощью них проверяу ошибки ползоватнля-
+	QSignalTransition * te1 = new QSignalTransition(calculate_bt, SIGNAL(clicked()));
+	te1->setTargetState(so);
+	QSignalTransition * te2 = new QSignalTransition(accept_bt, SIGNAL(clicked()));
+	te2->setTargetState(so);
+	QSignalTransition * te3 = new QSignalTransition(not_accept_bt, SIGNAL(clicked()));
+	te3->setTargetState(so);
+	QSignalTransition * te4 = new QSignalTransition(change_step_bt, SIGNAL(clicked()));
+	te4->setTargetState(so);
+	QSignalTransition * te5 = new QSignalTransition(end_bt, SIGNAL(clicked()));
+	te5->setTargetState(so);
+//---Создаю переход от сложного состояния к финалу автомата.
+	so->addTransition(sfm);
+	
+//---Добавляю состояния в автомат и запускаю его.------------------------------
+	SM->addState(so);
+	SM->addState(sfm);
+	so->setInitialState(s1);
+	SM->setInitialState(so);
+	SM->start();
+//=============================================================================	
+
 /*//=========Пример======================================================================================Дальше прога что-то кастует.)
   //------Итерация 1-----------------------------------------------------------
   static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->difiniUnuaPointo(QPoint(0, 0));
@@ -162,6 +202,13 @@ void CWdescentWinImpl::s12_entered(){
 	PX1 *= ModPX;
 	PX2 *= ModPX;
 	LogTxtBrsr->append(trUtf8("  Изменена длина шагов: %1; %2.").arg(PX1.x()).arg(PX2.y()));
+	emit stateHasEntered();
+}
+
+void CWdescentWinImpl::s10_entered(){
+	MP = NP;
+	LogTxtBrsr->append(trUtf8("  Принята новая текущая точка. Текущая точка: %1; %2").arg(MP.x()).arg(MP.y()));
+	emit stateHasEntered();
 }
 
 void CWdescentWinImpl::s9_entered(){
@@ -174,11 +221,10 @@ void CWdescentWinImpl::s7_entered(){
 	LogTxtBrsr->append(trUtf8("  Сделан шаг в + по оси Х2. Новая точка: %1; %2").arg(NP.x()).arg(NP.y()));
 }
 
-void CWdescentWinImpl::s5_s10_entered(){
+void CWdescentWinImpl::s5_entered(){
 	MP = NP;
 	LogTxtBrsr->append(trUtf8("  Принята новая текущая точка. Текущая точка: %1; %2").arg(MP.x()).arg(MP.y()));
 }
-
 
 void CWdescentWinImpl::s4_entered(){
 	NP = MP - PX1;
