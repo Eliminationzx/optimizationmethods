@@ -14,12 +14,15 @@
  */
 class SignalojPorPointF: public QObject{
 Q_OBJECT
+private:
+	funkcio * f;
+	QPointF * p;
 public:
 	//! Высылает все сигналы.
-	void SendiSignaloj( const QPointF * p, funkcio *f = 0){
+	void SendiSignaloj(){
 		emit proviziValoro(*p);
 	  emit proviziValoro(trUtf8("%1; %2").arg(QString::number(p->x())).arg(QString::number(p->y())));
-	  emit proviziXValoro(p->x());
+	  emit proviziXValoro(p->toPoint().x());
 	  emit proviziXValoro(p->x());
 	  emit proviziXValoro(QString::number(p->x()));
 	  emit proviziYValoro(p->y());
@@ -30,8 +33,8 @@ public:
 		  emit proviziValoroFukcioEnPointo(QString::number(f->rezulto(*p)));
 	  }
 	};
-	SignalojPorPointF( QObject * p = 0 )
-		:QObject(p){};
+	SignalojPorPointF( QPointF * P, funkcio * F = 0, QObject * parent = 0 )
+		:QObject(parent), p(P), f(F){};
 signals:
   //! Предоставляет значение функции в точке.
   void proviziValoroFukcioEnPointo(double);
@@ -160,10 +163,10 @@ public:
   QPointF & operator/=(qreal divisor);
   QPointF & operator=(const QPointF & point);
   QPointF & operator=(const QPoint & point);
-  DemonstrataQPointF();
-  DemonstrataQPointF( const QPoint & point);
-  DemonstrataQPointF( const QPointF & point);
-  DemonstrataQPointF( qreal x, qreal y );
+  DemonstrataQPointF(funkcio * F = 0);
+  DemonstrataQPointF( const QPoint & point, funkcio * F = 0);
+  DemonstrataQPointF( const QPointF & point, funkcio * F = 0);
+  DemonstrataQPointF( qreal x, qreal y, funkcio * F = 0);
   ~DemonstrataQPointF();
 };
 
