@@ -61,41 +61,41 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * pa
 	QFinalState * sfm = new QFinalState();
 
 //---Создаю переходы, согласно диаграмме.--------------------------------------
-	s1s2Transiro * s1s2 = new s1s2Transiro(calculate_bt, SIGNAL(clicked()), s1);
+	s1s2Transiro * s1s2 = new s1s2Transiro(up_x1_rb, calculate_bt, SIGNAL(clicked()), s1);
 	s1s2->setTargetState(s2);
-	NoKonsideriPointoTransiro * s2s3 = new NoKonsideriPointoTransiro(not_accept_bt, SIGNAL(clicked()), s2);
+	NoKonsideriPointoTransiro * s2s3 = new NoKonsideriPointoTransiro(MP, NP, F, not_accept_bt, SIGNAL(clicked()), s2);
 	s2s3->setTargetState(s3);
-	s3s4Transiro * s3s4 = new s3s4Transiro(calculate_bt, SIGNAL(clicked()), s3);
+	s3s4Transiro * s3s4 = new s3s4Transiro(down_x1_rb, calculate_bt, SIGNAL(clicked()), s3);
 	s3s4->setTargetState(s4);
-	KonsideriPointoTransiro * s2s5 = new KonsideriPointoTransiro(accept_bt, SIGNAL(clicked()), s2);
+	KonsideriPointoTransiro * s2s5 = new KonsideriPointoTransiro(MP, NP, F, accept_bt, SIGNAL(clicked()), s2);
 	s2s5->setTargetState(s5);
-	KonsideriPointoTransiro * s4s5 = new KonsideriPointoTransiro(accept_bt, SIGNAL(clicked()), s4);
+	KonsideriPointoTransiro * s4s5 = new KonsideriPointoTransiro(MP, NP, F, accept_bt, SIGNAL(clicked()), s4);
 	s4s5->setTargetState(s5);
-	NoKonsideriPointoTransiro * s4s6 = new NoKonsideriPointoTransiro(not_accept_bt, SIGNAL(clicked()), s4);
+	NoKonsideriPointoTransiro * s4s6 = new NoKonsideriPointoTransiro(MP, NP, F, not_accept_bt, SIGNAL(clicked()), s4);
 	s4s6->setTargetState(s6);
-	s5s7_s6s7Transiro * s6s7 = new s5s7_s6s7Transiro(calculate_bt, SIGNAL(clicked()), s6);
+	s5s7_s6s7Transiro * s6s7 = new s5s7_s6s7Transiro(up_x2_rb, calculate_bt, SIGNAL(clicked()), s6);
 	s6s7->setTargetState(s7);
-	s5s7_s6s7Transiro * s5s7 = new s5s7_s6s7Transiro(calculate_bt, SIGNAL(clicked()), s5);
+	s5s7_s6s7Transiro * s5s7 = new s5s7_s6s7Transiro(up_x2_rb, calculate_bt, SIGNAL(clicked()), s5);
 	s5s7->setTargetState(s7);
-	NoKonsideriPointoTransiro * s7s8 = new NoKonsideriPointoTransiro(not_accept_bt, SIGNAL(clicked()), s7);
+	NoKonsideriPointoTransiro * s7s8 = new NoKonsideriPointoTransiro(MP, NP, F, not_accept_bt, SIGNAL(clicked()), s7);
 	s7s8->setTargetState(s8);
-	s8s9Transiro * s8s9 = new s8s9Transiro(calculate_bt, SIGNAL(clicked()), s8);
+	s8s9Transiro * s8s9 = new s8s9Transiro(down_x2_rb,calculate_bt, SIGNAL(clicked()), s8);
 	s8s9->setTargetState(s9);
-	KonsideriPointoTransiro * s9s10 = new KonsideriPointoTransiro(accept_bt, SIGNAL(clicked()), s9);
+	KonsideriPointoTransiro * s9s10 = new KonsideriPointoTransiro(MP, NP, F, accept_bt, SIGNAL(clicked()), s9);
 	s9s10->setTargetState(s10);
-	KonsideriPointoTransiro * s7s10 = new KonsideriPointoTransiro(accept_bt, SIGNAL(clicked()), s7);
+	KonsideriPointoTransiro * s7s10 = new KonsideriPointoTransiro(MP, NP, F, accept_bt, SIGNAL(clicked()), s7);
 	s7s10->setTargetState(s10);
-	NoKonsideriPointoTransiro * s9s11 = new NoKonsideriPointoTransiro(not_accept_bt, SIGNAL(clicked()), s9);
+	NoKonsideriPointoTransiro * s9s11 = new NoKonsideriPointoTransiro(MP, NP, F, not_accept_bt, SIGNAL(clicked()), s9);
 	s9s11->setTargetState(s11);
 	QSignalTransition * s11s12 = new QSignalTransition(change_step_bt, SIGNAL(clicked()), s11);
 	s11s12->setTargetState(s12);
-	s12sfTransiro * s12sf = new s12sfTransiro(end_bt, SIGNAL(clicked()), s12);
+	s12sfTransiro * s12sf = new s12sfTransiro(PX1, PX2, strikteco, end_bt, SIGNAL(clicked()), s12);
 	s12sf->setTargetState(sf);
-	s10sfTransiro * s10sf = new s10sfTransiro(end_bt, SIGNAL(clicked()), s10);
+	s10sfTransiro * s10sf = new s10sfTransiro(MP, NP, strikteco,end_bt, SIGNAL(clicked()), s10);
 	s10sf->setTargetState(sf);
-	s12s1Transiro * s12s1 = new s12s1Transiro(this, SIGNAL((stateHasEntered)), s12);
+	s12s1Transiro * s12s1 = new s12s1Transiro(PX1, PX2, strikteco, this, SIGNAL((stateHasEntered)), s12);
 	s12s1->setTargetState(s1);
-	s10s1Transiro * s10s1 = new s10s1Transiro(this, SIGNAL((stateHasEntered)), s10);
+	s10s1Transiro * s10s1 = new s10s1Transiro(MP, NP, strikteco, this, SIGNAL((stateHasEntered)), s10);
 	s10s1->setTargetState(s1);
 //---Создаю переходы не имеющие цели. С помощью них проверяу ошибки ползоватнля-
 	QSignalTransition * te1 = new QSignalTransition(calculate_bt, SIGNAL(clicked()));
@@ -246,61 +246,61 @@ void CWdescentWinImpl::s1_entered(){
 namespace SinkoLauxKoordinatoj{
 	bool KonsideriPointoTransiro::eventTest(QEvent *e){
 		// Проверяю своё условие и вызываю реализацию поумолчанию.
-		return o->f()->rezulto(o->np()) < o->f()->rezulto(o->mp())
+		return f->rezulto(np) < f->rezulto(mp)
 		       && QSignalTransition::eventTest(e);
 	}
 
 	bool NoKonsideriPointoTransiro::eventTest(QEvent *e){
 		// Проверяю своё условие и вызываю реализацию поумолчанию.
-		return o->f()->rezulto(o->np()) >= o->f()->rezulto(o->mp())
+		return f->rezulto(np) >= f->rezulto(mp)
 		       && QSignalTransition::eventTest(e);
 	}
 
 	bool s1s2Transiro::eventTest(QEvent *e){
 		// Проверяю своё условие и вызываю реализацию поумолчанию.
-		return o->up_x1_rb->isChecked() && QSignalTransition::eventTest(e);
+		return up_x1->isChecked() && QSignalTransition::eventTest(e);
 	}
 
 	bool s3s4Transiro::eventTest(QEvent *e){
 		// Проверяю своё условие и вызываю реализацию поумолчанию.
-		return o->down_x1_rb->isChecked()
+		return down_x1->isChecked()
 		       && QSignalTransition::eventTest(e);
 	}
 
 	bool s5s7_s6s7Transiro::eventTest(QEvent *e){
 		// Проверяю своё условие и вызываю реализацию поумолчанию.
-		return o->up_x2_rb->isChecked()
+		return up_x2->isChecked()
 		       && QSignalTransition::eventTest(e);
 	}
 
 	bool s8s9Transiro::eventTest(QEvent *e){
 		// Проверяю своё условие и вызываю реализацию поумолчанию.
-		return o->down_x2_rb->isChecked()
+		return down_x2->isChecked()
 		       && QSignalTransition::eventTest(e);
 	}
 
 	bool s10sfTransiro::eventTest(QEvent *e){
 		// Проверяю своё условие и вызываю реализацию поумолчанию.
-		return Length(o->mp() - o->bp()) < o->Strikteco()
+		return Length(mp - np) < s
 		       && QSignalTransition::eventTest(e);
 	}
 
 	bool s10s1Transiro::eventTest(QEvent *e){
 		// Проверяю своё условие и вызываю реализацию поумолчанию.
-		return Length(o->mp() - o->bp()) >= o->Strikteco()
+		return Length(mp - np) >= s
 		       && QSignalTransition::eventTest(e);
 	}
 
 	bool s12sfTransiro::eventTest(QEvent *e){
 		// Проверяю своё условие и вызываю реализацию поумолчанию.
-		return o->pX1().x() < o->Strikteco()
-		       && o->pX2().x() < o->Strikteco()
+		return pX1.x() < s
+		       && pX2.x() < s
 		       && QSignalTransition::eventTest(e);
 	}
 
 	bool s12s1Transiro::eventTest(QEvent *e){
 		// Проверяю своё условие и вызываю реализацию поумолчанию.
-		return (o->pX1().x() >= o->Strikteco() || o->pX2().x() >= o->Strikteco())
+		return (pX1.x() >= s || pX2.x() >= s)
 		       && QSignalTransition::eventTest(e);
 	}
 
