@@ -1,6 +1,6 @@
 TEMPLATE = app
 QT = gui core
-CONFIG += qt warn_on console release
+CONFIG += qt warn_on console debug
 DESTDIR = bin
 OBJECTS_DIR = build
 MOC_DIR = build
@@ -16,7 +16,8 @@ HEADERS = src/mainwindowimpl.h \
  src/algoritmowin.h \
  src/Konstantoj.h \
  src/demonstrataqpointf.h \
- src/mainpassimpl.h
+ src/mainpassimpl.h \
+ src/signalantoporpointf.h
 SOURCES = src/mainwindowimpl.cpp \
  src/main.cpp \
  src/funkcio.cpp \
@@ -27,5 +28,6 @@ SOURCES = src/mainwindowimpl.cpp \
  src/cwdescentwinimpl.cpp \
  src/algoritmowin.cpp \
  src/demonstrataqpointf.cpp \
- src/mainpassimpl.cpp
+ src/mainpassimpl.cpp \
+ src/signalantoporpointf.cpp
 RESOURCES += ui/data.qrc
