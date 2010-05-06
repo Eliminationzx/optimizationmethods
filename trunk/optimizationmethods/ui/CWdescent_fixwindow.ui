@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>885</width>
-    <height>605</height>
+    <width>1027</width>
+    <height>627</height>
    </rect>
   </property>
   <property name="font">
@@ -44,7 +44,7 @@
             <enum>QFrame::Box</enum>
            </property>
            <property name="text">
-            <string>Базовая точка</string>
+            <string>Текущая точка</string>
            </property>
            <property name="textInteractionFlags">
             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
@@ -442,8 +442,8 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>885</width>
-     <height>31</height>
+     <width>1027</width>
+     <height>34</height>
     </rect>
    </property>
   </widget>
