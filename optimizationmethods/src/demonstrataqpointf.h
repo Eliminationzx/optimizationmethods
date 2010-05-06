@@ -5,10 +5,11 @@
 #include "signalantoporpointf.h"
 //
 
-/*! Расширение QPointF, для высылки сигналов с информацией об изменениях.
+/*! Расширение QPointF, для использования совместно с DemonstrataQPointF.
  *
- * В этом классе переопределены все методы, изменяющие точку. В них добавлена
- * высылка сигналов. Для самого изменения используется реализация из QPointF.
+ * В этом классе переопределены все методы, изменяющие точку. В них добавлен
+ * вызов SignalantoPorPointF::SendiSignaloj(). Для самого изменения
+ * используется реализация из QPointF. 
  * 
  * @author Василий Почкаенко.
  */
@@ -29,7 +30,7 @@ public:
   QPointF & operator/=(qreal divisor);
   QPointF & operator=(const QPointF & point);
   QPointF & operator=(const QPoint & point);
-  DemonstrataQPointF():QPointF(){};
+  DemonstrataQPointF():QPointF(), sp(0){};
   DemonstrataQPointF( const QPoint & point):QPointF(point), sp(0){};
   DemonstrataQPointF( const QPointF & point):QPointF(point), sp(0){};
   DemonstrataQPointF( qreal x, qreal y):QPointF(x, y), sp(0){};
