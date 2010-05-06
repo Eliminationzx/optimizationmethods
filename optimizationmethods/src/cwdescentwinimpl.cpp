@@ -5,6 +5,7 @@
 #include "spuro.h"
 #include "spurosinkolauxkoordinatoj.h"
 #include "demonstrataqpointf.h"
+#include "signalantoporpointf.h"
 #include "math.h"
 #include <QTextBrowser>
 #include <QString>
@@ -32,14 +33,17 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * pa
 //  MapoWdg->kreiSpuro(A::CWdescent_fix, Qt::blue);
 //  Sp = MapoWdg->proviziSpuro();
 
-////===Соединяю точки и надписи на форме==========================================
-//	MP.connectProviziValoro_QString(x1_lb, SLOT(setText(const QString &)));
-//	MP.connectProviziValoro_QString(x2_lb, SLOT(setText(const QString &)));
-//	MP.connectProviziValoro_QString(fsign_lb, SLOT(setText(const QString &)));
-//	NP.connectProviziValoro_QString(new_x1_lb, SLOT(setText(const QString &)));
-//	NP.connectProviziValoro_QString(new_x2_lb, SLOT(setText(const QString &)));
-//	NP.connectProviziValoro_QString(new_fsign_lb, SLOT(setText(const QString &)));
-////=============================================================================
+//===Соединяю точки и надписи на форме=========================================
+	SignalantoPorPointF * sMP = new SignalantoPorPointF(&MP, F, this);
+	connect(sMP, SIGNAL(proviziXValoro(const QString &)), x1_lb, SLOT(setText(const QString &)));
+	connect(sMP, SIGNAL(proviziYValoro(const QString &)), x2_lb, SLOT(setText(const QString &)));
+	connect(sMP, SIGNAL(proviziValoroFukcioEnPointo(const QString &)), fsign_lb, SLOT(setText(const QString &)));
+	SignalantoPorPointF * sNP = new SignalantoPorPointF(&NP, F, this);
+	connect(sNP, SIGNAL(proviziXValoro(const QString &)), new_x1_lb, SLOT(setText(const QString &)));
+	connect(sNP, SIGNAL(proviziYValoro(const QString &)), new_x2_lb, SLOT(setText(const QString &)));
+	connect(sNP, SIGNAL(proviziValoroFukcioEnPointo(const QString &)), new_fsign_lb, SLOT(setText(const QString &)));
+//=============================================================================
+	sMP->SendiSignaloj();
 
 //===Создаю конечный автомат.==================================================
 	QStateMachine * SM = new QStateMachine(this);
