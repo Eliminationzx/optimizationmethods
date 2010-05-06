@@ -5,11 +5,32 @@
 #include "signalantoporpointf.h"
 //
 
-/*! Расширение QPointF, для использования совместно с DemonstrataQPointF.
+/*! Расширение QPointF, для использования совместно с SignalantoPorPointF.
  *
+ * Совместое использование SignalantoPorPointF и DemonstrataQPointF позволяет
+ * высылать сигналы со значениями точки, при каждом её изменении. Это позволяет
+ * соединнить объект DemonstrataQPointF с элементами отображения в окне и затем
+ * работать с ним, как с обычной точкой(QPointF), не заботясь об отображении. 
+ * MOC сам всё сделает.
+ * 
+ * Пример:
+ * @code 
+ * KvadratigantoFunkcio f;
+ * DemonstrataQPointF p;
+ * SignalantoPorPointF sp(&p, &f);
+ * connect(&sp, SIGNAL(proviziValoro(const QString &)), lb, SLOT(setTEXT(const QString &)));
+ * ...
+ * p *= 6;
+ * @endcode
+ *  
  * В этом классе переопределены все методы, изменяющие точку. В них добавлен
  * вызов SignalantoPorPointF::SendiSignaloj(). Для самого изменения
- * используется реализация из QPointF. 
+ * используется реализация из QPointF. Указатель на SignalantoPorPointF
+ * передаётся в метод difiniSignalantoPorPointF. Обычно он вызывается в 
+ * конструкторе SignalantoPorPointF. Если объекту DemonstrataQPointF не
+ * назначен объект SignalantoPorPointF, то он ни чем не отличается от QPointF.
+ *  
+ * @see SignalantoPorPointF.
  * 
  * @author Василий Почкаенко.
  */
