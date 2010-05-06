@@ -32,14 +32,14 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * pa
 //  MapoWdg->kreiSpuro(A::CWdescent_fix, Qt::blue);
 //  Sp = MapoWdg->proviziSpuro();
 
-//===Соединяю точки и надписи на форме==========================================
-	MP.connectProviziValoro_QString(x1_lb, SLOT(setText(const QString &)));
-	MP.connectProviziValoro_QString(x2_lb, SLOT(setText(const QString &)));
-	MP.connectProviziValoro_QString(fsign_lb, SLOT(setText(const QString &)));
-	NP.connectProviziValoro_QString(new_x1_lb, SLOT(setText(const QString &)));
-	NP.connectProviziValoro_QString(new_x2_lb, SLOT(setText(const QString &)));
-	NP.connectProviziValoro_QString(new_fsign_lb, SLOT(setText(const QString &)));
-//=============================================================================
+////===Соединяю точки и надписи на форме==========================================
+//	MP.connectProviziValoro_QString(x1_lb, SLOT(setText(const QString &)));
+//	MP.connectProviziValoro_QString(x2_lb, SLOT(setText(const QString &)));
+//	MP.connectProviziValoro_QString(fsign_lb, SLOT(setText(const QString &)));
+//	NP.connectProviziValoro_QString(new_x1_lb, SLOT(setText(const QString &)));
+//	NP.connectProviziValoro_QString(new_x2_lb, SLOT(setText(const QString &)));
+//	NP.connectProviziValoro_QString(new_fsign_lb, SLOT(setText(const QString &)));
+////=============================================================================
 
 //===Создаю конечный автомат.==================================================
 	QStateMachine * SM = new QStateMachine(this);
