@@ -50,8 +50,8 @@ class funkcio;
 class SignalantoPorPointF: public QObject{
 Q_OBJECT
 private:
-	funkcio * f;
 	DemonstrataQPointF * p;
+	funkcio * f;
 public:
 	//! Высылает все сигналы.
 	void SendiSignaloj();
