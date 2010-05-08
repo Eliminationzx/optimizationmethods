@@ -17,9 +17,9 @@
 using namespace SinkoLauxKoordinatoj;
 
 CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * parent, Qt::WFlags flags)
-	: AlgoritmoWin(f, d, parent, flags), strikteco((*d)[0]), KvantoEraroj(0),
+	: AlgoritmoWin(f, d, parent, flags)/*, strikteco((*d)[0]), KvantoEraroj(0),
 		NumeroIteracio(0), MP((*d)[4],(*d)[5]),
-    PX1((*d)[1], 0), PX2(0, (*d)[2]){
+    PX1((*d)[1], 0), PX2(0, (*d)[2])*/{
 	setupUi(this);
 
 	// Создаю карту.
@@ -65,6 +65,7 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * pa
 	QFinalState * sfm = new QFinalState();
 
 //---Создаю переходы, согласно диаграмме.--------------------------------------
+	
 	s1s2Transiro * s1s2 = new s1s2Transiro(up_x1_rb, calculate_bt, SIGNAL(clicked()), s1);
 	s1s2->setTargetState(s2);
 	NoKonsideriPointoTransiro * s2s3 = new NoKonsideriPointoTransiro(MP, NP, F, not_accept_bt, SIGNAL(clicked()), s2);
@@ -247,7 +248,14 @@ void CWdescentWinImpl::s1_entered(){
 	LogTxtBrsr->append(trUtf8("Начало итерации № %1. Базовая точка: %2; %3. Текущая точка: %4; %5. Новая точка: %6; %7. Длина шагов: %8; %9.").arg(++NumeroIteracio).arg(BP.x()).arg(BP.y()).arg(MP.x()).arg(MP.y()).arg(NP.x()).arg(NP.y()).arg(PX1.x()).arg(PX2.y()));
 }
 
-void CWdescentWinImpl::s0_entered(){
+void CWdescentWinImpl::init(){
+	strikteco = (*D)[0];
+	KvantoEraroj = 0;
+	NumeroIteracio = 0;
+	MP = QPointF((*D)[4],(*D)[5]);
+	PX1 = QPointF((*D)[1], 0);
+	PX2 = QPointF(0, (*D)[2]);
+	LogTxtBrsr->setText("");
 }
 
 namespace SinkoLauxKoordinatoj{
