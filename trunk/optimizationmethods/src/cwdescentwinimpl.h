@@ -36,29 +36,34 @@ protected:
   DemonstrataQPointF PX2; 
   //! Модификатор шага.
   qreal ModPX;
-  //! Указатель на целевую функцию.
-  funkcio *F; 
 public:
   //! Возвращает шаг по х1.
-  DemonstrataQPointF & pX1(){ return PX1; };
+//  DemonstrataQPointF & pX1(){ return PX1; };
   //! Возвращает шаг по х1.
-  DemonstrataQPointF & pX2(){ return PX2; }; 
+//  DemonstrataQPointF & pX2(){ return PX2; }; 
   //! Возвращает точность.
-  qreal & Strikteco(){ return strikteco; };
+//  qreal & Strikteco(){ return strikteco; };
 	//! Возвращает указатель на целевую функцию.
-  funkcio * f(){ return F; }; 
+//  funkcio * f(){ return F; }; 
   //! Возвращает базовую точка итерации.
-  DemonstrataQPointF & bp(){ return BP; };
+//  DemonstrataQPointF & bp(){ return BP; };
   //! Возвращает текущую базовая точка.
-  DemonstrataQPointF & mp(){ return MP; };
+//  DemonstrataQPointF & mp(){ return MP; };
   //! Возвращает новую точка.
-  DemonstrataQPointF & np(){ return NP; };
+//  DemonstrataQPointF & np(){ return NP; };
 	CWdescentWinImpl( funkcio *f, //!< Указатель на целевую функцию. CWdescentWinImpl не заботится о назначении Funkcio родителя.
                     QVector<double> *d, //!< Массив с данными задания.
                     QWidget * parent = 0, //!< Родитель.
                     Qt::WFlags flags = 0 //!< Флаги парамметров окна.
                   );
 private slots:
+	/*! Обработчик входа в состояние инициализации автомат.
+	 * 
+	 * В этом состоянии задаются началные знаения всем переменным алгоритма.
+	 * Переход сюда совершается при старте автомата и когда пользователь решает 
+	 * начать испытание заново.
+	 */
+	void s0_entered();
 	/*! Обработчик входа в состояние s1.
 	 * 
 	 * В этом состоянии 

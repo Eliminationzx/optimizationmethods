@@ -247,6 +247,9 @@ void CWdescentWinImpl::s1_entered(){
 	LogTxtBrsr->append(trUtf8("Начало итерации № %1. Базовая точка: %2; %3. Текущая точка: %4; %5. Новая точка: %6; %7. Длина шагов: %8; %9.").arg(++NumeroIteracio).arg(BP.x()).arg(BP.y()).arg(MP.x()).arg(MP.y()).arg(NP.x()).arg(NP.y()).arg(PX1.x()).arg(PX2.y()));
 }
 
+void CWdescentWinImpl::s0_entered(){
+}
+
 namespace SinkoLauxKoordinatoj{
 	bool KonsideriPointoTransiro::eventTest(QEvent *e){
 		// Проверяю своё условие и вызываю реализацию поумолчанию.
