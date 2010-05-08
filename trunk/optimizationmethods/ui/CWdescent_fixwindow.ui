@@ -16,7 +16,7 @@
   <property name="font">
    <font>
     <family>Times New Roman</family>
-    <pointsize>18</pointsize>
+    <pointsize>16</pointsize>
    </font>
   </property>
   <property name="windowTitle">
@@ -430,7 +430,7 @@ p, li { white-space: pre-wrap; }
      <widget class="QTextBrowser" name="LogTxtBrsr">
       <property name="font">
        <font>
-        <pointsize>16</pointsize>
+        <pointsize>14</pointsize>
        </font>
       </property>
      </widget>
@@ -443,7 +443,7 @@ p, li { white-space: pre-wrap; }
      <x>0</x>
      <y>0</y>
      <width>1027</width>
-     <height>34</height>
+     <height>30</height>
     </rect>
    </property>
   </widget>
