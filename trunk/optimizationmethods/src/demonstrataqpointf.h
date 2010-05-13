@@ -49,6 +49,7 @@ public:
   QPointF & operator+=(const QPointF & point);
   QPointF & operator-=(const QPointF & point);
   QPointF & operator/=(qreal divisor);
+  QPointF & operator=(const DemonstrataQPointF & point);
   QPointF & operator=(const QPointF & point);
   QPointF & operator=(const QPoint & point);
   DemonstrataQPointF():QPointF(), sp(0){};
