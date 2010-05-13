@@ -23,7 +23,7 @@
    <string>Покоординатный спуск с фиксированным шагом.</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout_2" columnstretch="2,1">
+   <layout class="QGridLayout" name="gridLayout_2" columnstretch="1,1">
     <item row="0" column="0">
      <widget class="QGroupBox" name="groupBox_2">
       <property name="title">
@@ -443,7 +443,7 @@ p, li { white-space: pre-wrap; }
      <x>0</x>
      <y>0</y>
      <width>1027</width>
-     <height>30</height>
+     <height>23</height>
     </rect>
    </property>
   </widget>
