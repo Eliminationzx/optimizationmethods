@@ -22,6 +22,10 @@
   <property name="windowTitle">
    <string>Покоординатный спуск с минимизацией по направлению</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="data.qrc">
+    <normaloff>:/icon/icon.bmp</normaloff>:/icon/icon.bmp</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_4" columnstretch="1,1">
     <item row="0" column="0" rowspan="2">
@@ -298,6 +302,8 @@ p, li { white-space: pre-wrap; }
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources/>
+ <resources>
+  <include location="data.qrc"/>
+ </resources>
  <connections/>
 </ui>
