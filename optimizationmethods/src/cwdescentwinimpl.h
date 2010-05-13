@@ -54,7 +54,7 @@ public:
 	CWdescentWinImpl( funkcio *f, //!< Указатель на целевую функцию. CWdescentWinImpl не заботится о назначении Funkcio родителя.
                     QVector<double> *d, //!< Массив с данными задания.
                     QWidget * parent = 0, //!< Родитель.
-                    Qt::WFlags flags = 0 //!< Флаги парамметров окна.
+                    Qt::WFlags flags = 0 //!< Флаги параметров окна.
                   );
 private slots:
 	/*! "Обнуление" переменных.
