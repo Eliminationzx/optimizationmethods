@@ -71,71 +71,77 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * pa
 	so->setInitialState(s1);
 
 //---Соединяю состояния и обрабодчики входа в них.-----------------------------
-connect(so, SIGNAL(entered()), SLOT(so_entered()));
-connect(s1, SIGNAL(entered()), SLOT(s1_entered()));
-connect(s2, SIGNAL(entered()), SLOT(s2_entered()));
-connect(s3, SIGNAL(entered()), SLOT(s3_entered()));
-connect(s4, SIGNAL(entered()), SLOT(s4_entered()));
-connect(s5, SIGNAL(entered()), SLOT(s5_entered()));
-connect(s6, SIGNAL(entered()), SLOT(s5_entered()));
-connect(s7, SIGNAL(entered()), SLOT(s7_entered()));
-connect(s8, SIGNAL(entered()), SLOT(s8_entered()));
-connect(s9, SIGNAL(entered()), SLOT(s9_entered()));
-connect(s10, SIGNAL(entered()), SLOT(s10_entered()));
-connect(s11, SIGNAL(entered()), SLOT(s11_entered()));
-connect(s12, SIGNAL(entered()), SLOT(s12_entered()));
-//-----------------------------------------------------------------------------
+	connect(so, SIGNAL(entered()), SLOT(so_entered()));
+	connect(s1, SIGNAL(entered()), SLOT(s1_entered()));
+	connect(s2, SIGNAL(entered()), SLOT(s2_entered()));
+	connect(s3, SIGNAL(entered()), SLOT(s3_entered()));
+	connect(s4, SIGNAL(entered()), SLOT(s4_entered()));
+	connect(s5, SIGNAL(entered()), SLOT(s5_entered()));
+	connect(s6, SIGNAL(entered()), SLOT(s5_entered()));
+	connect(s7, SIGNAL(entered()), SLOT(s7_entered()));
+	connect(s8, SIGNAL(entered()), SLOT(s8_entered()));
+	connect(s9, SIGNAL(entered()), SLOT(s9_entered()));
+	connect(s10, SIGNAL(entered()), SLOT(s10_entered()));
+	connect(s11, SIGNAL(entered()), SLOT(s11_entered()));
+	connect(s12, SIGNAL(entered()), SLOT(s12_entered()));
 
 //---Создаю переходы, согласно диаграмме.--------------------------------------
 	s1s2Transiro * s1s2 = new s1s2Transiro(up_x1_rb, calculate_bt, SIGNAL(clicked()), s1);
 	s1s2->setTargetState(s2);
 	NoKonsideriPointoTransiro * s2s3 = new NoKonsideriPointoTransiro(MP, NP, F, not_accept_bt, SIGNAL(clicked()), s2);
 	s2s3->setTargetState(s3);
-	s3s4Transiro * s3s4 = new s3s4Transiro(down_x1_rb, calculate_bt, SIGNAL(clicked()), s3);
-	s3s4->setTargetState(s4);
 	KonsideriPointoTransiro * s2s5 = new KonsideriPointoTransiro(MP, NP, F, accept_bt, SIGNAL(clicked()), s2);
 	s2s5->setTargetState(s5);
+	s3s4Transiro * s3s4 = new s3s4Transiro(down_x1_rb, calculate_bt, SIGNAL(clicked()), s3);
+	s3s4->setTargetState(s4);
 	KonsideriPointoTransiro * s4s5 = new KonsideriPointoTransiro(MP, NP, F, accept_bt, SIGNAL(clicked()), s4);
 	s4s5->setTargetState(s5);
 	NoKonsideriPointoTransiro * s4s6 = new NoKonsideriPointoTransiro(MP, NP, F, not_accept_bt, SIGNAL(clicked()), s4);
 	s4s6->setTargetState(s6);
-	s5s7_s6s7Transiro * s6s7 = new s5s7_s6s7Transiro(up_x2_rb, calculate_bt, SIGNAL(clicked()), s6);
-	s6s7->setTargetState(s7);
 	s5s7_s6s7Transiro * s5s7 = new s5s7_s6s7Transiro(up_x2_rb, calculate_bt, SIGNAL(clicked()), s5);
 	s5s7->setTargetState(s7);
+	s5s7_s6s7Transiro * s6s7 = new s5s7_s6s7Transiro(up_x2_rb, calculate_bt, SIGNAL(clicked()), s6);
+	s6s7->setTargetState(s7);
 	NoKonsideriPointoTransiro * s7s8 = new NoKonsideriPointoTransiro(MP, NP, F, not_accept_bt, SIGNAL(clicked()), s7);
 	s7s8->setTargetState(s8);
-	s8s9Transiro * s8s9 = new s8s9Transiro(down_x2_rb,calculate_bt, SIGNAL(clicked()), s8);
+	KonsideriPointoTransiro * s7s10 = new KonsideriPointoTransiro(MP, NP, F, accept_bt, SIGNAL(clicked()), s7);
+	s7s10->setTargetState(s10);
+	s8s9Transiro * s8s9 = new s8s9Transiro(down_x2_rb, calculate_bt, SIGNAL(clicked()), s8);
 	s8s9->setTargetState(s9);
 	KonsideriPointoTransiro * s9s10 = new KonsideriPointoTransiro(MP, NP, F, accept_bt, SIGNAL(clicked()), s9);
 	s9s10->setTargetState(s10);
-	KonsideriPointoTransiro * s7s10 = new KonsideriPointoTransiro(MP, NP, F, accept_bt, SIGNAL(clicked()), s7);
-	s7s10->setTargetState(s10);
 	NoKonsideriPointoTransiro * s9s11 = new NoKonsideriPointoTransiro(MP, NP, F, not_accept_bt, SIGNAL(clicked()), s9);
 	s9s11->setTargetState(s11);
+	s10sfTransiro * s10sf = new s10sfTransiro(MP, NP, strikteco, end_bt, SIGNAL(clicked()), s10);
+	s10sf->setTargetState(sf);
+	s10s1Transiro * s10s1 = new s10s1Transiro(MP, NP, strikteco, this, SIGNAL((stateHasEntered)), s10);
+	s10s1->setTargetState(s1);
 	QSignalTransition * s11s12 = new QSignalTransition(change_step_bt, SIGNAL(clicked()), s11);
 	s11s12->setTargetState(s12);
 	s12sfTransiro * s12sf = new s12sfTransiro(PX1, PX2, strikteco, end_bt, SIGNAL(clicked()), s12);
 	s12sf->setTargetState(sf);
-	s10sfTransiro * s10sf = new s10sfTransiro(MP, NP, strikteco,end_bt, SIGNAL(clicked()), s10);
-	s10sf->setTargetState(sf);
 	s12s1Transiro * s12s1 = new s12s1Transiro(PX1, PX2, strikteco, this, SIGNAL((stateHasEntered)), s12);
 	s12s1->setTargetState(s1);
-	s10s1Transiro * s10s1 = new s10s1Transiro(MP, NP, strikteco, this, SIGNAL((stateHasEntered)), s10);
-	s10s1->setTargetState(s1);
+//---Создаю переход от сложного состояния к финалу автомата.
+	so->addTransition(so, SIGNAL(finished()), sfm); // Вызывается, когда сложное 
+	                                                // состояние достигло финиша -
+	                                                //  был найден минимум.
 //---Создаю переходы не имеющие цели. С помощью них проверяю ошибки ползоватнля-
 	QSignalTransition * te1 = new QSignalTransition(calculate_bt, SIGNAL(clicked()));
 	te1->setTargetState(so);
+	connect(te1, SIGNAL(triggered()), SLOT(registriEraro()));
 	QSignalTransition * te2 = new QSignalTransition(accept_bt, SIGNAL(clicked()));
 	te2->setTargetState(so);
+	connect(te2, SIGNAL(triggered()), SLOT(registriEraro()));
 	QSignalTransition * te3 = new QSignalTransition(not_accept_bt, SIGNAL(clicked()));
 	te3->setTargetState(so);
+	connect(te3, SIGNAL(triggered()), SLOT(registriEraro()));
 	QSignalTransition * te4 = new QSignalTransition(change_step_bt, SIGNAL(clicked()));
 	te4->setTargetState(so);
+	connect(te4, SIGNAL(triggered()), SLOT(registriEraro()));
 	QSignalTransition * te5 = new QSignalTransition(end_bt, SIGNAL(clicked()));
 	te5->setTargetState(so);
-//---Создаю переход от сложного состояния к финалу автомата.
-	so->addTransition(so, SIGNAL(finished()), sfm);
+	connect(te5, SIGNAL(triggered()), SLOT(registriEraro()));
 
 //---Добавляю состояния в автомат и запускаю его.------------------------------
 	SM->addState(so);
