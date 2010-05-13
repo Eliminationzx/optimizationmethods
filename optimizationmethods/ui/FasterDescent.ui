@@ -20,7 +20,7 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>Покоординатный спуск с фиксированным шагом.</string>
+   <string>Метод наискорейшего спуска</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_14" columnstretch="1,1">
