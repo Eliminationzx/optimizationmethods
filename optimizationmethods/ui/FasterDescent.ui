@@ -22,6 +22,10 @@
   <property name="windowTitle">
    <string>Метод наискорейшего спуска</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="data.qrc">
+    <normaloff>:/icon/icon.bmp</normaloff>:/icon/icon.bmp</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_14" columnstretch="1,1">
     <item row="0" column="0">
@@ -95,7 +99,7 @@
               <enum>QFrame::Box</enum>
              </property>
              <property name="text">
-              <string>я</string>
+              <string>Неизвестно</string>
              </property>
              <property name="textInteractionFlags">
               <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
@@ -134,7 +138,7 @@
               <enum>QFrame::Box</enum>
              </property>
              <property name="text">
-              <string>я</string>
+              <string>Неизвестно</string>
              </property>
              <property name="textInteractionFlags">
               <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
@@ -171,6 +175,9 @@
          </item>
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout">
+           <property name="spacing">
+            <number>0</number>
+           </property>
            <item>
             <widget class="QLabel" name="label">
              <property name="frameShape">
@@ -201,6 +208,9 @@
          </item>
          <item>
           <layout class="QGridLayout" name="gridLayout_2">
+           <property name="spacing">
+            <number>0</number>
+           </property>
            <item row="0" column="0">
             <widget class="QLabel" name="label_3">
              <property name="frameShape">
@@ -220,7 +230,7 @@
               <enum>QFrame::Box</enum>
              </property>
              <property name="text">
-              <string>ы</string>
+              <string>Неизвестно</string>
              </property>
              <property name="textInteractionFlags">
               <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
@@ -246,7 +256,7 @@
               <enum>QFrame::Box</enum>
              </property>
              <property name="text">
-              <string>ы</string>
+              <string>Неизвестно</string>
              </property>
              <property name="textInteractionFlags">
               <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
@@ -842,6 +852,8 @@ p, li { white-space: pre-wrap; }
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources/>
+ <resources>
+  <include location="data.qrc"/>
+ </resources>
  <connections/>
 </ui>

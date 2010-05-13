@@ -10,7 +10,8 @@ FORMS = ui/mainwindow.ui \
  ui/CWdescent_fixwindow.ui \
  ui/mainwindowPass.ui \
  ui/CWdescent_md.ui \
- ui/FasterDescent.ui
+ ui/FasterDescent.ui \
+ ui/HuGi.ui
 HEADERS = src/mainwindowimpl.h \
  src/funkcio.h \
  src/mapoporfunkcioimpl.h \
@@ -23,7 +24,9 @@ HEADERS = src/mainwindowimpl.h \
  src/demonstrataqpointf.h \
  src/mainpassimpl.h \
  src/signalantoporpointf.h \
- src/CWdescent_mdImpl.h
+ src/cwdescent_mdimpl.h \
+ src/fasterdescentimpl.h \
+ src/hugiimpl.h
 SOURCES = src/mainwindowimpl.cpp \
  src/main.cpp \
  src/funkcio.cpp \
@@ -36,5 +39,7 @@ SOURCES = src/mainwindowimpl.cpp \
  src/demonstrataqpointf.cpp \
  src/mainpassimpl.cpp \
  src/signalantoporpointf.cpp \
- src/CWdescent_mdImpl.cpp
+ src/cwdescent_mdimpl.cpp \
+ src/fasterdescentimpl.cpp \
+ src/hugiimpl.cpp
 RESOURCES += ui/data.qrc
