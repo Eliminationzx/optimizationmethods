@@ -2,6 +2,8 @@
 #include <math.h>
 #include <QString>
 #include <QMessageBox>
+
+#include <QDebug>
 //
 
 void DemonstrataQPointF::setX(qreal x){
@@ -39,6 +41,13 @@ QPointF & DemonstrataQPointF::operator+=(const QPointF & point){
 
 QPointF & DemonstrataQPointF::operator-=(const QPointF & point){
 	QPointF::operator-=(point);
+	// Высылаю сигналы, если есть объект SignalojPorPointF.
+	if(sp != 0) sp->SendiSignaloj();
+	return *this;
+}
+
+QPointF & DemonstrataQPointF::operator=(const DemonstrataQPointF & point){
+	QPointF::operator=(point);
 	// Высылаю сигналы, если есть объект SignalojPorPointF.
 	if(sp != 0) sp->SendiSignaloj();
 	return *this;
