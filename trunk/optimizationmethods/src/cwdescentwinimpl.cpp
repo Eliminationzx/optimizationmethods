@@ -49,7 +49,6 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * pa
 	SignalantoPorPointF * sPX2 = new SignalantoPorPointF(&PX2, F, this);
 	connect(sPX2, SIGNAL(proviziYValoro(const QString &)), x2_step_lb, SLOT(setText(const QString &)));
 //=============================================================================
-	sMP->SendiSignaloj();
 
 //===Создаю конечный автомат.==================================================
 	QStateMachine * SM = new QStateMachine();
@@ -124,7 +123,7 @@ connect(s12, SIGNAL(entered()), SLOT(s12_entered()));
 	s12s1->setTargetState(s1);
 	s10s1Transiro * s10s1 = new s10s1Transiro(MP, NP, strikteco, this, SIGNAL((stateHasEntered)), s10);
 	s10s1->setTargetState(s1);
-//---Создаю переходы не имеющие цели. С помощью них проверяу ошибки ползоватнля-
+//---Создаю переходы не имеющие цели. С помощью них проверяю ошибки ползоватнля-
 	QSignalTransition * te1 = new QSignalTransition(calculate_bt, SIGNAL(clicked()));
 	te1->setTargetState(so);
 	QSignalTransition * te2 = new QSignalTransition(accept_bt, SIGNAL(clicked()));
@@ -226,7 +225,7 @@ void CWdescentWinImpl::sf_entered(){
   LogTxtBrsr->append(trUtf8("Конец алгоритма. Найден: %1").arg(F->rezulto(MP)));
   QMessageBox::information(this, trUtf8("Конец"), trUtf8("Найден минимум"));
 
-	qDebug()<<trUtf8("Вхожу в Финальное состояние, сложного сосояния"); // Вывожу дебажныю инфу на консоль.
+	qDebug()<<trUtf8("Вошёл в Финальное состояние, сложного сосояния"); // Вывожу дебажныю инфу на консоль.
 }
 
 void CWdescentWinImpl::s12_entered(){
@@ -235,11 +234,11 @@ void CWdescentWinImpl::s12_entered(){
 	LogTxtBrsr->append(trUtf8("  Изменена длина шагов: %1; %2.").arg(PX1.x()).arg(PX2.y()));
 	emit stateHasEntered();
 	
-	qDebug()<<trUtf8("Вхожу в s12"); // Вывожу дебажныю инфу на консоль.
+	qDebug()<<trUtf8("Вошёл в s12"); // Вывожу дебажныю инфу на консоль.
 }
 
 void CWdescentWinImpl::s11_entered(){
-	qDebug()<<trUtf8("Вхожу в s11"); // Вывожу дебажныю инфу на консоль.
+	qDebug()<<trUtf8("Вошёл в s11"); // Вывожу дебажныю инфу на консоль.
 }
 
 void CWdescentWinImpl::s10_entered(){
@@ -248,54 +247,54 @@ void CWdescentWinImpl::s10_entered(){
 	distance_lb->setText(QString::number(Length(MP - NP)));
 	emit stateHasEntered(); // Переход по этому условию произойдёт, только если выполнится его условие.
 
-	qDebug()<<trUtf8("Вхожу в s10"); // Вывожу дебажныю инфу на консоль.
+	qDebug()<<trUtf8("Вошёл в s10"); // Вывожу дебажныю инфу на консоль.
 }
 
 void CWdescentWinImpl::s9_entered(){
 	NP = MP - PX2;
 	LogTxtBrsr->append(trUtf8("  Сделан шаг в - по оси Х2. Новая точка: %1; %2").arg(NP.x()).arg(NP.y()));
 
-	qDebug()<<trUtf8("Вхожу в s9"); // Вывожу дебажныю инфу на консоль.
+	qDebug()<<trUtf8("Вошёл в s9"); // Вывожу дебажныю инфу на консоль.
 }
 
 void CWdescentWinImpl::s8_entered(){
-	qDebug()<<trUtf8("Вхожу в s8"); // Вывожу дебажныю инфу на консоль.
+	qDebug()<<trUtf8("Вошёл в s8"); // Вывожу дебажныю инфу на консоль.
 }
 
 void CWdescentWinImpl::s7_entered(){
 	NP = MP + PX2;
 	LogTxtBrsr->append(trUtf8("  Сделан шаг в + по оси Х2. Новая точка: %1; %2").arg(NP.x()).arg(NP.y()));
 
-	qDebug()<<trUtf8("Вхожу в s7"); // Вывожу дебажныю инфу на консоль.
+	qDebug()<<trUtf8("Вошёл в s7"); // Вывожу дебажныю инфу на консоль.
 }
 
 void CWdescentWinImpl::s6_entered(){
-	qDebug()<<trUtf8("Вхожу в s6"); // Вывожу дебажныю инфу на консоль.
+	qDebug()<<trUtf8("Вошёл в s6"); // Вывожу дебажныю инфу на консоль.
 }
 
 void CWdescentWinImpl::s5_entered(){
 	MP = NP;
 	LogTxtBrsr->append(trUtf8("  Принята новая текущая точка. Текущая точка: %1; %2").arg(MP.x()).arg(MP.y()));
 
-	qDebug()<<trUtf8("Вхожу в s5"); // Вывожу дебажныю инфу на консоль.
+	qDebug()<<trUtf8("Вошёл в s5"); // Вывожу дебажныю инфу на консоль.
 }
 
 void CWdescentWinImpl::s4_entered(){
 	NP = MP - PX1;
 	LogTxtBrsr->append(trUtf8("  Сделан шаг в - по оси Х1. Новая точка: %1; %2").arg(NP.x()).arg(NP.y()));
 
-	qDebug()<<trUtf8("Вхожу в s4"); // Вывожу дебажныю инфу на консоль.
+	qDebug()<<trUtf8("Вошёл в s4"); // Вывожу дебажныю инфу на консоль.
 }
 
 void CWdescentWinImpl::s3_entered(){
-	qDebug()<<trUtf8("Вхожу в s3"); // Вывожу дебажныю инфу на консоль.
+	qDebug()<<trUtf8("Вошёл в s3"); // Вывожу дебажныю инфу на консоль.
 }
 
 void CWdescentWinImpl::s2_entered(){
 	NP = MP + PX1;
 	LogTxtBrsr->append(trUtf8("  Сделан шаг в + по оси Х1. Новая точка: %1; %2").arg(NP.x()).arg(NP.y()));
 
-	qDebug()<<trUtf8("Вхожу в s2"); // Вывожу дебажныю инфу на консоль.
+	qDebug()<<trUtf8("Вошёл в s2"); // Вывожу дебажныю инфу на консоль.
 }
 
 
@@ -304,11 +303,11 @@ void CWdescentWinImpl::s1_entered(){
 	NP = BP;
 	LogTxtBrsr->append(trUtf8("Начало итерации № %1. Базовая точка: %2; %3. Текущая точка: %4; %5. Новая точка: %6; %7. Длина шагов: %8; %9.").arg(++NumeroIteracio).arg(BP.x()).arg(BP.y()).arg(MP.x()).arg(MP.y()).arg(NP.x()).arg(NP.y()).arg(PX1.x()).arg(PX2.y()));
 
-	qDebug()<<trUtf8("Вхожу в s1"); // Вывожу дебажныю инфу на консоль.
+	qDebug()<<trUtf8("Вошёл в s1"); // Вывожу дебажныю инфу на консоль.
 }
 
 void CWdescentWinImpl::so_entered(){
-	qDebug()<<trUtf8("Вхожу в s0"); // Вывожу дебажныю инфу на консоль.
+	qDebug()<<trUtf8("Вошёл в so"); // Вывожу дебажныю инфу на консоль.
 }
 
 void CWdescentWinImpl::init(){
