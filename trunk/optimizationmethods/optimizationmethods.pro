@@ -9,7 +9,8 @@ FORMS = ui/mainwindow.ui \
  ui/mapoporfunkcio.ui \
  ui/CWdescent_fixwindow.ui \
  ui/mainwindowPass.ui \
- ui/CWdescent_md.ui
+ ui/CWdescent_md.ui \
+ ui/FasterDescent.ui
 HEADERS = src/mainwindowimpl.h \
  src/funkcio.h \
  src/mapoporfunkcioimpl.h \

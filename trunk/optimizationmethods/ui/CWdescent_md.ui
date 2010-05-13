@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>CWdescentWin</class>
- <widget class="QMainWindow" name="CWdescentWin">
+ <class>CWdescent_md</class>
+ <widget class="QMainWindow" name="CWdescent_md">
   <property name="windowModality">
    <enum>Qt::ApplicationModal</enum>
   </property>
@@ -144,7 +144,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="distance_lb">
+          <widget class="QLabel" name="dx_lb">
            <property name="text">
             <string>Неопределено</string>
            </property>
@@ -154,7 +154,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="label_2">
+          <widget class="QLabel" name="df_lb">
            <property name="text">
             <string>Неопределено</string>
            </property>
@@ -196,8 +196,6 @@
         </layout>
        </item>
       </layout>
-      <zorder>label_2</zorder>
-      <zorder>precision_lb</zorder>
      </widget>
     </item>
     <item row="0" column="1">
@@ -256,14 +254,14 @@ p, li { white-space: pre-wrap; }
           <item row="0" column="0">
            <layout class="QVBoxLayout" name="verticalLayout_2">
             <item>
-             <widget class="QRadioButton" name="up_x1_rb">
+             <widget class="QRadioButton" name="min_x1_rb">
               <property name="text">
                <string>минимизация по Х1</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QRadioButton" name="down_x1_rb">
+             <widget class="QRadioButton" name="min_x2_rb">
               <property name="text">
                <string>минимизация по Х2</string>
               </property>
