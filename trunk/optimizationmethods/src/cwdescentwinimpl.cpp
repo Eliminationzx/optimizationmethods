@@ -18,9 +18,7 @@
 using namespace SinkoLauxKoordinatoj;
 
 CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * parent, Qt::WFlags flags)
-	: AlgoritmoWin(f, d, parent, flags)/*, strikteco((*d)[0]), KvantoEraroj(0),
-		NumeroIteracio(0), MP((*d)[4],(*d)[5]),
-    PX1((*d)[1], 0), PX2(0, (*d)[2])*/{
+	: AlgoritmoWin(f, d, parent, flags){
 	setupUi(this);
 	qDebug()<<trUtf8("Покоординатный спуск с фиксированным шагом"); // Вывожу дебажныю инфу на консоль.
 
@@ -333,7 +331,7 @@ namespace SinkoLauxKoordinatoj{
 	bool KonsideriPointoTransiro::eventTest(QEvent *e){
 		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
 		if(QSignalTransition::eventTest(e)){
-			qDebug()<<trUtf8("  Проверяю f(np) < f(mp) %1 %2 %3 %4").arg(mp->x()).arg(mp->y()).arg(np->x()).arg(np->y());
+			qDebug()<<trUtf8("  Проверяю f(np) < f(mp)");
 			// Проверяю своё условие.
 			return f->rezulto(*np) < f->rezulto(*mp);
 		}else{
