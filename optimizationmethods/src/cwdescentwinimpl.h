@@ -146,27 +146,6 @@ signals:
  * для покоординатного спуска с фиксированным шагом.
  */ 
 namespace SinkoLauxKoordinatoj{
-	/*! Базовый класс переходов внутри конечного автомата для покоординатного спуска.
-	 * 
-	 * Переходы различаются, только реализацией метода bool eventTest(QEvent *e).
-	 * При разборе кода можно пропустить обявления классв, см. только реализаци
-	 * eventTest в cwdescentwinimpl.cpp.
-	 */
-	class BasaTransiro: public QSignalTransition{
-		protected:
-			CWdescentWinImpl * o;
-		public:
-			BasaTransiro( QState * sourceState = 0 )
-				: QSignalTransition(sourceState){
-					o = static_cast<CWdescentWinImpl*>(this->sourceState()->parentState()->parent());
-				};
-			BasaTransiro( QObject * sender, const char * signal,
-			              QState * sourceState = 0
-			            )
-				: QSignalTransition(sender, signal, sourceState){
-					o = static_cast<CWdescentWinImpl*>(this->sourceState()->parentState()->parent());
-				};
-	};
 	/*! Переход принятия новой точки в качестве текщей.
 	 * 
 	 * Используется при переходе от s2 к s5, s4 к s5, s7 к s10, s9 к s10.
@@ -194,7 +173,7 @@ namespace SinkoLauxKoordinatoj{
 		protected:
     	bool eventTest(QEvent *e);
 	};
-	/*! Переход непринятия новой точки в качестве текщей.
+	/*! Переход непринятия новой точки в качестве текуей.
 	 * 
 	 * Используется при переходе от s2 к s3, s4 к s6, s7 к s8, s7 к s11.
 	 */
