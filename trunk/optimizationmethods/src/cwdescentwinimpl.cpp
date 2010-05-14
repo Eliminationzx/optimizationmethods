@@ -126,19 +126,19 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * pa
 	                                                //  был найден минимум.
 //---Создаю переходы не имеющие цели. С помощью них фиксирую ошибки ползователя
 	QSignalTransition * te1 = new QSignalTransition(calculate_bt, SIGNAL(clicked()));
-	te1->setTargetState(so);
+	so->addTransition(te1);
 	connect(te1, SIGNAL(triggered()), SLOT(registriEraro()));
 	QSignalTransition * te2 = new QSignalTransition(accept_bt, SIGNAL(clicked()));
-	te2->setTargetState(so);
+	so->addTransition(te2);
 	connect(te2, SIGNAL(triggered()), SLOT(registriEraro()));
 	QSignalTransition * te3 = new QSignalTransition(not_accept_bt, SIGNAL(clicked()));
-	te3->setTargetState(so);
+	so->addTransition(te3);
 	connect(te3, SIGNAL(triggered()), SLOT(registriEraro()));
 	QSignalTransition * te4 = new QSignalTransition(change_step_bt, SIGNAL(clicked()));
-	te4->setTargetState(so);
+	so->addTransition(te4);
 	connect(te4, SIGNAL(triggered()), SLOT(registriEraro()));
 	QSignalTransition * te5 = new QSignalTransition(end_bt, SIGNAL(clicked()));
-	te5->setTargetState(so);
+	so->addTransition(te5);
 	connect(te5, SIGNAL(triggered()), SLOT(registriEraro()));
 
 //---Добавляю состояния в автомат и запускаю его.------------------------------
