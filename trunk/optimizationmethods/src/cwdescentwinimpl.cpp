@@ -141,6 +141,23 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * pa
 	so->addTransition(te5);
 	connect(te5, SIGNAL(triggered()), SLOT(registriEraro()));
 
+//---Настраиваю некоторые состояния, чтоб затирали надпись со значениями новой точки, дабы не смущать пользователя.
+	s1->assignProperty(new_x1_lb, "text", trUtf8("Неопределено"));
+	s1->assignProperty(new_x2_lb, "text", trUtf8("Неопределено"));
+	s1->assignProperty(new_fsign_lb, "text", trUtf8("Неопределено"));
+	s3->assignProperty(new_x1_lb, "text", trUtf8("Неопределено"));
+	s3->assignProperty(new_x2_lb, "text", trUtf8("Неопределено"));
+	s3->assignProperty(new_fsign_lb, "text", trUtf8("Неопределено"));
+	s6->assignProperty(new_x1_lb, "text", trUtf8("Неопределено"));
+	s6->assignProperty(new_x2_lb, "text", trUtf8("Неопределено"));
+	s6->assignProperty(new_fsign_lb, "text", trUtf8("Неопределено"));
+	s8->assignProperty(new_x1_lb, "text", trUtf8("Неопределено"));
+	s8->assignProperty(new_x2_lb, "text", trUtf8("Неопределено"));
+	s8->assignProperty(new_fsign_lb, "text", trUtf8("Неопределено"));
+	s11->assignProperty(new_x1_lb, "text", trUtf8("Неопределено"));
+	s11->assignProperty(new_x2_lb, "text", trUtf8("Неопределено"));
+	s11->assignProperty(new_fsign_lb, "text", trUtf8("Неопределено"));
+
 //---Добавляю состояния в автомат и запускаю его.------------------------------
 	SM->addState(so);
 	SM->addState(sfm);
