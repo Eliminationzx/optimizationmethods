@@ -173,17 +173,17 @@ namespace SinkoLauxKoordinatoj{
 	 */
 	class KonsideriPointoTransiro: public QSignalTransition{
 		private:
-			DemonstrataQPointF mp;
-			DemonstrataQPointF np;
+			DemonstrataQPointF * mp;
+			DemonstrataQPointF * np;
 			funkcio * f;
 		public:
-			KonsideriPointoTransiro( DemonstrataQPointF & MP,
-			                         DemonstrataQPointF & NP,
+			KonsideriPointoTransiro( DemonstrataQPointF * MP,
+			                         DemonstrataQPointF * NP,
 			                         funkcio * F,
 			                         QState * sourceState = 0
 			            ) : QSignalTransition(sourceState), mp(MP), np(NP), f(F){};
-			KonsideriPointoTransiro( DemonstrataQPointF & MP,
-			                         DemonstrataQPointF & NP,
+			KonsideriPointoTransiro( DemonstrataQPointF * MP,
+			                         DemonstrataQPointF * NP,
 			                         funkcio * F,
 			                         QObject * sender,
 			                         const char * signal,
@@ -200,17 +200,17 @@ namespace SinkoLauxKoordinatoj{
 	 */
 	class NoKonsideriPointoTransiro: public QSignalTransition{
 		private:
-			DemonstrataQPointF mp;
-			DemonstrataQPointF np;
+			DemonstrataQPointF * mp;
+			DemonstrataQPointF * np;
 			funkcio * f;
 		public:
-			NoKonsideriPointoTransiro( DemonstrataQPointF & MP,
-			                           DemonstrataQPointF & NP,
+			NoKonsideriPointoTransiro( DemonstrataQPointF * MP,
+			                           DemonstrataQPointF * NP,
 			                           funkcio * F,
 			                           QState * sourceState = 0
 			            ) : QSignalTransition(sourceState), mp(MP), np(NP), f(F){};
-			NoKonsideriPointoTransiro( DemonstrataQPointF & MP,
-			                           DemonstrataQPointF & NP,
+			NoKonsideriPointoTransiro( DemonstrataQPointF * MP,
+			                           DemonstrataQPointF * NP,
 			                           funkcio * F,
 			                           QObject * sender,
 			                           const char * signal,
@@ -288,18 +288,18 @@ namespace SinkoLauxKoordinatoj{
 	//! Переход от s10 к sf.
 	class s10sfTransiro: public QSignalTransition{
 		private:
-			DemonstrataQPointF mp;
-			DemonstrataQPointF np;
+			DemonstrataQPointF * mp;
+			DemonstrataQPointF * np;
 		  qreal s;//!< Точность.
 		public:
-			s10sfTransiro( DemonstrataQPointF & MP,
-			               DemonstrataQPointF & NP,
+			s10sfTransiro( DemonstrataQPointF * MP,
+			               DemonstrataQPointF * NP,
 			               qreal strikteco,
 			               QState * sourceState = 0
 			             ) : QSignalTransition(sourceState), mp(MP), np(NP),
 			                 s(strikteco){};
-			s10sfTransiro( DemonstrataQPointF & MP,
-			               DemonstrataQPointF & NP,
+			s10sfTransiro( DemonstrataQPointF * MP,
+			               DemonstrataQPointF * NP,
 			               qreal strikteco,
 			               QObject * sender,
 			               const char * signal,
@@ -312,18 +312,18 @@ namespace SinkoLauxKoordinatoj{
 	//! Переход от s10 к s1.
 	class s10s1Transiro: public QSignalTransition{
 		private:
-			DemonstrataQPointF mp;
-			DemonstrataQPointF np;
+			DemonstrataQPointF * mp;
+			DemonstrataQPointF * np;
 		  qreal s;//!< Точность.
 		public:
-			s10s1Transiro( DemonstrataQPointF & MP,
-			               DemonstrataQPointF & NP,
+			s10s1Transiro( DemonstrataQPointF * MP,
+			               DemonstrataQPointF * NP,
 			               qreal strikteco,
 			               QState * sourceState = 0
 			             ) : QSignalTransition(sourceState), mp(MP), np(NP),
 			                 s(strikteco){};
-			s10s1Transiro( DemonstrataQPointF & MP,
-			               DemonstrataQPointF & NP,
+			s10s1Transiro( DemonstrataQPointF * MP,
+			               DemonstrataQPointF * NP,
 			               qreal strikteco,
 			               QObject * sender,
 			               const char * signal,
@@ -336,18 +336,18 @@ namespace SinkoLauxKoordinatoj{
 	//! Переход от s12 к sf.
 	class s12sfTransiro: public QSignalTransition{
 		private:
-		  DemonstrataQPointF pX1; //!< Шаг по х1.
-		  DemonstrataQPointF pX2; //!< Шаг по х2.
+		  DemonstrataQPointF * pX1; //!< Шаг по х1.
+		  DemonstrataQPointF * pX2; //!< Шаг по х2.
 		  qreal s;//!< Точность.
 		public:
-			s12sfTransiro( DemonstrataQPointF PX1,
-			               DemonstrataQPointF PX2,
+			s12sfTransiro( DemonstrataQPointF * PX1,
+			               DemonstrataQPointF * PX2,
 			               qreal strikteco,
 			               QState * sourceState = 0
 			             ) : QSignalTransition(sourceState), pX1(PX1), pX2(PX2),
 			                 s(strikteco){};
-			s12sfTransiro( DemonstrataQPointF PX1,
-			               DemonstrataQPointF PX2,
+			s12sfTransiro( DemonstrataQPointF * PX1,
+			               DemonstrataQPointF * PX2,
 			               qreal strikteco,
 			               QObject * sender,
 			               const char * signal,
@@ -360,18 +360,18 @@ namespace SinkoLauxKoordinatoj{
 	//! Переход от s12 к s1.
 	class s12s1Transiro: public QSignalTransition{
 		private:
-		  DemonstrataQPointF pX1; //!< Шаг по х1.
-		  DemonstrataQPointF pX2; //!< Шаг по х2.
+		  DemonstrataQPointF * pX1; //!< Шаг по х1.
+		  DemonstrataQPointF * pX2; //!< Шаг по х2.
 		  qreal s;//!< Точность.
 		public:
-			s12s1Transiro( DemonstrataQPointF PX1,
-			               DemonstrataQPointF PX2,
+			s12s1Transiro( DemonstrataQPointF * PX1,
+			               DemonstrataQPointF * PX2,
 			               qreal strikteco,
 			               QState * sourceState = 0
 			             ) : QSignalTransition(sourceState), pX1(PX1), pX2(PX2),
 			                 s(strikteco){};
-			s12s1Transiro( DemonstrataQPointF PX1,
-			               DemonstrataQPointF PX2,
+			s12s1Transiro( DemonstrataQPointF * PX1,
+			               DemonstrataQPointF * PX2,
 			               qreal strikteco,
 			               QObject * sender,
 			               const char * signal,
