@@ -35,7 +35,7 @@
       </property>
       <layout class="QGridLayout" name="gridLayout_6">
        <item row="0" column="0">
-        <layout class="QGridLayout" name="gridLayout_3">
+        <layout class="QGridLayout" name="gridLayout_3" columnstretch="1,1,1,1,1">
          <property name="spacing">
           <number>0</number>
          </property>
@@ -46,6 +46,9 @@
            </property>
            <property name="text">
             <string>B1</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
            </property>
            <property name="textInteractionFlags">
             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
@@ -60,6 +63,9 @@
            <property name="text">
             <string>B2</string>
            </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
            <property name="textInteractionFlags">
             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
            </property>
@@ -73,6 +79,9 @@
            <property name="text">
             <string>P</string>
            </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
            <property name="textInteractionFlags">
             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
            </property>
@@ -85,6 +94,9 @@
            </property>
            <property name="text">
             <string>New</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
            </property>
            <property name="textInteractionFlags">
             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
@@ -112,6 +124,9 @@
            <property name="text">
             <string>я</string>
            </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
            <property name="textInteractionFlags">
             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
            </property>
@@ -124,6 +139,9 @@
            </property>
            <property name="text">
             <string>Неопределено</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
            </property>
            <property name="textInteractionFlags">
             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
@@ -138,6 +156,9 @@
            <property name="text">
             <string>Неопределено</string>
            </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
            <property name="textInteractionFlags">
             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
            </property>
@@ -150,6 +171,9 @@
            </property>
            <property name="text">
             <string>Неопределено</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
            </property>
            <property name="textInteractionFlags">
             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
@@ -177,6 +201,9 @@
            <property name="text">
             <string>я</string>
            </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
            <property name="textInteractionFlags">
             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
            </property>
@@ -189,6 +216,9 @@
            </property>
            <property name="text">
             <string>Неопределено</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
            </property>
            <property name="textInteractionFlags">
             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
@@ -203,6 +233,9 @@
            <property name="text">
             <string>Неопределено</string>
            </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
            <property name="textInteractionFlags">
             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
            </property>
@@ -215,6 +248,9 @@
            </property>
            <property name="text">
             <string>Неопределено</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
            </property>
            <property name="textInteractionFlags">
             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
@@ -242,6 +278,9 @@
            <property name="text">
             <string>я</string>
            </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
            <property name="textInteractionFlags">
             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
            </property>
@@ -254,6 +293,9 @@
            </property>
            <property name="text">
             <string>Неопределено</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
            </property>
            <property name="textInteractionFlags">
             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
@@ -268,6 +310,9 @@
            <property name="text">
             <string>Неопределено</string>
            </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
            <property name="textInteractionFlags">
             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
            </property>
@@ -280,6 +325,9 @@
            </property>
            <property name="text">
             <string>Неопределено</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
            </property>
            <property name="textInteractionFlags">
             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
@@ -314,6 +362,9 @@
            <property name="text">
             <string>ы</string>
            </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
            <property name="textInteractionFlags">
             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
            </property>
@@ -347,6 +398,9 @@
            <property name="text">
             <string>ы</string>
            </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
            <property name="textInteractionFlags">
             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
            </property>
@@ -372,6 +426,9 @@
            </property>
            <property name="text">
             <string>ы</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
            </property>
            <property name="textInteractionFlags">
             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
