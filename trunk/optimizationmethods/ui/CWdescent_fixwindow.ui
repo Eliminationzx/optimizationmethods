@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1027</width>
-    <height>627</height>
+    <width>864</width>
+    <height>568</height>
    </rect>
   </property>
   <property name="font">
@@ -359,7 +359,7 @@
       <property name="checkable">
        <bool>false</bool>
       </property>
-      <layout class="QGridLayout" name="gridLayout">
+      <layout class="QGridLayout" name="gridLayout" columnstretch="1,1">
        <item row="0" column="0">
         <widget class="QPushButton" name="calculate_bt">
          <property name="toolTip">
@@ -512,7 +512,7 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1027</width>
+     <width>864</width>
      <height>23</height>
     </rect>
    </property>

@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>HuGi</class>
- <widget class="QMainWindow" name="HuGi">
+ <class>NeMi</class>
+ <widget class="QMainWindow" name="NeMi">
   <property name="windowModality">
    <enum>Qt::ApplicationModal</enum>
-  </property>
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>1035</width>
-    <height>524</height>
-   </rect>
   </property>
   <property name="font">
    <font>
@@ -20,22 +12,22 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>Метод Хука-Дживса</string>
+   <string>Метод Нелдера-Мида</string>
   </property>
   <property name="windowIcon">
    <iconset resource="data.qrc">
     <normaloff>:/icon/icon.bmp</normaloff>:/icon/icon.bmp</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout_8" columnstretch="1,1">
+   <layout class="QGridLayout" name="gridLayout_6" columnstretch="1,1">
     <item row="0" column="0">
      <widget class="QGroupBox" name="groupBox_2">
       <property name="title">
        <string>Информация о выполнении</string>
       </property>
-      <layout class="QGridLayout" name="gridLayout_6">
+      <layout class="QGridLayout" name="gridLayout_2">
        <item row="0" column="0">
-        <layout class="QGridLayout" name="gridLayout_3" columnstretch="1,1,1,1,1">
+        <layout class="QGridLayout" name="gridLayout_3" columnstretch="1,1,1,1,1,1">
          <property name="spacing">
           <number>0</number>
          </property>
@@ -45,7 +37,7 @@
             <enum>QFrame::Box</enum>
            </property>
            <property name="text">
-            <string>B1</string>
+            <string>T1</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignCenter</set>
@@ -61,7 +53,7 @@
             <enum>QFrame::Box</enum>
            </property>
            <property name="text">
-            <string>B2</string>
+            <string>T2</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignCenter</set>
@@ -77,7 +69,7 @@
             <enum>QFrame::Box</enum>
            </property>
            <property name="text">
-            <string>P</string>
+            <string>T3</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignCenter</set>
@@ -93,7 +85,23 @@
             <enum>QFrame::Box</enum>
            </property>
            <property name="text">
-            <string>New</string>
+            <string>Tотр</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+           <property name="textInteractionFlags">
+            <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="5">
+          <widget class="QLabel" name="label_15">
+           <property name="frameShape">
+            <enum>QFrame::Box</enum>
+           </property>
+           <property name="text">
+            <string>Tрас</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignCenter</set>
@@ -117,7 +125,7 @@
           </widget>
          </item>
          <item row="1" column="1">
-          <widget class="QLabel" name="x1_b1_lb">
+          <widget class="QLabel" name="x1_t1_lb">
            <property name="frameShape">
             <enum>QFrame::Box</enum>
            </property>
@@ -133,12 +141,12 @@
           </widget>
          </item>
          <item row="1" column="2">
-          <widget class="QLabel" name="x1_b2_lb">
+          <widget class="QLabel" name="x1_t2_lb">
            <property name="frameShape">
             <enum>QFrame::Box</enum>
            </property>
            <property name="text">
-            <string>Неопределено</string>
+            <string>я</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignCenter</set>
@@ -149,7 +157,23 @@
           </widget>
          </item>
          <item row="1" column="3">
-          <widget class="QLabel" name="x1_p_lb">
+          <widget class="QLabel" name="x1_t3_lb">
+           <property name="frameShape">
+            <enum>QFrame::Box</enum>
+           </property>
+           <property name="text">
+            <string>я</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+           <property name="textInteractionFlags">
+            <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="4">
+          <widget class="QLabel" name="x1_totr_lb">
            <property name="frameShape">
             <enum>QFrame::Box</enum>
            </property>
@@ -164,8 +188,8 @@
            </property>
           </widget>
          </item>
-         <item row="1" column="4">
-          <widget class="QLabel" name="x1_new_lb">
+         <item row="1" column="5">
+          <widget class="QLabel" name="x1_tras_lb">
            <property name="frameShape">
             <enum>QFrame::Box</enum>
            </property>
@@ -194,7 +218,7 @@
           </widget>
          </item>
          <item row="2" column="1">
-          <widget class="QLabel" name="x2_b1_lb">
+          <widget class="QLabel" name="x2_t1_lb">
            <property name="frameShape">
             <enum>QFrame::Box</enum>
            </property>
@@ -210,12 +234,12 @@
           </widget>
          </item>
          <item row="2" column="2">
-          <widget class="QLabel" name="x2_b2_lb">
+          <widget class="QLabel" name="x2_t2_lb">
            <property name="frameShape">
             <enum>QFrame::Box</enum>
            </property>
            <property name="text">
-            <string>Неопределено</string>
+            <string>я</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignCenter</set>
@@ -226,7 +250,23 @@
           </widget>
          </item>
          <item row="2" column="3">
-          <widget class="QLabel" name="x2_p_lb">
+          <widget class="QLabel" name="x2_t3_lb">
+           <property name="frameShape">
+            <enum>QFrame::Box</enum>
+           </property>
+           <property name="text">
+            <string>я</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+           <property name="textInteractionFlags">
+            <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="4">
+          <widget class="QLabel" name="x2_totr_lb">
            <property name="frameShape">
             <enum>QFrame::Box</enum>
            </property>
@@ -241,8 +281,8 @@
            </property>
           </widget>
          </item>
-         <item row="2" column="4">
-          <widget class="QLabel" name="x2_new_lb">
+         <item row="2" column="5">
+          <widget class="QLabel" name="x2_tras_lb">
            <property name="frameShape">
             <enum>QFrame::Box</enum>
            </property>
@@ -292,7 +332,7 @@
             <enum>QFrame::Box</enum>
            </property>
            <property name="text">
-            <string>Неопределено</string>
+            <string>я</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignCenter</set>
@@ -308,7 +348,7 @@
             <enum>QFrame::Box</enum>
            </property>
            <property name="text">
-            <string>Неопределено</string>
+            <string>я</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignCenter</set>
@@ -334,10 +374,26 @@
            </property>
           </widget>
          </item>
+         <item row="3" column="5">
+          <widget class="QLabel" name="fsign_new_lb_2">
+           <property name="frameShape">
+            <enum>QFrame::Box</enum>
+           </property>
+           <property name="text">
+            <string>Неопределено</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+           <property name="textInteractionFlags">
+            <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+           </property>
+          </widget>
+         </item>
         </layout>
        </item>
        <item row="1" column="0">
-        <layout class="QHBoxLayout" name="horizontalLayout">
+        <layout class="QHBoxLayout" name="horizontalLayout" stretch="1,1">
          <property name="spacing">
           <number>0</number>
          </property>
@@ -373,59 +429,33 @@
         </layout>
        </item>
        <item row="2" column="0">
-        <layout class="QGridLayout" name="gridLayout_2">
+        <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="1,1">
          <property name="spacing">
           <number>0</number>
          </property>
-         <item row="0" column="0">
+         <item>
           <widget class="QLabel" name="label_3">
            <property name="frameShape">
             <enum>QFrame::Box</enum>
            </property>
            <property name="text">
-            <string>Шаг по Х1</string>
+            <string>Среднее расстояние от центра тяжести до вершин:</string>
+           </property>
+           <property name="wordWrap">
+            <bool>true</bool>
            </property>
            <property name="textInteractionFlags">
             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
            </property>
           </widget>
          </item>
-         <item row="0" column="1">
+         <item>
           <widget class="QLabel" name="x1_step_lb">
            <property name="frameShape">
             <enum>QFrame::Box</enum>
            </property>
            <property name="text">
-            <string>ы</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-           <property name="textInteractionFlags">
-            <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="QLabel" name="label_7">
-           <property name="frameShape">
-            <enum>QFrame::Box</enum>
-           </property>
-           <property name="text">
-            <string>Шаг по Х2</string>
-           </property>
-           <property name="textInteractionFlags">
-            <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="1">
-          <widget class="QLabel" name="x2_step_lb">
-           <property name="frameShape">
-            <enum>QFrame::Box</enum>
-           </property>
-           <property name="text">
-            <string>ы</string>
+            <string>Неопределно</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignCenter</set>
@@ -449,26 +479,12 @@
        <bool>false</bool>
       </property>
       <layout class="QGridLayout" name="gridLayout" columnstretch="1,1">
-       <item row="0" column="0">
-        <widget class="QPushButton" name="found_bt">
-         <property name="toolTip">
-          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Times New Roman'; font-size:13pt; font-weight:600; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:400;&quot;&gt;Выполнить выбранный в правом списке шаг.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="text">
-          <string>Поиск</string>
-         </property>
-        </widget>
-       </item>
        <item row="0" column="1" rowspan="5">
         <widget class="QStackedWidget" name="stackedWidget">
          <property name="currentIndex">
-          <number>2</number>
+          <number>4</number>
          </property>
-         <widget class="QWidget" name="type_found">
+         <widget class="QWidget" name="reflexion">
           <layout class="QGridLayout" name="gridLayout_4" rowstretch="1,0">
            <item row="0" column="0">
             <widget class="QGroupBox" name="groupBox">
@@ -479,30 +495,42 @@ p, li { white-space: pre-wrap; }
               </font>
              </property>
              <property name="title">
-              <string>Тип поиска</string>
+              <string>Вершины</string>
              </property>
              <layout class="QGridLayout" name="gridLayout_5">
               <item row="0" column="0">
-               <widget class="QRadioButton" name="grad_fx">
+               <widget class="QRadioButton" name="t1_ref_rb">
                 <property name="font">
                  <font>
                   <pointsize>14</pointsize>
                  </font>
                 </property>
                 <property name="text">
-                 <string>Исследующий</string>
+                 <string>T1</string>
                 </property>
                </widget>
               </item>
               <item row="1" column="0">
-               <widget class="QRadioButton" name="agrad_fx">
+               <widget class="QRadioButton" name="t2_ref_rb">
                 <property name="font">
                  <font>
                   <pointsize>14</pointsize>
                  </font>
                 </property>
                 <property name="text">
-                 <string>По образцу</string>
+                 <string>T2</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QRadioButton" name="t3_ref_rb">
+                <property name="font">
+                 <font>
+                  <pointsize>14</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>T3</string>
                 </property>
                </widget>
               </item>
@@ -553,7 +581,7 @@ p, li { white-space: pre-wrap; }
            </item>
           </layout>
          </widget>
-         <widget class="QWidget" name="cwdescent">
+         <widget class="QWidget" name="stretching">
           <layout class="QGridLayout" name="gridLayout_7">
            <item row="0" column="0">
             <widget class="QGroupBox" name="groupBox_4">
@@ -564,54 +592,66 @@ p, li { white-space: pre-wrap; }
               </font>
              </property>
              <property name="title">
-              <string>Направление движения</string>
+              <string>Вершины</string>
              </property>
-             <layout class="QVBoxLayout" name="verticalLayout_2">
-              <item>
-               <widget class="QRadioButton" name="up_x1_rb">
+             <layout class="QGridLayout" name="gridLayout_9">
+              <item row="0" column="0">
+               <widget class="QRadioButton" name="t1_str_rb">
                 <property name="font">
                  <font>
                   <pointsize>14</pointsize>
                  </font>
                 </property>
                 <property name="text">
-                 <string>+ по Х1</string>
+                 <string>T1</string>
                 </property>
                </widget>
               </item>
-              <item>
-               <widget class="QRadioButton" name="down_x1_rb">
+              <item row="1" column="0">
+               <widget class="QRadioButton" name="t2_str_rb">
                 <property name="font">
                  <font>
                   <pointsize>14</pointsize>
                  </font>
                 </property>
                 <property name="text">
-                 <string>- по Х1</string>
+                 <string>T2</string>
                 </property>
                </widget>
               </item>
-              <item>
-               <widget class="QRadioButton" name="up_x2_rb">
+              <item row="2" column="0">
+               <widget class="QRadioButton" name="t3_str_rb">
                 <property name="font">
                  <font>
                   <pointsize>14</pointsize>
                  </font>
                 </property>
                 <property name="text">
-                 <string>+ по Х2</string>
+                 <string>T3</string>
                 </property>
                </widget>
               </item>
-              <item>
-               <widget class="QRadioButton" name="down_x2_rb">
+              <item row="3" column="0">
+               <widget class="QRadioButton" name="totr_str_rb">
                 <property name="font">
                  <font>
                   <pointsize>14</pointsize>
                  </font>
                 </property>
                 <property name="text">
-                 <string>- по Х2</string>
+                 <string>Tотр</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="0">
+               <widget class="QRadioButton" name="tras_str_rb">
+                <property name="font">
+                 <font>
+                  <pointsize>14</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Трас</string>
                 </property>
                </widget>
               </item>
@@ -662,35 +702,59 @@ p, li { white-space: pre-wrap; }
            </item>
           </layout>
          </widget>
-         <widget class="QWidget" name="result">
+         <widget class="QWidget" name="compression">
           <layout class="QGridLayout" name="gridLayout_10" rowstretch="1,0">
            <item row="0" column="0">
             <widget class="QGroupBox" name="groupBox_5">
              <property name="title">
-              <string>Принять образец</string>
+              <string>Вершины</string>
              </property>
-             <layout class="QGridLayout" name="gridLayout_9">
+             <layout class="QGridLayout" name="gridLayout_8">
               <item row="0" column="0">
-               <widget class="QRadioButton" name="ok_rb">
+               <widget class="QRadioButton" name="t1_com_rb">
                 <property name="font">
                  <font>
                   <pointsize>14</pointsize>
                  </font>
                 </property>
                 <property name="text">
-                 <string>Да</string>
+                 <string>Т1</string>
                 </property>
                </widget>
               </item>
               <item row="1" column="0">
-               <widget class="QRadioButton" name="no_rb">
+               <widget class="QRadioButton" name="t2_com_rb">
                 <property name="font">
                  <font>
                   <pointsize>14</pointsize>
                  </font>
                 </property>
                 <property name="text">
-                 <string>Нет</string>
+                 <string>Т2</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QRadioButton" name="t3_com_rb">
+                <property name="font">
+                 <font>
+                  <pointsize>14</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Т3</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QRadioButton" name="tsj_com_rb">
+                <property name="font">
+                 <font>
+                  <pointsize>14</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Тсж</string>
                 </property>
                </widget>
               </item>
@@ -741,11 +805,114 @@ p, li { white-space: pre-wrap; }
            </item>
           </layout>
          </widget>
+         <widget class="QWidget" name="reduction">
+          <layout class="QGridLayout" name="gridLayout_12" rowstretch="1,0">
+           <item row="0" column="0">
+            <widget class="QGroupBox" name="groupBox_6">
+             <property name="title">
+              <string>Вершины</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_11">
+              <item row="0" column="0">
+               <widget class="QRadioButton" name="t1_red_rb">
+                <property name="font">
+                 <font>
+                  <pointsize>14</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Т1</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QRadioButton" name="t2_red_rb">
+                <property name="font">
+                 <font>
+                  <pointsize>14</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Т2</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QRadioButton" name="t3_red_rb">
+                <property name="font">
+                 <font>
+                  <pointsize>14</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Т3</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QRadioButton" name="totr_red_rb">
+                <property name="font">
+                 <font>
+                  <pointsize>14</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Тотр</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <layout class="QHBoxLayout" name="horizontalLayout_7">
+             <item>
+              <spacer name="horizontalSpacer_7">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QPushButton" name="next4_bt">
+               <property name="font">
+                <font>
+                 <pointsize>12</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>Далее</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_8">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
          <widget class="QWidget" name="blank"/>
         </widget>
        </item>
        <item row="1" column="0">
-        <widget class="QPushButton" name="accept_bt">
+        <widget class="QPushButton" name="stretching_bt">
          <property name="toolTip">
           <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -754,12 +921,12 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:400;&quot;&gt;Установить новую точку в качестве текущей.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="text">
-          <string>Принять</string>
+          <string>Растяжение</string>
          </property>
         </widget>
        </item>
        <item row="2" column="0">
-        <widget class="QPushButton" name="not_accept_bt">
+        <widget class="QPushButton" name="compression_bt">
          <property name="toolTip">
           <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -768,12 +935,12 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:400;&quot;&gt;Отбросить новую точку и перейти к следующему шагу алгоритма.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="text">
-          <string>Не принять</string>
+          <string>Сжатие</string>
          </property>
         </widget>
        </item>
        <item row="3" column="0">
-        <widget class="QPushButton" name="change_step_bt">
+        <widget class="QPushButton" name="reduction_bt">
          <property name="toolTip">
           <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -782,7 +949,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:400;&quot;&gt;Уменьшить шаг&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="text">
-          <string>Изменить шаг</string>
+          <string>Редукция</string>
          </property>
         </widget>
        </item>
@@ -797,6 +964,20 @@ p, li { white-space: pre-wrap; }
          </property>
          <property name="text">
           <string>Закончить</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QPushButton" name="reflexion_bt">
+         <property name="toolTip">
+          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Times New Roman'; font-size:13pt; font-weight:600; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:400;&quot;&gt;Выполнить выбранный в правом списке шаг.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="text">
+          <string>Отражение</string>
          </property>
         </widget>
        </item>
@@ -819,7 +1000,7 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1035</width>
+     <width>923</width>
      <height>23</height>
     </rect>
    </property>
