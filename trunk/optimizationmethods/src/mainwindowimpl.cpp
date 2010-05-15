@@ -195,19 +195,19 @@ void MainWindowImpl::on_next_button_2_clicked()
 			AW = new CWdescentWinImpl(funck, &data, this, Qt::Window);
 			break;
 		case A::CWdescent_md:
-//			AW = new 
+//			AW = new CWdescent_mdImpl(funck, &data, this, Qt::Window);
 //			break;
 		case A::FasterDescent:
-//			AW = new 
+//			AW = new FasterDescentImpl(funck, &data, this, Qt::Window);
 //			break;
 		case A::HuGi:
-//			AW = new 
+//			AW = new HuGiImpl(funck, &data, this, Qt::Window);
 //			break;
 		case A::NeMi:
-//			AW = new 
+//			AW = new NeMiImpl(funck, &data, this, Qt::Window);
 //			break;
 		case A::NotWen:
-//			AW = new 
+//			AW = new NotWenImpl(funck, &data, this, Qt::Window);
 		QMessageBox msg(QMessageBox::Warning, trUtf8("Ошибка"), trUtf8("Алгоритм ещё не реализован"));
 		msg.exec();
 	}
