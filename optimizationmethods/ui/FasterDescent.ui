@@ -460,7 +460,7 @@ p, li { white-space: pre-wrap; }
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="lineEdit">
+                 <widget class="QLineEdit" name="dfdx1">
                   <property name="font">
                    <font>
                     <pointsize>14</pointsize>
@@ -485,7 +485,7 @@ p, li { white-space: pre-wrap; }
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="lineEdit_2">
+                 <widget class="QLineEdit" name="dfdx2">
                   <property name="font">
                    <font>
                     <pointsize>14</pointsize>
@@ -551,7 +551,7 @@ p, li { white-space: pre-wrap; }
              </property>
              <layout class="QGridLayout" name="gridLayout_9">
               <item row="0" column="0">
-               <widget class="QRadioButton" name="radioButton">
+               <widget class="QRadioButton" name="fxk_fx">
                 <property name="font">
                  <font>
                   <pointsize>14</pointsize>
@@ -563,7 +563,7 @@ p, li { white-space: pre-wrap; }
                </widget>
               </item>
               <item row="1" column="0">
-               <widget class="QRadioButton" name="radioButton_2">
+               <widget class="QRadioButton" name="xk_x">
                 <property name="font">
                  <font>
                   <pointsize>14</pointsize>
@@ -575,7 +575,7 @@ p, li { white-space: pre-wrap; }
                </widget>
               </item>
               <item row="2" column="0">
-               <widget class="QRadioButton" name="radioButton_3">
+               <widget class="QRadioButton" name="gradfx">
                 <property name="font">
                  <font>
                   <pointsize>14</pointsize>
@@ -642,7 +642,7 @@ p, li { white-space: pre-wrap; }
              </property>
              <layout class="QGridLayout" name="gridLayout_11">
               <item row="0" column="0">
-               <widget class="QRadioButton" name="radioButton_4">
+               <widget class="QRadioButton" name="two">
                 <property name="font">
                  <font>
                   <pointsize>14</pointsize>
@@ -654,7 +654,7 @@ p, li { white-space: pre-wrap; }
                </widget>
               </item>
               <item row="1" column="0">
-               <widget class="QRadioButton" name="radioButton_5">
+               <widget class="QRadioButton" name="half">
                 <property name="font">
                  <font>
                   <pointsize>14</pointsize>
@@ -666,7 +666,7 @@ p, li { white-space: pre-wrap; }
                </widget>
               </item>
               <item row="2" column="0">
-               <widget class="QRadioButton" name="radioButton_6">
+               <widget class="QRadioButton" name="maxf">
                 <property name="font">
                  <font>
                   <pointsize>14</pointsize>
@@ -678,7 +678,7 @@ p, li { white-space: pre-wrap; }
                </widget>
               </item>
               <item row="3" column="0">
-               <widget class="QRadioButton" name="radioButton_7">
+               <widget class="QRadioButton" name="minf">
                 <property name="font">
                  <font>
                   <pointsize>14</pointsize>
