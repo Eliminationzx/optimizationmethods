@@ -349,6 +349,7 @@ void CWdescentWinImpl::init(){
 	MP = QPointF((*D)[4],(*D)[5]);
 	PX1 = QPointF((*D)[1], 0);
 	PX2 = QPointF(0, (*D)[2]);
+	ModPX = (*D)[3];
 	LogTxtBrsr->setText("");
 
 	qDebug()<<trUtf8("Задаю переменным начальные значения"); // Вывожу дебажныю инфу на консоль.
