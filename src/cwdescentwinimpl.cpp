@@ -112,7 +112,7 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * pa
 	s9s11->setTargetState(s11);
 	s10->addTransition(this, SIGNAL(stateHasEntered()), s11);// Переход s10s11 совершается
 	                                                // сразу при входе в s10.
-	s11s1Transiro * s11s1 = new s11s1Transiro(&BP, &MP, strikteco, s11, SIGNAL(entered()), s11);
+	s11s1Transiro * s11s1 = new s11s1Transiro(&acpNP, &BP, &MP, strikteco, s11, SIGNAL(entered()), s11);
 	s11s1->setTargetState(s1);
 	s11s12Transiro * s11s12 = new s11s12Transiro(&acpNP, change_step_bt, SIGNAL(clicked()), s11);
 	s11s12->setTargetState(s12);
