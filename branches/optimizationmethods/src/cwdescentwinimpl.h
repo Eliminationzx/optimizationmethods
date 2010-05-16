@@ -293,21 +293,24 @@ namespace SinkoLauxKoordinatoj{
 			DemonstrataQPointF * bp;
 			DemonstrataQPointF * mp;
 			qreal s;//!< Точность.
+			bool * acpnp;
 		public:
-			s11sfTransiro( DemonstrataQPointF * BP,
+			s11sfTransiro( bool * acpNP,
+			               DemonstrataQPointF * BP,
 			               DemonstrataQPointF * MP,
 			               qreal strikteco,
 			               QState * sourceState = 0
 			             ) : QSignalTransition(sourceState), bp(BP), mp(MP),
-			                 s(strikteco){};
-			s11sfTransiro( DemonstrataQPointF * BP,
+			                 s(strikteco), acpnp(acpNP){};
+			s11sfTransiro( bool * acpNP,
+			               DemonstrataQPointF * BP,
 			               DemonstrataQPointF * MP,
 			               qreal strikteco,
 			               QObject * sender,
 			               const char * signal,
 			               QState * sourceState = 0
 			             ) : QSignalTransition(sender, signal, sourceState),
-			                 bp(BP), mp(MP), s(strikteco){};
+			                 bp(BP), mp(MP), s(strikteco), acpnp(acpNP){};
 		protected:
     	bool eventTest(QEvent *e);
 	};	
