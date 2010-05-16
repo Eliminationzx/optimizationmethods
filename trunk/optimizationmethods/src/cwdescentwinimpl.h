@@ -36,6 +36,12 @@ protected:
   DemonstrataQPointF PX2; 
   //! Модификатор шага.
   qreal ModPX;
+  /*! Флаг для проверки, была ли принята новая точка.
+	 * 
+	 * Отступаю от классического конечного автомата, что бы избежать взрыва 
+	 * состояний.
+	 */
+	 bool acpNP;
 public:
   //! Возвращает шаг по х1.
 //  DemonstrataQPointF & pX1(){ return PX1; };
@@ -199,6 +205,23 @@ namespace SinkoLauxKoordinatoj{
 		protected:
     	bool eventTest(QEvent *e);
 	};
+	//! Переход от s11 к s12.
+	class s11s12Transiro: public QSignalTransition{
+		private:
+			bool * acpnp;
+		public:
+			s11s12Transiro( bool * acpNP, QState * sourceState = 0)
+				: QSignalTransition(sourceState), acpnp(acpNP){};
+			s11s12Transiro( bool * acpNP,
+			              QObject * sender,
+			              const char * signal,
+			              QState * sourceState = 0
+			            )
+				: QSignalTransition(sender, signal, sourceState), acpnp(acpNP){};
+		protected:
+			//! Перход срабатывает, только если выбран шаг в + по Х1 
+    	bool eventTest(QEvent *e);
+	};	
 	//! Переход от s1 к s2.
 	class s1s2Transiro: public QSignalTransition{
 		private:
