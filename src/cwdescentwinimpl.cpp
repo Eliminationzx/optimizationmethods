@@ -159,6 +159,7 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * pa
 	s11->assignProperty(new_x1_lb, "text", trUtf8("Неопределено"));
 	s11->assignProperty(new_x2_lb, "text", trUtf8("Неопределено"));
 	s11->assignProperty(new_fsign_lb, "text", trUtf8("Неопределено"));
+	s1->assignProperty(distance_lb, "text", trUtf8("Неопределено"));
 
 //---Добавляю состояния в автомат и запускаю его.------------------------------
 	SM->addState(so);
@@ -261,7 +262,10 @@ void CWdescentWinImpl::s12_entered(){
 }
 
 void CWdescentWinImpl::s11_entered(){
-	distance_lb->setText(QString::number(Length(BP - MP), 'f'));
+	// Вывожу на форму значение расстояния между предыдущей базовой точкой и
+	// текущей, только если была принята новая точка. Здесь отступление от
+	// классического конечного автомата, но переделывать весь код долго.
+	if(acpNP) distance_lb->setText(QString::number(Length(BP - MP), 'f'));
 
 	qDebug()<<trUtf8("Вошёл в s11"); // Вывожу дебажныю инфу на консоль.
 }
