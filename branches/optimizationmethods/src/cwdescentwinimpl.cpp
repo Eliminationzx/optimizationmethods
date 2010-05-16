@@ -464,9 +464,9 @@ namespace SinkoLauxKoordinatoj{
 	bool s11s12Transiro::eventTest(QEvent *e){
 		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
 		if(QSignalTransition::eventTest(e)){
-			qDebug()<<trUtf8("  Проверяю, что не была принята новая точка ");
+			qDebug()<<trUtf8("  Проверяю, что не была принята новая точка %1").arg((int)*acpnp);
 			// Проверяю своё условие.
-			return !acpnp;
+			return !*acpnp;
 		}else{
 			return false;
 		}
