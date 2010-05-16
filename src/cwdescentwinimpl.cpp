@@ -449,7 +449,7 @@ namespace SinkoLauxKoordinatoj{
 		if(QSignalTransition::eventTest(e)){
 			qDebug()<<trUtf8("  Проверяю pX1 < e && pX2 < e");
 			// Проверяю своё условие.
-			return pX1->x() < s && pX2->x() < s;
+			return pX1->x() < s && pX2->y() < s;
 		}else{
 			return false;
 		}
@@ -460,7 +460,7 @@ namespace SinkoLauxKoordinatoj{
 		if(QSignalTransition::eventTest(e)){
 			qDebug()<<trUtf8("  Проверяю pX1 >= e || pX2 >= e");
 			// Проверяю своё условие.
-			return pX1->x() >= s || pX2->x() >= s;
+			return pX1->x() >= s || pX2->y() >= s;
 		}else{
 			return false;
 		}
