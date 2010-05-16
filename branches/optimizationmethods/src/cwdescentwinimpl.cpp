@@ -261,6 +261,8 @@ void CWdescentWinImpl::s12_entered(){
 }
 
 void CWdescentWinImpl::s11_entered(){
+	distance_lb->setText(QString::number(Length(BP - MP), 'f'));
+
 	qDebug()<<trUtf8("Вошёл в s11"); // Вывожу дебажныю инфу на консоль.
 }
 
@@ -268,8 +270,6 @@ void CWdescentWinImpl::s10_entered(){
 	MP = NP;
 	acpNP = true;
 	LogTxtBrsr->append(trUtf8("  Принята новая текущая точка. Текущая точка: %1; %2").arg(MP.x()).arg(MP.y()));
-	distance_lb->setText(QString::number(Length(BP - MP)));
-
 	qDebug()<<trUtf8("Вошёл в s10"); // Вывожу дебажныю инфу на консоль.
 
 	emit stateHasEntered(); // Переход по этому сигналу произойдёт, только если выполнится его условие.
