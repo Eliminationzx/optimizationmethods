@@ -291,23 +291,23 @@ namespace SinkoLauxKoordinatoj{
 	class s10sfTransiro: public QSignalTransition{
 		private:
 			DemonstrataQPointF * mp;
-			DemonstrataQPointF * np;
+			DemonstrataQPointF * bp;
 		  qreal s;//!< Точность.
 		public:
-			s10sfTransiro( DemonstrataQPointF * MP,
-			               DemonstrataQPointF * NP,
+			s10sfTransiro( DemonstrataQPointF * BP,
+			               DemonstrataQPointF * MP,
 			               qreal strikteco,
 			               QState * sourceState = 0
-			             ) : QSignalTransition(sourceState), mp(MP), np(NP),
+			             ) : QSignalTransition(sourceState), bp(BP), mp(MP),
 			                 s(strikteco){};
-			s10sfTransiro( DemonstrataQPointF * MP,
-			               DemonstrataQPointF * NP,
+			s10sfTransiro( DemonstrataQPointF * BP,
+			               DemonstrataQPointF * MP,
 			               qreal strikteco,
 			               QObject * sender,
 			               const char * signal,
 			               QState * sourceState = 0
 			             ) : QSignalTransition(sender, signal, sourceState),
-			                 mp(MP), np(NP), s(strikteco){};
+			                 bp(BP), mp(MP), s(strikteco){};
 		protected:
     	bool eventTest(QEvent *e);
 	};	
@@ -315,23 +315,23 @@ namespace SinkoLauxKoordinatoj{
 	class s10s1Transiro: public QSignalTransition{
 		private:
 			DemonstrataQPointF * mp;
-			DemonstrataQPointF * np;
+			DemonstrataQPointF * bp;
 		  qreal s;//!< Точность.
 		public:
-			s10s1Transiro( DemonstrataQPointF * MP,
-			               DemonstrataQPointF * NP,
+			s10s1Transiro( DemonstrataQPointF * BP,
+			               DemonstrataQPointF * MP,
 			               qreal strikteco,
 			               QState * sourceState = 0
-			             ) : QSignalTransition(sourceState), mp(MP), np(NP),
+			             ) : QSignalTransition(sourceState), bp(BP), mp(MP),
 			                 s(strikteco){};
-			s10s1Transiro( DemonstrataQPointF * MP,
-			               DemonstrataQPointF * NP,
+			s10s1Transiro( DemonstrataQPointF * BP,
+			               DemonstrataQPointF * MP,
 			               qreal strikteco,
 			               QObject * sender,
 			               const char * signal,
 			               QState * sourceState = 0
 			             ) : QSignalTransition(sender, signal, sourceState),
-			                 mp(MP), np(NP), s(strikteco){};
+			                 bp(BP), mp(MP), s(strikteco){};
 		protected:
     	bool eventTest(QEvent *e);
 	};	
