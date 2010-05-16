@@ -116,7 +116,7 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * pa
 	s11s1->setTargetState(s1);
 	s11s12Transiro * s11s12 = new s11s12Transiro(&acpNP, change_step_bt, SIGNAL(clicked()), s11);
 	s11s12->setTargetState(s12);
-	s11sfTransiro * s11sf = new s11sfTransiro(&PX1, &PX2, strikteco, end_bt, SIGNAL(clicked()), s11);
+	s11sfTransiro * s11sf = new s11sfTransiro(&acpNP, &PX1, &PX2, strikteco, end_bt, SIGNAL(clicked()), s11);
 	s11sf->setTargetState(sf);
 	s12sfTransiro * s12sf = new s12sfTransiro(&PX1, &PX2, strikteco, end_bt, SIGNAL(clicked()), s12);
 	s12sf->setTargetState(sf);
@@ -420,9 +420,9 @@ namespace SinkoLauxKoordinatoj{
 	bool s11sfTransiro::eventTest(QEvent *e){
 		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
 		if(QSignalTransition::eventTest(e)){
-			qDebug()<<trUtf8("  Проверяю |bp - mp| < e");
+			qDebug()<<trUtf8("  Проверяю |bp - mp| < e && БылаПринятаНТ");
 			// Проверяю своё условие.
-			return Length(*bp - *mp) < s;
+			return Length(*bp - *mp) < s && *acpnp;
 		}else{
 			return false;
 		}
