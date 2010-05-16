@@ -11,16 +11,16 @@ SignalantoPorPointF::SignalantoPorPointF( DemonstrataQPointF * P, funkcio * F, Q
 void SignalantoPorPointF::SendiSignaloj(){
   if(p != 0){
 		emit proviziValoro(*p);
-	  emit proviziValoro(trUtf8("%1; %2").arg(QString::number(p->x())).arg(QString::number(p->y())));
+	  emit proviziValoro(trUtf8("%1; %2").arg(QString::number(p->x(), 'f')).arg(QString::number(p->y(), 'f')));
 	  emit proviziXValoro(p->toPoint().x());
 	  emit proviziXValoro(p->x());
-	  emit proviziXValoro(QString::number(p->x()));
+	  emit proviziXValoro(QString::number(p->x(), 'f'));
 	  emit proviziYValoro(p->y());
 	  emit proviziYValoro(p->y());
-	  emit proviziYValoro(QString::number(p->y()));
+	  emit proviziYValoro(QString::number(p->y(), 'f'));
 	  if(f != 0){
 		  emit proviziValoroFukcioEnPointo(f->rezulto(*p));
-		  emit proviziValoroFukcioEnPointo(QString::number(f->rezulto(*p)));
+		  emit proviziValoroFukcioEnPointo(QString::number(f->rezulto(*p), 'f'));
 	  }
   }
 }
