@@ -15,6 +15,7 @@ using namespace std;
 class MapoPorFunkcioImpl : public QWidget, public Ui::MapoPorFunkcio
 {
 Q_OBJECT
+Q_PROPERTY(qreal skalo READ Scale WRITE setScale)
 private:
 	//! Целевая функция.
 	const funkcio * F;
@@ -36,6 +37,8 @@ public:
 	 * @see spuro, spuroSinkoLauxKoordinatoj.
 	 */
 	const spuro * proviziSpuro() const;
+	//! Возвращает множитель масштабирования.
+	qreal Scale() const;
 public slots:
 	/*! Устанавливает масштаб.
 	 * 
