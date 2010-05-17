@@ -66,6 +66,9 @@ spuro * MapoPorFunkcioImpl::proviziSpuro() const{
 
 
 void MapoPorFunkcioImpl::setScale(qreal factor){
-  s->setScale(factor);
-  // Масштаб бля следа установит сцена.
+	// Перед изменением масштаба сцены, установлю его для следа.
+	// В ScenoPorMapo::setScale изменить масштаб "следа" не возможно из-зи
+	// проблем с приведением типа.
+	Spuro->setScale(factor);
+	s->setScale(factor);
 }
