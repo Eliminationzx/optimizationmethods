@@ -6,6 +6,9 @@ MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WFlags f)
 {
 	setupUi(this);
 	
+	methFunc[0] = 0;
+	methFunc[1] = 0;
+	
 	stackedWidget->setCurrentIndex(0);
 	
 	QVariant var;
@@ -123,16 +126,16 @@ void MainWindowImpl::openTakeQuadFun(int flag)
 void MainWindowImpl::on_next_button_clicked()
 {
 	// TODO
-	methFunc.append(choiceMethods->currentIndex());
+	methFunc[0] = choiceMethods->currentIndex();
 	if(quadFunction->isChecked())
 	{
-		methFunc.append(0);
+		methFunc[1] = 0;
 		
 		stackedWidget->setCurrentIndex(1);
 	}
 	else if(ravinFunction->isChecked())
 	{
-		methFunc.append(1);
+		methFunc[1] = 1;
 		
 		c->setVisible(false);
 		d->setVisible(false);
@@ -148,6 +151,7 @@ void MainWindowImpl::on_next_button_clicked()
 		stackedWidget->setCurrentIndex(1);
 	}
 	
+	choiceVar->setChecked(true);
 	initializationComboBox(methFunc[1]);
 
 	on_comboBox_activated(0);
@@ -188,15 +192,15 @@ void MainWindowImpl::on_next_button_2_clicked()
 		
 		funck = new RavinaFunkcio(koef);
 	}
-	
+
 	switch(methFunc[0])
 	{
 		case A::CWdescent_fix:
 			AW = new CWdescentWinImpl(funck, &data, this, Qt::Window);
 			break;
 		case A::CWdescent_md:
-//			AW = new CWdescent_mdImpl(funck, &data, this, Qt::Window);
-//			break;
+			AW = new CWdescent_mdImpl(funck, &data, this, Qt::Window);
+			break;
 		case A::FasterDescent:
 //			AW = new FasterDescentImpl(funck, &data, this, Qt::Window);
 //			break;
@@ -222,6 +226,7 @@ void MainWindowImpl::on_next_button_2_clicked()
 void MainWindowImpl::on_back_button_clicked()
 {
 	// TODO
+	comboBox->clear();
 	stackedWidget->setCurrentIndex(0);
 }
 
@@ -232,7 +237,7 @@ void MainWindowImpl::on_comboBox_activated(int index)
 	if(methFunc[1] == 0)
 	{
 		QVector<double> data(13);
-		data = ReadVariants(methFunc[0], index);
+		data = ReadVariants(methFunc[1], index);
 		a->setText(QString::number(data[0]));
 		b->setText(QString::number(data[1]));
 		c->setText(QString::number(data[2]));
@@ -251,7 +256,7 @@ void MainWindowImpl::on_comboBox_activated(int index)
 	else if(methFunc[1] == 1)
 	{
 		QVector<double> data(8);
-		data = ReadVariants(methFunc[0], index);
+		data = ReadVariants(methFunc[1], index);
 		a->setText(QString::number(data[0]));
 		b->setText(QString::number(data[1]));
 		accuracy->setText(QString::number(data[2]));
