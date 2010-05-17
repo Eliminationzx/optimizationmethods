@@ -16,41 +16,43 @@ class MapoPorFunkcioImpl : public QWidget, public Ui::MapoPorFunkcio
 {
 Q_OBJECT
 private:
-  //! Целевая функция.
-  funkcio * F;
-  //! Сцена
-  ScenoPorMapo *s;
-  //! "След"
-  spuro * Spuro;
+	//! Целевая функция.
+	funkcio * F;
+	//! Сцена
+	ScenoPorMapo *s;
+	//! "След"
+	spuro * Spuro;
 public:
-  MapoPorFunkcioImpl( funkcio * Funkcio, //!< Указатель на целевую функцию. ScenoPorMapo не заботится о назначении Funkcio родителя.
-                      QWidget * parent = 0, //!< Родитель.
-                      Qt::WFlags f = 0 //!< Флаги параметров окна.
-                    );
-  MapoPorFunkcioImpl( QWidget * parent = 0, //!< Родитель.
-                      Qt::WFlags f = 0 //!< Флаги параметров окна.
-                    );
-  //! Возвращает указатель на "след" прохождения алгоритма.
-  /*! "Следы" разных алгоритмов имеют разные слоты.
-   * @see spuro, spuroSinkoLauxKoordinatoj.
-   */
-  spuro * proviziSpuro();
+	MapoPorFunkcioImpl( funkcio * Funkcio, //!< Указатель на целевую функцию. ScenoPorMapo не заботится о назначении Funkcio родителя.
+	                    QWidget * parent = 0, //!< Родитель.
+	                    Qt::WFlags f = 0 //!< Флаги параметров окна.
+	                  );
+	MapoPorFunkcioImpl( QWidget * parent = 0, //!< Родитель.
+	                    Qt::WFlags f = 0 //!< Флаги параметров окна.
+	                  );
+	/*! Возвращает указатель на "след" прохождения алгоритма.
+	 * 
+	 * "Следы" разных алгоритмов имеют разные слоты.
+	 * @see spuro, spuroSinkoLauxKoordinatoj.
+	 */
+	spuro * proviziSpuro() const;
 public slots:
-  //! Устанавливает масштаб.
-  /*! @param factor Множитель масштабирования. factor = 1 - масштаб 1:1.
-   */
-  void setScale(qreal factor);
-  //! Устанавливает целевую функцию.
-  void difiniFunkcio(funkcio * f);
-  //! Создает на сцене "след" алгоритма.
-  void kreiSpuro(
-                 int IdAlgoritmo, //!< Порядковый номер алгоритма(см. A).
-                 QColor bazaKoloro //!< Основной цвет "следа".
-                );
+	/*! Устанавливает масштаб.
+	 * 
+	 * @param factor Множитель масштабирования. factor = 1 - масштаб 1:1.
+	 */
+	void setScale(qreal factor);
+	//! Устанавливает целевую функцию.
+	void difiniFunkcio(funkcio * f);
+	//! Создает на сцене "след" алгоритма.
+	void kreiSpuro(
+	               int IdAlgoritmo, //!< Порядковый номер алгоритма(см. A).
+	               QColor bazaKoloro //!< Основной цвет "следа".
+	              );
 private slots:
-  //! Увеличить масштаб.
+	//! Увеличить масштаб.
 	void on_PligrandigiBtn_clicked();
-  //! Уменьшить масштаб.
+	//! Уменьшить масштаб.
 	void on_MalpliigiBtn_clicked();
 };
 #endif
