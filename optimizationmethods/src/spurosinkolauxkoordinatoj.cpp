@@ -67,3 +67,12 @@ QPolygonF spuroSinkoLauxKoordinatoj::aplikiScalo(QPolygonF p)
   return rez;
 }
 
+
+void spuroSinkoLauxKoordinatoj::difiniBazaKoloro(QColor c){
+	BazaKoloro = c;
+}
+
+
+void spuroSinkoLauxKoordinatoj::difiniMomentaKoloro(QColor c){
+	MomentaKoloro = c;
+}
