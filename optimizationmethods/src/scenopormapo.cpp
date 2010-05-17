@@ -6,8 +6,6 @@
 #include "spuro.h"
 #include <limits>
 #include <QGraphicsItem>
-#include <QString>
-#include <QMessageBox>
 //
 ScenoPorMapo::ScenoPorMapo( funkcio * Funkcio, QObject * parent)
 	: QGraphicsScene(parent), F(Funkcio), skalo(1){}
@@ -23,7 +21,6 @@ void ScenoPorMapo::drawBackground(QPainter * painter, const QRectF & rect){
   QColor koloro(Qt::red);
   qreal h, s, v;
   koloro.getHsvF(&h, &s, &v);
-//  QMessageBox msg(QMessageBox::Information, trUtf8("ÃÂ¦ÃÂ²ÃÂµÃÂ"), QString::number(v));
   QRect r(rect.toRect());
   double min = F->rezulto(F->minPoint(0.1));
   // Перебираю видимую область и каждую точку заполняю цветом в соответствии
@@ -64,7 +61,6 @@ qreal ScenoPorMapo::scale() const{
 
 void ScenoPorMapo::mouseMoveEvent(QGraphicsSceneMouseEvent * mouseEvent)
 {
-//  mouseEvent->scenePos()
   QGraphicsScene::mouseMoveEvent ( mouseEvent );// Вызываю реализацию по умолчанию.
 }
 
