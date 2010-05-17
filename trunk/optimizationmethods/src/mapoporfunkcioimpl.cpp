@@ -25,13 +25,11 @@ MapoPorFunkcioImpl::MapoPorFunkcioImpl( QWidget * parent, Qt::WFlags f){
 //
 
 
-void MapoPorFunkcioImpl::on_PligrandigiBtn_clicked()
-{
+void MapoPorFunkcioImpl::on_PligrandigiBtn_clicked(){
   s->setScale((s->scale() * 1.1));
 }
 
-void MapoPorFunkcioImpl::on_MalpliigiBtn_clicked()
-{
+void MapoPorFunkcioImpl::on_MalpliigiBtn_clicked(){
   s->setScale((s->scale() * 0.9));
 }
 
@@ -41,20 +39,28 @@ void MapoPorFunkcioImpl::difiniFunkcio(funkcio * f){
 }
 
 void MapoPorFunkcioImpl::kreiSpuro(int IdAlgoritmo, QColor bazaKoloro){
-  // Создаю "след" в соответствии с указаным алгоритмом.
-  switch(IdAlgoritmo){
-    case A::CWdescent_fix :{
-      Spuro = new spuroSinkoLauxKoordinatoj(Qt::white, bazaKoloro);
-      break;
-    }
-  }
-  Spuro->setScale(s->scale());// Назначаю корректный масштаб вновь созданному "следу".
-  s->addItem(Spuro);
-  
+	// Создаю "след" в соответствии с указаным алгоритмом.
+	switch(IdAlgoritmo){
+		case A::CWdescent_fix : {
+			Spuro = new spuroSinkoLauxKoordinatoj(Qt::white, bazaKoloro);
+			break;
+		}case A::CWdescent_md : {
+			break;
+		}case A::FasterDescent : {
+			break;
+		}case A::HuGi : {
+			break;
+		}case A::NeMi : {
+			break;
+		}case A::NotWen : {
+			break;
+		}
+	}
+	Spuro->setScale(s->scale());// Назначаю корректный масштаб вновь созданному "следу".
+	s->addItem(Spuro);
 }
 
-spuro * MapoPorFunkcioImpl::proviziSpuro()
-{
+spuro * MapoPorFunkcioImpl::proviziSpuro() const{
   return Spuro;
 }
 
