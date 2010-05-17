@@ -9,7 +9,7 @@
 #include <QString>
 #include <QMessageBox>
 //
-MapoPorFunkcioImpl::MapoPorFunkcioImpl( funkcio * Funkcio, QWidget * parent, Qt::WFlags f) 
+MapoPorFunkcioImpl::MapoPorFunkcioImpl( const funkcio * Funkcio, QWidget * parent, Qt::WFlags f) 
 	: QWidget(parent, f), F(Funkcio){
   setupUi(this);
   s = new ScenoPorMapo(F, parent);
@@ -60,7 +60,7 @@ void MapoPorFunkcioImpl::kreiSpuro(int IdAlgoritmo, QColor bazaKoloro){
 	s->addItem(Spuro);
 }
 
-spuro * MapoPorFunkcioImpl::proviziSpuro() const{
+const spuro * MapoPorFunkcioImpl::proviziSpuro() const{
   return Spuro;
 }
 

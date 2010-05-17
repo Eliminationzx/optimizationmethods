@@ -11,21 +11,21 @@ class ScenoPorMapo : public QGraphicsScene
 Q_OBJECT
 private:
 	//! Целевая функция.
-	funkcio *F;
+	const funkcio *F;
 	//! Коэффициент масштаба.
 	qreal skalo;
 public:
 	//! Возвращает масштаб.
 	qreal scale() const;
 	
-	ScenoPorMapo( funkcio * Funkcio, //!< Указатель на целевую функцию. ScenoPorMapo не заботится о назначении Funkcio родителя.
+	ScenoPorMapo( const funkcio * Funkcio, //!< Указатель на целевую функцию. ScenoPorMapo не заботится о назначении Funkcio родителя.
 	              QObject * parent = 0 //!< Родитель.
 	            );
-	ScenoPorMapo( funkcio * Funkcio, //!< Указатель на целевую функцию. ScenoPorMapo не заботится о назначении Funkcio родителя.
+	ScenoPorMapo( const funkcio * Funkcio, //!< Указатель на целевую функцию. ScenoPorMapo не заботится о назначении Funkcio родителя.
 	              const QRectF & sceneRect, //!< Область сцены.
 	              QObject * parent = 0 //!< Родитель.
 	            );
-	ScenoPorMapo( funkcio * Funkcio, //!< Указатель на целевую функцию. ScenoPorMapo не заботится о назначении Funkcio родителя.
+	ScenoPorMapo( const funkcio * Funkcio, //!< Указатель на целевую функцию. ScenoPorMapo не заботится о назначении Funkcio родителя.
 	              qreal x, //!< Горизонтальная координата левого верхнего угла сцены.
 	              qreal y, //!< Вертиктальная координата левого верхнего угла сцены.
 	              qreal width, //!< Ширина сцены.

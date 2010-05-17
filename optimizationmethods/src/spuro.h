@@ -27,12 +27,12 @@ public:
    */
   void setScale(qreal factor);
   //! Возвращает порядковый номер алгоритма.
-  inline int proviziIdAlgoritmo(){ return IDAlgoritmo; };
-  //! Возвращает значение основного цвета.
-  /*! @see A.
+  inline int proviziIdAlgoritmo() const { return IDAlgoritmo; };
+  /*! Возвращает значение основного цвета.
    * 
+   * @see A.
    */
-  inline QColor proviziBazaKoloro(){ return BazaKoloro; };
+  inline QColor proviziBazaKoloro() const { return BazaKoloro; };
   
   spuro(int IdAlgoritmo, //!< Порядковый номер алгоритма(см. A).
         QColor bazaKoloro, //!< Основной цвет "следа".
