@@ -43,25 +43,14 @@ protected:
 	 */
 	 bool acpNP;
 public:
-  //! Возвращает шаг по х1.
-//  DemonstrataQPointF & pX1(){ return PX1; };
-  //! Возвращает шаг по х1.
-//  DemonstrataQPointF & pX2(){ return PX2; }; 
-  //! Возвращает точность.
-//  qreal & Strikteco(){ return strikteco; };
-	//! Возвращает указатель на целевую функцию.
-//  funkcio * f(){ return F; }; 
-  //! Возвращает базовую точка итерации.
-//  DemonstrataQPointF & bp(){ return BP; };
-  //! Возвращает текущую базовая точка.
-//  DemonstrataQPointF & mp(){ return MP; };
-  //! Возвращает новую точка.
-//  DemonstrataQPointF & np(){ return NP; };
-	CWdescentWinImpl( funkcio *f, //!< Указатель на целевую функцию. CWdescentWinImpl не заботится о назначении Funkcio родителя.
-                    QVector<double> *d, //!< Массив с данными задания.
-                    QWidget * parent = 0, //!< Родитель.
-                    Qt::WFlags flags = 0 //!< Флаги параметров окна.
-                  );
+	/*! Конструктор.
+	 * @param f Указатель на целевую функцию. CWdescentWinImpl не заботится о назначении Funkcio родителя.
+	 * @param d Массив с данными задания.Структура: 0 - точность; 1 - шаг по оси х1; 2 - шаг по оси х2; 3 - коэффициент изменения шага; 4 - х1; 5 - х2; 6 - максимальное количество ошибок.
+	 * @param parent Родитель.
+	 * @param flags Флаги параметров окна.
+	 */
+	CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * parent = 0,
+                    Qt::WFlags flags = 0 );
 private slots:
 	/*! "Обнуление" переменных.
 	 * 
@@ -150,11 +139,16 @@ signals:
 
 /*! В этом пространстве имён содержаться классы относящиеся к конечному автомату
  * для покоординатного спуска с фиксированным шагом.
+ * 
+ * Объявления наследников QSignalTransition можно не смотреть. Важна только
+ * реализация метода eventTest, радикоторой и переопрделяю классы.
  */ 
 namespace SinkoLauxKoordinatoj{
 	/*! Переход принятия новой точки в качестве текщей.
 	 * 
 	 * Используется при переходе от s2 к s5, s4 к s5, s7 к s10, s9 к s10.
+	 * При создании требует указатели на переменные необходимые для принятия
+	 * решения о переходе.
 	 */
 	class KonsideriPointoTransiro: public QSignalTransition{
 		private:
@@ -181,7 +175,9 @@ namespace SinkoLauxKoordinatoj{
 	};
 	/*! Переход непринятия новой точки в качестве текуей.
 	 * 
-	 * Используется при переходе от s2 к s3, s4 к s6, s7 к s8, s7 к s11.
+	 * Используется при переходе от s2 к s3, s4 к s6, s7 к s8, s9 к s11.
+	 * При создании требует указатели на переменные необходимые для принятия
+	 * решения о переходе.
 	 */
 	class NoKonsideriPointoTransiro: public QSignalTransition{
 		private:
@@ -205,7 +201,11 @@ namespace SinkoLauxKoordinatoj{
 		protected:
     	bool eventTest(QEvent *e);
 	};
-	//! Переход от s11 к s12.
+	/*! Переход от s11 к s12.
+	 * 
+	 * При создании требует указатели на переменные необходимые для принятия
+	 * решения о переходе.
+	 */
 	class s11s12Transiro: public QSignalTransition{
 		private:
 			bool * acpnp;
@@ -222,7 +222,11 @@ namespace SinkoLauxKoordinatoj{
 			//! Перход срабатывает, только если выбран шаг в + по Х1 
     	bool eventTest(QEvent *e);
 	};	
-	//! Переход от s1 к s2.
+	/*! Переход от s1 к s2.
+	 * 
+	 * При создании требует указатели на переменные необходимые для принятия
+	 * решения о переходе.
+	 */
 	class s1s2Transiro: public QSignalTransition{
 		private:
 			QRadioButton * up_x1;
@@ -239,7 +243,11 @@ namespace SinkoLauxKoordinatoj{
 			//! Перход срабатывает, только если выбран шаг в + по Х1 
     	bool eventTest(QEvent *e);
 	};	
-	//! Переход от s3 к s4.
+	/*! Переход от s3 к s4.
+	 * 
+	 * При создании требует указатели на переменные необходимые для принятия
+	 * решения о переходе.
+	 */
 	class s3s4Transiro: public QSignalTransition{
 		private:
 			QRadioButton * down_x1;
@@ -255,7 +263,11 @@ namespace SinkoLauxKoordinatoj{
 		protected:
     	bool eventTest(QEvent *e);
 	};	
-	//! Переход от s5 к s7.
+	/*! Переход от s5 к s7.
+	 * 
+	 * При создании требует указатели на переменные необходимые для принятия
+	 * решения о переходе.
+	 */
 	class s5s7_s6s7Transiro: public QSignalTransition{
 		private:
 			QRadioButton * up_x2;
@@ -271,7 +283,11 @@ namespace SinkoLauxKoordinatoj{
 		protected:
     	bool eventTest(QEvent *e);
 	};	
-	//! Переход от s8 к s9.
+	/*! Переход от s8 к s9.
+	 * 
+	 * При создании требует указатели на переменные необходимые для принятия
+	 * решения о переходе.
+	 */
 	class s8s9Transiro: public QSignalTransition{
 		private:
 			QRadioButton * down_x2;
@@ -287,7 +303,11 @@ namespace SinkoLauxKoordinatoj{
 		protected:
     	bool eventTest(QEvent *e);
 	};	
-	//! Переход от s10 к sf.
+	/*! Переход от s11 к sf.
+	 * 
+	 * При создании требует указатели на переменные необходимые для принятия
+	 * решения о переходе.
+	 */
 	class s11sfTransiro: public QSignalTransition{
 		private:
 			DemonstrataQPointF * bp;
@@ -314,7 +334,11 @@ namespace SinkoLauxKoordinatoj{
 		protected:
     	bool eventTest(QEvent *e);
 	};	
-	//! Переход от s10 к s1.
+	/*! Переход от s11 к s1.
+	 * 
+	 * При создании требует указатели на переменные необходимые для принятия
+	 * решения о переходе.
+	 */
 	class s11s1Transiro: public QSignalTransition{
 		private:
 			DemonstrataQPointF * bp;
@@ -341,7 +365,11 @@ namespace SinkoLauxKoordinatoj{
 		protected:
     	bool eventTest(QEvent *e);
 	};	
-	//! Переход от s12 к sf.
+	/*! Переход от s12 к sf.
+	 * 
+	 * При создании требует указатели на переменные необходимые для принятия
+	 * решения о переходе.
+	 */
 	class s12sfTransiro: public QSignalTransition{
 		private:
 		  DemonstrataQPointF * pX1; //!< Шаг по х1.
@@ -365,7 +393,11 @@ namespace SinkoLauxKoordinatoj{
 		protected:
     	bool eventTest(QEvent *e);
 	};	
-	//! Переход от s12 к s1.
+	/*! Переход от s12 к s1.
+	 * 
+	 * При создании требует указатели на переменные необходимые для принятия
+	 * решения о переходе.
+	 */
 	class s12s1Transiro: public QSignalTransition{
 		private:
 		  DemonstrataQPointF * pX1; //!< Шаг по х1.
@@ -397,7 +429,9 @@ namespace SinkoLauxKoordinatoj{
  *
  * @image html "CWdescentFix.png" "Блок-схема"
  * 
- * Операции алгоритма повторяются циклически, пока не значение не приблизится к минимуму на заданную точность.
+ * Операции алгоритма повторяются циклически, пока значение не приблизится к
+ * минимуму на заданную точность.
+ * 
  * Каждая итерация содержит следующие шаги:
  *
  * 1) Изменяем x1 в положительную сторону на значение h1.
@@ -426,33 +460,31 @@ namespace SinkoLauxKoordinatoj{
  *
  * Реализация:
  * 
- * Работа программы идёт не линейно - разные этапы итерации разнесены в разные подпрограммы.
+ * Реализовано в виде конечного автомата. См. обзор "Каркас конечного автомата"
+ * в документации Qt.
+ * 
+ * Код написан согласно диаграмме состояний.
  *
- * Имеется флаг состояния - FlagEtapo, хранящий номер этапа итерации. При каждом действии пользователя провепяется соответствие его действия проходимому этапу.
+ * @image html "CWdescentFixStateMchine.png" "Покоординатный спуск"
  *
- * 1 - нажата calculate_bt и выбрана up_x1_rb
+ * тт - текущая точка.
+ * нт - новая точка.
+ * бт - базовая точка; в ней сохраняется значение тт в начале итерации. Это
+ * позволяет вычислить расстояние на которое сместилась тт за итерацию.
  * 
- * 2 - нажата accept_bt или not_accept_bt
+ * Состояния алгоритма заключены в сложное состояние. Дочернии состояния
+ * наследуют переходы родителя, но переходы назначенные непосредственно
+ * состоянию имеют приоритет перед унаследованными. so имеет переходы без цели.
+ * Они не изменяют состояние, а только высылают сигнал. По этому сигналу
+ * регистрирую ошибку пользователя.
  * 
- * 3 - нажата calculate_bt и выбрана down_x1_rb
+ * Перед запуском автомата задаю переменным начальные значения.
+ * См. init(). Использую этот слот и при переходе вызванным действием
+ * "Начать заново".
  * 
- * 4 - нажата accept_bt или not_accept_bt
+ * Применяю DemonstrataQPointF для BP, MP, NP, pX1, pX2. В конструкторе окна
+ * соединяю их с надписями и картой, а затем использую как обычные QPointF, не
+ * заботясь об отображении.
  * 
- * 5 - нажата calculate_bt и выбрана up_x2_rb
- * 
- * 6 - нажата accept_bt или not_accept_bt
- * 
- * 7 - нажата calculate_bt и выбрана down_x2_rb
- * 
- * 8 - нажата accept_bt или not_accept_bt
- * 
- * 9 - нажата change_step_bt
- * 
- * 10 - Этот этап выполняется в accept_bt сразу после обработки этапов 2,4,6,8.
- * 
- * 11 - нажата end_bt
- *
- * При не соответствии выдаётся ошибка. При соответствии выполияется действие и переход на следующий этап согласно алгоритму.
- * 
- * @author Александр Белоконь, Василий Почкаенко.
+ * @author Василий Почкаенко.
  */
