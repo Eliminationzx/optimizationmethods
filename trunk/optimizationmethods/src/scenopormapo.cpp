@@ -7,11 +7,11 @@
 #include <limits>
 #include <QGraphicsItem>
 //
-ScenoPorMapo::ScenoPorMapo( funkcio * Funkcio, QObject * parent)
+ScenoPorMapo::ScenoPorMapo( const funkcio * Funkcio, QObject * parent)
 	: QGraphicsScene(parent), F(Funkcio), skalo(1){}
-ScenoPorMapo::ScenoPorMapo( funkcio * Funkcio, const QRectF & sceneRect, QObject * parent)
+ScenoPorMapo::ScenoPorMapo( const funkcio * Funkcio, const QRectF & sceneRect, QObject * parent)
 	: QGraphicsScene(sceneRect, parent), F(Funkcio), skalo(1){}
-ScenoPorMapo::ScenoPorMapo( funkcio * Funkcio, qreal x, qreal y, qreal width, qreal height, QObject * parent)
+ScenoPorMapo::ScenoPorMapo( const funkcio * Funkcio, qreal x, qreal y, qreal width, qreal height, QObject * parent)
 	: QGraphicsScene(x, y, width, height, parent), F(Funkcio), skalo(1){}
 //
 

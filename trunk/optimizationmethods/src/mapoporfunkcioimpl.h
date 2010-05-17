@@ -17,13 +17,13 @@ class MapoPorFunkcioImpl : public QWidget, public Ui::MapoPorFunkcio
 Q_OBJECT
 private:
 	//! Целевая функция.
-	funkcio * F;
+	const funkcio * F;
 	//! Сцена
 	ScenoPorMapo *s;
 	//! "След"
 	spuro * Spuro;
 public:
-	MapoPorFunkcioImpl( funkcio * Funkcio, //!< Указатель на целевую функцию. ScenoPorMapo не заботится о назначении Funkcio родителя.
+	MapoPorFunkcioImpl( const funkcio * Funkcio, //!< Указатель на целевую функцию. ScenoPorMapo не заботится о назначении Funkcio родителя.
 	                    QWidget * parent = 0, //!< Родитель.
 	                    Qt::WFlags f = 0 //!< Флаги параметров окна.
 	                  );
@@ -35,7 +35,7 @@ public:
 	 * "Следы" разных алгоритмов имеют разные слоты.
 	 * @see spuro, spuroSinkoLauxKoordinatoj.
 	 */
-	spuro * proviziSpuro() const;
+	const spuro * proviziSpuro() const;
 public slots:
 	/*! Устанавливает масштаб.
 	 * 
