@@ -288,50 +288,56 @@ namespace SinkoLauxKoordinatoj{
     	bool eventTest(QEvent *e);
 	};	
 	//! Переход от s10 к sf.
-	class s10sfTransiro: public QSignalTransition{
+	class s11sfTransiro: public QSignalTransition{
 		private:
-			DemonstrataQPointF * mp;
 			DemonstrataQPointF * bp;
-		  qreal s;//!< Точность.
+			DemonstrataQPointF * mp;
+			qreal s;//!< Точность.
+			bool * acpnp;
 		public:
-			s10sfTransiro( DemonstrataQPointF * BP,
+			s11sfTransiro( bool * acpNP,
+			               DemonstrataQPointF * BP,
 			               DemonstrataQPointF * MP,
 			               qreal strikteco,
 			               QState * sourceState = 0
 			             ) : QSignalTransition(sourceState), bp(BP), mp(MP),
-			                 s(strikteco){};
-			s10sfTransiro( DemonstrataQPointF * BP,
+			                 s(strikteco), acpnp(acpNP){};
+			s11sfTransiro( bool * acpNP,
+			               DemonstrataQPointF * BP,
 			               DemonstrataQPointF * MP,
 			               qreal strikteco,
 			               QObject * sender,
 			               const char * signal,
 			               QState * sourceState = 0
 			             ) : QSignalTransition(sender, signal, sourceState),
-			                 bp(BP), mp(MP), s(strikteco){};
+			                 bp(BP), mp(MP), s(strikteco), acpnp(acpNP){};
 		protected:
     	bool eventTest(QEvent *e);
 	};	
 	//! Переход от s10 к s1.
-	class s10s1Transiro: public QSignalTransition{
+	class s11s1Transiro: public QSignalTransition{
 		private:
-			DemonstrataQPointF * mp;
 			DemonstrataQPointF * bp;
-		  qreal s;//!< Точность.
+			DemonstrataQPointF * mp;
+			qreal s;//!< Точность.
+			bool * acpnp;
 		public:
-			s10s1Transiro( DemonstrataQPointF * BP,
+			s11s1Transiro( bool * acpNP,
+			               DemonstrataQPointF * BP,
 			               DemonstrataQPointF * MP,
 			               qreal strikteco,
 			               QState * sourceState = 0
 			             ) : QSignalTransition(sourceState), bp(BP), mp(MP),
-			                 s(strikteco){};
-			s10s1Transiro( DemonstrataQPointF * BP,
+			                 s(strikteco), acpnp(acpNP){};
+			s11s1Transiro( bool * acpNP,
+			               DemonstrataQPointF * BP,
 			               DemonstrataQPointF * MP,
 			               qreal strikteco,
 			               QObject * sender,
 			               const char * signal,
 			               QState * sourceState = 0
 			             ) : QSignalTransition(sender, signal, sourceState),
-			                 bp(BP), mp(MP), s(strikteco){};
+			                 bp(BP), mp(MP), s(strikteco), acpnp(acpNP){};
 		protected:
     	bool eventTest(QEvent *e);
 	};	
