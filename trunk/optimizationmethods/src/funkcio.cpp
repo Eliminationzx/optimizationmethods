@@ -3,7 +3,7 @@
 //! Реализация методов класса-родитекля для целевых функций.
 
   //! Возвращает длину шага для оптимизации функции одной переменной.
-  double funkcio::lengthOfStep(const QVector<double> X, const double e)
+  double funkcio::lengthOfStep(const QVector<double> X, const double e) const
   {
     // Найдя антиградиент, мы ввели новую ось, вдоль которой теперь надо найти
     // минимум. Текущая точка (х1;х2) соответствует 0 на новой оси.
@@ -36,7 +36,7 @@
  	return (a + b)/2;
   }
   //! Возвращает точку минимума функции.
-  QVector<double> funkcio::minPoint(const double e)
+  QVector<double> funkcio::minPoint(const double e) const
   {
     QVector<double> X(2);
     X[0] = 2; X[1] = 2;
