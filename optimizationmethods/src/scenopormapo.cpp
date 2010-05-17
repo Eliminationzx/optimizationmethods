@@ -42,14 +42,19 @@ void ScenoPorMapo::drawBackground(QPainter * painter, const QRectF & rect){
 
 
 void ScenoPorMapo::setScale(qreal factor ){
-  skalo = factor;
-  //Устанавливаю масштаб для "следа".
-  if(items().count() > 0){
-    ((spuro*)(items()[0]))->setScale(factor);
-  }  
-  using namespace std;
-  update(-numeric_limits<int>::max()/2, -numeric_limits<int>::max()/2,
-         numeric_limits<int>::max(), numeric_limits<int>::max());
+	skalo = factor;
+	// Для следа изменить масштаб не удасться из-за приведения типов. Есменяю
+	// его масштаб в MapoPorFunkcioImpl.
+//	//Устанавливаю масштаб для "следа".
+//	for(int i = 0; i < items().count(); ++i){//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//		
+//	}
+//	if(items().count() > 0){
+//	  ((spuro*)(items()[0]))->setScale(factor);
+//	}  
+	using namespace std;
+	update(-numeric_limits<int>::max()/2, -numeric_limits<int>::max()/2,
+	       numeric_limits<int>::max(), numeric_limits<int>::max());
 }
 
 
