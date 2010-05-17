@@ -110,12 +110,14 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * pa
 	s9s10->setTargetState(s10);
 	NoKonsideriPointoTransiro * s9s11 = new NoKonsideriPointoTransiro(&MP, &NP, F, not_accept_bt, SIGNAL(clicked()), s9);
 	s9s11->setTargetState(s11);
-	s10sfTransiro * s10sf = new s10sfTransiro(&BP, &MP, strikteco, end_bt, SIGNAL(clicked()), s10);
-	s10sf->setTargetState(sf);
-	s10s1Transiro * s10s1 = new s10s1Transiro(&BP, &MP, strikteco, this, SIGNAL(stateHasEntered()), s10);
-	s10s1->setTargetState(s1);
+	s10->addTransition(this, SIGNAL(stateHasEntered()), s11);// Переход s10s11 совершается
+	                                                // сразу при входе в s10.
+	s11s1Transiro * s11s1 = new s11s1Transiro(&acpNP, &BP, &MP, strikteco, s11, SIGNAL(entered()), s11);
+	s11s1->setTargetState(s1);
 	s11s12Transiro * s11s12 = new s11s12Transiro(&acpNP, change_step_bt, SIGNAL(clicked()), s11);
 	s11s12->setTargetState(s12);
+	s11sfTransiro * s11sf = new s11sfTransiro(&acpNP, &PX1, &PX2, strikteco, end_bt, SIGNAL(clicked()), s11);
+	s11sf->setTargetState(sf);
 	s12sfTransiro * s12sf = new s12sfTransiro(&PX1, &PX2, strikteco, end_bt, SIGNAL(clicked()), s12);
 	s12sf->setTargetState(sf);
 	s12s1Transiro * s12s1 = new s12s1Transiro(&PX1, &PX2, strikteco, this, SIGNAL(stateHasEntered()), s12);
@@ -157,6 +159,11 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * pa
 	s11->assignProperty(new_x1_lb, "text", trUtf8("Неопределено"));
 	s11->assignProperty(new_x2_lb, "text", trUtf8("Неопределено"));
 	s11->assignProperty(new_fsign_lb, "text", trUtf8("Неопределено"));
+	s12->assignProperty(distance_lb, "text", trUtf8("Неопределено"));
+//---Настраиваю выделение цветом растояния между точками.
+	s11->assignProperty(distance_lb, "palette", QPalette(Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red));
+	s1->assignProperty(distance_lb, "palette", this->palette());
+
 
 //---Добавляю состояния в автомат и запускаю его.------------------------------
 	SM->addState(so);
@@ -259,14 +266,18 @@ void CWdescentWinImpl::s12_entered(){
 }
 
 void CWdescentWinImpl::s11_entered(){
+	// Вывожу на форму значение расстояния между предыдущей базовой точкой и
+	// текущей, только если была принята новая точка. Здесь отступление от
+	// классического конечного автомата, но переделывать весь код долго.
+	if(acpNP) distance_lb->setText(QString::number(Length(BP - MP), 'f'));
+	
 	qDebug()<<trUtf8("Вошёл в s11"); // Вывожу дебажныю инфу на консоль.
 }
 
 void CWdescentWinImpl::s10_entered(){
 	MP = NP;
+	acpNP = true;
 	LogTxtBrsr->append(trUtf8("  Принята новая текущая точка. Текущая точка: %1; %2").arg(MP.x()).arg(MP.y()));
-	distance_lb->setText(QString::number(Length(BP - MP)));
-
 	qDebug()<<trUtf8("Вошёл в s10"); // Вывожу дебажныю инфу на консоль.
 
 	emit stateHasEntered(); // Переход по этому сигналу произойдёт, только если выполнится его условие.
@@ -342,6 +353,7 @@ void CWdescentWinImpl::init(){
 	MP = QPointF((*D)[4],(*D)[5]);
 	PX1 = QPointF((*D)[1], 0);
 	PX2 = QPointF(0, (*D)[2]);
+	ModPX = (*D)[3];
 	LogTxtBrsr->setText("");
 
 	qDebug()<<trUtf8("Задаю переменным начальные значения"); // Вывожу дебажныю инфу на консоль.
@@ -414,21 +426,21 @@ namespace SinkoLauxKoordinatoj{
 		}
 	}
 
-	bool s10sfTransiro::eventTest(QEvent *e){
+	bool s11sfTransiro::eventTest(QEvent *e){
 		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
 		if(QSignalTransition::eventTest(e)){
-			qDebug()<<trUtf8("  Проверяю |bp - mp| < e");
+			qDebug()<<trUtf8("  Проверяю |bp - mp| < e && БылаПринятаНТ");
 			// Проверяю своё условие.
-			return Length(*bp - *mp) < s;
+			return Length(*bp - *mp) < s && *acpnp;
 		}else{
 			return false;
 		}
 	}
 
-	bool s10s1Transiro::eventTest(QEvent *e){
+	bool s11s1Transiro::eventTest(QEvent *e){
 		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
 		if(QSignalTransition::eventTest(e)){
-			qDebug()<<trUtf8("  Проверяю |bp - mp| >= e %1 %2").arg(Length(*bp - *mp)).arg(s);
+			qDebug()<<trUtf8("  Проверяю |bp - mp| >= e");
 			// Проверяю своё условие.
 			return Length(*bp - *mp) >= s;
 		}else{
@@ -441,7 +453,7 @@ namespace SinkoLauxKoordinatoj{
 		if(QSignalTransition::eventTest(e)){
 			qDebug()<<trUtf8("  Проверяю pX1 < e && pX2 < e");
 			// Проверяю своё условие.
-			return pX1->x() < s && pX2->x() < s;
+			return pX1->x() < s && pX2->y() < s;
 		}else{
 			return false;
 		}
@@ -452,7 +464,7 @@ namespace SinkoLauxKoordinatoj{
 		if(QSignalTransition::eventTest(e)){
 			qDebug()<<trUtf8("  Проверяю pX1 >= e || pX2 >= e");
 			// Проверяю своё условие.
-			return pX1->x() >= s || pX2->x() >= s;
+			return pX1->x() >= s || pX2->y() >= s;
 		}else{
 			return false;
 		}
@@ -461,9 +473,9 @@ namespace SinkoLauxKoordinatoj{
 	bool s11s12Transiro::eventTest(QEvent *e){
 		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
 		if(QSignalTransition::eventTest(e)){
-			qDebug()<<trUtf8("  Проверяю, что не была принята новая точка ");
+			qDebug()<<trUtf8("  Проверяю, что не была принята новая точка %1").arg((int)*acpnp);
 			// Проверяю своё условие.
-			return !acpnp;
+			return !*acpnp;
 		}else{
 			return false;
 		}
