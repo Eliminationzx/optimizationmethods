@@ -72,3 +72,8 @@ void MapoPorFunkcioImpl::setScale(qreal factor){
 	Spuro->setScale(factor);
 	s->setScale(factor);
 }
+
+
+qreal MapoPorFunkcioImpl::Scale() const {
+	return s->scale();
+}
