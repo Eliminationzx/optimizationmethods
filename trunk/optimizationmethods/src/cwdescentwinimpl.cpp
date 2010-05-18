@@ -33,6 +33,8 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * pa
 	Sp = new spuroSinkoLauxKoordinatoj(Qt::white, Qt::blue);
 	MapoWdg->difiniSpuro(Sp);
 
+	connect(MapoWdg, SIGNAL(MusaPos(const QString &)), statusBar(), SLOT(showMessage( const QString &)));
+
 //===Соединяю точки и надписи на форме=========================================
 	SignalantoPorPointF * sMP = new SignalantoPorPointF(&MP, F, this);
 	connect(sMP, SIGNAL(proviziXValoro(const QString &)), x1_lb, SLOT(setText(const QString &)));
