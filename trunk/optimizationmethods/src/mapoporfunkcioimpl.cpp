@@ -24,22 +24,24 @@ MapoPorFunkcioImpl::MapoPorFunkcioImpl( const funkcio * Funkcio, QWidget * paren
 	connect(s, SIGNAL(MusaPos(const QString &)), SIGNAL(MusaPos(const QString &)));
 }
 MapoPorFunkcioImpl::MapoPorFunkcioImpl( QWidget * parent, Qt::WFlags f){
-  MapoPorFunkcioImpl(new KvadratigantoFunkcio(0,0,0,0,0,0,0,parent), parent, f);
+	MapoPorFunkcioImpl(new KvadratigantoFunkcio(0,0,0,0,0,0,0,parent), parent, f);
 }
 //
 
 
 void MapoPorFunkcioImpl::on_PligrandigiBtn_clicked(){
-  s->setScale((s->scale() * 1.1));
+	s->setScale((s->scale() * 1.1));
+	Spuro->setScale((s->scale() * 1.1));
 }
 
 void MapoPorFunkcioImpl::on_MalpliigiBtn_clicked(){
-  s->setScale((s->scale() * 0.9));
+	s->setScale((s->scale() * 0.9));
+	Spuro->setScale((s->scale() * 0.9));
 }
 
 
 void MapoPorFunkcioImpl::difiniFunkcio(funkcio * f){
-  F = f;
+	F = f;
 }
 
 /*void MapoPorFunkcioImpl::kreiSpuro(int IdAlgoritmo, QColor bazaKoloro){
@@ -65,7 +67,7 @@ void MapoPorFunkcioImpl::difiniFunkcio(funkcio * f){
 }*/
 
 const spuro * MapoPorFunkcioImpl::proviziSpuro() const{
-  return Spuro;
+	return Spuro;
 }
 
 
