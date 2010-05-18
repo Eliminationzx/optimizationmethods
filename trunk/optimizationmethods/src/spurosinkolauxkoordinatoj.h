@@ -13,12 +13,9 @@ private:
 	//! Точки прошедших итераций.
 	QPolygonF Vosto;
 	//! Точки текущей итерации.
-	QPolygonF MomentaPointioj;
-	/*! Базовая точка текущей итерации.
-	 * 
-	 * Вокруг неё ведётся поиск.
-	 */
-	QPointF MomentaPointio;
+	QPolygonF MomentaPointoj;
+	//! Текущая точка.
+	QPointF MomentaPointo;
 protected:
 	//! Применяет масштаб к полигонам.
 	virtual QPolygonF aplikiScalo(QPolygonF p);
@@ -46,7 +43,7 @@ public slots:
 	void difiniUnuaPointo( qreal x, qreal y );
 	/*! Завершить итерацию.
 	 * 
-	 * Делает последнюю точку из MomentaPointioj основной точкой текущей итерации.
+	 * Делает последнюю точку из MomentaPointoj основной точкой текущей итерации.
 	 * Переносит точки завершаемой итерации в "хвост".
 	 * Заменяет список точек текущей итерации на вновь полученную основную точку текущей итерации.
 	 */
@@ -55,10 +52,14 @@ public slots:
 	void reveniAlMomentoPointo();
 	//! Добавить точку поиска.
 	void aldoniSercxantaPointo(QPointF);
+	//! Установить текущую точку.
+	void difiniMomentaPointo(QPointF);
 	//! Установить базовый цвет.
 	void difiniBazaKoloro(QColor bazaKoloro);
 	//! Установить текущий цвет.
 	void difiniMomentaKoloro(QColor momentaKoloro);
+	//! Очищает "хвост".
+	void senspurigi();
 };
 #endif
 
@@ -70,7 +71,7 @@ public slots:
  *
  * Сразу же после создания "следа" необходимо задать начальную точку. Для этого используется слот void difiniUnuaPointo( QPointF p ).
  *
- * В классе создана основная точка итерации - MomentaPointio. Это точка вокруг которой ведётся поиск. Для каждой итерации эта точка должна быть обновлена.
+ * В классе создана основная точка итерации - MomentaPointo. Это точка вокруг которой ведётся поиск. Для каждой итерации эта точка должна быть обновлена.
  *
  * Чтобы добавить точку поиска воспользуйтесь слотом void aldoniSercxantaPointo(QPointF). Если точка поиска не оказалась меньше основной точки итерации, то вызовите слот void reveniAlMomentoPointo(). Не забывайте возвращаться назад.
  *

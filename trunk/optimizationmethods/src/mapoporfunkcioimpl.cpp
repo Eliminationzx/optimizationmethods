@@ -84,7 +84,9 @@ qreal MapoPorFunkcioImpl::Scale() const {
 
 
 void MapoPorFunkcioImpl::difiniSpuro(spuro * S){
+	s->removeItem(Spuro);
 	delete Spuro;
 	Spuro = S;
 	Spuro->setScale(s->scale());
+	s->addItem(Spuro);
 }
