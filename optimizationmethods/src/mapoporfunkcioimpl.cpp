@@ -94,7 +94,7 @@ void MapoPorFunkcioImpl::difiniSpuro(spuro * S){
 }
 
 
-void MapoPorFunkcioImpl::difiniFonaKoloro(QColor & k){
+void MapoPorFunkcioImpl::difiniFonaKoloro(QColor k){
 	s->difiniKoloro(k);
 }
 
