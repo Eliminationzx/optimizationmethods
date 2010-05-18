@@ -16,6 +16,7 @@ class MapoPorFunkcioImpl : public QWidget, public Ui::MapoPorFunkcio
 {
 Q_OBJECT
 Q_PROPERTY(qreal skalo READ Scale WRITE setScale)
+Q_PROPERTY(QColor fonaKoloro READ fonaKoloro WRITE difiniFonaKoloro)
 private:
 	//! Целевая функция.
 	const funkcio * F;
@@ -24,6 +25,9 @@ private:
 	//! "След"
 	spuro * Spuro;
 public:
+	//! Возвращает цвет карты.
+	QColor fonaKoloro() const;
+	
 	MapoPorFunkcioImpl( const funkcio * Funkcio, //!< Указатель на целевую функцию. ScenoPorMapo не заботится о назначении Funkcio родителя.
 	                    QWidget * parent = 0, //!< Родитель.
 	                    Qt::WFlags f = 0 //!< Флаги параметров окна.
@@ -40,6 +44,8 @@ public:
 	//! Возвращает множитель масштабирования.
 	qreal Scale() const;
 public slots:
+	//! Устанавливает цвет карты.
+	void difiniFonaKoloro(QColor &);
 	/*! Устанавливает масштаб.
 	 * 
 	 * @param factor Множитель масштабирования. factor = 1 - масштаб 1:1.

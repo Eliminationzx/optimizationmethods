@@ -10,36 +10,36 @@
 #include <QDebug>
 //
 ScenoPorMapo::ScenoPorMapo( const funkcio * Funkcio, QObject * parent)
-	: QGraphicsScene(parent), F(Funkcio), skalo(1){}
+	: QGraphicsScene(parent), F(Funkcio), skalo(1), koloro(Qt::red){}
 ScenoPorMapo::ScenoPorMapo( const funkcio * Funkcio, const QRectF & sceneRect, QObject * parent)
-	: QGraphicsScene(sceneRect, parent), F(Funkcio), skalo(1){}
+	: QGraphicsScene(sceneRect, parent), F(Funkcio), skalo(1), koloro(Qt::red){}
 ScenoPorMapo::ScenoPorMapo( const funkcio * Funkcio, qreal x, qreal y, qreal width, qreal height, QObject * parent)
-	: QGraphicsScene(x, y, width, height, parent), F(Funkcio), skalo(1){}
+	: QGraphicsScene(x, y, width, height, parent), F(Funkcio), skalo(1),
+		koloro(Qt::red){}
 //
 
 
 void ScenoPorMapo::drawBackground(QPainter * painter, const QRectF & rect){
 //  painter->setRenderHint(QPainter::SmoothPixmapTransform, true);
-  QColor koloro(Qt::red);
-  qreal h, s, v;
-  koloro.getHsvF(&h, &s, &v);
-  QRect r(rect.toRect());
-  double min = F->rezulto(F->minPoint(0.1));
-  // Перебираю видимую область и каждую точку заполняю цветом в соответствии
-  // со значением целевой функции.
-  for(int i = r.x(); i <= r.right(); ++i){
-    for(int j = r.y(); j <= r.bottom(); ++j){
-      v = (F->rezulto(i / skalo, j / skalo)-min)/100000;
-      if(v > 1){
-        v = 1;
-      }else if(v < 0){
-        v = 0;
-      }
-      koloro.setHsvF(h, s, v);
-      painter->setPen(koloro);
-      painter->drawPoint(i, j);
-    }
-  }
+	qreal h, s, v;
+	koloro.getHsvF(&h, &s, &v);
+	QRect r(rect.toRect());
+	double min = F->rezulto(F->minPoint(0.1));
+	// Перебираю видимую область и каждую точку заполняю цветом в соответствии
+	// со значением целевой функции.
+	for(int i = r.x(); i <= r.right(); ++i){
+		for(int j = r.y(); j <= r.bottom(); ++j){
+			v = (F->rezulto(i / skalo, j / skalo)-min)/100000;
+			if(v > 1){
+				v = 1;
+			}else if(v < 0){
+				v = 0;
+			}
+			koloro.setHsvF(h, s, v);
+			painter->setPen(koloro);
+			painter->drawPoint(i, j);
+		}
+	}
 }
 
 
@@ -73,3 +73,7 @@ void ScenoPorMapo::mouseMoveEvent(QGraphicsSceneMouseEvent * mE)
 	QGraphicsScene::mouseMoveEvent ( mE );// Вызываю реализацию по умолчанию.
 }
 
+
+void ScenoPorMapo::difiniKoloro(QColor & k){
+	koloro = k;
+}
