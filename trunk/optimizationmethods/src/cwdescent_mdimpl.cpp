@@ -102,10 +102,10 @@ CWdescent_mdImpl::CWdescent_mdImpl(funkcio *f, QVector<double> *d, QWidget * par
 //! Возвращает длину шага для оптимизации функции одной переменной по оси Х1.
 DemonstrataQPointF CWdescent_mdImpl::LengthOfStepX1(const DemonstrataQPointF X)
 {
-	double y = arg(X.y());
+	double y = X.y();
 
 	// Начальная точка соотвествует координате текущей точки.
-	double a = arg(X.x());
+	double a = X.x();
 
 	// b надо взять такое, что бы в разрезе по выбраной оси функция имела форму чашки. 
 	double b = a + 100;
@@ -153,10 +153,10 @@ DemonstrataQPointF CWdescent_mdImpl::LengthOfStepX1(const DemonstrataQPointF X)
 //! Возвращает длину шага для оптимизации функции одной переменной по оси Х2.
 DemonstrataQPointF CWdescent_mdImpl::LengthOfStepX2(const DemonstrataQPointF X)
 {
-	double x = arg(X.x());
+	double x = X.x();
 
 	// Начальная точка соотвествует координате текущей точки.
-	double a = arg(X.y());
+	double a = X.y();
 	
 	// b надо взять такое, что бы в разрезе по выбраной оси функция имела форму чашки. 
 	double b = a + 100;
