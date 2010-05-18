@@ -84,8 +84,11 @@ void spuroSinkoLauxKoordinatoj::difiniMomentaPointo(QPointF p){
 
 
 void spuroSinkoLauxKoordinatoj::senspurigi(){
+	prepareGeometryChange ();
+//	QRectF r = boundingRect();
 	MomentaPointoj.clear();
 //	QPointF p = Vosto.first();
 	Vosto.clear();
 //	difiniUnuaPointo(p);
+//	update(r);// Планирую перерисовку.
 }
