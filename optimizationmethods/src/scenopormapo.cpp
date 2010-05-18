@@ -7,6 +7,7 @@
 #include <limits>
 #include <QGraphicsItem>
 #include <QGraphicsSceneMouseEvent>
+#include <QDebug>
 //
 ScenoPorMapo::ScenoPorMapo( const funkcio * Funkcio, QObject * parent)
 	: QGraphicsScene(parent), F(Funkcio), skalo(1){}
@@ -67,6 +68,7 @@ qreal ScenoPorMapo::scale() const{
 
 void ScenoPorMapo::mouseMoveEvent(QGraphicsSceneMouseEvent * mE)
 {
+	qDebug()<<trUtf8("%1; %2").arg(mE->pos().x()).arg(mE->pos().y());
 	emit MusaPos(trUtf8("%1; %2").arg(mE->pos().x()).arg(mE->pos().y()));
 	QGraphicsScene::mouseMoveEvent ( mE );// Вызываю реализацию по умолчанию.
 }
