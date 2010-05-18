@@ -48,6 +48,9 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * pa
 	connect(sPX1, SIGNAL(proviziXValoro(const QString &)), x1_step_lb, SLOT(setText(const QString &)));
 	SignalantoPorPointF * sPX2 = new SignalantoPorPointF(&PX2, F, this);
 	connect(sPX2, SIGNAL(proviziYValoro(const QString &)), x2_step_lb, SLOT(setText(const QString &)));
+//===Соединяю точки и карту====================================================
+//	proviziValoro   (  const QPointF &    )
+//	connect(sMP, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(reveniAlMomentoPointo()));
 //=============================================================================
 
 //===Создаю конечный автомат.==================================================
@@ -442,9 +445,9 @@ namespace SinkoLauxKoordinatoj{
 	bool s11s1Transiro::eventTest(QEvent *e){
 		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
 		if(QSignalTransition::eventTest(e)){
-			qDebug()<<trUtf8("  Проверяю |bp - mp| >= e");
+			qDebug()<<trUtf8("  Проверяю |bp - mp| >= e && БылаПринятаНТ");
 			// Проверяю своё условие.
-			return Length(*bp - *mp) >= s;
+			return Length(*bp - *mp) >= s && *acpnp;
 		}else{
 			return false;
 		}
@@ -475,7 +478,7 @@ namespace SinkoLauxKoordinatoj{
 	bool s11s12Transiro::eventTest(QEvent *e){
 		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
 		if(QSignalTransition::eventTest(e)){
-			qDebug()<<trUtf8("  Проверяю, что не была принята новая точка %1").arg((int)*acpnp);
+			qDebug()<<trUtf8("  Проверяю, что не была принята новая точка ");
 			// Проверяю своё условие.
 			return !*acpnp;
 		}else{
