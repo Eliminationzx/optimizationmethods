@@ -221,24 +221,20 @@ void CWdescent_mdImpl::sf_entered()
 
 void CWdescent_mdImpl::s4_entered()
 {
-	// Вывожу на форму значение расстояния между предыдущей базовой точкой и
-	// текущей, а также разность между предыдущим значением функции и текущим. 
-	dx_lb->setText(QString::number(Length(BP - MP), 'f'));
-	df_lb->setText(QString::number(F->rezulto(BP) - F->rezulto(MP), 'f'));
-	
 	qDebug()<<trUtf8("Вошёл в s4"); // Вывожу дебажную инфу на консоль.
 }
 
 void CWdescent_mdImpl::s3_entered()
 {
+	BP = MP;
+	
+	MP = LengthOfStepX2(MP);
+
 	// Вывожу на форму значение расстояния между предыдущей базовой точкой и
 	// текущей, а также разность между предыдущим значением функции и текущим. 
 	dx_lb->setText(QString::number(Length(BP - MP), 'f'));
 	df_lb->setText(QString::number(F->rezulto(BP) - F->rezulto(MP), 'f'));
 	
-	BP = MP;
-	
-	MP = LengthOfStepX2(MP);
 	LogTxtBrsr->append(trUtf8("  Сделан шаг по оси Х2. Новая точка: %1; %2").arg(MP.x()).arg(MP.y()));
 
 	qDebug()<<trUtf8("Вошёл в s3"); // Вывожу дебажную инфу на консоль.
@@ -247,6 +243,12 @@ void CWdescent_mdImpl::s3_entered()
 void CWdescent_mdImpl::s2_entered()
 {
 	MP = LengthOfStepX1(MP);
+
+	// Вывожу на форму значение расстояния между предыдущей базовой точкой и
+	// текущей, а также разность между предыдущим значением функции и текущим. 
+	dx_lb->setText(QString::number(Length(BP - MP), 'f'));
+	df_lb->setText(QString::number(F->rezulto(BP) - F->rezulto(MP), 'f'));
+	
 	LogTxtBrsr->append(trUtf8("  Сделан шаг в по оси Х1. Новая точка: %1; %2").arg(MP.x()).arg(MP.y()));
 
 	qDebug()<<trUtf8("Вошёл в s2"); // Вывожу дебажную инфу на консоль.
