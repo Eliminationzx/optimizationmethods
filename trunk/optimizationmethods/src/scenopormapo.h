@@ -14,7 +14,11 @@ private:
 	const funkcio *F;
 	//! Коэффициент масштаба.
 	qreal skalo;
+	//! Цвет карты.
+	QColor koloro;
 public:
+	//! Возвращает цвет карты.
+	inline QColor Koloro() const { return koloro; };
 	//! Возвращает масштаб.
 	qreal scale() const;
 	
@@ -33,6 +37,8 @@ public:
 	              QObject * parent = 0 //!< Родитель.
 	            );
 public slots:
+	//! Устанавливает цвет карты.
+	void difiniKoloro(QColor &);
 	//! Устанавливает масштаб.
 	/*! @param factor Множитель масштабирования. factor = 1 - масштаб 1:1.
 	 */

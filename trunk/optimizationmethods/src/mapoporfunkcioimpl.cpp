@@ -92,3 +92,13 @@ void MapoPorFunkcioImpl::difiniSpuro(spuro * S){
 	Spuro->setScale(s->scale());
 	s->addItem(Spuro);
 }
+
+
+void MapoPorFunkcioImpl::difiniFonaKoloro(QColor & k){
+	s->difiniKoloro(k);
+}
+
+
+QColor MapoPorFunkcioImpl::fonaKoloro() const {
+	return s->Koloro();
+}
