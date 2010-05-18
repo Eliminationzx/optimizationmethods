@@ -47,11 +47,13 @@ public slots:
 	void setScale(qreal factor);
 	//! Устанавливает целевую функцию.
 	void difiniFunkcio(funkcio * f);
-	//! Создает на сцене "след" алгоритма.
-	void kreiSpuro(
-	               int IdAlgoritmo, //!< Порядковый номер алгоритма(см. A).
-	               QColor bazaKoloro //!< Основной цвет "следа".
-	              );
+	//! Устанавливает на сцене "след" алгоритма.
+	void difiniSpuro(spuro * Spuro);
+//	//! Создает на сцене "след" алгоритма.
+//	void kreiSpuro(
+//	               int IdAlgoritmo, //!< Порядковый номер алгоритма(см. A).
+//	               QColor bazaKoloro //!< Основной цвет "следа".
+//	              );
 private slots:
 	//! Увеличить масштаб.
 	void on_PligrandigiBtn_clicked();

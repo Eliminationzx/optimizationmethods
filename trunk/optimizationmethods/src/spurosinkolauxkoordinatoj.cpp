@@ -2,8 +2,8 @@
 #include <QPolygonF>
 #include <QPainter>
 //
-spuroSinkoLauxKoordinatoj::spuroSinkoLauxKoordinatoj(QColor momentaKoloro, QColor bazaKoloro, QGraphicsItem * parent) 
-	: spuro( 0, bazaKoloro, parent), MomentaKoloro(momentaKoloro){
+spuroSinkoLauxKoordinatoj::spuroSinkoLauxKoordinatoj(QColor momentaKoloro, QColor bazaKoloro, qreal Skalo, QGraphicsItem * parent) 
+	: spuro( 0, bazaKoloro, Skalo, parent), MomentaKoloro(momentaKoloro){
 	// TODO
 }
 //

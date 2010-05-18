@@ -18,6 +18,7 @@ MapoPorFunkcioImpl::MapoPorFunkcioImpl( const funkcio * Funkcio, QWidget * paren
   s->setSceneRect(-numeric_limits<int>::max()/2, -numeric_limits<int>::max()/2,
                   numeric_limits<int>::max(), numeric_limits<int>::max());
   grphVw->setScene(s);
+  Spuro = new spuro();
 }
 MapoPorFunkcioImpl::MapoPorFunkcioImpl( QWidget * parent, Qt::WFlags f){
   MapoPorFunkcioImpl(new KvadratigantoFunkcio(0,0,0,0,0,0,0,parent), parent, f);
@@ -38,7 +39,7 @@ void MapoPorFunkcioImpl::difiniFunkcio(funkcio * f){
   F = f;
 }
 
-void MapoPorFunkcioImpl::kreiSpuro(int IdAlgoritmo, QColor bazaKoloro){
+/*void MapoPorFunkcioImpl::kreiSpuro(int IdAlgoritmo, QColor bazaKoloro){
 	// Создаю "след" в соответствии с указаным алгоритмом.
 	switch(IdAlgoritmo){
 		case A::CWdescent_fix : {
@@ -58,7 +59,7 @@ void MapoPorFunkcioImpl::kreiSpuro(int IdAlgoritmo, QColor bazaKoloro){
 	}
 	Spuro->setScale(s->scale());// Назначаю корректный масштаб вновь созданному "следу".
 	s->addItem(Spuro);
-}
+}*/
 
 const spuro * MapoPorFunkcioImpl::proviziSpuro() const{
   return Spuro;
@@ -67,13 +68,20 @@ const spuro * MapoPorFunkcioImpl::proviziSpuro() const{
 
 void MapoPorFunkcioImpl::setScale(qreal factor){
 	// Перед изменением масштаба сцены, установлю его для следа.
-	// В ScenoPorMapo::setScale изменить масштаб "следа" не возможно из-зи
+	// В ScenoPorMapo::setScale изменить масштаб "следа" не возможно из-за
 	// проблем с приведением типа.
-//	Spuro->setScale(factor);
+	Spuro->setScale(factor);
 	s->setScale(factor);
 }
 
 
 qreal MapoPorFunkcioImpl::Scale() const {
 	return s->scale();
+}
+
+
+void MapoPorFunkcioImpl::difiniSpuro(spuro * S){
+	delete Spuro;
+	Spuro = S;
+	Spuro->setScale(s->scale());
 }

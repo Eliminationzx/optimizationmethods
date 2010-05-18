@@ -33,6 +33,7 @@ public:
 	
 	spuroSinkoLauxKoordinatoj(QColor momentaKoloro, //!< Цвет текущей итерации.
 	                          QColor bazaKoloro, //!< Основной цвет "следа".
+	                          qreal Skalo = 1, //!< Коэффициент масштаба.
 	                          QGraphicsItem * parent = 0 //!< Элемент родитель.
 	                         );
 public slots:
