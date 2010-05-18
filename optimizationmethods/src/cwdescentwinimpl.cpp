@@ -18,7 +18,7 @@
 using namespace SinkoLauxKoordinatoj;
 
 CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * parent, Qt::WFlags flags)
-	: AlgoritmoWin(f, d, parent, flags), strikteco((*D)[0]){
+	: AlgoritmoWin(f, d, parent, flags), strikteco((*d)[0]){
 	setupUi(this);
 	qDebug()<<trUtf8("Покоординатный спуск с фиксированным шагом"); // Вывожу дебажную инфу на консоль.
 
@@ -66,8 +66,8 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * pa
 	QState * s10 = new QState(so);
 	QState * s11 = new QState(so);
 	QState * s12 = new QState(so);
-	QFinalState * sf = new QFinalState(so);
-	QFinalState * sfm = new QFinalState();
+	QFinalState * sf = new QFinalState(/*so*/);
+//	QFinalState * sfm = new QFinalState();
 	so->setInitialState(s1);
 
 //---Соединяю состояния и обрабодчики входа в них.-----------------------------
@@ -124,10 +124,12 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * pa
 	s12sf->setTargetState(sf);
 	s12s1Transiro * s12s1 = new s12s1Transiro(&PX1, &PX2, strikteco, this, SIGNAL(stateHasEntered()), s12);
 	s12s1->setTargetState(s1);
+//---Создаю переход по действию "Начать заново"
+	connect(so->addTransition(recomenci_acn, SIGNAL(activated()), s1), SIGNAL(triggered()), SLOT(init()));
 //---Создаю переход от сложного состояния к финалу автомата.
-	so->addTransition(so, SIGNAL(finished()), sfm); // Вызывается, когда сложное 
-	                                                // состояние достигло финиша -
-	                                                //  был найден минимум.
+//	so->addTransition(so, SIGNAL(finished()), sfm); // Вызывается, когда сложное 
+//	                                                // состояние достигло финиша -
+//	                                                //  был найден минимум.
 //---Создаю переходы не имеющие цели. С помощью них фиксирую ошибки ползователя
 	QSignalTransition * te1 = new QSignalTransition(calculate_bt, SIGNAL(clicked()));
 	so->addTransition(te1);
@@ -144,6 +146,7 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * pa
 	QSignalTransition * te5 = new QSignalTransition(end_bt, SIGNAL(clicked()));
 	so->addTransition(te5);
 	connect(te5, SIGNAL(triggered()), SLOT(registriEraro()));
+
 
 //---Настраиваю некоторые состояния, чтоб затирали надпись со значениями новой точки, дабы не смущать пользователя.
 	s1->assignProperty(new_x1_lb, "text", trUtf8("Неопределено"));
@@ -180,7 +183,7 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * pa
 
 //---Добавляю состояния в автомат и запускаю его.------------------------------
 	SM->addState(so);
-	SM->addState(sfm);
+	SM->addState(sf);
 	SM->setInitialState(so);
 	init();
 	SM->start();
@@ -360,19 +363,21 @@ void CWdescentWinImpl::so_entered(){
 }
 
 void CWdescentWinImpl::init(){
+	qDebug()<<trUtf8("Вхожу в init()"); // Вывожу дебажную инфу на консоль.
+
 //	strikteco = (*D)[0];
 	precision_lb->setText(QString::number(strikteco));
 	KvantoEraroj = 0;
 	NumeroIteracio = 0;
-	MP = QPointF((*D)[4],(*D)[5]);
-	PX1 = QPointF((*D)[1], 0);
-	PX2 = QPointF(0, (*D)[2]);
-	ModPX = (*D)[3];
+	MP = QPointF(D[4],D[5]);
+	PX1 = QPointF(D[1], 0);
+	PX2 = QPointF(0, D[2]);
+	ModPX = D[3];
 	LogTxtBrsr->setText("");
-	static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->senspurigi();
-	static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->difiniUnuaPointo(MP);
+//	static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->senspurigi();
+//	static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->difiniUnuaPointo(MP);
 
-	qDebug()<<trUtf8("Задаю переменным начальные значения"); // Вывожу дебажныю инфу на консоль.
+	qDebug()<<trUtf8("Задаю переменным начальные значения"); // Вывожу дебажную инфу на консоль.
 }
 
 namespace SinkoLauxKoordinatoj{
@@ -467,7 +472,7 @@ namespace SinkoLauxKoordinatoj{
 	bool s12sfTransiro::eventTest(QEvent *e){
 		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
 		if(QSignalTransition::eventTest(e)){
-			qDebug()<<trUtf8("  Проверяю pX1 < e && pX2 < e");
+			qDebug()<<trUtf8("  Проверяю pX1 < e && pX2 < e %1 %2 %3").arg(pX1->x()).arg(pX2->y()).arg(s);
 			// Проверяю своё условие.
 			return pX1->x() < s && pX2->y() < s;
 		}else{

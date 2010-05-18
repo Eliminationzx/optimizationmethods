@@ -237,12 +237,12 @@ void CWdescent_mdImpl::so_entered()
 
 void CWdescent_mdImpl::init()
 {
-	strikteco = (*D)[0];
+	strikteco = D[0];
 	precision_lb->setText(QString::number(strikteco));
 	KvantoEraroj = 0;
 	NumeroIteracio = 0;
-	MP = QPointF((*D)[4],(*D)[5]);
-	quanError = (int)(*D)[6];
+	MP = QPointF(D[4],D[5]);
+	quanError = (int)D[6];
 	LogTxtBrsr->setText("");
 
 	qDebug()<<trUtf8("Задаю переменным начальные значения"); // Вывожу дебажную инфу на консоль.
