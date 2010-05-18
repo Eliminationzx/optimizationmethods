@@ -28,7 +28,7 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * pa
 	// добавляю вижет карты в позицию 1,1. Компановщик сам позаботится о назначении новому виджету родителя.
 	static_cast<QGridLayout*>(centralwidget->layout())->addWidget(MapoWdg, 1, 1);
 
-	MapoWdg->setScale(6);// Ставлю масштаб побольше. Надо будет определться с оптимальным значением.
+	MapoWdg->setScale(20);// Ставлю масштаб побольше. Надо будет определться с оптимальным значением.
 
 	Sp = new spuroSinkoLauxKoordinatoj(Qt::white, Qt::blue);
 	MapoWdg->difiniSpuro(Sp);
