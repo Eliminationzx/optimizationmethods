@@ -45,7 +45,7 @@ public:
 	qreal Scale() const;
 public slots:
 	//! Устанавливает цвет карты.
-	void difiniFonaKoloro(QColor &);
+	void difiniFonaKoloro(QColor);
 	/*! Устанавливает масштаб.
 	 * 
 	 * @param factor Множитель масштабирования. factor = 1 - масштаб 1:1.
