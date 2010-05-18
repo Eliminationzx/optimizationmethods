@@ -152,21 +152,24 @@ namespace SinkoLauxKoordinatojMD
 		private:
 			DemonstrataQPointF * bp;
 			DemonstrataQPointF * mp;
+			funkcio * f;
 			qreal s; //!< Точность.
 		public:
 			s4s1Transiro(DemonstrataQPointF * BP,
 						DemonstrataQPointF * MP,
+						funkcio * F,
 						qreal strikteco,
 						QState * sourceState = 0
-						) : QSignalTransition(sourceState), bp(BP), mp(MP), s(strikteco){};
+						) : QSignalTransition(sourceState), bp(BP), mp(MP), f(F), s(strikteco){};
 			s4s1Transiro(DemonstrataQPointF * BP,
 						DemonstrataQPointF * MP,
+						funkcio * F,
 						qreal strikteco,
 						QObject * sender,
 						const char * signal,
 						QState * sourceState = 0
 						) : QSignalTransition(sender, signal, sourceState),
-						bp(BP), mp(MP), s(strikteco){};
+						bp(BP), mp(MP), f(F), s(strikteco){};
 		protected:
     	bool eventTest(QEvent *e);
 	};
@@ -180,21 +183,24 @@ namespace SinkoLauxKoordinatojMD
 		private:
 			DemonstrataQPointF * bp;
 			DemonstrataQPointF * mp;
+			funkcio * f;
 			qreal s; //!< Точность.
 		public:
 			s4sfTransiro(DemonstrataQPointF * BP,
 						DemonstrataQPointF * MP,
+						funkcio * F,
 						qreal strikteco,
 						QState * sourceState = 0
-						) : QSignalTransition(sourceState), bp(BP), mp(MP), s(strikteco){};
+						) : QSignalTransition(sourceState), bp(BP), mp(MP), f(F), s(strikteco){};
 			s4sfTransiro(DemonstrataQPointF * BP,
 						DemonstrataQPointF * MP,
+						funkcio * F,
 						qreal strikteco,
 						QObject * sender,
 						const char * signal,
 						QState * sourceState = 0
 						) : QSignalTransition(sender, signal, sourceState),
-						bp(BP), mp(MP), s(strikteco){};
+						bp(BP), mp(MP), f(F), s(strikteco){};
 		protected:
 		bool eventTest(QEvent *e);
 	};

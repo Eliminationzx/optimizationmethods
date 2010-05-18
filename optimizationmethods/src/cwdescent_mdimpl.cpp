@@ -64,9 +64,9 @@ CWdescent_mdImpl::CWdescent_mdImpl(funkcio *f, QVector<double> *d, QWidget * par
 	s2s3Transiro * s2s3 = new s2s3Transiro(min_x2_rb, calculate_bt, SIGNAL(clicked()), s2);
 	s2s3->setTargetState(s3);
 	s3->addTransition(this, SIGNAL(stateHasEntered()), s4);// Переход s3s4 совершается сразу при входе в s3.
-	s4s1Transiro * s4s1 = new s4s1Transiro(&BP, &MP, strikteco, s4, SIGNAL(entered()), s4);
+	s4s1Transiro * s4s1 = new s4s1Transiro(&BP, &MP, F, strikteco, s4, SIGNAL(entered()), s4);
 	s4s1->setTargetState(s1);
-	s4sfTransiro * s4sf = new s4sfTransiro(&BP, &MP, strikteco, end_bt, SIGNAL(clicked()), s4);
+	s4sfTransiro * s4sf = new s4sfTransiro(&BP, &MP, F, strikteco, end_bt, SIGNAL(clicked()), s4);
 	s4sf->setTargetState(sf);
 
 	//---Создаю переход от сложного состояния к финалу автомата.
@@ -231,6 +231,13 @@ void CWdescent_mdImpl::s4_entered()
 
 void CWdescent_mdImpl::s3_entered()
 {
+	// Вывожу на форму значение расстояния между предыдущей базовой точкой и
+	// текущей, а также разность между предыдущим значением функции и текущим. 
+	dx_lb->setText(QString::number(Length(BP - MP), 'f'));
+	df_lb->setText(QString::number(F->rezulto(BP) - F->rezulto(MP), 'f'));
+	
+	BP = MP;
+	
 	MP = LengthOfStepX2(MP);
 	LogTxtBrsr->append(trUtf8("  Сделан шаг по оси Х2. Новая точка: %1; %2").arg(MP.x()).arg(MP.y()));
 
@@ -305,7 +312,7 @@ namespace SinkoLauxKoordinatojMD
 		{
 			qDebug()<<trUtf8("  Проверяю |bp - mp| < e && |f(bp) - f(mp)| < e");
 			// Проверяю своё условие.
-			return Length(*bp - *mp) < s && (f->rezulto(*bp) - f->rezulto(*mp)) < s;
+			return abs(Length(*bp - *mp)) < s && abs(f->rezulto(*bp) - f->rezulto(*mp)) < s;
 		}
 		else
 			return false;
@@ -318,7 +325,7 @@ namespace SinkoLauxKoordinatojMD
 		{
 			qDebug()<<trUtf8("  Проверяю |bp - mp| >= e && |f(bp) - f(mp)| >= e");
 			// Проверяю своё условие.
-			return Length(*bp - *mp) >= s || (f->rezulto(*bp) - f->rezulto(*mp)) >= s;
+			return abs(Length(*bp - *mp)) >= s || abs(f->rezulto(*bp) - f->rezulto(*mp)) >= s;
 		}
 		else
 			return false;
