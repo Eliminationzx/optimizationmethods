@@ -18,7 +18,7 @@
 using namespace SinkoLauxKoordinatoj;
 
 CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * parent, Qt::WFlags flags)
-	: AlgoritmoWin(f, d, parent, flags){
+	: AlgoritmoWin(f, d, parent, flags), strikteco((*D)[0]){
 	setupUi(this);
 	qDebug()<<trUtf8("Покоординатный спуск с фиксированным шагом"); // Вывожу дебажную инфу на консоль.
 
@@ -272,9 +272,10 @@ void CWdescentWinImpl::s12_entered(){
 	PX1 *= ModPX;
 	PX2 *= ModPX;
 	LogTxtBrsr->append(trUtf8("  Изменена длина шагов: %1; %2.").arg(PX1.x()).arg(PX2.y()));
-	emit stateHasEntered();
 	
 	qDebug()<<trUtf8("Вошёл в s12"); // Вывожу дебажныю инфу на консоль.
+	
+	emit stateHasEntered();
 }
 
 void CWdescentWinImpl::s11_entered(){
@@ -358,7 +359,7 @@ void CWdescentWinImpl::so_entered(){
 }
 
 void CWdescentWinImpl::init(){
-	strikteco = (*D)[0];
+//	strikteco = (*D)[0];
 	precision_lb->setText(QString::number(strikteco));
 	KvantoEraroj = 0;
 	NumeroIteracio = 0;
@@ -474,7 +475,7 @@ namespace SinkoLauxKoordinatoj{
 	bool s12s1Transiro::eventTest(QEvent *e){
 		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
 		if(QSignalTransition::eventTest(e)){
-			qDebug()<<trUtf8("  Проверяю pX1 >= e || pX2 >= e");
+			qDebug()<<trUtf8("  Проверяю pX1 >= e || pX2 >= e %1 %2 %3").arg(pX1->x()).arg(pX2->y()).arg(s);
 			// Проверяю своё условие.
 			return pX1->x() >= s || pX2->y() >= s;
 		}else{
