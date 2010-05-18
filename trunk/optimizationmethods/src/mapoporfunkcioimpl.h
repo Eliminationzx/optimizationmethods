@@ -59,6 +59,13 @@ private slots:
 	void on_PligrandigiBtn_clicked();
 	//! Уменьшить масштаб.
 	void on_MalpliigiBtn_clicked();
+signals:
+	//! Передаёт координату Х мыши.
+	void MusaPosX(const qreal);
+	//! Передаёт координату Y мыши.
+	void MusaPosY(const qreal);
+	//! Передаёт координаты мыши в виде строки текста.
+	void MusaPos(const QString &);
 };
 #endif
 

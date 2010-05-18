@@ -52,7 +52,7 @@ signals:
 	//! Передаёт координату Y мыши.
 	void MusaPosY(const qreal);
 	//! Передаёт координаты мыши в виде строки текста.
-	void MusaPos(const QString );
+	void MusaPos(const QString &);
 };
 
 #endif
