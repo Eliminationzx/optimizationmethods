@@ -32,8 +32,7 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * pa
 
 	Sp = new spuroSinkoLauxKoordinatoj(Qt::white, Qt::blue);
 	MapoWdg->difiniSpuro(Sp);
-//  MapoWdg->kreiSpuro(A::CWdescent_fix, Qt::blue);
-//  Sp = MapoWdg->proviziSpuro();
+	static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->difiniUnuaPointo(MP);
 
 //===Соединяю точки и надписи на форме=========================================
 	SignalantoPorPointF * sMP = new SignalantoPorPointF(&MP, F, this);
@@ -48,10 +47,6 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * pa
 	connect(sPX1, SIGNAL(proviziXValoro(const QString &)), x1_step_lb, SLOT(setText(const QString &)));
 	SignalantoPorPointF * sPX2 = new SignalantoPorPointF(&PX2, F, this);
 	connect(sPX2, SIGNAL(proviziYValoro(const QString &)), x2_step_lb, SLOT(setText(const QString &)));
-//===Соединяю точки и карту====================================================
-//	proviziValoro   (  const QPointF &    )
-//	connect(sMP, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(reveniAlMomentoPointo()));
-//=============================================================================
 
 //===Создаю конечный автомат.==================================================
 	QStateMachine * SM = new QStateMachine();
@@ -169,6 +164,16 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * pa
 	s11->assignProperty(distance_lb, "palette", QPalette(Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red));
 	s1->assignProperty(distance_lb, "palette", this->palette());
 
+//---Прикручиваю карту---------------------------------------------------------
+	connect(sNP, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(aldoniSercxantaPointo(QPointF)));
+
+	connect(s3, SIGNAL(entered()), Sp, SLOT(reveniAlMomentoPointo()));
+	connect(s6, SIGNAL(entered()), Sp, SLOT(reveniAlMomentoPointo()));
+	connect(s8, SIGNAL(entered()), Sp, SLOT(reveniAlMomentoPointo()));
+	connect(s9s11, SIGNAL(triggered()), Sp, SLOT(reveniAlMomentoPointo()));
+
+	connect(s1, SIGNAL(entered()), Sp, SLOT(finisxiIteracio()));
+//-------------------------------------------------------------------------------
 
 //---Добавляю состояния в автомат и запускаю его.------------------------------
 	SM->addState(so);
