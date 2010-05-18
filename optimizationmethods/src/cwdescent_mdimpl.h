@@ -19,8 +19,11 @@ protected:
 	//! Точность.
 	qreal strikteco;
 	
-	//! Количество ошибок.
+	//! Количество ошибок совершенных пользователем.
 	int KvantoEraroj;
+	
+	//! Количество ошибок допустимых.
+	int quanError;
 	
 	//! Номер итерации.
 	int NumeroIteracio;

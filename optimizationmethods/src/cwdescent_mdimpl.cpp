@@ -7,6 +7,7 @@
 #include "demonstrataqpointf.h"
 #include "signalantoporpointf.h"
 #include "math.h"
+#include <limits>
 #include <QTextBrowser>
 #include <QString>
 #include <QMessageBox>
@@ -15,6 +16,7 @@
 #include <QLabel>
 #include <QDebug>
 //
+using namespace std;
 using namespace SinkoLauxKoordinatojMD;
 
 CWdescent_mdImpl::CWdescent_mdImpl(funkcio *f, QVector<double> *d, QWidget * parent, Qt::WFlags flags) 
@@ -80,10 +82,6 @@ CWdescent_mdImpl::CWdescent_mdImpl(funkcio *f, QVector<double> *d, QWidget * par
 	so->addTransition(te2);
 	connect(te2, SIGNAL(triggered()), SLOT(registriEraro()));
 
-	//---Настраиваю некоторые состояния, чтоб затирали надпись со значениями новой точки, дабы не смущать пользователя.
-	s1->assignProperty(dx_lb, "text", trUtf8("Неопределено"));
-	s1->assignProperty(df_lb, "text", trUtf8("Неопределено"));
-
 	//---Настраиваю выделение цветом растояния между точками.
 	s4->assignProperty(dx_lb, "palette", QPalette(Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red));
 	s4->assignProperty(df_lb, "palette", QPalette(Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red));
@@ -104,28 +102,9 @@ DemonstrataQPointF CWdescent_mdImpl::LengthOfStepX1(DemonstrataQPointF X) const
 {
 	double y = X.y();
 
-	// Начальная точка соотвествует координате текущей точки.
-	double a = X.x();
+	double a = - numeric_limits<int>::max()/2;
+	double b = numeric_limits<int>::max()/2;
 
-	// b надо взять такое, что бы в разрезе по выбраной оси функция имела форму чашки. 
-	double b = a + 100;
-	// Изменяю b, пока не будет чашка. (Знаю, что очень по индуски, но пока ничего лушего не придумал).
-	while(F->rezulto(a + b, y) < F->rezulto(a + b - 50, y))
-	{
-		if (b - a <= 10000)
-			b += 100;
-		else
-			break;
-	}
-	if (b - a > 10000)
-	{
-		b = a - 100;
-		while(F->rezulto(a - b, y) < F->rezulto(a - b + 50, y))
-		{
-				b -= 100;
-		}
-	}
-	
 	double tau = 0.618033988749894;
 	double lam = a + (1 - tau)*(b - a);
 	double mu = a + tau*(b - a);
@@ -155,28 +134,9 @@ DemonstrataQPointF CWdescent_mdImpl::LengthOfStepX2(DemonstrataQPointF X) const
 {
 	double x = X.x();
 
-	// Начальная точка соотвествует координате текущей точки.
-	double a = X.y();
-	
-	// b надо взять такое, что бы в разрезе по выбраной оси функция имела форму чашки. 
-	double b = a + 100;
-	// Изменяю b, пока не будет чашка. (Знаю, что очень по индуски, но пока ничего лушего не придумал).
-	while(F->rezulto(x, a + b) < F->rezulto(x, a + b - 50))
-	{
-		if (b - a <= 10000)
-			b += 100;
-		else
-			break;
-	}
-	if (b - a > 10000)
-	{
-		b = a - 100;
-		while(F->rezulto(x, a + b) < F->rezulto(x, a + b - 50))
-		{
-				b -= 100;
-		}
-	}
-	
+	double a = - numeric_limits<int>::max()/2;
+	double b = numeric_limits<int>::max()/2;
+
 	double tau = 0.618033988749894;
 	double lam = a + (1 - tau)*(b - a);
 	double mu = a + tau*(b - a);
@@ -214,13 +174,24 @@ void CWdescent_mdImpl::registriEraro()
 void CWdescent_mdImpl::sf_entered()
 {
 	LogTxtBrsr->append(trUtf8("Конец алгоритма. Найден: %1").arg(F->rezulto(MP)));
-	QMessageBox::information(this, trUtf8("Конец"), trUtf8("Найден минимум"));
+	
+	if (KvantoEraroj <= quanError)
+	{
+		QMessageBox::information(this, trUtf8("Конец :)"), trUtf8("Поздравляем! Теперь можете перейти к овражной функции."));
+	}
+	else
+		QMessageBox::information(this, trUtf8("Конец :("), trUtf8("Слишком много ошибок - попробуйте ещё раз."));
 
-	qDebug()<<trUtf8("Вошёл в Финальное состояние, сложного сосояния"); // Вывожу дебажную инфу на консоль.
+	qDebug()<<trUtf8("Вошёл в Финальное состояние, сложного состояния"); // Вывожу дебажную инфу на консоль.
 }
 
 void CWdescent_mdImpl::s4_entered()
 {
+	// Вывожу на форму значение расстояния между предыдущей базовой точкой и
+	// текущей, а также разность между предыдущим значением функции и текущим. 
+	dx_lb->setText(QString::number(Length(BP - MP), 'f'));
+	df_lb->setText(QString::number(F->rezulto(BP) - F->rezulto(MP), 'f'));
+	
 	qDebug()<<trUtf8("Вошёл в s4"); // Вывожу дебажную инфу на консоль.
 }
 
@@ -230,14 +201,11 @@ void CWdescent_mdImpl::s3_entered()
 	
 	MP = LengthOfStepX2(MP);
 
-	// Вывожу на форму значение расстояния между предыдущей базовой точкой и
-	// текущей, а также разность между предыдущим значением функции и текущим. 
-	dx_lb->setText(QString::number(Length(BP - MP), 'f'));
-	df_lb->setText(QString::number(F->rezulto(BP) - F->rezulto(MP), 'f'));
-	
 	LogTxtBrsr->append(trUtf8("  Сделан шаг по оси Х2. Новая точка: %1; %2").arg(MP.x()).arg(MP.y()));
 
 	qDebug()<<trUtf8("Вошёл в s3"); // Вывожу дебажную инфу на консоль.
+	
+	emit stateHasEntered(); // Переход по этому сигналу произойдёт, только если выполнится его условие.
 }
 
 void CWdescent_mdImpl::s2_entered()
@@ -274,6 +242,7 @@ void CWdescent_mdImpl::init()
 	KvantoEraroj = 0;
 	NumeroIteracio = 0;
 	MP = QPointF((*D)[4],(*D)[5]);
+	quanError = (int)(*D)[6];
 	LogTxtBrsr->setText("");
 
 	qDebug()<<trUtf8("Задаю переменным начальные значения"); // Вывожу дебажную инфу на консоль.
@@ -307,6 +276,19 @@ namespace SinkoLauxKoordinatojMD
 			return false;
 	}
 
+	bool s4s1Transiro::eventTest(QEvent *e)
+	{
+		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
+		if(QSignalTransition::eventTest(e))
+		{
+			qDebug()<<trUtf8("  Проверяю |bp - mp| >= e || |f(bp) - f(mp)| >= e");
+			// Проверяю своё условие.
+			return Length(*bp - *mp) >= s || (f->rezulto(*bp) - f->rezulto(*mp)) >= s;
+		}
+		else
+			return false;
+	}
+
 	bool s4sfTransiro::eventTest(QEvent *e)
 	{
 		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
@@ -314,20 +296,7 @@ namespace SinkoLauxKoordinatojMD
 		{
 			qDebug()<<trUtf8("  Проверяю |bp - mp| < e && |f(bp) - f(mp)| < e");
 			// Проверяю своё условие.
-			return abs(Length(*bp - *mp)) < s && abs(f->rezulto(*bp) - f->rezulto(*mp)) < s;
-		}
-		else
-			return false;
-	}
-
-	bool s4s1Transiro::eventTest(QEvent *e)
-	{
-		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
-		if(QSignalTransition::eventTest(e))
-		{
-			qDebug()<<trUtf8("  Проверяю |bp - mp| >= e && |f(bp) - f(mp)| >= e");
-			// Проверяю своё условие.
-			return abs(Length(*bp - *mp)) >= s || abs(f->rezulto(*bp) - f->rezulto(*mp)) >= s;
+			return Length(*bp - *mp) < s && (f->rezulto(*bp) - f->rezulto(*mp)) < s;
 		}
 		else
 			return false;
