@@ -6,6 +6,7 @@
 #include "spuro.h"
 #include <limits>
 #include <QGraphicsItem>
+#include <QGraphicsSceneMouseEvent>
 //
 ScenoPorMapo::ScenoPorMapo( const funkcio * Funkcio, QObject * parent)
 	: QGraphicsScene(parent), F(Funkcio), skalo(1){}
@@ -59,13 +60,14 @@ void ScenoPorMapo::setScale(qreal factor ){
 
 
 qreal ScenoPorMapo::scale() const{
-  return skalo;
+	return skalo;
 }
 
 
 
-void ScenoPorMapo::mouseMoveEvent(QGraphicsSceneMouseEvent * mouseEvent)
+void ScenoPorMapo::mouseMoveEvent(QGraphicsSceneMouseEvent * mE)
 {
-  QGraphicsScene::mouseMoveEvent ( mouseEvent );// Вызываю реализацию по умолчанию.
+	emit MusaPos(trUtf8("%1; %2").arg(mE->pos().x()).arg(mE->pos().y()));
+	QGraphicsScene::mouseMoveEvent ( mE );// Вызываю реализацию по умолчанию.
 }
 
