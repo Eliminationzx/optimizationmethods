@@ -374,8 +374,8 @@ void CWdescentWinImpl::init(){
 	PX2 = QPointF(0, D[2]);
 	ModPX = D[3];
 	LogTxtBrsr->setText("");
-//	static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->senspurigi();
-//	static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->difiniUnuaPointo(MP);
+	static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->senspurigi();
+	static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->difiniUnuaPointo(MP);
 
 	qDebug()<<trUtf8("Задаю переменным начальные значения"); // Вывожу дебажную инфу на консоль.
 }
