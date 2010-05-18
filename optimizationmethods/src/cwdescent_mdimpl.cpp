@@ -110,7 +110,7 @@ DemonstrataQPointF CWdescent_mdImpl::LengthOfStepX1(const DemonstrataQPointF X)
 	// b надо взять такое, что бы в разрезе по выбраной оси функция имела форму чашки. 
 	double b = a + 100;
 	// Изменяю b, пока не будет чашка. (Знаю, что очень по индуски, но пока ничего лушего не придумал).
-	while(f->rezulto(a + b, y) < f->rezulto(a + b - 50, y))
+	while(F->rezulto(a + b, y) < F->rezulto(a + b - 50, y))
 	{
 		if (b - a <= 10000)
 			b += 100;
@@ -120,7 +120,7 @@ DemonstrataQPointF CWdescent_mdImpl::LengthOfStepX1(const DemonstrataQPointF X)
 	if (b - a > 10000)
 	{
 		b = a - 100;
-		while(f->rezulto(a - b, y) < f->rezulto(a - b + 50, y))
+		while(F->rezulto(a - b, y) < F->rezulto(a - b + 50, y))
 		{
 				b -= 100;
 		}
@@ -131,7 +131,7 @@ DemonstrataQPointF CWdescent_mdImpl::LengthOfStepX1(const DemonstrataQPointF X)
 	double mu = a + tau*(b - a);
 	while (abs(b - a) > 0.0001)
 	{
-		if (f->rezulto(lam, y) > f->rezulto(mu, y))
+		if (F->rezulto(lam, y) > F->rezulto(mu, y))
 		{
 			a = lam;
 			lam = mu;
@@ -161,7 +161,7 @@ DemonstrataQPointF CWdescent_mdImpl::LengthOfStepX2(const DemonstrataQPointF X)
 	// b надо взять такое, что бы в разрезе по выбраной оси функция имела форму чашки. 
 	double b = a + 100;
 	// Изменяю b, пока не будет чашка. (Знаю, что очень по индуски, но пока ничего лушего не придумал).
-	while(f->rezulto(x, a + b) < f->rezulto(x, a + b - 50))
+	while(F->rezulto(x, a + b) < F->rezulto(x, a + b - 50))
 	{
 		if (b - a <= 10000)
 			b += 100;
@@ -171,7 +171,7 @@ DemonstrataQPointF CWdescent_mdImpl::LengthOfStepX2(const DemonstrataQPointF X)
 	if (b - a > 10000)
 	{
 		b = a - 100;
-		while(f->rezulto(x, a + b) < f->rezulto(x, a + b - 50))
+		while(F->rezulto(x, a + b) < F->rezulto(x, a + b - 50))
 		{
 				b -= 100;
 		}
@@ -182,7 +182,7 @@ DemonstrataQPointF CWdescent_mdImpl::LengthOfStepX2(const DemonstrataQPointF X)
 	double mu = a + tau*(b - a);
 	while (abs(b - a) > 0.0001)
 	{
-		if (f->rezulto(x, lam) > f->rezulto(x, mu))
+		if (F->rezulto(x, lam) > F->rezulto(x, mu))
 		{
 			a = lam;
 			lam = mu;
