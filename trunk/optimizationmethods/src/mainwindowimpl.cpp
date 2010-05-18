@@ -6,8 +6,8 @@ MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WFlags f)
 {
 	setupUi(this);
 	
-	methFunc[0] = 0;
-	methFunc[1] = 0;
+	methFunc.append(0);
+	methFunc.append(0);
 	
 	stackedWidget->setCurrentIndex(0);
 	
@@ -216,7 +216,7 @@ void MainWindowImpl::on_next_button_2_clicked()
 		msg.exec();
 	}
 /*	if(connect(AW, SIGNAL(setFlag(int)), SLOT(openTakeQuadFun(int))))
-		Pass->show();
+		AW->showMaximized();
 	else
 		QMessageBox::warning(this, trUtf8("Ошибка"), trUtf8("Ошибка соединения MainWindowImpl и AlgoritmoWin."));
 */	AW->showMaximized();
