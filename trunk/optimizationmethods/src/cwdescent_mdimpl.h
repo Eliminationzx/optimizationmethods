@@ -32,10 +32,10 @@ protected:
 	DemonstrataQPointF MP;
 
 	//! Возвращает длину шага для оптимизации функции одной переменной по оси Х1.
-	DemonstrataQPointF LengthOfStepX1(const DemonstrataQPointF X);
+	DemonstrataQPointF LengthOfStepX1(DemonstrataQPointF X) const;
 
 	//! Возвращает длину шага для оптимизации функции одной переменной по оси Х2.
-	DemonstrataQPointF LengthOfStepX2(const DemonstrataQPointF X);
+	DemonstrataQPointF LengthOfStepX2(DemonstrataQPointF X) const;
 public:
 	/*! Конструктор.
 	 * @param f Указатель на целевую функцию. CWdescent_mdImpl не заботится о назначении Funkcio родителя.

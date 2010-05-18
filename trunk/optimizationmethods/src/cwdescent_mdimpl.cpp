@@ -100,7 +100,7 @@ CWdescent_mdImpl::CWdescent_mdImpl(funkcio *f, QVector<double> *d, QWidget * par
 //
 
 //! Возвращает длину шага для оптимизации функции одной переменной по оси Х1.
-DemonstrataQPointF CWdescent_mdImpl::LengthOfStepX1(const DemonstrataQPointF X)
+DemonstrataQPointF CWdescent_mdImpl::LengthOfStepX1(DemonstrataQPointF X) const
 {
 	double y = X.y();
 
@@ -151,7 +151,7 @@ DemonstrataQPointF CWdescent_mdImpl::LengthOfStepX1(const DemonstrataQPointF X)
 }
 
 //! Возвращает длину шага для оптимизации функции одной переменной по оси Х2.
-DemonstrataQPointF CWdescent_mdImpl::LengthOfStepX2(const DemonstrataQPointF X)
+DemonstrataQPointF CWdescent_mdImpl::LengthOfStepX2(DemonstrataQPointF X) const
 {
 	double x = X.x();
 
