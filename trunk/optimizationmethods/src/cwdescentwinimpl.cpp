@@ -32,7 +32,6 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * pa
 
 	Sp = new spuroSinkoLauxKoordinatoj(Qt::white, Qt::blue);
 	MapoWdg->difiniSpuro(Sp);
-	static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->difiniUnuaPointo(MP);
 
 //===Соединяю точки и надписи на форме=========================================
 	SignalantoPorPointF * sMP = new SignalantoPorPointF(&MP, F, this);
@@ -180,6 +179,7 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * pa
 	SM->addState(sfm);
 	SM->setInitialState(so);
 	init();
+	static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->difiniUnuaPointo(MP);
 	SM->start();
 //=============================================================================
 
