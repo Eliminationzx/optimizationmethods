@@ -20,7 +20,7 @@ using namespace SinkoLauxKoordinatoj;
 CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * parent, Qt::WFlags flags)
 	: AlgoritmoWin(f, d, parent, flags){
 	setupUi(this);
-	qDebug()<<trUtf8("Покоординатный спуск с фиксированным шагом"); // Вывожу дебажныю инфу на консоль.
+	qDebug()<<trUtf8("Покоординатный спуск с фиксированным шагом"); // Вывожу дебажную инфу на консоль.
 
 	// Создаю карту.
 	// centralwidget->layout() - указатель на компановщик центрального виджета
@@ -30,6 +30,8 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * pa
 
 	MapoWdg->setScale(6);// Ставлю масштаб побольше. Надо будет определться с оптимальным значением.
 
+	Sp = new spuroSinkoLauxKoordinatoj(Qt::white, Qt::blue);
+	MapoWdg->difiniSpuro(Sp);
 //  MapoWdg->kreiSpuro(A::CWdescent_fix, Qt::blue);
 //  Sp = MapoWdg->proviziSpuro();
 
