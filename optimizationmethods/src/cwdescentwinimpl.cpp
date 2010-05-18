@@ -167,6 +167,7 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * pa
 
 //---Прикручиваю карту---------------------------------------------------------
 	connect(sNP, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(aldoniSercxantaPointo(QPointF)));
+	connect(sMP, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniMomentaPointo(QPointF)));
 
 	connect(s3, SIGNAL(entered()), Sp, SLOT(reveniAlMomentoPointo()));
 	connect(s6, SIGNAL(entered()), Sp, SLOT(reveniAlMomentoPointo()));
@@ -181,7 +182,6 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * pa
 	SM->addState(sfm);
 	SM->setInitialState(so);
 	init();
-	static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->difiniUnuaPointo(MP);
 	SM->start();
 //=============================================================================
 
@@ -368,6 +368,8 @@ void CWdescentWinImpl::init(){
 	PX2 = QPointF(0, (*D)[2]);
 	ModPX = (*D)[3];
 	LogTxtBrsr->setText("");
+	static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->senspurigi();
+	static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->difiniUnuaPointo(MP);
 
 	qDebug()<<trUtf8("Задаю переменным начальные значения"); // Вывожу дебажныю инфу на консоль.
 }
