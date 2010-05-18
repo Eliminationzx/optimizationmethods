@@ -15,7 +15,7 @@ protected:
   //! Целевая функция.
   funkcio * F;
   //! Данные задания.
-  QVector<double> * D;
+  QVector<double> D;
   //! Указатель на виджет - карту высот целевой функции.
   MapoPorFunkcioImpl * MapoWdg;
   //! Указатель на след.
