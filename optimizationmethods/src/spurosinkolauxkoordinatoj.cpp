@@ -1,9 +1,10 @@
 #include "spurosinkolauxkoordinatoj.h"
+#include "Konstantoj.h"
 #include <QPolygonF>
 #include <QPainter>
 //
 spuroSinkoLauxKoordinatoj::spuroSinkoLauxKoordinatoj(QColor momentaKoloro, QColor bazaKoloro, qreal Skalo, QGraphicsItem * parent) 
-	: spuro( 0, bazaKoloro, Skalo, parent), MomentaKoloro(momentaKoloro){
+	: spuro( A::CWdescent_fix, bazaKoloro, Skalo, parent), MomentaKoloro(momentaKoloro){
 	// TODO
 }
 //

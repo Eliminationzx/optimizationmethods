@@ -58,7 +58,7 @@ public slots:
 	void difiniBazaKoloro(QColor bazaKoloro);
 	//! Установить текущий цвет.
 	void difiniMomentaKoloro(QColor momentaKoloro);
-	//! Очищает "хвост".
+	//! Очищает "след".
 	void senspurigi();
 };
 #endif
