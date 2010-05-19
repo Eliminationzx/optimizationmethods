@@ -85,6 +85,7 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * pa
 	connect(s10, SIGNAL(entered()), SLOT(s10_entered()));
 	connect(s11, SIGNAL(entered()), SLOT(s11_entered()));
 	connect(s12, SIGNAL(entered()), SLOT(s12_entered()));
+	connect(sf, SIGNAL(entered()), SLOT(sf_entered()));
 
 //---Создаю переходы, согласно диаграмме.--------------------------------------
 	s1s2Transiro * s1s2 = new s1s2Transiro(up_x1_rb, calculate_bt, SIGNAL(clicked()), s1);
