@@ -129,6 +129,7 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * pa
 	s12s1->setTargetState(s1);
 //---Создаю переход по действию "Начать заново"
 	connect(so->addTransition(recomenci_acn, SIGNAL(activated()), s1), SIGNAL(triggered()), SLOT(init()));
+	connect(sf->addTransition(recomenci_acn, SIGNAL(activated()), s1), SIGNAL(triggered()), SLOT(init()));
 //---Создаю переход от сложного состояния к финалу автомата.
 //	so->addTransition(so, SIGNAL(finished()), sfm); // Вызывается, когда сложное 
 //	                                                // состояние достигло финиша -
