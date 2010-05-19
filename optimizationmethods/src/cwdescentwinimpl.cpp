@@ -270,6 +270,16 @@ void CWdescentWinImpl::sf_entered(){
   QMessageBox::information(this, trUtf8("Конец"), trUtf8("Найден минимум"));
 
 	qDebug()<<trUtf8("Вошёл в Финальное состояние, сложного сосояния"); // Вывожу дебажныю инфу на консоль.
+
+	if(KvantoEraroj >= D[6]){
+		// Слишком много ошибок.
+		QMessageBox::information(this, trUtf8("Внимание"), trUtf8("Вы допустили слишком большое количество ошибок. Начните заново"));
+		recomenci_acn->trigger();
+	}else{
+		QMessageBox::information(this, trUtf8("Поздравляю"), trUtf8("Вы прошли тест"));
+		emit usiloPlenumis();
+	}
+	
 }
 
 void CWdescentWinImpl::s12_entered(){
