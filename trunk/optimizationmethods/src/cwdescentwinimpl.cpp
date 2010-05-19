@@ -66,7 +66,8 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * pa
 	QState * s10 = new QState(so);
 	QState * s11 = new QState(so);
 	QState * s12 = new QState(so);
-	QFinalState * sf = new QFinalState(/*so*/);
+	QState * sf = new QState(/*so*/);
+//	QFinalState * sf = new QFinalState(/*so*/);
 //	QFinalState * sfm = new QFinalState();
 	so->setInitialState(s1);
 
@@ -269,7 +270,7 @@ void CWdescentWinImpl::sf_entered(){
   LogTxtBrsr->append(trUtf8("Конец алгоритма. Найден: %1").arg(F->rezulto(MP)));
   QMessageBox::information(this, trUtf8("Конец"), trUtf8("Найден минимум"));
 
-	qDebug()<<trUtf8("Вошёл в Финальное состояние, сложного сосояния"); // Вывожу дебажныю инфу на консоль.
+	qDebug()<<trUtf8("Конец алгоритма. Найден минимум"); // Вывожу дебажныю инфу на консоль.
 
 	if(KvantoEraroj >= D[6]){
 		// Слишком много ошибок.
