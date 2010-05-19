@@ -496,15 +496,22 @@ p, li { white-space: pre-wrap; }
      <height>30</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menu">
+   <widget class="QMenu" name="testo_menu">
     <property name="title">
-     <string>ф</string>
+     <string>Тест</string>
     </property>
     <addaction name="recomenci_acn"/>
     <addaction name="separator"/>
     <addaction name="action_2"/>
    </widget>
-   <addaction name="menu"/>
+   <widget class="QMenu" name="view_menu">
+    <property name="title">
+     <string>Вид</string>
+    </property>
+    <addaction name="difiniFonto_act"/>
+   </widget>
+   <addaction name="testo_menu"/>
+   <addaction name="view_menu"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="recomenci_acn">
@@ -515,6 +522,11 @@ p, li { white-space: pre-wrap; }
   <action name="action_2">
    <property name="text">
     <string>&amp;Выйти из программы</string>
+   </property>
+  </action>
+  <action name="difiniFonto_act">
+   <property name="text">
+    <string>Настроить &amp;шрифт</string>
    </property>
   </action>
  </widget>
