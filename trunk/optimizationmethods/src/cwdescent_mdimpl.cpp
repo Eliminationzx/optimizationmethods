@@ -59,6 +59,7 @@ CWdescent_mdImpl::CWdescent_mdImpl(funkcio *f, QVector<double> *d, QWidget * par
 	connect(s2, SIGNAL(entered()), SLOT(s2_entered()));
 	connect(s3, SIGNAL(entered()), SLOT(s3_entered()));
 	connect(s4, SIGNAL(entered()), SLOT(s4_entered()));
+	connect(sf, SIGNAL(entered()), SLOT(sf_entered()));
 
 	//---Создаю переходы, согласно диаграмме.--------------------------------------
 	s1s2Transiro * s1s2 = new s1s2Transiro(min_x1_rb, calculate_bt, SIGNAL(clicked()), s1);
@@ -83,11 +84,11 @@ CWdescent_mdImpl::CWdescent_mdImpl(funkcio *f, QVector<double> *d, QWidget * par
 	connect(te2, SIGNAL(triggered()), SLOT(registriEraro()));
 
 	//---Настраиваю выделение цветом растояния между точками.
-	s4->assignProperty(dx_lb, "palette", QPalette(Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red));
+/*	s4->assignProperty(dx_lb, "palette", QPalette(Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red));
 	s4->assignProperty(df_lb, "palette", QPalette(Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red));
 	s1->assignProperty(dx_lb, "palette", this->palette());
 	s1->assignProperty(df_lb, "palette", this->palette());
-
+*/
 	//---Добавляю состояния в автомат и запускаю его.------------------------------
 	SM->addState(so);
 	SM->addState(sfm);
@@ -173,7 +174,7 @@ void CWdescent_mdImpl::registriEraro()
 
 void CWdescent_mdImpl::sf_entered()
 {
-	LogTxtBrsr->append(trUtf8("Конец алгоритма. Найден: %1").arg(F->rezulto(MP)));
+	LogTxtBrsr->append(trUtf8("Конец алгоритма. Найден минимум функции: %1").arg(F->rezulto(MP)));
 	
 	if (KvantoEraroj <= quanError)
 	{
@@ -283,7 +284,7 @@ namespace SinkoLauxKoordinatojMD
 		{
 			qDebug()<<trUtf8("  Проверяю |bp - mp| >= e || |f(bp) - f(mp)| >= e");
 			// Проверяю своё условие.
-			return Length(*bp - *mp) >= s || (f->rezulto(*bp) - f->rezulto(*mp)) >= s;
+			return Length(*bp - *mp) >= 0.1 || f->rezulto(*bp) - f->rezulto(*mp) >= 0.1;
 		}
 		else
 			return false;
@@ -296,7 +297,7 @@ namespace SinkoLauxKoordinatojMD
 		{
 			qDebug()<<trUtf8("  Проверяю |bp - mp| < e && |f(bp) - f(mp)| < e");
 			// Проверяю своё условие.
-			return Length(*bp - *mp) < s && (f->rezulto(*bp) - f->rezulto(*mp)) < s;
+			return Length(*bp - *mp) < 0.1 && f->rezulto(*bp) - f->rezulto(*mp) < 0.1;
 		}
 		else
 			return false;
