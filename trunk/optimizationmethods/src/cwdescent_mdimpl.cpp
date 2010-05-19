@@ -48,7 +48,6 @@ CWdescent_mdImpl::CWdescent_mdImpl(funkcio *f, QVector<double> *d, QWidget * par
 	QState * s1 = new QState(so);
 	QState * s2 = new QState(so);
 	QState * s3 = new QState(so);
-	QState * s4 = new QState(so);
 	QFinalState * sf = new QFinalState(so);
 	QFinalState * sfm = new QFinalState();
 	so->setInitialState(s1);
@@ -58,7 +57,6 @@ CWdescent_mdImpl::CWdescent_mdImpl(funkcio *f, QVector<double> *d, QWidget * par
 	connect(s1, SIGNAL(entered()), SLOT(s1_entered()));
 	connect(s2, SIGNAL(entered()), SLOT(s2_entered()));
 	connect(s3, SIGNAL(entered()), SLOT(s3_entered()));
-	connect(s4, SIGNAL(entered()), SLOT(s4_entered()));
 	connect(sf, SIGNAL(entered()), SLOT(sf_entered()));
 
 	//---Создаю переходы, согласно диаграмме.--------------------------------------
@@ -66,11 +64,10 @@ CWdescent_mdImpl::CWdescent_mdImpl(funkcio *f, QVector<double> *d, QWidget * par
 	s1s2->setTargetState(s2);
 	s2s3Transiro * s2s3 = new s2s3Transiro(min_x2_rb, calculate_bt, SIGNAL(clicked()), s2);
 	s2s3->setTargetState(s3);
-	s3->addTransition(this, SIGNAL(stateHasEntered()), s4);// Переход s3s4 совершается сразу при входе в s3.
-	s4s1Transiro * s4s1 = new s4s1Transiro(&BP, &MP, F, strikteco, s4, SIGNAL(entered()), s4);
-	s4s1->setTargetState(s1);
-	s4sfTransiro * s4sf = new s4sfTransiro(&BP, &MP, F, strikteco, end_bt, SIGNAL(clicked()), s4);
-	s4sf->setTargetState(sf);
+	s3s1Transiro * s3s1 = new s3s1Transiro(&BP, &MP, F, strikteco, s3, SIGNAL(entered()), s3);
+	s3s1->setTargetState(s1);
+	s3sfTransiro * s3sf = new s3sfTransiro(&BP, &MP, F, strikteco, end_bt, SIGNAL(clicked()), s3);
+	s3sf->setTargetState(sf);
 
 	//---Создаю переход от сложного состояния к финалу автомата.
 	so->addTransition(so, SIGNAL(finished()), sfm); // Вызывается, когда сложное состояние достигло финиша - был найден минимум.
@@ -109,7 +106,7 @@ DemonstrataQPointF CWdescent_mdImpl::LengthOfStepX1(DemonstrataQPointF X) const
 	double tau = 0.618033988749894;
 	double lam = a + (1 - tau)*(b - a);
 	double mu = a + tau*(b - a);
-	while (abs(b - a) > 0.0001)
+	while (abs(b - a) > 0.000001)
 	{
 		if (F->rezulto(lam, y) > F->rezulto(mu, y))
 		{
@@ -141,7 +138,7 @@ DemonstrataQPointF CWdescent_mdImpl::LengthOfStepX2(DemonstrataQPointF X) const
 	double tau = 0.618033988749894;
 	double lam = a + (1 - tau)*(b - a);
 	double mu = a + tau*(b - a);
-	while (abs(b - a) > 0.0001)
+	while (abs(b - a) > 0.000001)
 	{
 		if (F->rezulto(x, lam) > F->rezulto(x, mu))
 		{
@@ -186,21 +183,14 @@ void CWdescent_mdImpl::sf_entered()
 	qDebug()<<trUtf8("Вошёл в Финальное состояние, сложного состояния"); // Вывожу дебажную инфу на консоль.
 }
 
-void CWdescent_mdImpl::s4_entered()
+void CWdescent_mdImpl::s3_entered()
 {
+	MP = LengthOfStepX2(MP);
+	
 	// Вывожу на форму значение расстояния между предыдущей базовой точкой и
 	// текущей, а также разность между предыдущим значением функции и текущим. 
 	dx_lb->setText(QString::number(Length(BP - MP), 'f'));
 	df_lb->setText(QString::number(F->rezulto(BP) - F->rezulto(MP), 'f'));
-	
-	qDebug()<<trUtf8("Вошёл в s4"); // Вывожу дебажную инфу на консоль.
-}
-
-void CWdescent_mdImpl::s3_entered()
-{
-	BP = MP;
-	
-	MP = LengthOfStepX2(MP);
 
 	LogTxtBrsr->append(trUtf8("  Сделан шаг по оси Х2. Новая точка: %1; %2").arg(MP.x()).arg(MP.y()));
 
@@ -218,6 +208,8 @@ void CWdescent_mdImpl::s2_entered()
 	dx_lb->setText(QString::number(Length(BP - MP), 'f'));
 	df_lb->setText(QString::number(F->rezulto(BP) - F->rezulto(MP), 'f'));
 	
+	BP = MP;
+	
 	LogTxtBrsr->append(trUtf8("  Сделан шаг в по оси Х1. Новая точка: %1; %2").arg(MP.x()).arg(MP.y()));
 
 	qDebug()<<trUtf8("Вошёл в s2"); // Вывожу дебажную инфу на консоль.
@@ -226,6 +218,7 @@ void CWdescent_mdImpl::s2_entered()
 void CWdescent_mdImpl::s1_entered()
 {
 	BP = MP;
+	
 	LogTxtBrsr->append(trUtf8("Начало итерации № %1. Базовая точка: %2; %3. Текущая точка: %4; %5.").arg(++NumeroIteracio).arg(BP.x()).arg(BP.y()).arg(MP.x()).arg(MP.y()));
 
 	qDebug()<<trUtf8("Вошёл в s1"); // Вывожу дебажную инфу на консоль.
@@ -277,12 +270,13 @@ namespace SinkoLauxKoordinatojMD
 			return false;
 	}
 
-	bool s4s1Transiro::eventTest(QEvent *e)
+	bool s3s1Transiro::eventTest(QEvent *e)
 	{
 		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
 		if(QSignalTransition::eventTest(e))
 		{
 			qDebug()<<trUtf8("  Проверяю |bp - mp| >= e || |f(bp) - f(mp)| >= e");
+			qDebug()<<s;
 			// Проверяю своё условие.
 			return Length(*bp - *mp) >= 0.1 || f->rezulto(*bp) - f->rezulto(*mp) >= 0.1;
 		}
@@ -290,12 +284,13 @@ namespace SinkoLauxKoordinatojMD
 			return false;
 	}
 
-	bool s4sfTransiro::eventTest(QEvent *e)
+	bool s3sfTransiro::eventTest(QEvent *e)
 	{
 		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
 		if(QSignalTransition::eventTest(e))
 		{
 			qDebug()<<trUtf8("  Проверяю |bp - mp| < e && |f(bp) - f(mp)| < e");
+			qDebug()<<s;
 			// Проверяю своё условие.
 			return Length(*bp - *mp) < 0.1 && f->rezulto(*bp) - f->rezulto(*mp) < 0.1;
 		}

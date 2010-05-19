@@ -78,11 +78,6 @@ private slots:
 	 */
 	void s3_entered();
 
-	/*! Обработчик входа в состояние s4.
-	 * Исполизую для дебага.
-	 */
-	void s4_entered();
-
 	//! Обработчик входа в состояние sf - конец поиска.
 	void sf_entered();
 	
@@ -151,20 +146,20 @@ namespace SinkoLauxKoordinatojMD
 	 * При создании требует указатели на переменные необходимые для принятия
 	 * решения о переходе.
 	 */
-	class s4s1Transiro: public QSignalTransition{
+	class s3s1Transiro: public QSignalTransition{
 		private:
 			DemonstrataQPointF * bp;
 			DemonstrataQPointF * mp;
 			funkcio * f;
 			qreal s; //!< Точность.
 		public:
-			s4s1Transiro(DemonstrataQPointF * BP,
+			s3s1Transiro(DemonstrataQPointF * BP,
 						DemonstrataQPointF * MP,
 						funkcio * F,
 						qreal strikteco,
 						QState * sourceState = 0
 						) : QSignalTransition(sourceState), bp(BP), mp(MP), f(F), s(strikteco){};
-			s4s1Transiro(DemonstrataQPointF * BP,
+			s3s1Transiro(DemonstrataQPointF * BP,
 						DemonstrataQPointF * MP,
 						funkcio * F,
 						qreal strikteco,
@@ -181,7 +176,7 @@ namespace SinkoLauxKoordinatojMD
 	 * При создании требует указатели на переменные необходимые для принятия
 	 * решения о переходе.
 	 */
-	class s4sfTransiro: public QSignalTransition
+	class s3sfTransiro: public QSignalTransition
 	{
 		private:
 			DemonstrataQPointF * bp;
@@ -189,13 +184,13 @@ namespace SinkoLauxKoordinatojMD
 			funkcio * f;
 			qreal s; //!< Точность.
 		public:
-			s4sfTransiro(DemonstrataQPointF * BP,
+			s3sfTransiro(DemonstrataQPointF * BP,
 						DemonstrataQPointF * MP,
 						funkcio * F,
 						qreal strikteco,
 						QState * sourceState = 0
 						) : QSignalTransition(sourceState), bp(BP), mp(MP), f(F), s(strikteco){};
-			s4sfTransiro(DemonstrataQPointF * BP,
+			s3sfTransiro(DemonstrataQPointF * BP,
 						DemonstrataQPointF * MP,
 						funkcio * F,
 						qreal strikteco,
