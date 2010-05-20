@@ -283,9 +283,14 @@ void CWdescentWinImpl::sf_entered(){
 		recomenci_acn->trigger();
 	}else{
 		str += trUtf8(" Вы прошли тест.");
+		if(F->metaObject()->className() == "KvadratigantoFunkcio"){
+			str += trUtf8(" Сообщите преподавателю и перейдите к овражной функции.");
+		}else if(F->metaObject()->className() == "RavinaFunkcio"){
+			str += trUtf8(" Позовите преподавателя.");
+		}
 		QMessageBox::information(this, trUtf8("Поздравляю"), str);
 		emit usiloPlenumis();
-	}	
+	}
 }
 
 void CWdescentWinImpl::s12_entered(){
