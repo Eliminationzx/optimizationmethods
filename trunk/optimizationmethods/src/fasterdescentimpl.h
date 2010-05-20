@@ -7,6 +7,7 @@
 #include <QSignalTransition>
 #include <QState>
 #include <QRadioButton>
+#include <QLineEdit>
 //
 class funkcio;
 //
@@ -187,29 +188,24 @@ namespace SinkoFD
 		protected:
 	    	bool eventTest(QEvent *e);
 	};
-	
-	class anTransition: public QSignalTransition
-	{
-		public:
-			anTransition(QState * sourceState = 0) : QSignalTransition(sourceState){};
-			anTransition(QObject * sender,
-			             const char * signal,
-			             QState * sourceState = 0
-				) : QSignalTransition(sender, signal, sourceState){};
-		protected:
-			//! Перход срабатывает, только если нажата кнопка ввести S 
-		bool eventTest(QEvent *e);
-	}
-	
+
 	//! Переход от s3 к s4.
 	class s3s4Transiro: public QSignalTransition
 	{
+		private:
+			funkcio * f;
+			QLineEdit * df_dx1;
+			QLineEdit * df_dx2;
 		public:
-			s3s4Transiro(QState * sourceState = 0) : QSignalTransition(sourceState){};
-			s3s4Transiro(QObject * sender,
+			s3s4Transiro(funkcio * F, QLineEdit * dfdx1, QLineEdit * dfdx2,
+						QState * sourceState = 0) : QSignalTransition(sourceState), f(F), df_dx1(dfdx1), df_dx2(dfdx2){};
+			s3s4Transiro(funkcio * F,
+						QLineEdit * dfdx1,
+						QLineEdit * dfdx2,
+						QObject * sender,
 			             const char * signal,
 			             QState * sourceState = 0
-				) : QSignalTransition(sender, signal, sourceState){};
+				) : QSignalTransition(sender, signal, sourceState), f(F), df_dx1(dfdx1), df_dx2(dfdx2){};
 		protected:
 			//! Перход срабатывает, только если нажата кнопка ввести S 
 		bool eventTest(QEvent *e);
@@ -323,17 +319,15 @@ namespace SinkoFD
 		public:
 			s8s9Transiro(DemonstrataQPointF * BP,
 						DemonstrataQPointF * grad,
-						qreal strikteco,
 						QState * sourceState = 0
-						) : QSignalTransition(sourceState), bp(BP), Grad(grad), s(strikteco){};
+						) : QSignalTransition(sourceState), bp(BP), Grad(grad){};
 			s8s9Transiro(DemonstrataQPointF * BP,
 						DemonstrataQPointF * grad,
-						qreal strikteco,
 						QObject * sender,
 						const char * signal,
 						QState * sourceState = 0
 						) : QSignalTransition(sender, signal, sourceState),
-						bp(BP), Grad(grad), s(strikteco){};
+						bp(BP), Grad(grad){};
 		protected:
 		bool eventTest(QEvent *e);
 	};

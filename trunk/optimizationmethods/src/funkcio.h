@@ -11,7 +11,7 @@ class funkcio : public QObject
 {
 Q_OBJECT
 
-protected:
+public:
 	//! Возвращает значение частной производной первого порядка по x1.
 	virtual double df_dx1(const QVector<double> X) const = 0;
 	//! Возвращает значение частной производной первого порядка по x1.
@@ -27,7 +27,6 @@ protected:
 	//! Возвращает длину шага для оптимизации функции одной переменной.
 	double lengthOfStep(const QPointF X) const;
 	
-public:
 	//! Возвращает результат вычисления функции в точке.
 	virtual double rezulto(const double x1, //!< Первая координата точки.
 	                       const double x2 //!< Вторая координата точки.
@@ -44,6 +43,15 @@ public:
 	virtual QVector<double> minPoint(
 	                                 const double e //!< Точность.
 	                                ) const;
+
+	virtual double getA() const = 0;
+	virtual double getB() const = 0;
+	virtual double getC() const = 0;
+	virtual double getD() const = 0;
+	virtual double getE() const = 0;
+	virtual double getF() const = 0;
+	virtual double getG() const = 0;
+
 	/*! @param parent Родитель.
 	 */
 	funkcio(QObject * parent = 0) : QObject(parent){};
@@ -78,6 +86,8 @@ private:
 	//! Коэффициенты.
 	double A, B, C, D, E, F, G;
 
+public:
+
 	//! Возвращает значение частной производной первого порядка по x1.
 	double df_dx1(const QVector<double> X) const
 	{ return 2*A*(X[0] - B) + E*(X[1] - G); };
@@ -90,9 +100,8 @@ private:
 	{ return 2*C*(X[1] - D) + E*(X[0] - F); }
 	//! Возвращает значение частной производной первого порядка по x2.
 	double df_dx2(const QPointF X) const
-	{ return 2*C*(X.x() - D) + E*(X.y() - F); }
-	
-public:
+	{ return 2*C*(X.y() - D) + E*(X.x() - F); }
+
   //! Возвращает результат вычисления функции в точке.
   double rezulto(const double x1, //!< Первая координата точки.
                  const double x2 //!< Вторая координата точки.
@@ -152,6 +161,14 @@ private:
 	//! Коэффициенты.
 	double A, B;
 
+	double getC() const { return 0; };
+	double getD() const { return 0; };
+	double getE() const { return 0; };
+	double getF() const { return 0; };
+	double getG() const { return 0; };
+
+public:
+
 	//! Возвращает значение частной производной первого порядка по x1.
 	double df_dx1(const QVector<double> X) const
 	{ return -4*A*(X[1]*X[0] - pow(X[0], 3)) + 2*B*(1 - X[0]); };
@@ -166,7 +183,6 @@ private:
 	double df_dx2(const QPointF X) const
 	{ return 2*A*(X.y() - pow(X.x(), 2)); };
 
-public:
   //! Возвращает результат вычисления функции в точке.
   double rezulto(const double x1, //!< Первая координата точки.
                  const double x2 //!< Вторая координата точки.
