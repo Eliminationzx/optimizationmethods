@@ -23,7 +23,9 @@ FasterDescentImpl::FasterDescentImpl( funkcio *f, QVector<double> *d, QWidget * 
 {
 
 	setupUi(this);
-	qDebug()<<trUtf8("Покоординатный спуск с фиксированным шагом"); // Вывожу дебажную инфу на консоль.
+	qDebug()<<trUtf8("Наискорейший спуск"); // Вывожу дебажную инфу на консоль.
+
+	NumeroIteracio = 1;
 
 	// Создаю карту.
 	// centralwidget->layout() - указатель на компановщик центрального виджета
@@ -85,12 +87,9 @@ FasterDescentImpl::FasterDescentImpl( funkcio *f, QVector<double> *d, QWidget * 
 	s2s3->setTargetState(s3);
 	s2s4Transiro * s2s4 = new s2s4Transiro(NumeroIteracio, agrad_fx, next1_bt, SIGNAL(clicked()), s2);
 	s2s4->setTargetState(s4);
-	anTransition * trans = new anTransition(next2_bt, SIGNAL(clicked()));
-	so->addTransition(trans);
-	connect(trans, SIGNAL(clicked()));
-	s3s4Transiro * s3s4 = new s3s4Transiro( next2_bt, SIGNAL(clicked()), s3);
+	s3s4Transiro * s3s4 = new s3s4Transiro(F, dfdx1, dfdx2, next2_bt, SIGNAL(clicked()), s3);
 	s3s4->setTargetState(s4);
-	s4s5Transiro * s4s5 = new s4s5Transiro(&grad, check_bt, SIGNAL(clicked()), s4);
+	s4s5Transiro * s4s5 = new s4s5Transiro(check_bt, SIGNAL(clicked()), s4);
 	s4s5->setTargetState(s5);
 	s5s6Transiro * s5s6 = new s5s6Transiro(gradfx, next3_bt, SIGNAL(entered()), s5);
 	s5s6->setTargetState(s6);
@@ -185,7 +184,7 @@ void FasterDescentImpl::s8_entered()
 	
 	length_step_a_lb->setText(QString::number(lengthStep, 'f'));
 
-	LogTxtBrsr->append(trUtf8("  а вычислено успешно");
+	LogTxtBrsr->append(trUtf8("  а вычислено успешно"));
 
 	qDebug()<<trUtf8("Вошёл в s8"); // Вывожу дебажную инфу на консоль.
 }
@@ -194,7 +193,7 @@ void FasterDescentImpl::s7_entered()
 {
 	stackedWidget->setCurrentIndex(3);
 	
-	LogTxtBrsr->append(trUtf8("  Вычисляем а");
+	LogTxtBrsr->append(trUtf8("  Вычисляем а"));
 
 	qDebug()<<trUtf8("Вошёл в s7"); // Вывожу дебажную инфу на консоль.
 }
@@ -205,7 +204,7 @@ void FasterDescentImpl::s6_entered()
 	
 	length_grad_lb->setText(QString::number(Length(grad), 'f'));
 	
-	LogTxtBrsr->append(trUtf8("  Проверка точности выполнена");
+	LogTxtBrsr->append(trUtf8("  Проверка точности выполнена"));
 
 	qDebug()<<trUtf8("Вошёл в s6"); // Вывожу дебажную инфу на консоль.
 }
@@ -214,7 +213,7 @@ void FasterDescentImpl::s5_entered()
 {
 	stackedWidget->setCurrentIndex(2);
 	
-	LogTxtBrsr->append(trUtf8("  Проверка точности");
+	LogTxtBrsr->append(trUtf8("  Проверка точности"));
 
 	qDebug()<<trUtf8("Вошёл в s5"); // Вывожу дебажную инфу на консоль.
 }
@@ -229,9 +228,9 @@ void FasterDescentImpl::s4_entered()
 	s_x2_lb->setText(QString::number(grad.y(), 'f'));
 */	
 	if (NumeroIteracio == 1)
-		LogTxtBrsr->append(trUtf8("  Введён градиент");
+		LogTxtBrsr->append(trUtf8("  Введён градиент"));
 	else if (NumeroIteracio > 1)
-		LogTxtBrsr->append(trUtf8("  S определено успешно");
+		LogTxtBrsr->append(trUtf8("  S определено успешно"));
 
 	qDebug()<<trUtf8("Вошёл в s4"); // Вывожу дебажную инфу на консоль.
 }
@@ -240,7 +239,7 @@ void FasterDescentImpl::s3_entered()
 {
 	stackedWidget->setCurrentIndex(1);
 	
-	LogTxtBrsr->append(trUtf8("  S определено успешно");
+	LogTxtBrsr->append(trUtf8("  S определено успешно"));
 
 	qDebug()<<trUtf8("Вошёл в s3"); // Вывожу дебажную инфу на консоль.
 }
@@ -249,7 +248,7 @@ void FasterDescentImpl::s2_entered()
 {
 	stackedWidget->setCurrentIndex(0);
 	
-	LogTxtBrsr->append(trUtf8("  Определяем S");
+	LogTxtBrsr->append(trUtf8("  Определяем S"));
 
 	qDebug()<<trUtf8("Вошёл в s2"); // Вывожу дебажную инфу на консоль.
 }
@@ -324,19 +323,6 @@ namespace SinkoFD
 			return false;
 	}
 
-	bool anTransition::eventTest(QEvent *e)
-	{
-		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
-		if(QSignalTransition::eventTest(e))
-		{
-			qDebug()<<trUtf8("  Проверяю, что неправильный ввод градиента");
-			// Проверяю своё условие.
-			return true;
-		}
-		else
-			return false;
-	}
-
 	bool s3s4Transiro::eventTest(QEvent *e)
 	{
 		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
@@ -344,7 +330,33 @@ namespace SinkoFD
 		{
 			qDebug()<<trUtf8("  Проверяю, что введен градиент");
 			// Проверяю своё условие.
-			return true;
+			
+			QString tmpX1;
+			QString tmpX2;
+			
+			if(f->metaObject()->className() == "KvadratigantoFunkcio")
+			{
+				tmpX1 = QString("%1*(x1-%2)+%3*(x2-%4)").arg(2*f->getA()).arg(f->getB()).arg(f->getE()).arg(f->getG()); 
+				tmpX2 = QString("%1*(x2-%2)+%3*(x1-%4)").arg(2*f->getC()).arg(f->getD()).arg(f->getE()).arg(f->getF());
+			}
+			else if(f->metaObject()->className() == "RavinaFunkcio")
+			{
+				tmpX1 = QString("%1*(x2*x1-x1^3)+%2*(1-x1)").arg(-4*f->getA()).arg(2*f->getB());
+				tmpX2 = QString("%1*(x2-x1^2)").arg(f->getA());
+			}
+			
+			if(df_dx1->text() != tmpX1)
+			{
+//				QMessageBox::information(this, trUtf8("Ошибка"), trUtf8("Не правильно введена производная df/dx1"));
+				return false;
+			}
+			else if(df_dx2->text() != tmpX2)
+			{
+//				QMessageBox::information(this, trUtf8("Ошибка"), trUtf8("Не правильно введена производная df/dx2"));
+				return false;
+			}
+			else
+				return true;
 		}
 		else
 			return false;
