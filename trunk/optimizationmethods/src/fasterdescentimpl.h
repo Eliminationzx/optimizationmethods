@@ -128,7 +128,7 @@ signals:
  * Объявления наследников QSignalTransition можно не смотреть. Важна только
  * реализация метода eventTest, ради которой и переопрделяю классы.
  */ 
-namespace SinkoLauxKoordinatojFD
+namespace SinkoFD
 {
 	//! Переход от s1 к s2.
 	class s1s2Transiro: public QSignalTransition

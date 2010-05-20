@@ -16,7 +16,7 @@
 #include <QFontDialog>
 #include <QDebug>
 //
-using namespace SinkoLauxKoordinatojFD;
+using namespace SinkoFD;
 
 FasterDescentImpl::FasterDescentImpl( funkcio *f, QVector<double> *d, QWidget * parent, Qt::WFlags flags)
 	: AlgoritmoWin(f, d, parent, flags), strikteco((*d)[0])
@@ -283,7 +283,7 @@ void FasterDescentImpl::init()
 	qDebug()<<trUtf8("Задаю переменным начальные значения"); // Вывожу дебажную инфу на консоль.
 }
 
-namespace SinkoLauxKoordinatojFD
+namespace SinkoFD
 {
 	bool s1s2Transiro::eventTest(QEvent *e)
 	{
