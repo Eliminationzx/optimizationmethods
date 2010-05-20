@@ -6,6 +6,7 @@
 #include "spurosinkolauxkoordinatoj.h"
 #include "demonstrataqpointf.h"
 #include "signalantoporpointf.h"
+#include "HelpBrowser.h"
 #include "math.h"
 #include <QTextBrowser>
 #include <QString>
@@ -533,4 +534,10 @@ void CWdescentWinImpl::on_difiniFonto_act_activated()
 		// Была нажата кнопка ОК.
 		setFont(fnt);
 	}
+}
+
+void CWdescentWinImpl::on_helpo_action_activated()
+{
+	HelpBrowser * hb = new HelpBrowser( "doc/", "method1.htm", this);
+	hb->show();
 }

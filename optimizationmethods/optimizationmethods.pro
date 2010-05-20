@@ -1,6 +1,6 @@
 TEMPLATE = app
 QT = gui core
-CONFIG += qt warn_on release
+CONFIG += qt warn_on console release
 DESTDIR = bin
 OBJECTS_DIR = build
 MOC_DIR = build
@@ -32,6 +32,7 @@ HEADERS = src/mainwindowimpl.h \
  src/nemiimpl.h \
  src/notwenimpl.h \
  src/spurosinkolauxkoordinatoj_md.h \
+ src/spuroNeMi.h \
  src/HelpBrowser.h
 SOURCES = src/mainwindowimpl.cpp \
  src/main.cpp \
@@ -50,5 +51,6 @@ SOURCES = src/mainwindowimpl.cpp \
  src/hugiimpl.cpp \
  src/nemiimpl.cpp \
  src/notwenimpl.cpp \
- src/spurosinkolauxkoordinatoj_md.cpp
+ src/spurosinkolauxkoordinatoj_md.cpp \
+ src/spuroNeMi.cpp
 RESOURCES += ui/data.qrc
