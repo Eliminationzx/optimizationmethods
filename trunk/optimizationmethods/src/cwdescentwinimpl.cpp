@@ -270,20 +270,22 @@ void CWdescentWinImpl::registriEraro(){
 }
 
 void CWdescentWinImpl::sf_entered(){
-  LogTxtBrsr->append(trUtf8("Конец алгоритма. Найден: %1").arg(F->rezulto(MP)));
-  QMessageBox::information(this, trUtf8("Конец"), trUtf8("Найден минимум"));
+	LogTxtBrsr->append(trUtf8("Конец алгоритма. Найден: %1").arg(F->rezulto(MP)));
+	QString str = trUtf8("Найден минимум.");
+//	QMessageBox::information(this, trUtf8("Конец"), trUtf8("Найден минимум"));
 
 	qDebug()<<trUtf8("Конец алгоритма. Найден минимум"); // Вывожу дебажныю инфу на консоль.
 
 	if(KvantoEraroj > D[6]){
 		// Слишком много ошибок.
-		QMessageBox::information(this, trUtf8("Внимание"), trUtf8("Вы допустили слишком большое количество ошибок. Начните заново"));
+		str += trUtf8(" Вы допустили слишком большое количество ошибок. Начните заново");
+		QMessageBox::information(this, trUtf8("Внимание"), str);
 		recomenci_acn->trigger();
 	}else{
-		QMessageBox::information(this, trUtf8("Поздравляю"), trUtf8("Вы прошли тест"));
+		str += trUtf8(" Вы прошли тест.");
+		QMessageBox::information(this, trUtf8("Поздравляю"), str);
 		emit usiloPlenumis();
-	}
-	
+	}	
 }
 
 void CWdescentWinImpl::s12_entered(){
