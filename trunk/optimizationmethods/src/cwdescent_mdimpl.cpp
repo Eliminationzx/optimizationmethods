@@ -20,7 +20,7 @@ using namespace std;
 using namespace SinkoLauxKoordinatojMD;
 
 CWdescent_mdImpl::CWdescent_mdImpl(funkcio *f, QVector<double> *d, QWidget * parent, Qt::WFlags flags) 
-	: AlgoritmoWin(f, d, parent, flags)
+	: AlgoritmoWin(f, d, parent, flags), strikteco((*d)[0])
 {
 	setupUi(this);
 	
@@ -32,7 +32,13 @@ CWdescent_mdImpl::CWdescent_mdImpl(funkcio *f, QVector<double> *d, QWidget * par
 	// добавляю вижет карты в позицию 1,1. Компановщик сам позаботится о назначении новому виджету родителя.
 	static_cast<QGridLayout*>(centralwidget->layout())->addWidget(MapoWdg, 1, 1, 2, 1);
 
-	MapoWdg->setScale(6);// Ставлю масштаб побольше. Надо будет определться с оптимальным значением.
+	MapoWdg->setScale(20);// Ставлю масштаб побольше. Надо будет определться с оптимальным значением.
+
+	Sp = new spuroSinkoLauxKoordinatoj(Qt::white, Qt::blue);
+	MapoWdg->difiniSpuro(Sp);
+	MapoWdg->difiniFonaKoloro(Qt::green);
+	
+	connect(MapoWdg, SIGNAL(MusaPos(const QString &)), statusBar(), SLOT(showMessage( const QString &)));
 
 	//===Соединяю точки и надписи на форме=========================================
 	SignalantoPorPointF * sMP = new SignalantoPorPointF(&MP, F, this);
@@ -48,8 +54,7 @@ CWdescent_mdImpl::CWdescent_mdImpl(funkcio *f, QVector<double> *d, QWidget * par
 	QState * s1 = new QState(so);
 	QState * s2 = new QState(so);
 	QState * s3 = new QState(so);
-	QFinalState * sf = new QFinalState(so);
-	QFinalState * sfm = new QFinalState();
+	QState * sf = new QState();
 	so->setInitialState(s1);
 
 	//---Соединяю состояния и обрабодчики входа в них.-----------------------------
@@ -69,9 +74,6 @@ CWdescent_mdImpl::CWdescent_mdImpl(funkcio *f, QVector<double> *d, QWidget * par
 	s3sfTransiro * s3sf = new s3sfTransiro(&BP, &MP, F, strikteco, end_bt, SIGNAL(clicked()), s3);
 	s3sf->setTargetState(sf);
 
-	//---Создаю переход от сложного состояния к финалу автомата.
-	so->addTransition(so, SIGNAL(finished()), sfm); // Вызывается, когда сложное состояние достигло финиша - был найден минимум.
-
 	//---Создаю переходы не имеющие цели. С помощью них фиксирую ошибки ползователя
 	QSignalTransition * te1 = new QSignalTransition(calculate_bt, SIGNAL(clicked()));
 	so->addTransition(te1);
@@ -86,9 +88,18 @@ CWdescent_mdImpl::CWdescent_mdImpl(funkcio *f, QVector<double> *d, QWidget * par
 	s1->assignProperty(dx_lb, "palette", this->palette());
 	s1->assignProperty(df_lb, "palette", this->palette());
 */
+
+//---Прикручиваю карту---------------------------------------------------------
+	connect(sMP, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniMomentaPointo(QPointF)));
+
+	connect(s2, SIGNAL(entered()), Sp, SLOT(reveniAlMomentoPointo()));
+	connect(s3, SIGNAL(entered()), Sp, SLOT(reveniAlMomentoPointo()));
+
+	connect(s1, SIGNAL(entered()), Sp, SLOT(finisxiIteracio()));
+	
 	//---Добавляю состояния в автомат и запускаю его.------------------------------
 	SM->addState(so);
-	SM->addState(sfm);
+	SM->addState(sf);
 	SM->setInitialState(so);
 	init();
 	SM->start();
@@ -231,13 +242,15 @@ void CWdescent_mdImpl::so_entered()
 
 void CWdescent_mdImpl::init()
 {
-	strikteco = D[0];
 	precision_lb->setText(QString::number(strikteco));
 	KvantoEraroj = 0;
 	NumeroIteracio = 0;
 	MP = QPointF(D[4],D[5]);
 	quanError = (int)D[6];
 	LogTxtBrsr->setText("");
+
+	static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->senspurigi();
+	static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->difiniUnuaPointo(MP);
 
 	qDebug()<<trUtf8("Задаю переменным начальные значения"); // Вывожу дебажную инфу на консоль.
 }
@@ -276,9 +289,8 @@ namespace SinkoLauxKoordinatojMD
 		if(QSignalTransition::eventTest(e))
 		{
 			qDebug()<<trUtf8("  Проверяю |bp - mp| >= e || |f(bp) - f(mp)| >= e");
-			qDebug()<<s;
 			// Проверяю своё условие.
-			return Length(*bp - *mp) >= 0.1 || f->rezulto(*bp) - f->rezulto(*mp) >= 0.1;
+			return Length(*bp - *mp) >= s || f->rezulto(*bp) - f->rezulto(*mp) >= s;
 		}
 		else
 			return false;
@@ -290,9 +302,8 @@ namespace SinkoLauxKoordinatojMD
 		if(QSignalTransition::eventTest(e))
 		{
 			qDebug()<<trUtf8("  Проверяю |bp - mp| < e && |f(bp) - f(mp)| < e");
-			qDebug()<<s;
 			// Проверяю своё условие.
-			return Length(*bp - *mp) < 0.1 && f->rezulto(*bp) - f->rezulto(*mp) < 0.1;
+			return Length(*bp - *mp) < s && f->rezulto(*bp) - f->rezulto(*mp) < s;
 		}
 		else
 			return false;
