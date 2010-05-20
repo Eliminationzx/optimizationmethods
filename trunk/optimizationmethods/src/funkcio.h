@@ -14,10 +14,18 @@ Q_OBJECT
 protected:
 	//! Возвращает значение частной производной первого порядка по x1.
 	virtual double df_dx1(const QVector<double> X) const = 0;
+	//! Возвращает значение частной производной первого порядка по x1.
+	virtual double df_dx1(const QPointF X) const = 0;
+	
 	//! Возвращает значение частной производной первого порядка по x2.
 	virtual double df_dx2(const QVector<double> X) const = 0;
+	//! Возвращает значение частной производной первого порядка по x2.
+	virtual double df_dx2(const QPointF X) const = 0;
+	
 	//! Возвращает длину шага для оптимизации функции одной переменной.
 	double lengthOfStep(const QVector<double> X, const double e) const;
+	//! Возвращает длину шага для оптимизации функции одной переменной.
+	double lengthOfStep(const QPointF X) const;
 	
 public:
 	//! Возвращает результат вычисления функции в точке.
@@ -67,15 +75,23 @@ class KvadratigantoFunkcio : public funkcio{
 Q_OBJECT
 
 private:
-  //! Коэффициенты.
-  double A, B, C, D, E, F, G;
-  //! Возвращает значение частной производной первого порядка по x1.
-  double df_dx1(const QVector<double> X) const
-  { return 2*A*(X[0] - B) + E*(X[1] - G); };
-  //! Возвращает значение частной производной первого порядка по x2.
-  double df_dx2(const QVector<double> X) const
-  { return 2*C*(X[1] - D) + E*(X[0] - F); }
-  	
+	//! Коэффициенты.
+	double A, B, C, D, E, F, G;
+
+	//! Возвращает значение частной производной первого порядка по x1.
+	double df_dx1(const QVector<double> X) const
+	{ return 2*A*(X[0] - B) + E*(X[1] - G); };
+	//! Возвращает значение частной производной первого порядка по x1.
+	double df_dx1(const QPointF X) const
+	{ return 2*A*(X.x() - B) + E*(X.y() - G); };
+
+	//! Возвращает значение частной производной первого порядка по x2.
+	double df_dx2(const QVector<double> X) const
+	{ return 2*C*(X[1] - D) + E*(X[0] - F); }
+	//! Возвращает значение частной производной первого порядка по x2.
+	double df_dx2(const QPointF X) const
+	{ return 2*C*(X.x() - D) + E*(X.y() - F); }
+	
 public:
   //! Возвращает результат вычисления функции в точке.
   double rezulto(const double x1, //!< Первая координата точки.
@@ -92,7 +108,15 @@ public:
    */
   double rezulto(const QPointF & X) const { return rezulto(X.x(), X.y()); };
 
- 	//! Конструктор класса KvadratigantoFunkcio по умолчанию.
+	double getA() const { return A; };
+	double getB() const { return B; };
+	double getC() const { return C; };
+	double getD() const { return D; };
+	double getE() const { return E; };
+	double getF() const { return F; };
+	double getG() const { return G; };
+
+	//! Конструктор класса KvadratigantoFunkcio по умолчанию.
   /*! @param parent Родитель.
    */
   KvadratigantoFunkcio(QObject * parent = 0) : funkcio(parent){
@@ -125,15 +149,23 @@ class RavinaFunkcio : public funkcio
 Q_OBJECT
 
 private:
-  //! Коэффициенты.
-  double A, B;
-  //! Возвращает значение частной производной первого порядка по x1.
-  double df_dx1(const QVector<double> X) const
-  { return -4*A*(X[1] - pow(X[0], 2)) + 2*B*(1 - X[0]); };
-  //! Возвращает значение частной производной первого порядка по x2.
-  double df_dx2(const QVector<double> X) const
-  { return 2*A*(X[1] - pow(X[0], 2)); };
-  
+	//! Коэффициенты.
+	double A, B;
+
+	//! Возвращает значение частной производной первого порядка по x1.
+	double df_dx1(const QVector<double> X) const
+	{ return -4*A*(X[1]*X[0] - pow(X[0], 3)) + 2*B*(1 - X[0]); };
+	//! Возвращает значение частной производной первого порядка по x1.
+	double df_dx1(const QPointF X) const
+	{ return -4*A*(X.y()*X.x() - pow(X.x(), 3)) + 2*B*(1 - X.x()); };
+
+	//! Возвращает значение частной производной первого порядка по x2.
+	double df_dx2(const QVector<double> X) const
+	{ return 2*A*(X[1] - pow(X[0], 2)); };
+	//! Возвращает значение частной производной первого порядка по x2.
+	double df_dx2(const QPointF X) const
+	{ return 2*A*(X.y() - pow(X.x(), 2)); };
+
 public:
   //! Возвращает результат вычисления функции в точке.
   double rezulto(const double x1, //!< Первая координата точки.
@@ -150,9 +182,12 @@ public:
    */
   double rezulto(const QPointF & X) const { return rezulto(X.x(), X.y()); };
   	
-  	//! Конструктор класса RavinaFunkcio по умолчанию.
-  /*! @param parent Родитель.
-   */
+	double getA() const { return A; };
+	double getB() const { return B; };
+
+	//! Конструктор класса RavinaFunkcio по умолчанию.
+	/*! @param parent Родитель.
+	 */
   RavinaFunkcio(QObject * parent = 0) : funkcio(parent){ A = 1; B = 1; };
   //! Конструктор класса RavinaFunkcio.
   /*! @param parent Родитель.
