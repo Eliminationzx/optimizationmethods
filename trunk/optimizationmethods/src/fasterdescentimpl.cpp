@@ -119,6 +119,18 @@ FasterDescentImpl::FasterDescentImpl( funkcio *f, QVector<double> *d, QWidget * 
 	QSignalTransition * te5 = new QSignalTransition(end_bt, SIGNAL(clicked()));
 	so->addTransition(te5);
 	connect(te5, SIGNAL(triggered()), SLOT(registriEraro()));
+	QSignalTransition * te6 = new QSignalTransition(next1_bt, SIGNAL(clicked()));
+	so->addTransition(te6);
+	connect(te6, SIGNAL(triggered()), SLOT(registriEraro()));
+	QSignalTransition * te7 = new QSignalTransition(next2_bt, SIGNAL(clicked()));
+	so->addTransition(te7);
+	connect(te7, SIGNAL(triggered()), SLOT(registriEraro()));
+	QSignalTransition * te8 = new QSignalTransition(next3_bt, SIGNAL(clicked()));
+	so->addTransition(te8);
+	connect(te8, SIGNAL(triggered()), SLOT(registriEraro()));
+	QSignalTransition * te9 = new QSignalTransition(next4_bt, SIGNAL(clicked()));
+	so->addTransition(te9);
+	connect(te9, SIGNAL(triggered()), SLOT(registriEraro()));
 
 	//---Настраиваю выделение цветом растояния между точками.
 /*	s4->assignProperty(dx_lb, "palette", QPalette(Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red));
@@ -334,8 +346,11 @@ namespace SinkoFD
 			QString tmpX1;
 			QString tmpX2;
 			
+			qDebug()<<f->metaObject()->className()<<" "<<"KvadratigantoFunkcio";
+			
 			if(f->metaObject()->className() == "KvadratigantoFunkcio")
 			{
+				qDebug()<<"Fuck";
 				tmpX1 = QString("%1*(x1-%2)+%3*(x2-%4)").arg(2*f->getA()).arg(f->getB()).arg(f->getE()).arg(f->getG()); 
 				tmpX2 = QString("%1*(x2-%2)+%3*(x1-%4)").arg(2*f->getC()).arg(f->getD()).arg(f->getE()).arg(f->getF());
 			}
@@ -344,7 +359,7 @@ namespace SinkoFD
 				tmpX1 = QString("%1*(x2*x1-x1^3)+%2*(1-x1)").arg(-4*f->getA()).arg(2*f->getB());
 				tmpX2 = QString("%1*(x2-x1^2)").arg(f->getA());
 			}
-			
+			qDebug()<<tmpX1<<" "<<tmpX2;
 			if(df_dx1->text() != tmpX1)
 			{
 //				QMessageBox::information(this, trUtf8("Ошибка"), trUtf8("Не правильно введена производная df/dx1"));
