@@ -58,6 +58,7 @@ public:
   DemonstrataQPointF( qreal x, qreal y):QPointF(x, y), sp(0){};
 };
 
+//! Вчисляет длинну радиус вектора заданного точкой
 qreal Length( const QPointF & point);
 #endif
 
