@@ -510,8 +510,17 @@ p, li { white-space: pre-wrap; }
     </property>
     <addaction name="difiniFonto_act"/>
    </widget>
+   <widget class="QMenu" name="helpo_menu">
+    <property name="title">
+     <string>Помощь</string>
+    </property>
+    <addaction name="helpo_action"/>
+    <addaction name="separator"/>
+    <addaction name="about_action"/>
+   </widget>
    <addaction name="testo_menu"/>
    <addaction name="view_menu"/>
+   <addaction name="helpo_menu"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="recomenci_acn">
@@ -527,6 +536,19 @@ p, li { white-space: pre-wrap; }
   <action name="difiniFonto_act">
    <property name="text">
     <string>Настроить &amp;шрифт</string>
+   </property>
+  </action>
+  <action name="helpo_action">
+   <property name="text">
+    <string>&amp;Справка</string>
+   </property>
+   <property name="shortcut">
+    <string>F1</string>
+   </property>
+  </action>
+  <action name="about_action">
+   <property name="text">
+    <string>О &amp;программе...</string>
    </property>
   </action>
  </widget>
