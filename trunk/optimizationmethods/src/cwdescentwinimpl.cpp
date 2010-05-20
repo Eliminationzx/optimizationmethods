@@ -7,6 +7,7 @@
 #include "demonstrataqpointf.h"
 #include "signalantoporpointf.h"
 #include "math.h"
+#include "HelpBrowser.h"
 #include <QTextBrowser>
 #include <QString>
 #include <QMessageBox>
@@ -15,6 +16,7 @@
 #include <QLabel>
 #include <QFontDialog>
 #include <QDebug>
+#include <Qapplication> 
 //
 using namespace SinkoLauxKoordinatoj;
 
@@ -283,14 +285,9 @@ void CWdescentWinImpl::sf_entered(){
 		recomenci_acn->trigger();
 	}else{
 		str += trUtf8(" Вы прошли тест.");
-		if(F->metaObject()->className() == "KvadratigantoFunkcio"){
-			str += trUtf8(" Сообщите преподавателю и перейдите к овражной функции.");
-		}else if(F->metaObject()->className() == "RavinaFunkcio"){
-			str += trUtf8(" Позовите преподавателя.");
-		}
 		QMessageBox::information(this, trUtf8("Поздравляю"), str);
 		emit usiloPlenumis();
-	}
+	}	
 }
 
 void CWdescentWinImpl::s12_entered(){
@@ -533,4 +530,12 @@ void CWdescentWinImpl::on_difiniFonto_act_activated()
 		// Была нажата кнопка ОК.
 		setFont(fnt);
 	}
+}
+//! Выбран пункт меню "Помощь".
+void CWdescentWinImpl::on_BroHelp_activated()
+{
+    QString path = qApp->applicationDirPath() + "/doc"; 
+	HelpBrowser* hell =new HelpBrowser(path, "index.htm");
+	hell->resize(800, 600);
+    hell->show();
 }
