@@ -275,7 +275,7 @@ void CWdescentWinImpl::sf_entered(){
 
 	qDebug()<<trUtf8("Конец алгоритма. Найден минимум"); // Вывожу дебажныю инфу на консоль.
 
-	if(KvantoEraroj >= D[6]){
+	if(KvantoEraroj > D[6]){
 		// Слишком много ошибок.
 		QMessageBox::information(this, trUtf8("Внимание"), trUtf8("Вы допустили слишком большое количество ошибок. Начните заново"));
 		recomenci_acn->trigger();
