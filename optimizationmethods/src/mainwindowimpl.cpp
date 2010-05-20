@@ -202,8 +202,8 @@ void MainWindowImpl::on_next_button_2_clicked()
 			AW = new CWdescent_mdImpl(funck, &data, this, Qt::Window);
 			break;
 		case A::FasterDescent:
-//			AW = new FasterDescentImpl(funck, &data, this, Qt::Window);
-//			break;
+			AW = new FasterDescentImpl(funck, &data, this, Qt::Window);
+			break;
 		case A::HuGi:
 //			AW = new HuGiImpl(funck, &data, this, Qt::Window);
 //			break;

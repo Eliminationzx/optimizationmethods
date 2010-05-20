@@ -16,7 +16,7 @@
 #include "mainpassimpl.h"
 #include "cwdescentwinimpl.h"
 #include "cwdescent_mdimpl.h"
-//#include "FasterDescentImpl.h"
+#include "fasterdescentimpl.h"
 //#include "HuGiImpl.h"
 //#include "NeMiImpl.h"
 //#include "NotWeNImpl.h"
