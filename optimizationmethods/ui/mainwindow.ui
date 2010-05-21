@@ -538,7 +538,7 @@
      <x>0</x>
      <y>0</y>
      <width>615</width>
-     <height>23</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu">
@@ -551,7 +551,7 @@
    </widget>
    <widget class="QMenu" name="menu_2">
     <property name="title">
-     <string>Справка</string>
+     <string>Помощь</string>
     </property>
     <addaction name="help"/>
     <addaction name="separator"/>

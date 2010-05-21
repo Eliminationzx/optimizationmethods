@@ -6,6 +6,7 @@
 #include "spurosinkolauxkoordinatoj.h"
 #include "demonstrataqpointf.h"
 #include "signalantoporpointf.h"
+#include "HelpBrowser.h"
 #include "math.h"
 #include <QTextBrowser>
 #include <QString>
@@ -454,5 +455,23 @@ namespace SinkoFD
 		else
 			return false;
 	}
+
 };
+
+void FasterDescentImpl::on_difiniFonto_act_activated()
+{
+	bool b;
+	QFont fnt = QFontDialog::getFont(&b, font());
+	if(b){
+		// Была нажата кнопка ОК.
+		setFont(fnt);
+	}
+}
+
+void FasterDescentImpl::on_helpo_action_activated()
+{
+	HelpBrowser *hb = new HelpBrowser( "doc/", "method3.htm", this);
+	hb->resize(800, 600);
+	hb->show();
+}
 //

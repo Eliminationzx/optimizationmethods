@@ -355,11 +355,35 @@ p, li { white-space: pre-wrap; }
      <x>0</x>
      <y>0</y>
      <width>812</width>
-     <height>23</height>
+     <height>21</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>Помощь</string>
+    </property>
+    <addaction name="helpo_action"/>
+   </widget>
+   <widget class="QMenu" name="difiniFonto_act">
+    <property name="title">
+     <string>Вид</string>
+    </property>
+    <addaction name="difiniFonto_act_2"/>
+   </widget>
+   <addaction name="difiniFonto_act"/>
+   <addaction name="menu"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="helpo_action">
+   <property name="text">
+    <string>Справка</string>
+   </property>
+  </action>
+  <action name="difiniFonto_act_2">
+   <property name="text">
+    <string>Настроить шрифт</string>
+   </property>
+  </action>
  </widget>
  <resources>
   <include location="data.qrc"/>
