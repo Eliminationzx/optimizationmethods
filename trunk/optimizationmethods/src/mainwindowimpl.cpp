@@ -1,4 +1,5 @@
 #include "mainwindowimpl.h"
+#include "HelpBrowser.h"
 //
 //! Конструктор класса.
 MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WFlags f) 
@@ -267,7 +268,13 @@ void MainWindowImpl::on_comboBox_activated(int index)
 		x2->setText(QString::number(data[7]));
 	}
 }
-
+//! Выбран пункт меню "Справка".
+void MainWindowImpl::on_helpo_action_activated()
+{
+	HelpBrowser * hb = new HelpBrowser( "doc/", "index.htm", this);
+	hb->resize(800, 600);
+	hb->show();
+}
 //! Выбран пункт меню "Разрешить функцию".
 void MainWindowImpl::on_allow_activated()
 {

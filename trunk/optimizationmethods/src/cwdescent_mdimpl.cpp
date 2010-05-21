@@ -7,6 +7,7 @@
 #include "demonstrataqpointf.h"
 #include "signalantoporpointf.h"
 #include "math.h"
+#include "HelpBrowser.h"
 #include <limits>
 #include <QTextBrowser>
 #include <QString>
@@ -309,5 +310,22 @@ namespace SinkoLauxKoordinatojMD
 			return false;
 	}
 };
+
+void CWdescent_mdImpl::on_difiniFonto_act_activated()
+{
+	bool b;
+	QFont fnt = QFontDialog::getFont(&b, font());
+	if(b){
+		// Была нажата кнопка ОК.
+		setFont(fnt);
+	}
+}
+
+void CWdescent_mdImpl::on_helpo_action_activated()
+{
+	HelpBrowser * hb = new HelpBrowser( "doc/", "method2.htm", this);
+	hb->resize(800, 600);
+	hb->show();
+}
 //
 
