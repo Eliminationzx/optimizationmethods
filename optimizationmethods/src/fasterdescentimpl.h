@@ -156,12 +156,12 @@ namespace SinkoFD
 	class s2s3Transiro: public QSignalTransition
 	{
 		private:
-			int numberIterac;
+			int * numberIterac;
 			QRadioButton * aGrad_fx;
 		public:
-			s2s3Transiro(int NumeroIteracio, QRadioButton * agrad_fx, QState * sourceState = 0
+			s2s3Transiro(int * NumeroIteracio, QRadioButton * agrad_fx, QState * sourceState = 0
 			                 ) : QSignalTransition(sourceState), numberIterac(NumeroIteracio), aGrad_fx(agrad_fx){};
-			s2s3Transiro( int NumeroIteracio,
+			s2s3Transiro( int * NumeroIteracio,
 							QRadioButton * agrad_fx,
 			                   QObject * sender,
 			                   const char * signal,
@@ -178,12 +178,12 @@ namespace SinkoFD
 	class s2s4Transiro: public QSignalTransition
 	{
 		private:
-			int numberIterac;
+			int * numberIterac;
 			QRadioButton * aGrad_fx;
 		public:
-			s2s4Transiro(int NumeroIteracio, QRadioButton * agrad_fx, QState * sourceState = 0
+			s2s4Transiro(int * NumeroIteracio, QRadioButton * agrad_fx, QState * sourceState = 0
 			                 ) : QSignalTransition(sourceState), numberIterac(NumeroIteracio), aGrad_fx(agrad_fx){};
-			s2s4Transiro(int NumeroIteracio,
+			s2s4Transiro(int * NumeroIteracio,
 							QRadioButton * agrad_fx,
 			                   QObject * sender,
 			                   const char * signal,

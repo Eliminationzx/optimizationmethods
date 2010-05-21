@@ -84,15 +84,15 @@ FasterDescentImpl::FasterDescentImpl( funkcio *f, QVector<double> *d, QWidget * 
 	//---Создаю переходы, согласно диаграмме.--------------------------------------
 	s1s2Transiro * s1s2 = new s1s2Transiro(inserts_bt, SIGNAL(clicked()), s1);
 	s1s2->setTargetState(s2);
-	s2s3Transiro * s2s3 = new s2s3Transiro(NumeroIteracio, agrad_fx, next1_bt, SIGNAL(clicked()), s2);
+	s2s3Transiro * s2s3 = new s2s3Transiro(&NumeroIteracio, agrad_fx, next1_bt, SIGNAL(clicked()), s2);
 	s2s3->setTargetState(s3);
-	s2s4Transiro * s2s4 = new s2s4Transiro(NumeroIteracio, agrad_fx, next1_bt, SIGNAL(clicked()), s2);
+	s2s4Transiro * s2s4 = new s2s4Transiro(&NumeroIteracio, agrad_fx, next1_bt, SIGNAL(clicked()), s2);
 	s2s4->setTargetState(s4);
 	s3s4Transiro * s3s4 = new s3s4Transiro(F, dfdx1, dfdx2, next2_bt, SIGNAL(clicked()), s3);
 	s3s4->setTargetState(s4);
 	s4s5Transiro * s4s5 = new s4s5Transiro(check_bt, SIGNAL(clicked()), s4);
 	s4s5->setTargetState(s5);
-	s5s6Transiro * s5s6 = new s5s6Transiro(gradfx, next3_bt, SIGNAL(entered()), s5);
+	s5s6Transiro * s5s6 = new s5s6Transiro(gradfx, next3_bt, SIGNAL(clicked()), s5);
 	s5s6->setTargetState(s6);
 	s6s7Transiro * s6s7 = new s6s7Transiro(&grad, strikteco, calcula_bt, SIGNAL(clicked()), s6);
 	s6s7->setTargetState(s7);
@@ -206,6 +206,11 @@ void FasterDescentImpl::s7_entered()
 {
 	stackedWidget->setCurrentIndex(3);
 	
+	two->setChecked(false);
+	half->setChecked(false);
+	maxf->setChecked(false);
+	minf->setChecked(false);
+	
 	LogTxtBrsr->append(trUtf8("  Вычисляем а"));
 
 	qDebug()<<trUtf8("Вошёл в s7"); // Вывожу дебажную инфу на консоль.
@@ -225,6 +230,10 @@ void FasterDescentImpl::s6_entered()
 void FasterDescentImpl::s5_entered()
 {
 	stackedWidget->setCurrentIndex(2);
+	
+	fxk_fx->setChecked(false);
+	xk_x->setChecked(false);
+	gradfx->setChecked(false);
 	
 	LogTxtBrsr->append(trUtf8("  Проверка точности"));
 
@@ -260,6 +269,11 @@ void FasterDescentImpl::s3_entered()
 void FasterDescentImpl::s2_entered()
 {
 	stackedWidget->setCurrentIndex(0);
+	
+	grad_fx->setChecked(false);
+	agrad_fx->setChecked(false);
+	one_one->setChecked(false);
+	aone_one->setChecked(false);
 	
 	LogTxtBrsr->append(trUtf8("  Определяем S"));
 
@@ -317,7 +331,7 @@ namespace SinkoFD
 		{
 			qDebug()<<trUtf8("  Проверяю, что выбран антиградиент и первая итерация");
 			// Проверяю своё условие.
-			return aGrad_fx->isChecked() && numberIterac == 1;
+			return aGrad_fx->isChecked() && *numberIterac == 1;
 		}
 		else
 			return false;
@@ -330,7 +344,7 @@ namespace SinkoFD
 		{
 			qDebug()<<trUtf8("  Проверяю, что выбран антиградиент и не первая итерация");
 			// Проверяю своё условие.
-			return aGrad_fx->isChecked() && numberIterac > 1;
+			return aGrad_fx->isChecked() && *numberIterac > 1;
 		}
 		else
 			return false;
@@ -349,13 +363,13 @@ namespace SinkoFD
 			
 			qDebug()<<f->metaObject()->className()<<" "<<"KvadratigantoFunkcio";
 			
-			if(f->metaObject()->className() == "KvadratigantoFunkcio")
+			if(f->metaObject()->className() == QString("KvadratigantoFunkcio"))
 			{
 				qDebug()<<"Fuck";
 				tmpX1 = QString("%1*(x1-%2)+%3*(x2-%4)").arg(2*f->getA()).arg(f->getB()).arg(f->getE()).arg(f->getG()); 
 				tmpX2 = QString("%1*(x2-%2)+%3*(x1-%4)").arg(2*f->getC()).arg(f->getD()).arg(f->getE()).arg(f->getF());
 			}
-			else if(f->metaObject()->className() == "RavinaFunkcio")
+			else if(f->metaObject()->className() == QString("RavinaFunkcio"))
 			{
 				tmpX1 = QString("%1*(x2*x1-x1^3)+%2*(1-x1)").arg(-4*f->getA()).arg(2*f->getB());
 				tmpX2 = QString("%1*(x2-x1^2)").arg(f->getA());
