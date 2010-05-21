@@ -206,11 +206,11 @@ void FasterDescentImpl::s7_entered()
 {
 	stackedWidget->setCurrentIndex(3);
 	
-	two->setChecked(false);
+/*	two->setChecked(false);
 	half->setChecked(false);
 	maxf->setChecked(false);
 	minf->setChecked(false);
-	
+	*/
 	LogTxtBrsr->append(trUtf8("  Вычисляем а"));
 
 	qDebug()<<trUtf8("Вошёл в s7"); // Вывожу дебажную инфу на консоль.
@@ -231,10 +231,10 @@ void FasterDescentImpl::s5_entered()
 {
 	stackedWidget->setCurrentIndex(2);
 	
-	fxk_fx->setChecked(false);
+/*	fxk_fx->setChecked(false);
 	xk_x->setChecked(false);
 	gradfx->setChecked(false);
-	
+	*/
 	LogTxtBrsr->append(trUtf8("  Проверка точности"));
 
 	qDebug()<<trUtf8("Вошёл в s5"); // Вывожу дебажную инфу на консоль.
@@ -268,12 +268,12 @@ void FasterDescentImpl::s3_entered()
 
 void FasterDescentImpl::s2_entered()
 {
-	stackedWidget->setCurrentIndex(0);
-	
-	grad_fx->setChecked(false);
+/*	grad_fx->setChecked(false);
 	agrad_fx->setChecked(false);
 	one_one->setChecked(false);
 	aone_one->setChecked(false);
+	*/
+	stackedWidget->setCurrentIndex(0);
 	
 	LogTxtBrsr->append(trUtf8("  Определяем S"));
 
@@ -282,6 +282,20 @@ void FasterDescentImpl::s2_entered()
 
 void FasterDescentImpl::s1_entered()
 {
+	grad_fx->setChecked(false);
+	agrad_fx->setChecked(false);
+	one_one->setChecked(false);
+	aone_one->setChecked(false);
+	
+	fxk_fx->setChecked(false);
+	xk_x->setChecked(false);
+	gradfx->setChecked(false);
+	
+	two->setChecked(false);
+	half->setChecked(false);
+	maxf->setChecked(false);
+	minf->setChecked(false);
+	
 	stackedWidget->setCurrentIndex(4);
 	
 	LogTxtBrsr->append(trUtf8("Начало итерации № %1. Базовая точка: %2; %3.").arg(++NumeroIteracio).arg(BP.x()).arg(BP.y()));
@@ -361,11 +375,8 @@ namespace SinkoFD
 			QString tmpX1;
 			QString tmpX2;
 			
-			qDebug()<<f->metaObject()->className()<<" "<<"KvadratigantoFunkcio";
-			
 			if(f->metaObject()->className() == QString("KvadratigantoFunkcio"))
 			{
-				qDebug()<<"Fuck";
 				tmpX1 = QString("%1*(x1-%2)+%3*(x2-%4)").arg(2*f->getA()).arg(f->getB()).arg(f->getE()).arg(f->getG()); 
 				tmpX2 = QString("%1*(x2-%2)+%3*(x1-%4)").arg(2*f->getC()).arg(f->getD()).arg(f->getE()).arg(f->getF());
 			}
@@ -374,7 +385,7 @@ namespace SinkoFD
 				tmpX1 = QString("%1*(x2*x1-x1^3)+%2*(1-x1)").arg(-4*f->getA()).arg(2*f->getB());
 				tmpX2 = QString("%1*(x2-x1^2)").arg(f->getA());
 			}
-			qDebug()<<tmpX1<<" "<<tmpX2;
+
 			if(df_dx1->text() != tmpX1)
 			{
 //				QMessageBox::information(this, trUtf8("Ошибка"), trUtf8("Не правильно введена производная df/dx1"));
