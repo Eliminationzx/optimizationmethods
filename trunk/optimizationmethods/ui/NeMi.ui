@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>927</width>
-    <height>531</height>
+    <width>930</width>
+    <height>546</height>
    </rect>
   </property>
   <property name="font">
@@ -490,7 +490,7 @@
        <item row="0" column="1" rowspan="5">
         <widget class="QStackedWidget" name="stackedWidget">
          <property name="currentIndex">
-          <number>2</number>
+          <number>1</number>
          </property>
          <widget class="QWidget" name="reflexion">
           <layout class="QGridLayout" name="gridLayout_4" rowstretch="1,0">
@@ -579,7 +579,7 @@
            <item row="0" column="0">
             <widget class="QGroupBox" name="groupBox_4">
              <property name="title">
-              <string>Вершины</string>
+              <string>Какую точку принять?</string>
              </property>
              <layout class="QGridLayout" name="gridLayout_9">
               <item row="0" column="0">
@@ -664,7 +664,7 @@
            <item row="0" column="0">
             <widget class="QGroupBox" name="groupBox_5">
              <property name="title">
-              <string>Вершины</string>
+              <string>Какую точку заменить?</string>
              </property>
              <layout class="QGridLayout" name="gridLayout_8">
               <item row="0" column="0">
@@ -742,7 +742,7 @@
            <item row="0" column="0">
             <widget class="QGroupBox" name="groupBox_6">
              <property name="title">
-              <string>Вершины</string>
+              <string>Выберите точку.</string>
              </property>
              <layout class="QGridLayout" name="gridLayout_11">
               <item row="0" column="0">
@@ -907,7 +907,7 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>927</width>
+     <width>930</width>
      <height>30</height>
     </rect>
    </property>
