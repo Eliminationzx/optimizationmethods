@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>875</width>
-    <height>555</height>
+    <width>927</width>
+    <height>531</height>
    </rect>
   </property>
   <property name="font">
@@ -490,7 +490,7 @@
        <item row="0" column="1" rowspan="5">
         <widget class="QStackedWidget" name="stackedWidget">
          <property name="currentIndex">
-          <number>4</number>
+          <number>2</number>
          </property>
          <widget class="QWidget" name="reflexion">
           <layout class="QGridLayout" name="gridLayout_4" rowstretch="1,0">
@@ -503,16 +503,11 @@
               </font>
              </property>
              <property name="title">
-              <string>Вершины</string>
+              <string>Какую точку отразить?</string>
              </property>
              <layout class="QGridLayout" name="gridLayout_5">
               <item row="0" column="0">
                <widget class="QRadioButton" name="t1_ref_rb">
-                <property name="font">
-                 <font>
-                  <pointsize>14</pointsize>
-                 </font>
-                </property>
                 <property name="text">
                  <string>T1</string>
                 </property>
@@ -520,11 +515,6 @@
               </item>
               <item row="1" column="0">
                <widget class="QRadioButton" name="t2_ref_rb">
-                <property name="font">
-                 <font>
-                  <pointsize>14</pointsize>
-                 </font>
-                </property>
                 <property name="text">
                  <string>T2</string>
                 </property>
@@ -532,11 +522,6 @@
               </item>
               <item row="2" column="0">
                <widget class="QRadioButton" name="t3_ref_rb">
-                <property name="font">
-                 <font>
-                  <pointsize>14</pointsize>
-                 </font>
-                </property>
                 <property name="text">
                  <string>T3</string>
                 </property>
@@ -593,23 +578,12 @@
           <layout class="QGridLayout" name="gridLayout_7">
            <item row="0" column="0">
             <widget class="QGroupBox" name="groupBox_4">
-             <property name="font">
-              <font>
-               <weight>50</weight>
-               <bold>false</bold>
-              </font>
-             </property>
              <property name="title">
               <string>Вершины</string>
              </property>
              <layout class="QGridLayout" name="gridLayout_9">
               <item row="0" column="0">
                <widget class="QRadioButton" name="t1_str_rb">
-                <property name="font">
-                 <font>
-                  <pointsize>14</pointsize>
-                 </font>
-                </property>
                 <property name="text">
                  <string>T1</string>
                 </property>
@@ -617,11 +591,6 @@
               </item>
               <item row="1" column="0">
                <widget class="QRadioButton" name="t2_str_rb">
-                <property name="font">
-                 <font>
-                  <pointsize>14</pointsize>
-                 </font>
-                </property>
                 <property name="text">
                  <string>T2</string>
                 </property>
@@ -629,11 +598,6 @@
               </item>
               <item row="2" column="0">
                <widget class="QRadioButton" name="t3_str_rb">
-                <property name="font">
-                 <font>
-                  <pointsize>14</pointsize>
-                 </font>
-                </property>
                 <property name="text">
                  <string>T3</string>
                 </property>
@@ -641,11 +605,6 @@
               </item>
               <item row="3" column="0">
                <widget class="QRadioButton" name="totr_str_rb">
-                <property name="font">
-                 <font>
-                  <pointsize>14</pointsize>
-                 </font>
-                </property>
                 <property name="text">
                  <string>Tотр</string>
                 </property>
@@ -653,11 +612,6 @@
               </item>
               <item row="4" column="0">
                <widget class="QRadioButton" name="tras_str_rb">
-                <property name="font">
-                 <font>
-                  <pointsize>14</pointsize>
-                 </font>
-                </property>
                 <property name="text">
                  <string>Трас</string>
                 </property>
@@ -683,11 +637,6 @@
              </item>
              <item>
               <widget class="QPushButton" name="next2_bt">
-               <property name="font">
-                <font>
-                 <pointsize>12</pointsize>
-                </font>
-               </property>
                <property name="text">
                 <string>Далее</string>
                </property>
@@ -720,11 +669,6 @@
              <layout class="QGridLayout" name="gridLayout_8">
               <item row="0" column="0">
                <widget class="QRadioButton" name="t1_com_rb">
-                <property name="font">
-                 <font>
-                  <pointsize>14</pointsize>
-                 </font>
-                </property>
                 <property name="text">
                  <string>Т1</string>
                 </property>
@@ -732,11 +676,6 @@
               </item>
               <item row="1" column="0">
                <widget class="QRadioButton" name="t2_com_rb">
-                <property name="font">
-                 <font>
-                  <pointsize>14</pointsize>
-                 </font>
-                </property>
                 <property name="text">
                  <string>Т2</string>
                 </property>
@@ -744,11 +683,6 @@
               </item>
               <item row="2" column="0">
                <widget class="QRadioButton" name="t3_com_rb">
-                <property name="font">
-                 <font>
-                  <pointsize>14</pointsize>
-                 </font>
-                </property>
                 <property name="text">
                  <string>Т3</string>
                 </property>
@@ -756,11 +690,6 @@
               </item>
               <item row="3" column="0">
                <widget class="QRadioButton" name="tsj_com_rb">
-                <property name="font">
-                 <font>
-                  <pointsize>14</pointsize>
-                 </font>
-                </property>
                 <property name="text">
                  <string>Тсж</string>
                 </property>
@@ -786,11 +715,6 @@
              </item>
              <item>
               <widget class="QPushButton" name="next3_bt">
-               <property name="font">
-                <font>
-                 <pointsize>12</pointsize>
-                </font>
-               </property>
                <property name="text">
                 <string>Далее</string>
                </property>
@@ -823,11 +747,6 @@
              <layout class="QGridLayout" name="gridLayout_11">
               <item row="0" column="0">
                <widget class="QRadioButton" name="t1_red_rb">
-                <property name="font">
-                 <font>
-                  <pointsize>14</pointsize>
-                 </font>
-                </property>
                 <property name="text">
                  <string>Т1</string>
                 </property>
@@ -835,11 +754,6 @@
               </item>
               <item row="1" column="0">
                <widget class="QRadioButton" name="t2_red_rb">
-                <property name="font">
-                 <font>
-                  <pointsize>14</pointsize>
-                 </font>
-                </property>
                 <property name="text">
                  <string>Т2</string>
                 </property>
@@ -847,11 +761,6 @@
               </item>
               <item row="2" column="0">
                <widget class="QRadioButton" name="t3_red_rb">
-                <property name="font">
-                 <font>
-                  <pointsize>14</pointsize>
-                 </font>
-                </property>
                 <property name="text">
                  <string>Т3</string>
                 </property>
@@ -859,11 +768,6 @@
               </item>
               <item row="3" column="0">
                <widget class="QRadioButton" name="totr_red_rb">
-                <property name="font">
-                 <font>
-                  <pointsize>14</pointsize>
-                 </font>
-                </property>
                 <property name="text">
                  <string>Тотр</string>
                 </property>
@@ -889,11 +793,6 @@
              </item>
              <item>
               <widget class="QPushButton" name="next4_bt">
-               <property name="font">
-                <font>
-                 <pointsize>12</pointsize>
-                </font>
-               </property>
                <property name="text">
                 <string>Далее</string>
                </property>
@@ -1008,8 +907,8 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>875</width>
-     <height>23</height>
+     <width>927</width>
+     <height>30</height>
     </rect>
    </property>
   </widget>
