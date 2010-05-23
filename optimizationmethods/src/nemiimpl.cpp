@@ -46,6 +46,37 @@ void NeMiImpl::ss_entered(){
 }
 
 void NeMiImpl::s1_entered(){
+	if(F->rezulto(P1) >= F->rezulto(P2)){
+		if(F->rezulto(P1) >= F->rezulto(P3)){
+			Ph = &P1;
+			if(F->rezulto(P2) >= F->rezulto(P3)){
+				Pm = &P2;
+				Pl = &P3;
+			}else{
+				Pm = &P3;
+				Pl = &P2;
+			}
+		}else{
+			Ph = &P3;
+			Pm = &P1;
+			Pl = &P2;
+		}
+	}else{
+		if(F->rezulto(P2) >= F->rezulto(P3)){
+			Ph = &P2;
+			if(F->rezulto(P1) >= F->rezulto(P3)){
+				Pm = &P1;
+				Pl = &P3;
+			}else{
+				Pm = &P3;
+				Pl = &P1;
+			}
+		}else{
+			Ph = &P3;
+			Pm = &P2;
+			Pl = &P1;
+		}
+	}
 
 	qDebug()<<trUtf8("Вошёл в s1"); // Вывожу дебажную инфу на консоль.
 }

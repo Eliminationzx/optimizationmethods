@@ -20,6 +20,12 @@ protected:
 	DemonstrataQPointF P2;
 	//! Третья точка основного триугольника.
 	DemonstrataQPointF P3;
+	//! Указатель на наибольшую точку.
+	DemonstrataQPointF * Ph;
+	//! Указатель на средную точку.
+	DemonstrataQPointF * Pm;
+	//! Указатель на наименьшую точку.
+	DemonstrataQPointF * Pl;
 public:
 	NeMiImpl( funkcio * f, QVector<double> *d, QWidget * parent = 0,
 	          Qt::WFlags flags = 0 );
