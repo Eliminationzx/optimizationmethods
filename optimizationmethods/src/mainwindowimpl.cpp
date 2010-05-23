@@ -218,10 +218,10 @@ void MainWindowImpl::on_next_button_2_clicked()
 		msg.exec();
 */	}
 
-//	if(connect(AW, SIGNAL(usiloPlenumis(int)), SLOT(openTakeQuadFun(int))))
+	if(connect(AW, SIGNAL(usiloPlenumis(int)), SLOT(openTakeQuadFun(int))))
 		AW->showMaximized();
-//	else
-//		QMessageBox::warning(this, trUtf8("Ошибка"), trUtf8("Ошибка соединения MainWindowImpl и AlgoritmoWin."));
+	else
+		QMessageBox::warning(this, trUtf8("Ошибка"), trUtf8("Ошибка соединения MainWindowImpl и AlgoritmoWin."));
 }
 
 //! Нажата кнопка "Назад" (2-ая страница).

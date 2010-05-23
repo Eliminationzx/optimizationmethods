@@ -89,11 +89,11 @@ CWdescent_mdImpl::CWdescent_mdImpl(funkcio *f, QVector<double> *d, QWidget * par
 	connect(te2, SIGNAL(triggered()), SLOT(registriEraro()));
 
 	//---Настраиваю выделение цветом растояния между точками.
-/*	s4->assignProperty(dx_lb, "palette", QPalette(Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red));
-	s4->assignProperty(df_lb, "palette", QPalette(Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red));
+	s3->assignProperty(dx_lb, "palette", QPalette(Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red));
+	s3->assignProperty(df_lb, "palette", QPalette(Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red));
 	s1->assignProperty(dx_lb, "palette", this->palette());
 	s1->assignProperty(df_lb, "palette", this->palette());
-*/
+
 
 //---Прикручиваю карту---------------------------------------------------------
 	connect(sMP, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniMomentaPointo(QPointF)));
@@ -226,8 +226,6 @@ void CWdescent_mdImpl::s3_entered()
 	LogTxtBrsr->append(trUtf8("  Сделан шаг по оси Х2. Новая точка: %1; %2").arg(MP.x()).arg(MP.y()));
 
 	qDebug()<<trUtf8("Вошёл в s3"); // Вывожу дебажную инфу на консоль.
-	
-	emit stateHasEntered(); // Переход по этому сигналу произойдёт, только если выполнится его условие.
 }
 
 void CWdescent_mdImpl::s2_entered()

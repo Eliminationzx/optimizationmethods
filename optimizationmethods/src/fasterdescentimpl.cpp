@@ -137,12 +137,9 @@ FasterDescentImpl::FasterDescentImpl( funkcio *f, QVector<double> *d, QWidget * 
 	connect(te9, SIGNAL(triggered()), SLOT(registriEraro()));
 
 	//---Настраиваю выделение цветом растояния между точками.
-/*	s4->assignProperty(dx_lb, "palette", QPalette(Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red));
-	s4->assignProperty(df_lb, "palette", QPalette(Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red));
-	s1->assignProperty(dx_lb, "palette", this->palette());
-	s1->assignProperty(df_lb, "palette", this->palette());
+/*	s6->assignProperty(length_grad_lb, "palette", QPalette(Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red));
+	s1->assignProperty(length_grad_lb, "palette", this->palette());
 */
-
 //---Прикручиваю карту---------------------------------------------------------
 	connect(sBP, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniMomentaPointo(QPointF)));
 
