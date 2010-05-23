@@ -16,17 +16,8 @@ class CWdescent_mdImpl : public AlgoritmoWin, public Ui::CWdescent_md
 Q_OBJECT
 
 protected:
-	//! Точность.
-	qreal strikteco;
-	
-	//! Количество ошибок совершенных пользователем.
-	int KvantoEraroj;
-	
 	//! Количество ошибок допустимых.
 	int quanError;
-	
-	//! Номер итерации.
-	int NumeroIteracio;
 	
 	//! Базовая точка итерации.
 	DemonstrataQPointF BP;

@@ -14,29 +14,23 @@ class funkcio;
 class CWdescentWinImpl : public AlgoritmoWin, public Ui::CWdescentWin{
 Q_OBJECT
 protected:
-  //! Точность.
-  qreal strikteco;
-  //! Количество ошибок.
-  int KvantoEraroj;
-  //! Номер итерации.
-  int NumeroIteracio;
-  //! Базовая точка итерации.
-  DemonstrataQPointF BP;
-  //! Текущая базовая точка.
-  DemonstrataQPointF MP;
-  //! Новая точка.
-  DemonstrataQPointF NP;
-  //! Шаг по х1.
-  /*! Для удобства задаю в виде точки (длина, 0).
-   */
-  DemonstrataQPointF PX1;
-  //! Шаг по х2.
-  /*! Для удобства задаю в виде точки (0, длина).
-   */
-  DemonstrataQPointF PX2; 
-  //! Модификатор шага.
-  qreal ModPX;
-  /*! Флаг для проверки, была ли принята новая точка.
+	//! Базовая точка итерации.
+	DemonstrataQPointF BP;
+	//! Текущая базовая точка.
+	DemonstrataQPointF MP;
+	//! Новая точка.
+	DemonstrataQPointF NP;
+	//! Шаг по х1.
+	/*! Для удобства задаю в виде точки (длина, 0).
+	 */
+	DemonstrataQPointF PX1;
+	//! Шаг по х2.
+	/*! Для удобства задаю в виде точки (0, длина).
+	 */
+	DemonstrataQPointF PX2; 
+	//! Модификатор шага.
+	qreal ModPX;
+	/*! Флаг для проверки, была ли принята новая точка.
 	 * 
 	 * Отступаю от классического конечного автомата, что бы избежать взрыва 
 	 * состояний.

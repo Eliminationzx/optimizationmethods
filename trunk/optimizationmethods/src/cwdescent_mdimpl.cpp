@@ -21,7 +21,7 @@ using namespace std;
 using namespace SinkoLauxKoordinatojMD;
 
 CWdescent_mdImpl::CWdescent_mdImpl(funkcio *f, QVector<double> *d, QWidget * parent, Qt::WFlags flags) 
-	: AlgoritmoWin(f, d, parent, flags), strikteco((*d)[0])
+	: AlgoritmoWin(f, d, parent, flags)
 {
 	setupUi(this);
 	
