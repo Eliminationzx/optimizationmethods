@@ -16,6 +16,19 @@ class NotWenImpl : public AlgoritmoWin, public Ui::NotWen
 {
 Q_OBJECT
 
+protected:
+	//! Количество ошибок допустимых.
+	int quanError;
+	
+	//! Базовая точка итерации.
+	DemonstrataQPointF BP;
+	
+	//! Градиент.
+	DemonstrataQPointF grad;
+
+	//! Длина шага.
+	double lengthStep;
+
 public:
 	/*! Конструктор.
 	 * @param f Указатель на целевую функцию. FasterDescentImpl не заботится о назначении Funkcio родителя.
