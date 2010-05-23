@@ -19,7 +19,7 @@
 #include "fasterdescentimpl.h"
 //#include "HuGiImpl.h"
 //#include "NeMiImpl.h"
-//#include "NotWeNImpl.h"
+#include "notwenimpl.h"
 
 #include "ui_mainwindow.h"
 

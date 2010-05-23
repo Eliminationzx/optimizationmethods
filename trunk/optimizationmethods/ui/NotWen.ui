@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1125</width>
-    <height>783</height>
+    <width>829</width>
+    <height>538</height>
    </rect>
   </property>
   <property name="font">
@@ -1001,6 +1001,7 @@
         </item>
        </layout>
       </widget>
+      <widget class="QWidget" name="blank"/>
      </widget>
     </item>
     <item row="1" column="0">
@@ -1019,12 +1020,55 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1125</width>
+     <width>829</width>
      <height>23</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>Тест</string>
+    </property>
+    <addaction name="recomenc_acn"/>
+    <addaction name="separator"/>
+    <addaction name="exit"/>
+   </widget>
+   <widget class="QMenu" name="menu_2">
+    <property name="title">
+     <string>Вид</string>
+    </property>
+    <addaction name="difiniFonto_act"/>
+   </widget>
+   <widget class="QMenu" name="menu_3">
+    <property name="title">
+     <string>Помощь</string>
+    </property>
+    <addaction name="helpo_action"/>
+   </widget>
+   <addaction name="menu"/>
+   <addaction name="menu_2"/>
+   <addaction name="menu_3"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="recomenc_acn">
+   <property name="text">
+    <string>Начать заново</string>
+   </property>
+  </action>
+  <action name="exit">
+   <property name="text">
+    <string>Выйти из программы</string>
+   </property>
+  </action>
+  <action name="difiniFonto_act">
+   <property name="text">
+    <string>Настроть шрифт</string>
+   </property>
+  </action>
+  <action name="helpo_action">
+   <property name="text">
+    <string>Справка</string>
+   </property>
+  </action>
  </widget>
  <resources>
   <include location="data.qrc"/>

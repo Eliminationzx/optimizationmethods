@@ -22,7 +22,6 @@ using namespace SinkoFD;
 FasterDescentImpl::FasterDescentImpl( funkcio *f, QVector<double> *d, QWidget * parent, Qt::WFlags flags)
 	: AlgoritmoWin(f, d, parent, flags)
 {
-
 	setupUi(this);
 	qDebug()<<trUtf8("Наискорейший спуск"); // Вывожу дебажную инфу на консоль.
 
