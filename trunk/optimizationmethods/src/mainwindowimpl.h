@@ -76,8 +76,9 @@ public:
 	MainWindowImpl( QWidget * parent = 0, Qt::WFlags f = 0 );
 
 private slots:
-//! help браузер
- void on_helpo_action_activated();		
+	//! help браузер
+	void on_help_activated();		
+
 	//! Слот класса, получающий сигнал при выборе ввода информации вручную.
 	void on_inArm_clicked(bool checked);
 	

@@ -75,6 +75,11 @@ CWdescent_mdImpl::CWdescent_mdImpl(funkcio *f, QVector<double> *d, QWidget * par
 	s3sfTransiro * s3sf = new s3sfTransiro(&BP, &MP, F, strikteco, end_bt, SIGNAL(clicked()), s3);
 	s3sf->setTargetState(sf);
 
+	//---Создаю переход по действию "Начать заново"
+	connect(so->addTransition(recomenc_acn, SIGNAL(activated()), s1), SIGNAL(triggered()), SLOT(init()));
+	connect(sf->addTransition(recomenc_acn, SIGNAL(activated()), s1), SIGNAL(triggered()), SLOT(init()));
+
+
 	//---Создаю переходы не имеющие цели. С помощью них фиксирую ошибки ползователя
 	QSignalTransition * te1 = new QSignalTransition(calculate_bt, SIGNAL(clicked()));
 	so->addTransition(te1);
@@ -184,13 +189,27 @@ void CWdescent_mdImpl::registriEraro()
 void CWdescent_mdImpl::sf_entered()
 {
 	LogTxtBrsr->append(trUtf8("Конец алгоритма. Найден минимум функции: %1").arg(F->rezulto(MP)));
+	QString str = trUtf8("Найден минимум. ");
 	
 	if (KvantoEraroj <= quanError)
 	{
-		QMessageBox::information(this, trUtf8("Конец :)"), trUtf8("Поздравляем! Теперь можете перейти к овражной функции."));
+		str += trUtf8("Вы прошли тест. ");
+		if(F->metaObject()->className() == QString("KvadratigantoFunkcio"))
+		{
+			str += trUtf8("Сообщите преподавателю и перейдите к овражной функции.");
+			emit usiloPlenumis(1);
+		}
+		else if(F->metaObject()->className() == QString("RavinaFunkcio"))
+		{
+			str += trUtf8("Позовите преподавателя.");
+		}
+		QMessageBox::information(this, trUtf8("Поздравляем"), str);
 	}
 	else
-		QMessageBox::information(this, trUtf8("Конец :("), trUtf8("Слишком много ошибок - попробуйте ещё раз."));
+	{
+		QMessageBox::information(this, trUtf8("Внимание"), trUtf8("Вы допустили слишком большое количество ошибок. Начните заново."));
+		recomenc_acn->trigger();
+	}
 
 	qDebug()<<trUtf8("Вошёл в Финальное состояние, сложного состояния"); // Вывожу дебажную инфу на консоль.
 }

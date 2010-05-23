@@ -815,7 +815,7 @@ p, li { white-space: pre-wrap; }
      <x>0</x>
      <y>0</y>
      <width>908</width>
-     <height>21</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu">
@@ -830,6 +830,15 @@ p, li { white-space: pre-wrap; }
     </property>
     <addaction name="difiniFonto_act"/>
    </widget>
+   <widget class="QMenu" name="menu_3">
+    <property name="title">
+     <string>Тест</string>
+    </property>
+    <addaction name="recomenc_acn"/>
+    <addaction name="separator"/>
+    <addaction name="exit"/>
+   </widget>
+   <addaction name="menu_3"/>
    <addaction name="menu_2"/>
    <addaction name="menu"/>
   </widget>
@@ -842,6 +851,16 @@ p, li { white-space: pre-wrap; }
   <action name="difiniFonto_act">
    <property name="text">
     <string>Настроить шрифт</string>
+   </property>
+  </action>
+  <action name="recomenc_acn">
+   <property name="text">
+    <string>Начать заново</string>
+   </property>
+  </action>
+  <action name="exit">
+   <property name="text">
+    <string>Выйти из программы</string>
    </property>
   </action>
  </widget>

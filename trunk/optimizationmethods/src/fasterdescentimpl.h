@@ -122,6 +122,9 @@ void on_difiniFonto_act_activated();
 	void registriEraro();
 
 signals:
+	//! Пользователь прошёл тест.
+	void usiloPlenumis(int);
+
 	/*! Использую сигнал для прехода, который не требует действий пользователя,
 	 * а только проверяет условие.
 	 */

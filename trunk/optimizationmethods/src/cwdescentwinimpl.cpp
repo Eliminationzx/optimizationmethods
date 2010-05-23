@@ -272,25 +272,25 @@ void CWdescentWinImpl::registriEraro(){
 
 void CWdescentWinImpl::sf_entered(){
 	LogTxtBrsr->append(trUtf8("Конец алгоритма. Найден: %1").arg(F->rezulto(MP)));
-	QString str = trUtf8("Найден минимум.");
+	QString str = trUtf8("Найден минимум. ");
 //	QMessageBox::information(this, trUtf8("Конец"), trUtf8("Найден минимум"));
 
 	qDebug()<<trUtf8("Конец алгоритма. Найден минимум"); // Вывожу дебажныю инфу на консоль.
 
 	if(KvantoEraroj > D[6]){
 		// Слишком много ошибок.
-		str += trUtf8(" Вы допустили слишком большое количество ошибок. Начните заново");
+		str += trUtf8("Вы допустили слишком большое количество ошибок. Начните заново.");
 		QMessageBox::information(this, trUtf8("Внимание"), str);
 		recomenci_acn->trigger();
 	}else{
-		str += trUtf8(" Вы прошли тест.");
+		str += trUtf8("Вы прошли тест. ");
 		if(F->metaObject()->className() == "KvadratigantoFunkcio"){
-			str += trUtf8(" Сообщите преподавателю и перейдите к овражной функции.");
+			str += trUtf8("Сообщите преподавателю и перейдите к овражной функции.");
+			emit usiloPlenumis(0);
 		}else if(F->metaObject()->className() == "RavinaFunkcio"){
-			str += trUtf8(" Позовите преподавателя.");
+			str += trUtf8("Позовите преподавателя.");
 		}
-		QMessageBox::information(this, trUtf8("Поздравляю"), str);
-		emit usiloPlenumis();
+		QMessageBox::information(this, trUtf8("Поздравляем"), str);
 	}
 }
 
