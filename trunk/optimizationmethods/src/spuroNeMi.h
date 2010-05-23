@@ -8,14 +8,16 @@ class spuroNeMi : public spuro
 {
 Q_OBJECT
 private:
-	//! Цвет текущей итерации.
+	//! Цвет отражения/растяжения/зжатия.
 	QColor MomentaKoloro;
-	//! Точки прошедших итераций.
-	QPolygonF Vosto;
-	//! Точки текущей итерации.
-	QPolygonF MomentaPointoj;
-	//! Текущая точка.
-	QPointF MomentaPointo;
+	//! Первая точка основного триугольника.
+	QPointF P1;
+	//! Вторая точка основного триугольника.
+	QPointF P2;
+	//! Третья точка основного триугольника.
+	QPointF P3;
+	//! Полигон для отрисовки отражения/растяжения/зжатия.
+	QPolygonF SP;
 protected:
 	//! Применяет масштаб к полигонам.
 	virtual QPolygonF aplikiScalo(QPolygonF p);
@@ -34,26 +36,21 @@ public:
 	                          QGraphicsItem * parent = 0 //!< Элемент родитель.
 	                         );
 public slots:
-	/*! Установить первую точку.
-	 * 
-	 * Устанавливает точку с которой начинается поиск.
-	 */
-	void difiniUnuaPointo( QPointF p );
-	//! Перегружает difiniUnuaPointo(QPointF &p).
-	void difiniUnuaPointo( qreal x, qreal y );
 	/*! Завершить итерацию.
-	 * 
-	 * Делает последнюю точку из MomentaPointoj основной точкой текущей итерации.
-	 * Переносит точки завершаемой итерации в "хвост".
-	 * Заменяет список точек текущей итерации на вновь полученную основную точку текущей итерации.
 	 */
 	void finisxiIteracio();
-	//! Вернуться к текущей точке.
-	void reveniAlMomentoPointo();
-	//! Добавить точку поиска.
-	void aldoniSercxantaPointo(QPointF);
-	//! Установить текущую точку.
-	void difiniMomentaPointo(QPointF);
+	//! Установить первую точку.
+	void difiniP1(QPointF);
+	//! Установить вторую точку.
+	void difiniP2(QPointF);
+	//! Установить третью точку.
+	void difiniP3(QPointF);
+	//! Установить точку отражения.
+	void difiniPRespegulo(QPointF);
+	//! Установить точку растяжения.
+	void difiniPDilato(QPointF);
+	//! Установить точку сжатия.
+	void difiniPKompakto(QPointF);
 	//! Установить базовый цвет.
 	void difiniBazaKoloro(QColor bazaKoloro);
 	//! Установить текущий цвет.
