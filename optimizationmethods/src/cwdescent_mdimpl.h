@@ -50,19 +50,17 @@ public:
 		Qt::WFlags flags = 0 );
 		
 private slots:
-//! help браузер
- void on_helpo_action_activated();	
-//! изменить шрифт
-void on_difiniFonto_act_activated();
+	//! help браузер
+	void on_helpo_action_activated();	
+
+	//! изменить шрифт
+	void on_difiniFonto_act_activated();
 	
 	/*! "Обнуление" переменных.
-	 * 
 	 * Этим методом задаются началные знаения всем переменным алгоритма.
 	 * Используется перед запуском конечного автомата и в переходе вызванным 
 	 * действием "Начать заново".
 	 */
-   
-	
 	void init();
 
 	/*! Обработчик входа в состояние so.
@@ -92,6 +90,9 @@ void on_difiniFonto_act_activated();
 	void registriEraro();
 
 signals:
+	//! Пользователь прошёл тест.
+	void usiloPlenumis(int);
+	
 	/*! Использую сигнал для прехода, который не требует действий пользователя,
 	 * а только проверяет условие.
 	 */

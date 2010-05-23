@@ -216,11 +216,11 @@ void MainWindowImpl::on_next_button_2_clicked()
 		QMessageBox msg(QMessageBox::Warning, trUtf8("Ошибка"), trUtf8("Алгоритм ещё не реализован"));
 		msg.exec();
 	}
-/*	if(connect(AW, SIGNAL(setFlag(int)), SLOT(openTakeQuadFun(int))))
+
+	if(connect(AW, SIGNAL(usiloPlenumis(int)), SLOT(openTakeQuadFun(int))))
 		AW->showMaximized();
 	else
 		QMessageBox::warning(this, trUtf8("Ошибка"), trUtf8("Ошибка соединения MainWindowImpl и AlgoritmoWin."));
-*/	AW->showMaximized();
 }
 
 //! Нажата кнопка "Назад" (2-ая страница).
@@ -268,13 +268,15 @@ void MainWindowImpl::on_comboBox_activated(int index)
 		x2->setText(QString::number(data[7]));
 	}
 }
+
 //! Выбран пункт меню "Справка".
-void MainWindowImpl::on_helpo_action_activated()
+void MainWindowImpl::on_help_activated()
 {
 	HelpBrowser * hb = new HelpBrowser( "doc/", "index.htm", this);
 	hb->resize(800, 600);
 	hb->show();
 }
+
 //! Выбран пункт меню "Разрешить функцию".
 void MainWindowImpl::on_allow_activated()
 {

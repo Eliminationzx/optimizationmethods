@@ -134,7 +134,7 @@ private slots:
   void registriEraro();
 signals:
 	//! Пользователь прошёл тест.
-	void usiloPlenumis();
+	void usiloPlenumis(int);
 	/*! Использую сигнал для прехода, который не требует действий пользователя,
 	 * а только проверяет условие.
 	 */
