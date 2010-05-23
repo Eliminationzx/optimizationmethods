@@ -1,5 +1,6 @@
 #include "spuroNeMi.h"
 #include "Konstantoj.h"
+#include "demonstrataqpointf.h"
 #include <QPolygonF>
 #include <QPainter>
 //
@@ -10,52 +11,28 @@ spuroNeMi::spuroNeMi(QColor momentaKoloro, QColor bazaKoloro, qreal Skalo, QGrap
 //
 
 QRectF spuroNeMi::boundingRect() const{
-  // Размер элемента - обьединённый размер "хвоста" и текущей итерации * на
-  // масштаб + поправка, чтоб не остался старый "указатель"
-  QRectF rez = MomentaPointoj.boundingRect() | Vosto.boundingRect();
-  rez.setTopLeft(rez.topLeft() * skalo - QPointF(2, 2));
-  rez.setBottomRight(rez.bottomRight() * skalo + QPointF(2, 2));
-  return rez;
+	QPolygonF p;
+	p<<P1<<P2<<P3;	
+	return SP.boundingRect() | p.boundingRect();
 }
 
 void spuroNeMi::finisxiIteracio(){
-  MomentaPointo = MomentaPointoj.back();
-  Vosto += MomentaPointoj;
-  MomentaPointoj.clear();
-  MomentaPointoj.append(MomentaPointo);
-  update();// Планирую перерисовку.
+	prepareGeometryChange ();
+	SP.clear();
 }
 
-void spuroNeMi::reveniAlMomentoPointo(){
-  MomentaPointoj.append(MomentaPointo);
-  update();// Планирую перерисовку.
-}
 
-void spuroNeMi::aldoniSercxantaPointo(QPointF p){
-  MomentaPointoj.append(p);
-  update();// Планирую перерисовку.
-}
 void spuroNeMi::paint(QPainter *painter, const QStyleOptionGraphicsItem */*option*/, QWidget */*widge*/){
-  painter->save();
-  
-  painter->setPen(BazaKoloro);
-  painter->drawPolyline(aplikiScalo(Vosto));
-  painter->setPen(MomentaKoloro);
-  painter->drawPolyline(aplikiScalo(MomentaPointoj));
-  painter->setPen(BazaKoloro);
-  painter->drawEllipse(MomentaPointoj.last() * skalo, 2, 2);
-  
-  painter->restore();
-}
-
-void spuroNeMi::difiniUnuaPointo(QPointF p){
-  MomentaPointo = p;
-  MomentaPointoj.append(p);
-  update();// Планирую перерисовку.
-}
-
-void spuroNeMi::difiniUnuaPointo( qreal x, qreal y ){
-  difiniUnuaPointo(QPointF(x, y));
+	painter->save();
+	
+	painter->setPen(BazaKoloro);
+	QPolygonF p;
+	p<<P1<<P2<<P3<<P1;
+	painter->drawPolygon(aplikiScalo(p));
+	painter->setPen(MomentaKoloro);
+	painter->drawPolygon(aplikiScalo(SP));
+	
+	painter->restore();
 }
 
 
@@ -79,17 +56,66 @@ void spuroNeMi::difiniMomentaKoloro(QColor c){
 }
 
 
-void spuroNeMi::difiniMomentaPointo(QPointF p){
-	MomentaPointo = p;
+void spuroNeMi::senspurigi(){
+	prepareGeometryChange ();
+	SP.clear();
 }
 
 
-void spuroNeMi::senspurigi(){
-	prepareGeometryChange ();
-//	QRectF r = boundingRect();
-	MomentaPointoj.clear();
-//	QPointF p = Vosto.first();
-	Vosto.clear();
-//	difiniUnuaPointo(p);
-//	update(r);// Планирую перерисовку.
+void spuroNeMi::difiniP1(QPointF p){
+	P1 = p;
+}
+
+
+void spuroNeMi::difiniP2(QPointF p){
+	P2 = p;
+}
+
+
+void spuroNeMi::difiniP3(QPointF p){
+	P3 = p;
+}
+
+
+void spuroNeMi::difiniPRespegulo(QPointF p){
+	// Создаю полигон Хl, p, Хm.
+	if(Length(p - P1) < Length(p - P2)){
+		if(Length(p - P1) < Length(p - P3)){
+			SP<<(P1);
+			SP<<(p);
+			if(Length(p - P2) < Length(p - P3)){
+				SP<<(P2);
+			}else{
+				SP<<(P3);
+			}
+		}else{
+			SP<<(P3);
+			SP<<(p);
+			SP<<(P1);
+		}
+	}else{
+		if(Length(p - P2) < Length(p - P3)){
+			SP<<(P2);
+			SP<<(p);
+			if(Length(p - P1) < Length(p - P3)){
+				SP<<(P1);
+			}else{
+				SP<<(P3);
+			}
+		}else{
+			SP<<(P3);
+			SP<<(p);
+			SP<<(P2);
+		}
+	}
+}
+
+
+void spuroNeMi::difiniPDilato(QPointF p){
+	SP<<p<<SP.first();
+}
+
+void spuroNeMi::difiniPKompakto(QPointF p){
+	SP.clear();
+	difiniPRespegulo(p);
 }
