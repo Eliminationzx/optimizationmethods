@@ -83,46 +83,59 @@ void NeMiImpl::s1_entered(){
 
 
 void NeMiImpl::s2_entered(){
+	stackedWidget->setCurrentIndex(0);
 
 	qDebug()<<trUtf8("Вошёл в s2"); // Вывожу дебажную инфу на консоль.
 }
 
 void NeMiImpl::s3_entered(){
+	Pc = (*Pm + *Pl)/2;
+	PR = Pc + a*(Pc - *Ph);
 
 	qDebug()<<trUtf8("Вошёл в s3"); // Вывожу дебажную инфу на консоль.
 }
 
 void NeMiImpl::s5_entered(){
+	PK = Pc + (*Ph - Pc);
+	stackedWidget->setCurrentIndex(2);
 
 	qDebug()<<trUtf8("Вошёл в s5"); // Вывожу дебажную инфу на консоль.
 }
 
 void NeMiImpl::s6_entered(){
+	PD = Pc + b*(PR - Pc);
+	stackedWidget->setCurrentIndex(1);
 
 	qDebug()<<trUtf8("Вошёл в s6"); // Вывожу дебажную инфу на консоль.
 }
 
 void NeMiImpl::s7_entered(){
+	*Ph = *Pl + 0.5*(*Ph - *Pl);
+	*Pm = *Pl + 0.5*(*Pm - *Pl);
 
 	qDebug()<<trUtf8("Вошёл в s7"); // Вывожу дебажную инфу на консоль.
 }
 
 void NeMiImpl::s8_entered(){
+	*Ph = PD;
 
 	qDebug()<<trUtf8("Вошёл в s8"); // Вывожу дебажную инфу на консоль.
 }
 
 void NeMiImpl::s9_entered(){
+	*Ph = PR;
 
 	qDebug()<<trUtf8("Вошёл в s9"); // Вывожу дебажную инфу на консоль.
 }
 
 void NeMiImpl::s10_entered(){
+	*Ph = PK;
 
 	qDebug()<<trUtf8("Вошёл в s10"); // Вывожу дебажную инфу на консоль.
 }
 
 void NeMiImpl::s11_entered(){
+	stackedWidget->setCurrentIndex(3);
 
 	qDebug()<<trUtf8("Вошёл в s11"); // Вывожу дебажную инфу на консоль.
 }

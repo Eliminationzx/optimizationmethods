@@ -8,6 +8,8 @@
 #include <QState>
 //
 class funkcio;
+const int a = 1;
+const int b = 1;
 //
 //! Окно для прохождения метода Нелдора-Мида.
 class NeMiImpl : public AlgoritmoWin, public Ui::NeMi
@@ -26,6 +28,14 @@ protected:
 	DemonstrataQPointF * Pm;
 	//! Указатель на наименьшую точку.
 	DemonstrataQPointF * Pl;
+	//! Центр тяжести триугольника.
+	QPointF Pc;
+	//! Отражённая точка.
+	DemonstrataQPointF PR;
+	//! Сжатая точка.
+	DemonstrataQPointF PK;
+	//! Растянутая точка.
+	DemonstrataQPointF PD;
 public:
 	NeMiImpl( funkcio * f, QVector<double> *d, QWidget * parent = 0,
 	          Qt::WFlags flags = 0 );
