@@ -20,7 +20,7 @@
 using namespace SinkoFD;
 
 FasterDescentImpl::FasterDescentImpl( funkcio *f, QVector<double> *d, QWidget * parent, Qt::WFlags flags)
-	: AlgoritmoWin(f, d, parent, flags), strikteco((*d)[0])
+	: AlgoritmoWin(f, d, parent, flags)
 {
 
 	setupUi(this);
