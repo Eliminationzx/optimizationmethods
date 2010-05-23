@@ -225,11 +225,8 @@ void FasterDescentImpl::s7_entered()
 {
 	stackedWidget->setCurrentIndex(3);
 	
-/*	two->setChecked(false);
-	half->setChecked(false);
-	maxf->setChecked(false);
-	minf->setChecked(false);
-	*/
+//	minf->setChecked(false);
+	
 	LogTxtBrsr->append(trUtf8("  Вычисляем а"));
 
 	qDebug()<<trUtf8("Вошёл в s7"); // Вывожу дебажную инфу на консоль.
@@ -250,10 +247,8 @@ void FasterDescentImpl::s5_entered()
 {
 	stackedWidget->setCurrentIndex(2);
 	
-/*	fxk_fx->setChecked(false);
-	xk_x->setChecked(false);
-	gradfx->setChecked(false);
-	*/
+//	gradfx->setChecked(false);
+
 	LogTxtBrsr->append(trUtf8("  Проверка точности"));
 
 	qDebug()<<trUtf8("Вошёл в s5"); // Вывожу дебажную инфу на консоль.
@@ -265,9 +260,6 @@ void FasterDescentImpl::s4_entered()
 	
 	grad = QPointF(F->df_dx1(BP), F->df_dx2(BP));
 	
-/*	s_x1_lb->setText(QString::number(grad.x(), 'f'));
-	s_x2_lb->setText(QString::number(grad.y(), 'f'));
-*/	
 	if (NumeroIteracio == 1)
 		LogTxtBrsr->append(trUtf8("  Введён градиент"));
 	else if (NumeroIteracio > 1)
@@ -287,11 +279,8 @@ void FasterDescentImpl::s3_entered()
 
 void FasterDescentImpl::s2_entered()
 {
-/*	grad_fx->setChecked(false);
-	agrad_fx->setChecked(false);
-	one_one->setChecked(false);
-	aone_one->setChecked(false);
-	*/
+//	agrad_fx->setChecked(false);
+
 	stackedWidget->setCurrentIndex(0);
 	
 	LogTxtBrsr->append(trUtf8("  Определяем S"));
@@ -301,18 +290,8 @@ void FasterDescentImpl::s2_entered()
 
 void FasterDescentImpl::s1_entered()
 {
-	grad_fx->setChecked(false);
 	agrad_fx->setChecked(false);
-	one_one->setChecked(false);
-	aone_one->setChecked(false);
-	
-	fxk_fx->setChecked(false);
-	xk_x->setChecked(false);
 	gradfx->setChecked(false);
-	
-	two->setChecked(false);
-	half->setChecked(false);
-	maxf->setChecked(false);
 	minf->setChecked(false);
 	
 	stackedWidget->setCurrentIndex(4);
