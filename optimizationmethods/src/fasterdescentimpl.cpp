@@ -25,8 +25,6 @@ FasterDescentImpl::FasterDescentImpl( funkcio *f, QVector<double> *d, QWidget * 
 	setupUi(this);
 	qDebug()<<trUtf8("Наискорейший спуск"); // Вывожу дебажную инфу на консоль.
 
-	NumeroIteracio = 1;
-
 	// Создаю карту.
 	// centralwidget->layout() - указатель на компановщик центрального виджета
 	// static_cast<QGridLayout*>(centralwidget->layout()) - обьясняю компилятору, что это именно QGridLayout
@@ -140,7 +138,7 @@ FasterDescentImpl::FasterDescentImpl( funkcio *f, QVector<double> *d, QWidget * 
 /*	s6->assignProperty(length_grad_lb, "palette", QPalette(Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red));
 	s1->assignProperty(length_grad_lb, "palette", this->palette());
 */
-//---Прикручиваю карту---------------------------------------------------------
+	//---Прикручиваю карту---------------------------------------------------------
 	connect(sBP, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniMomentaPointo(QPointF)));
 
 	connect(s9, SIGNAL(entered()), Sp, SLOT(reveniAlMomentoPointo()));

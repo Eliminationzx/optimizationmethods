@@ -9,10 +9,10 @@
     // минимум. Текущая точка (х1;х2) соответствует 0 на новой оси.
   	double a = 0;
     // b надо взять такое, что бы в разрезе по новой оси функция имела форму чашки. 
-    double b = 1000;
+    double b = 100;
     // Изменяю b, пока не будет чашка.
-    while(rezulto(X[0] - b*df_dx1(X), X[1] - b*df_dx2(X)) < rezulto(X[0] - (b-500)*df_dx1(X), X[1] - (b-500)*df_dx2(X))){
-      b += 1000;
+    while(rezulto(X[0] - b*df_dx1(X), X[1] - b*df_dx2(X)) < rezulto(X[0] - (b-50)*df_dx1(X), X[1] - (b-50)*df_dx2(X))){
+      b += 100;
     }
     double tau = 0.618033988749894;
   	double lam = a + (1 - tau)*(b - a);
@@ -42,11 +42,11 @@ double funkcio::lengthOfStep(const QPointF X) const
 	// минимум. Текущая точка (х1;х2) соответствует 0 на новой оси.
 	double a = 0;
 	// b надо взять такое, что бы в разрезе по новой оси функция имела форму чашки. 
-	double b = 1000;
+	double b = 100;
 	// Изменяю b, пока не будет чашка.
-	while(rezulto(X.x() - b*df_dx1(X), X.y() - b*df_dx2(X)) < rezulto(X.x() - (b-500)*df_dx1(X), X.y() - (b-500)*df_dx2(X)))
+	while(rezulto(X.x() - b*df_dx1(X), X.y() - b*df_dx2(X)) < rezulto(X.x() - (b-50)*df_dx1(X), X.y() - (b-50)*df_dx2(X)))
 	{
-		b += 1000;
+		b += 100;
 	}
 	
 	double tau = 0.618033988749894;
