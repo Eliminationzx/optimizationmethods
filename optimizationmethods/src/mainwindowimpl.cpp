@@ -212,15 +212,16 @@ void MainWindowImpl::on_next_button_2_clicked()
 //			AW = new NeMiImpl(funck, &data, this, Qt::Window);
 //			break;
 		case A::NotWen:
-//			AW = new NotWenImpl(funck, &data, this, Qt::Window);
-		QMessageBox msg(QMessageBox::Warning, trUtf8("Ошибка"), trUtf8("Алгоритм ещё не реализован"));
+			AW = new NotWenImpl(funck, &data, this, Qt::Window);
+			break;
+/*		QMessageBox msg(QMessageBox::Warning, trUtf8("Ошибка"), trUtf8("Алгоритм ещё не реализован"));
 		msg.exec();
-	}
+*/	}
 
-	if(connect(AW, SIGNAL(usiloPlenumis(int)), SLOT(openTakeQuadFun(int))))
+//	if(connect(AW, SIGNAL(usiloPlenumis(int)), SLOT(openTakeQuadFun(int))))
 		AW->showMaximized();
-	else
-		QMessageBox::warning(this, trUtf8("Ошибка"), trUtf8("Ошибка соединения MainWindowImpl и AlgoritmoWin."));
+//	else
+//		QMessageBox::warning(this, trUtf8("Ошибка"), trUtf8("Ошибка соединения MainWindowImpl и AlgoritmoWin."));
 }
 
 //! Нажата кнопка "Назад" (2-ая страница).
