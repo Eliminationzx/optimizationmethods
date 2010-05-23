@@ -95,7 +95,7 @@ CWdescent_mdImpl::CWdescent_mdImpl(funkcio *f, QVector<double> *d, QWidget * par
 	s1->assignProperty(df_lb, "palette", this->palette());
 
 
-//---Прикручиваю карту---------------------------------------------------------
+	//---Прикручиваю карту---------------------------------------------------------
 	connect(sMP, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniMomentaPointo(QPointF)));
 
 	connect(s2, SIGNAL(entered()), Sp, SLOT(reveniAlMomentoPointo()));
