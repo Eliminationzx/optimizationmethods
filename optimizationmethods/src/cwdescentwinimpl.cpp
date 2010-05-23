@@ -284,10 +284,13 @@ void CWdescentWinImpl::sf_entered(){
 		recomenci_acn->trigger();
 	}else{
 		str += trUtf8("Вы прошли тест. ");
-		if(F->metaObject()->className() == "KvadratigantoFunkcio"){
+		if(F->metaObject()->className() == QString("KvadratigantoFunkcio"))
+		{
 			str += trUtf8("Сообщите преподавателю и перейдите к овражной функции.");
 			emit usiloPlenumis(0);
-		}else if(F->metaObject()->className() == "RavinaFunkcio"){
+		}
+		else if(F->metaObject()->className() == QString("RavinaFunkcio"))
+		{
 			str += trUtf8("Позовите преподавателя.");
 		}
 		QMessageBox::information(this, trUtf8("Поздравляем"), str);
