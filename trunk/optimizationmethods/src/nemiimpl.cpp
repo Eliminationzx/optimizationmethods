@@ -184,14 +184,16 @@ namespace NeMi{
 			return f->rezulto(**pm) < f->rezulto(*ps)
 			       && f->rezulto(*ps) < f->rezulto(**ph);
 		}
+		return false;
 	}
 	bool s3s6Transiro::eventTest(QEvent *e){
 		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
 		if(QSignalTransition::eventTest(e)){
-			qDebug()<<trUtf8("  ");
+			qDebug()<<trUtf8("  Проверяю , что F(Хотр) < F(Хl)");
 			// Проверяю своё условие.
-			return false;
+			return f->rezulto(*ps) < f->rezulto(**pl);
 		}
+		return false;
 	}
 	bool s3s11Transiro::eventTest(QEvent *e){
 		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
