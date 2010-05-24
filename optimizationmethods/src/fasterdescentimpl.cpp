@@ -375,30 +375,82 @@ namespace SinkoFD
 			qDebug()<<trUtf8("  Проверяю, что введен градиент");
 			// Проверяю своё условие.
 			
-			QString tmpX1;
-			QString tmpX2;
+			QString tmpX10, tmpX11;
+			QString tmpX20, tmpX21;
 			
 			if(f->metaObject()->className() == QString("KvadratigantoFunkcio"))
 			{
-				tmpX1 = QString("%1*(x1-%2)+%3*(x2-%4)").arg(2*f->getA()).arg(f->getB()).arg(f->getE()).arg(f->getG()); 
-				tmpX2 = QString("%1*(x2-%2)+%3*(x1-%4)").arg(2*f->getC()).arg(f->getD()).arg(f->getE()).arg(f->getF());
+				if((2*f->getA() != 0 && 2*f->getA() != 1) && (f->getE() == 1))
+					tmpX11 = QString("%1*(x1-%2)+(x2-%3)").arg(2*f->getA()).arg(f->getB()).arg(f->getG());
+				else if((2*f->getA() != 0 && 2*f->getA() != 1) && (f->getE() == 0))
+					tmpX11 = QString("%1*(x1-%2)").arg(2*f->getA()).arg(f->getB());
+				else if((2*f->getA() == 1) && (f->getE() != 1 && f->getE() != 0))
+					tmpX11 = QString("(x1-%1)+%2*(x2-%3)").arg(f->getB()).arg(f->getE()).arg(f->getG());
+				else if((2*f->getA() == 1) && (f->getE() == 1))
+					tmpX11 = QString("(x1-%1)+(x2-%2)").arg(f->getB()).arg(f->getG());
+				else if((2*f->getA() == 1) && (f->getE() == 0))
+					tmpX11 = QString("(x1-%1)").arg(f->getB());
+				else if((2*f->getA() == 0) && (f->getE() != 1 && f->getE() != 0))
+					tmpX11 = QString("%1*(x2-%2)").arg(f->getE()).arg(f->getG());
+				else if((2*f->getA() == 0) && (f->getE() == 1))
+					tmpX11 = QString("(x2-%1)").arg(f->getG());
+				else if((2*f->getA() == 0) && (f->getE() == 0))
+					tmpX11 = QString("0");
+					
+				if((2*f->getC() != 0 && 2*f->getC() != 1) && (f->getE() == 1))
+					tmpX21 = QString("%1*(x2-%2)+(x1-%3)").arg(2*f->getC()).arg(f->getD()).arg(f->getF());
+				else if((2*f->getC() != 0 && 2*f->getC() != 1) && (f->getE() == 0))
+					tmpX21 = QString("%1*(x2-%2)").arg(2*f->getC()).arg(f->getD());
+				else if((2*f->getC() == 1) && (f->getE() != 1 && f->getE() != 0))
+					tmpX21 = QString("(x2-%1)+%2*(x1-%3)").arg(f->getD()).arg(f->getE()).arg(f->getF());
+				else if((2*f->getC() == 1) && (f->getE() == 1))
+					tmpX21 = QString("(x2-%1)+(x1-%2)").arg(f->getD()).arg(f->getF());
+				else if((2*f->getC() == 1) && (f->getE() == 0))
+					tmpX21 = QString("(x2-%1)").arg(f->getD());
+				else if((2*f->getC() == 0) && (f->getE() != 1 && f->getE() != 0))
+					tmpX21 = QString("%1*(x1-%2)").arg(f->getE()).arg(f->getF());
+				else if((2*f->getC() == 0) && (f->getE() == 1))
+					tmpX21 = QString("(x1-%1)").arg(f->getF());
+				else if((2*f->getC() == 0) && (f->getE() == 0))
+					tmpX21 = QString("0");
+
+				tmpX10 = QString("%1*(x1-%2)+%3*(x2-%4)").arg(2*f->getA()).arg(f->getB()).arg(f->getE()).arg(f->getG());
+				tmpX20 = QString("%1*(x2-%2)+%3*(x1-%4)").arg(2*f->getC()).arg(f->getD()).arg(f->getE()).arg(f->getF());
 			}
 			else if(f->metaObject()->className() == QString("RavinaFunkcio"))
 			{
-				tmpX1 = QString("%1*(x2*x1-x1^3)+%2*(1-x1)").arg(-4*f->getA()).arg(2*f->getB());
-				tmpX2 = QString("%1*(x2-x1^2)").arg(f->getA());
+				if((-4*f->getA() != 0 && -4*f->getA() != 1) && (2*f->getB() == 1))
+					tmpX11 = QString("%1*(x2*x1-x1^3)+(1-x1)").arg(-4*f->getA());
+				else if((-4*f->getA() != 0 && -4*f->getA() != 1) && (2*f->getB() == 0))
+					tmpX11 = QString("%1*(x2*x1-x1^3)").arg(-4*f->getA());
+				else if((-4*f->getA() == 1) && (2*f->getB() != 1 && 2*f->getB() != 0))
+					tmpX11 = QString("(x2*x1-x1^3)+%1*(1-x1)").arg(2*f->getB());
+				else if((-4*f->getA() == 1) && (2*f->getB() == 1))
+					tmpX11 = QString("(x2*x1-x1^3)+(1-x1)");
+				else if((-4*f->getA() == 1) && (2*f->getB() == 0))
+					tmpX11 = QString("(x2*x1-x1^3)");
+				else if((-4*f->getA() == 0) && (2*f->getB() != 1 && f->getE() != 0))
+					tmpX10 = QString("%1*(1-x1)").arg(2*f->getB());
+				else if((-4*f->getA() == 0) && (2*f->getB() == 1))
+					tmpX11 = QString("(1-x1)");
+				else if((-4*f->getA() == 0) && (2*f->getB() == 0))
+					tmpX11 = QString("0");
+				
+				if(f->getA() == 1)
+					tmpX21 = QString("(x2-x1^2)");
+				else if(f->getA() == 0)
+					tmpX21 = QString("0");
+				
+				tmpX10 = QString("%1*(x2*x1-x1^3)+%2*(1-x1)").arg(-4*f->getA()).arg(2*f->getB());
+				tmpX20 = QString("%1*(x2-x1^2)").arg(f->getA());
 			}
 
-			if(df_dx1->text() != tmpX1)
-			{
-				return false;
-			}
-			else if(df_dx2->text() != tmpX2)
-			{
-				return false;
-			}
-			else
+			if(df_dx1->text() == tmpX10 || df_dx1->text() == tmpX11)
 				return true;
+			else if(df_dx2->text() == tmpX20 || df_dx2->text() == tmpX21)
+				return true;
+			else
+				return false;
 		}
 		else
 			return false;
