@@ -301,19 +301,17 @@ namespace NeMi{
 	 */
 	class s6s8Transiro: public QSignalTransition{
 		private:
-			QRadioButton * totr_str;
 			QRadioButton * tras_str;
 			DemonstrataQPointF ** pl;
 			DemonstrataQPointF * pd;
 			funkcio * f;
 		public:
-			s6s8Transiro( QRadioButton * totr_str_rb, QRadioButton * tras_str_rb,
+			s6s8Transiro( QRadioButton * tras_str_rb,
 			            DemonstrataQPointF ** Pl, DemonstrataQPointF * PD, funkcio * F,
 									QState * sourceState = 0)
-				: QSignalTransition(sourceState), totr_str(totr_str_rb), tras_str(tras_str_rb),
+				: QSignalTransition(sourceState), tras_str(tras_str_rb),
 					pl(Pl), pd(PD), f(F){};
-			s6s8Transiro( QRadioButton * totr_str_rb,
-			              QRadioButton * tras_str_rb,
+			s6s8Transiro( QRadioButton * tras_str_rb,
 			              DemonstrataQPointF ** Pl,
 			              DemonstrataQPointF * PD,
 			              funkcio * F,
@@ -321,8 +319,8 @@ namespace NeMi{
 			              const char * signal,
 			              QState * sourceState = 0
 			            )
-				: QSignalTransition(sender, signal, sourceState), totr_str(totr_str_rb),
-					tras_str(tras_str_rb), pl(Pl), pd(PD), f(F){};
+				: QSignalTransition(sender, signal, sourceState), tras_str(tras_str_rb),
+					pl(Pl), pd(PD), f(F){};
 		protected:
 			//! Переход срабатывает, только если F(Xрас) < F(Xl) && выбрана Храс.
 			bool eventTest(QEvent *e);
