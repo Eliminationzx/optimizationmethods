@@ -259,23 +259,26 @@ namespace NeMi{
 	 */
 	class s5s10Transiro: public QSignalTransition{
 		private:
-			QRadioButton * t1_ref;
-			QRadioButton * t2_ref;
-			QRadioButton * t3_ref;
+			QRadioButton * t1_com;
+			QRadioButton * t2_com;
+			QRadioButton * t3_com;
+			DemonstrataQPointF ** ph;
 			DemonstrataQPointF * p1;
 			DemonstrataQPointF * p2;
 			DemonstrataQPointF * p3;
 			funkcio * f;
 		public:
-			s5s10Transiro( QRadioButton * t1_ref_rb, QRadioButton * t2_ref_rb,
-			               QRadioButton * t3_ref_rb, DemonstrataQPointF * P1,
-										 DemonstrataQPointF * P2, DemonstrataQPointF * P3, funkcio * F,
+			s5s10Transiro( QRadioButton * t1_com_rb, QRadioButton * t2_com_rb,
+			               QRadioButton * t3_com_rb, DemonstrataQPointF ** Ph,
+			               DemonstrataQPointF * P1, DemonstrataQPointF * P2,
+			               DemonstrataQPointF * P3, funkcio * F,
 										 QState * sourceState = 0)
-				: QSignalTransition(sourceState), t1_ref(t1_ref_rb), t2_ref(t2_ref_rb),
-					t3_ref(t3_ref_rb), p1(P1), p2(P2), p3(P3), f(F){};
-			s5s10Transiro( QRadioButton * t1_ref_rb,
-			               QRadioButton * t2_ref_rb,
-			               QRadioButton * t3_ref_rb,
+				: QSignalTransition(sourceState), t1_com(t1_com_rb), t2_com(t2_com_rb),
+					t3_com(t3_com_rb), ph(Ph), p1(P1), p2(P2), p3(P3), f(F){};
+			s5s10Transiro( QRadioButton * t1_com_rb,
+			               QRadioButton * t2_com_rb,
+			               QRadioButton * t3_com_rb,
+			               DemonstrataQPointF ** Ph,
 			               DemonstrataQPointF * P1,
 			               DemonstrataQPointF * P2,
 										 DemonstrataQPointF * P3,
@@ -284,8 +287,9 @@ namespace NeMi{
 			               const char * signal,
 			               QState * sourceState = 0
 			             )
-				: QSignalTransition(sender, signal, sourceState), t1_ref(t1_ref_rb),
-					t2_ref(t2_ref_rb), t3_ref(t3_ref_rb), p1(P1), p2(P2), p3(P3), f(F){};
+				: QSignalTransition(sender, signal, sourceState), t1_com(t1_com_rb),
+					t2_com(t2_com_rb), t3_com(t3_com_rb), ph(Ph), p1(P1), p2(P2), p3(P3),
+					f(F){};
 		protected:
 			//! Переход срабатывает, только если выбрана max{T1, T2, T3}
 			bool eventTest(QEvent *e);
