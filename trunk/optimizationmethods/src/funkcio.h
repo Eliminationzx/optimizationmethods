@@ -26,7 +26,10 @@ public:
 	double lengthOfStep(const QVector<double> X, const double e) const;
 	//! Возвращает длину шага для оптимизации функции одной переменной.
 	double lengthOfStep(const QPointF X) const;
-	
+
+	//! Возвращает определитель гессиана.
+	virtual double detGessian(const QPointF X) const;
+
 	//! Возвращает результат вычисления функции в точке.
 	virtual double rezulto(const double x1, //!< Первая координата точки.
 	                       const double x2 //!< Вторая координата точки.
@@ -101,6 +104,10 @@ public:
 	//! Возвращает значение частной производной первого порядка по x2.
 	double df_dx2(const QPointF X) const
 	{ return 2*C*(X.y() - D) + E*(X.x() - F); }
+
+	//! Возвращает определитель гессиана.
+	double detGessian(const QPointF X) const
+	{ return (2*A * 2*C) - (E*E); }
 
   //! Возвращает результат вычисления функции в точке.
   double rezulto(const double x1, //!< Первая координата точки.
@@ -182,6 +189,10 @@ public:
 	//! Возвращает значение частной производной первого порядка по x2.
 	double df_dx2(const QPointF X) const
 	{ return 2*A*(X.y() - pow(X.x(), 2)); };
+
+	//! Возвращает определитель гессиана.
+	double detGessian(const QPointF X) const
+	{ return (-4*A*(X.y() - 3*X.x()*X.x()) * 2*A) - pow(-4*A*X.x(), 2); }
 
   //! Возвращает результат вычисления функции в точке.
   double rezulto(const double x1, //!< Первая координата точки.

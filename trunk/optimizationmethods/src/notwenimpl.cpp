@@ -84,11 +84,11 @@ NotWenImpl::NotWenImpl( funkcio *f, QVector<double> *d, QWidget * parent, Qt::WF
 	s4s5->setTargetState(s5);
 	s5s6Transiro * s5s6 = new s5s6Transiro(&NumeroIteracio, &grad, strikteco, to_continue, next5_bt, SIGNAL(clicked()), s5);
 	s5s6->setTargetState(s6);
-	s5s7Transiro * s5s7 = new s5s7Transiro(&NumeroIteracio, &grad, strikteco, to_continue, next5_bt, SIGNAL(clicked()), s5);
+	s5s7Transiro * s5s7 = new s5s7Transiro(F, &NumeroIteracio, &grad, strikteco, to_continue, next5_bt, SIGNAL(clicked()), s5);
 	s5s7->setTargetState(s7);
 	s5sfTransiro * s5sf = new s5sfTransiro(&grad, strikteco, stop, next5_bt, SIGNAL(clicked()), s5);
 	s5sf->setTargetState(sf);
-	s6s7Transiro * s6s7 = new s6s7Transiro(dfdx1dx1, dfdx1dx2, dfdx2dx1, dfdx2dx2, gess11, gess12, gess21, gess22, next6_bt, SIGNAL(clicked()), s6);
+	s6s7Transiro * s6s7 = new s6s7Transiro(F, dfdx1dx1, dfdx1dx2, dfdx2dx1, dfdx2dx2, gess11, gess12, gess21, gess22, next6_bt, SIGNAL(clicked()), s6);
 	s6s7->setTargetState(s7);
 	s7->addTransition(this, SIGNAL(stateHasEntered()), s1);
 
@@ -448,7 +448,7 @@ namespace SinkoNotWen
 		{
 			qDebug()<<trUtf8("  Проверяю |grad f(X)| >= e && не первая итерация && выбран пункт продолжить");
 			// Проверяю своё условие.
-			return Length(*Grad) >= s && *numberIterac > 1 && To_continue->isChecked(); 
+			return Length(*Grad) >= s && *numberIterac > 1 && To_continue->isChecked() && f->metaObject()->className() == QString("KvadratigantoFunkcio"); 
 		}
 		else
 			return false;
@@ -473,6 +473,29 @@ namespace SinkoNotWen
 		if(QSignalTransition::eventTest(e))
 		{
 			qDebug()<<trUtf8("  Проверяю, что правильно введен гессиан и обратный гессиан");
+
+			if(f->metaObject()->className() == QString("KvadratigantoFunkcio"))
+			{
+//				Dfdx1dx1 Dfdx1dx2 Dfdx2dx1 Dfdx2dx2 Gess11 Gess12 Gess21 Gess22
+				if(Dfdx1dx1->text() == QString::number(2*f->getA()) && Dfdx1dx2->text() == QString::number(f->getE()) && 
+					Dfdx2dx1->text() == QString::number(f->getE()) && Dfdx2dx2->text() == QString::number(2*f->getC()))
+				{
+				}
+				
+			}
+			else if(f->metaObject()->className() == QString("RavinaFunkcio"))
+			{
+				
+			}
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			// Проверяю своё условие.
 			return true;
 		}

@@ -273,19 +273,22 @@ namespace SinkoNotWen
 	class s5s7Transiro: public QSignalTransition
 	{
 		private:
+			funkcio * f;
 			int * numberIterac;
 			DemonstrataQPointF * Grad;
 			qreal s; //!< Точность.
 			QRadioButton * To_continue;
 		public:
-			s5s7Transiro(int * NumeroIteracio, 
+			s5s7Transiro(funkcio * F,
+							int * NumeroIteracio, 
 							DemonstrataQPointF * grad, 
 							qreal strikteco, 
 							QRadioButton * to_continue,
 							QState * sourceState = 0)
 							 : QSignalTransition(sourceState),
-							  numberIterac(NumeroIteracio), Grad(grad), s(strikteco), To_continue(to_continue){};
-			s5s7Transiro(int * NumeroIteracio,
+							  f(F), numberIterac(NumeroIteracio), Grad(grad), s(strikteco), To_continue(to_continue){};
+			s5s7Transiro(funkcio * F,
+							int * NumeroIteracio,
 							DemonstrataQPointF * grad,
 							qreal strikteco,
 							QRadioButton * to_continue,
@@ -293,7 +296,7 @@ namespace SinkoNotWen
 							const char * signal,
 							QState * sourceState = 0)
 							 : QSignalTransition(sender, signal, sourceState),
-							  numberIterac(NumeroIteracio), Grad(grad), s(strikteco), To_continue(to_continue){};
+							  f(F), numberIterac(NumeroIteracio), Grad(grad), s(strikteco), To_continue(to_continue){};
 		protected:
 			//! Перход срабатывает, только если нажата кнопка next5
 			bool eventTest(QEvent *e);
@@ -334,6 +337,7 @@ namespace SinkoNotWen
 	class s6s7Transiro: public QSignalTransition
 	{
 		private:
+			funkcio * f;
 			QLineEdit * Dfdx1dx1;
 			QLineEdit * Dfdx1dx2;
 			QLineEdit * Dfdx2dx1;
@@ -343,7 +347,8 @@ namespace SinkoNotWen
 			QLineEdit * Gess21;
 			QLineEdit * Gess22;
 		public:
-			s6s7Transiro(QLineEdit * dfdx1dx1,
+			s6s7Transiro(funkcio * F,
+						QLineEdit * dfdx1dx1,
 						QLineEdit * dfdx1dx2,
 						QLineEdit * dfdx2dx1,
 						QLineEdit * dfdx2dx2,
@@ -353,9 +358,10 @@ namespace SinkoNotWen
 						QLineEdit * gess22,
 						QState * sourceState = 0)
 						 : QSignalTransition(sourceState),
-						  Dfdx1dx1(dfdx1dx1), Dfdx1dx2(dfdx1dx2), Dfdx2dx1(dfdx2dx1), Dfdx2dx2(dfdx2dx2),
+						  f(F), Dfdx1dx1(dfdx1dx1), Dfdx1dx2(dfdx1dx2), Dfdx2dx1(dfdx2dx1), Dfdx2dx2(dfdx2dx2),
 						  Gess11(gess11), Gess12(gess12), Gess21(gess21), Gess22(gess22){};
-			s6s7Transiro(QLineEdit * dfdx1dx1,
+			s6s7Transiro(funkcio * F,
+						QLineEdit * dfdx1dx1,
 						QLineEdit * dfdx1dx2,
 						QLineEdit * dfdx2dx1,
 						QLineEdit * dfdx2dx2,
@@ -367,7 +373,7 @@ namespace SinkoNotWen
 						const char * signal,
 						QState * sourceState = 0)
 						 : QSignalTransition(sender, signal, sourceState),
-						  Dfdx1dx1(dfdx1dx1), Dfdx1dx2(dfdx1dx2), Dfdx2dx1(dfdx2dx1), Dfdx2dx2(dfdx2dx2),
+						  f(F), Dfdx1dx1(dfdx1dx1), Dfdx1dx2(dfdx1dx2), Dfdx2dx1(dfdx2dx1), Dfdx2dx2(dfdx2dx2),
 						  Gess11(gess11), Gess12(gess12), Gess21(gess21), Gess22(gess22){};
 		protected:
 			//! Перход срабатывает, только если нажата кнопка next6
