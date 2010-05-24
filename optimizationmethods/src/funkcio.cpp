@@ -42,11 +42,11 @@ double funkcio::lengthOfStep(const QPointF X) const
 	// минимум. Текущая точка (х1;х2) соответствует 0 на новой оси.
 	double a = 0;
 	// b надо взять такое, что бы в разрезе по новой оси функция имела форму чашки. 
-	double b = 100;
+	double b = 10;
 	// Изменяю b, пока не будет чашка.
-	while(rezulto(X.x() - b*df_dx1(X), X.y() - b*df_dx2(X)) < rezulto(X.x() - (b-50)*df_dx1(X), X.y() - (b-50)*df_dx2(X)))
+	while(rezulto(X.x() - b*df_dx1(X), X.y() - b*df_dx2(X)) < rezulto(X.x() - (b-5)*df_dx1(X), X.y() - (b-5)*df_dx2(X)))
 	{
-		b += 100;
+		b += 10;
 	}
 	
 	double tau = 0.618033988749894;
