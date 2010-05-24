@@ -155,34 +155,31 @@ void NeMiImpl::registriEraro(){
 }
 
 namespace NeMi{
-	bool s1s2Transiro::eventTest(QEvent *e){
-		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
-		if(QSignalTransition::eventTest(e)){
-			qDebug()<<trUtf8("  ");
-			// Проверяю своё условие.
-			return false;
-		}
-	}
 	bool s2s3Transiro::eventTest(QEvent *e){
 		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
 		if(QSignalTransition::eventTest(e)){
-			qDebug()<<trUtf8("  ");
+			qDebug()<<trUtf8("  Проверяю , что выбрана наибольшая точка.");
 			// Проверяю своё условие.
-			return false;
+			return (t1_ref->isChecked() && *ph == p1)
+			       || (t2_ref->isChecked() && *ph == p2)
+			       || (t3_ref->isChecked() && *ph == p3);
 		}
+		return false;
 	}
 	bool s3s1Transiro::eventTest(QEvent *e){
 		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
 		if(QSignalTransition::eventTest(e)){
-			qDebug()<<trUtf8("  ");
+			qDebug()<<trUtf8("  Проверяю , что F(Xl) < F(Хотр) < F(Xm).");
 			// Проверяю своё условие.
-			return false;
+			return f->rezulto(**pl) < f->rezulto(*ps)
+			       && f->rezulto(*ps) < f->rezulto(**pm);
 		}
+		return false;
 	}
 	bool s3s5Transiro::eventTest(QEvent *e){
 		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
 		if(QSignalTransition::eventTest(e)){
-			qDebug()<<trUtf8("  ");
+			qDebug()<<trUtf8("  Проверяю , что .");
 			// Проверяю своё условие.
 			return false;
 		}
