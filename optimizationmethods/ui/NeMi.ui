@@ -490,7 +490,7 @@
        <item row="0" column="1" rowspan="5">
         <widget class="QStackedWidget" name="stackedWidget">
          <property name="currentIndex">
-          <number>1</number>
+          <number>4</number>
          </property>
          <widget class="QWidget" name="reflexion">
           <layout class="QGridLayout" name="gridLayout_4" rowstretch="1,0">
@@ -547,11 +547,6 @@
              </item>
              <item>
               <widget class="QPushButton" name="next1_bt">
-               <property name="font">
-                <font>
-                 <pointsize>12</pointsize>
-                </font>
-               </property>
                <property name="text">
                 <string>Далее</string>
                </property>
