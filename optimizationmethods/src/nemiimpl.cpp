@@ -261,9 +261,13 @@ namespace NeMi{
 	bool sssfTransiro::eventTest(QEvent *e){
 		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
 		if(QSignalTransition::eventTest(e)){
-			qDebug()<<trUtf8("  ");
+			qDebug()<<trUtf8("  Проверяю , что (1/4)*((F(Xl)-(F(Xc))^2 + ((F(Xh)-(F(Xc)))^2 + ((F(Xm)-(F(Xc)))^2) < e");
 			// Проверяю своё условие.
-			return false;
+			return (1/4)*((f->rezulto(**pl) - f->rezulto(*pc))*(f->rezulto(**pl) - f->rezulto(*pc))
+			              + (f->rezulto(**ph) - f->rezulto(*pc))*(f->rezulto(**ph) - f->rezulto(*pc))
+			              + (f->rezulto(**pm) - f->rezulto(*pc))*(f->rezulto(**pm) - f->rezulto(*pc))
+			             ) < s;
 		}
+		return false;
 	}
 }

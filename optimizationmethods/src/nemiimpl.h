@@ -442,17 +442,21 @@ namespace NeMi{
 	 */
 	class sssfTransiro: public QSignalTransition{
 		private:
+			qreal s;
 			DemonstrataQPointF ** ph;
 			DemonstrataQPointF ** pl;
 			DemonstrataQPointF ** pm;
 			QPointF * pc;
 			funkcio * f;
 		public:
-			sssfTransiro( DemonstrataQPointF ** Ph, DemonstrataQPointF ** Pl,
+			sssfTransiro( qreal strikteco, 
+			              DemonstrataQPointF ** Ph, DemonstrataQPointF ** Pl,
 			              DemonstrataQPointF ** Pm, QPointF * pc, funkcio * F,
 										QState * sourceState = 0)
-				: QSignalTransition(sourceState), ph(Ph), pl(Pl), pm(Pm), pc(pc), f(F){};
-			sssfTransiro( DemonstrataQPointF ** Ph,
+				: QSignalTransition(sourceState), s(strikteco), ph(Ph), pl(Pl), pm(Pm),
+					pc(pc), f(F){};
+			sssfTransiro( qreal strikteco, 
+			              DemonstrataQPointF ** Ph,
 			              DemonstrataQPointF ** Pl,
 			              DemonstrataQPointF ** Pm,
 			              QPointF * pc,
@@ -461,8 +465,8 @@ namespace NeMi{
 			              const char * signal,
 		                QState * sourceState = 0
 		              )
-				: QSignalTransition(sender, signal, sourceState), ph(Ph), pl(Pl), pm(Pm), pc(pc),
-					f(F){};
+				: QSignalTransition(sender, signal, sourceState), s(strikteco), ph(Ph),
+					pl(Pl), pm(Pm), pc(pc), f(F){};
 		protected:
 			//! Переход срабатывает, только если (1/4)*((F(Xl)-(F(Xc))^2 + ((F(Xh)-(F(Xc)))^2 + ((F(Xm)-(F(Xc)))^2) < e.
 			bool eventTest(QEvent *e);
