@@ -41,13 +41,12 @@ public:
 
 private slots:
 	//! help браузер
-	void on_helpo_action_activated();		
+	void on_helpo_action_activated();
 
 	//! изменить шрифт
-	void on_difiniFonto_act_activated();	
+	void on_difiniFonto_act_activated();
 
 	/*! "Обнуление" переменных.
-	 * 
 	 * Этим методом задаются началные знаения всем переменным алгоритма.
 	 * Используется перед запуском конечного автомата и в переходе вызванным 
 	 * действием "Начать заново".
@@ -285,7 +284,7 @@ namespace SinkoFD
 						) : QSignalTransition(sender, signal, sourceState),
 						Grad(grad), s(strikteco){};
 		protected:
-		bool eventTest(QEvent *e);
+			bool eventTest(QEvent *e);
 	};
 	
 	/*! Переход от s7 к s8.
@@ -337,7 +336,7 @@ namespace SinkoFD
 /*! @class FasterDescentImpl
  * Алгоритм:
  *
- * @image html "CWdescent_md.png" "Блок-схема"
+ * @image html "FasterDescent.png" "Блок-схема"
  * 
  * Операции алгоритма повторяются циклически, пока значение не приблизится к
  * минимуму на заданную точность.

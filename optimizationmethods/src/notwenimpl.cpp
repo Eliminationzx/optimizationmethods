@@ -17,7 +17,7 @@
 #include <QFontDialog>
 #include <QDebug>
 //
-//using namespace SinkoNotWen;
+using namespace SinkoNotWen;
 
 NotWenImpl::NotWenImpl( funkcio *f, QVector<double> *d, QWidget * parent, Qt::WFlags flags)
 	: AlgoritmoWin(f, d, parent, flags)
@@ -45,6 +45,392 @@ NotWenImpl::NotWenImpl( funkcio *f, QVector<double> *d, QWidget * parent, Qt::WF
 	connect(sBP, SIGNAL(proviziYValoro(const QString &)), x2_lb, SLOT(setText(const QString &)));
 	connect(sBP, SIGNAL(proviziValoroFukcioEnPointo(const QString &)), fsign_lb, SLOT(setText(const QString &)));
 
+	//===Создаю конечный автомат.==================================================
+	QStateMachine * SM = new QStateMachine();
+
+	//---Создаю состояния, согласно диаграмме.-------------------------------------
+	QState * so = new QState();
+	QState * s1 = new QState(so);
+	QState * s2 = new QState(so);
+	QState * s3 = new QState(so);
+	QState * s4 = new QState(so);
+	QState * s5 = new QState(so);
+	QState * s6 = new QState(so);
+	QState * s7 = new QState(so);
+	QState * sf = new QState();
+	so->setInitialState(s1);
+
+	//---Соединяю состояния и обрабодчики входа в них.-----------------------------
+	connect(so, SIGNAL(entered()), SLOT(so_entered()));
+	connect(s1, SIGNAL(entered()), SLOT(s1_entered()));
+	connect(s2, SIGNAL(entered()), SLOT(s2_entered()));
+	connect(s3, SIGNAL(entered()), SLOT(s3_entered()));
+	connect(s4, SIGNAL(entered()), SLOT(s4_entered()));
+	connect(s5, SIGNAL(entered()), SLOT(s5_entered()));
+	connect(s6, SIGNAL(entered()), SLOT(s6_entered()));
+	connect(s7, SIGNAL(entered()), SLOT(s7_entered()));
+	connect(sf, SIGNAL(entered()), SLOT(sf_entered()));
+
+	//---Создаю переходы, согласно диаграмме.--------------------------------------
+	s1s2Transiro * s1s2 = new s1s2Transiro(_g_xkgradfxk, next1_bt, SIGNAL(clicked()), s1);
+	s1s2->setTargetState(s2);
+	s2s3Transiro * s2s3 = new s2s3Transiro(&NumeroIteracio, part_proizvod_first, next2_bt, SIGNAL(clicked()), s2);
+	s2s3->setTargetState(s3);
+	s2s4Transiro * s2s4 = new s2s4Transiro(&NumeroIteracio, part_proizvod_first, next2_bt, SIGNAL(clicked()), s2);
+	s2s4->setTargetState(s4);
+	s3s4Transiro * s3s4 = new s3s4Transiro(F, dfdx1, dfdx2, next3_bt, SIGNAL(clicked()), s3);
+	s3s4->setTargetState(s4);
+	s4s5Transiro * s4s5 = new s4s5Transiro(gradfxk_less, next4_bt, SIGNAL(clicked()), s4);
+	s4s5->setTargetState(s5);
+	s5s6Transiro * s5s6 = new s5s6Transiro(&NumeroIteracio, &grad, strikteco, to_continue, next5_bt, SIGNAL(clicked()), s5);
+	s5s6->setTargetState(s6);
+	s5s7Transiro * s5s7 = new s5s7Transiro(&NumeroIteracio, &grad, strikteco, to_continue, next5_bt, SIGNAL(clicked()), s5);
+	s5s7->setTargetState(s7);
+	s5sfTransiro * s5sf = new s5sfTransiro(&grad, strikteco, stop, next5_bt, SIGNAL(clicked()), s5);
+	s5sf->setTargetState(sf);
+	s6s7Transiro * s6s7 = new s6s7Transiro(dfdx1dx1, dfdx1dx2, dfdx2dx1, dfdx2dx2, gess11, gess12, gess21, gess22, next6_bt, SIGNAL(clicked()), s6);
+	s6s7->setTargetState(s7);
+	s7->addTransition(this, SIGNAL(stateHasEntered()), s1);
+
+	//---Создаю переход по действию "Начать заново"
+	connect(so->addTransition(recomenc_acn, SIGNAL(activated()), s1), SIGNAL(triggered()), SLOT(init()));
+	connect(sf->addTransition(recomenc_acn, SIGNAL(activated()), s1), SIGNAL(triggered()), SLOT(init()));
+
+	//---Создаю переходы не имеющие цели. С помощью них фиксирую ошибки ползователя
+	QSignalTransition * te1 = new QSignalTransition(next1_bt, SIGNAL(clicked()));
+	so->addTransition(te1);
+	connect(te1, SIGNAL(triggered()), SLOT(registriEraro()));
+	QSignalTransition * te2 = new QSignalTransition(next2_bt, SIGNAL(clicked()));
+	so->addTransition(te2);
+	connect(te2, SIGNAL(triggered()), SLOT(registriEraro()));
+	QSignalTransition * te3 = new QSignalTransition(next3_bt, SIGNAL(clicked()));
+	so->addTransition(te3);
+	connect(te3, SIGNAL(triggered()), SLOT(registriEraro()));
+	QSignalTransition * te4 = new QSignalTransition(next4_bt, SIGNAL(clicked()));
+	so->addTransition(te4);
+	connect(te4, SIGNAL(triggered()), SLOT(registriEraro()));
+	QSignalTransition * te5 = new QSignalTransition(next5_bt, SIGNAL(clicked()));
+	so->addTransition(te5);
+	connect(te5, SIGNAL(triggered()), SLOT(registriEraro()));
+	QSignalTransition * te6 = new QSignalTransition(next6_bt, SIGNAL(clicked()));
+	so->addTransition(te6);
+	connect(te6, SIGNAL(triggered()), SLOT(registriEraro()));
+
+	//---Настраиваю выделение цветом растояния между точками.
+/*	s6->assignProperty(length_grad_lb, "palette", QPalette(Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red));
+	s1->assignProperty(length_grad_lb, "palette", this->palette());
+*/
+	//---Прикручиваю карту---------------------------------------------------------
+	connect(sBP, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniMomentaPointo(QPointF)));
+
+	connect(s7, SIGNAL(entered()), Sp, SLOT(reveniAlMomentoPointo()));
+
+	connect(s1, SIGNAL(entered()), Sp, SLOT(finisxiIteracio()));
+	
+	//---Добавляю состояния в автомат и запускаю его.------------------------------
+	SM->addState(so);
+	SM->addState(sf);
+	SM->setInitialState(so);
+	init();
+	SM->start();
 }
+//
+
+void NotWenImpl::on_difiniFonto_act_activated()
+{
+	bool b;
+	QFont fnt = QFontDialog::getFont(&b, font());
+	if(b){
+		// Была нажата кнопка ОК.
+		setFont(fnt);
+	}
+}
+
+void NotWenImpl::on_helpo_action_activated()
+{
+	HelpBrowser *hb = new HelpBrowser( "doc/", "method6.htm", this);
+	hb->resize(800, 600);
+	hb->show();
+}
+
+void NotWenImpl::registriEraro()
+{
+	++KvantoEraroj;
+	LogTxtBrsr->append(trUtf8("    Совершена ошибка. Общее количество ошибок: %1").arg(KvantoEraroj));
+	QMessageBox msg(QMessageBox::Warning, trUtf8("Ошибка"), trUtf8("Неправильное действие"));
+	msg.exec();
+	
+	qDebug()<<trUtf8("Пользователь ошибся"); // Вывожу дебажную инфу на консоль.
+}
+
+void NotWenImpl::sf_entered()
+{
+	LogTxtBrsr->append(trUtf8("Конец алгоритма. Найден минимум функции: %1").arg(F->rezulto(BP)));
+	
+	QString str = trUtf8("Найден минимум. ");
+	
+	if (KvantoEraroj <= quanError)
+	{
+		str += trUtf8("Вы прошли тест. ");
+		if(F->metaObject()->className() == QString("KvadratigantoFunkcio"))
+		{
+			str += trUtf8("Сообщите преподавателю и перейдите к овражной функции.");
+			emit usiloPlenumis(5);
+		}
+		else if(F->metaObject()->className() == QString("RavinaFunkcio"))
+		{
+			str += trUtf8("Позовите преподавателя.");
+		}
+		QMessageBox::information(this, trUtf8("Поздравляем"), str);
+	}
+	else
+	{
+		QMessageBox::information(this, trUtf8("Внимание"), trUtf8("Вы допустили слишком большое количество ошибок. Начните заново."));
+		recomenc_acn->trigger();
+	}
+
+	qDebug()<<trUtf8("Вошёл в Финальное состояние, сложного состояния"); // Вывожу дебажную инфу на консоль.
+}
+
+void NotWenImpl::s7_entered()
+{
+	stackedWidget->setCurrentIndex(6);
+	
+	BP = QPointF(BP.x() - (gessian1.x()*grad.x() + gessian1.y()*grad.x()), BP.y() - (gessian2.x()*grad.y() + gessian2.y()*grad.y())); 
+
+	qDebug()<<trUtf8("Вошёл в s7"); // Вывожу дебажную инфу на консоль.
+	
+	emit stateHasEntered(); // Переход по этому сигналу произойдёт, только если выполнится его условие.
+}
+
+void NotWenImpl::s6_entered()
+{
+	stackedWidget->setCurrentIndex(5);
+	
+	LogTxtBrsr->append(trUtf8("  Длина градиента больше заданой точности - продолжаем минимизацию"));
+
+	qDebug()<<trUtf8("Вошёл в s6"); // Вывожу дебажную инфу на консоль.
+}
+
+void NotWenImpl::s5_entered()
+{
+	stackedWidget->setCurrentIndex(4);
+	
+	length_grad_lb->setText(QString::number(Length(grad), 'f'));
+	
+	LogTxtBrsr->append(trUtf8("  Критерий остановки определен успешно"));
+
+	qDebug()<<trUtf8("Вошёл в s5"); // Вывожу дебажную инфу на консоль.
+}
+
+void NotWenImpl::s4_entered()
+{
+	stackedWidget->setCurrentIndex(3);
+	
+	grad = QPointF(F->df_dx1(BP), F->df_dx2(BP));
+	
+	if (NumeroIteracio == 1)
+		LogTxtBrsr->append(trUtf8("  Введён градиент"));
+	else if (NumeroIteracio > 1)
+		LogTxtBrsr->append(trUtf8("  Определение координат вектора градиента дано успешно"));
+
+	qDebug()<<trUtf8("Вошёл в s4"); // Вывожу дебажную инфу на консоль.
+}
+
+void NotWenImpl::s3_entered()
+{
+	stackedWidget->setCurrentIndex(2);
+	
+	LogTxtBrsr->append(trUtf8("  Определение координат вектора градиента дано успешно"));
+
+	qDebug()<<trUtf8("Вошёл в s3"); // Вывожу дебажную инфу на консоль.
+}
+
+void NotWenImpl::s2_entered()
+{
+	stackedWidget->setCurrentIndex(1);
+	
+	LogTxtBrsr->append(trUtf8("  Направление поиска определено успешно"));
+
+	qDebug()<<trUtf8("Вошёл в s2"); // Вывожу дебажную инфу на консоль.
+}
+
+void NotWenImpl::s1_entered()
+{
+	gxk->setChecked(true);
+	proizvod_first->setChecked(true);
+	fxk1_fxk->setChecked(true);
+	stop->setChecked(true);
+	
+	stackedWidget->setCurrentIndex(0);
+	
+	LogTxtBrsr->append(trUtf8("Начало итерации № %1. Базовая точка: %2; %3.").arg(++NumeroIteracio).arg(BP.x()).arg(BP.y()));
+
+	qDebug()<<trUtf8("Вошёл в s1"); // Вывожу дебажную инфу на консоль.
+}
+
+void NotWenImpl::so_entered()
+{
+	qDebug()<<trUtf8("Вошёл в so"); // Вывожу дебажныю инфу на консоль.
+}
+
+void NotWenImpl::init()
+{
+	precision_lb->setText(QString::number(strikteco));
+	KvantoEraroj = 0;
+	NumeroIteracio = 0;
+	BP = QPointF(D[4],D[5]);
+	quanError = (int)D[6];
+	LogTxtBrsr->setText("");
+
+	static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->senspurigi();
+	static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->difiniUnuaPointo(BP);
+
+	qDebug()<<trUtf8("Задаю переменным начальные значения"); // Вывожу дебажную инфу на консоль.
+}
+
+namespace SinkoNotWen
+{
+	bool s1s2Transiro::eventTest(QEvent *e)
+	{
+		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
+		if(QSignalTransition::eventTest(e))
+		{
+			qDebug()<<trUtf8("  Проверяю, что выбрано -G^-1(Xk)*grad F(Xk)");
+			// Проверяю своё условие.
+			return _G_xkgradfxk->isChecked();
+		}
+		else
+			return false;
+	}
+
+	bool s2s3Transiro::eventTest(QEvent *e)
+	{
+		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
+		if(QSignalTransition::eventTest(e))
+		{
+			qDebug()<<trUtf8("  Проверяю, что выбрано частные первые производные и первая итерация");
+			// Проверяю своё условие.
+			return Part_proizvod_first->isChecked() && *numberIterac == 1;
+		}
+		else
+			return false;
+	}
+
+	bool s2s4Transiro::eventTest(QEvent *e)
+	{
+		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
+		if(QSignalTransition::eventTest(e))
+		{
+			qDebug()<<trUtf8("  Проверяю, что выбрано частные первые производные и не первая итерация");
+			// Проверяю своё условие.
+			return Part_proizvod_first->isChecked() && *numberIterac > 1;
+		}
+		else
+			return false;
+	}
+
+	bool s3s4Transiro::eventTest(QEvent *e)
+	{
+		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
+		if(QSignalTransition::eventTest(e))
+		{
+			qDebug()<<trUtf8("  Проверяю, что введен градиент");
+			// Проверяю своё условие.
+			
+			QString tmpX1;
+			QString tmpX2;
+			
+			if(f->metaObject()->className() == QString("KvadratigantoFunkcio"))
+			{
+				tmpX1 = QString("%1*(x1-%2)+%3*(x2-%4)").arg(2*f->getA()).arg(f->getB()).arg(f->getE()).arg(f->getG()); 
+				tmpX2 = QString("%1*(x2-%2)+%3*(x1-%4)").arg(2*f->getC()).arg(f->getD()).arg(f->getE()).arg(f->getF());
+			}
+			else if(f->metaObject()->className() == QString("RavinaFunkcio"))
+			{
+				tmpX1 = QString("%1*(x2*x1-x1^3)+%2*(1-x1)").arg(-4*f->getA()).arg(2*f->getB());
+				tmpX2 = QString("%1*(x2-x1^2)").arg(f->getA());
+			}
+
+			if(df_dx1->text() != tmpX1)
+			{
+				return false;
+			}
+			else if(df_dx2->text() != tmpX2)
+			{
+				return false;
+			}
+			else
+				return true;
+		}
+		else
+			return false;
+	}
+
+	bool s4s5Transiro::eventTest(QEvent *e)
+	{
+		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
+		if(QSignalTransition::eventTest(e))
+		{
+			qDebug()<<trUtf8("  Проверяю, что выбран критерий |grad F(Xk)| < e");
+			// Проверяю своё условие.
+			return Gradfxk_less->isChecked();
+		}
+		else
+			return false;
+	}
+
+	bool s5s6Transiro::eventTest(QEvent *e)
+	{
+		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
+		if(QSignalTransition::eventTest(e))
+		{
+			qDebug()<<trUtf8("  Проверяю |grad f(X)| >= e && первая итерация && выбран пункт продолжить");
+			// Проверяю своё условие.
+			return Length(*Grad) >= s && *numberIterac == 1 && To_continue->isChecked(); 
+		}
+		else
+			return false;
+	}
+
+	bool s5s7Transiro::eventTest(QEvent *e)
+	{
+		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
+		if(QSignalTransition::eventTest(e))
+		{
+			qDebug()<<trUtf8("  Проверяю |grad f(X)| >= e && не первая итерация && выбран пункт продолжить");
+			// Проверяю своё условие.
+			return Length(*Grad) >= s && *numberIterac > 1 && To_continue->isChecked(); 
+		}
+		else
+			return false;
+	}
+
+	bool s5sfTransiro::eventTest(QEvent *e)
+	{
+		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
+		if(QSignalTransition::eventTest(e))
+		{
+			qDebug()<<trUtf8("  Проверяю |grad f(X)| < e && выбран пункт останвить");
+			// Проверяю своё условие.
+			return Length(*Grad) < s && Stop->isChecked();
+		}
+		else
+			return false;
+	}
+
+	bool s6s7Transiro::eventTest(QEvent *e)
+	{
+		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
+		if(QSignalTransition::eventTest(e))
+		{
+			qDebug()<<trUtf8("  Проверяю, что правильно введен гессиан и обратный гессиан");
+			// Проверяю своё условие.
+			return true;
+		}
+		else
+			return false;
+	}
+};
 //
 
