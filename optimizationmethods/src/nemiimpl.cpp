@@ -198,10 +198,11 @@ namespace NeMi{
 	bool s3s11Transiro::eventTest(QEvent *e){
 		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
 		if(QSignalTransition::eventTest(e)){
-			qDebug()<<trUtf8("  ");
+			qDebug()<<trUtf8("  Проверяю , что F(Хh) < F(Хотр)");
 			// Проверяю своё условие.
-			return false;
+			return f->rezulto(**ph) < f->rezulto(*ps);
 		}
+		return false;
 	}
 	bool s5s10Transiro::eventTest(QEvent *e){
 		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
