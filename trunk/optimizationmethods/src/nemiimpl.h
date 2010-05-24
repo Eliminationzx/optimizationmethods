@@ -372,13 +372,15 @@ namespace NeMi{
 			DemonstrataQPointF * p3;
 			funkcio * f;
 		public:
-			s11s7Transiro( QRadioButton * t1_red_rb, QRadioButton * t2_red_rb,
+			s11s7Transiro( QRadioButton * t1_red_rb,
+			               QRadioButton * t2_red_rb,
 			               QRadioButton * t3_red_rb, DemonstrataQPointF ** Pl,
 			               DemonstrataQPointF * P1, DemonstrataQPointF * P2,
 			               DemonstrataQPointF * P3, funkcio * F,
 			               QState * sourceState = 0)
-				: QSignalTransition(sourceState), t1_red(t1_red_rb), t2_red(t2_red_rb),
-					t3_red(t3_red_rb), pl(Pl), p1(P1), p2(P2), p3(P3), f(F){};
+				: QSignalTransition(sourceState), t1_red(t1_red_rb),
+					t2_red(t2_red_rb), t3_red(t3_red_rb), pl(Pl), p1(P1), p2(P2), p3(P3),
+					f(F){};
 			s11s7Transiro( QRadioButton * t1_red_rb,
 			               QRadioButton * t2_red_rb,
 			               QRadioButton * t3_red_rb,
@@ -405,17 +407,20 @@ namespace NeMi{
 	 */
 	class sss1Transiro: public QSignalTransition{
 		private:
+			qreal s;
 			DemonstrataQPointF ** ph;
 			DemonstrataQPointF ** pl;
 			DemonstrataQPointF ** pm;
 			QPointF * pc;
 			funkcio * f;
 		public:
-			sss1Transiro( DemonstrataQPointF ** Ph, DemonstrataQPointF ** Pl,
+			sss1Transiro( qreal strikteco, DemonstrataQPointF ** Ph, DemonstrataQPointF ** Pl,
 			              DemonstrataQPointF ** Pm, QPointF * pc, funkcio * F,
 										QState * sourceState = 0)
-				: QSignalTransition(sourceState), ph(Ph), pl(Pl), pm(Pm), pc(pc), f(F){};
-			sss1Transiro( DemonstrataQPointF ** Ph,
+				: QSignalTransition(sourceState), s(strikteco), ph(Ph), pl(Pl), pm(Pm),
+					pc(pc), f(F){};
+			sss1Transiro( qreal strikteco, 
+			              DemonstrataQPointF ** Ph,
 			              DemonstrataQPointF ** Pl,
 			              DemonstrataQPointF ** Pm,
 			              QPointF * pc,
@@ -424,8 +429,8 @@ namespace NeMi{
 			              const char * signal,
 		                QState * sourceState = 0
 		              )
-				: QSignalTransition(sender, signal, sourceState), ph(Ph), pl(Pl), pm(Pm), pc(pc),
-					f(F){};
+				: QSignalTransition(sender, signal, sourceState), s(strikteco), ph(Ph),
+					pl(Pl), pm(Pm), pc(pc), f(F){};
 		protected:
 			//! Переход срабатывает, только если (1/4)*((F(Xl)-(F(Xc))^2 + ((F(Xh)-(F(Xc)))^2 + ((F(Xm)-(F(Xc)))^2) >= e.
 			bool eventTest(QEvent *e);
