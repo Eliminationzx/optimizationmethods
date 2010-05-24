@@ -97,24 +97,6 @@ private slots:
  * реализация метода eventTest, ради которой и переопрделяю классы.
  */
 namespace NeMi{
-	/*! Переход от s1 к s2.
-	 *
-	 * При создании требует указатели на переменные необходимые для принятия
-	 * решения о переходе.
-	 */
-	class s1s2Transiro: public QSignalTransition{
-		public:
-			s1s2Transiro( QState * sourceState = 0)
-				: QSignalTransition(sourceState){};
-			s1s2Transiro( QObject * sender,
-			                const char * signal,
-			                QState * sourceState = 0
-			            )
-				: QSignalTransition(sender, signal, sourceState){};
-		protected:
-			//! Переход срабатывает, только если нажата кнопка "Отразить".
-			bool eventTest(QEvent *e);
-	};
 	/*! Переход от s2 к s3.
 	 *
 	 * При создании требует указатели на переменные необходимые для принятия
@@ -125,20 +107,23 @@ namespace NeMi{
 			QRadioButton * t1_ref;
 			QRadioButton * t2_ref;
 			QRadioButton * t3_ref;
+			DemonstrataQPointF ** ph;
 			DemonstrataQPointF * p1;
 			DemonstrataQPointF * p2;
 			DemonstrataQPointF * p3;
 			funkcio * f;
 		public:
 			s2s3Transiro( QRadioButton * t1_ref_rb, QRadioButton * t2_ref_rb,
-			              QRadioButton * t3_ref_rb, DemonstrataQPointF * P1,
-										DemonstrataQPointF * P2, DemonstrataQPointF * P3, funkcio * F,
+			              QRadioButton * t3_ref_rb, DemonstrataQPointF ** Ph,
+										DemonstrataQPointF * P1, DemonstrataQPointF * P2,
+										DemonstrataQPointF * P3, funkcio * F,
 										QState * sourceState = 0)
 				: QSignalTransition(sourceState), t1_ref(t1_ref_rb), t2_ref(t2_ref_rb),
-					t3_ref(t3_ref_rb), p1(P1), p2(P2), p3(P3), f(F){};
+					t3_ref(t3_ref_rb), ph(Ph), p1(P1), p2(P2), p3(P3), f(F){};
 			s2s3Transiro( QRadioButton * t1_ref_rb,
 			              QRadioButton * t2_ref_rb,
 			              QRadioButton * t3_ref_rb,
+			              DemonstrataQPointF ** Ph,
 			              DemonstrataQPointF * P1,
 			              DemonstrataQPointF * P2,
 										DemonstrataQPointF * P3,
@@ -148,7 +133,8 @@ namespace NeMi{
 			              QState * sourceState = 0
 			              )
 				: QSignalTransition(sender, signal, sourceState), t1_ref(t1_ref_rb),
-					t2_ref(t2_ref_rb), t3_ref(t3_ref_rb){};
+					t2_ref(t2_ref_rb), t3_ref(t3_ref_rb), ph(Ph), p1(P1), p2(P2), p3(P3),
+					f(F){};
 		protected:
 			//! Переход срабатывает, только если выбрана наибольшая точка.
 			bool eventTest(QEvent *e);
