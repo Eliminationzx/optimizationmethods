@@ -150,6 +150,105 @@ void NeMiImpl::registriEraro(){
   LogTxtBrsr->append(trUtf8("    Совершена ошибка. Общее количество ошибок: %1").arg(KvantoEraroj));
   QMessageBox msg(QMessageBox::Warning, trUtf8("Ошибка"), trUtf8("Неправильное действие"));
   msg.exec();
-  
+
 	qDebug()<<trUtf8("Пользователь ошибся"); // Вывожу дебажную инфу на консоль.
+}
+
+namespace NeMi{
+	bool s1s2Transiro::eventTest(QEvent *e){
+		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
+		if(QSignalTransition::eventTest(e)){
+			qDebug()<<trUtf8("  ");
+			// Проверяю своё условие.
+			return false;
+		}
+	}
+	bool s2s3Transiro::eventTest(QEvent *e){
+		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
+		if(QSignalTransition::eventTest(e)){
+			qDebug()<<trUtf8("  ");
+			// Проверяю своё условие.
+			return false;
+		}
+	}
+	bool s3s1Transiro::eventTest(QEvent *e){
+		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
+		if(QSignalTransition::eventTest(e)){
+			qDebug()<<trUtf8("  ");
+			// Проверяю своё условие.
+			return false;
+		}
+	}
+	bool s3s5Transiro::eventTest(QEvent *e){
+		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
+		if(QSignalTransition::eventTest(e)){
+			qDebug()<<trUtf8("  ");
+			// Проверяю своё условие.
+			return false;
+		}
+	}
+	bool s3s6Transiro::eventTest(QEvent *e){
+		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
+		if(QSignalTransition::eventTest(e)){
+			qDebug()<<trUtf8("  ");
+			// Проверяю своё условие.
+			return false;
+		}
+	}
+	bool s3s11Transiro::eventTest(QEvent *e){
+		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
+		if(QSignalTransition::eventTest(e)){
+			qDebug()<<trUtf8("  ");
+			// Проверяю своё условие.
+			return false;
+		}
+	}
+	bool s5s10Transiro::eventTest(QEvent *e){
+		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
+		if(QSignalTransition::eventTest(e)){
+			qDebug()<<trUtf8("  ");
+			// Проверяю своё условие.
+			return false;
+		}
+	}
+	bool s6s8Transiro::eventTest(QEvent *e){
+		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
+		if(QSignalTransition::eventTest(e)){
+			qDebug()<<trUtf8("  ");
+			// Проверяю своё условие.
+			return false;
+		}
+	}
+	bool s6s9Transiro::eventTest(QEvent *e){
+		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
+		if(QSignalTransition::eventTest(e)){
+			qDebug()<<trUtf8("  ");
+			// Проверяю своё условие.
+			return false;
+		}
+	}
+	bool s11s7Transiro::eventTest(QEvent *e){
+		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
+		if(QSignalTransition::eventTest(e)){
+			qDebug()<<trUtf8("  ");
+			// Проверяю своё условие.
+			return false;
+		}
+	}
+	bool sss1Transiro::eventTest(QEvent *e){
+		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
+		if(QSignalTransition::eventTest(e)){
+			qDebug()<<trUtf8("  ");
+			// Проверяю своё условие.
+			return false;
+		}
+	}
+	bool sssfTransiro::eventTest(QEvent *e){
+		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
+		if(QSignalTransition::eventTest(e)){
+			qDebug()<<trUtf8("  ");
+			// Проверяю своё условие.
+			return false;
+		}
+	}
 }
