@@ -176,6 +176,23 @@ DemonstrataQPointF CWdescent_mdImpl::LengthOfStepX2(DemonstrataQPointF X) const
 	return X;
 }
 
+void CWdescent_mdImpl::on_difiniFonto_act_activated()
+{
+	bool b;
+	QFont fnt = QFontDialog::getFont(&b, font());
+	if(b){
+		// Была нажата кнопка ОК.
+		setFont(fnt);
+	}
+}
+
+void CWdescent_mdImpl::on_helpo_action_activated()
+{
+	HelpBrowser * hb = new HelpBrowser( "doc/", "method2.htm", this);
+	hb->resize(800, 600);
+	hb->show();
+}
+
 void CWdescent_mdImpl::registriEraro()
 {
 	++KvantoEraroj;
@@ -327,22 +344,5 @@ namespace SinkoLauxKoordinatojMD
 			return false;
 	}
 };
-
-void CWdescent_mdImpl::on_difiniFonto_act_activated()
-{
-	bool b;
-	QFont fnt = QFontDialog::getFont(&b, font());
-	if(b){
-		// Была нажата кнопка ОК.
-		setFont(fnt);
-	}
-}
-
-void CWdescent_mdImpl::on_helpo_action_activated()
-{
-	HelpBrowser * hb = new HelpBrowser( "doc/", "method2.htm", this);
-	hb->resize(800, 600);
-	hb->show();
-}
 //
 

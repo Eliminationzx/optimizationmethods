@@ -281,7 +281,7 @@ void MainWindowImpl::on_help_activated()
 //! Выбран пункт меню "Разрешить функцию".
 void MainWindowImpl::on_allow_activated()
 {
-	Pass = new mainPassImpl(this);
+	Pass = new mainPassImpl(choiceMethods->currentIndex(), this);
 	if(connect(Pass, SIGNAL(setFlag(int)), SLOT(openTakeQuadFun(int))))
 		Pass->show();
 	else

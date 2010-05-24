@@ -771,7 +771,7 @@
           </property>
           <layout class="QGridLayout" name="gridLayout_11">
            <item row="0" column="0">
-            <widget class="QRadioButton" name="to_continue">
+            <widget class="QRadioButton" name="stop">
              <property name="font">
               <font>
                <pointsize>14</pointsize>
@@ -783,7 +783,7 @@
             </widget>
            </item>
            <item row="1" column="0">
-            <widget class="QRadioButton" name="stop">
+            <widget class="QRadioButton" name="to_continue">
              <property name="font">
               <font>
                <pointsize>14</pointsize>

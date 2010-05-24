@@ -1,6 +1,6 @@
 #include "mainpassimpl.h"
 //
-mainPassImpl::mainPassImpl( QWidget * parent, Qt::WFlags f) 
+mainPassImpl::mainPassImpl(int method, QWidget * parent, Qt::WFlags f) 
 	: QDialog(parent, f)
 {
 	setupUi(this);
@@ -18,7 +18,8 @@ mainPassImpl::mainPassImpl( QWidget * parent, Qt::WFlags f)
 	choiceMethods->addItem(trUtf8("Метод Нелдера-Мида"), var);
 	var.setValue(5);
 	choiceMethods->addItem(trUtf8("Метод Ньютона"), var);
-	choiceMethods->setCurrentIndex(0);
+	
+	choiceMethods->setCurrentIndex(method);
 }
 //
 

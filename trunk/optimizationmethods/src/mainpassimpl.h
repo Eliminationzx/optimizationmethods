@@ -11,7 +11,7 @@ class mainPassImpl : public QDialog, public Ui::mainPass
 Q_OBJECT
 
 public:
-	mainPassImpl( QWidget * parent = 0, Qt::WFlags f = 0 );
+	mainPassImpl(int method, QWidget * parent = 0, Qt::WFlags f = 0 );
 	
 signals:
 	//! Сигнал класса, высылаемый при нажатии на кнопку "Ок".

@@ -42,7 +42,7 @@ public:
 		
 private slots:
 	//! help браузер
-	void on_helpo_action_activated();	
+	void on_helpo_action_activated();
 
 	//! изменить шрифт
 	void on_difiniFonto_act_activated();

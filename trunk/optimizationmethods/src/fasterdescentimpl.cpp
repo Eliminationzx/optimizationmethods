@@ -154,6 +154,23 @@ FasterDescentImpl::FasterDescentImpl( funkcio *f, QVector<double> *d, QWidget * 
 }
 //
 
+void FasterDescentImpl::on_difiniFonto_act_activated()
+{
+	bool b;
+	QFont fnt = QFontDialog::getFont(&b, font());
+	if(b){
+		// Была нажата кнопка ОК.
+		setFont(fnt);
+	}
+}
+
+void FasterDescentImpl::on_helpo_action_activated()
+{
+	HelpBrowser *hb = new HelpBrowser( "doc/", "method3.htm", this);
+	hb->resize(800, 600);
+	hb->show();
+}
+
 void FasterDescentImpl::registriEraro()
 {
 	++KvantoEraroj;
@@ -218,9 +235,7 @@ void FasterDescentImpl::s8_entered()
 void FasterDescentImpl::s7_entered()
 {
 	stackedWidget->setCurrentIndex(3);
-	
-//	minf->setChecked(false);
-	
+
 	LogTxtBrsr->append(trUtf8("  Вычисляем а"));
 
 	qDebug()<<trUtf8("Вошёл в s7"); // Вывожу дебажную инфу на консоль.
@@ -240,8 +255,6 @@ void FasterDescentImpl::s6_entered()
 void FasterDescentImpl::s5_entered()
 {
 	stackedWidget->setCurrentIndex(2);
-	
-//	gradfx->setChecked(false);
 
 	LogTxtBrsr->append(trUtf8("  Проверка точности"));
 
@@ -273,8 +286,6 @@ void FasterDescentImpl::s3_entered()
 
 void FasterDescentImpl::s2_entered()
 {
-//	agrad_fx->setChecked(false);
-
 	stackedWidget->setCurrentIndex(0);
 	
 	LogTxtBrsr->append(trUtf8("  Определяем S"));
@@ -284,9 +295,9 @@ void FasterDescentImpl::s2_entered()
 
 void FasterDescentImpl::s1_entered()
 {
-	agrad_fx->setChecked(false);
-	gradfx->setChecked(false);
-	minf->setChecked(false);
+	grad_fx->setChecked(true);
+	fxk_fx->setChecked(true);
+	two->setChecked(true);
 	
 	stackedWidget->setCurrentIndex(4);
 	
@@ -380,12 +391,10 @@ namespace SinkoFD
 
 			if(df_dx1->text() != tmpX1)
 			{
-//				QMessageBox::information(this, trUtf8("Ошибка"), trUtf8("Не правильно введена производная df/dx1"));
 				return false;
 			}
 			else if(df_dx2->text() != tmpX2)
 			{
-//				QMessageBox::information(this, trUtf8("Ошибка"), trUtf8("Не правильно введена производная df/dx2"));
 				return false;
 			}
 			else
@@ -474,21 +483,4 @@ namespace SinkoFD
 	}
 
 };
-
-void FasterDescentImpl::on_difiniFonto_act_activated()
-{
-	bool b;
-	QFont fnt = QFontDialog::getFont(&b, font());
-	if(b){
-		// Была нажата кнопка ОК.
-		setFont(fnt);
-	}
-}
-
-void FasterDescentImpl::on_helpo_action_activated()
-{
-	HelpBrowser *hb = new HelpBrowser( "doc/", "method3.htm", this);
-	hb->resize(800, 600);
-	hb->show();
-}
 //
