@@ -28,7 +28,7 @@ public:
 	double lengthOfStep(const QPointF X) const;
 
 	//! Возвращает определитель гессиана.
-	virtual double detGessian(const QPointF X) const;
+	virtual double detGessian(const QPointF X) const = 0;
 
 	//! Возвращает результат вычисления функции в точке.
 	virtual double rezulto(const double x1, //!< Первая координата точки.
