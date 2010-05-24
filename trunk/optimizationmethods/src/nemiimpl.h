@@ -363,33 +363,37 @@ namespace NeMi{
 	 */
 	class s11s7Transiro: public QSignalTransition{
 		private:
-			QRadioButton * t1_ref;
-			QRadioButton * t2_ref;
-			QRadioButton * t3_ref;
+			QRadioButton * t1_red;
+			QRadioButton * t2_red;
+			QRadioButton * t3_red;
+			DemonstrataQPointF ** pl;
 			DemonstrataQPointF * p1;
 			DemonstrataQPointF * p2;
 			DemonstrataQPointF * p3;
 			funkcio * f;
 		public:
-			s11s7Transiro( QRadioButton * t1_ref_rb, QRadioButton * t2_ref_rb,
-			               QRadioButton * t3_ref_rb, DemonstrataQPointF * P1,
-										 DemonstrataQPointF * P2, DemonstrataQPointF * P3, funkcio * F,
-										 QState * sourceState = 0)
-				: QSignalTransition(sourceState), t1_ref(t1_ref_rb), t2_ref(t2_ref_rb),
-					t3_ref(t3_ref_rb), p1(P1), p2(P2), p3(P3), f(F){};
-			s11s7Transiro( QRadioButton * t1_ref_rb,
-			               QRadioButton * t2_ref_rb,
-			               QRadioButton * t3_ref_rb,
+			s11s7Transiro( QRadioButton * t1_red_rb, QRadioButton * t2_red_rb,
+			               QRadioButton * t3_red_rb, DemonstrataQPointF ** Pl,
+			               DemonstrataQPointF * P1, DemonstrataQPointF * P2,
+			               DemonstrataQPointF * P3, funkcio * F,
+			               QState * sourceState = 0)
+				: QSignalTransition(sourceState), t1_red(t1_red_rb), t2_red(t2_red_rb),
+					t3_red(t3_red_rb), pl(Pl), p1(P1), p2(P2), p3(P3), f(F){};
+			s11s7Transiro( QRadioButton * t1_red_rb,
+			               QRadioButton * t2_red_rb,
+			               QRadioButton * t3_red_rb,
+			               DemonstrataQPointF ** Pl,
 			               DemonstrataQPointF * P1,
 			               DemonstrataQPointF * P2,
-										 DemonstrataQPointF * P3,
-										 funkcio * F,
-									   QObject * sender,
+			               DemonstrataQPointF * P3,
+			               funkcio * F,
+			               QObject * sender,
 			               const char * signal,
 			               QState * sourceState = 0
 			             )
-				: QSignalTransition(sender, signal, sourceState), t1_ref(t1_ref_rb),
-					t2_ref(t2_ref_rb), t3_ref(t3_ref_rb), p1(P1), p2(P2), p3(P3), f(F){};
+				: QSignalTransition(sender, signal, sourceState), t1_red(t1_red_rb),
+					t2_red(t2_red_rb), t3_red(t3_red_rb), pl(Pl), p1(P1), p2(P2), p3(P3),
+					f(F){};
 		protected:
 			//! Переход срабатывает, только если
 			bool eventTest(QEvent *e);
