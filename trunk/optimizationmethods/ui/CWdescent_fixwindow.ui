@@ -536,7 +536,7 @@ p, li { white-space: pre-wrap; }
     <addaction name="recomenci_acn"/>
     <addaction name="action"/>
     <addaction name="separator"/>
-    <addaction name="action_4"/>
+    <addaction name="exit"/>
    </widget>
    <addaction name="testo_menu"/>
    <addaction name="view_menu"/>
@@ -546,11 +546,6 @@ p, li { white-space: pre-wrap; }
   <action name="recomenci_acn">
    <property name="text">
     <string>Начать за&amp;ново</string>
-   </property>
-  </action>
-  <action name="action_2">
-   <property name="text">
-    <string>&amp;Выйти из программы</string>
    </property>
   </action>
   <action name="difiniFonto_act">
@@ -576,7 +571,7 @@ p, li { white-space: pre-wrap; }
     <string>Вернуться в &amp;главное окно</string>
    </property>
   </action>
-  <action name="action_4">
+  <action name="exit">
    <property name="text">
     <string>&amp;Выйти из программы</string>
    </property>
