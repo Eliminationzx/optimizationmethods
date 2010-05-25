@@ -356,7 +356,7 @@ p, li { white-space: pre-wrap; }
      <x>0</x>
      <y>0</y>
      <width>812</width>
-     <height>23</height>
+     <height>30</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu">
@@ -364,20 +364,23 @@ p, li { white-space: pre-wrap; }
      <string>Помощь</string>
     </property>
     <addaction name="helpo_action"/>
-   </widget>
-   <widget class="QMenu" name="difiniFonto_act">
-    <property name="title">
-     <string>Вид</string>
-    </property>
-    <addaction name="difiniFonto_act_2"/>
+    <addaction name="separator"/>
+    <addaction name="about_action"/>
    </widget>
    <widget class="QMenu" name="menu_2">
     <property name="title">
      <string>Тест</string>
     </property>
     <addaction name="recomenc_acn"/>
+    <addaction name="action"/>
     <addaction name="separator"/>
-    <addaction name="exit"/>
+    <addaction name="exit_2"/>
+   </widget>
+   <widget class="QMenu" name="difiniFonto_act">
+    <property name="title">
+     <string>Вид</string>
+    </property>
+    <addaction name="difiniFonto_act_2"/>
    </widget>
    <addaction name="menu_2"/>
    <addaction name="difiniFonto_act"/>
@@ -387,6 +390,9 @@ p, li { white-space: pre-wrap; }
   <action name="helpo_action">
    <property name="text">
     <string>Справка</string>
+   </property>
+   <property name="shortcut">
+    <string>F1</string>
    </property>
   </action>
   <action name="difiniFonto_act_2">
@@ -404,9 +410,41 @@ p, li { white-space: pre-wrap; }
     <string>Выйти из программы</string>
    </property>
   </action>
+  <action name="action">
+   <property name="text">
+    <string>Вернуться в &amp;главное окно</string>
+   </property>
+  </action>
+  <action name="exit_2">
+   <property name="text">
+    <string>&amp;Выйти из программы</string>
+   </property>
+  </action>
+  <action name="about_action">
+   <property name="text">
+    <string>&amp;О программе</string>
+   </property>
+  </action>
  </widget>
  <resources>
   <include location="data.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>action</sender>
+   <signal>activated()</signal>
+   <receiver>CWdescent_md</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>405</x>
+     <y>290</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
