@@ -89,6 +89,15 @@ private slots:
 	void sf_entered();
   //! Фиксирует совершение пользователем ошики.
   void registriEraro();
+  //! Обработчик перехода s3s1.
+  void s3s1_triggered();
+signals:
+	//! Пользователь прошёл тест.
+	void usiloPlenumis(int);
+	/*! Использую сигнал для прехода, который не требует действий пользователя,
+	 * а только проверяет условие.
+	 */
+	void stateHasEntered();
 };
 /*! В этом пространстве имён содержаться классы относящиеся к конечному автомату
  * для метода Нелдора-Мида.
@@ -415,22 +424,22 @@ namespace NeMi{
 			funkcio * f;
 		public:
 			sss1Transiro( qreal strikteco, DemonstrataQPointF ** Ph, DemonstrataQPointF ** Pl,
-			              DemonstrataQPointF ** Pm, QPointF * pc, funkcio * F,
+			              DemonstrataQPointF ** Pm, QPointF * Pc, funkcio * F,
 										QState * sourceState = 0)
 				: QSignalTransition(sourceState), s(strikteco), ph(Ph), pl(Pl), pm(Pm),
-					pc(pc), f(F){};
+					pc(Pc), f(F){};
 			sss1Transiro( qreal strikteco, 
 			              DemonstrataQPointF ** Ph,
 			              DemonstrataQPointF ** Pl,
 			              DemonstrataQPointF ** Pm,
-			              QPointF * pc,
+			              QPointF * Pc,
 			              funkcio * F,
 			              QObject * sender,
 			              const char * signal,
 		                QState * sourceState = 0
 		              )
 				: QSignalTransition(sender, signal, sourceState), s(strikteco), ph(Ph),
-					pl(Pl), pm(Pm), pc(pc), f(F){};
+					pl(Pl), pm(Pm), pc(Pc), f(F){};
 		protected:
 			//! Переход срабатывает, только если (1/4)*((F(Xl)-(F(Xc))^2 + ((F(Xh)-(F(Xc)))^2 + ((F(Xm)-(F(Xc)))^2) >= e.
 			bool eventTest(QEvent *e);
