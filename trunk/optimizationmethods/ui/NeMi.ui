@@ -367,7 +367,7 @@
           </widget>
          </item>
          <item row="3" column="4">
-          <widget class="QLabel" name="fsign_new_lb">
+          <widget class="QLabel" name="fsign_totr_lb">
            <property name="frameShape">
             <enum>QFrame::Box</enum>
            </property>
@@ -383,7 +383,7 @@
           </widget>
          </item>
          <item row="3" column="5">
-          <widget class="QLabel" name="fsign_new_lb_2">
+          <widget class="QLabel" name="fsign_tras_lb">
            <property name="frameShape">
             <enum>QFrame::Box</enum>
            </property>
