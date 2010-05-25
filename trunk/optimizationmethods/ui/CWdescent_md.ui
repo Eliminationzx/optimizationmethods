@@ -361,26 +361,26 @@ p, li { white-space: pre-wrap; }
    </property>
    <widget class="QMenu" name="menu">
     <property name="title">
-     <string>Помощь</string>
+     <string>&amp;Помощь</string>
     </property>
     <addaction name="helpo_action"/>
     <addaction name="separator"/>
     <addaction name="about_action"/>
    </widget>
+   <widget class="QMenu" name="difiniFonto_act">
+    <property name="title">
+     <string>&amp;Вид</string>
+    </property>
+    <addaction name="difiniFonto_act_2"/>
+   </widget>
    <widget class="QMenu" name="menu_2">
     <property name="title">
-     <string>Тест</string>
+     <string>&amp;Тест</string>
     </property>
     <addaction name="recomenc_acn"/>
     <addaction name="action"/>
     <addaction name="separator"/>
     <addaction name="exit"/>
-   </widget>
-   <widget class="QMenu" name="difiniFonto_act">
-    <property name="title">
-     <string>Вид</string>
-    </property>
-    <addaction name="difiniFonto_act_2"/>
    </widget>
    <addaction name="menu_2"/>
    <addaction name="difiniFonto_act"/>
@@ -389,7 +389,7 @@ p, li { white-space: pre-wrap; }
   <widget class="QStatusBar" name="statusbar"/>
   <action name="helpo_action">
    <property name="text">
-    <string>Справка</string>
+    <string>&amp;Справка</string>
    </property>
    <property name="shortcut">
     <string>F1</string>
@@ -402,7 +402,7 @@ p, li { white-space: pre-wrap; }
   </action>
   <action name="recomenc_acn">
    <property name="text">
-    <string>Начать заново</string>
+    <string>Начать за&amp;ново</string>
    </property>
   </action>
   <action name="action">
