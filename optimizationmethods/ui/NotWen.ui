@@ -1025,28 +1025,31 @@
      <x>0</x>
      <y>0</y>
      <width>829</width>
-     <height>23</height>
+     <height>30</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu">
     <property name="title">
-     <string>Тест</string>
+     <string>&amp;Тест</string>
     </property>
     <addaction name="recomenc_acn"/>
+    <addaction name="action"/>
     <addaction name="separator"/>
     <addaction name="exit"/>
    </widget>
    <widget class="QMenu" name="menu_2">
     <property name="title">
-     <string>Вид</string>
+     <string>&amp;Вид</string>
     </property>
     <addaction name="difiniFonto_act"/>
    </widget>
    <widget class="QMenu" name="menu_3">
     <property name="title">
-     <string>Помощь</string>
+     <string>&amp;Помощь</string>
     </property>
     <addaction name="helpo_action"/>
+    <addaction name="separator"/>
+    <addaction name="about_action"/>
    </widget>
    <addaction name="menu"/>
    <addaction name="menu_2"/>
@@ -1055,27 +1058,54 @@
   <widget class="QStatusBar" name="statusbar"/>
   <action name="recomenc_acn">
    <property name="text">
-    <string>Начать заново</string>
+    <string>Начать за&amp;ново</string>
    </property>
   </action>
   <action name="exit">
    <property name="text">
-    <string>Выйти из программы</string>
+    <string>&amp;Выйти из программы</string>
    </property>
   </action>
   <action name="difiniFonto_act">
    <property name="text">
-    <string>Настроть шрифт</string>
+    <string>Настроть &amp;шрифт</string>
    </property>
   </action>
   <action name="helpo_action">
    <property name="text">
-    <string>Справка</string>
+    <string>&amp;Справка</string>
+   </property>
+  </action>
+  <action name="about_action">
+   <property name="text">
+    <string>О &amp;программе...</string>
+   </property>
+  </action>
+  <action name="action">
+   <property name="text">
+    <string>Вернуться в &amp;главное окно</string>
    </property>
   </action>
  </widget>
  <resources>
   <include location="data.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>action</sender>
+   <signal>activated()</signal>
+   <receiver>NotWen</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>414</x>
+     <y>295</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
