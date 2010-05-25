@@ -277,7 +277,7 @@ void CWdescent_mdImpl::s1_entered()
 {
 	BP = MP;
 	
-	LogTxtBrsr->append(trUtf8("Начало итерации № %1. Базовая точка: %2; %3. Текущая точка: %4; %5.").arg(++NumeroIteracio).arg(BP.x()).arg(BP.y()).arg(MP.x()).arg(MP.y()));
+	LogTxtBrsr->append(trUtf8("Итерация № %1.").arg(++NumeroIteracio));
 
 	qDebug()<<trUtf8("Вошёл в s1"); // Вывожу дебажную инфу на консоль.
 }

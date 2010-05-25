@@ -273,22 +273,19 @@ namespace SinkoNotWen
 	class s5s7Transiro: public QSignalTransition
 	{
 		private:
-			funkcio * f;
 			int * numberIterac;
 			DemonstrataQPointF * Grad;
 			qreal s; //!< Точность.
 			QRadioButton * To_continue;
 		public:
-			s5s7Transiro(funkcio * F,
-							int * NumeroIteracio, 
+			s5s7Transiro(int * NumeroIteracio, 
 							DemonstrataQPointF * grad, 
 							qreal strikteco, 
 							QRadioButton * to_continue,
 							QState * sourceState = 0)
 							 : QSignalTransition(sourceState),
-							  f(F), numberIterac(NumeroIteracio), Grad(grad), s(strikteco), To_continue(to_continue){};
-			s5s7Transiro(funkcio * F,
-							int * NumeroIteracio,
+							  numberIterac(NumeroIteracio), Grad(grad), s(strikteco), To_continue(to_continue){};
+			s5s7Transiro(int * NumeroIteracio,
 							DemonstrataQPointF * grad,
 							qreal strikteco,
 							QRadioButton * to_continue,
@@ -296,7 +293,7 @@ namespace SinkoNotWen
 							const char * signal,
 							QState * sourceState = 0)
 							 : QSignalTransition(sender, signal, sourceState),
-							  f(F), numberIterac(NumeroIteracio), Grad(grad), s(strikteco), To_continue(to_continue){};
+							  numberIterac(NumeroIteracio), Grad(grad), s(strikteco), To_continue(to_continue){};
 		protected:
 			//! Перход срабатывает, только если нажата кнопка next5
 			bool eventTest(QEvent *e);

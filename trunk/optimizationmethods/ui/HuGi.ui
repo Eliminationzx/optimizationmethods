@@ -144,9 +144,6 @@
            <property name="frameShape">
             <enum>QFrame::Box</enum>
            </property>
-           <property name="text">
-            <string>Неопределено</string>
-           </property>
            <property name="alignment">
             <set>Qt::AlignCenter</set>
            </property>
@@ -160,9 +157,6 @@
            <property name="frameShape">
             <enum>QFrame::Box</enum>
            </property>
-           <property name="text">
-            <string>Неопределено</string>
-           </property>
            <property name="alignment">
             <set>Qt::AlignCenter</set>
            </property>
@@ -175,9 +169,6 @@
           <widget class="QLabel" name="x1_new_lb">
            <property name="frameShape">
             <enum>QFrame::Box</enum>
-           </property>
-           <property name="text">
-            <string>Неопределено</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignCenter</set>
@@ -221,9 +212,6 @@
            <property name="frameShape">
             <enum>QFrame::Box</enum>
            </property>
-           <property name="text">
-            <string>Неопределено</string>
-           </property>
            <property name="alignment">
             <set>Qt::AlignCenter</set>
            </property>
@@ -237,9 +225,6 @@
            <property name="frameShape">
             <enum>QFrame::Box</enum>
            </property>
-           <property name="text">
-            <string>Неопределено</string>
-           </property>
            <property name="alignment">
             <set>Qt::AlignCenter</set>
            </property>
@@ -252,9 +237,6 @@
           <widget class="QLabel" name="x2_new_lb">
            <property name="frameShape">
             <enum>QFrame::Box</enum>
-           </property>
-           <property name="text">
-            <string>Неопределено</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignCenter</set>
@@ -298,9 +280,6 @@
            <property name="frameShape">
             <enum>QFrame::Box</enum>
            </property>
-           <property name="text">
-            <string>Неопределено</string>
-           </property>
            <property name="alignment">
             <set>Qt::AlignCenter</set>
            </property>
@@ -314,9 +293,6 @@
            <property name="frameShape">
             <enum>QFrame::Box</enum>
            </property>
-           <property name="text">
-            <string>Неопределено</string>
-           </property>
            <property name="alignment">
             <set>Qt::AlignCenter</set>
            </property>
@@ -329,9 +305,6 @@
           <widget class="QLabel" name="fsign_new_lb">
            <property name="frameShape">
             <enum>QFrame::Box</enum>
-           </property>
-           <property name="text">
-            <string>Неопределено</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignCenter</set>

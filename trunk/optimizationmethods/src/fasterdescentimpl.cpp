@@ -312,7 +312,7 @@ void FasterDescentImpl::s1_entered()
 	
 	stackedWidget->setCurrentIndex(4);
 	
-	LogTxtBrsr->append(trUtf8("Начало итерации № %1. Базовая точка: %2; %3.").arg(++NumeroIteracio).arg(BP.x()).arg(BP.y()));
+	LogTxtBrsr->append(trUtf8("Итерация № %1.").arg(++NumeroIteracio));
 
 	qDebug()<<trUtf8("Вошёл в s1"); // Вывожу дебажную инфу на консоль.
 }

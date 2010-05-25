@@ -162,22 +162,22 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * pa
 
 
 //---Настраиваю некоторые состояния, чтоб затирали надпись со значениями новой точки, дабы не смущать пользователя.
-	s1->assignProperty(new_x1_lb, "text", trUtf8("Неопределено"));
-	s1->assignProperty(new_x2_lb, "text", trUtf8("Неопределено"));
-	s1->assignProperty(new_fsign_lb, "text", trUtf8("Неопределено"));
-	s3->assignProperty(new_x1_lb, "text", trUtf8("Неопределено"));
-	s3->assignProperty(new_x2_lb, "text", trUtf8("Неопределено"));
-	s3->assignProperty(new_fsign_lb, "text", trUtf8("Неопределено"));
-	s6->assignProperty(new_x1_lb, "text", trUtf8("Неопределено"));
-	s6->assignProperty(new_x2_lb, "text", trUtf8("Неопределено"));
-	s6->assignProperty(new_fsign_lb, "text", trUtf8("Неопределено"));
-	s8->assignProperty(new_x1_lb, "text", trUtf8("Неопределено"));
-	s8->assignProperty(new_x2_lb, "text", trUtf8("Неопределено"));
-	s8->assignProperty(new_fsign_lb, "text", trUtf8("Неопределено"));
-	s11->assignProperty(new_x1_lb, "text", trUtf8("Неопределено"));
-	s11->assignProperty(new_x2_lb, "text", trUtf8("Неопределено"));
-	s11->assignProperty(new_fsign_lb, "text", trUtf8("Неопределено"));
-	s12->assignProperty(distance_lb, "text", trUtf8("Неопределено"));
+	s1->assignProperty(new_x1_lb, "text", trUtf8(""));
+	s1->assignProperty(new_x2_lb, "text", trUtf8(""));
+	s1->assignProperty(new_fsign_lb, "text", trUtf8(""));
+	s3->assignProperty(new_x1_lb, "text", trUtf8(""));
+	s3->assignProperty(new_x2_lb, "text", trUtf8(""));
+	s3->assignProperty(new_fsign_lb, "text", trUtf8(""));
+	s6->assignProperty(new_x1_lb, "text", trUtf8(""));
+	s6->assignProperty(new_x2_lb, "text", trUtf8(""));
+	s6->assignProperty(new_fsign_lb, "text", trUtf8(""));
+	s8->assignProperty(new_x1_lb, "text", trUtf8(""));
+	s8->assignProperty(new_x2_lb, "text", trUtf8(""));
+	s8->assignProperty(new_fsign_lb, "text", trUtf8(""));
+	s11->assignProperty(new_x1_lb, "text", trUtf8(""));
+	s11->assignProperty(new_x2_lb, "text", trUtf8(""));
+	s11->assignProperty(new_fsign_lb, "text", trUtf8(""));
+	s12->assignProperty(distance_lb, "text", trUtf8(""));
 //---Настраиваю выделение цветом растояния между точками.
 	s11->assignProperty(distance_lb, "palette", QPalette(Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red));
 	s1->assignProperty(distance_lb, "palette", this->palette());
@@ -327,7 +327,7 @@ void CWdescentWinImpl::s11_entered(){
 void CWdescentWinImpl::s10_entered(){
 	MP = NP;
 	acpNP = true;
-	LogTxtBrsr->append(trUtf8("  Принята новая текущая точка. Текущая точка: %1; %2").arg(MP.x()).arg(MP.y()));
+	LogTxtBrsr->append(trUtf8("  новая точка: (%1; %2) Принята").arg(MP.x()).arg(MP.y()));
 	qDebug()<<trUtf8("Вошёл в s10"); // Вывожу дебажныю инфу на консоль.
 
 	emit stateHasEntered(); // Переход по этому сигналу произойдёт, только если выполнится его условие.
@@ -335,48 +335,54 @@ void CWdescentWinImpl::s10_entered(){
 
 void CWdescentWinImpl::s9_entered(){
 	NP = MP - PX2;
-	LogTxtBrsr->append(trUtf8("  Сделан шаг в - по оси Х2. Новая точка: %1; %2").arg(NP.x()).arg(NP.y()));
+	LogTxtBrsr->append(trUtf8("  Сделан шаг в отрицательном направлении оси Х2."));
 
 	qDebug()<<trUtf8("Вошёл в s9"); // Вывожу дебажныю инфу на консоль.
 }
 
 void CWdescentWinImpl::s8_entered(){
+	LogTxtBrsr->append(trUtf8("  новая точка: (%1; %2) не принята").arg(MP.x()).arg(MP.y()));
+	
 	qDebug()<<trUtf8("Вошёл в s8"); // Вывожу дебажныю инфу на консоль.
 }
 
 void CWdescentWinImpl::s7_entered(){
 	NP = MP + PX2;
-	LogTxtBrsr->append(trUtf8("  Сделан шаг в + по оси Х2. Новая точка: %1; %2").arg(NP.x()).arg(NP.y()));
+	LogTxtBrsr->append(trUtf8("  Сделан шаг в положительном направлении оси Х2."));
 
 	qDebug()<<trUtf8("Вошёл в s7"); // Вывожу дебажныю инфу на консоль.
 }
 
 void CWdescentWinImpl::s6_entered(){
+	LogTxtBrsr->append(trUtf8("  новая точка: (%1; %2) не принята").arg(MP.x()).arg(MP.y()));
+	
 	qDebug()<<trUtf8("Вошёл в s6"); // Вывожу дебажныю инфу на консоль.
 }
 
 void CWdescentWinImpl::s5_entered(){
 	MP = NP;
 	acpNP = true;
-	LogTxtBrsr->append(trUtf8("  Принята новая текущая точка. Текущая точка: %1; %2").arg(MP.x()).arg(MP.y()));
+	LogTxtBrsr->append(trUtf8("  новая точка: (%1; %2) Принята").arg(MP.x()).arg(MP.y()));
 
 	qDebug()<<trUtf8("Вошёл в s5"); // Вывожу дебажныю инфу на консоль.
 }
 
 void CWdescentWinImpl::s4_entered(){
 	NP = MP - PX1;
-	LogTxtBrsr->append(trUtf8("  Сделан шаг в - по оси Х1. Новая точка: %1; %2").arg(NP.x()).arg(NP.y()));
+	LogTxtBrsr->append(trUtf8("  Сделан шаг в отрицательном направлении оси Х1."));
 
 	qDebug()<<trUtf8("Вошёл в s4"); // Вывожу дебажныю инфу на консоль.
 }
 
 void CWdescentWinImpl::s3_entered(){
+	LogTxtBrsr->append(trUtf8("  новая точка: (%1; %2) не принята").arg(MP.x()).arg(MP.y()));
+	
 	qDebug()<<trUtf8("Вошёл в s3"); // Вывожу дебажныю инфу на консоль.
 }
 
 void CWdescentWinImpl::s2_entered(){
 	NP = MP + PX1;
-	LogTxtBrsr->append(trUtf8("  Сделан шаг в + по оси Х1. Новая точка: %1; %2").arg(NP.x()).arg(NP.y()));
+	LogTxtBrsr->append(trUtf8("  Сделан шаг в положительном направлении оси Х1."));
 
 	qDebug()<<trUtf8("Вошёл в s2"); // Вывожу дебажныю инфу на консоль.
 }
@@ -386,7 +392,7 @@ void CWdescentWinImpl::s1_entered(){
 	BP = MP;
 	NP = BP;
 	acpNP = false;
-	LogTxtBrsr->append(trUtf8("Начало итерации № %1. Базовая точка: %2; %3. Текущая точка: %4; %5. Новая точка: %6; %7. Длина шагов: %8; %9.").arg(++NumeroIteracio).arg(BP.x()).arg(BP.y()).arg(MP.x()).arg(MP.y()).arg(NP.x()).arg(NP.y()).arg(PX1.x()).arg(PX2.y()));
+	LogTxtBrsr->append(trUtf8("Итерация № %1.").arg(++NumeroIteracio));
 
 	qDebug()<<trUtf8("Вошёл в s1"); // Вывожу дебажныю инфу на консоль.
 }

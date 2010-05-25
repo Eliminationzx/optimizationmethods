@@ -203,9 +203,6 @@
            <property name="frameShape">
             <enum>QFrame::Box</enum>
            </property>
-           <property name="text">
-            <string>Неизвестно</string>
-           </property>
            <property name="alignment">
             <set>Qt::AlignCenter</set>
            </property>
