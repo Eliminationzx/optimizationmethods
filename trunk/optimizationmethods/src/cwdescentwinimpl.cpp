@@ -36,10 +36,7 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * pa
 	func->setText(formul);
 
 	// Создаю карту.
-	// centralwidget->layout() - указатель на компановщик центрального виджета
-	// static_cast<QGridLayout*>(centralwidget->layout()) - обьясняю компилятору, что это именно QGridLayout
-	// добавляю вижет карты в позицию 1,1. Компановщик сам позаботится о назначении новому виджету родителя.
-	static_cast<QGridLayout*>(centralwidget->layout())->addWidget(MapoWdg, 2, 1, 2, 1);
+	verticalLayout_4->addWidget(MapoWdg, 2);
 
 	MapoWdg->setScale(20);// Ставлю масштаб побольше. Надо будет определться с оптимальным значением.
 
