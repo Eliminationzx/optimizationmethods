@@ -36,7 +36,7 @@
      </widget>
     </item>
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="0,1">
+     <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="1,2">
       <item>
        <layout class="QVBoxLayout" name="verticalLayout_3" stretch="0,1">
         <item>
@@ -100,9 +100,6 @@
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
                </property>
-               <property name="text">
-                <string>Неопределено</string>
-               </property>
                <property name="alignment">
                 <set>Qt::AlignCenter</set>
                </property>
@@ -145,9 +142,6 @@
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
                </property>
-               <property name="text">
-                <string>Неопределено</string>
-               </property>
                <property name="alignment">
                 <set>Qt::AlignCenter</set>
                </property>
@@ -189,9 +183,6 @@
               <widget class="QLabel" name="new_fsign_lb">
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
-               </property>
-               <property name="text">
-                <string>Неопределено</string>
                </property>
                <property name="alignment">
                 <set>Qt::AlignCenter</set>
@@ -244,9 +235,6 @@
               <widget class="QLabel" name="distance_lb">
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
-               </property>
-               <property name="text">
-                <string>Неопределено</string>
                </property>
                <property name="alignment">
                 <set>Qt::AlignCenter</set>
@@ -383,7 +371,7 @@
           <property name="checkable">
            <bool>false</bool>
           </property>
-          <layout class="QGridLayout" name="gridLayout" columnstretch="0,1">
+          <layout class="QGridLayout" name="gridLayout" columnstretch="1,2">
            <item row="0" column="0">
             <widget class="QPushButton" name="calculate_bt">
              <property name="toolTip">
@@ -413,28 +401,28 @@ p, li { white-space: pre-wrap; }
               <item>
                <widget class="QRadioButton" name="up_x1_rb">
                 <property name="text">
-                 <string>+ по Х1</string>
+                 <string>положительное направление по оси Х1</string>
                 </property>
                </widget>
               </item>
               <item>
                <widget class="QRadioButton" name="down_x1_rb">
                 <property name="text">
-                 <string>- по Х1</string>
+                 <string>отрицательное направление по оси Х1</string>
                 </property>
                </widget>
               </item>
               <item>
                <widget class="QRadioButton" name="up_x2_rb">
                 <property name="text">
-                 <string>+ по Х2</string>
+                 <string>положительное направление по оси Х2</string>
                 </property>
                </widget>
               </item>
               <item>
                <widget class="QRadioButton" name="down_x2_rb">
                 <property name="text">
-                 <string>- по Х2</string>
+                 <string>отрицательное направление по оси Х2</string>
                 </property>
                </widget>
               </item>
@@ -512,7 +500,7 @@ p, li { white-space: pre-wrap; }
      <x>0</x>
      <y>0</y>
      <width>876</width>
-     <height>30</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="testo_menu">

@@ -95,7 +95,7 @@ NotWenImpl::NotWenImpl( funkcio *f, QVector<double> *d, QWidget * parent, Qt::WF
 	s4s5->setTargetState(s5);
 	s5s6Transiro * s5s6 = new s5s6Transiro(&NumeroIteracio, &grad, strikteco, to_continue, next5_bt, SIGNAL(clicked()), s5);
 	s5s6->setTargetState(s6);
-	s5s7Transiro * s5s7 = new s5s7Transiro(F, &NumeroIteracio, &grad, strikteco, to_continue, next5_bt, SIGNAL(clicked()), s5);
+	s5s7Transiro * s5s7 = new s5s7Transiro(&NumeroIteracio, &grad, strikteco, to_continue, next5_bt, SIGNAL(clicked()), s5);
 	s5s7->setTargetState(s7);
 	s5sfTransiro * s5sf = new s5sfTransiro(&grad, strikteco, stop, next5_bt, SIGNAL(clicked()), s5);
 	s5sf->setTargetState(sf);
@@ -275,7 +275,7 @@ void NotWenImpl::s1_entered()
 	
 	stackedWidget->setCurrentIndex(0);
 	
-	LogTxtBrsr->append(trUtf8("Начало итерации № %1. Базовая точка: %2; %3.").arg(++NumeroIteracio).arg(BP.x()).arg(BP.y()));
+	LogTxtBrsr->append(trUtf8("Итерация № %1.").arg(++NumeroIteracio));
 
 	qDebug()<<trUtf8("Вошёл в s1"); // Вывожу дебажную инфу на консоль.
 }
@@ -459,7 +459,7 @@ namespace SinkoNotWen
 		{
 			qDebug()<<trUtf8("  Проверяю |grad f(X)| >= e && не первая итерация && выбран пункт продолжить");
 			// Проверяю своё условие.
-			return Length(*Grad) >= s && *numberIterac > 1 && To_continue->isChecked() && f->metaObject()->className() == QString("KvadratigantoFunkcio"); 
+			return Length(*Grad) >= s && *numberIterac > 1 && To_continue->isChecked(); 
 		}
 		else
 			return false;
