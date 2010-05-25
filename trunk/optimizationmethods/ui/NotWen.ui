@@ -27,7 +27,7 @@
     <normaloff>:/icon/icon.bmp</normaloff>:/icon/icon.bmp</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout_17" columnstretch="1,1">
+   <layout class="QGridLayout" name="gridLayout_17" columnstretch="1,2">
     <item row="0" column="0">
      <widget class="QGroupBox" name="groupBox_2">
       <property name="title">
