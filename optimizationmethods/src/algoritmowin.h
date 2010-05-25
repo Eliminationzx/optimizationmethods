@@ -33,12 +33,8 @@ public:
                Qt::WindowFlags flags = 0 //!< Флаги парамметров окна.
                );
 signals:
-	/*! Надо вернуться к квадратичной функции 
-	 *
-	 * Сигнал высылается, когда пользователь не справился с овражной функцией.
-	 */
-	 void reveniAlKvadratigantoFunkcio();
-};
+	//! Пользователь прошёл тест.
+	void usiloPlenumis(int);};
 #endif
 
 /*! @class AlgoritmoWin

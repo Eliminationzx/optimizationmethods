@@ -180,24 +180,25 @@ void NotWenImpl::sf_entered()
 	
 	QString str = trUtf8("Найден минимум. ");
 	
-	if (KvantoEraroj <= quanError)
-	{
+	if(KvantoEraroj > D[6]){
+		// Слишком много ошибок.
+		str += trUtf8("Ваше количество ошибок (%1) превысило допустимый предел (%2). Начните заново.").arg(KvantoEraroj).arg(D[6]);
+		QMessageBox::information(this, trUtf8("Внимание"), str);
+		if(F->metaObject()->className() == QString("RavinaFunkcio"))
+			emit usiloPlenumis(A::NotWen);
+//		else recomenci_acn->trigger();
+	}else{
 		str += trUtf8("Вы прошли тест. ");
 		if(F->metaObject()->className() == QString("KvadratigantoFunkcio"))
 		{
 			str += trUtf8("Сообщите преподавателю и перейдите к овражной функции.");
-			emit usiloPlenumis(5);
+			emit usiloPlenumis(A::NotWen);
 		}
 		else if(F->metaObject()->className() == QString("RavinaFunkcio"))
 		{
 			str += trUtf8("Позовите преподавателя.");
 		}
 		QMessageBox::information(this, trUtf8("Поздравляем"), str);
-	}
-	else
-	{
-		QMessageBox::information(this, trUtf8("Внимание"), trUtf8("Вы допустили слишком большое количество ошибок. Начните заново."));
-		recomenc_acn->trigger();
 	}
 
 	qDebug()<<trUtf8("Вошёл в Финальное состояние, сложного состояния"); // Вывожу дебажную инфу на консоль.
