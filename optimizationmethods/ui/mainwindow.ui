@@ -573,7 +573,10 @@
   </action>
   <action name="allow">
    <property name="text">
-    <string>Разрешить функцию</string>
+    <string>Разблокировать овражную функцию</string>
+   </property>
+   <property name="toolTip">
+    <string>Разблокировать овражную функцию</string>
    </property>
   </action>
   <action name="exit">
