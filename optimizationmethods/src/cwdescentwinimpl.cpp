@@ -290,6 +290,8 @@ void CWdescentWinImpl::sf_entered(){
 		str += trUtf8("Ваше количество ошибок (%1) превысило допустимый прдел (%2). Начните заново.").arg(KvantoEraroj).arg(D[6]);
 		QMessageBox::information(this, trUtf8("Внимание"), str);
 		recomenci_acn->trigger();
+		if(F->metaObject()->className() == QString("RavinaFunkcio"))
+			emit reveniAlKvadratigantoFunkcio();
 	}else{
 		str += trUtf8("Вы прошли тест. ");
 		if(F->metaObject()->className() == QString("KvadratigantoFunkcio"))
