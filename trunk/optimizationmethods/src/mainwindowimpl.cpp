@@ -152,10 +152,8 @@ void MainWindowImpl::on_next_button_clicked()
 		stackedWidget->setCurrentIndex(1);
 	}
 	
-	choiceVar->setChecked(true);
+	on_choiceVar_clicked(true);
 	initializationComboBox(methFunc[1]);
-
-	on_comboBox_activated(0);
 }
 
 //! Нажата кнопка "Далее" (2-ая страница).
@@ -301,7 +299,8 @@ void MainWindowImpl::on_choiceMethods_activated(int index)
 //! Выбор ввода информации через выбор варианта.
 void MainWindowImpl::on_choiceVar_clicked(bool checked)
 {
-	// TODOcombo
+	// TODO
+	choiceVar->setChecked(true);
 	comboBox->setVisible(checked);
 	label->setVisible(checked);
 	
@@ -315,6 +314,7 @@ void MainWindowImpl::on_choiceVar_clicked(bool checked)
 void MainWindowImpl::on_inArm_clicked(bool checked)
 {
 	// TODO
+	inArm->setChecked(true);
 	comboBox->setVisible(checked - 1);
 	label->setVisible(checked - 1);
 	
