@@ -5,6 +5,7 @@
 #include "mapoporfunkcioimpl.h"
 #include "Konstantoj.h"
 #include "funkcio.h"
+#include "spuroNeMi.h"
 #include <QTextBrowser>
 #include <QString>
 #include <QMessageBox>
@@ -17,6 +18,56 @@
 NeMiImpl::NeMiImpl(  funkcio *f, QVector<double> *d, QWidget * parent, Qt::WFlags flags)
 	: AlgoritmoWin(f, d, parent, flags){
 	setupUi(this);
+	qDebug()<<trUtf8("Покоординатный спуск с фиксированным шагом"); // Вывожу дебажную инфу на консоль.
+
+	// Создаю карту.
+	// centralwidget->layout() - указатель на компановщик центрального виджета
+	// static_cast<QGridLayout*>(centralwidget->layout()) - обьясняю компилятору, что это именно QGridLayout
+	// добавляю вижет карты в позицию 1,1. Компановщик сам позаботится о назначении новому виджету родителя.
+	static_cast<QGridLayout*>(centralwidget->layout())->addWidget(MapoWdg, 1, 1);
+
+	MapoWdg->setScale(20);// Ставлю масштаб побольше. Надо будет определться с оптимальным значением.
+
+	Sp = new spuroNeMi(Qt::white, Qt::blue);
+	MapoWdg->difiniSpuro(Sp);
+	MapoWdg->difiniFonaKoloro(Qt::green);
+	
+//===Соединяю точки и надписи на форме=========================================
+	SignalantoPorPointF * sP1 = new SignalantoPorPointF(&P1, F, this);
+	connect(sP1, SIGNAL(proviziXValoro(const QString &)), x1_t1_lb, SLOT(setText(const QString &)));
+	connect(sP1, SIGNAL(proviziYValoro(const QString &)), x2_t1_lb, SLOT(setText(const QString &)));
+	connect(sP1, SIGNAL(proviziValoroFukcioEnPointo(const QString &)), fsign_b1_lb, SLOT(setText(const QString &)));
+	SignalantoPorPointF * sP2 = new SignalantoPorPointF(&P2, F, this);
+	connect(sP2, SIGNAL(proviziXValoro(const QString &)), x1_t2_lb, SLOT(setText(const QString &)));
+	connect(sP2, SIGNAL(proviziYValoro(const QString &)), x2_t2_lb, SLOT(setText(const QString &)));
+	connect(sP2, SIGNAL(proviziValoroFukcioEnPointo(const QString &)), fsign_b2_lb, SLOT(setText(const QString &)));
+	SignalantoPorPointF * sPR = new SignalantoPorPointF(&PR, F, this);
+	connect(sPR, SIGNAL(proviziXValoro(const QString &)), x1_totr_lb, SLOT(setText(const QString &)));
+	connect(sPR, SIGNAL(proviziYValoro(const QString &)), x2_totr_lb, SLOT(setText(const QString &)));
+	connect(sPR, SIGNAL(proviziValoroFukcioEnPointo(const QString &)),fsign_totr_lb , SLOT(setText(const QString &)));
+	SignalantoPorPointF * sPK = new SignalantoPorPointF(&PK, F, this);
+	connect(sPK, SIGNAL(proviziXValoro(const QString &)), x1_tras_lb, SLOT(setText(const QString &)));
+	connect(sPK, SIGNAL(proviziYValoro(const QString &)), x2_tras_lb, SLOT(setText(const QString &)));
+	connect(sPK, SIGNAL(proviziValoroFukcioEnPointo(const QString &)),fsign_tras_lb , SLOT(setText(const QString &)));
+//=============================================================================
+	
+//===Создаю конечный автомат.==================================================
+	QStateMachine * SM = new QStateMachine();
+//---Создаю состояния, согласно диаграмме.-------------------------------------
+	QState * so = new QState();
+	QState * s1 = new QState(so);
+	QState * s2 = new QState(so);
+	QState * s3 = new QState(so);
+	QState * s5 = new QState(so);
+	QState * s6 = new QState(so);
+	QState * s7 = new QState(so);
+	QState * s8 = new QState(so);
+	QState * s9 = new QState(so);
+	QState * s10 = new QState(so);
+	QState * s11 = new QState(so);
+	QState * sf = new QState();
+	so->setInitialState(s1);
+//=============================================================================
 }
 //
 
@@ -78,6 +129,23 @@ void NeMiImpl::s1_entered(){
 		}
 	}
 
+	t1_ref_rb->setChecked(true);
+	t2_ref_rb->setChecked(false);
+	t3_ref_rb->setChecked(false);
+	t1_str_rb->setChecked(true);
+	t2_str_rb->setChecked(false);
+	t3_str_rb->setChecked(false);
+	totr_str_rb->setChecked(false);
+	tras_str_rb->setChecked(false);
+	t1_com_rb->setChecked(true);
+	t2_com_rb->setChecked(false);
+	t3_com_rb->setChecked(false);
+	tsj_com_rb->setChecked(false);
+	t1_red_rb->setChecked(true);
+	t2_red_rb->setChecked(false);
+	t3_red_rb->setChecked(false);
+	totr_red_rb->setChecked(false);	
+	
 	qDebug()<<trUtf8("Вошёл в s1"); // Вывожу дебажную инфу на консоль.
 }
 
