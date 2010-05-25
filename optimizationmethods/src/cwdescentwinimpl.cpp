@@ -283,11 +283,11 @@ void CWdescentWinImpl::sf_entered(){
 	QString str = trUtf8("Найден минимум. ");
 //	QMessageBox::information(this, trUtf8("Конец"), trUtf8("Найден минимум"));
 
-	qDebug()<<trUtf8("Конец алгоритма. Найден минимум"); // Вывожу дебажныю инфу на консоль.
+	qDebug()<<trUtf8("Конец алгоритма. Найден минимум"); // Вывожу дебажную инфу на консоль.
 
 	if(KvantoEraroj > D[6]){
 		// Слишком много ошибок.
-		str += trUtf8("Вы допустили слишком большое количество ошибок. Начните заново.");
+		str += trUtf8("Ваше количество ошибок (%1) превысило допустимый прдел (%2). Начните заново.").arg(KvantoEraroj).arg(D[6]);
 		QMessageBox::information(this, trUtf8("Внимание"), str);
 		recomenci_acn->trigger();
 	}else{
