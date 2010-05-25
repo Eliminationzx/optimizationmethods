@@ -27,7 +27,7 @@
     <normaloff>:/icon/icon.bmp</normaloff>:/icon/icon.bmp</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout_5" columnstretch="1,2">
+   <layout class="QGridLayout" name="gridLayout_5" columnstretch="1,2" rowminimumheight="0,0,0,1">
     <item row="0" column="0" colspan="2">
      <widget class="QLabel" name="func">
       <property name="alignment">
