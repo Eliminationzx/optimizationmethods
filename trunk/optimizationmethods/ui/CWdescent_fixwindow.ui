@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>876</width>
+    <width>1037</width>
     <height>632</height>
    </rect>
   </property>
@@ -511,18 +511,10 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>876</width>
+     <width>1037</width>
      <height>30</height>
     </rect>
    </property>
-   <widget class="QMenu" name="testo_menu">
-    <property name="title">
-     <string>Тест</string>
-    </property>
-    <addaction name="recomenci_acn"/>
-    <addaction name="separator"/>
-    <addaction name="action_2"/>
-   </widget>
    <widget class="QMenu" name="view_menu">
     <property name="title">
      <string>Вид</string>
@@ -536,6 +528,15 @@ p, li { white-space: pre-wrap; }
     <addaction name="helpo_action"/>
     <addaction name="separator"/>
     <addaction name="about_action"/>
+   </widget>
+   <widget class="QMenu" name="testo_menu">
+    <property name="title">
+     <string>Тест</string>
+    </property>
+    <addaction name="recomenci_acn"/>
+    <addaction name="action"/>
+    <addaction name="separator"/>
+    <addaction name="action_4"/>
    </widget>
    <addaction name="testo_menu"/>
    <addaction name="view_menu"/>
@@ -570,9 +571,36 @@ p, li { white-space: pre-wrap; }
     <string>О &amp;программе...</string>
    </property>
   </action>
+  <action name="action">
+   <property name="text">
+    <string>Вернуться в &amp;главное окно</string>
+   </property>
+  </action>
+  <action name="action_4">
+   <property name="text">
+    <string>&amp;Выйти из программы</string>
+   </property>
+  </action>
  </widget>
  <resources>
   <include location="data.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>action</sender>
+   <signal>activated()</signal>
+   <receiver>CWdescentWin</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>518</x>
+     <y>315</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
