@@ -28,7 +28,14 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_5" columnstretch="1,2">
-    <item row="0" column="0" rowspan="2">
+    <item row="0" column="0" colspan="2">
+     <widget class="QLabel" name="func">
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0" rowspan="2">
      <widget class="QGroupBox" name="groupBox_2">
       <property name="title">
        <string>Информация о выполнении</string>
@@ -255,7 +262,7 @@
       </layout>
      </widget>
     </item>
-    <item row="0" column="1">
+    <item row="1" column="1">
      <widget class="QGroupBox" name="groupBox_3">
       <property name="title">
        <string>Выберите правильное действие</string>
@@ -332,7 +339,7 @@ p, li { white-space: pre-wrap; }
       </layout>
      </widget>
     </item>
-    <item row="2" column="0">
+    <item row="3" column="0">
      <widget class="QTextBrowser" name="LogTxtBrsr">
       <property name="font">
        <font>

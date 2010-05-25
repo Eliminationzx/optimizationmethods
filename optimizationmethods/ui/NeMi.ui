@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>930</width>
-    <height>546</height>
+    <width>934</width>
+    <height>633</height>
    </rect>
   </property>
   <property name="font">
@@ -27,8 +27,15 @@
     <normaloff>:/icon/icon.bmp</normaloff>:/icon/icon.bmp</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout_6" columnstretch="1,1">
-    <item row="0" column="0">
+   <layout class="QGridLayout" name="gridLayout_6" columnstretch="1,2">
+    <item row="0" column="0" colspan="2">
+     <widget class="QLabel" name="func">
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0" rowspan="2">
      <widget class="QGroupBox" name="groupBox_2">
       <property name="title">
        <string>Информация о выполнении</string>
@@ -478,7 +485,7 @@
       </layout>
      </widget>
     </item>
-    <item row="0" column="1">
+    <item row="1" column="1">
      <widget class="QGroupBox" name="groupBox_3">
       <property name="title">
        <string>Выберите правильное действие</string>
@@ -886,7 +893,7 @@ p, li { white-space: pre-wrap; }
       </layout>
      </widget>
     </item>
-    <item row="1" column="0">
+    <item row="3" column="0">
      <widget class="QTextBrowser" name="LogTxtBrsr">
       <property name="font">
        <font>
@@ -902,8 +909,8 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>930</width>
-     <height>30</height>
+     <width>934</width>
+     <height>23</height>
     </rect>
    </property>
   </widget>
