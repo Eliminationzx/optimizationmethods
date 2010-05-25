@@ -27,7 +27,7 @@
     <normaloff>:/icon/icon.bmp</normaloff>:/icon/icon.bmp</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout_5" columnstretch="1,2" rowminimumheight="0,0,0,1">
+   <layout class="QGridLayout" name="gridLayout_5" columnstretch="1,0">
     <item row="0" column="0" colspan="2">
      <widget class="QLabel" name="func">
       <property name="alignment">
@@ -262,6 +262,15 @@
       </layout>
      </widget>
     </item>
+    <item row="3" column="0">
+     <widget class="QTextBrowser" name="LogTxtBrsr">
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+       </font>
+      </property>
+     </widget>
+    </item>
     <item row="1" column="1">
      <widget class="QGroupBox" name="groupBox_3">
       <property name="title">
@@ -339,15 +348,6 @@ p, li { white-space: pre-wrap; }
       </layout>
      </widget>
     </item>
-    <item row="3" column="0">
-     <widget class="QTextBrowser" name="LogTxtBrsr">
-      <property name="font">
-       <font>
-        <pointsize>14</pointsize>
-       </font>
-      </property>
-     </widget>
-    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -374,7 +374,7 @@ p, li { white-space: pre-wrap; }
     <addaction name="recomenc_acn"/>
     <addaction name="action"/>
     <addaction name="separator"/>
-    <addaction name="exit_2"/>
+    <addaction name="exit"/>
    </widget>
    <widget class="QMenu" name="difiniFonto_act">
     <property name="title">
@@ -405,17 +405,12 @@ p, li { white-space: pre-wrap; }
     <string>Начать заново</string>
    </property>
   </action>
-  <action name="exit">
-   <property name="text">
-    <string>Выйти из программы</string>
-   </property>
-  </action>
   <action name="action">
    <property name="text">
     <string>Вернуться в &amp;главное окно</string>
    </property>
   </action>
-  <action name="exit_2">
+  <action name="exit">
    <property name="text">
     <string>&amp;Выйти из программы</string>
    </property>
