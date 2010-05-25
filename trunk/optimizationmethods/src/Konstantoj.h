@@ -16,5 +16,8 @@ namespace A{
   //! Метод Ньютона.
   const int NotWen = 5;
 }
+//! Размер карты от -ampleksoMapo до ampleksoMapo.
+const int ampleksoMapo = 500;
+
 
 #endif // __KONSTANTOJ_H__

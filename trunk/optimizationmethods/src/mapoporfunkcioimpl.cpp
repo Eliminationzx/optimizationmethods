@@ -1,8 +1,6 @@
 #include "mapoporfunkcioimpl.h"
 #include "funkcio.h"
-//#include <QGraphicsItem>
 #include "scenopormapo.h"
-#include <limits>
 #include <QGraphicsScene>
 #include "spurosinkolauxkoordinatoj.h"
 #include <QColor>
@@ -16,8 +14,7 @@ MapoPorFunkcioImpl::MapoPorFunkcioImpl( const funkcio * Funkcio, QWidget * paren
 
 	grphVw->setMatrix(QMatrix(1, 0, 0, -1, 0, 0));
 	
-	s->setSceneRect(-numeric_limits<int>::max()/2, -numeric_limits<int>::max()/2,
-	                numeric_limits<int>::max(), numeric_limits<int>::max());
+	s->setSceneRect(-ampleksoMapo, -ampleksoMapo, ampleksoMapo*2, ampleksoMapo*2);
 	grphVw->setScene(s);
 	Spuro = new spuro();
 	connect(s, SIGNAL(MusaPosX(const qreal)), SIGNAL(MusaPosX(const qreal)));
@@ -44,28 +41,6 @@ void MapoPorFunkcioImpl::on_MalpliigiBtn_clicked(){
 void MapoPorFunkcioImpl::difiniFunkcio(funkcio * f){
 	F = f;
 }
-
-/*void MapoPorFunkcioImpl::kreiSpuro(int IdAlgoritmo, QColor bazaKoloro){
-	// Создаю "след" в соответствии с указаным алгоритмом.
-	switch(IdAlgoritmo){
-		case A::CWdescent_fix : {
-			Spuro = new spuroSinkoLauxKoordinatoj(Qt::white, bazaKoloro);
-			break;
-		}case A::CWdescent_md : {
-			break;
-		}case A::FasterDescent : {
-			break;
-		}case A::HuGi : {
-			break;
-		}case A::NeMi : {
-			break;
-		}case A::NotWen : {
-			break;
-		}
-	}
-	Spuro->setScale(s->scale());// Назначаю корректный масштаб вновь созданному "следу".
-	s->addItem(Spuro);
-}*/
 
 const spuro * MapoPorFunkcioImpl::proviziSpuro() const{
 	return Spuro;
