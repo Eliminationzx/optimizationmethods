@@ -15,6 +15,8 @@
 #include <QFontDialog>
 #include <QDebug>
 //
+using namespace NeMi;
+	
 NeMiImpl::NeMiImpl(  funkcio *f, QVector<double> *d, QWidget * parent, Qt::WFlags flags)
 	: AlgoritmoWin(f, d, parent, flags){
 	setupUi(this);
@@ -60,13 +62,55 @@ NeMiImpl::NeMiImpl(  funkcio *f, QVector<double> *d, QWidget * parent, Qt::WFlag
 	QState * s3 = new QState(so);
 	QState * s5 = new QState(so);
 	QState * s6 = new QState(so);
-	QState * s7 = new QState(so);
-	QState * s8 = new QState(so);
-	QState * s9 = new QState(so);
-	QState * s10 = new QState(so);
+	QState * ss = new QState(so);
+	QState * s7 = new QState(ss);
+	QState * s8 = new QState(ss);
+	QState * s9 = new QState(ss);
+	QState * s10 = new QState(ss);
 	QState * s11 = new QState(so);
 	QState * sf = new QState();
 	so->setInitialState(s1);
+
+//---Соединяю состояния и обрабодчики входа в них.-----------------------------
+	connect(so, SIGNAL(entered()), SLOT(so_entered()));
+	connect(s1, SIGNAL(entered()), SLOT(s1_entered()));
+	connect(s2, SIGNAL(entered()), SLOT(s2_entered()));
+	connect(s3, SIGNAL(entered()), SLOT(s3_entered()));
+	connect(s5, SIGNAL(entered()), SLOT(s5_entered()));
+	connect(ss, SIGNAL(entered()), SLOT(ss_entered()));
+	connect(s6, SIGNAL(entered()), SLOT(s6_entered()));
+	connect(s7, SIGNAL(entered()), SLOT(s7_entered()));
+	connect(s8, SIGNAL(entered()), SLOT(s8_entered()));
+	connect(s9, SIGNAL(entered()), SLOT(s9_entered()));
+	connect(s10, SIGNAL(entered()), SLOT(s10_entered()));
+	connect(s11, SIGNAL(entered()), SLOT(s11_entered()));
+	connect(sf, SIGNAL(entered()), SLOT(sf_entered()));
+
+//---Создаю переходы, согласно диаграмме.--------------------------------------
+	s1->addTransition(reflexion_bt, SIGNAL(clicked()), s2);
+	s2s3Transiro * s2s3 = new s2s3Transiro( t1_ref_rb, t2_ref_rb, t3_ref_rb, &Ph, &P1, &P2, &P3, F, next1_bt, SIGNAL(clicked()), s2);
+	s2s3->setTargetState(s3);
+	s3s1Transiro * s3s1 = new s3s1Transiro( &Pl, &PR, &Pm, F, this, SIGNAL(stateHasEntered()), s3);
+	s3s1->setTargetState(s1);
+	connect(s3s1, SIGNAL(triggered()), SLOT(s3s1_triggered()));
+	s3s5Transiro * s3s5 = new s3s5Transiro( &Ph, &PR, &Pm, F, compression_bt, SIGNAL(clicked()), s3);
+	s3s5->setTargetState(s5);
+	s3s6Transiro * s3s6 = new s3s6Transiro( &Pl, &PR, F, stretching_bt, SIGNAL(clicked()), s3);
+	s3s6->setTargetState(s6);
+	s3s11Transiro * s3s11 = new s3s11Transiro( &Ph, &PR, F, reduction_bt, SIGNAL(clicked()), s3);
+	s3s11->setTargetState(s11);
+	s5s10Transiro * s5s10 = new s5s10Transiro( t1_com_rb, t2_com_rb, t3_com_rb, &Ph, &P1, &P2, &P3, F, next3_bt, SIGNAL(clicked()), s5);
+	s5s10->setTargetState(s10);
+	s6s8Transiro * s6s8 = new s6s8Transiro( tras_str_rb, &Pl, &PD, F, next2_bt, SIGNAL(clicked()), s6);
+	s6s8->setTargetState(s8);
+	s6s9Transiro * s6s9 = new s6s9Transiro( totr_str_rb, &Pl, &PD, F, next2_bt, SIGNAL(clicked()), s6);
+	s6s9->setTargetState(s9);
+	sss1Transiro * sss1 = new sss1Transiro( strikteco, &Ph, &Pl, &Pm, &Pc, F, next2_bt, SIGNAL(clicked()), ss);
+	sss1->setTargetState(s1);
+	sssfTransiro * sssf = new sssfTransiro( strikteco, &Ph, &Pl, &Pm, &Pc, F, next2_bt, SIGNAL(clicked()), ss);
+	sssf->setTargetState(sf);
+	
+	
 //=============================================================================
 }
 //
@@ -220,6 +264,10 @@ void NeMiImpl::registriEraro(){
   msg.exec();
 
 	qDebug()<<trUtf8("Пользователь ошибся"); // Вывожу дебажную инфу на консоль.
+}
+
+void NeMiImpl::s3s1_triggered(){
+	*Ph = PR;
 }
 
 namespace NeMi{
