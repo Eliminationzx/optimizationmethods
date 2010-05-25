@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>615</width>
-    <height>505</height>
+    <width>660</width>
+    <height>533</height>
    </rect>
   </property>
   <property name="font">
@@ -173,6 +173,13 @@
       <widget class="QWidget" name="page_4">
        <layout class="QGridLayout" name="gridLayout_6">
         <item row="0" column="0" colspan="2">
+         <widget class="QLabel" name="func">
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0" colspan="2">
          <widget class="QGroupBox" name="groupBox">
           <property name="title">
            <string>Установка значений</string>
@@ -215,7 +222,7 @@
           </layout>
          </widget>
         </item>
-        <item row="1" column="0" colspan="2">
+        <item row="2" column="0" colspan="2">
          <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="0,0">
           <item>
            <widget class="QLabel" name="label">
@@ -229,7 +236,7 @@
           </item>
          </layout>
         </item>
-        <item row="2" column="0">
+        <item row="3" column="0">
          <widget class="QGroupBox" name="quadKoef">
           <property name="enabled">
            <bool>false</bool>
@@ -356,7 +363,7 @@
           </layout>
          </widget>
         </item>
-        <item row="2" column="1">
+        <item row="3" column="1">
          <widget class="QGroupBox" name="quadSimpleCon">
           <property name="enabled">
            <bool>false</bool>
@@ -469,7 +476,7 @@
           </layout>
          </widget>
         </item>
-        <item row="3" column="0" colspan="2">
+        <item row="4" column="0" colspan="2">
          <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="0,0,1,0,0">
           <item>
            <spacer name="horizontalSpacer_6">
@@ -537,7 +544,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>615</width>
+     <width>660</width>
      <height>23</height>
     </rect>
    </property>

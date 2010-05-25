@@ -1,5 +1,7 @@
 <RCC>
   <qresource prefix="icon">
+    <file>ravinFunc.bmp</file>
+    <file>quadFunc.bmp</file>
     <file>NotWen/g(x)_rav.bmp</file>
     <file>NotWen/g_(x)_rav.bmp</file>
     <file>NotWen/f(xk1)_f(xk).bmp</file>
