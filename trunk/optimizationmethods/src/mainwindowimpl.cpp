@@ -133,6 +133,8 @@ void MainWindowImpl::on_next_button_clicked()
 		methFunc[1] = 0;
 		
 		stackedWidget->setCurrentIndex(1);
+		QPixmap icon(":icon/quadFunc.bmp");
+		func->setPixmap(icon);
 	}
 	else if(ravinFunction->isChecked())
 	{
@@ -150,6 +152,8 @@ void MainWindowImpl::on_next_button_clicked()
 		label_8->setVisible(false);
 		
 		stackedWidget->setCurrentIndex(1);
+		QPixmap icon(":icon/ravinFunc.bmp");
+		func->setPixmap(icon);
 	}
 	
 	on_choiceVar_clicked(true);
