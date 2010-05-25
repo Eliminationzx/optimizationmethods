@@ -264,6 +264,31 @@ void NeMiImpl::s11_entered(){
 }
 
 void NeMiImpl::sf_entered(){
+	LogTxtBrsr->append(trUtf8("Конец алгоритма. Найден: %1"));
+	QString str = trUtf8("Найден минимум. ");
+
+	qDebug()<<trUtf8("Конец алгоритма. Найден минимум"); // Вывожу дебажную инфу на консоль.
+
+	if(KvantoEraroj > D[6]){
+		// Слишком много ошибок.
+		str += trUtf8("Ваше количество ошибок (%1) превысило допустимый предел (%2). Начните заново.").arg(KvantoEraroj).arg(D[6]);
+		QMessageBox::information(this, trUtf8("Внимание"), str);
+		if(F->metaObject()->className() == QString("RavinaFunkcio"))
+			emit usiloPlenumis(A::NeMi);
+//		else recomenci_acn->trigger();
+	}else{
+		str += trUtf8("Вы прошли тест. ");
+		if(F->metaObject()->className() == QString("KvadratigantoFunkcio"))
+		{
+			str += trUtf8("Сообщите преподавателю и перейдите к овражной функции.");
+			emit usiloPlenumis(A::NeMi);
+		}
+		else if(F->metaObject()->className() == QString("RavinaFunkcio"))
+		{
+			str += trUtf8("Позовите преподавателя.");
+		}
+		QMessageBox::information(this, trUtf8("Поздравляем"), str);
+	}
 
 	qDebug()<<trUtf8("Вошёл в sf"); // Вывожу дебажную инфу на консоль.
 }
