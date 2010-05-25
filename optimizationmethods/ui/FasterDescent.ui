@@ -810,7 +810,7 @@ p, li { white-space: pre-wrap; }
      <x>0</x>
      <y>0</y>
      <width>914</width>
-     <height>23</height>
+     <height>30</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu">
@@ -818,6 +818,8 @@ p, li { white-space: pre-wrap; }
      <string>Помощь</string>
     </property>
     <addaction name="helpo_action"/>
+    <addaction name="separator"/>
+    <addaction name="about_action"/>
    </widget>
    <widget class="QMenu" name="menu_2">
     <property name="title">
@@ -830,6 +832,7 @@ p, li { white-space: pre-wrap; }
      <string>Тест</string>
     </property>
     <addaction name="recomenc_acn"/>
+    <addaction name="action"/>
     <addaction name="separator"/>
     <addaction name="exit"/>
    </widget>
@@ -840,12 +843,15 @@ p, li { white-space: pre-wrap; }
   <widget class="QStatusBar" name="statusbar"/>
   <action name="helpo_action">
    <property name="text">
-    <string>Справка</string>
+    <string>&amp;Справка</string>
+   </property>
+   <property name="shortcut">
+    <string>F1</string>
    </property>
   </action>
   <action name="difiniFonto_act">
    <property name="text">
-    <string>Настроить шрифт</string>
+    <string>Настроить &amp;шрифт</string>
    </property>
   </action>
   <action name="recomenc_acn">
@@ -853,14 +859,41 @@ p, li { white-space: pre-wrap; }
     <string>Начать заново</string>
    </property>
   </action>
+  <action name="action">
+   <property name="text">
+    <string>Вернуться в &amp;главное окно</string>
+   </property>
+  </action>
   <action name="exit">
    <property name="text">
-    <string>Выйти из программы</string>
+    <string>&amp;Выйти из программы</string>
+   </property>
+  </action>
+  <action name="about_action">
+   <property name="text">
+    <string>&amp;О программе...</string>
    </property>
   </action>
  </widget>
  <resources>
   <include location="data.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>action</sender>
+   <signal>activated()</signal>
+   <receiver>FasterDescent</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>456</x>
+     <y>314</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
