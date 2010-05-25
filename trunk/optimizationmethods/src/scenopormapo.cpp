@@ -27,10 +27,10 @@ void ScenoPorMapo::drawBackground(QPainter * painter, const QRectF & rect){
 	double min = F->rezulto(F->minPoint(0.1));
 	// Перебираю видимую область и каждую точку заполняю цветом в соответствии
 	// со значением целевой функции. Беру область с запасом на 1, иначе на краях
-	// могут возникать непрорисованные лмнии
+	// могут возникать непрорисованные линии
 	for(int i = r.x()-1; i <= r.right()+1; ++i){
 		for(int j = r.y()-1; j <= r.bottom()+1; ++j){
-			v = (F->rezulto(i / skalo, j / skalo)-min)/1000;
+			v = ((int)(((F->rezulto(i / skalo, j / skalo)-min)/1000)/0.025))*0.025;
 			if(v > 1){
 				v = 1;
 			}else if(v < 0){
