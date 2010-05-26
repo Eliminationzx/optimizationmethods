@@ -241,6 +241,9 @@ void FasterDescentImpl::s8_entered()
 
 	LogTxtBrsr->append(trUtf8("  а вычислено успешно"));
 
+	if(F->metaObject()->className() == QString("RavinaFunkcio") && NumeroIteracio > 5 && KvantoEraroj <= quanError)
+		step_bt->click();
+
 	qDebug()<<trUtf8("Вошёл в s8"); // Вывожу дебажную инфу на консоль.
 }
 
@@ -249,6 +252,12 @@ void FasterDescentImpl::s7_entered()
 	stackedWidget->setCurrentIndex(3);
 
 	LogTxtBrsr->append(trUtf8("  Вычисляем а"));
+
+	if(F->metaObject()->className() == QString("RavinaFunkcio") && NumeroIteracio > 5 && KvantoEraroj <= quanError)
+	{
+		minf->setChecked(true);
+		next4_bt->click();
+	}
 
 	qDebug()<<trUtf8("Вошёл в s7"); // Вывожу дебажную инфу на консоль.
 }
@@ -261,6 +270,14 @@ void FasterDescentImpl::s6_entered()
 	
 	LogTxtBrsr->append(trUtf8("  Проверка точности выполнена"));
 
+	if(F->metaObject()->className() == QString("RavinaFunkcio") && NumeroIteracio > 5 && KvantoEraroj <= quanError)
+	{
+		if(Length(grad) >= strikteco)
+			calcula_bt->click();
+		else
+			end_bt->click();
+	}
+
 	qDebug()<<trUtf8("Вошёл в s6"); // Вывожу дебажную инфу на консоль.
 }
 
@@ -269,6 +286,12 @@ void FasterDescentImpl::s5_entered()
 	stackedWidget->setCurrentIndex(2);
 
 	LogTxtBrsr->append(trUtf8("  Проверка точности"));
+
+	if(F->metaObject()->className() == QString("RavinaFunkcio") && NumeroIteracio > 5 && KvantoEraroj <= quanError)
+	{
+		gradfx->setChecked(true);
+		next3_bt->click();
+	}
 
 	qDebug()<<trUtf8("Вошёл в s5"); // Вывожу дебажную инфу на консоль.
 }
@@ -283,6 +306,9 @@ void FasterDescentImpl::s4_entered()
 		LogTxtBrsr->append(trUtf8("  Введён градиент"));
 	else if (NumeroIteracio > 1)
 		LogTxtBrsr->append(trUtf8("  S определено успешно"));
+
+	if(F->metaObject()->className() == QString("RavinaFunkcio") && NumeroIteracio > 5 && KvantoEraroj <= quanError)
+		check_bt->click();
 
 	qDebug()<<trUtf8("Вошёл в s4"); // Вывожу дебажную инфу на консоль.
 }
@@ -299,8 +325,14 @@ void FasterDescentImpl::s3_entered()
 void FasterDescentImpl::s2_entered()
 {
 	stackedWidget->setCurrentIndex(0);
-	
+
 	LogTxtBrsr->append(trUtf8("  Определяем S"));
+
+	if(F->metaObject()->className() == QString("RavinaFunkcio") && NumeroIteracio > 5 && KvantoEraroj <= quanError)
+	{
+		agrad_fx->setChecked(true);
+		next1_bt->click();
+	}
 
 	qDebug()<<trUtf8("Вошёл в s2"); // Вывожу дебажную инфу на консоль.
 }
@@ -315,6 +347,9 @@ void FasterDescentImpl::s1_entered()
 	
 	LogTxtBrsr->append(trUtf8("Итерация № %1.").arg(++NumeroIteracio));
 
+	if(F->metaObject()->className() == QString("RavinaFunkcio") && NumeroIteracio > 5 && KvantoEraroj <= quanError)
+		inserts_bt->click();
+	
 	qDebug()<<trUtf8("Вошёл в s1"); // Вывожу дебажную инфу на консоль.
 }
 
