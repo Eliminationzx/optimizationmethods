@@ -99,7 +99,7 @@ NotWenImpl::NotWenImpl( funkcio *f, QVector<double> *d, QWidget * parent, Qt::WF
 	s5s7->setTargetState(s7);
 	s5sfTransiro * s5sf = new s5sfTransiro(&grad, strikteco, stop, next5_bt, SIGNAL(clicked()), s5);
 	s5sf->setTargetState(sf);
-	s6s7Transiro * s6s7 = new s6s7Transiro(F, dfdx1dx1, dfdx1dx2, dfdx2dx1, dfdx2dx2, gess11, gess12, gess21, gess22, next6_bt, SIGNAL(clicked()), s6);
+	s6s7Transiro * s6s7 = new s6s7Transiro(F, &BP, dfdx1dx1, dfdx1dx2, dfdx2dx1, dfdx2dx2, gess11, gess12, gess21, gess22, next6_bt, SIGNAL(clicked()), s6);
 	s6s7->setTargetState(s7);
 	s7->addTransition(this, SIGNAL(stateHasEntered()), s1);
 
@@ -207,6 +207,16 @@ void NotWenImpl::sf_entered()
 void NotWenImpl::s7_entered()
 {
 	stackedWidget->setCurrentIndex(6);
+	
+	if(F->metaObject()->className() == QString("KvadratigantoFunkcio"))
+	{
+		gessian1 = QPointF(2*F->getC() / F->detGessian(&BP), -F->getE() / F->detGessian(&BP));
+		gessian2 = QPointF(-F->getE() / F->detGessian(&BP), 2*F->getA() / F->detGessian(&BP));
+	}
+	else if(F->metaObject()->className() == QString("RavinaFunkcio"))
+	{
+		
+	}
 	
 	BP = QPointF(BP.x() - (gessian1.x()*grad.x() + gessian1.y()*grad.x()), BP.y() - (gessian2.x()*grad.y() + gessian2.y()*grad.y())); 
 
@@ -488,11 +498,20 @@ namespace SinkoNotWen
 
 			if(f->metaObject()->className() == QString("KvadratigantoFunkcio"))
 			{
-//				Dfdx1dx1 Dfdx1dx2 Dfdx2dx1 Dfdx2dx2 Gess11 Gess12 Gess21 Gess22
+				QString ges11, ges12, ges21, ges22;
+				ges11 = QString("%1/%2").arg(2*f->getC()).arg(f->detGessian(bp));
+				ges12 = QString("%1/%2").arg(-f->getE()).arg(f->detGessian(bp));
+				ges21 = QString("%1/%2").arg(-f->getE()).arg(f->detGessian(bp));
+				ges22 = QString("%1/%2").arg(2*f->getA()).arg(f->detGessian(bp));
+				
 				if(Dfdx1dx1->text() == QString::number(2*f->getA()) && Dfdx1dx2->text() == QString::number(f->getE()) && 
-					Dfdx2dx1->text() == QString::number(f->getE()) && Dfdx2dx2->text() == QString::number(2*f->getC()))
+					Dfdx2dx1->text() == QString::number(f->getE()) && Dfdx2dx2->text() == QString::number(2*f->getC()) &&
+					Gess11->text() == ges11 && Gess12->text() == ges12 && Gess21->text() == ges21 && Gess22->text() == ges22)
 				{
+					return true;
 				}
+				else
+					return false;
 				
 			}
 			else if(f->metaObject()->className() == QString("RavinaFunkcio"))

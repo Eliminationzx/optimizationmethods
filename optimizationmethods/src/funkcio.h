@@ -28,7 +28,7 @@ public:
 	double lengthOfStep(const QPointF X) const;
 
 	//! Возвращает определитель гессиана.
-	virtual double detGessian(const QPointF X) const = 0;
+	virtual double detGessian(const QPointF * X) const = 0;
 
 	//! Возвращает результат вычисления функции в точке.
 	virtual double rezulto(const double x1, //!< Первая координата точки.
@@ -106,7 +106,7 @@ public:
 	{ return 2*C*(X.y() - D) + E*(X.x() - F); }
 
 	//! Возвращает определитель гессиана.
-	double detGessian(const QPointF X) const
+	double detGessian(const QPointF * X) const
 	{ return (2*A * 2*C) - (E*E); }
 
   //! Возвращает результат вычисления функции в точке.
@@ -191,8 +191,8 @@ public:
 	{ return 2*A*(X.y() - pow(X.x(), 2)); };
 
 	//! Возвращает определитель гессиана.
-	double detGessian(const QPointF X) const
-	{ return (-4*A*(X.y() - 3*X.x()*X.x()) * 2*A) - pow(-4*A*X.x(), 2); }
+	double detGessian(const QPointF * X) const
+	{ return (-4*A*(X->y() - 3*X->x()*X->x()) * 2*A) - pow(-4*A*X->x(), 2); }
 
   //! Возвращает результат вычисления функции в точке.
   double rezulto(const double x1, //!< Первая координата точки.

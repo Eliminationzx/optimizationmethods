@@ -33,7 +33,7 @@ protected:
 	DemonstrataQPointF gessian2;
 
 	//! Длина шага.
-	double lengthStep;
+//	double lengthStep;
 
 public:
 	/*! Конструктор.
@@ -332,6 +332,7 @@ namespace SinkoNotWen
 	{
 		private:
 			funkcio * f;
+			DemonstrataQPointF * bp;
 			QLineEdit * Dfdx1dx1;
 			QLineEdit * Dfdx1dx2;
 			QLineEdit * Dfdx2dx1;
@@ -342,6 +343,7 @@ namespace SinkoNotWen
 			QLineEdit * Gess22;
 		public:
 			s6s7Transiro(funkcio * F,
+						DemonstrataQPointF * BP,
 						QLineEdit * dfdx1dx1,
 						QLineEdit * dfdx1dx2,
 						QLineEdit * dfdx2dx1,
@@ -352,9 +354,10 @@ namespace SinkoNotWen
 						QLineEdit * gess22,
 						QState * sourceState = 0)
 						 : QSignalTransition(sourceState),
-						  f(F), Dfdx1dx1(dfdx1dx1), Dfdx1dx2(dfdx1dx2), Dfdx2dx1(dfdx2dx1), Dfdx2dx2(dfdx2dx2),
+						  f(F), bp(BP), Dfdx1dx1(dfdx1dx1), Dfdx1dx2(dfdx1dx2), Dfdx2dx1(dfdx2dx1), Dfdx2dx2(dfdx2dx2),
 						  Gess11(gess11), Gess12(gess12), Gess21(gess21), Gess22(gess22){};
 			s6s7Transiro(funkcio * F,
+						DemonstrataQPointF * BP,
 						QLineEdit * dfdx1dx1,
 						QLineEdit * dfdx1dx2,
 						QLineEdit * dfdx2dx1,
@@ -367,7 +370,7 @@ namespace SinkoNotWen
 						const char * signal,
 						QState * sourceState = 0)
 						 : QSignalTransition(sender, signal, sourceState),
-						  f(F), Dfdx1dx1(dfdx1dx1), Dfdx1dx2(dfdx1dx2), Dfdx2dx1(dfdx2dx1), Dfdx2dx2(dfdx2dx2),
+						  f(F), bp(BP), Dfdx1dx1(dfdx1dx1), Dfdx1dx2(dfdx1dx2), Dfdx2dx1(dfdx2dx1), Dfdx2dx2(dfdx2dx2),
 						  Gess11(gess11), Gess12(gess12), Gess21(gess21), Gess22(gess22){};
 		protected:
 			//! Перход срабатывает, только если нажата кнопка next6
