@@ -17,7 +17,7 @@
     double tau = 0.618033988749894;
   	double lam = a + (1 - tau)*(b - a);
   	double mu = a + tau*(b - a);
-  	while (b - a > e)
+  	while (abs(b - a) > e)
   	{
   		if (rezulto(X[0] - lam*df_dx1(X), X[1] - lam*df_dx2(X)) > rezulto(X[0] - mu*df_dx1(X), X[1] - mu*df_dx2(X)))
   		{
