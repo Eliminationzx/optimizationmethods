@@ -2,6 +2,8 @@
 #include "Konstantoj.h"
 #include <QPolygonF>
 #include <QPainter>
+#include <QGraphicsScene>
+#include <QGraphicsView>
 //
 spuroSinkoLauxKoordinatoj_md::spuroSinkoLauxKoordinatoj_md(QColor momentaKoloro, QColor bazaKoloro, qreal Skalo, QGraphicsItem * parent) 
 	: spuro( A::CWdescent_md, bazaKoloro, Skalo, parent), MomentaKoloro(momentaKoloro){}
@@ -20,6 +22,8 @@ void spuroSinkoLauxKoordinatoj_md::finisxiIteracio(){
 	Vosto += MomentaPointoj;
 	MomentaPointoj.clear();
 	MomentaPointoj.append(MomentaPointo);
+	// Центрирую карту на последней точке.
+	this->scene()->views()[0]->centerOn(MomentaPointo * skalo);
 	update();// Планирую перерисовку.
 }
 
