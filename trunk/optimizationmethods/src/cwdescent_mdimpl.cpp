@@ -129,13 +129,13 @@ DemonstrataQPointF CWdescent_mdImpl::LengthOfStepX1(DemonstrataQPointF X) const
 {
 	double y = X.y();
 
-	double a = - numeric_limits<int>::max()/2;
-	double b = numeric_limits<int>::max()/2;
+	double a = - 500;
+	double b = 500;
 
 	double tau = 0.618033988749894;
 	double lam = a + (1 - tau)*(b - a);
 	double mu = a + tau*(b - a);
-	while (abs(b - a) > 0.000001)
+	while (b - a > 0.000001)
 	{
 		if (F->rezulto(lam, y) > F->rezulto(mu, y))
 		{
@@ -161,13 +161,13 @@ DemonstrataQPointF CWdescent_mdImpl::LengthOfStepX2(DemonstrataQPointF X) const
 {
 	double x = X.x();
 
-	double a = - numeric_limits<int>::max()/2;
-	double b = numeric_limits<int>::max()/2;
+	double a = - 500;
+	double b = 500;
 
 	double tau = 0.618033988749894;
 	double lam = a + (1 - tau)*(b - a);
 	double mu = a + tau*(b - a);
-	while (abs(b - a) > 0.000001)
+	while (b - a > 0.000001)
 	{
 		if (F->rezulto(x, lam) > F->rezulto(x, mu))
 		{

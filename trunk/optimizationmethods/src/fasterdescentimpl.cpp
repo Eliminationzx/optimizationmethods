@@ -58,6 +58,8 @@ FasterDescentImpl::FasterDescentImpl( funkcio *f, QVector<double> *d, QWidget * 
 	SignalantoPorPointF * sGRAD = new SignalantoPorPointF(&grad, F, this);
 	connect(sGRAD, SIGNAL(proviziXValoro(const QString &)), s_x1_lb, SLOT(setText(const QString &)));
 	connect(sGRAD, SIGNAL(proviziYValoro(const QString &)), s_x2_lb, SLOT(setText(const QString &)));
+	SignalantoPorPointF * sLengthStep = new SignalantoPorPointF(&lengthStep, F, this);
+	connect(sLengthStep, SIGNAL(proviziXValoro(const QString &)), length_step_a_lb, SLOT(setText(const QString &)));
 
 	//===Создаю конечный автомат.==================================================
 	QStateMachine * SM = new QStateMachine();
@@ -218,32 +220,13 @@ void FasterDescentImpl::sf_entered()
 		}
 		QMessageBox::information(this, trUtf8("Поздравляем"), str);
 	}
-	if (KvantoEraroj <= quanError)
-	{
-		str += trUtf8("Вы прошли тест. ");
-		if(F->metaObject()->className() == QString("KvadratigantoFunkcio"))
-		{
-			str += trUtf8("Сообщите преподавателю и перейдите к овражной функции.");
-			emit usiloPlenumis(2);
-		}
-		else if(F->metaObject()->className() == QString("RavinaFunkcio"))
-		{
-			str += trUtf8("Позовите преподавателя.");
-		}
-		QMessageBox::information(this, trUtf8("Поздравляем"), str);
-	}
-	else
-	{
-		QMessageBox::information(this, trUtf8("Внимание"), trUtf8("Вы допустили слишком большое количество ошибок. Начните заново."));
-		recomenc_acn->trigger();
-	}
 
 	qDebug()<<trUtf8("Вошёл в Финальное состояние, сложного состояния"); // Вывожу дебажную инфу на консоль.
 }
 
 void FasterDescentImpl::s9_entered()
 {
-	BP = QPointF(BP.x() - lengthStep*grad.x(), BP.y() - lengthStep*grad.y()); 
+	BP = QPointF(BP.x() - lengthStep.x()*grad.x(), BP.y() - lengthStep.x()*grad.y()); 
 
 	qDebug()<<trUtf8("Вошёл в s9"); // Вывожу дебажную инфу на консоль.
 	
@@ -254,9 +237,7 @@ void FasterDescentImpl::s8_entered()
 {
 	stackedWidget->setCurrentIndex(4);
 	
-	lengthStep = F->lengthOfStep(grad);
-	
-	length_step_a_lb->setText(QString::number(lengthStep, 'f'));
+	lengthStep = QPointF(F->lengthOfStep(grad), 0);
 
 	LogTxtBrsr->append(trUtf8("  а вычислено успешно"));
 

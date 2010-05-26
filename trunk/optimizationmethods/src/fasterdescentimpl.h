@@ -27,7 +27,7 @@ protected:
 	DemonstrataQPointF grad;
 
 	//! Длина шага.
-	double lengthStep;
+	DemonstrataQPointF lengthStep;
 
 public:
 	/*! Конструктор.

@@ -17,7 +17,7 @@
     double tau = 0.618033988749894;
   	double lam = a + (1 - tau)*(b - a);
   	double mu = a + tau*(b - a);
-  	while (abs(b - a) > e)
+  	while (b - a > e)
   	{
   		if (rezulto(X[0] - lam*df_dx1(X), X[1] - lam*df_dx2(X)) > rezulto(X[0] - mu*df_dx1(X), X[1] - mu*df_dx2(X)))
   		{
@@ -53,7 +53,7 @@ double funkcio::lengthOfStep(const QPointF X) const
 	double lam = a + (1 - tau)*(b - a);
 	double mu = a + tau*(b - a);
 	
-	while (abs(b - a) > 0.000001)
+	while (b - a > 0.000001)
 	{
 		if (rezulto(X.x() - lam*df_dx1(X), X.y() - lam*df_dx2(X)) > rezulto(X.x() - mu*df_dx1(X), X.y() - mu*df_dx2(X)))
 		{
