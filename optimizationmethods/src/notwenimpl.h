@@ -32,9 +32,6 @@ protected:
 	//! Вторая строка обратного гессиана.
 	DemonstrataQPointF gessian2;
 
-	//! Длина шага.
-//	double lengthStep;
-
 public:
 	/*! Конструктор.
 	 * @param f Указатель на целевую функцию. FasterDescentImpl не заботится о назначении Funkcio родителя.
