@@ -3,6 +3,8 @@
 #include "demonstrataqpointf.h"
 #include <QPolygonF>
 #include <QPainter>
+#include <QGraphicsScene>
+#include <QGraphicsView>
 //
 spuroNeMi::spuroNeMi(QColor momentaKoloro, QColor bazaKoloro, qreal Skalo, QGraphicsItem * parent) 
 	: spuro( A::CWdescent_fix, bazaKoloro, Skalo, parent), MomentaKoloro(momentaKoloro){
@@ -64,6 +66,8 @@ void spuroNeMi::senspurigi(){
 
 void spuroNeMi::difiniP1(QPointF p){
 	P1 = p;
+	// Центрирую карту на последней точке.
+	this->scene()->views()[0]->centerOn(P1 * skalo);
 }
 
 
