@@ -248,6 +248,20 @@ void NotWenImpl::s5_entered()
 	
 	LogTxtBrsr->append(trUtf8("  Критерий остановки определен успешно"));
 
+	if(F->metaObject()->className() == QString("RavinaFunkcio") && NumeroIteracio > 5 && KvantoEraroj <= quanError)
+	{
+		if(Length(grad) >= strikteco)
+		{
+			to_continue->setChecked(true);
+			next5_bt->click();
+		}
+		else
+		{
+			stop->setChecked(true);
+			next5_bt->click();
+		}
+	}
+
 	qDebug()<<trUtf8("Вошёл в s5"); // Вывожу дебажную инфу на консоль.
 }
 
@@ -261,6 +275,12 @@ void NotWenImpl::s4_entered()
 		LogTxtBrsr->append(trUtf8("  Введён градиент"));
 	else if (NumeroIteracio > 1)
 		LogTxtBrsr->append(trUtf8("  Определение координат вектора градиента дано успешно"));
+
+	if(F->metaObject()->className() == QString("RavinaFunkcio") && NumeroIteracio > 5 && KvantoEraroj <= quanError)
+	{
+		gradfxk_less->setChecked(true);
+		next4_bt->click();
+	}
 
 	qDebug()<<trUtf8("Вошёл в s4"); // Вывожу дебажную инфу на консоль.
 }
@@ -280,6 +300,12 @@ void NotWenImpl::s2_entered()
 	
 	LogTxtBrsr->append(trUtf8("  Направление поиска определено успешно"));
 
+	if(F->metaObject()->className() == QString("RavinaFunkcio") && NumeroIteracio > 5 && KvantoEraroj <= quanError)
+	{
+		part_proizvod_first->setChecked(true);
+		next2_bt->click();
+	}
+
 	qDebug()<<trUtf8("Вошёл в s2"); // Вывожу дебажную инфу на консоль.
 }
 
@@ -293,6 +319,12 @@ void NotWenImpl::s1_entered()
 	stackedWidget->setCurrentIndex(0);
 	
 	LogTxtBrsr->append(trUtf8("Итерация № %1.").arg(++NumeroIteracio));
+
+	if(F->metaObject()->className() == QString("RavinaFunkcio") && NumeroIteracio > 5 && KvantoEraroj <= quanError)
+	{
+		_g_xkgradfxk->setChecked(true);
+		next1_bt->click();
+	}
 
 	qDebug()<<trUtf8("Вошёл в s1"); // Вывожу дебажную инфу на консоль.
 }
@@ -533,6 +565,8 @@ namespace SinkoNotWen
 				else
 					return false;
 			}
+			else
+				return false;
 		}
 		else
 			return false;
