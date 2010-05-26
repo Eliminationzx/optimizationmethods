@@ -27,9 +27,9 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * pa
 	//Вывожу формулу функции.
 	QString formul = "f(X) = ";
 	if(F->metaObject()->className() == QString("KvadratigantoFunkcio"))
-		formul += QString::number(F->getA()) + "*(x1-" + QString::number(F->getB()) + ")^2 + " + 
-			QString::number(F->getC()) + "*(x2-" + QString::number(F->getD()) + ")^2 + " + 
-			QString::number(F->getE()) + "*(x1-" + QString::number(F->getF()) + ")*(x2-" + 
+		formul += QString::number(F->getA()) + "*(x1-" + QString::number(F->getB()) + ")^2 + " +
+			QString::number(F->getC()) + "*(x2-" + QString::number(F->getD()) + ")^2 + " +
+			QString::number(F->getE()) + "*(x1-" + QString::number(F->getF()) + ")*(x2-" +
 			QString::number(F->getG()) + ")";
 	else if(F->metaObject()->className() == QString("RavinaFunkcio"))
 		formul += QString::number(F->getA()) + "*(x2-x1^2)^2 + " + QString::number(F->getB()) + "*(1-x1)^2";
@@ -38,7 +38,7 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * pa
 	// Создаю карту.
 	verticalLayout_4->addWidget(MapoWdg, 2);
 
-	MapoWdg->setScale(20);// Ставлю масштаб побольше. Надо будет определться с оптимальным значением.
+	MapoWdg->setScale(20);// Ставлю масштаб побольше. Надо будет определиться с оптимальным значением.
 
 	Sp = new spuroSinkoLauxKoordinatoj(Qt::white, Qt::blue);
 	MapoWdg->difiniSpuro(Sp);
@@ -77,8 +77,6 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * pa
 	QState * s11 = new QState(so);
 	QState * s12 = new QState(so);
 	QState * sf = new QState(/*so*/);
-//	QFinalState * sf = new QFinalState(/*so*/);
-//	QFinalState * sfm = new QFinalState();
 	so->setInitialState(s1);
 
 //---Соединяю состояния и обрабодчики входа в них.-----------------------------
@@ -136,11 +134,7 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * pa
 //---Создаю переход по действию "Начать заново"
 	connect(so->addTransition(recomenci_acn, SIGNAL(activated()), s1), SIGNAL(triggered()), SLOT(init()));
 	connect(sf->addTransition(recomenci_acn, SIGNAL(activated()), s1), SIGNAL(triggered()), SLOT(init()));
-//---Создаю переход от сложного состояния к финалу автомата.
-//	so->addTransition(so, SIGNAL(finished()), sfm); // Вызывается, когда сложное 
-//	                                                // состояние достигло финиша -
-//	                                                //  был найден минимум.
-//---Создаю переходы не имеющие цели. С помощью них фиксирую ошибки ползователя
+//---Создаю переходы не имеющие цели. С помощью них фиксирую ошибки пользователя
 	QSignalTransition * te1 = new QSignalTransition(calculate_bt, SIGNAL(clicked()));
 	so->addTransition(te1);
 	connect(te1, SIGNAL(triggered()), SLOT(registriEraro()));
@@ -159,12 +153,16 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * pa
 
 
 //---Настраиваю некоторые состояния, чтоб затирали надпись со значениями новой точки, дабы не смущать пользователя.
+	s1->assignProperty(distance_lb, "text", trUtf8(""));
 	s1->assignProperty(new_x1_lb, "text", trUtf8(""));
 	s1->assignProperty(new_x2_lb, "text", trUtf8(""));
 	s1->assignProperty(new_fsign_lb, "text", trUtf8(""));
 	s3->assignProperty(new_x1_lb, "text", trUtf8(""));
 	s3->assignProperty(new_x2_lb, "text", trUtf8(""));
 	s3->assignProperty(new_fsign_lb, "text", trUtf8(""));
+	s5->assignProperty(new_x1_lb, "text", trUtf8(""));
+	s5->assignProperty(new_x2_lb, "text", trUtf8(""));
+	s5->assignProperty(new_fsign_lb, "text", trUtf8(""));
 	s6->assignProperty(new_x1_lb, "text", trUtf8(""));
 	s6->assignProperty(new_x2_lb, "text", trUtf8(""));
 	s6->assignProperty(new_fsign_lb, "text", trUtf8(""));
@@ -174,9 +172,11 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * pa
 	s11->assignProperty(new_x1_lb, "text", trUtf8(""));
 	s11->assignProperty(new_x2_lb, "text", trUtf8(""));
 	s11->assignProperty(new_fsign_lb, "text", trUtf8(""));
+	s10->assignProperty(new_x1_lb, "text", trUtf8(""));
+	s10->assignProperty(new_x2_lb, "text", trUtf8(""));
+	s10->assignProperty(new_fsign_lb, "text", trUtf8(""));
 	s12->assignProperty(distance_lb, "text", trUtf8(""));
 //---Настраиваю выделение цветом растояния между точками.
-	s11->assignProperty(distance_lb, "palette", QPalette(Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red));
 	s1->assignProperty(distance_lb, "palette", this->palette());
 
 //---Прикручиваю карту---------------------------------------------------------
@@ -271,8 +271,8 @@ void CWdescentWinImpl::registriEraro(){
   LogTxtBrsr->append(trUtf8("    Совершена ошибка. Общее количество ошибок: %1").arg(KvantoEraroj));
   QMessageBox msg(QMessageBox::Warning, trUtf8("Ошибка"), trUtf8("Неправильное действие"));
   msg.exec();
-  
-	qDebug()<<trUtf8("Пользователь ошибся"); // Вывожу дебажныю инфу на консоль.
+
+	qDebug()<<trUtf8("Пользователь ошибся"); // Вывожу дебажную инфу на консоль.
 }
 
 void CWdescentWinImpl::sf_entered(){
@@ -307,24 +307,27 @@ void CWdescentWinImpl::s12_entered(){
 	PX1 *= ModPX;
 	PX2 *= ModPX;
 	LogTxtBrsr->append(trUtf8("  Изменена длина шагов: %1; %2.").arg(PX1.x()).arg(PX2.y()));
-	
-	qDebug()<<trUtf8("Вошёл в s12"); // Вывожу дебажныю инфу на консоль.
-	
+
+	qDebug()<<trUtf8("Вошёл в s12"); // Вывожу дебажную инфу на консоль.
+
 	emit stateHasEntered();
 }
 
 void CWdescentWinImpl::s11_entered(){
 	// Вывожу на форму значение расстояния между предыдущей базовой точкой и
 	// текущей, только если была принята новая точка.
-	if(BP != MP) distance_lb->setText(QString::number(Length(BP - MP), 'f'));
-	
-	qDebug()<<trUtf8("Вошёл в s11"); // Вывожу дебажныю инфу на консоль.
+	if(BP != MP){
+		distance_lb->setPalette(QPalette(Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red));
+		distance_lb->setText(QString::number(Length(BP - MP), 'f'));
+	}
+
+	qDebug()<<trUtf8("Вошёл в s11"); // Вывожу дебажную инфу на консоль.
 }
 
 void CWdescentWinImpl::s10_entered(){
 	MP = NP;
 	LogTxtBrsr->append(trUtf8("  новая точка: (%1; %2) Принята").arg(MP.x()).arg(MP.y()));
-	qDebug()<<trUtf8("Вошёл в s10"); // Вывожу дебажныю инфу на консоль.
+	qDebug()<<trUtf8("Вошёл в s10"); // Вывожу дебажную инфу на консоль.
 
 	emit stateHasEntered(); // Переход по этому сигналу произойдёт, только если выполнится его условие.
 }
@@ -333,53 +336,53 @@ void CWdescentWinImpl::s9_entered(){
 	NP = MP - PX2;
 	LogTxtBrsr->append(trUtf8("  Сделан шаг в отрицательном направлении оси Х2."));
 
-	qDebug()<<trUtf8("Вошёл в s9"); // Вывожу дебажныю инфу на консоль.
+	qDebug()<<trUtf8("Вошёл в s9"); // Вывожу дебажную инфу на консоль.
 }
 
 void CWdescentWinImpl::s8_entered(){
 	LogTxtBrsr->append(trUtf8("  новая точка: (%1; %2) не принята").arg(MP.x()).arg(MP.y()));
-	
-	qDebug()<<trUtf8("Вошёл в s8"); // Вывожу дебажныю инфу на консоль.
+
+	qDebug()<<trUtf8("Вошёл в s8"); // Вывожу дебажную инфу на консоль.
 }
 
 void CWdescentWinImpl::s7_entered(){
 	NP = MP + PX2;
 	LogTxtBrsr->append(trUtf8("  Сделан шаг в положительном направлении оси Х2."));
 
-	qDebug()<<trUtf8("Вошёл в s7"); // Вывожу дебажныю инфу на консоль.
+	qDebug()<<trUtf8("Вошёл в s7"); // Вывожу дебажную инфу на консоль.
 }
 
 void CWdescentWinImpl::s6_entered(){
 	LogTxtBrsr->append(trUtf8("  новая точка: (%1; %2) не принята").arg(MP.x()).arg(MP.y()));
-	
-	qDebug()<<trUtf8("Вошёл в s6"); // Вывожу дебажныю инфу на консоль.
+
+	qDebug()<<trUtf8("Вошёл в s6"); // Вывожу дебажную инфу на консоль.
 }
 
 void CWdescentWinImpl::s5_entered(){
 	MP = NP;
 	LogTxtBrsr->append(trUtf8("  новая точка: (%1; %2) Принята").arg(MP.x()).arg(MP.y()));
 
-	qDebug()<<trUtf8("Вошёл в s5"); // Вывожу дебажныю инфу на консоль.
+	qDebug()<<trUtf8("Вошёл в s5"); // Вывожу дебажную инфу на консоль.
 }
 
 void CWdescentWinImpl::s4_entered(){
 	NP = MP - PX1;
 	LogTxtBrsr->append(trUtf8("  Сделан шаг в отрицательном направлении оси Х1."));
 
-	qDebug()<<trUtf8("Вошёл в s4"); // Вывожу дебажныю инфу на консоль.
+	qDebug()<<trUtf8("Вошёл в s4"); // Вывожу дебажную инфу на консоль.
 }
 
 void CWdescentWinImpl::s3_entered(){
 	LogTxtBrsr->append(trUtf8("  новая точка: (%1; %2) не принята").arg(MP.x()).arg(MP.y()));
-	
-	qDebug()<<trUtf8("Вошёл в s3"); // Вывожу дебажныю инфу на консоль.
+
+	qDebug()<<trUtf8("Вошёл в s3"); // Вывожу дебажную инфу на консоль.
 }
 
 void CWdescentWinImpl::s2_entered(){
 	NP = MP + PX1;
 	LogTxtBrsr->append(trUtf8("  Сделан шаг в положительном направлении оси Х1."));
 
-	qDebug()<<trUtf8("Вошёл в s2"); // Вывожу дебажныю инфу на консоль.
+	qDebug()<<trUtf8("Вошёл в s2"); // Вывожу дебажную инфу на консоль.
 }
 
 
@@ -388,11 +391,11 @@ void CWdescentWinImpl::s1_entered(){
 	NP = BP;
 	LogTxtBrsr->append(trUtf8("Итерация № %1.").arg(++NumeroIteracio));
 
-	qDebug()<<trUtf8("Вошёл в s1"); // Вывожу дебажныю инфу на консоль.
+	qDebug()<<trUtf8("Вошёл в s1"); // Вывожу дебажную инфу на консоль.
 }
 
 void CWdescentWinImpl::so_entered(){
-	qDebug()<<trUtf8("Вошёл в so"); // Вывожу дебажныю инфу на консоль.
+	qDebug()<<trUtf8("Вошёл в so"); // Вывожу дебажную инфу на консоль.
 }
 
 void CWdescentWinImpl::init(){
@@ -451,7 +454,7 @@ namespace SinkoLauxKoordinatoj{
 		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
 		if(QSignalTransition::eventTest(e)){
 			qDebug()<<trUtf8("  Проверяю, что выбран шаг в - по X1");
-			// Проверяю своё условие и вызываю реализацию поумолчанию.
+			// Проверяю своё условие и вызываю реализацию по умолчанию.
 			return down_x1->isChecked();
 		}else{
 			return false;
