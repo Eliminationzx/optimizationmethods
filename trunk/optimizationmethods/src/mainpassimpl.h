@@ -4,6 +4,11 @@
 #include <QDialog>
 #include <QVector>
 #include <QVariant>
+#include <QString>
+#include <QDir>
+#include <QFile>
+#include <QTextStream>
+#include <QCryptographicHash>
 #include "ui_mainwindowPass.h"
 //
 class mainPassImpl : public QDialog, public Ui::mainPass

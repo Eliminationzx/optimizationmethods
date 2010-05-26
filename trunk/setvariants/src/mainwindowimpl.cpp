@@ -99,6 +99,29 @@ bool MainWindowImpl::WriteError(const QVector<int> data)
 		return false;
 }
 
+//! Запись пароля для разблокирования овражной функции в текстовый файл.
+bool MainWindowImpl::WritePass(const QByteArray data)
+{
+	QFile file(QDir::toNativeSeparators("variants/ps"));
+	if(file.open(QIODevice::WriteOnly))
+	{
+		QTextStream stream(&file);
+		stream<<data;
+		if(stream.status() != QTextStream::Ok)
+		{
+			file.close();
+			return false;
+		}
+		else
+		{
+			file.close();
+			return true;
+		}
+	}
+	else
+		return false;
+}
+
 //! Чтение данных варианта из текстового файла.
 QVector<double> MainWindowImpl::ReadVariants(const QString typeFunction, const int numberVariants)
 {
@@ -159,6 +182,21 @@ QVector<int> MainWindowImpl::ReadError()
 	}
 	else
 		data.fill(NULL, 6);
+	return data;
+}
+
+//! Чтение пароля для разблокирования овражной функции из текстового файла.
+QByteArray MainWindowImpl::ReadPass()
+{
+	QByteArray data;
+	QFile file(QDir::toNativeSeparators("variants/ps"));
+	if(file.open(QIODevice::ReadOnly))
+	{
+		QTextStream stream(&file);
+		data.append(stream.readLine());
+	}
+	else
+		data.fill(NULL);
 	return data;
 }
 
@@ -313,6 +351,33 @@ void MainWindowImpl::on_save_button_err_clicked()
 		statusbar->showMessage(trUtf8("Ошибка при записи - возможно отсутствует директория"), 2000);
 }
 
+//! нажата кнопки "Сохранить" при установке пароля.
+void MainWindowImpl::on_save_button_pass_clicked()
+{
+	// TODO
+	QByteArray passInFile = QCryptographicHash::hash(oldPass->text().toUtf8(), QCryptographicHash::Md5);
+	
+	if(ReadPass() == passInFile/* || ReadPass() == ""*/)
+	{
+		if(newPass->text() == newPassRep->text())
+		{
+			if(WritePass(QCryptographicHash::hash(newPass->text().toUtf8(), QCryptographicHash::Md5)))
+			{
+				statusbar->showMessage(trUtf8("Информация успешно записана"), 1000);
+				oldPass->setText("");
+				newPass->setText("");
+				newPassRep->setText("");
+			}
+			else
+				statusbar->showMessage(trUtf8("Ошибка при записи - возможно отсутствует директория"), 2000);
+		}
+		else
+			statusbar->showMessage(trUtf8("Введеные новый пароль и его повтор не совпадают"), 2000);
+	}
+	else
+		statusbar->showMessage(trUtf8("Введеный старый пароль не верен"), 2000);
+}
+
 // Выбран существующий вариант в квадратичной функции.
 void MainWindowImpl::on_comboBox_activated(int index)
 {
@@ -349,3 +414,5 @@ void MainWindowImpl::on_comboBox_ravin_activated(int index)
 	x1_ravin->setText(QString::number(data[6]));
 	x2_ravin->setText(QString::number(data[7]));
 }
+
+
