@@ -215,7 +215,8 @@ void NotWenImpl::s7_entered()
 	}
 	else if(F->metaObject()->className() == QString("RavinaFunkcio"))
 	{
-		
+		gessian1 = QPointF(static_cast<RavinaFunkcio*>(F)->df_dx2dx2() / F->detGessian(&BP), -static_cast<RavinaFunkcio*>(F)->df_dx1dx2(&BP) / F->detGessian(&BP));
+		gessian2 = QPointF(-static_cast<RavinaFunkcio*>(F)->df_dx1dx2(&BP) / F->detGessian(&BP), static_cast<RavinaFunkcio*>(F)->df_dx1dx1(&BP) / F->detGessian(&BP));
 	}
 	
 	BP = QPointF(BP.x() - (gessian1.x()*grad.x() + gessian1.y()*grad.x()), BP.y() - (gessian2.x()*grad.y() + gessian2.y()*grad.y())); 
@@ -228,6 +229,11 @@ void NotWenImpl::s7_entered()
 void NotWenImpl::s6_entered()
 {
 	stackedWidget->setCurrentIndex(5);
+	
+	if(F->metaObject()->className() == QString("KvadratigantoFunkcio"))
+		groupBox_8->setVisible(true);
+	else if(F->metaObject()->className() == QString("RavinaFunkcio"))
+		groupBox_8->setVisible(false);
 	
 	LogTxtBrsr->append(trUtf8("  Длина градиента больше заданой точности - продолжаем минимизацию"));
 
@@ -516,19 +522,17 @@ namespace SinkoNotWen
 			}
 			else if(f->metaObject()->className() == QString("RavinaFunkcio"))
 			{
+				QString dfdx1dx1, dfdx1dx2, dfdx2dx1, dfdx2dx2;
+				dfdx1dx1 = QString("%1*x1^2+%2*x2+%3").arg(12*f->getA()).arg(-4*f->getA()).arg(2*f->getB());
+				dfdx1dx2 = QString("%1*x1").arg(-4*f->getA());
+				dfdx2dx1 = QString("%1*x1").arg(-4*f->getA());
+				dfdx2dx2 = QString::number(2*f->getA());
 				
+				if(Dfdx1dx1->text() == dfdx1dx1 && Dfdx1dx2->text() == dfdx1dx2 && Dfdx2dx1->text() == dfdx2dx1 && Dfdx2dx2->text() == dfdx2dx2)
+					return true;
+				else
+					return false;
 			}
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			// Проверяю своё условие.
-			return true;
 		}
 		else
 			return false;

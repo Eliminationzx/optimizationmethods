@@ -192,8 +192,18 @@ public:
 
 	//! Возвращает определитель гессиана.
 	double detGessian(const QPointF * X) const
-	{ return (-4*A*(X->y() - 3*X->x()*X->x()) * 2*A) - pow(-4*A*X->x(), 2); }
-
+	{ return df_dx1dx1(X) * df_dx2dx2() - pow(df_dx1dx2(X), 2); }
+	
+	//! Возвращает значение частной производной второго порядка.
+	double df_dx1dx1(const QPointF * X) const
+	{ return 12*A*X->x()*X->x() - 4*A*X->y() + 2*B; }
+	//! Возвращает значение частной производной второго порядка.
+	double df_dx1dx2(const QPointF * X) const
+	{ return - 4*A*X->x(); }
+	//! Возвращает значение частной производной второго порядка.
+	double df_dx2dx2() const
+	{ return 2*A; }
+	
   //! Возвращает результат вычисления функции в точке.
   double rezulto(const double x1, //!< Первая координата точки.
                  const double x2 //!< Вторая координата точки.
