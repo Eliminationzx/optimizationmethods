@@ -117,7 +117,7 @@ int MainWindowImpl::ReadError(int method)
 //! Открытие овражной функции.
 void MainWindowImpl::openTakeQuadFun(int flag)
 {
-	takeQuadFun[flag] = true;
+	takeQuadFun[flag] = ravinFunction->isChecked() - 1;
 	choiceMethods->setCurrentIndex(flag);
 	on_choiceMethods_activated(flag);
 	ravinFunction->setChecked(true);

@@ -198,9 +198,9 @@ void FasterDescentImpl::sf_entered()
 	
 	QString str = trUtf8("Найден минимум. ");
 	
-	if(KvantoEraroj > D[6]){
+	if(KvantoEraroj > quanError){
 		// Слишком много ошибок.
-		str += trUtf8("Ваше количество ошибок (%1) превысило допустимый предел (%2). Начните заново.").arg(KvantoEraroj).arg(D[6]);
+		str += trUtf8("Ваше количество ошибок (%1) превысило допустимый предел (%2). Начните заново.").arg(KvantoEraroj).arg(quanError);
 		QMessageBox::information(this, trUtf8("Внимание"), str);
 		if(F->metaObject()->className() == QString("RavinaFunkcio"))
 			emit usiloPlenumis(A::FasterDescent);
