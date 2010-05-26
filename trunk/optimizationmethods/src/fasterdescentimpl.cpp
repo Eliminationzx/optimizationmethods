@@ -348,7 +348,10 @@ void FasterDescentImpl::s1_entered()
 	LogTxtBrsr->append(trUtf8("Итерация № %1.").arg(++NumeroIteracio));
 
 	if(F->metaObject()->className() == QString("RavinaFunkcio") && NumeroIteracio > 5 && KvantoEraroj <= quanError)
+	{
+		qApp->processEvents();
 		inserts_bt->click();
+	}
 	
 	qDebug()<<trUtf8("Вошёл в s1"); // Вывожу дебажную инфу на консоль.
 }
