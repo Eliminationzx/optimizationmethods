@@ -322,6 +322,7 @@ void NotWenImpl::s1_entered()
 
 	if(F->metaObject()->className() == QString("RavinaFunkcio") && NumeroIteracio > 5 && KvantoEraroj <= quanError)
 	{
+		qApp->processEvents();
 		_g_xkgradfxk->setChecked(true);
 		next1_bt->click();
 	}
