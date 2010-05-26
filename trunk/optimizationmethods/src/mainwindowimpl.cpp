@@ -120,7 +120,8 @@ void MainWindowImpl::openTakeQuadFun(int flag)
 	takeQuadFun[flag] = ravinFunction->isChecked() - 1;
 	choiceMethods->setCurrentIndex(flag);
 	on_choiceMethods_activated(flag);
-	ravinFunction->setChecked(true);
+	quadFunction->setChecked(ravinFunction->isChecked());
+	ravinFunction->setChecked(ravinFunction->isChecked() - 1);
 }
 
 //! Нажата кнопка "Далее" (1-ая страница).
@@ -295,7 +296,10 @@ void MainWindowImpl::on_choiceMethods_activated(int index)
 {
 	// TODO
 	if(takeQuadFun[index] == false)
+	{
+		quadFunction->setChecked(true);
 		ravinFunction->setCheckable(false);
+	}
 	else if(takeQuadFun[index] == true)
 		ravinFunction->setCheckable(true);
 }
