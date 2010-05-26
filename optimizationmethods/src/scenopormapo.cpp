@@ -46,7 +46,6 @@ void ScenoPorMapo::drawBackground(QPainter * painter, const QRectF & rect){
 
 void ScenoPorMapo::setScale(qreal factor ){
 	skalo = factor;
-	using namespace std;
 	update(-ampleksoMapo, -ampleksoMapo, ampleksoMapo*2, ampleksoMapo*2);
 }
 
