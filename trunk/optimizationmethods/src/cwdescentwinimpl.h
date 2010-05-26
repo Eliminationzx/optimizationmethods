@@ -30,12 +30,6 @@ protected:
 	DemonstrataQPointF PX2; 
 	//! Модификатор шага.
 	qreal ModPX;
-	/*! Флаг для проверки, была ли принята новая точка.
-	 * 
-	 * Отступаю от классического конечного автомата, что бы избежать взрыва 
-	 * состояний.
-	 */
-	 bool acpNP;
 public:
 	/*! Конструктор.
 	 * @param f Указатель на целевую функцию. CWdescentWinImpl не заботится о назначении Funkcio родителя.
@@ -204,16 +198,31 @@ namespace SinkoLauxKoordinatoj{
 	 */
 	class s11s12Transiro: public QSignalTransition{
 		private:
-			bool * acpnp;
+			DemonstrataQPointF * bp;
+			DemonstrataQPointF * mp;
+			DemonstrataQPointF * px1;
+			DemonstrataQPointF * px2;
+			qreal s;//!< Точность.
 		public:
-			s11s12Transiro( bool * acpNP, QState * sourceState = 0)
-				: QSignalTransition(sourceState), acpnp(acpNP){};
-			s11s12Transiro( bool * acpNP,
-			              QObject * sender,
-			              const char * signal,
-			              QState * sourceState = 0
-			            )
-				: QSignalTransition(sender, signal, sourceState), acpnp(acpNP){};
+			s11s12Transiro( DemonstrataQPointF * BP,
+			                DemonstrataQPointF * MP,
+			                DemonstrataQPointF * pX1,
+			                DemonstrataQPointF * pX2,
+			                qreal strikteco,
+			                QState * sourceState = 0)
+				: QSignalTransition(sourceState), bp(BP), mp(MP), px1(pX1), px2(pX2),
+					s(strikteco){};
+			s11s12Transiro( DemonstrataQPointF * BP,
+			                DemonstrataQPointF * MP,
+			                DemonstrataQPointF * pX1,
+			                DemonstrataQPointF * pX2,
+			                qreal strikteco,
+			                QObject * sender,
+			                const char * signal,
+			                QState * sourceState = 0
+			              )
+				: QSignalTransition(sender, signal, sourceState), bp(BP), mp(MP),
+					px1(pX1), px2(pX2), s(strikteco){};
 		protected:
 			//! Перход срабатывает, только если выбран шаг в + по Х1 
     	bool eventTest(QEvent *e);
@@ -306,27 +315,25 @@ namespace SinkoLauxKoordinatoj{
 	 */
 	class s11sfTransiro: public QSignalTransition{
 		private:
-			DemonstrataQPointF * bp;
-			DemonstrataQPointF * mp;
+			QPointF * px1;
+			QPointF * px2;
 			qreal s;//!< Точность.
-			bool * acpnp;
 		public:
-			s11sfTransiro( bool * acpNP,
-			               DemonstrataQPointF * BP,
-			               DemonstrataQPointF * MP,
+			s11sfTransiro( QPointF * pX1,
+			               QPointF * pX2,
 			               qreal strikteco,
 			               QState * sourceState = 0
-			             ) : QSignalTransition(sourceState), bp(BP), mp(MP),
-			                 s(strikteco), acpnp(acpNP){};
-			s11sfTransiro( bool * acpNP,
-			               DemonstrataQPointF * BP,
-			               DemonstrataQPointF * MP,
+			             ) : QSignalTransition(sourceState), px1(pX1),
+				px2(pX2), s(strikteco){};
+			s11sfTransiro( QPointF * pX1,
+			               QPointF * pX2,
 			               qreal strikteco,
 			               QObject * sender,
 			               const char * signal,
 			               QState * sourceState = 0
-			             ) : QSignalTransition(sender, signal, sourceState),
-			                 bp(BP), mp(MP), s(strikteco), acpnp(acpNP){};
+			             )
+				: QSignalTransition(sender, signal, sourceState), px1(pX1), px2(pX2),
+					s(strikteco){};
 		protected:
     	bool eventTest(QEvent *e);
 	};	
@@ -339,81 +346,29 @@ namespace SinkoLauxKoordinatoj{
 		private:
 			DemonstrataQPointF * bp;
 			DemonstrataQPointF * mp;
+			QPointF * px1;
+			QPointF * px2;
 			qreal s;//!< Точность.
-			bool * acpnp;
 		public:
-			s11s1Transiro( bool * acpNP,
-			               DemonstrataQPointF * BP,
+			s11s1Transiro( DemonstrataQPointF * BP,
 			               DemonstrataQPointF * MP,
+			               QPointF * pX1,
+			               QPointF * pX2,
 			               qreal strikteco,
-			               QState * sourceState = 0
-			             ) : QSignalTransition(sourceState), bp(BP), mp(MP),
-			                 s(strikteco), acpnp(acpNP){};
-			s11s1Transiro( bool * acpNP,
-			               DemonstrataQPointF * BP,
+			               QState * sourceState = 0)
+				: QSignalTransition(sourceState), bp(BP), mp(MP), px1(pX1), px2(pX2),
+					s(strikteco){};
+			s11s1Transiro( DemonstrataQPointF * BP,
 			               DemonstrataQPointF * MP,
+			               DemonstrataQPointF * pX1,
+			               DemonstrataQPointF * pX2,
 			               qreal strikteco,
 			               QObject * sender,
 			               const char * signal,
 			               QState * sourceState = 0
-			             ) : QSignalTransition(sender, signal, sourceState),
-			                 bp(BP), mp(MP), s(strikteco), acpnp(acpNP){};
-		protected:
-    	bool eventTest(QEvent *e);
-	};	
-	/*! Переход от s12 к sf.
-	 * 
-	 * При создании требует указатели на переменные необходимые для принятия
-	 * решения о переходе.
-	 */
-	class s12sfTransiro: public QSignalTransition{
-		private:
-		  DemonstrataQPointF * pX1; //!< Шаг по х1.
-		  DemonstrataQPointF * pX2; //!< Шаг по х2.
-		  qreal s;//!< Точность.
-		public:
-			s12sfTransiro( DemonstrataQPointF * PX1,
-			               DemonstrataQPointF * PX2,
-			               qreal strikteco,
-			               QState * sourceState = 0
-			             ) : QSignalTransition(sourceState), pX1(PX1), pX2(PX2),
-			                 s(strikteco){};
-			s12sfTransiro( DemonstrataQPointF * PX1,
-			               DemonstrataQPointF * PX2,
-			               qreal strikteco,
-			               QObject * sender,
-			               const char * signal,
-			               QState * sourceState = 0
-			             ) : QSignalTransition(sender, signal, sourceState), pX1(PX1),
-			                 pX2(PX2), s(strikteco){};
-		protected:
-    	bool eventTest(QEvent *e);
-	};	
-	/*! Переход от s12 к s1.
-	 * 
-	 * При создании требует указатели на переменные необходимые для принятия
-	 * решения о переходе.
-	 */
-	class s12s1Transiro: public QSignalTransition{
-		private:
-		  DemonstrataQPointF * pX1; //!< Шаг по х1.
-		  DemonstrataQPointF * pX2; //!< Шаг по х2.
-		  qreal s;//!< Точность.
-		public:
-			s12s1Transiro( DemonstrataQPointF * PX1,
-			               DemonstrataQPointF * PX2,
-			               qreal strikteco,
-			               QState * sourceState = 0
-			             ) : QSignalTransition(sourceState), pX1(PX1), pX2(PX2),
-			                 s(strikteco){};
-			s12s1Transiro( DemonstrataQPointF * PX1,
-			               DemonstrataQPointF * PX2,
-			               qreal strikteco,
-			               QObject * sender,
-			               const char * signal,
-			               QState * sourceState = 0
-			             ) : QSignalTransition(sender, signal, sourceState), pX1(PX1),
-			                 pX2(PX2), s(strikteco){};
+			             )
+				: QSignalTransition(sender, signal, sourceState), bp(BP), mp(MP),
+					px1(pX1), px2(pX2), s(strikteco){};
 		protected:
     	bool eventTest(QEvent *e);
 	};	
