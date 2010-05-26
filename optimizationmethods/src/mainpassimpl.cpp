@@ -4,7 +4,7 @@ mainPassImpl::mainPassImpl(int method, QWidget * parent, Qt::WFlags f)
 	: QDialog(parent, f)
 {
 	setupUi(this);
-	
+
 	QVariant var;
 	var.setValue(0);
 	choiceMethods->addItem(trUtf8("Метод покоординатного спуска с дискретным шагом"), var);
@@ -27,6 +27,15 @@ mainPassImpl::mainPassImpl(int method, QWidget * parent, Qt::WFlags f)
 void mainPassImpl::on_Ok_clicked()
 {
 	// TODO
+/*	QByteArray data;
+	QFile file(QDir::toNativeSeparators("variants/ps"));
+	if(file.open(QIODevice::ReadOnly))
+	{
+		QTextStream stream(&file);
+		data.append(stream.readLine());
+	}
+	QCryptographicHash::hash(Password->text().toUtf8(), QCryptographicHash::Md5)
+*/
 	int flag = choiceMethods->currentIndex();
 	if (Password->text() == "qwerty")
 	{
