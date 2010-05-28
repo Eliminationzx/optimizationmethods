@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>751</width>
+    <width>764</width>
     <height>473</height>
    </rect>
   </property>
@@ -34,11 +34,11 @@
     <item row="0" column="0">
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>3</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="quadFunction">
        <attribute name="title">
-        <string>Квдратичная функция</string>
+        <string>Квадратичная функция</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_8">
         <item row="0" column="0">
@@ -747,7 +747,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>751</width>
+     <width>764</width>
      <height>26</height>
     </rect>
    </property>
