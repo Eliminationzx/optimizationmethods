@@ -216,7 +216,7 @@ void FasterDescentImpl::sf_entered()
 		}
 		else if(F->metaObject()->className() == QString("RavinaFunkcio"))
 		{
-			str += trUtf8("Позовите преподавателя.");
+			str += trUtf8("Позовите преподавателя. Количество ошибок: %1.").arg(KvantoEraroj);
 		}
 		QMessageBox::information(this, trUtf8("Поздравляем"), str);
 	}
