@@ -384,19 +384,38 @@ void MainWindowImpl::on_comboBox_activated(int index)
 	// TODO
 	QVector<double> data(13);
 	data = ReadVariants(0, index);
-	a->setText(QString::number(data[0]));
-	b->setText(QString::number(data[1]));
-	c->setText(QString::number(data[2]));
-	d->setText(QString::number(data[3]));
-	e->setText(QString::number(data[4]));
-	f->setText(QString::number(data[5]));
-	g->setText(QString::number(data[6]));
-	accuracy->setText(QString::number(data[7]));
-	stepx1->setText(QString::number(data[8]));
-	stepx2->setText(QString::number(data[9]));
-	stepChange->setText(QString::number(data[10]));
-	x1->setText(QString::number(data[11]));
-	x2->setText(QString::number(data[12]));
+	if(AnalysisDirVariants(0).size() > index)
+	{
+		a->setText(QString::number(data[0]));
+		b->setText(QString::number(data[1]));
+		c->setText(QString::number(data[2]));
+		d->setText(QString::number(data[3]));
+		e->setText(QString::number(data[4]));
+		f->setText(QString::number(data[5]));
+		g->setText(QString::number(data[6]));
+		accuracy->setText(QString::number(data[7]));
+		stepx1->setText(QString::number(data[8]));
+		stepx2->setText(QString::number(data[9]));
+		stepChange->setText(QString::number(data[10]));
+		x1->setText(QString::number(data[11]));
+		x2->setText(QString::number(data[12]));
+	}
+	else
+	{
+		a->setText("");
+		b->setText("");
+		c->setText("");
+		d->setText("");
+		e->setText("");
+		f->setText("");
+		g->setText("");
+		accuracy->setText("");
+		stepx1->setText("");
+		stepx2->setText("");
+		stepChange->setText("");
+		x1->setText("");
+		x2->setText("");
+	}
 }
 
 // Выбран существующий вариант в овражной функции.
@@ -405,14 +424,28 @@ void MainWindowImpl::on_comboBox_ravin_activated(int index)
 	// TODO
 	QVector<double> data(8);
 	data = ReadVariants(1, index);
-	a_ravin->setText(QString::number(data[0]));
-	b_ravin->setText(QString::number(data[1]));
-	accuracy_ravin->setText(QString::number(data[2]));
-	stepx1_ravin->setText(QString::number(data[3]));
-	stepx2_ravin->setText(QString::number(data[4]));
-	stepChange_ravin->setText(QString::number(data[5]));
-	x1_ravin->setText(QString::number(data[6]));
-	x2_ravin->setText(QString::number(data[7]));
+	if(AnalysisDirVariants(1).size() > index)
+	{
+		a_ravin->setText(QString::number(data[0]));
+		b_ravin->setText(QString::number(data[1]));
+		accuracy_ravin->setText(QString::number(data[2]));
+		stepx1_ravin->setText(QString::number(data[3]));
+		stepx2_ravin->setText(QString::number(data[4]));
+		stepChange_ravin->setText(QString::number(data[5]));
+		x1_ravin->setText(QString::number(data[6]));
+		x2_ravin->setText(QString::number(data[7]));
+	}
+	else
+	{
+		a_ravin->setText("");
+		b_ravin->setText("");
+		accuracy_ravin->setText("");
+		stepx1_ravin->setText("");
+		stepx2_ravin->setText("");
+		stepChange_ravin->setText("");
+		x1_ravin->setText("");
+		x2_ravin->setText("");
+	}
 }
 
 
