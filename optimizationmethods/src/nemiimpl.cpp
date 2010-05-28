@@ -280,7 +280,7 @@ void NeMiImpl::sf_entered(){
 		str += trUtf8("Вы прошли тест. ");
 		if(F->metaObject()->className() == QString("KvadratigantoFunkcio"))
 		{
-			str += trUtf8("Сообщите преподавателю и перейдите к овражной функции.");
+			str += trUtf8("Сообщите преподавателю и перейдите к овражной функции. Количество ошибок: %1.").arg(KvantoEraroj);
 			emit usiloPlenumis(A::NeMi);
 		}
 		else if(F->metaObject()->className() == QString("RavinaFunkcio"))
