@@ -27,17 +27,18 @@ mainPassImpl::mainPassImpl(int method, QWidget * parent, Qt::WFlags f)
 void mainPassImpl::on_Ok_clicked()
 {
 	// TODO
-/*	QByteArray data;
+	QByteArray data;
 	QFile file(QDir::toNativeSeparators("variants/ps"));
 	if(file.open(QIODevice::ReadOnly))
 	{
 		QTextStream stream(&file);
-		data.append(stream.readLine());
+		stream.setCodec("UTF-8");
+		data.append(stream.readAll());
 	}
-	QCryptographicHash::hash(Password->text().toUtf8(), QCryptographicHash::Md5)
-*/
+	QByteArray passInEdit = QCryptographicHash::hash(Password->text().toUtf8(), QCryptographicHash::Md5);
+	
 	int flag = choiceMethods->currentIndex();
-	if (Password->text() == "qwerty")
+	if (passInEdit == data)
 	{
 		emit setFlag(flag);
 		this->close();
