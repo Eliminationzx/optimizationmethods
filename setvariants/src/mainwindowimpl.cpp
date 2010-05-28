@@ -106,6 +106,7 @@ bool MainWindowImpl::WritePass(const QByteArray data)
 	if(file.open(QIODevice::WriteOnly))
 	{
 		QTextStream stream(&file);
+		stream.setCodec("UTF-8");
 		stream<<data;
 		if(stream.status() != QTextStream::Ok)
 		{
@@ -193,7 +194,8 @@ QByteArray MainWindowImpl::ReadPass()
 	if(file.open(QIODevice::ReadOnly))
 	{
 		QTextStream stream(&file);
-		data.append(stream.readLine());
+		stream.setCodec("UTF-8");
+		data.append(stream.readAll());
 	}
 	else
 		data.fill(NULL);
@@ -355,9 +357,9 @@ void MainWindowImpl::on_save_button_err_clicked()
 void MainWindowImpl::on_save_button_pass_clicked()
 {
 	// TODO
-	QByteArray passInFile = QCryptographicHash::hash(oldPass->text().toUtf8(), QCryptographicHash::Md5);
+	QByteArray passInEdit = QCryptographicHash::hash(oldPass->text().toUtf8(), QCryptographicHash::Md5);
 	
-	if(ReadPass() == passInFile/* || ReadPass() == ""*/)
+	if(ReadPass() == passInEdit || ReadPass() == "")
 	{
 		if(newPass->text() == newPassRep->text())
 		{
