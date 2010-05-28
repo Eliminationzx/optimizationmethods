@@ -666,7 +666,7 @@
   </action>
   <action name="about">
    <property name="text">
-    <string>О програме...</string>
+    <string>О программе...</string>
    </property>
   </action>
   <action name="allow">
