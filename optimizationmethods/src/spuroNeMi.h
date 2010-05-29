@@ -40,17 +40,17 @@ public slots:
 	 */
 	void finisxiIteracio();
 	//! Установить первую точку.
-	void difiniP1(QPointF);
+	void difiniP1(QPointF &);
 	//! Установить вторую точку.
-	void difiniP2(QPointF);
+	void difiniP2(QPointF &);
 	//! Установить третью точку.
-	void difiniP3(QPointF);
+	void difiniP3(QPointF &);
 	//! Установить точку отражения.
-	void difiniPRespegulo(QPointF);
+	void difiniPRespegulo(QPointF &);
 	//! Установить точку растяжения.
-	void difiniPDilato(QPointF);
+	void difiniPDilato(QPointF &);
 	//! Установить точку сжатия.
-	void difiniPKompakto(QPointF);
+	void difiniPKompakto(QPointF &);
 	//! Установить базовый цвет.
 	void difiniBazaKoloro(QColor bazaKoloro);
 	//! Установить текущий цвет.
