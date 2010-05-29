@@ -212,8 +212,8 @@ void MainWindowImpl::on_next_button_2_clicked()
 //			AW = new HuGiImpl(funck, &data, this, Qt::Window);
 //			break;
 		case A::NeMi:
-//			AW = new NeMiImpl(funck, &data, this, Qt::Window);
-//			break;
+			AW = new NeMiImpl(funck, &data, this, Qt::Window);
+			break;
 		case A::NotWen:
 			AW = new NotWenImpl(funck, &data, this, Qt::Window);
 			break;
