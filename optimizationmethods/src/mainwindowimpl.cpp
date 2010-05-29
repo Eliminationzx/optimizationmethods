@@ -133,6 +133,17 @@ void MainWindowImpl::on_next_button_clicked()
 	{
 		methFunc[1] = 0;
 		
+		c->setVisible(true);
+		d->setVisible(true);
+		e->setVisible(true);
+		f->setVisible(true);
+		g->setVisible(true);
+		label_4->setVisible(true);
+		label_5->setVisible(true);
+		label_6->setVisible(true);
+		label_7->setVisible(true);
+		label_8->setVisible(true);
+		
 		stackedWidget->setCurrentIndex(1);
 		QPixmap icon(":icon/quadFunc.bmp");
 		func->setPixmap(icon);
