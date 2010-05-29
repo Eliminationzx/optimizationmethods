@@ -23,7 +23,7 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>Методы оптимизации 2010 - задание вариантов</string>
+   <string>МОСТ - задание вариантов</string>
   </property>
   <property name="windowIcon">
    <iconset resource="data.qrc">
@@ -748,14 +748,8 @@
      <x>0</x>
      <y>0</y>
      <width>764</width>
-     <height>26</height>
+     <height>23</height>
     </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Times New Roman</family>
-     <pointsize>12</pointsize>
-    </font>
    </property>
    <widget class="QMenu" name="menu">
     <property name="title">
@@ -769,7 +763,7 @@
     </property>
     <addaction name="help"/>
     <addaction name="separator"/>
-    <addaction name="about_prog"/>
+    <addaction name="about"/>
    </widget>
    <addaction name="menu"/>
    <addaction name="info"/>
@@ -790,7 +784,7 @@
     <string>F1</string>
    </property>
   </action>
-  <action name="about_prog">
+  <action name="about">
    <property name="text">
     <string>О программе...</string>
    </property>

@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="icon">
+    <file>icon_big.bmp</file>
     <file>icon.bmp</file>
   </qresource>
 </RCC>
