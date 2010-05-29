@@ -451,4 +451,11 @@ void MainWindowImpl::on_comboBox_ravin_activated(int index)
 	}
 }
 
+//! Выбран пункт меню "Справка".
+void MainWindowImpl::on_help_activated()
+{
+	HelpBrowser * hb = new HelpBrowser( "doc/", "help.htm", this);
+	hb->resize(800, 600);
+	hb->show();
+}
 
