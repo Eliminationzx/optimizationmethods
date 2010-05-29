@@ -12,6 +12,7 @@
 
 #include "funkcio.h"
 #include "Konstantoj.h"
+#include "HelpBrowser.h"
 
 #include "mainpassimpl.h"
 #include "cwdescentwinimpl.h"
@@ -76,8 +77,11 @@ public:
 	MainWindowImpl( QWidget * parent = 0, Qt::WFlags f = 0 );
 
 private slots:
-	//! help браузер
-	void on_help_activated();		
+	//! Слот класса, получающий сигнал при выборе пункта меню "Справка".
+	/*! Выводит справку в браузерном окне.
+	 * Страница со справкой лежит во вложенной папке doc.
+	 */
+	void on_help_activated();
 
 	//! Слот класса, получающий сигнал при выборе ввода информации вручную.
 	void on_inArm_clicked(bool checked);

@@ -1,5 +1,4 @@
 #include "mainwindowimpl.h"
-#include "HelpBrowser.h"
 //
 //! Конструктор класса.
 MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WFlags f) 
