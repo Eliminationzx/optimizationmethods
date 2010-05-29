@@ -9,7 +9,7 @@
 //
 class funkcio;
 const int a = 1;
-const int b = 1;
+const int b = 2;
 //
 //! Окно для прохождения метода Нелдора-Мида.
 class NeMiImpl : public AlgoritmoWin, public Ui::NeMi
