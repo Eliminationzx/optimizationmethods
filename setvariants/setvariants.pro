@@ -6,6 +6,6 @@ OBJECTS_DIR = build
 MOC_DIR = build
 UI_DIR = build
 FORMS = ui/mainwindow.ui
-HEADERS = src/mainwindowimpl.h
+HEADERS = src/mainwindowimpl.h src/HelpBrowser.h
 SOURCES = src/mainwindowimpl.cpp src/main.cpp
 RESOURCES += ui/data.qrc

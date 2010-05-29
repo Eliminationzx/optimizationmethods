@@ -8,6 +8,7 @@
 #include <QVector>
 #include <QVariant>
 #include <QCryptographicHash>
+#include "HelpBrowser.h"
 #include "ui_mainwindow.h"
 //
 //! Производный класс от класса формы приложения setvariants.
@@ -105,6 +106,12 @@ public:
 	MainWindowImpl( QWidget * parent = 0, Qt::WFlags f = 0 );
 
 private slots:
+	//! Слот класса, получающий сигнал при выборе пункта меню "Справка".
+	/*! Выводит справку в браузерном окне.
+	 * Страница со справкой лежит во вложенной папке doc.
+	 */
+	void on_help_activated();
+
 	//! Слот класса, получающий сигнал при нажатии кнопки "Сохранить" при установке пароля.
 	/*! В своей работе использует метод WritePass(const QByteArray data).
 	 * Считывает данные из формы и записывает в файл.
