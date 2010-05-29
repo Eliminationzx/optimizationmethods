@@ -51,6 +51,10 @@ NeMiImpl::NeMiImpl(  funkcio *f, QVector<double> *d, QWidget * parent, Qt::WFlag
 	connect(sP2, SIGNAL(proviziXValoro(const QString &)), x1_t2_lb, SLOT(setText(const QString &)));
 	connect(sP2, SIGNAL(proviziYValoro(const QString &)), x2_t2_lb, SLOT(setText(const QString &)));
 	connect(sP2, SIGNAL(proviziValoroFukcioEnPointo(const QString &)), fsign_b2_lb, SLOT(setText(const QString &)));
+	SignalantoPorPointF * sP3 = new SignalantoPorPointF(&P3, F, this);
+	connect(sP3, SIGNAL(proviziXValoro(const QString &)), x1_t3_lb, SLOT(setText(const QString &)));
+	connect(sP3, SIGNAL(proviziYValoro(const QString &)), x2_t3_lb, SLOT(setText(const QString &)));
+	connect(sP3, SIGNAL(proviziValoroFukcioEnPointo(const QString &)), fsign_p_lb, SLOT(setText(const QString &)));
 	SignalantoPorPointF * sPR = new SignalantoPorPointF(&PR, F, this);
 	connect(sPR, SIGNAL(proviziXValoro(const QString &)), x1_totr_lb, SLOT(setText(const QString &)));
 	connect(sPR, SIGNAL(proviziYValoro(const QString &)), x2_totr_lb, SLOT(setText(const QString &)));
@@ -117,8 +121,40 @@ NeMiImpl::NeMiImpl(  funkcio *f, QVector<double> *d, QWidget * parent, Qt::WFlag
 	sss1->setTargetState(s1);
 	sssfTransiro * sssf = new sssfTransiro( strikteco, &Ph, &Pl, &Pm, &Pc, F, next2_bt, SIGNAL(clicked()), ss);
 	sssf->setTargetState(sf);
-	
-	
+//---Создаю переход по действию "Начать заново"
+	connect(so->addTransition(recomenci_acn, SIGNAL(activated()), s1), SIGNAL(triggered()), SLOT(init()));
+	connect(sf->addTransition(recomenci_acn, SIGNAL(activated()), s1), SIGNAL(triggered()), SLOT(init()));
+//---Создаю переходы не имеющие цели. С помощью них фиксирую ошибки пользователя
+	QSignalTransition * te1 = new QSignalTransition(reflexion_bt, SIGNAL(clicked()));
+	so->addTransition(te1);
+	connect(te1, SIGNAL(triggered()), SLOT(registriEraro()));
+	QSignalTransition * te2 = new QSignalTransition(stretching_bt, SIGNAL(clicked()));
+	so->addTransition(te2);
+	connect(te2, SIGNAL(triggered()), SLOT(registriEraro()));
+	QSignalTransition * te3 = new QSignalTransition(compression_bt, SIGNAL(clicked()));
+	so->addTransition(te3);
+	connect(te3, SIGNAL(triggered()), SLOT(registriEraro()));
+	QSignalTransition * te4 = new QSignalTransition(reduction_bt, SIGNAL(clicked()));
+	so->addTransition(te4);
+	connect(te4, SIGNAL(triggered()), SLOT(registriEraro()));
+	QSignalTransition * te5 = new QSignalTransition(end_bt, SIGNAL(clicked()));
+	so->addTransition(te5);
+	connect(te5, SIGNAL(triggered()), SLOT(registriEraro()));
+
+//---Настраиваю некоторые состояния, чтоб затирали надписи со значениями точек, дабы не смущать пользователя.
+	s1->assignProperty(x1_totr_lb, "text", trUtf8(""));
+	s1->assignProperty(x2_totr_lb, "text", trUtf8(""));
+	s1->assignProperty(fsign_totr_lb, "text", trUtf8(""));
+	s1->assignProperty(x1_tras_lb, "text", trUtf8(""));
+	s1->assignProperty(x2_tras_lb, "text", trUtf8(""));
+	s1->assignProperty(fsign_tras_lb, "text", trUtf8(""));
+
+//---Добавляю состояния в автомат и запускаю его.------------------------------
+	SM->addState(so);
+	SM->addState(sf);
+	SM->setInitialState(so);
+	init();
+	SM->start();
 //=============================================================================
 }
 //
