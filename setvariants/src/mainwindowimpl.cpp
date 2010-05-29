@@ -302,7 +302,7 @@ void MainWindowImpl::on_save_button_clicked()
 	{
 		comboBox->clear();
 		initializationQuadComboBox();
-		comboBox->setCurrentIndex(data[0]);
+		on_comboBox_activated(data[0]);
 		statusbar->showMessage(trUtf8("Вариант успешно записан"), 1000);
 	}
 	else
@@ -327,7 +327,7 @@ void MainWindowImpl::on_save_button_ravin_clicked()
 	{
 		comboBox_ravin->clear();
 		initializationRavinComboBox();
-		comboBox_ravin->setCurrentIndex(data[0]);
+		on_comboBox_ravin_activated(data[0]);
 		statusbar->showMessage(trUtf8("Вариант успешно записан"), 1000);
 	}
 	else
@@ -347,6 +347,7 @@ void MainWindowImpl::on_save_button_err_clicked()
 	data[5] = NotWen->text().toInt();
 	if(WriteError(data))
 	{
+		initializationError();
 		statusbar->showMessage(trUtf8("Информация успешно записана"), 1000);
 	}
 	else
