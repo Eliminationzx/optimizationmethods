@@ -59,10 +59,10 @@ NeMiImpl::NeMiImpl(  funkcio *f, QVector<double> *d, QWidget * parent, Qt::WFlag
 	connect(sPR, SIGNAL(proviziXValoro(const QString &)), x1_totr_lb, SLOT(setText(const QString &)));
 	connect(sPR, SIGNAL(proviziYValoro(const QString &)), x2_totr_lb, SLOT(setText(const QString &)));
 	connect(sPR, SIGNAL(proviziValoroFukcioEnPointo(const QString &)),fsign_totr_lb , SLOT(setText(const QString &)));
-	SignalantoPorPointF * sPK = new SignalantoPorPointF(&PK, F, this);
-	connect(sPK, SIGNAL(proviziXValoro(const QString &)), x1_tras_lb, SLOT(setText(const QString &)));
-	connect(sPK, SIGNAL(proviziYValoro(const QString &)), x2_tras_lb, SLOT(setText(const QString &)));
-	connect(sPK, SIGNAL(proviziValoroFukcioEnPointo(const QString &)),fsign_tras_lb , SLOT(setText(const QString &)));
+	SignalantoPorPointF * sPD = new SignalantoPorPointF(&PD, F, this);
+	connect(sPD, SIGNAL(proviziXValoro(const QString &)), x1_tras_lb, SLOT(setText(const QString &)));
+	connect(sPD, SIGNAL(proviziYValoro(const QString &)), x2_tras_lb, SLOT(setText(const QString &)));
+	connect(sPD, SIGNAL(proviziValoroFukcioEnPointo(const QString &)),fsign_tras_lb , SLOT(setText(const QString &)));
 //=============================================================================
 	
 //===Создаю конечный автомат.==================================================
