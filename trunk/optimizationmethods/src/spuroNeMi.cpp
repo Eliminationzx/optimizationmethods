@@ -64,24 +64,24 @@ void spuroNeMi::senspurigi(){
 }
 
 
-void spuroNeMi::difiniP1(QPointF p){
+void spuroNeMi::difiniP1(QPointF & p){
 	P1 = p;
 	// Центрирую карту на последней точке.
 	this->scene()->views()[0]->centerOn(P1 * skalo);
 }
 
 
-void spuroNeMi::difiniP2(QPointF p){
+void spuroNeMi::difiniP2(QPointF & p){
 	P2 = p;
 }
 
 
-void spuroNeMi::difiniP3(QPointF p){
+void spuroNeMi::difiniP3(QPointF & p){
 	P3 = p;
 }
 
 
-void spuroNeMi::difiniPRespegulo(QPointF p){
+void spuroNeMi::difiniPRespegulo(QPointF & p){
 	// Создаю полигон Хl, p, Хm.
 	if(Length(p - P1) < Length(p - P2)){
 		if(Length(p - P1) < Length(p - P3)){
@@ -115,11 +115,11 @@ void spuroNeMi::difiniPRespegulo(QPointF p){
 }
 
 
-void spuroNeMi::difiniPDilato(QPointF p){
+void spuroNeMi::difiniPDilato(QPointF & p){
 	SP<<p<<SP.first();
 }
 
-void spuroNeMi::difiniPKompakto(QPointF p){
+void spuroNeMi::difiniPKompakto(QPointF & p){
 	SP.clear();
 	difiniPRespegulo(p);
 }
