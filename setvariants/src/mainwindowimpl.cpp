@@ -455,7 +455,13 @@ void MainWindowImpl::on_comboBox_ravin_activated(int index)
 void MainWindowImpl::on_help_activated()
 {
 	HelpBrowser * hb = new HelpBrowser( "doc/", "help.htm", this);
-	hb->resize(800, 600);
+	hb->resize(900, 600);
 	hb->show();
 }
 
+//! Выбран пункт меню "О программе".
+void MainWindowImpl::on_about_activated()
+{
+	aboutProgramImpl * about = new aboutProgramImpl(this);
+	about->show();
+}

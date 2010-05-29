@@ -9,6 +9,7 @@
 #include <QVariant>
 #include <QCryptographicHash>
 #include "HelpBrowser.h"
+#include "aboutprogramimpl.h"
 #include "ui_mainwindow.h"
 //
 //! Производный класс от класса формы приложения setvariants.
@@ -106,6 +107,12 @@ public:
 	MainWindowImpl( QWidget * parent = 0, Qt::WFlags f = 0 );
 
 private slots:
+	//! Слот класса, получающий сигнал при выборе пункта меню "О программе".
+	/*! Выводит форму с данными о программе и об авторах.
+	 * Страница с текстом лицензии лежит во вложенной папке doc.
+	 */
+	void on_about_activated();
+
 	//! Слот класса, получающий сигнал при выборе пункта меню "Справка".
 	/*! Выводит справку в браузерном окне.
 	 * Страница со справкой лежит во вложенной папке doc.
