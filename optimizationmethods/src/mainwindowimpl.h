@@ -13,6 +13,7 @@
 #include "funkcio.h"
 #include "Konstantoj.h"
 #include "HelpBrowser.h"
+#include "aboutprogramimpl.h"
 
 #include "mainpassimpl.h"
 #include "cwdescentwinimpl.h"
@@ -77,6 +78,12 @@ public:
 	MainWindowImpl( QWidget * parent = 0, Qt::WFlags f = 0 );
 
 private slots:
+	//! Слот класса, получающий сигнал при выборе пункта меню "О программе".
+	/*! Выводит форму с данными о программе и об авторах.
+	 * Страница с текстом лицензии лежит во вложенной папке doc.
+	 */
+	void on_about_activated();
+
 	//! Слот класса, получающий сигнал при выборе пункта меню "Справка".
 	/*! Выводит справку в браузерном окне.
 	 * Страница со справкой лежит во вложенной папке doc.

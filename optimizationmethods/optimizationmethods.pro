@@ -13,7 +13,8 @@ FORMS = ui/mainwindow.ui \
  ui/FasterDescent.ui \
  ui/HuGi.ui \
  ui/NeMi.ui \
- ui/NotWen.ui
+ ui/NotWen.ui \
+ ui/aboutProgram.ui
 HEADERS = src/mainwindowimpl.h \
  src/funkcio.h \
  src/mapoporfunkcioimpl.h \
@@ -33,7 +34,8 @@ HEADERS = src/mainwindowimpl.h \
  src/spurosinkolauxkoordinatoj_md.h \
  src/spuroNeMi.h \
  src/HelpBrowser.h \
- src/notwenimpl.h
+ src/notwenimpl.h \
+ src/aboutprogramimpl.h
 SOURCES = src/mainwindowimpl.cpp \
  src/main.cpp \
  src/funkcio.cpp \
@@ -52,5 +54,6 @@ SOURCES = src/mainwindowimpl.cpp \
  src/nemiimpl.cpp \
  src/spurosinkolauxkoordinatoj_md.cpp \
  src/spuroNeMi.cpp \
- src/notwenimpl.cpp
+ src/notwenimpl.cpp \
+ src/aboutprogramimpl.cpp
 RESOURCES += ui/data.qrc

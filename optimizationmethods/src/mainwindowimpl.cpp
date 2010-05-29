@@ -291,6 +291,13 @@ void MainWindowImpl::on_help_activated()
 	hb->show();
 }
 
+//! Выбран пункт меню "О программе".
+void MainWindowImpl::on_about_activated()
+{
+	aboutProgramImpl * about = new aboutProgramImpl(this);
+	about->show();
+}
+
 //! Выбран пункт меню "Разрешить функцию".
 void MainWindowImpl::on_allow_activated()
 {
