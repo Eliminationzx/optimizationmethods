@@ -16,51 +16,54 @@ QString AlgoritmoWin::textoFunkcio(){
 	if(F->metaObject()->className() == QString("KvadratigantoFunkcio"))
 		if (F->getA()){
 			if (F->getA() != 1){
-				formulo += "A*";
+				formulo += trUtf8("%1*").arg(F->getA());
 			}
 			if (F->getB()){
 				formulo += "(";
 			}
 			formulo += "x<span style=\" vertical-align:sub;\">1</span>";
 			if (F->getB()){
-				formulo += "- B)";
+				formulo += trUtf8("- %1)").arg(F->getB());
 			}
 			formulo += "<span style=\" vertical-align:super;\">2</span>";
 		}
 		if (F->getC()){
 			formulo += " + ";
 			if (F->getC() != 1){
-				formulo += "C*";
+				formulo += trUtf8("%1*").arg(F->getC());
 			}
 			if (F->getD()){
 				formulo += "(";
 			}
 			formulo += "x<span style=\" vertical-align:sub;\">2</span>";
 			if (F->getD()){
-				formulo += "- D)";
+				formulo += trUtf8("- %1)").arg(F->getD());
 			}
 			formulo += "<span style=\" vertical-align:super;\">2</span>";
 		}
 		if (F->getE()){
+			formulo += " + ";
 			if (F->getE()!=1){
-				formulo += " + E*";
+				formulo += trUtf8("%1*").arg(F->getE());
 			}
 			if (F->getF()){
 				formulo += " (";
 			}
 			formulo += "x<span style=\" vertical-align:sub;\">1</span>";
 			if (F->getF()){
-				formulo += " - F) ";
+				formulo += trUtf8(" - %1) ").arg(F->getF());
 			}
+			formulo += "*";
 			if (F->getG()){
 				formulo += " (";
 			}
 			formulo += "x<span style=\" vertical-align:sub;\">2</span>";
 			if (F->getG()){
-				formulo += " - G) ";
+				formulo += trUtf8(" - %1) ").arg(F->getG());
 			}
 		}
 	else if(F->metaObject()->className() == QString("RavinaFunkcio"))
 		;
 	formulo += "</p></body></html>";
+	return formulo;
 }
