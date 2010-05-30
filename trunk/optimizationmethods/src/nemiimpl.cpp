@@ -64,7 +64,17 @@ NeMiImpl::NeMiImpl(  funkcio *f, QVector<double> *d, QWidget * parent, Qt::WFlag
 	connect(sPD, SIGNAL(proviziYValoro(const QString &)), x2_tras_lb, SLOT(setText(const QString &)));
 	connect(sPD, SIGNAL(proviziValoroFukcioEnPointo(const QString &)),fsign_tras_lb , SLOT(setText(const QString &)));
 //=============================================================================
-	
+
+//===Соединяю точки и карту====================================================
+	connect(sP1, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniP1(QPointF &)));
+	connect(sP2, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniP2(QPointF &)));
+	connect(sP3, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniP3(QPointF &)));
+	connect(sPR, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniPRespegulo(QPointF &)));
+	connect(sPD, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniPDilato(QPointF &)));
+	SignalantoPorPointF * sPK = new SignalantoPorPointF(&PK, F, this);
+	connect(sPK, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniPKompakto(QPointF &)));
+//=============================================================================
+
 //===Создаю конечный автомат.==================================================
 	QStateMachine * SM = new QStateMachine();
 //---Создаю состояния, согласно диаграмме.-------------------------------------
@@ -432,7 +442,7 @@ namespace NeMi{
 	bool s11s7Transiro::eventTest(QEvent *e){
 		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
 		if(QSignalTransition::eventTest(e)){
-			qDebug()<<trUtf8("  Проверяю , что Выбрана min{T1, T2, T3}");
+			qDebug()<<trUtf8("  Проверяю , что выбрана min{T1, T2, T3}");
 			// Проверяю своё условие.
 			return (t1_red->isChecked() && *pl == p1)
 			       || (t2_red->isChecked() && *pl == p2)
