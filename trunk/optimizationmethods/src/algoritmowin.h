@@ -12,6 +12,11 @@ class AlgoritmoWin : public QMainWindow
 {
 Q_OBJECT
 protected:
+	/*! Получить текст функции.
+	 *
+	 * Формирует текст функции в иде html страницы для отображения в верху окна.
+	 */
+	QString textoFunkcio();
 	//! Целевая функция.
 	funkcio * F;
 	//! Данные задания.
