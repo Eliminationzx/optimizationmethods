@@ -30,7 +30,7 @@ void ScenoPorMapo::drawBackground(QPainter * painter, const QRectF & rect){
 	// могут возникать непрорисованные линии
 	for(int i = r.x()-1; i <= r.right()+1; ++i){
 		for(int j = r.y()-1; j <= r.bottom()+1; ++j){
-			v = ((int)(((F->rezulto(i / skalo, j / skalo)-min)/1000)/0.025))*0.025;
+			v = ((int)(((F->rezulto(i / skalo, j / skalo)-min)/10000)/0.025))*0.025;
 			if(v > 1){
 				v = 1;
 			}else if(v < 0){
@@ -46,7 +46,10 @@ void ScenoPorMapo::drawBackground(QPainter * painter, const QRectF & rect){
 
 void ScenoPorMapo::setScale(qreal factor ){
 	skalo = factor;
-	update(-ampleksoMapo, -ampleksoMapo, ampleksoMapo*2, ampleksoMapo*2);
+	this->setSceneRect(-ampleksoMapo*factor, -ampleksoMapo*factor,
+	                   ampleksoMapo*2*factor, ampleksoMapo*2*factor);
+	update(-ampleksoMapo*factor, -ampleksoMapo*factor,
+	       ampleksoMapo*2*factor, ampleksoMapo*2*factor);
 }
 
 
