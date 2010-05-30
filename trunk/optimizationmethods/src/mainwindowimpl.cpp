@@ -1,10 +1,26 @@
 #include "mainwindowimpl.h"
+#include <QDoubleValidator>
 //
 //! Конструктор класса.
-MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WFlags f) 
-	: QMainWindow(parent, f)
+MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WFlags flag) 
+	: QMainWindow(parent, flag)
 {
 	setupUi(this);
+	
+// Прикручиваю валидаторы к полям ввода.
+	a->setValidator(new QDoubleValidator(a));
+	b->setValidator(new QDoubleValidator(b));
+	c->setValidator(new QDoubleValidator(c));
+	d->setValidator(new QDoubleValidator(d));
+	e->setValidator(new QDoubleValidator(e));
+	f->setValidator(new QDoubleValidator(f));
+	g->setValidator(new QDoubleValidator(g));
+	accuracy->setValidator(new QDoubleValidator(accuracy));
+	stepx1->setValidator(new QDoubleValidator(stepx1));
+	stepx2->setValidator(new QDoubleValidator(stepx2));
+	stepChange->setValidator(new QDoubleValidator(stepChange));
+	x1->setValidator(new QDoubleValidator(x1));
+	x2->setValidator(new QDoubleValidator(x2));
 	
 	methFunc.append(0);
 	methFunc.append(0);
