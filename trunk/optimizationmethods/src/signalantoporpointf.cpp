@@ -14,13 +14,13 @@ void SignalantoPorPointF::SendiSignaloj(){
 	  emit proviziValoro(trUtf8("%1; %2").arg(QString::number(p->x(), 'f')).arg(QString::number(p->y(), 'f')));
 	  emit proviziXValoro(p->toPoint().x());
 	  emit proviziXValoro(p->x());
-	  emit proviziXValoro(QString::number(p->x(), 'f'));
+	  emit proviziXValoro(QString::number(p->x(), 'f', 2));
 	  emit proviziYValoro(p->y());
 	  emit proviziYValoro(p->y());
-	  emit proviziYValoro(QString::number(p->y(), 'f'));
+	  emit proviziYValoro(QString::number(p->y(), 'f', 2));
 	  if(f != 0){
 		  emit proviziValoroFukcioEnPointo(f->rezulto(*p));
-		  emit proviziValoroFukcioEnPointo(QString::number(f->rezulto(*p), 'f'));
+		  emit proviziValoroFukcioEnPointo(QString::number(f->rezulto(*p), 'f', 3));
 	  }
   }
 }
