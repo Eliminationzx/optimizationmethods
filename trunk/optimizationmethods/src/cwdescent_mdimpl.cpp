@@ -18,6 +18,7 @@
 #include <QDebug>
 //
 using namespace std;
+using namespace A;
 using namespace SinkoLauxKoordinatojMD;
 
 CWdescent_mdImpl::CWdescent_mdImpl(funkcio *f, QVector<double> *d, QWidget * parent, Qt::WFlags flags) 
@@ -129,8 +130,8 @@ DemonstrataQPointF CWdescent_mdImpl::LengthOfStepX1(DemonstrataQPointF X) const
 {
 	double y = X.y();
 
-	double a = - 500;
-	double b = 500;
+	double a = - ampleksoMapo;
+	double b = ampleksoMapo;
 
 	double tau = 0.618033988749894;
 	double lam = a + (1 - tau)*(b - a);
@@ -161,8 +162,8 @@ DemonstrataQPointF CWdescent_mdImpl::LengthOfStepX2(DemonstrataQPointF X) const
 {
 	double x = X.x();
 
-	double a = - 500;
-	double b = 500;
+	double a = - ampleksoMapo;
+	double b = ampleksoMapo;
 
 	double tau = 0.618033988749894;
 	double lam = a + (1 - tau)*(b - a);

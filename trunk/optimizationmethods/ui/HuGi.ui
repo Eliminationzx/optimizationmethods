@@ -428,7 +428,7 @@
       <property name="checkable">
        <bool>false</bool>
       </property>
-      <layout class="QGridLayout" name="gridLayout" columnstretch="1,1">
+      <layout class="QGridLayout" name="gridLayout" columnstretch="1,2">
        <item row="0" column="0">
         <widget class="QPushButton" name="found_bt">
          <property name="toolTip">
@@ -800,7 +800,7 @@ p, li { white-space: pre-wrap; }
      <x>0</x>
      <y>0</y>
      <width>1035</width>
-     <height>30</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="testo_menu">
