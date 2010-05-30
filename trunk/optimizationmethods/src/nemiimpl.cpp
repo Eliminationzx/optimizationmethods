@@ -236,6 +236,7 @@ void NeMiImpl::s1_entered(){
 		}
 	}
 
+// Обнулю выбор в группах радиобатонов.
 	t1_ref_rb->setChecked(true);
 	t2_ref_rb->setChecked(false);
 	t3_ref_rb->setChecked(false);
@@ -253,6 +254,8 @@ void NeMiImpl::s1_entered(){
 	t3_red_rb->setChecked(false);
 	totr_red_rb->setChecked(false);	
 	
+	LogTxtBrsr->append(trUtf8("Итерация № %1.").arg(++NumeroIteracio));
+	
 	qDebug()<<trUtf8("Вошёл в s1"); // Вывожу дебажную инфу на консоль.
 }
 
@@ -267,12 +270,16 @@ void NeMiImpl::s3_entered(){
 	Pc = (*Pm + *Pl)/2;
 	PR = Pc + a*(Pc - *Ph);
 
+	LogTxtBrsr->append(trUtf8("  Точка отражения: (%1; %2)").arg(PR.x()).arg(PR.y()));
+
 	qDebug()<<trUtf8("Вошёл в s3"); // Вывожу дебажную инфу на консоль.
 }
 
 void NeMiImpl::s5_entered(){
 	PK = Pc + (*Ph - Pc);
 	stackedWidget->setCurrentIndex(2);
+
+	LogTxtBrsr->append(trUtf8("  Точка сжатия: (%1; %2)").arg(PK.x()).arg(PK.y()));
 
 	qDebug()<<trUtf8("Вошёл в s5"); // Вывожу дебажную инфу на консоль.
 }
@@ -281,12 +288,16 @@ void NeMiImpl::s6_entered(){
 	PD = Pc + b*(PR - Pc);
 	stackedWidget->setCurrentIndex(1);
 
+	LogTxtBrsr->append(trUtf8("  Точка растяжения: (%1; %2)").arg(PD.x()).arg(PD.y()));
+
 	qDebug()<<trUtf8("Вошёл в s6"); // Вывожу дебажную инфу на консоль.
 }
 
 void NeMiImpl::s7_entered(){
 	*Ph = *Pl + 0.5*(*Ph - *Pl);
 	*Pm = *Pl + 0.5*(*Pm - *Pl);
+
+	LogTxtBrsr->append(trUtf8("  Резултат редукции: (%1; %2), (%3; %4), (%5; %6)").arg(P1.x()).arg(P1.y()).arg(P2.x()).arg(P2.y()).arg(P3.x()).arg(P3.y()));
 
 	qDebug()<<trUtf8("Вошёл в s7"); // Вывожу дебажную инфу на консоль.
 }
