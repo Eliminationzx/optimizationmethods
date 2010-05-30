@@ -388,7 +388,7 @@ void NeMiImpl::s3s1_triggered(){
 qreal NeMiImpl::averagxoDistanco(){
 	qDebug()<<trUtf8("%1 %2 %9, %3 %4 %10, %5 %6 %11, %7 %8 %12").arg(Ph->x()).arg(Ph->y()).arg(Pm->x()).arg(Pm->y()).arg(Pl->x()).arg(Pl->y()).arg(Pc.x()).arg(Pc.y()).arg(F->rezulto(*Ph)).arg(F->rezulto(*Pm)).arg(F->rezulto(*Pl)).arg(F->rezulto(Pc)); // Вывожу дебажную инфу на консоль.
 	
-	return sqrt((1.0/4.0)*((F->rezulto(*Pl) - F->rezulto(Pc))*(F->rezulto(*Pl) - F->rezulto(Pc))
+	return sqrt((1.0/3.0)*((F->rezulto(*Pl) - F->rezulto(Pc))*(F->rezulto(*Pl) - F->rezulto(Pc))
 	                       + (F->rezulto(*Ph) - F->rezulto(Pc))*(F->rezulto(*Ph) - F->rezulto(Pc))
 	                       + (F->rezulto(*Pm) - F->rezulto(Pc))*(F->rezulto(*Pm) - F->rezulto(Pc))));
 }
@@ -490,7 +490,7 @@ namespace NeMi{
 		if(QSignalTransition::eventTest(e)){
 			qDebug()<<trUtf8("  Проверяю , что (1/4)*((F(Xl)-(F(Xc))^2 + ((F(Xh)-(F(Xc)))^2 + ((F(Xm)-(F(Xc)))^2) >= e");
 			// Проверяю своё условие.
-			return sqrt((1.0/4.0)*((f->rezulto(**pl) - f->rezulto(*pc))*(f->rezulto(**pl) - f->rezulto(*pc))
+			return sqrt((1.0/3.0)*((f->rezulto(**pl) - f->rezulto(*pc))*(f->rezulto(**pl) - f->rezulto(*pc))
 			              + (f->rezulto(**ph) - f->rezulto(*pc))*(f->rezulto(**ph) - f->rezulto(*pc))
 			              + (f->rezulto(**pm) - f->rezulto(*pc))*(f->rezulto(**pm) - f->rezulto(*pc))
 			             )) >= s;
@@ -502,7 +502,7 @@ namespace NeMi{
 		if(QSignalTransition::eventTest(e)){
 			qDebug()<<trUtf8("  Проверяю , что (1/4)*((F(Xl)-(F(Xc))^2 + ((F(Xh)-(F(Xc)))^2 + ((F(Xm)-(F(Xc)))^2) < e");
 			// Проверяю своё условие.
-			return sqrt((1.0/4.0)*((f->rezulto(**pl) - f->rezulto(*pc))*(f->rezulto(**pl) - f->rezulto(*pc))
+			return sqrt((1.0/3.0)*((f->rezulto(**pl) - f->rezulto(*pc))*(f->rezulto(**pl) - f->rezulto(*pc))
 			              + (f->rezulto(**ph) - f->rezulto(*pc))*(f->rezulto(**ph) - f->rezulto(*pc))
 			              + (f->rezulto(**pm) - f->rezulto(*pc))*(f->rezulto(**pm) - f->rezulto(*pc))
 			             )) < s;
