@@ -23,7 +23,7 @@ QString AlgoritmoWin::textoFunkcio(){
 			}
 			formulo += "x<span style=\" vertical-align:sub;\">1</span>";
 			if (F->getB()){
-				formulo += trUtf8("- %1)").arg(F->getB());
+				formulo += trUtf8(" - %1)").arg(F->getB());
 			}
 			formulo += "<span style=\" vertical-align:super;\">2</span>";
 		}
@@ -37,7 +37,7 @@ QString AlgoritmoWin::textoFunkcio(){
 			}
 			formulo += "x<span style=\" vertical-align:sub;\">2</span>";
 			if (F->getD()){
-				formulo += trUtf8("- %1)").arg(F->getD());
+				formulo += trUtf8(" - %1)").arg(F->getD());
 			}
 			formulo += "<span style=\" vertical-align:super;\">2</span>";
 		}
