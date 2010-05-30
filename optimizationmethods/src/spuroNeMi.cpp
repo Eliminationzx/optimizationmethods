@@ -5,6 +5,8 @@
 #include <QPainter>
 #include <QGraphicsScene>
 #include <QGraphicsView>
+
+#include <QMessageBox>
 //
 spuroNeMi::spuroNeMi(QColor momentaKoloro, QColor bazaKoloro, qreal Skalo, QGraphicsItem * parent) 
 	: spuro( A::CWdescent_fix, bazaKoloro, Skalo, parent), MomentaKoloro(momentaKoloro){
@@ -49,11 +51,13 @@ QPolygonF spuroNeMi::aplikiScalo(QPolygonF p)
 
 
 void spuroNeMi::difiniBazaKoloro(QColor c){
+	prepareGeometryChange ();
 	BazaKoloro = c;
 }
 
 
 void spuroNeMi::difiniMomentaKoloro(QColor c){
+	prepareGeometryChange ();
 	MomentaKoloro = c;
 }
 
@@ -64,24 +68,30 @@ void spuroNeMi::senspurigi(){
 }
 
 
-void spuroNeMi::difiniP1(QPointF & p){
+void spuroNeMi::difiniP1(const QPointF & p){
+	prepareGeometryChange ();
 	P1 = p;
-	// Центрирую карту на последней точке.
+	// Центрирую карту на первой точке.
 	this->scene()->views()[0]->centerOn(P1 * skalo);
+	
+	QMessageBox::information(this->scene()->views()[0], trUtf8(""), trUtf8("Вошёл в spuroNeMi::difiniP1"));
 }
 
 
-void spuroNeMi::difiniP2(QPointF & p){
+void spuroNeMi::difiniP2(const QPointF & p){
+	prepareGeometryChange ();
 	P2 = p;
 }
 
 
-void spuroNeMi::difiniP3(QPointF & p){
+void spuroNeMi::difiniP3(const QPointF & p){
+	prepareGeometryChange ();
 	P3 = p;
 }
 
 
-void spuroNeMi::difiniPRespegulo(QPointF & p){
+void spuroNeMi::difiniPRespegulo(const QPointF & p){
+	prepareGeometryChange ();
 	// Создаю полигон Хl, p, Хm.
 	if(Length(p - P1) < Length(p - P2)){
 		if(Length(p - P1) < Length(p - P3)){
@@ -115,11 +125,13 @@ void spuroNeMi::difiniPRespegulo(QPointF & p){
 }
 
 
-void spuroNeMi::difiniPDilato(QPointF & p){
+void spuroNeMi::difiniPDilato(const QPointF & p){
+	prepareGeometryChange ();
 	SP<<p<<SP.first();
 }
 
-void spuroNeMi::difiniPKompakto(QPointF & p){
+void spuroNeMi::difiniPKompakto(const QPointF & p){
+	prepareGeometryChange ();
 	SP.clear();
 	difiniPRespegulo(p);
 }
