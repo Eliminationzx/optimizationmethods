@@ -107,6 +107,7 @@ NeMiImpl::NeMiImpl(  funkcio *f, QVector<double> *d, QWidget * parent, Qt::WFlag
 	connect(s10, SIGNAL(entered()), SLOT(s10_entered()));
 	connect(s11, SIGNAL(entered()), SLOT(s11_entered()));
 	connect(sf, SIGNAL(entered()), SLOT(sf_entered()));
+	connect(s1, SIGNAL(entered()), Sp, SLOT(finisxiIteracio()));
 
 //---Создаю переходы, согласно диаграмме.--------------------------------------
 	s1->addTransition(reflexion_bt, SIGNAL(clicked()), s2);

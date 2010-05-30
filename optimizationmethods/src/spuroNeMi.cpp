@@ -16,8 +16,8 @@ spuroNeMi::spuroNeMi(QColor momentaKoloro, QColor bazaKoloro, qreal Skalo, QGrap
 
 QRectF spuroNeMi::boundingRect() const{
 	QPolygonF p;
-	p<<P1<<P2<<P3;	
-	return SP.boundingRect() | p.boundingRect();
+	p<<P1<<P2<<P3;
+	return (SP.boundingRect() | p.boundingRect());
 }
 
 void spuroNeMi::finisxiIteracio(){
@@ -29,12 +29,12 @@ void spuroNeMi::finisxiIteracio(){
 void spuroNeMi::paint(QPainter *painter, const QStyleOptionGraphicsItem */*option*/, QWidget */*widge*/){
 	painter->save();
 	
-	painter->setPen(BazaKoloro);
-	QPolygonF p;
-	p<<P1<<P2<<P3<<P1;
-	painter->drawPolygon(aplikiScalo(p));
 	painter->setPen(MomentaKoloro);
 	painter->drawPolygon(aplikiScalo(SP));
+	painter->setPen(BazaKoloro);
+	QPolygonF p;
+	p<<P1<<P2<<P3;
+	painter->drawPolygon(aplikiScalo(p));
 	
 	painter->restore();
 }
@@ -73,8 +73,6 @@ void spuroNeMi::difiniP1(const QPointF & p){
 	P1 = p;
 	// Центрирую карту на первой точке.
 	this->scene()->views()[0]->centerOn(P1 * skalo);
-	
-	QMessageBox::information(this->scene()->views()[0], trUtf8(""), trUtf8("Вошёл в spuroNeMi::difiniP1"));
 }
 
 
