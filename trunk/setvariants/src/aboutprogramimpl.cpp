@@ -1,4 +1,5 @@
 #include "aboutprogramimpl.h"
+#include "licensedlgimpl.h"
 //
 aboutProgramImpl::aboutProgramImpl( QWidget * parent, Qt::WFlags f) 
 	: QDialog(parent, f)
@@ -7,10 +8,9 @@ aboutProgramImpl::aboutProgramImpl( QWidget * parent, Qt::WFlags f)
 }
 //
 
-
-void aboutProgramImpl::on_Ok_clicked()
+void aboutProgramImpl::on_label_4_linkActivated(QString link)
 {
-	// TODO
-	this->close();
+	LicenseDlgImpl * l = new LicenseDlgImpl(this);
+	l->resize(900, 600);
+	l->exec();
 }
-
