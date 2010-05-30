@@ -27,7 +27,7 @@
     <normaloff>:/icon/icon.bmp</normaloff>:/icon/icon.bmp</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout_5" columnstretch="1,0">
+   <layout class="QGridLayout" name="gridLayout_5" columnstretch="1,2">
     <item row="0" column="0" colspan="2">
      <widget class="QLabel" name="func">
       <property name="alignment">
@@ -279,7 +279,7 @@
       <property name="checkable">
        <bool>false</bool>
       </property>
-      <layout class="QGridLayout" name="gridLayout_2" columnstretch="1,1">
+      <layout class="QGridLayout" name="gridLayout_2" columnstretch="1,2">
        <item row="0" column="0">
         <layout class="QVBoxLayout" name="verticalLayout_3">
          <item>
@@ -356,7 +356,7 @@ p, li { white-space: pre-wrap; }
      <x>0</x>
      <y>0</y>
      <width>812</width>
-     <height>30</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu">
