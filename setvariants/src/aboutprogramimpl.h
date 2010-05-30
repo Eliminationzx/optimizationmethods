@@ -12,7 +12,7 @@ public:
 	aboutProgramImpl( QWidget * parent = 0, Qt::WFlags f = 0 );
 
 private slots:
-	void on_Ok_clicked();
+	void on_label_4_linkActivated(QString link);
 };
 #endif
 
