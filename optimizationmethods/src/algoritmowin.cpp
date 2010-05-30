@@ -62,8 +62,24 @@ QString AlgoritmoWin::textoFunkcio(){
 				formulo += trUtf8(" - %1) ").arg(F->getG());
 			}
 		}
-	else if(F->metaObject()->className() == QString("RavinaFunkcio"))
-		;
+	else if(F->metaObject()->className() == QString("RavinaFunkcio")){
+		if (F->getA()){
+			if (F->getA()!=1){
+				formulo += trUtf8("%1*").arg(F->getA());
+			}
+			formulo += "(x<span style=\" vertical-align:sub;\">2</span>"
+			           " - x<span style=\" vertical-align:sub;\">1</span>)"
+			           "<span style=\" vertical-align:super;\">2</span>";
+		}
+		if (F->getB()){
+			formulo += " + ";
+			if (F->getB()!=1){
+				formulo += trUtf8("%1*").arg(F->getB());
+			}
+			formulo += "(1 - x<span style=\" vertical-align:sub;\">1</span>)"
+			           "<span style=\" vertical-align:super;\">2</span>";
+		}
+	}
 	formulo += "</p></body></html>";
 	return formulo;
 }
