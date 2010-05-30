@@ -531,6 +531,6 @@ void CWdescentWinImpl::on_difiniFonto_act_activated()
 void CWdescentWinImpl::on_helpo_action_activated()
 {
 	HelpBrowser * hb = new HelpBrowser( "doc/", "method1.htm", this);
-	hb->resize(800, 600);
+	hb->resize(900, 600);
 	hb->show();
 }

@@ -201,7 +201,7 @@ void CWdescent_mdImpl::on_difiniFonto_act_activated()
 void CWdescent_mdImpl::on_helpo_action_activated()
 {
 	HelpBrowser * hb = new HelpBrowser( "doc/", "method2.htm", this);
-	hb->resize(800, 600);
+	hb->resize(900, 600);
 	hb->show();
 }
 
