@@ -40,6 +40,7 @@ public:
 	NeMiImpl( funkcio * f, QVector<double> *d, QWidget * parent = 0,
 	          Qt::WFlags flags = 0 );
 private slots:
+	qreal averagxoDistanco();
 	/*! "Обнуление" переменных.
 	 *
 	 * Этим методом задаются началные знаения всем переменным алгоритма.
