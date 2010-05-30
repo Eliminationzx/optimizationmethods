@@ -127,7 +127,7 @@ NeMiImpl::NeMiImpl(  funkcio *f, QVector<double> *d, QWidget * parent, Qt::WFlag
 	s6s8->setTargetState(s8);
 	s6s9Transiro * s6s9 = new s6s9Transiro( totr_str_rb, &Pl, &PD, F, next2_bt, SIGNAL(clicked()), s6);
 	s6s9->setTargetState(s9);
-	sss1Transiro * sss1 = new sss1Transiro( strikteco, &Ph, &Pl, &Pm, &Pc, F, next2_bt, SIGNAL(clicked()), ss);
+	sss1Transiro * sss1 = new sss1Transiro( strikteco, &Ph, &Pl, &Pm, &Pc, F, this, SIGNAL(stateHasEntered()), ss);
 	sss1->setTargetState(s1);
 	sssfTransiro * sssf = new sssfTransiro( strikteco, &Ph, &Pl, &Pm, &Pc, F, next2_bt, SIGNAL(clicked()), ss);
 	sssf->setTargetState(sf);
@@ -297,27 +297,43 @@ void NeMiImpl::s7_entered(){
 	*Ph = *Pl + 0.5*(*Ph - *Pl);
 	*Pm = *Pl + 0.5*(*Pm - *Pl);
 
-	LogTxtBrsr->append(trUtf8("  Резултат редукции: (%1; %2), (%3; %4), (%5; %6)").arg(P1.x()).arg(P1.y()).arg(P2.x()).arg(P2.y()).arg(P3.x()).arg(P3.y()));
+	x1_step_lb->setText(QString::number(averagxoDistanco(), 'f', 2));
+
+	LogTxtBrsr->append(trUtf8("  Результат редукции: (%1; %2), (%3; %4), (%5; %6)").arg(P1.x()).arg(P1.y()).arg(P2.x()).arg(P2.y()).arg(P3.x()).arg(P3.y()));
 
 	qDebug()<<trUtf8("Вошёл в s7"); // Вывожу дебажную инфу на консоль.
+	
+	emit stateHasEntered();
 }
 
 void NeMiImpl::s8_entered(){
 	*Ph = PD;
 
+	x1_step_lb->setText(QString::number(averagxoDistanco(), 'f', 2));
+
 	qDebug()<<trUtf8("Вошёл в s8"); // Вывожу дебажную инфу на консоль.
+	
+	emit stateHasEntered();
 }
 
 void NeMiImpl::s9_entered(){
 	*Ph = PR;
 
+	x1_step_lb->setText(QString::number(averagxoDistanco(), 'f', 2));
+
 	qDebug()<<trUtf8("Вошёл в s9"); // Вывожу дебажную инфу на консоль.
+	
+	emit stateHasEntered();
 }
 
 void NeMiImpl::s10_entered(){
 	*Ph = PK;
 
+	x1_step_lb->setText(QString::number(averagxoDistanco(), 'f', 2));
+
 	qDebug()<<trUtf8("Вошёл в s10"); // Вывожу дебажную инфу на консоль.
+	
+	emit stateHasEntered();
 }
 
 void NeMiImpl::s11_entered(){
@@ -367,6 +383,14 @@ void NeMiImpl::registriEraro(){
 
 void NeMiImpl::s3s1_triggered(){
 	*Ph = PR;
+}
+
+qreal NeMiImpl::averagxoDistanco(){
+	qDebug()<<trUtf8("%1 %2 %9, %3 %4 %10, %5 %6 %11, %7 %8 %12").arg(Ph->x()).arg(Ph->y()).arg(Pm->x()).arg(Pm->y()).arg(Pl->x()).arg(Pl->y()).arg(Pc.x()).arg(Pc.y()).arg(F->rezulto(*Ph)).arg(F->rezulto(*Pm)).arg(F->rezulto(*Pl)).arg(F->rezulto(Pc)); // Вывожу дебажную инфу на консоль.
+	
+	return sqrt((1.0/4.0)*((F->rezulto(*Pl) - F->rezulto(Pc))*(F->rezulto(*Pl) - F->rezulto(Pc))
+	                       + (F->rezulto(*Ph) - F->rezulto(Pc))*(F->rezulto(*Ph) - F->rezulto(Pc))
+	                       + (F->rezulto(*Pm) - F->rezulto(Pc))*(F->rezulto(*Pm) - F->rezulto(Pc))));
 }
 
 namespace NeMi{
@@ -466,10 +490,10 @@ namespace NeMi{
 		if(QSignalTransition::eventTest(e)){
 			qDebug()<<trUtf8("  Проверяю , что (1/4)*((F(Xl)-(F(Xc))^2 + ((F(Xh)-(F(Xc)))^2 + ((F(Xm)-(F(Xc)))^2) >= e");
 			// Проверяю своё условие.
-			return (1/4)*((f->rezulto(**pl) - f->rezulto(*pc))*(f->rezulto(**pl) - f->rezulto(*pc))
+			return sqrt((1.0/4.0)*((f->rezulto(**pl) - f->rezulto(*pc))*(f->rezulto(**pl) - f->rezulto(*pc))
 			              + (f->rezulto(**ph) - f->rezulto(*pc))*(f->rezulto(**ph) - f->rezulto(*pc))
 			              + (f->rezulto(**pm) - f->rezulto(*pc))*(f->rezulto(**pm) - f->rezulto(*pc))
-			             ) >= s;
+			             )) >= s;
 		}
 		return false;
 	}
@@ -478,10 +502,10 @@ namespace NeMi{
 		if(QSignalTransition::eventTest(e)){
 			qDebug()<<trUtf8("  Проверяю , что (1/4)*((F(Xl)-(F(Xc))^2 + ((F(Xh)-(F(Xc)))^2 + ((F(Xm)-(F(Xc)))^2) < e");
 			// Проверяю своё условие.
-			return (1/4)*((f->rezulto(**pl) - f->rezulto(*pc))*(f->rezulto(**pl) - f->rezulto(*pc))
+			return sqrt((1.0/4.0)*((f->rezulto(**pl) - f->rezulto(*pc))*(f->rezulto(**pl) - f->rezulto(*pc))
 			              + (f->rezulto(**ph) - f->rezulto(*pc))*(f->rezulto(**ph) - f->rezulto(*pc))
 			              + (f->rezulto(**pm) - f->rezulto(*pc))*(f->rezulto(**pm) - f->rezulto(*pc))
-			             ) < s;
+			             )) < s;
 		}
 		return false;
 	}
