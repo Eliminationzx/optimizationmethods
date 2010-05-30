@@ -276,7 +276,7 @@ void NeMiImpl::s3_entered(){
 }
 
 void NeMiImpl::s5_entered(){
-	PK = Pc + (*Ph - Pc);
+	PK = Pc + c*(*Ph - Pc);
 	stackedWidget->setCurrentIndex(2);
 
 	LogTxtBrsr->append(trUtf8("  Точка сжатия: (%1; %2)").arg(PK.x()).arg(PK.y()));
