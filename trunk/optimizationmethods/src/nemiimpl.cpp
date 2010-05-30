@@ -66,13 +66,13 @@ NeMiImpl::NeMiImpl(  funkcio *f, QVector<double> *d, QWidget * parent, Qt::WFlag
 //=============================================================================
 
 //===Соединяю точки и карту====================================================
-	connect(sP1, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniP1(QPointF &)));
-	connect(sP2, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniP2(QPointF &)));
-	connect(sP3, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniP3(QPointF &)));
-	connect(sPR, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniPRespegulo(QPointF &)));
-	connect(sPD, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniPDilato(QPointF &)));
+	connect(sP1, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniP1(const QPointF &)));
+	connect(sP2, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniP2(const QPointF &)));
+	connect(sP3, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniP3(const QPointF &)));
+	connect(sPR, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniPRespegulo(const QPointF &)));
+	connect(sPD, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniPDilato(const QPointF &)));
 	SignalantoPorPointF * sPK = new SignalantoPorPointF(&PK, F, this);
-	connect(sPK, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniPKompakto(QPointF &)));
+	connect(sPK, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniPKompakto(const QPointF &)));
 //=============================================================================
 
 //===Создаю конечный автомат.==================================================
