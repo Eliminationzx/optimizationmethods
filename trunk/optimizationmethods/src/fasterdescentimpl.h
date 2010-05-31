@@ -39,6 +39,23 @@ public:
 	FasterDescentImpl( funkcio *f, QVector<double> *d, QWidget * parent = 0,
                     Qt::WFlags flags = 0 );
 
+	//! Возвращает противоположный знак числа.
+	static QString otrNumberSign(double a)
+	{
+		if(a > 0)
+			return "-";
+		else
+			return "+";
+	};
+	//! Возвращает знак числа.
+	static QString numberSign(double a)
+	{
+		if(a > 0)
+			return "+";
+		else
+			return "-";
+	};
+	
 private slots:
 	//! help браузер
 	void on_helpo_action_activated();

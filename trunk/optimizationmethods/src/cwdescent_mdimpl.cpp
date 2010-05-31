@@ -29,16 +29,7 @@ CWdescent_mdImpl::CWdescent_mdImpl(funkcio *f, QVector<double> *d, QWidget * par
 	qDebug()<<trUtf8("Покоординатный спуск с минимизацией по направлению"); // Вывожу дебажныю инфу на консоль.
 	
 	//Вывожу формулу функции.
-	QString formul = "f(X) = ";
-	if(F->metaObject()->className() == QString("KvadratigantoFunkcio"))
-		formul += QString::number(F->getA()) + "*(x1-" + QString::number(F->getB()) + ")^2 + " + 
-			QString::number(F->getC()) + "*(x2-" + QString::number(F->getD()) + ")^2 + " + 
-			QString::number(F->getE()) + "*(x1-" + QString::number(F->getF()) + ")*(x2-" + 
-			QString::number(F->getG()) + ")";
-	else if(F->metaObject()->className() == QString("RavinaFunkcio"))
-		formul += QString::number(F->getA()) + "*(x2-x1^2)^2 + " + QString::number(F->getB()) + "*(1-x1)^2";
-	func->setText(formul);
-	
+	func->setText(textoFunkcio());
 	
 	// Создаю карту.
 	// centralwidget->layout() - указатель на компановщик центрального виджета
