@@ -63,16 +63,6 @@ void spuroSinkoLauxKoordinatoj::difiniUnuaPointo( qreal x, qreal y ){
 }
 
 
-QPolygonF spuroSinkoLauxKoordinatoj::aplikiScalo(QPolygonF p)
-{
-	QPolygonF rez;
-	for(int i=0; i < p.count(); ++i){
-	  rez.append(p[i] * skalo);
-	}
-	return rez;
-}
-
-
 void spuroSinkoLauxKoordinatoj::difiniBazaKoloro(QColor c){
 	BazaKoloro = c;
 }

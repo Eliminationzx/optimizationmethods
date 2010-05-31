@@ -9,6 +9,16 @@ spuro::spuro(QGraphicsItem * parent)
 //
 
 
+QPolygonF spuro::aplikiScalo(QPolygonF p)
+{
+	QPolygonF rez;
+	for(int i=0; i < p.count(); ++i){
+	  rez.append(p[i] * skalo);
+	}
+	return rez;
+}
+
+
 void spuro::setScale(qreal factor){
 	skalo = factor;
 }

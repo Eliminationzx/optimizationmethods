@@ -18,9 +18,6 @@ private:
 	QPointF P3;
 	//! Полигон для отрисовки отражения/растяжения/зжатия.
 	QPolygonF SP;
-protected:
-	//! Применяет масштаб к полигонам.
-	virtual QPolygonF aplikiScalo(QPolygonF p);
 public:
 	//! Реализует отрисовку элемента.
 	void paint(QPainter *painter, //!< Контекст рисования элемента.

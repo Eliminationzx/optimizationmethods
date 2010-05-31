@@ -16,9 +16,6 @@ private:
 	QPolygonF MomentaPointoj;
 	//! Текущая точка.
 	QPointF MomentaPointo;
-protected:
-	//! Применяет масштаб к полигонам.
-	virtual QPolygonF aplikiScalo(QPolygonF p);
 public:
 	//! Реализует отрисовку элемента.
 	void paint(QPainter *painter, //!< Контекст рисования элемента.

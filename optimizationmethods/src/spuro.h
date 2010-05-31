@@ -25,6 +25,9 @@ protected:
 	 * false если объект след для конкретного алгоритма.
 	 */
 	bool empty;
+protected:
+	//! Применяет масштаб к полигонам.
+	virtual QPolygonF aplikiScalo(QPolygonF p);
 public:
 	bool isEmpty() const { return empty; };
 	//! Реализует отрисовку элемента.
