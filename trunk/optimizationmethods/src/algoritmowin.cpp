@@ -32,7 +32,7 @@ QString AlgoritmoWin::textoFunkcio(){
 			if (F->getC() != 1){
 				if (F->getC() < 0)formulo += trUtf8(" - %1*").arg(-F->getC());
 				else formulo += trUtf8(" + %1*").arg(F->getC());
-			}
+			}else formulo += trUtf8(" + ");
 			if (F->getD()){
 				formulo += "(";
 			}
@@ -47,7 +47,7 @@ QString AlgoritmoWin::textoFunkcio(){
 			if (F->getE()!=1){
 				if (F->getE() < 0) formulo += trUtf8(" - %1*").arg(-F->getE());
 				else formulo += trUtf8(" + %1*").arg(F->getE());
-			}
+			}else formulo += trUtf8(" + ");
 			if (F->getF()){
 				formulo += " (";
 			}
@@ -79,7 +79,7 @@ QString AlgoritmoWin::textoFunkcio(){
 			if (F->getB()!=1){
 				if (F->getB() < 0) formulo += trUtf8(" - %1)").arg(-F->getB());
 				else formulo += trUtf8(" + %1)").arg(F->getB());
-			}
+			}else formulo += trUtf8(" + ");
 			formulo += "(1 - x<span style=\" vertical-align:sub;\">1</span>)"
 			           "<span style=\" vertical-align:super;\">2</span>";
 		}
