@@ -26,7 +26,7 @@ void spuroNeMi::paint(QPainter *painter, const QStyleOptionGraphicsItem */*optio
 	painter->save();
 	
 	painter->setPen(MomentaKoloro);
-	painter->drawPolygon(aplikiScalo(SP));
+	painter->drawPolyline(aplikiScalo(SP));
 	painter->setPen(BazaKoloro);
 	QPolygonF p;
 	p<<P1<<P2<<P3;
