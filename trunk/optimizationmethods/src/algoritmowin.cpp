@@ -15,8 +15,10 @@ QString AlgoritmoWin::textoFunkcio(){
 		"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">f(X)=";
 	if(F->metaObject()->className() == QString("KvadratigantoFunkcio"))
 		if (F->getA()){
-			if (F->getA() != 1){
+			if (abs(F->getA()) != 1){
 				formulo += trUtf8("%1*").arg(F->getA());
+			}else if (F->getA() == -1){
+				formulo += trUtf8("-");
 			}
 			if (F->getB()){
 				formulo += "(";
@@ -29,10 +31,14 @@ QString AlgoritmoWin::textoFunkcio(){
 			formulo += "<span style=\" vertical-align:super;\">2</span>";
 		}
 		if (F->getC()){
-			if (F->getC() != 1){
+			if (abs(F->getC()) != 1){
 				if (F->getC() < 0)formulo += trUtf8(" - %1*").arg(-F->getC());
 				else formulo += trUtf8(" + %1*").arg(F->getC());
-			}else formulo += trUtf8(" + ");
+			}else if (F->getC() == -1){
+				formulo += trUtf8(" - ");
+			}else {
+				formulo += trUtf8(" + ");
+			}
 			if (F->getD()){
 				formulo += "(";
 			}
@@ -44,10 +50,14 @@ QString AlgoritmoWin::textoFunkcio(){
 			formulo += "<span style=\" vertical-align:super;\">2</span>";
 		}
 		if (F->getE()){
-			if (F->getE()!=1){
+			if (abs(F->getE()) != 1){
 				if (F->getE() < 0) formulo += trUtf8(" - %1*").arg(-F->getE());
 				else formulo += trUtf8(" + %1*").arg(F->getE());
-			}else formulo += trUtf8(" + ");
+			}else if (F->getE() == -1){
+				formulo += trUtf8(" - ");
+			}else {
+				formulo += trUtf8(" + ");
+			}
 			if (F->getF()){
 				formulo += " (";
 			}
@@ -76,10 +86,14 @@ QString AlgoritmoWin::textoFunkcio(){
 			           "<span style=\" vertical-align:super;\">2</span>";
 		}
 		if (F->getB()){
-			if (F->getB()!=1){
+			if (abs(F->getB()) != 1){
 				if (F->getB() < 0) formulo += trUtf8(" - %1)").arg(-F->getB());
 				else formulo += trUtf8(" + %1)").arg(F->getB());
-			}else formulo += trUtf8(" + ");
+			}else if (F->getB() == 1){
+				formulo += trUtf8(" - ");
+			}else {
+				formulo += trUtf8(" + ");
+			}
 			formulo += "(1 - x<span style=\" vertical-align:sub;\">1</span>)"
 			           "<span style=\" vertical-align:super;\">2</span>";
 		}
