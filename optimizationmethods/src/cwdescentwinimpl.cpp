@@ -308,9 +308,12 @@ void CWdescentWinImpl::s12_entered(){
 void CWdescentWinImpl::s11_entered(){
 	// Вывожу на форму значение расстояния между предыдущей базовой точкой и
 	// текущей, только если была принята новая точка.
-	if(BP != MP){
+	if(BP.x() != MP.x() && BP.y() != MP.y()){
 		distance_lb->setPalette(QPalette(Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red));
 		distance_lb->setText(QString::number(Length(BP - MP), 'f'));
+	}
+	if (BP == MP){
+		LogTxtBrsr->append(trUtf8("  Точка (%1; %2) не принята").arg(NP.x()).arg(NP.y()));
 	}
 
 	qDebug()<<trUtf8("Вошёл в s11"); // Вывожу дебажную инфу на консоль.
@@ -318,7 +321,7 @@ void CWdescentWinImpl::s11_entered(){
 
 void CWdescentWinImpl::s10_entered(){
 	MP = NP;
-	LogTxtBrsr->append(trUtf8("  новая точка: (%1; %2) Принята").arg(MP.x()).arg(MP.y()));
+	LogTxtBrsr->append(trUtf8("  Точка (%1; %2) принята").arg(NP.x()).arg(NP.y()));
 	qDebug()<<trUtf8("Вошёл в s10"); // Вывожу дебажную инфу на консоль.
 
 	emit stateHasEntered(); // Переход по этому сигналу произойдёт, только если выполнится его условие.
@@ -332,7 +335,7 @@ void CWdescentWinImpl::s9_entered(){
 }
 
 void CWdescentWinImpl::s8_entered(){
-	LogTxtBrsr->append(trUtf8("  новая точка: (%1; %2) не принята").arg(MP.x()).arg(MP.y()));
+	LogTxtBrsr->append(trUtf8("  Точка (%1; %2) не принята").arg(NP.x()).arg(NP.y()));
 
 	qDebug()<<trUtf8("Вошёл в s8"); // Вывожу дебажную инфу на консоль.
 }
@@ -345,14 +348,14 @@ void CWdescentWinImpl::s7_entered(){
 }
 
 void CWdescentWinImpl::s6_entered(){
-	LogTxtBrsr->append(trUtf8("  новая точка: (%1; %2) не принята").arg(MP.x()).arg(MP.y()));
+	LogTxtBrsr->append(trUtf8("  Точка (%1; %2) не принята").arg(NP.x()).arg(NP.y()));
 
 	qDebug()<<trUtf8("Вошёл в s6"); // Вывожу дебажную инфу на консоль.
 }
 
 void CWdescentWinImpl::s5_entered(){
 	MP = NP;
-	LogTxtBrsr->append(trUtf8("  новая точка: (%1; %2) Принята").arg(MP.x()).arg(MP.y()));
+	LogTxtBrsr->append(trUtf8("  Точка (%1; %2) принята").arg(NP.x()).arg(NP.y()));
 
 	qDebug()<<trUtf8("Вошёл в s5"); // Вывожу дебажную инфу на консоль.
 }
@@ -365,7 +368,7 @@ void CWdescentWinImpl::s4_entered(){
 }
 
 void CWdescentWinImpl::s3_entered(){
-	LogTxtBrsr->append(trUtf8("  новая точка: (%1; %2) не принята").arg(MP.x()).arg(MP.y()));
+	LogTxtBrsr->append(trUtf8("  Точка (%1; %2) не принята").arg(NP.x()).arg(NP.y()));
 
 	qDebug()<<trUtf8("Вошёл в s3"); // Вывожу дебажную инфу на консоль.
 }
