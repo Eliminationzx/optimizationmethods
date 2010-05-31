@@ -5,13 +5,9 @@
 #include <QPainter>
 #include <QGraphicsScene>
 #include <QGraphicsView>
-
-#include <QMessageBox>
 //
 spuroNeMi::spuroNeMi(QColor momentaKoloro, QColor bazaKoloro, qreal Skalo, QGraphicsItem * parent) 
-	: spuro( A::CWdescent_fix, bazaKoloro, Skalo, parent), MomentaKoloro(momentaKoloro){
-	// TODO
-}
+	: spuro( A::CWdescent_fix, bazaKoloro, Skalo, parent), MomentaKoloro(momentaKoloro){}
 //
 
 QRectF spuroNeMi::boundingRect() const{
