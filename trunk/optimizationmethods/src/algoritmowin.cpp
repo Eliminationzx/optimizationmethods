@@ -23,7 +23,8 @@ QString AlgoritmoWin::textoFunkcio(){
 			}
 			formulo += "x<span style=\" vertical-align:sub;\">1</span>";
 			if (F->getB()){
-				formulo += trUtf8(" - %1)").arg(F->getB());
+				if (F->getB() < 0) formulo += trUtf8(" + %1)").arg(-F->getB());
+				else formulo += trUtf8(" - %1)").arg(F->getB());
 			}
 			formulo += "<span style=\" vertical-align:super;\">2</span>";
 		}
@@ -37,7 +38,8 @@ QString AlgoritmoWin::textoFunkcio(){
 			}
 			formulo += "x<span style=\" vertical-align:sub;\">2</span>";
 			if (F->getD()){
-				formulo += trUtf8(" - %1)").arg(F->getD());
+				if (F->getD() < 0) formulo += trUtf8(" + %1)").arg(-F->getD());
+				else formulo += trUtf8(" - %1)").arg(F->getD());
 			}
 			formulo += "<span style=\" vertical-align:super;\">2</span>";
 		}
@@ -51,7 +53,8 @@ QString AlgoritmoWin::textoFunkcio(){
 			}
 			formulo += "x<span style=\" vertical-align:sub;\">1</span>";
 			if (F->getF()){
-				formulo += trUtf8(" - %1) ").arg(F->getF());
+				if (F->getF() < 0)formulo += trUtf8(" + %1) ").arg(-F->getF());
+				else formulo += trUtf8(" - %1) ").arg(F->getF());
 			}
 			formulo += "*";
 			if (F->getG()){
@@ -59,7 +62,8 @@ QString AlgoritmoWin::textoFunkcio(){
 			}
 			formulo += "x<span style=\" vertical-align:sub;\">2</span>";
 			if (F->getG()){
-				formulo += trUtf8(" - %1) ").arg(F->getG());
+				if (F->getG() < 0)formulo += trUtf8(" + %1) ").arg(-F->getG());
+				else formulo += trUtf8(" - %1) ").arg(F->getG());
 			}
 		}
 	else if(F->metaObject()->className() == QString("RavinaFunkcio")){
