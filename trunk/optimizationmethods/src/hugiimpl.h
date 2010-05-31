@@ -10,8 +10,10 @@ Q_OBJECT
 public:
 	HuGiImpl( QWidget * parent = 0, Qt::WFlags f = 0 );
 private slots:
+	void on_difiniFonto_act_activated();
 };
 #endif
+
 
 
 

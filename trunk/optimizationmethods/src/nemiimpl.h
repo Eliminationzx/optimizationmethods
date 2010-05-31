@@ -41,6 +41,7 @@ public:
 	NeMiImpl( funkcio * f, QVector<double> *d, QWidget * parent = 0,
 	          Qt::WFlags flags = 0 );
 private slots:
+	void on_difiniFonto_act_activated();
 	qreal averagxoDistanco();
 	/*! "Обнуление" переменных.
 	 *
@@ -482,6 +483,7 @@ namespace NeMi{
 	};
 }
 #endif
+
 
 
 
