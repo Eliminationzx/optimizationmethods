@@ -23,6 +23,8 @@ NotWenImpl::NotWenImpl( funkcio *f, QVector<double> *d, QWidget * parent, Qt::WF
 	: AlgoritmoWin(f, d, parent, flags)
 {
 	setupUi(this);
+	connect(exit, SIGNAL(activated()), qApp, SLOT(closeAllWindows()));
+
 	qDebug()<<trUtf8("Метод Ньютона"); // Вывожу дебажную инфу на консоль.
 
 	//Вывожу формулу функции.
