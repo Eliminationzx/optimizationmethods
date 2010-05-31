@@ -25,6 +25,7 @@ CWdescent_mdImpl::CWdescent_mdImpl(funkcio *f, QVector<double> *d, QWidget * par
 	: AlgoritmoWin(f, d, parent, flags)
 {
 	setupUi(this);
+	connect(exit, SIGNAL(activated()), qApp, SLOT(closeAllWindows()));
 	
 	qDebug()<<trUtf8("Покоординатный спуск с минимизацией по направлению"); // Вывожу дебажныю инфу на консоль.
 	

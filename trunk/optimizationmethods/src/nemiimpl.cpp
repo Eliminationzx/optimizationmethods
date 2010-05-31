@@ -20,6 +20,8 @@ using namespace NeMi;
 NeMiImpl::NeMiImpl(  funkcio *f, QVector<double> *d, QWidget * parent, Qt::WFlags flags)
 	: AlgoritmoWin(f, d, parent, flags){
 	setupUi(this);
+	connect(exit, SIGNAL(activated()), qApp, SLOT(closeAllWindows()));
+
 	qDebug()<<trUtf8("Покоординатный спуск с фиксированным шагом"); // Вывожу дебажную инфу на консоль.
 
 	//Вывожу формулу функции.
