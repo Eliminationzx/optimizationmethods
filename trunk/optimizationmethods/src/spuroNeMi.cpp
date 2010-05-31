@@ -36,16 +36,6 @@ void spuroNeMi::paint(QPainter *painter, const QStyleOptionGraphicsItem */*optio
 }
 
 
-QPolygonF spuroNeMi::aplikiScalo(QPolygonF p)
-{
-  QPolygonF rez;
-  for(int i=0; i < p.count(); ++i){
-    rez.append(p[i] * skalo);
-  }
-  return rez;
-}
-
-
 void spuroNeMi::difiniBazaKoloro(QColor c){
 	prepareGeometryChange ();
 	BazaKoloro = c;
