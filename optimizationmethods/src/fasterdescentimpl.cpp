@@ -27,6 +27,11 @@ FasterDescentImpl::FasterDescentImpl( funkcio *f, QVector<double> *d, QWidget * 
 
 	qDebug()<<trUtf8("Наискорейший спуск"); // Вывожу дебажную инфу на консоль.
 
+// Для овражной функции убираю действие "Начать заново"
+	if(F->metaObject()->className() == QString("RavinaFunkcio")){
+		menubar->removeAction(recomenc_acn);
+	}
+
 	//Вывожу формулу функции.
 	func->setText(textoFunkcio());
 
@@ -200,7 +205,7 @@ void FasterDescentImpl::sf_entered()
 		QMessageBox::information(this, trUtf8("Внимание"), str);
 		if(F->metaObject()->className() == QString("RavinaFunkcio"))
 			emit usiloPlenumis(A::FasterDescent);
-//		else recomenci_acn->trigger();
+		else recomenc_acn->trigger();
 	}else{
 		str += trUtf8("Вы прошли тест. ");
 		if(F->metaObject()->className() == QString("KvadratigantoFunkcio"))

@@ -30,6 +30,11 @@ NotWenImpl::NotWenImpl( funkcio *f, QVector<double> *d, QWidget * parent, Qt::WF
 	//Вывожу формулу функции.
 	func->setText(textoFunkcio());
 
+// Для овражной функции убираю действие "Начать заново"
+	if(F->metaObject()->className() == QString("RavinaFunkcio")){
+		menubar->removeAction(recomenc_acn);
+	}
+
 	// Создаю карту.
 	// centralwidget->layout() - указатель на компановщик центрального виджета
 	// static_cast<QGridLayout*>(centralwidget->layout()) - обьясняю компилятору, что это именно QGridLayout
@@ -180,7 +185,7 @@ void NotWenImpl::sf_entered()
 		QMessageBox::information(this, trUtf8("Внимание"), str);
 		if(F->metaObject()->className() == QString("RavinaFunkcio"))
 			emit usiloPlenumis(A::NotWen);
-//		else recomenci_acn->trigger();
+		else recomenc_acn->trigger();
 	}else{
 		str += trUtf8("Вы прошли тест. ");
 		if(F->metaObject()->className() == QString("KvadratigantoFunkcio"))
