@@ -37,7 +37,8 @@ HEADERS = src/mainwindowimpl.h \
  src/HelpBrowser.h \
  src/notwenimpl.h \
  src/aboutprogramimpl.h \
- src/licenzodlgimpl.h
+ src/licenzodlgimpl.h \
+ src/spurohugi.h
 SOURCES = src/mainwindowimpl.cpp \
  src/main.cpp \
  src/funkcio.cpp \
@@ -58,5 +59,6 @@ SOURCES = src/mainwindowimpl.cpp \
  src/spuroNeMi.cpp \
  src/notwenimpl.cpp \
  src/aboutprogramimpl.cpp \
- src/licenzodlgimpl.cpp
+ src/licenzodlgimpl.cpp \
+ src/spurohugi.cpp
 RESOURCES += ui/data.qrc
