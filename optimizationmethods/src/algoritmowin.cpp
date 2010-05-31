@@ -29,9 +29,9 @@ QString AlgoritmoWin::textoFunkcio(){
 			formulo += "<span style=\" vertical-align:super;\">2</span>";
 		}
 		if (F->getC()){
-			formulo += " + ";
 			if (F->getC() != 1){
-				formulo += trUtf8("%1*").arg(F->getC());
+				if (F->getC() < 0)formulo += trUtf8(" - %1*").arg(-F->getC());
+				else formulo += trUtf8(" + %1*").arg(F->getC());
 			}
 			if (F->getD()){
 				formulo += "(";
@@ -44,9 +44,9 @@ QString AlgoritmoWin::textoFunkcio(){
 			formulo += "<span style=\" vertical-align:super;\">2</span>";
 		}
 		if (F->getE()){
-			formulo += " + ";
 			if (F->getE()!=1){
-				formulo += trUtf8("%1*").arg(F->getE());
+				if (F->getE() < 0) formulo += trUtf8(" - %1*").arg(-F->getE());
+				else formulo += trUtf8(" + %1*").arg(F->getE());
 			}
 			if (F->getF()){
 				formulo += " (";
@@ -76,9 +76,9 @@ QString AlgoritmoWin::textoFunkcio(){
 			           "<span style=\" vertical-align:super;\">2</span>";
 		}
 		if (F->getB()){
-			formulo += " + ";
 			if (F->getB()!=1){
-				formulo += trUtf8("%1*").arg(F->getB());
+				if (F->getB() < 0) formulo += trUtf8(" - %1)").arg(-F->getB());
+				else formulo += trUtf8(" + %1)").arg(F->getB());
 			}
 			formulo += "(1 - x<span style=\" vertical-align:sub;\">1</span>)"
 			           "<span style=\" vertical-align:super;\">2</span>";
