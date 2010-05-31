@@ -22,13 +22,18 @@ QRectF spuroHuGi::boundingRect() const{
 }
 
 void spuroHuGi::difiniB1(QPointF & B1){
-	
+	prepareGeometryChange ();
+	b1 = B1;
+	B1gxisB2.clear();
+	B2gxisP.clear();
 }
 
 void spuroHuGi::difiniB2(QPointF & B2){
-	
+	prepareGeometryChange ();
+	B1gxisB2<<B2;
 }
 
 void spuroHuGi::difiniP(QPointF & P){
-	
+	prepareGeometryChange ();
+	B2gxisP<<P;
 }
