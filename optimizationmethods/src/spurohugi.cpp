@@ -19,6 +19,7 @@ void spuroHuGi::paint(QPainter *painter, const QStyleOptionGraphicsItem */*optio
 }
 
 QRectF spuroHuGi::boundingRect() const{
+	return B1gxisB2.boundingRect() | B2gxisP.boundingRect() | QRectF(b1, b1);
 }
 
 void spuroHuGi::difiniB1(QPointF & B1){
