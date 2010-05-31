@@ -238,21 +238,8 @@ void NeMiImpl::s1_entered(){
 
 // Обнулю выбор в группах радиобатонов.
 	t1_ref_rb->setChecked(true);
-	t2_ref_rb->setChecked(false);
-	t3_ref_rb->setChecked(false);
-	t1_str_rb->setChecked(true);
-	t2_str_rb->setChecked(false);
-	t3_str_rb->setChecked(false);
-	totr_str_rb->setChecked(false);
-	tras_str_rb->setChecked(false);
 	t1_com_rb->setChecked(true);
-	t2_com_rb->setChecked(false);
-	t3_com_rb->setChecked(false);
-	tsj_com_rb->setChecked(false);
 	t1_red_rb->setChecked(true);
-	t2_red_rb->setChecked(false);
-	t3_red_rb->setChecked(false);
-	totr_red_rb->setChecked(false);	
 	
 	LogTxtBrsr->append(trUtf8("Итерация № %1.").arg(++NumeroIteracio));
 	
