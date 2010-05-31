@@ -520,8 +520,7 @@ namespace SinkoLauxKoordinatoj{
 
 };
 
-void CWdescentWinImpl::on_difiniFonto_act_activated()
-{
+void CWdescentWinImpl::on_difiniFonto_act_activated(){
 	bool b;
 	QFont fnt = QFontDialog::getFont(&b, font());
 	if(b){
