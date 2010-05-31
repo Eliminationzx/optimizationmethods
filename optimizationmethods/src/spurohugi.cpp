@@ -5,8 +5,7 @@
 #include <QGraphicsScene>
 #include <QGraphicsView>
 //
-spuroHuGi::spuroHuGi( QColor momentaKoloro, QColor bazaKoloro, qreal Skalo,
-                      QGraphicsItem * parent )
+spuroHuGi::spuroHuGi( QColor bazaKoloro, qreal Skalo, QGraphicsItem * parent )
 	: spuro( A::HuGi, bazaKoloro, Skalo, parent){
 	
 }
