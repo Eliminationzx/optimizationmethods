@@ -27,6 +27,11 @@ CWdescent_mdImpl::CWdescent_mdImpl(funkcio *f, QVector<double> *d, QWidget * par
 	setupUi(this);
 	connect(exit, SIGNAL(activated()), qApp, SLOT(closeAllWindows()));
 	
+// Для овражной функции убираю действие "Начать заново"
+	if(F->metaObject()->className() == QString("RavinaFunkcio")){
+		menubar->removeAction(recomenc_acn);
+	}
+
 	qDebug()<<trUtf8("Покоординатный спуск с минимизацией по направлению"); // Вывожу дебажныю инфу на консоль.
 	
 	//Вывожу формулу функции.
@@ -219,7 +224,7 @@ void CWdescent_mdImpl::sf_entered()
 		QMessageBox::information(this, trUtf8("Внимание"), str);
 		if(F->metaObject()->className() == QString("RavinaFunkcio"))
 			emit usiloPlenumis(A::CWdescent_md);
-//		else recomenci_acn->trigger();
+		else recomenc_acn->trigger();
 	}else{
 		str += trUtf8("Вы прошли тест. ");
 		if(F->metaObject()->className() == QString("KvadratigantoFunkcio"))

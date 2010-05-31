@@ -24,6 +24,11 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * pa
 	setupUi(this);
 	connect(exit, SIGNAL(activated()), qApp, SLOT(closeAllWindows()));
 
+// Для овражной функции убираю действие "Начать заново"
+	if(F->metaObject()->className() == QString("RavinaFunkcio")){
+		menubar->removeAction(recomenci_acn);
+	}
+
 	qDebug()<<trUtf8("Покоординатный спуск с фиксированным шагом"); // Вывожу дебажную инфу на консоль.
 
 	//Вывожу формулу функции.
