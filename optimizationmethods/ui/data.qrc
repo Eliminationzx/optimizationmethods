@@ -1,7 +1,5 @@
 <RCC>
   <qresource prefix="icon">
-    <file>ravinFunc.bmp</file>
-    <file>quadFunc.bmp</file>
     <file>dfdx1.bmp</file>
     <file>dfdx2.bmp</file>
     <file>icon.bmp</file>

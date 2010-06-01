@@ -162,8 +162,14 @@ void MainWindowImpl::on_next_button_clicked()
 		label_8->setVisible(true);
 		
 		stackedWidget->setCurrentIndex(1);
-		QPixmap icon(":icon/quadFunc.bmp");
-		func->setPixmap(icon);
+		func->setText("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">"
+			"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">"
+			"p, li { white-space: pre-wrap; }"
+			"</style></head><body style=\" font-family:'Times New Roman'; font-size:14pt; font-weight:400; font-style:normal;\">"
+			"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">"
+			"A*(x<span style=\" vertical-align:sub;\">1</span> - B)<span style=\" vertical-align:super;\">2</span> + C*(x"
+			"<span style=\" vertical-align:sub;\">2</span> - D)<span style=\" vertical-align:super;\">2</span> + E*(x"
+			"<span style=\" vertical-align:sub;\">1</span> - F)*(x<span style=\" vertical-align:sub;\">2</span> - G)</p></body></html>");
 	}
 	else if(ravinFunction->isChecked())
 	{
@@ -181,8 +187,14 @@ void MainWindowImpl::on_next_button_clicked()
 		label_8->setVisible(false);
 		
 		stackedWidget->setCurrentIndex(1);
-		QPixmap icon(":icon/ravinFunc.bmp");
-		func->setPixmap(icon);
+		func->setText("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">"
+			"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">"
+			"p, li { white-space: pre-wrap; }"
+			"</style></head><body style=\" font-family:'Times New Roman'; font-size:14pt; font-weight:400; font-style:normal;\">"
+			"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">"
+			"A*(x<span style=\" vertical-align:sub;\">2</span> - x<span style=\" vertical-align:sub;\">1</span>"
+			"<span style=\" vertical-align:super;\">2</span>)<span style=\" vertical-align:super;\">2</span> + B*(1-x"
+			"<span style=\" vertical-align:sub;\">1</span>)<span style=\" vertical-align:super;\">2</span></p></body></html>");
 	}
 	
 	on_choiceVar_clicked(true);
