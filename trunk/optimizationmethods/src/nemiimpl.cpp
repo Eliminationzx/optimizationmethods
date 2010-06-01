@@ -180,26 +180,19 @@ NeMiImpl::NeMiImpl(  funkcio *f, QVector<double> *d, QWidget * parent, Qt::WFlag
 	s1->assignProperty(x1_tk_lb, "text", trUtf8(""));
 	s1->assignProperty(x2_tk_lb, "text", trUtf8(""));
 	s1->assignProperty(fsign_tk_lb, "text", trUtf8(""));
-/*	s1->assignProperty(label_2, "visible", false);
-	s1->assignProperty(x1_tk_lb, "visible", false);
-	s1->assignProperty(x2_tk_lb, "visible", false);
-	s1->assignProperty(fsign_tk_lb, "visible", false);
-	s5->assignProperty(label_2, "visible", true);
-	s5->assignProperty(x1_tk_lb, "visible", true);
-	s5->assignProperty(x2_tk_lb, "visible", true);
-	s5->assignProperty(fsign_tk_lb, "visible", true);
-	s5->assignProperty(label_15, "visible", false);
-	s5->assignProperty(x1_tras_lb, "visible", false);
-	s5->assignProperty(x2_tras_lb, "visible", false);
-	s5->assignProperty(fsign_tras_lb, "visible", false);
-	ss->assignProperty(label_2, "visible", false);
-	ss->assignProperty(x1_tk_lb, "visible", false);
-	ss->assignProperty(x2_tk_lb, "visible", false);
-	ss->assignProperty(fsign_tk_lb, "visible", false);
-	ss->assignProperty(label_15, "visible", true);
-	ss->assignProperty(x1_tras_lb, "visible", true);
-	ss->assignProperty(x2_tras_lb, "visible", true);
-	ss->assignProperty(fsign_tras_lb, "visible", true);*/
+//---Настраиваю некоторые состояния для отображения нужной страницы выбора точки
+	s1->assignProperty(stackedWidget, "index", 4);
+	s2->assignProperty(stackedWidget, "index", 0);
+	s3->assignProperty(stackedWidget, "index", 4);
+	s5->assignProperty(stackedWidget, "index", 2);
+	s6->assignProperty(stackedWidget, "index", 1);
+	s7->assignProperty(stackedWidget, "index", 4);
+	s8->assignProperty(stackedWidget, "index", 4);
+	s9->assignProperty(stackedWidget, "index", 4);
+	s10->assignProperty(stackedWidget, "index", 4);
+	s11->assignProperty(stackedWidget, "index", 3);
+	
+
 	
 
 //---Добавляю состояния в автомат и запускаю его.------------------------------
@@ -305,7 +298,6 @@ void NeMiImpl::s1_entered(){
 
 
 void NeMiImpl::s2_entered(){
-	stackedWidget->setCurrentIndex(0);
 
 	qDebug()<<trUtf8("Вошёл в s2"); // Вывожу дебажную инфу на консоль.
 }
@@ -321,7 +313,6 @@ void NeMiImpl::s3_entered(){
 
 void NeMiImpl::s5_entered(){
 	PK = Pc + c*(*Ph - Pc);
-	stackedWidget->setCurrentIndex(2);
 
 // Скрываю надписи точки растяжения и отображаю точку сжатия. При выходе из
 // состояния верну назад.
@@ -353,7 +344,6 @@ void NeMiImpl::s5_exited(){
 
 void NeMiImpl::s6_entered(){
 	PD = Pc + b*(PR - Pc);
-	stackedWidget->setCurrentIndex(1);
 
 	LogTxtBrsr->append(trUtf8("  Точка растяжения: (%1; %2)").arg(PD.x()).arg(PD.y()));
 
@@ -404,7 +394,6 @@ void NeMiImpl::s10_entered(){
 }
 
 void NeMiImpl::s11_entered(){
-	stackedWidget->setCurrentIndex(3);
 
 	qDebug()<<trUtf8("Вошёл в s11"); // Вывожу дебажную инфу на консоль.
 }
