@@ -399,7 +399,7 @@ void NeMiImpl::s11_entered(){
 }
 
 void NeMiImpl::sf_entered(){
-	LogTxtBrsr->append(trUtf8("Конец алгоритма. Найден: %1"));
+	LogTxtBrsr->append(trUtf8("Конец алгоритма. Найден минимум функции: %1. Количество ошибок: %2.").arg(F->rezulto(*Pl)).arg(KvantoEraroj));
 	QString str = trUtf8("Найден минимум. ");
 
 	qDebug()<<trUtf8("Конец алгоритма. Найден минимум"); // Вывожу дебажную инфу на консоль.

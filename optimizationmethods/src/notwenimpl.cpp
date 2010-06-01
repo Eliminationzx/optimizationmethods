@@ -175,7 +175,7 @@ void NotWenImpl::registriEraro()
 
 void NotWenImpl::sf_entered()
 {
-	LogTxtBrsr->append(trUtf8("Конец алгоритма. Найден минимум функции: %1").arg(F->rezulto(BP)));
+	LogTxtBrsr->append(trUtf8("Конец алгоритма. Найден минимум функции: %1. Количество ошибок: %2.").arg(F->rezulto(BP)).arg(KvantoEraroj));
 	
 	QString str = trUtf8("Найден минимум. ");
 	

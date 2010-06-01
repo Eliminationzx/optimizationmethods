@@ -217,7 +217,7 @@ void CWdescent_mdImpl::registriEraro()
 
 void CWdescent_mdImpl::sf_entered()
 {
-	LogTxtBrsr->append(trUtf8("Конец алгоритма. Найден минимум функции: %1").arg(F->rezulto(MP)));
+	LogTxtBrsr->append(trUtf8("Конец алгоритма. Найден минимум функции: %1. Количество ошибок: %2.").arg(F->rezulto(MP)).arg(KvantoEraroj));
 	QString str = trUtf8("Найден минимум. ");
 	
 	if(KvantoEraroj > quanError){
@@ -233,12 +233,14 @@ void CWdescent_mdImpl::sf_entered()
 		{
 			str += trUtf8("Сообщите преподавателю и перейдите к овражной функции. Количество ошибок: %1.").arg(KvantoEraroj);
 			emit usiloPlenumis(A::CWdescent_md);
+			QMessageBox::information(this, trUtf8("Поздравляем"), str);
+			close();
 		}
 		else if(F->metaObject()->className() == QString("RavinaFunkcio"))
 		{
 			str += trUtf8("Позовите преподавателя. Количество ошибок: %1.").arg(KvantoEraroj);
+			QMessageBox::information(this, trUtf8("Поздравляем"), str);
 		}
-		QMessageBox::information(this, trUtf8("Поздравляем"), str);
 	}
 
 	qDebug()<<trUtf8("Вошёл в Финальное состояние, сложного состояния"); // Вывожу дебажную инфу на консоль.
