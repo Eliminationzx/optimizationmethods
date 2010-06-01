@@ -508,18 +508,18 @@ p, li { white-space: pre-wrap; }
      <x>0</x>
      <y>0</y>
      <width>1037</width>
-     <height>23</height>
+     <height>30</height>
     </rect>
    </property>
    <widget class="QMenu" name="view_menu">
     <property name="title">
-     <string>Вид</string>
+     <string>&amp;Вид</string>
     </property>
     <addaction name="difiniFonto_act"/>
    </widget>
    <widget class="QMenu" name="helpo_menu">
     <property name="title">
-     <string>Помощь</string>
+     <string>&amp;Помощь</string>
     </property>
     <addaction name="helpo_action"/>
     <addaction name="separator"/>
@@ -527,7 +527,7 @@ p, li { white-space: pre-wrap; }
    </widget>
    <widget class="QMenu" name="testo_menu">
     <property name="title">
-     <string>Тест</string>
+     <string>&amp;Тест</string>
     </property>
     <addaction name="recomenci_acn"/>
     <addaction name="action"/>
