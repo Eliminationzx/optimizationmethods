@@ -516,12 +516,3 @@ namespace NeMi{
 	}
 }
 
-void NeMiImpl::on_difiniFonto_act_activated(){
-	bool b;
-	QFont fnt = QFontDialog::getFont(&b, font());
-	if(b){
-		// Была нажата кнопка ОК.
-		setFont(fnt);
-	}
-}
-
