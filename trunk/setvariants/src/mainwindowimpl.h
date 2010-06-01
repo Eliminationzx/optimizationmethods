@@ -9,7 +9,6 @@
 #include <QVariant>
 #include <QCryptographicHash>
 #include "HelpBrowser.h"
-#include "aboutprogramimpl.h"
 #include "ui_mainwindow.h"
 //
 //! Производный класс от класса формы приложения setvariants.
