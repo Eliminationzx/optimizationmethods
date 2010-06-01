@@ -6,6 +6,7 @@
 #include "Konstantoj.h"
 #include "funkcio.h"
 #include "spuroNeMi.h"
+#include "helpbrowserimpl.h"
 #include <QTextBrowser>
 #include <QString>
 #include <QMessageBox>
@@ -177,6 +178,23 @@ NeMiImpl::NeMiImpl(  funkcio *f, QVector<double> *d, QWidget * parent, Qt::WFlag
 //=============================================================================
 }
 //
+
+void NeMiImpl::on_difiniFonto_act_activated()
+{
+	bool b;
+	QFont fnt = QFontDialog::getFont(&b, font());
+	if(b){
+		// Была нажата кнопка ОК.
+		setFont(fnt);
+	}
+}
+
+void NeMiImpl::on_helpo_action_activated()
+{
+	helpBrowserImpl *hb = new helpBrowserImpl( "doc/", "method5.htm", this);
+	hb->resize(900, 600);
+	hb->show();
+}
 
 void NeMiImpl::init(){
 	qDebug()<<trUtf8("Вхожу в init()"); // Вывожу дебажную инфу на консоль.

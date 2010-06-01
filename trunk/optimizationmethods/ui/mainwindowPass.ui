@@ -19,10 +19,6 @@
   <property name="windowTitle">
    <string>Ввод пароля</string>
   </property>
-  <property name="windowIcon">
-   <iconset resource="data.qrc">
-    <normaloff>:/icon/icon.bmp</normaloff>:/icon/icon.bmp</iconset>
-  </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0" colspan="2">
     <widget class="QComboBox" name="choiceMethods"/>

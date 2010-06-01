@@ -7,9 +7,10 @@
 #include "demonstrataqpointf.h"
 #include "signalantoporpointf.h"
 #include "math.h"
-#include "HelpBrowser.h"
+#include "helpbrowserimpl.h"
 #include <limits>
 #include <QTextBrowser>
+#include <QFontDialog>
 #include <QString>
 #include <QMessageBox>
 #include <QStateMachine>
@@ -198,7 +199,7 @@ void CWdescent_mdImpl::on_difiniFonto_act_activated()
 
 void CWdescent_mdImpl::on_helpo_action_activated()
 {
-	HelpBrowser * hb = new HelpBrowser( "doc/", "method2.htm", this);
+	helpBrowserImpl * hb = new helpBrowserImpl( "doc/", "method2.htm", this);
 	hb->resize(900, 600);
 	hb->show();
 }

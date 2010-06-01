@@ -16,6 +16,7 @@ const int c = 0.5;
 class NeMiImpl : public AlgoritmoWin, public Ui::NeMi
 {
 Q_OBJECT
+
 protected:
 	//! Первая точка основного триугольника.
 	DemonstrataQPointF P1;
@@ -37,11 +38,18 @@ protected:
 	DemonstrataQPointF PK;
 	//! Растянутая точка.
 	DemonstrataQPointF PD;
+
 public:
 	NeMiImpl( funkcio * f, QVector<double> *d, QWidget * parent = 0,
 	          Qt::WFlags flags = 0 );
+
 private slots:
+	//! изменить шрифт
 	void on_difiniFonto_act_activated();
+
+	//! help браузер
+	void on_helpo_action_activated();
+
 	qreal averagxoDistanco();
 	/*! "Обнуление" переменных.
 	 *

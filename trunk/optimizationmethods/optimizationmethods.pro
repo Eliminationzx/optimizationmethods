@@ -15,7 +15,8 @@ FORMS = ui/mainwindow.ui \
  ui/NeMi.ui \
  ui/NotWen.ui \
  ui/aboutProgram.ui \
- ui/licenzo.ui
+ ui/licenzo.ui \
+ ui/helpBrowser.ui
 HEADERS = src/mainwindowimpl.h \
  src/funkcio.h \
  src/mapoporfunkcioimpl.h \
@@ -38,7 +39,8 @@ HEADERS = src/mainwindowimpl.h \
  src/notwenimpl.h \
  src/aboutprogramimpl.h \
  src/licenzodlgimpl.h \
- src/spurohugi.h
+ src/spurohugi.h \
+ src/helpbrowserimpl.h
 SOURCES = src/mainwindowimpl.cpp \
  src/main.cpp \
  src/funkcio.cpp \
@@ -60,5 +62,6 @@ SOURCES = src/mainwindowimpl.cpp \
  src/notwenimpl.cpp \
  src/aboutprogramimpl.cpp \
  src/licenzodlgimpl.cpp \
- src/spurohugi.cpp
+ src/spurohugi.cpp \
+ src/helpbrowserimpl.cpp
 RESOURCES += ui/data.qrc

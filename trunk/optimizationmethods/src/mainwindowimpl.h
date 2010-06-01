@@ -12,8 +12,6 @@
 
 #include "funkcio.h"
 #include "Konstantoj.h"
-#include "HelpBrowser.h"
-#include "aboutprogramimpl.h"
 
 #include "mainpassimpl.h"
 #include "cwdescentwinimpl.h"
