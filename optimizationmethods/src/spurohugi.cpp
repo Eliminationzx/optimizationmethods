@@ -16,15 +16,24 @@ void spuroHuGi::paint(QPainter *painter, const QStyleOptionGraphicsItem */*optio
 	if (B2gxisP.empty());else{
 		painter->drawPolyline(aplikiScalo(B2gxisP));
 		painter->drawLine(B1gxisB2.last(), B2gxisP.first());
-		painter->drawEllipse(B2gxisP.last() * skalo, 2, 2);
 	}
 	if (B1gxisB2.empty());else{
 		painter->drawPolyline(aplikiScalo(B1gxisB2));
 		painter->drawLine(b1, B1gxisB2.first());
+	}
+	if (B2gxisP.empty());else{
+		painter->drawEllipse(B2gxisP.last() * skalo, 2, 2);
+		QGraphicsSimpleTextItem *P = new QGraphicsSimpleTextItem(trUtf8("P"), this);
+		P->setPos(B2gxisP.last() * skalo + QPointF(2, 2));
+	}
+	if (B1gxisB2.empty());else{
 		painter->drawEllipse(B1gxisB2.last() * skalo, 2, 2);
+		QGraphicsSimpleTextItem *B2 = new QGraphicsSimpleTextItem(trUtf8("B2"), this);
+		B2->setPos(B1gxisB2.last() * skalo + QPointF(2, 2));
 	}
 	painter->drawEllipse(b1 * skalo, 2, 2);
-	
+	QGraphicsSimpleTextItem *B1 = new QGraphicsSimpleTextItem(trUtf8("B1"), this);
+	B1->setPos(b1 * skalo + QPointF(2, 2));	
 	painter->restore();
 }
 
