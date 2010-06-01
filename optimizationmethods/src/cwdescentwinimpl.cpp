@@ -26,7 +26,7 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * pa
 
 // Для овражной функции убираю действие "Начать заново"
 	if(F->metaObject()->className() == QString("RavinaFunkcio")){
-		menubar->removeAction(recomenci_acn);
+		recomenci_acn->setEnabled(false);
 	}
 
 	qDebug()<<trUtf8("Покоординатный спуск с фиксированным шагом"); // Вывожу дебажную инфу на консоль.
@@ -285,7 +285,7 @@ void CWdescentWinImpl::sf_entered(){
 		str += trUtf8("Ваше количество ошибок (%1) превысило допустимый предел (%2). Начните заново.").arg(KvantoEraroj).arg(D[6]);
 		QMessageBox::information(this, trUtf8("Внимание"), str);
 		if(F->metaObject()->className() == QString("RavinaFunkcio"))
-			emit usiloPlenumis(A::CWdescent_fix);
+			close();
 		else recomenci_acn->trigger();
 	}else{
 		str += trUtf8("Вы прошли тест. ");

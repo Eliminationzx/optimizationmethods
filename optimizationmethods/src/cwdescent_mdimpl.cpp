@@ -224,7 +224,7 @@ void CWdescent_mdImpl::sf_entered()
 		str += trUtf8("Ваше количество ошибок (%1) превысило допустимый предел (%2). Начните заново.").arg(KvantoEraroj).arg(quanError);
 		QMessageBox::information(this, trUtf8("Внимание"), str);
 		if(F->metaObject()->className() == QString("RavinaFunkcio"))
-			emit usiloPlenumis(A::CWdescent_md);
+			close();
 		else recomenc_acn->trigger();
 	}else{
 		str += trUtf8("Вы прошли тест. ");
