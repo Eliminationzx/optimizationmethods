@@ -30,7 +30,7 @@ FasterDescentImpl::FasterDescentImpl( funkcio *f, QVector<double> *d, QWidget * 
 
 // Для овражной функции убираю действие "Начать заново"
 	if(F->metaObject()->className() == QString("RavinaFunkcio")){
-		menubar->removeAction(recomenc_acn);
+		recomenc_acn->setEnabled(false);
 	}
 
 	//Вывожу формулу функции.
