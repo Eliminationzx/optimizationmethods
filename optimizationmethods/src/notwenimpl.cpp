@@ -6,7 +6,7 @@
 #include "spurosinkolauxkoordinatoj.h"
 #include "demonstrataqpointf.h"
 #include "signalantoporpointf.h"
-#include "HelpBrowser.h"
+#include "helpbrowserimpl.h"
 #include "math.h"
 #include <QTextBrowser>
 #include <QString>
@@ -158,7 +158,7 @@ void NotWenImpl::on_difiniFonto_act_activated()
 
 void NotWenImpl::on_helpo_action_activated()
 {
-	HelpBrowser *hb = new HelpBrowser( "doc/", "method6.htm", this);
+	helpBrowserImpl *hb = new helpBrowserImpl( "doc/", "method6.htm", this);
 	hb->resize(900, 600);
 	hb->show();
 }
