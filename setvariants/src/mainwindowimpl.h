@@ -8,7 +8,7 @@
 #include <QVector>
 #include <QVariant>
 #include <QCryptographicHash>
-#include "HelpBrowser.h"
+#include "helpbrowserimpl.h"
 #include "ui_mainwindow.h"
 //
 //! Производный класс от класса формы приложения setvariants.
