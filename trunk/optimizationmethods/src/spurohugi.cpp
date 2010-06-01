@@ -25,15 +25,22 @@ void spuroHuGi::paint(QPainter *painter, const QStyleOptionGraphicsItem */*optio
 		painter->drawEllipse(B2gxisP.last() * skalo, 2, 2);
 		QGraphicsSimpleTextItem *P = new QGraphicsSimpleTextItem(trUtf8("P"), this);
 		P->setPos(B2gxisP.last() * skalo + QPointF(2, 2));
+		P->setPen(QPen(Qt::blue));
+		P->setBrush(Qt::yellow);
 	}
 	if (B1gxisB2.empty());else{
 		painter->drawEllipse(B1gxisB2.last() * skalo, 2, 2);
 		QGraphicsSimpleTextItem *B2 = new QGraphicsSimpleTextItem(trUtf8("B2"), this);
 		B2->setPos(B1gxisB2.last() * skalo + QPointF(2, 2));
+		B2->setPen(QPen(Qt::blue));
+		B2->setBrush(Qt::yellow);
 	}
 	painter->drawEllipse(b1 * skalo, 2, 2);
 	QGraphicsSimpleTextItem *B1 = new QGraphicsSimpleTextItem(trUtf8("B1"), this);
-	B1->setPos(b1 * skalo + QPointF(2, 2));	
+	B1->setPos(b1 * skalo + QPointF(2, 2));
+	B1->setPen(QPen(Qt::blue));
+	B1->setBrush(Qt::yellow);
+	
 	painter->restore();
 }
 
