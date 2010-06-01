@@ -180,17 +180,17 @@ NeMiImpl::NeMiImpl(  funkcio *f, QVector<double> *d, QWidget * parent, Qt::WFlag
 	s1->assignProperty(x1_tk_lb, "text", trUtf8(""));
 	s1->assignProperty(x2_tk_lb, "text", trUtf8(""));
 	s1->assignProperty(fsign_tk_lb, "text", trUtf8(""));
-//---Настраиваю некоторые состояния для отображения нужной страницы выбора точки
-	s1->assignProperty(stackedWidget, "index", 4);
-	s2->assignProperty(stackedWidget, "index", 0);
-	s3->assignProperty(stackedWidget, "index", 4);
-	s5->assignProperty(stackedWidget, "index", 2);
-	s6->assignProperty(stackedWidget, "index", 1);
-	s7->assignProperty(stackedWidget, "index", 4);
-	s8->assignProperty(stackedWidget, "index", 4);
-	s9->assignProperty(stackedWidget, "index", 4);
-	s10->assignProperty(stackedWidget, "index", 4);
-	s11->assignProperty(stackedWidget, "index", 3);
+//---Настраиваю некоторые состояния для отображения нужной страницы выбора точки.
+	s1->assignProperty(stackedWidget, "currentIndex", 4);
+	s2->assignProperty(stackedWidget, "currentIndex", 0);
+	s3->assignProperty(stackedWidget, "currentIndex", 4);
+	s5->assignProperty(stackedWidget, "currentIndex", 2);
+	s6->assignProperty(stackedWidget, "currentIndex", 1);
+	s7->assignProperty(stackedWidget, "currentIndex", 4);
+	s8->assignProperty(stackedWidget, "currentIndex", 4);
+	s9->assignProperty(stackedWidget, "currentIndex", 4);
+	s10->assignProperty(stackedWidget, "currentIndex", 4);
+	s11->assignProperty(stackedWidget, "currentIndex", 3);
 	
 
 	
