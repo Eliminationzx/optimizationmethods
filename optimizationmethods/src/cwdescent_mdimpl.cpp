@@ -31,7 +31,7 @@ CWdescent_mdImpl::CWdescent_mdImpl(funkcio *f, QVector<double> *d, QWidget * par
 	
 // Для овражной функции убираю действие "Начать заново"
 	if(F->metaObject()->className() == QString("RavinaFunkcio")){
-		menubar->removeAction(recomenc_acn);
+		recomenc_acn->setEnabled(false);
 	}
 
 	qDebug()<<trUtf8("Покоординатный спуск с минимизацией по направлению"); // Вывожу дебажныю инфу на консоль.
