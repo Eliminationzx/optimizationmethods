@@ -250,7 +250,42 @@ void MainWindowImpl::on_next_button_2_clicked()
 */	}
 
 	if(connect(AW, SIGNAL(usiloPlenumis(int)), SLOT(openTakeQuadFun(int))))
+	{
+		if(AW->metaObject()->className() == QString("CWdescentWinImpl"))
+		{
+			takeQuadFun[0] = false;
+			on_choiceMethods_activated(0);
+		}
+		else if(AW->metaObject()->className() == QString("CWdescent_mdImpl"))
+		{
+			takeQuadFun[1] = false;
+			on_choiceMethods_activated(1);
+		}
+		else if(AW->metaObject()->className() == QString("FasterDescentImpl"))
+		{
+			takeQuadFun[2] = false;
+			on_choiceMethods_activated(2);
+		}
+		else if(AW->metaObject()->className() == QString("HuGiImpl"))
+		{
+			takeQuadFun[3] = false;
+			on_choiceMethods_activated(3);
+		}
+		else if(AW->metaObject()->className() == QString("NeMiImpl"))
+		{
+			takeQuadFun[4] = false;
+			on_choiceMethods_activated(4);
+		}
+		else if(AW->metaObject()->className() == QString("NotWenImpl"))
+		{
+			takeQuadFun[5] = false;
+			on_choiceMethods_activated(5);
+		}
+		
 		AW->showMaximized();
+		
+		on_back_button_clicked();
+	}
 	else
 		QMessageBox::warning(this, trUtf8("Ошибка"), trUtf8("Ошибка соединения MainWindowImpl и AlgoritmoWin."));
 }
@@ -260,6 +295,8 @@ void MainWindowImpl::on_back_button_clicked()
 {
 	// TODO
 	comboBox->clear();
+	quadFunction->setChecked(true);
+	ravinFunction->setChecked(false);
 	stackedWidget->setCurrentIndex(0);
 }
 

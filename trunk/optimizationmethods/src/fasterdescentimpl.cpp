@@ -237,7 +237,7 @@ void FasterDescentImpl::s8_entered()
 	stackedWidget->setCurrentIndex(4);
 	
 	lengthStep = QPointF(F->lengthOfStep(grad), 0);
-
+LogTxtBrsr->append(trUtf8("%1").arg(lengthStep.x()));
 	LogTxtBrsr->append(trUtf8("  а вычислено успешно"));
 
 	if(F->metaObject()->className() == QString("RavinaFunkcio") && NumeroIteracio > 5 && KvantoEraroj <= quanError)
