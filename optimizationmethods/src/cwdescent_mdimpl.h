@@ -41,6 +41,7 @@ public:
 		Qt::WFlags flags = 0 );
 		
 private slots:
+	void on_about_action_activated();
 	//! help браузер
 	void on_helpo_action_activated();
 
@@ -239,3 +240,4 @@ namespace SinkoLauxKoordinatojMD
  * 
  * @author Проскурин Александр Викторович.
  */
+
