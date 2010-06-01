@@ -22,14 +22,10 @@ using namespace NeMi;
 NeMiImpl::NeMiImpl(  funkcio *f, QVector<double> *d, QWidget * parent, Qt::WFlags flags)
 	: AlgoritmoWin(f, d, parent, flags){
 	setupUi(this);
-/*	gridLayout_3->removeWidget(label_2);
-	gridLayout_3->removeWidget(x1_tk_lb);
-	gridLayout_3->removeWidget(x2_tk_lb);
-	gridLayout_3->removeWidget(fsign_tk_lb);
-	gridLayout_3->addWidget(label_2, 1, 5);
-	gridLayout_3->addWidget(x1_tk_lb, 2, 5);
-	gridLayout_3->addWidget(x2_tk_lb, 3, 5);
-	gridLayout_3->addWidget(fsign_tk_lb, 4, 5);*/
+	label_2->hide();
+	x1_tk_lb->hide();
+	x2_tk_lb->hide();
+	fsign_tk_lb->hide();
 	connect(exit, SIGNAL(activated()), qApp, SLOT(closeAllWindows()));
 
 // Для овражной функции убираю действие "Начать заново"
@@ -72,6 +68,10 @@ NeMiImpl::NeMiImpl(  funkcio *f, QVector<double> *d, QWidget * parent, Qt::WFlag
 	connect(sPD, SIGNAL(proviziXValoro(const QString &)), x1_tras_lb, SLOT(setText(const QString &)));
 	connect(sPD, SIGNAL(proviziYValoro(const QString &)), x2_tras_lb, SLOT(setText(const QString &)));
 	connect(sPD, SIGNAL(proviziValoroFukcioEnPointo(const QString &)),fsign_tras_lb , SLOT(setText(const QString &)));
+	SignalantoPorPointF * sPK = new SignalantoPorPointF(&PK, F, this);
+	connect(sPK, SIGNAL(proviziXValoro(const QString &)), x1_tk_lb, SLOT(setText(const QString &)));
+	connect(sPK, SIGNAL(proviziYValoro(const QString &)), x2_tk_lb, SLOT(setText(const QString &)));
+	connect(sPK, SIGNAL(proviziValoroFukcioEnPointo(const QString &)),fsign_tk_lb , SLOT(setText(const QString &)));
 //=============================================================================
 
 //===Соединяю точки и карту====================================================
@@ -80,7 +80,6 @@ NeMiImpl::NeMiImpl(  funkcio *f, QVector<double> *d, QWidget * parent, Qt::WFlag
 	connect(sP3, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniP3(const QPointF &)));
 	connect(sPR, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniPRespegulo(const QPointF &)));
 	connect(sPD, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniPDilato(const QPointF &)));
-	SignalantoPorPointF * sPK = new SignalantoPorPointF(&PK, F, this);
 	connect(sPK, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniPKompakto(const QPointF &)));
 //=============================================================================
 
@@ -108,6 +107,7 @@ NeMiImpl::NeMiImpl(  funkcio *f, QVector<double> *d, QWidget * parent, Qt::WFlag
 	connect(s2, SIGNAL(entered()), SLOT(s2_entered()));
 	connect(s3, SIGNAL(entered()), SLOT(s3_entered()));
 	connect(s5, SIGNAL(entered()), SLOT(s5_entered()));
+	connect(s5, SIGNAL(exited()), SLOT(s5_exited()));
 	connect(ss, SIGNAL(entered()), SLOT(ss_entered()));
 	connect(s6, SIGNAL(entered()), SLOT(s6_entered()));
 	connect(s7, SIGNAL(entered()), SLOT(s7_entered()));
@@ -323,9 +323,32 @@ void NeMiImpl::s5_entered(){
 	PK = Pc + c*(*Ph - Pc);
 	stackedWidget->setCurrentIndex(2);
 
+// Скрываю надписи точки растяжения и отображаю точку сжатия. При выходе из
+// состояния верну назад.
+	label_15->hide();
+	x1_tras_lb->hide();
+	x2_tras_lb->hide();
+	fsign_tras_lb->hide();
+	label_2->show();
+	x1_tk_lb->show();
+	x2_tk_lb->show();
+	fsign_tk_lb->show();
+
 	LogTxtBrsr->append(trUtf8("  Точка сжатия: (%1; %2)").arg(PK.x()).arg(PK.y()));
 
 	qDebug()<<trUtf8("Вошёл в s5"); // Вывожу дебажную инфу на консоль.
+}
+
+void NeMiImpl::s5_exited(){
+// Скрываю надписи точки сжатия и отображаю точку растяжения.
+	label_2->hide();
+	x1_tk_lb->hide();
+	x2_tk_lb->hide();
+	fsign_tk_lb->hide();
+	label_15->show();
+	x1_tras_lb->show();
+	x2_tras_lb->show();
+	fsign_tras_lb->show();
 }
 
 void NeMiImpl::s6_entered(){
