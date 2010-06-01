@@ -8,6 +8,7 @@
 #include "signalantoporpointf.h"
 #include "math.h"
 #include "helpbrowserimpl.h"
+#include "aboutprogramimpl.h"
 #include <limits>
 #include <QTextBrowser>
 #include <QFontDialog>
@@ -357,4 +358,10 @@ namespace SinkoLauxKoordinatojMD
 	}
 };
 //
+
+
+void CWdescent_mdImpl::on_about_action_activated(){
+	aboutProgramImpl * about = new aboutProgramImpl(this);
+	about->show();
+}
 
