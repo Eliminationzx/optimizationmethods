@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>974</width>
-    <height>574</height>
+    <height>551</height>
    </rect>
   </property>
   <property name="font">
@@ -42,7 +42,7 @@
           </property>
           <layout class="QGridLayout" name="gridLayout_2">
            <item row="0" column="0">
-            <layout class="QGridLayout" name="gridLayout_3" columnstretch="1,1,1,1,1,1,0">
+            <layout class="QGridLayout" name="gridLayout_3">
              <property name="spacing">
               <number>0</number>
              </property>
