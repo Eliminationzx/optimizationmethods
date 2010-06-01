@@ -8,6 +8,7 @@
 #include "signalantoporpointf.h"
 #include "helpbrowserimpl.h"
 #include "math.h"
+#include "aboutprogramimpl.h"
 #include <QTextBrowser>
 #include <QString>
 #include <QMessageBox>
@@ -534,4 +535,10 @@ void CWdescentWinImpl::on_helpo_action_activated()
 	helpBrowserImpl * hb = new helpBrowserImpl( "doc/", "method1.htm", this);
 	hb->resize(900, 600);
 	hb->show();
+}
+
+void CWdescentWinImpl::on_about_action_activated()
+{
+	aboutProgramImpl * about = new aboutProgramImpl(this);
+	about->show();
 }

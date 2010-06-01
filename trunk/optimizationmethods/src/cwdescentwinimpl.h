@@ -40,6 +40,7 @@ public:
 	CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * parent = 0,
                     Qt::WFlags flags = 0 );
 private slots:
+	void on_about_action_activated();
 	void on_helpo_action_activated();
 	void on_difiniFonto_act_activated();
 	/*! "Обнуление" переменных.
