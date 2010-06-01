@@ -8,6 +8,7 @@
 #include "signalantoporpointf.h"
 #include "helpbrowserimpl.h"
 #include "math.h"
+#include "aboutprogramimpl.h"
 #include <QTextBrowser>
 #include <QString>
 #include <QMessageBox>
@@ -641,3 +642,8 @@ namespace SinkoFD
 
 };
 //
+
+void FasterDescentImpl::on_about_action_activated(){
+	aboutProgramImpl * about = new aboutProgramImpl(this);
+	about->show();
+}

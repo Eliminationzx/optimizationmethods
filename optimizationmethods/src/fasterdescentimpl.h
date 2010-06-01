@@ -57,6 +57,7 @@ public:
 	};
 	
 private slots:
+	void on_about_action_activated();
 	//! help браузер
 	void on_helpo_action_activated();
 
