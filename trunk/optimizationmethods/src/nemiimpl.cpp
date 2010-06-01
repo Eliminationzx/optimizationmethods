@@ -15,12 +15,21 @@
 #include <QLabel>
 #include <QFontDialog>
 #include <QDebug>
+//#include <QGridLayout>
 //
 using namespace NeMi;
 	
 NeMiImpl::NeMiImpl(  funkcio *f, QVector<double> *d, QWidget * parent, Qt::WFlags flags)
 	: AlgoritmoWin(f, d, parent, flags){
 	setupUi(this);
+/*	gridLayout_3->removeWidget(label_2);
+	gridLayout_3->removeWidget(x1_tk_lb);
+	gridLayout_3->removeWidget(x2_tk_lb);
+	gridLayout_3->removeWidget(fsign_tk_lb);
+	gridLayout_3->addWidget(label_2, 1, 5);
+	gridLayout_3->addWidget(x1_tk_lb, 2, 5);
+	gridLayout_3->addWidget(x2_tk_lb, 3, 5);
+	gridLayout_3->addWidget(fsign_tk_lb, 4, 5);*/
 	connect(exit, SIGNAL(activated()), qApp, SLOT(closeAllWindows()));
 
 // Для овражной функции убираю действие "Начать заново"
@@ -168,6 +177,30 @@ NeMiImpl::NeMiImpl(  funkcio *f, QVector<double> *d, QWidget * parent, Qt::WFlag
 	s1->assignProperty(x1_tras_lb, "text", trUtf8(""));
 	s1->assignProperty(x2_tras_lb, "text", trUtf8(""));
 	s1->assignProperty(fsign_tras_lb, "text", trUtf8(""));
+	s1->assignProperty(x1_tk_lb, "text", trUtf8(""));
+	s1->assignProperty(x2_tk_lb, "text", trUtf8(""));
+	s1->assignProperty(fsign_tk_lb, "text", trUtf8(""));
+/*	s1->assignProperty(label_2, "visible", false);
+	s1->assignProperty(x1_tk_lb, "visible", false);
+	s1->assignProperty(x2_tk_lb, "visible", false);
+	s1->assignProperty(fsign_tk_lb, "visible", false);
+	s5->assignProperty(label_2, "visible", true);
+	s5->assignProperty(x1_tk_lb, "visible", true);
+	s5->assignProperty(x2_tk_lb, "visible", true);
+	s5->assignProperty(fsign_tk_lb, "visible", true);
+	s5->assignProperty(label_15, "visible", false);
+	s5->assignProperty(x1_tras_lb, "visible", false);
+	s5->assignProperty(x2_tras_lb, "visible", false);
+	s5->assignProperty(fsign_tras_lb, "visible", false);
+	ss->assignProperty(label_2, "visible", false);
+	ss->assignProperty(x1_tk_lb, "visible", false);
+	ss->assignProperty(x2_tk_lb, "visible", false);
+	ss->assignProperty(fsign_tk_lb, "visible", false);
+	ss->assignProperty(label_15, "visible", true);
+	ss->assignProperty(x1_tras_lb, "visible", true);
+	ss->assignProperty(x2_tras_lb, "visible", true);
+	ss->assignProperty(fsign_tras_lb, "visible", true);*/
+	
 
 //---Добавляю состояния в автомат и запускаю его.------------------------------
 	SM->addState(so);
@@ -218,6 +251,12 @@ void NeMiImpl::so_entered(){
 
 void NeMiImpl::ss_entered(){
 
+// Прячу надписи с точкой сжатия.
+	label_2->setVisible(false);
+	x1_tk_lb->setVisible(false);
+	x2_tk_lb->setVisible(false);
+	fsign_tk_lb->setVisible(false);
+
 	qDebug()<<trUtf8("Вошёл в ss"); // Вывожу дебажную инфу на консоль.
 }
 
@@ -258,7 +297,7 @@ void NeMiImpl::s1_entered(){
 	t1_ref_rb->setChecked(true);
 	t1_com_rb->setChecked(true);
 	t1_red_rb->setChecked(true);
-	
+
 	LogTxtBrsr->append(trUtf8("Итерация № %1.").arg(++NumeroIteracio));
 	
 	qDebug()<<trUtf8("Вошёл в s1"); // Вывожу дебажную инфу на консоль.

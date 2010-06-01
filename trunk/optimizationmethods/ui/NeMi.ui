@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>770</width>
-    <height>597</height>
+    <width>974</width>
+    <height>574</height>
    </rect>
   </property>
   <property name="font">
@@ -32,7 +32,7 @@
      </widget>
     </item>
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_5">
+     <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="0,1">
       <item>
        <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,1">
         <item>
@@ -42,12 +42,18 @@
           </property>
           <layout class="QGridLayout" name="gridLayout_2">
            <item row="0" column="0">
-            <layout class="QGridLayout" name="gridLayout_3" columnstretch="1,1,1,1,1,1">
+            <layout class="QGridLayout" name="gridLayout_3" columnstretch="1,1,1,1,1,1,0">
              <property name="spacing">
               <number>0</number>
              </property>
              <item row="0" column="1">
               <widget class="QLabel" name="label_11">
+               <property name="minimumSize">
+                <size>
+                 <width>75</width>
+                 <height>0</height>
+                </size>
+               </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
                </property>
@@ -64,6 +70,12 @@
              </item>
              <item row="0" column="2">
               <widget class="QLabel" name="label_12">
+               <property name="minimumSize">
+                <size>
+                 <width>75</width>
+                 <height>0</height>
+                </size>
+               </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
                </property>
@@ -80,6 +92,12 @@
              </item>
              <item row="0" column="3">
               <widget class="QLabel" name="label_14">
+               <property name="minimumSize">
+                <size>
+                 <width>75</width>
+                 <height>0</height>
+                </size>
+               </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
                </property>
@@ -96,6 +114,12 @@
              </item>
              <item row="0" column="4">
               <widget class="QLabel" name="label_13">
+               <property name="minimumSize">
+                <size>
+                 <width>75</width>
+                 <height>0</height>
+                </size>
+               </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
                </property>
@@ -112,6 +136,12 @@
              </item>
              <item row="0" column="5">
               <widget class="QLabel" name="label_15">
+               <property name="minimumSize">
+                <size>
+                 <width>75</width>
+                 <height>0</height>
+                </size>
+               </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
                </property>
@@ -308,6 +338,9 @@
                <property name="text">
                 <string>Значение функции</string>
                </property>
+               <property name="wordWrap">
+                <bool>true</bool>
+               </property>
                <property name="textInteractionFlags">
                 <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
                </property>
@@ -384,6 +417,52 @@
                </property>
                <property name="textInteractionFlags">
                 <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="6">
+              <widget class="QLabel" name="label_2">
+               <property name="minimumSize">
+                <size>
+                 <width>75</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::Box</enum>
+               </property>
+               <property name="text">
+                <string>Tсжат.</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="6">
+              <widget class="QLabel" name="x1_tk_lb">
+               <property name="frameShape">
+                <enum>QFrame::Box</enum>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="6">
+              <widget class="QLabel" name="x2_tk_lb">
+               <property name="frameShape">
+                <enum>QFrame::Box</enum>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="6">
+              <widget class="QLabel" name="fsign_tk_lb">
+               <property name="frameShape">
+                <enum>QFrame::Box</enum>
+               </property>
+               <property name="text">
+                <string/>
                </property>
               </widget>
              </item>
@@ -486,6 +565,9 @@
            <bool>false</bool>
           </property>
           <layout class="QGridLayout" name="gridLayout" columnstretch="0,1">
+           <property name="verticalSpacing">
+            <number>0</number>
+           </property>
            <item row="0" column="1" rowspan="5">
             <widget class="QStackedWidget" name="stackedWidget">
              <property name="currentIndex">
@@ -896,8 +978,8 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>770</width>
-     <height>23</height>
+     <width>974</width>
+     <height>30</height>
     </rect>
    </property>
    <widget class="QMenu" name="testo_menu">
