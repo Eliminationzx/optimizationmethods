@@ -22,10 +22,6 @@
   <property name="windowTitle">
    <string>Покоординатный спуск с фиксированным шагом</string>
   </property>
-  <property name="windowIcon">
-   <iconset resource="data.qrc">
-    <normaloff>:/icon/icon.bmp</normaloff>:/icon/icon.bmp</iconset>
-  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,1">
     <item>
@@ -512,7 +508,7 @@ p, li { white-space: pre-wrap; }
      <x>0</x>
      <y>0</y>
      <width>1037</width>
-     <height>30</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="view_menu">

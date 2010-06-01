@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>768</width>
+    <width>770</width>
     <height>597</height>
    </rect>
   </property>
@@ -21,10 +21,6 @@
   </property>
   <property name="windowTitle">
    <string>Метод Нелдера-Мида</string>
-  </property>
-  <property name="windowIcon">
-   <iconset resource="data.qrc">
-    <normaloff>:/icon/icon.bmp</normaloff>:/icon/icon.bmp</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout" stretch="0,1">
@@ -900,8 +896,8 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>768</width>
-     <height>30</height>
+     <width>770</width>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="testo_menu">

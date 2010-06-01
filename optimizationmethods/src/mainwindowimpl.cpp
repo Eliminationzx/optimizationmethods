@@ -1,4 +1,6 @@
 #include "mainwindowimpl.h"
+#include "helpbrowserimpl.h"
+#include "aboutprogramimpl.h"
 #include <QDoubleValidator>
 //
 //! Конструктор класса.
@@ -302,7 +304,7 @@ void MainWindowImpl::on_comboBox_activated(int index)
 //! Выбран пункт меню "Справка".
 void MainWindowImpl::on_help_activated()
 {
-	HelpBrowser * hb = new HelpBrowser( "doc/", "help.htm", this);
+	helpBrowserImpl * hb = new helpBrowserImpl( "doc/", "help.htm", this);
 	hb->resize(900, 600);
 	hb->show();
 }
