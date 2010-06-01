@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>829</width>
-    <height>591</height>
+    <width>783</width>
+    <height>602</height>
    </rect>
   </property>
   <property name="font">
@@ -218,9 +218,6 @@
     </item>
     <item row="1" column="1">
      <widget class="QStackedWidget" name="stackedWidget">
-      <property name="currentIndex">
-       <number>0</number>
-      </property>
       <widget class="QWidget" name="direction_search">
        <layout class="QGridLayout" name="gridLayout_4" rowstretch="1,0">
         <item row="0" column="0">
@@ -251,8 +248,12 @@
                <pointsize>14</pointsize>
               </font>
              </property>
-             <property name="pixmap">
-              <pixmap resource="data.qrc">:/icon/NotWen/g(xk).bmp</pixmap>
+             <property name="text">
+              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Times New Roman'; font-size:14pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;G(X&lt;span style=&quot; vertical-align:sub;&quot;&gt;k&lt;/span&gt;)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
             </widget>
            </item>
@@ -272,8 +273,12 @@
                <pointsize>14</pointsize>
               </font>
              </property>
-             <property name="pixmap">
-              <pixmap resource="data.qrc">:/icon/NotWen/gradf(xk).bmp</pixmap>
+             <property name="text">
+              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Times New Roman'; font-size:14pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;∇F(X&lt;span style=&quot; vertical-align:sub;&quot;&gt;k&lt;/span&gt;)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
             </widget>
            </item>
@@ -293,8 +298,12 @@
                <pointsize>14</pointsize>
               </font>
              </property>
-             <property name="pixmap">
-              <pixmap resource="data.qrc">:/icon/NotWen/_g_(xk)gradf(xk).bmp</pixmap>
+             <property name="text">
+              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Times New Roman'; font-size:14pt;&quot;&gt;-G&lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman'; font-size:14pt; vertical-align:super;&quot;&gt;-1&lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman'; font-size:14pt;&quot;&gt;(X&lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman'; font-size:14pt; vertical-align:sub;&quot;&gt;k&lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman'; font-size:14pt;&quot;&gt;)*∇F(X&lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman'; font-size:14pt; vertical-align:sub;&quot;&gt;k&lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman'; font-size:14pt;&quot;&gt;)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
             </widget>
            </item>
@@ -314,8 +323,12 @@
                <pointsize>14</pointsize>
               </font>
              </property>
-             <property name="pixmap">
-              <pixmap resource="data.qrc">:/icon/NotWen/g_(xk)gradf(xk).bmp</pixmap>
+             <property name="text">
+              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Times New Roman'; font-size:14pt;&quot;&gt;G&lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman'; font-size:14pt; vertical-align:super;&quot;&gt;-1&lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman'; font-size:14pt;&quot;&gt;(X&lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman'; font-size:14pt; vertical-align:sub;&quot;&gt;k&lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman'; font-size:14pt;&quot;&gt;)*∇F(X&lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman'; font-size:14pt; vertical-align:sub;&quot;&gt;k&lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman'; font-size:14pt;&quot;&gt;)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
             </widget>
            </item>
@@ -335,8 +348,12 @@
                <pointsize>14</pointsize>
               </font>
              </property>
-             <property name="pixmap">
-              <pixmap resource="data.qrc">:/icon/NotWen/g(xk)gradf(xk).bmp</pixmap>
+             <property name="text">
+              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Times New Roman'; font-size:14pt;&quot;&gt;G(X&lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman'; font-size:14pt; vertical-align:sub;&quot;&gt;k&lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman'; font-size:14pt;&quot;&gt;)*∇F(X&lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman'; font-size:14pt; vertical-align:sub;&quot;&gt;k&lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman'; font-size:14pt;&quot;&gt;)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
             </widget>
            </item>
@@ -356,8 +373,12 @@
                <pointsize>14</pointsize>
               </font>
              </property>
-             <property name="pixmap">
-              <pixmap resource="data.qrc">:/icon/NotWen/gradf(xk)g(xk).bmp</pixmap>
+             <property name="text">
+              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Times New Roman'; font-size:14pt;&quot;&gt;∇F(X&lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman'; font-size:14pt; vertical-align:sub;&quot;&gt;k&lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman'; font-size:14pt;&quot;&gt;)*G(X&lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman'; font-size:14pt; vertical-align:sub;&quot;&gt;k&lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman'; font-size:14pt;&quot;&gt;)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
             </widget>
            </item>
@@ -377,8 +398,12 @@
                <pointsize>14</pointsize>
               </font>
              </property>
-             <property name="pixmap">
-              <pixmap resource="data.qrc">:/icon/NotWen/gradf(xk)g_(xk).bmp</pixmap>
+             <property name="text">
+              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Times New Roman'; font-size:14pt;&quot;&gt;∇F(X&lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman'; font-size:14pt; vertical-align:sub;&quot;&gt;k&lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman'; font-size:14pt;&quot;&gt;)*G&lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman'; font-size:14pt; vertical-align:super;&quot;&gt;-1&lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman'; font-size:14pt;&quot;&gt;(X&lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman'; font-size:14pt; vertical-align:sub;&quot;&gt;k&lt;/span&gt;&lt;span style=&quot; font-family:'Times New Roman'; font-size:14pt;&quot;&gt;)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
             </widget>
            </item>
@@ -656,8 +681,12 @@
            </item>
            <item row="0" column="1">
             <widget class="QLabel" name="label_17">
-             <property name="pixmap">
-              <pixmap resource="data.qrc">:/icon/NotWen/f(xk1)_f(xk).bmp</pixmap>
+             <property name="text">
+              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;|F(X&lt;/span&gt;&lt;span style=&quot; font-size:14pt; vertical-align:sub;&quot;&gt;k-1&lt;/span&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;) - F (X&lt;/span&gt;&lt;span style=&quot; font-size:14pt; vertical-align:sub;&quot;&gt;k&lt;/span&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;)| &amp;lt; ℰ&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
             </widget>
            </item>
@@ -672,8 +701,12 @@
            </item>
            <item row="1" column="1">
             <widget class="QLabel" name="label_18">
-             <property name="pixmap">
-              <pixmap resource="data.qrc">:/icon/NotWen/gradf(xk)_more.bmp</pixmap>
+             <property name="text">
+              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;|∇F (X&lt;/span&gt;&lt;span style=&quot; font-size:14pt; vertical-align:sub;&quot;&gt;k&lt;/span&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;)| &amp;gt; ℰ&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
             </widget>
            </item>
@@ -688,8 +721,12 @@
            </item>
            <item row="2" column="1">
             <widget class="QLabel" name="label_19">
-             <property name="pixmap">
-              <pixmap resource="data.qrc">:/icon/NotWen/xk1_xk.bmp</pixmap>
+             <property name="text">
+              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;|X&lt;/span&gt;&lt;span style=&quot; font-size:14pt; vertical-align:sub;&quot;&gt;k-1&lt;/span&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt; - X&lt;/span&gt;&lt;span style=&quot; font-size:14pt; vertical-align:sub;&quot;&gt;k&lt;/span&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;| &amp;lt; ℰ&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
             </widget>
            </item>
@@ -704,8 +741,12 @@
            </item>
            <item row="3" column="1">
             <widget class="QLabel" name="label_20">
-             <property name="pixmap">
-              <pixmap resource="data.qrc">:/icon/NotWen/gradf(xk)_less.bmp</pixmap>
+             <property name="text">
+              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;|∇F (X&lt;/span&gt;&lt;span style=&quot; font-size:14pt; vertical-align:sub;&quot;&gt;k&lt;/span&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;)| &amp;lt; ℰ&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
             </widget>
            </item>
@@ -714,8 +755,12 @@
            </item>
            <item row="4" column="1">
             <widget class="QLabel" name="label_21">
-             <property name="pixmap">
-              <pixmap resource="data.qrc">:/icon/NotWen/g(xk)_less.bmp</pixmap>
+             <property name="text">
+              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;G(X&lt;/span&gt;&lt;span style=&quot; font-size:14pt; vertical-align:sub;&quot;&gt;k&lt;/span&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;) &amp;gt; 0&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
             </widget>
            </item>
@@ -847,25 +892,29 @@
       </widget>
       <widget class="QWidget" name="gessian">
        <layout class="QGridLayout" name="gridLayout_16">
-        <item row="0" column="0">
+        <item row="1" column="0">
          <widget class="QGroupBox" name="groupBox_7">
           <property name="title">
            <string>Введите гессиан</string>
           </property>
-          <layout class="QGridLayout" name="gridLayout_15" columnstretch="0,1,1">
-           <item row="0" column="0" rowspan="2">
+          <layout class="QGridLayout" name="gridLayout_15" columnstretch="0,0,0">
+           <item row="1" column="0" rowspan="2">
             <widget class="QLabel" name="label_3">
              <property name="font">
               <font>
                <pointsize>14</pointsize>
               </font>
              </property>
-             <property name="pixmap">
-              <pixmap resource="data.qrc">:/icon/NotWen/g(x)_rav.bmp</pixmap>
+             <property name="text">
+              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;G(X) = &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
             </widget>
            </item>
-           <item row="0" column="1">
+           <item row="1" column="1">
             <widget class="QLineEdit" name="dfdx1dx1">
              <property name="font">
               <font>
@@ -874,7 +923,7 @@
              </property>
             </widget>
            </item>
-           <item row="0" column="2">
+           <item row="1" column="2">
             <widget class="QLineEdit" name="dfdx1dx2">
              <property name="font">
               <font>
@@ -883,7 +932,7 @@
              </property>
             </widget>
            </item>
-           <item row="1" column="1">
+           <item row="2" column="1">
             <widget class="QLineEdit" name="dfdx2dx1">
              <property name="font">
               <font>
@@ -892,7 +941,7 @@
              </property>
             </widget>
            </item>
-           <item row="1" column="2">
+           <item row="2" column="2">
             <widget class="QLineEdit" name="dfdx2dx2">
              <property name="font">
               <font>
@@ -904,7 +953,7 @@
           </layout>
          </widget>
         </item>
-        <item row="1" column="0">
+        <item row="3" column="0">
          <widget class="QGroupBox" name="groupBox_8">
           <property name="title">
            <string>Введите обратный гессиан</string>
@@ -917,8 +966,12 @@
                <pointsize>14</pointsize>
               </font>
              </property>
-             <property name="pixmap">
-              <pixmap resource="data.qrc">:/icon/NotWen/g_(x)_rav.bmp</pixmap>
+             <property name="text">
+              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;G(X)&lt;/span&gt;&lt;span style=&quot; font-size:14pt; vertical-align:super;&quot;&gt;-1&lt;/span&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt; = &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
             </widget>
            </item>
@@ -961,7 +1014,7 @@
           </layout>
          </widget>
         </item>
-        <item row="2" column="0">
+        <item row="4" column="0">
          <layout class="QHBoxLayout" name="horizontalLayout_9">
           <item>
            <spacer name="horizontalSpacer_11">
@@ -1003,6 +1056,16 @@
           </item>
          </layout>
         </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_23">
+          <property name="text">
+           <string>TextLabel</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
        </layout>
       </widget>
       <widget class="QWidget" name="blank"/>
@@ -1024,7 +1087,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>829</width>
+     <width>783</width>
      <height>30</height>
     </rect>
    </property>
