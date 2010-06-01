@@ -1,4 +1,6 @@
 #include "mainwindowimpl.h"
+#include "helpbrowserimpl.h"
+#include "aboutprogramimpl.h"
 //
 MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WFlags flag) 
 	: QMainWindow(parent, flag)
@@ -165,8 +167,7 @@ QVector<double> MainWindowImpl::ReadVariants(const QString typeFunction, const i
 			data.append(stream.readLine().toDouble());
 		}
 	}
-	else
-		data.fill(NULL, 13);
+
 	return data;
 }
 
@@ -192,8 +193,7 @@ QVector<double> MainWindowImpl::ReadVariants(const int typeFunction, const int n
 			data.append(stream.readLine().toDouble());
 		}
 	}
-	else
-		data.fill(NULL, 13);
+
 	return data;
 }
 
@@ -210,8 +210,7 @@ QVector<int> MainWindowImpl::ReadError()
 			data.append(stream.readLine().toInt());
 		}
 	}
-	else
-		data.fill(NULL, 6);
+
 	return data;
 }
 
@@ -226,8 +225,7 @@ QByteArray MainWindowImpl::ReadPass()
 		stream.setCodec("UTF-8");
 		data.append(stream.readAll());
 	}
-	else
-		data.fill(NULL);
+
 	return data;
 }
 
@@ -299,12 +297,24 @@ void MainWindowImpl::initializationError()
 {
 	QVector<int> data;
 	data = ReadError();
-	CWdescent_fix->setText(QString::number(data[0]));
-	CWdescent_md->setText(QString::number(data[1]));
-	FasterDescent->setText(QString::number(data[2]));
-	HuGi->setText(QString::number(data[3]));
-	NeMi->setText(QString::number(data[4]));
-	NotWen->setText(QString::number(data[5]));
+	if(data.isEmpty())
+	{
+		CWdescent_fix->setText("");
+		CWdescent_md->setText("");
+		FasterDescent->setText("");
+		HuGi->setText("");
+		NeMi->setText("");
+		NotWen->setText("");
+	}
+	else
+	{
+		CWdescent_fix->setText(QString::number(data[0]));
+		CWdescent_md->setText(QString::number(data[1]));
+		FasterDescent->setText(QString::number(data[2]));
+		HuGi->setText(QString::number(data[3]));
+		NeMi->setText(QString::number(data[4]));
+		NotWen->setText(QString::number(data[5]));
+	}
 }
 
 //
@@ -416,23 +426,7 @@ void MainWindowImpl::on_comboBox_activated(int index)
 	// TODO
 	QVector<double> data(13);
 	data = ReadVariants(0, index);
-	if(AnalysisDirVariants(0).size() > index)
-	{
-		a->setText(QString::number(data[0]));
-		b->setText(QString::number(data[1]));
-		c->setText(QString::number(data[2]));
-		d->setText(QString::number(data[3]));
-		e->setText(QString::number(data[4]));
-		f->setText(QString::number(data[5]));
-		g->setText(QString::number(data[6]));
-		accuracy->setText(QString::number(data[7]));
-		stepx1->setText(QString::number(data[8]));
-		stepx2->setText(QString::number(data[9]));
-		stepChange->setText(QString::number(data[10]));
-		x1->setText(QString::number(data[11]));
-		x2->setText(QString::number(data[12]));
-	}
-	else
+	if(data.isEmpty())
 	{
 		a->setText("");
 		b->setText("");
@@ -448,6 +442,22 @@ void MainWindowImpl::on_comboBox_activated(int index)
 		x1->setText("");
 		x2->setText("");
 	}
+	else
+	{
+		a->setText(QString::number(data[0]));
+		b->setText(QString::number(data[1]));
+		c->setText(QString::number(data[2]));
+		d->setText(QString::number(data[3]));
+		e->setText(QString::number(data[4]));
+		f->setText(QString::number(data[5]));
+		g->setText(QString::number(data[6]));
+		accuracy->setText(QString::number(data[7]));
+		stepx1->setText(QString::number(data[8]));
+		stepx2->setText(QString::number(data[9]));
+		stepChange->setText(QString::number(data[10]));
+		x1->setText(QString::number(data[11]));
+		x2->setText(QString::number(data[12]));
+	}
 }
 
 // Выбран существующий вариант в овражной функции.
@@ -456,18 +466,7 @@ void MainWindowImpl::on_comboBox_ravin_activated(int index)
 	// TODO
 	QVector<double> data(8);
 	data = ReadVariants(1, index);
-	if(AnalysisDirVariants(1).size() > index)
-	{
-		a_ravin->setText(QString::number(data[0]));
-		b_ravin->setText(QString::number(data[1]));
-		accuracy_ravin->setText(QString::number(data[2]));
-		stepx1_ravin->setText(QString::number(data[3]));
-		stepx2_ravin->setText(QString::number(data[4]));
-		stepChange_ravin->setText(QString::number(data[5]));
-		x1_ravin->setText(QString::number(data[6]));
-		x2_ravin->setText(QString::number(data[7]));
-	}
-	else
+	if(data.isEmpty())
 	{
 		a_ravin->setText("");
 		b_ravin->setText("");
@@ -478,12 +477,23 @@ void MainWindowImpl::on_comboBox_ravin_activated(int index)
 		x1_ravin->setText("");
 		x2_ravin->setText("");
 	}
+	else
+	{
+		a_ravin->setText(QString::number(data[0]));
+		b_ravin->setText(QString::number(data[1]));
+		accuracy_ravin->setText(QString::number(data[2]));
+		stepx1_ravin->setText(QString::number(data[3]));
+		stepx2_ravin->setText(QString::number(data[4]));
+		stepChange_ravin->setText(QString::number(data[5]));
+		x1_ravin->setText(QString::number(data[6]));
+		x2_ravin->setText(QString::number(data[7]));
+	}
 }
 
 //! Выбран пункт меню "Справка".
 void MainWindowImpl::on_help_activated()
 {
-	HelpBrowser * hb = new HelpBrowser( "doc/", "helpSetVariants.htm", this);
+	helpBrowserImpl * hb = new helpBrowserImpl( "doc/", "helpSetVariants.htm", this);
 	hb->resize(900, 600);
 	hb->show();
 }

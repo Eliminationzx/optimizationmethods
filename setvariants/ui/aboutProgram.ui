@@ -31,10 +31,6 @@
   <property name="windowTitle">
    <string>О программе &quot;МОСТ - задание вариантов&quot;</string>
   </property>
-  <property name="windowIcon">
-   <iconset resource="data.qrc">
-    <normaloff>:/icon/icon.bmp</normaloff>:/icon/icon.bmp</iconset>
-  </property>
   <layout class="QGridLayout" name="gridLayout_3">
    <item row="0" column="0">
     <layout class="QGridLayout" name="gridLayout_2">
