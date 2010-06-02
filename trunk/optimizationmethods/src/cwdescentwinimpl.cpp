@@ -294,12 +294,14 @@ void CWdescentWinImpl::sf_entered(){
 		{
 			str += trUtf8("Сообщите преподавателю и перейдите к овражной функции. Количество ошибок: %1.").arg(KvantoEraroj);
 			emit usiloPlenumis(A::CWdescent_fix);
+			QMessageBox::information(this, trUtf8("Поздравляем"), str);
+			close();
 		}
 		else if(F->metaObject()->className() == QString("RavinaFunkcio"))
 		{
 			str += trUtf8("Позовите преподавателя. Количество ошибок: %1.").arg(KvantoEraroj);
+			QMessageBox::information(this, trUtf8("Поздравляем"), str);
 		}
-		QMessageBox::information(this, trUtf8("Поздравляем"), str);
 	}
 }
 
