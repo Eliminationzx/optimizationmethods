@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>914</width>
-    <height>629</height>
+    <height>636</height>
    </rect>
   </property>
   <property name="font">
@@ -238,7 +238,7 @@
               <enum>QFrame::Box</enum>
              </property>
              <property name="text">
-              <string>а - длина шага</string>
+              <string>λ - длина шага</string>
              </property>
              <property name="textInteractionFlags">
               <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
@@ -740,7 +740,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Times New Roman'; font-size:13pt;&quot;&gt;Вычислить длину шага&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="text">
-          <string>Вычислить а</string>
+          <string>Вычислить λ</string>
          </property>
         </widget>
        </item>
@@ -806,7 +806,7 @@ p, li { white-space: pre-wrap; }
      <x>0</x>
      <y>0</y>
      <width>914</width>
-     <height>30</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu">
