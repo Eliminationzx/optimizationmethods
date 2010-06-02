@@ -8,6 +8,7 @@
 #include "signalantoporpointf.h"
 #include "helpbrowserimpl.h"
 #include "math.h"
+#include "aboutprogramimpl.h"
 #include <QTextBrowser>
 #include <QString>
 #include <QMessageBox>
@@ -634,3 +635,8 @@ namespace SinkoNotWen
 };
 //
 
+
+void NotWenImpl::on_about_action_activated(){
+	aboutProgramImpl * about = new aboutProgramImpl(this);
+	about->show();
+}
