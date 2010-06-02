@@ -44,6 +44,7 @@ public:
 	          Qt::WFlags flags = 0 );
 
 private slots:
+	void on_about_action_activated();
 	//! изменить шрифт
 	void on_difiniFonto_act_activated();
 
@@ -494,6 +495,7 @@ namespace NeMi{
 	};
 }
 #endif
+
 
 
 

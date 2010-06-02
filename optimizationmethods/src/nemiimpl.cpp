@@ -7,6 +7,7 @@
 #include "funkcio.h"
 #include "spuroNeMi.h"
 #include "helpbrowserimpl.h"
+#include "aboutprogramimpl.h"
 #include <QTextBrowser>
 #include <QString>
 #include <QMessageBox>
@@ -567,3 +568,8 @@ namespace NeMi{
 	}
 }
 
+
+void NeMiImpl::on_about_action_activated(){
+	aboutProgramImpl * about = new aboutProgramImpl(this);
+	about->show();
+}
