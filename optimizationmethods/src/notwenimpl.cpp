@@ -212,16 +212,16 @@ void NotWenImpl::s7_entered()
 	
 	if(F->metaObject()->className() == QString("KvadratigantoFunkcio"))
 	{
-		gessian1 = QPointF(2*F->getC() / F->detGessian(&BP), -F->getE() / F->detGessian(&BP));
-		gessian2 = QPointF(-F->getE() / F->detGessian(&BP), 2*F->getA() / F->detGessian(&BP));
+		gessian1 = QPointF(2*F->getC(), -F->getE());
+		gessian2 = QPointF(-F->getE(), 2*F->getA());
 	}
 	else if(F->metaObject()->className() == QString("RavinaFunkcio"))
 	{
-		gessian1 = QPointF(static_cast<RavinaFunkcio*>(F)->df_dx2dx2() / F->detGessian(&BP), -static_cast<RavinaFunkcio*>(F)->df_dx1dx2(&BP) / F->detGessian(&BP));
-		gessian2 = QPointF(-static_cast<RavinaFunkcio*>(F)->df_dx1dx2(&BP) / F->detGessian(&BP), static_cast<RavinaFunkcio*>(F)->df_dx1dx1(&BP) / F->detGessian(&BP));
+		gessian1 = QPointF(static_cast<RavinaFunkcio*>(F)->df_dx2dx2(), -static_cast<RavinaFunkcio*>(F)->df_dx1dx2(&BP));
+		gessian2 = QPointF(-static_cast<RavinaFunkcio*>(F)->df_dx1dx2(&BP), static_cast<RavinaFunkcio*>(F)->df_dx1dx1(&BP));
 	}
 	
-	BP = QPointF(BP.x() - (gessian1.x()*grad.x() + gessian1.y()*grad.x()), BP.y() - (gessian2.x()*grad.y() + gessian2.y()*grad.y())); 
+	BP = QPointF(BP.x() - (gessian1.x()*grad.x() + gessian1.y()*grad.x()) / F->detGessian(&BP), BP.y() - (gessian2.x()*grad.y() + gessian2.y()*grad.y()) / F->detGessian(&BP)); 
 
 	qDebug()<<trUtf8("Вошёл в s7"); // Вывожу дебажную инфу на консоль.
 	
@@ -330,6 +330,8 @@ void NotWenImpl::s1_entered()
 	proizvod_first->setChecked(true);
 	fxk1_fxk->setChecked(true);
 	stop->setChecked(true);
+	
+	length_grad_lb->setText("");
 	
 	stackedWidget->setCurrentIndex(0);
 	
