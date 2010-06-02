@@ -512,38 +512,38 @@ namespace SinkoFD
 			}
 			else if(f->metaObject()->className() == QString("RavinaFunkcio"))
 			{
-				if((2*f->getA() != 1 && 2*f->getA() != 0 && 2*f->getA() != -1) && (2*f->getB() == 1))
+				if((2*f->getA() != 1 && 2*f->getA() != 0 && 2*f->getA() != -1) && (-2*f->getB() == 1))
 					tmpX11 = QString("%1*(x2*-x1^2)*(-2*x1)+(1-x1)").arg(2*f->getA());
 				else if((2*f->getA() != 1 && 2*f->getA() != 0  && 2*f->getA() != -1) && (2*f->getB() == 0))
 					tmpX11 = QString("%1*(x2*-x1^2)*(-2*x1)").arg(2*f->getA());
 				else if((2*f->getA() != 1 && 2*f->getA() != 0  && 2*f->getA() != -1) && (2*f->getB() == -1))
 					tmpX11 = QString("%1*(x2*-x1^2)*(-2*x1)-(1-x1)").arg(2*f->getA());
 
-				else if((2*f->getA() == 1) && (2*f->getB() != 1 && 2*f->getB() != 0 && 2*f->getB() != -1))
-					tmpX11 = QString("(x2*-x1^2)*(-2*x1)%1%2*(1-x1)").arg(FasterDescentImpl::otrNumberSign(f->getB())).arg(fabs(2*f->getB()));
-				else if((2*f->getA() == 1) && (2*f->getB() == 1))
+				else if((2*f->getA() == 1) && (-2*f->getB() != 1 && -2*f->getB() != 0 && -2*f->getB() != -1))
+					tmpX11 = QString("(x2*-x1^2)*(-2*x1)%1%2*(1-x1)").arg(FasterDescentImpl::otrNumberSign(-2*f->getB())).arg(fabs(2*f->getB()));
+				else if((2*f->getA() == 1) && (-2*f->getB() == 1))
 					tmpX11 = QString("(x2*-x1^2)*(-2*x1)+(1-x1)");
-				else if((2*f->getA() == 1) && (2*f->getB() == 0))
+				else if((2*f->getA() == 1) && (-2*f->getB() == 0))
 					tmpX11 = QString("(x2*-x1^2)*(-2*x1)");
-				else if((2*f->getA() == 1) && (2*f->getB() == -1))
+				else if((2*f->getA() == 1) && (-2*f->getB() == -1))
 					tmpX11 = QString("(x2*-x1^2)*(-2*x1)-(1-x1)");
 
-				else if((2*f->getA() == 0) && (2*f->getB() != 1 && f->getB() != 0))
-					tmpX10 = QString("%1*(1-x1)").arg(2*f->getB());
-				else if((2*f->getA() == 0) && (2*f->getB() == 1))
+				else if((2*f->getA() == 0) && (-2*f->getB() != 1 && -2*f->getB() != 0 && -2*f->getB() != -1))
+					tmpX10 = QString("%1*(1-x1)").arg(-2*f->getB());
+				else if((2*f->getA() == 0) && (-2*f->getB() == 1))
 					tmpX11 = QString("(1-x1)");
-				else if((2*f->getA() == 0) && (2*f->getB() == 0))
+				else if((2*f->getA() == 0) && (-2*f->getB() == 0))
 					tmpX11 = QString("0");
-				else if((2*f->getA() == 0) && (2*f->getB() == -1))
+				else if((2*f->getA() == 0) && (-2*f->getB() == -1))
 					tmpX11 = QString("-(1-x1)");
 				
-				else if((2*f->getA() == -1) && (2*f->getB() != 1 && 2*f->getB() != 0 && 2*f->getB() != -1))
-					tmpX11 = QString("-(x2*-x1^2)*(-2*x1)%1%2*(1-x1)").arg(FasterDescentImpl::otrNumberSign(f->getB())).arg(fabs(2*f->getB()));
-				else if((2*f->getA() == -1) && (2*f->getB() == 1))
+				else if((2*f->getA() == -1) && (-2*f->getB() != 1 && -2*f->getB() != 0 && -2*f->getB() != -1))
+					tmpX11 = QString("-(x2*-x1^2)*(-2*x1)%1%2*(1-x1)").arg(FasterDescentImpl::otrNumberSign(-2*f->getB())).arg(fabs(-2*f->getB()));
+				else if((2*f->getA() == -1) && (-2*f->getB() == 1))
 					tmpX11 = QString("-(x2*-x1^2)*(-2*x1)+(1-x1)");
-				else if((2*f->getA() == -1) && (2*f->getB() == 0))
+				else if((2*f->getA() == -1) && (-2*f->getB() == 0))
 					tmpX11 = QString("-(x2*-x1^2)*(-2*x1)");
-				else if((2*f->getA() == -1) && (2*f->getB() == -1))
+				else if((2*f->getA() == -1) && (-2*f->getB() == -1))
 					tmpX11 = QString("-(x2*-x1^2)*(-2*x1)-(1-x1)");
 
 
@@ -554,7 +554,7 @@ namespace SinkoFD
 				else if(2*f->getA() == -1)
 					tmpX21 = QString("-(x2-x1^2)");
 				
-				tmpX10 = QString("%1*(x2*-x1^2)*(-2*x1)%2%3*(1-x1)").arg(2*f->getA()).arg(FasterDescentImpl::otrNumberSign(f->getB())).arg(fabs(2*f->getB()));
+				tmpX10 = QString("%1*(x2-x1^2)*(-2*x1)%2%3*(1-x1)").arg(2*f->getA()).arg(FasterDescentImpl::otrNumberSign(-2*f->getB())).arg(fabs(-2*f->getB()));
 				tmpX20 = QString("%1*(x2-x1^2)").arg(2*f->getA());
 			}
 
