@@ -231,12 +231,25 @@ void NotWenImpl::s7_entered()
 void NotWenImpl::s6_entered()
 {
 	stackedWidget->setCurrentIndex(5);
+
+	QString tmpX10, tmpX20;
 	
 	if(F->metaObject()->className() == QString("KvadratigantoFunkcio"))
+	{
 		groupBox_8->setVisible(true);
+		tmpX10 = QString("%1*(x1%2%3)%4%5*(x2%6%7)").arg(2*F->getA()).arg(NotWenImpl::otrNumberSign(F->getB())).arg(fabs(F->getB())).arg(NotWenImpl::numberSign(F->getE())).arg(fabs(F->getE())).arg(NotWenImpl::otrNumberSign(F->getG())).arg(fabs(F->getG()));
+		tmpX20 = QString("%1*(x2%2%3)%4%5*(x1%6^7)").arg(2*F->getC()).arg(NotWenImpl::otrNumberSign(F->getD())).arg(fabs(F->getD())).arg(NotWenImpl::numberSign(F->getE())).arg(fabs(F->getE())).arg(NotWenImpl::otrNumberSign(F->getF())).arg(fabs(F->getF()));
+	}
 	else if(F->metaObject()->className() == QString("RavinaFunkcio"))
+	{
 		groupBox_8->setVisible(false);
-	
+		tmpX10 = QString("%1*(x2-x1^2)*(-2*x1)%2%3*(1-x1)").arg(2*F->getA()).arg(NotWenImpl::otrNumberSign(-2*F->getB())).arg(fabs(-2*F->getB()));
+		tmpX20 = QString("%1*(x2-x1^2)").arg(2*F->getA());
+	}
+
+	label_23->setText(tmpX10);
+	label_24->setText(tmpX20);
+		
 	LogTxtBrsr->append(trUtf8("  Длина градиента больше заданой точности - продолжаем минимизацию"));
 
 	qDebug()<<trUtf8("Вошёл в s6"); // Вывожу дебажную инфу на консоль.
@@ -481,38 +494,38 @@ namespace SinkoNotWen
 			}
 			else if(f->metaObject()->className() == QString("RavinaFunkcio"))
 			{
-				if((2*f->getA() != 1 && 2*f->getA() != 0 && 2*f->getA() != -1) && (2*f->getB() == 1))
+				if((2*f->getA() != 1 && 2*f->getA() != 0 && 2*f->getA() != -1) && (-2*f->getB() == 1))
 					tmpX11 = QString("%1*(x2*-x1^2)*(-2*x1)+(1-x1)").arg(2*f->getA());
 				else if((2*f->getA() != 1 && 2*f->getA() != 0  && 2*f->getA() != -1) && (2*f->getB() == 0))
 					tmpX11 = QString("%1*(x2*-x1^2)*(-2*x1)").arg(2*f->getA());
 				else if((2*f->getA() != 1 && 2*f->getA() != 0  && 2*f->getA() != -1) && (2*f->getB() == -1))
 					tmpX11 = QString("%1*(x2*-x1^2)*(-2*x1)-(1-x1)").arg(2*f->getA());
 
-				else if((2*f->getA() == 1) && (2*f->getB() != 1 && 2*f->getB() != 0 && 2*f->getB() != -1))
-					tmpX11 = QString("(x2*-x1^2)*(-2*x1)%1%2*(1-x1)").arg(NotWenImpl::otrNumberSign(f->getB())).arg(fabs(2*f->getB()));
-				else if((2*f->getA() == 1) && (2*f->getB() == 1))
+				else if((2*f->getA() == 1) && (-2*f->getB() != 1 && -2*f->getB() != 0 && -2*f->getB() != -1))
+					tmpX11 = QString("(x2*-x1^2)*(-2*x1)%1%2*(1-x1)").arg(NotWenImpl::otrNumberSign(-2*f->getB())).arg(fabs(2*f->getB()));
+				else if((2*f->getA() == 1) && (-2*f->getB() == 1))
 					tmpX11 = QString("(x2*-x1^2)*(-2*x1)+(1-x1)");
-				else if((2*f->getA() == 1) && (2*f->getB() == 0))
+				else if((2*f->getA() == 1) && (-2*f->getB() == 0))
 					tmpX11 = QString("(x2*-x1^2)*(-2*x1)");
-				else if((2*f->getA() == 1) && (2*f->getB() == -1))
+				else if((2*f->getA() == 1) && (-2*f->getB() == -1))
 					tmpX11 = QString("(x2*-x1^2)*(-2*x1)-(1-x1)");
 
-				else if((2*f->getA() == 0) && (2*f->getB() != 1 && f->getB() != 0))
-					tmpX10 = QString("%1*(1-x1)").arg(2*f->getB());
-				else if((2*f->getA() == 0) && (2*f->getB() == 1))
+				else if((2*f->getA() == 0) && (-2*f->getB() != 1 && -2*f->getB() != 0 && -2*f->getB() != -1))
+					tmpX10 = QString("%1*(1-x1)").arg(-2*f->getB());
+				else if((2*f->getA() == 0) && (-2*f->getB() == 1))
 					tmpX11 = QString("(1-x1)");
-				else if((2*f->getA() == 0) && (2*f->getB() == 0))
+				else if((2*f->getA() == 0) && (-2*f->getB() == 0))
 					tmpX11 = QString("0");
-				else if((2*f->getA() == 0) && (2*f->getB() == -1))
+				else if((2*f->getA() == 0) && (-2*f->getB() == -1))
 					tmpX11 = QString("-(1-x1)");
 				
-				else if((2*f->getA() == -1) && (2*f->getB() != 1 && 2*f->getB() != 0 && 2*f->getB() != -1))
-					tmpX11 = QString("-(x2*-x1^2)*(-2*x1)%1%2*(1-x1)").arg(NotWenImpl::otrNumberSign(f->getB())).arg(fabs(2*f->getB()));
-				else if((2*f->getA() == -1) && (2*f->getB() == 1))
+				else if((2*f->getA() == -1) && (-2*f->getB() != 1 && -2*f->getB() != 0 && -2*f->getB() != -1))
+					tmpX11 = QString("-(x2*-x1^2)*(-2*x1)%1%2*(1-x1)").arg(NotWenImpl::otrNumberSign(-2*f->getB())).arg(fabs(-2*f->getB()));
+				else if((2*f->getA() == -1) && (-2*f->getB() == 1))
 					tmpX11 = QString("-(x2*-x1^2)*(-2*x1)+(1-x1)");
-				else if((2*f->getA() == -1) && (2*f->getB() == 0))
+				else if((2*f->getA() == -1) && (-2*f->getB() == 0))
 					tmpX11 = QString("-(x2*-x1^2)*(-2*x1)");
-				else if((2*f->getA() == -1) && (2*f->getB() == -1))
+				else if((2*f->getA() == -1) && (-2*f->getB() == -1))
 					tmpX11 = QString("-(x2*-x1^2)*(-2*x1)-(1-x1)");
 
 
@@ -523,7 +536,7 @@ namespace SinkoNotWen
 				else if(2*f->getA() == -1)
 					tmpX21 = QString("-(x2-x1^2)");
 				
-				tmpX10 = QString("%1*(x2*-x1^2)*(-2*x1)%2%3*(1-x1)").arg(2*f->getA()).arg(NotWenImpl::otrNumberSign(f->getB())).arg(fabs(2*f->getB()));
+				tmpX10 = QString("%1*(x2-x1^2)*(-2*x1)%2%3*(1-x1)").arg(2*f->getA()).arg(NotWenImpl::otrNumberSign(-2*f->getB())).arg(fabs(-2*f->getB()));
 				tmpX20 = QString("%1*(x2-x1^2)").arg(2*f->getA());
 			}
 
@@ -618,13 +631,15 @@ namespace SinkoNotWen
 			else if(f->metaObject()->className() == QString("RavinaFunkcio"))
 			{
 				QString dfdx1dx1, dfdx1dx2, dfdx2dx1, dfdx2dx2;
-				dfdx1dx1 = QString("%1*x1^2%2%3*x2%3%4").arg(12*f->getA()).arg(NotWenImpl::numberSign(-4*f->getA())).arg(fabs(-4*f->getA())).arg(NotWenImpl::numberSign(-2*f->getB())).arg(fabs(-2*f->getB()));
+				dfdx1dx1 = QString("%1*x1^2%2%3*x2%4%5").arg(12*f->getA()).arg(NotWenImpl::numberSign(-4*f->getA())).arg(fabs(-4*f->getA())).arg(NotWenImpl::numberSign(2*f->getB())).arg(fabs(2*f->getB()));
 				dfdx1dx2 = QString("%1*x1").arg(-4*f->getA());
 				dfdx2dx1 = QString("%1*x1").arg(-4*f->getA());
 				dfdx2dx2 = QString::number(2*f->getA());
 				
 				if(Dfdx1dx1->text() == dfdx1dx1 && Dfdx1dx2->text() == dfdx1dx2 && Dfdx2dx1->text() == dfdx2dx1 && Dfdx2dx2->text() == dfdx2dx2)
+				{
 					return true;
+				}
 				else
 					return false;
 			}
@@ -636,7 +651,6 @@ namespace SinkoNotWen
 	}
 };
 //
-
 
 void NotWenImpl::on_about_action_activated(){
 	aboutProgramImpl * about = new aboutProgramImpl(this);
