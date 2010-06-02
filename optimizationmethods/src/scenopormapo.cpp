@@ -25,12 +25,22 @@ void ScenoPorMapo::drawBackground(QPainter * painter, const QRectF & rect){
 	koloro.getHsvF(&h, &s, &v);
 	QRect r(rect.toRect());
 	double min = F->rezulto(F->minPoint(0.1));
+	double max = F->rezulto(ampleksoMapo, ampleksoMapo);
+	if (F->rezulto(ampleksoMapo, -ampleksoMapo)>max)max = F->rezulto(ampleksoMapo, -ampleksoMapo);
+	if (F->rezulto(-ampleksoMapo, ampleksoMapo)>max)max = F->rezulto(-ampleksoMapo, ampleksoMapo);
+	if (F->rezulto(-ampleksoMapo, -ampleksoMapo)>max)max = F->rezulto(-ampleksoMapo, -ampleksoMapo);
+	if (F->rezulto(0, ampleksoMapo)>max)max = F->rezulto(0, ampleksoMapo);
+	if (F->rezulto(0, -ampleksoMapo)>max)max = F->rezulto(0, -ampleksoMapo);
+	if (F->rezulto(ampleksoMapo, 0)>max)max = F->rezulto(ampleksoMapo, 0);
+	if (F->rezulto(-ampleksoMapo, 0)>max)max = F->rezulto(-ampleksoMapo, 0);
+	qreal lumigo = (max-min)/1000; // Коэффициент освещённости.
 	// Перебираю видимую область и каждую точку заполняю цветом в соответствии
 	// со значением целевой функции. Беру область с запасом на 1, иначе на краях
 	// могут возникать непрорисованные линии
 	for(int i = r.x()-1; i <= r.right()+1; ++i){
 		for(int j = r.y()-1; j <= r.bottom()+1; ++j){
-			v = 0.07 + ((int)(((F->rezulto(i / skalo, j / skalo)-min)/2000)/0.05))*0.05;
+			v = 0.07 + ((int)(((F->rezulto(i / skalo, j / skalo)-min)/lumigo)/0.025))*0.025;
+//			v = (F->rezulto(i / skalo, j / skalo)-min)/lumigo;
 			if(v > 1){
 				v = 1;
 			}else if(v < 0){
