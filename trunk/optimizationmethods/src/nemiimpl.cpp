@@ -307,7 +307,7 @@ void NeMiImpl::s3_entered(){
 	Pc = (*Pm + *Pl)/2;
 	PR = Pc + a*(Pc - *Ph);
 
-	LogTxtBrsr->append(trUtf8("  Точка отражения: (%1; %2)").arg(PR.x()).arg(PR.y()));
+	LogTxtBrsr->append(trUtf8("  Отражение."));
 
 	qDebug()<<trUtf8("Вошёл в s3"); // Вывожу дебажную инфу на консоль.
 }
@@ -326,7 +326,7 @@ void NeMiImpl::s5_entered(){
 	x2_tk_lb->show();
 	fsign_tk_lb->show();
 
-	LogTxtBrsr->append(trUtf8("  Точка сжатия: (%1; %2)").arg(PK.x()).arg(PK.y()));
+	LogTxtBrsr->append(trUtf8("  Сжатие"));
 
 	qDebug()<<trUtf8("Вошёл в s5"); // Вывожу дебажную инфу на консоль.
 }
@@ -346,7 +346,7 @@ void NeMiImpl::s5_exited(){
 void NeMiImpl::s6_entered(){
 	PD = Pc + b*(PR - Pc);
 
-	LogTxtBrsr->append(trUtf8("  Точка растяжения: (%1; %2)").arg(PD.x()).arg(PD.y()));
+	LogTxtBrsr->append(trUtf8("  Растяжение"));
 
 	qDebug()<<trUtf8("Вошёл в s6"); // Вывожу дебажную инфу на консоль.
 }
@@ -369,6 +369,8 @@ void NeMiImpl::s8_entered(){
 
 	x1_step_lb->setText(QString::number(averagxoDistanco(), 'f', 2));
 
+	LogTxtBrsr->append(trUtf8("  Принята точка: (%1; %2).").arg(Ph->x()).arg(Ph->y()));
+
 	qDebug()<<trUtf8("Вошёл в s8"); // Вывожу дебажную инфу на консоль.
 	
 	emit stateHasEntered();
@@ -378,6 +380,8 @@ void NeMiImpl::s9_entered(){
 	*Ph = PR;
 
 	x1_step_lb->setText(QString::number(averagxoDistanco(), 'f', 2));
+
+	LogTxtBrsr->append(trUtf8("  Принята точка: (%1; %2).").arg(Ph->x()).arg(Ph->y()));
 
 	qDebug()<<trUtf8("Вошёл в s9"); // Вывожу дебажную инфу на консоль.
 	
@@ -389,12 +393,15 @@ void NeMiImpl::s10_entered(){
 
 	x1_step_lb->setText(QString::number(averagxoDistanco(), 'f', 2));
 
+	LogTxtBrsr->append(trUtf8("  Принята точка: (%1; %2).").arg(Ph->x()).arg(Ph->y()));
+
 	qDebug()<<trUtf8("Вошёл в s10"); // Вывожу дебажную инфу на консоль.
 	
 	emit stateHasEntered();
 }
 
 void NeMiImpl::s11_entered(){
+	LogTxtBrsr->append(trUtf8("  Редукция."));
 
 	qDebug()<<trUtf8("Вошёл в s11"); // Вывожу дебажную инфу на консоль.
 }
@@ -403,7 +410,7 @@ void NeMiImpl::sf_entered(){
 	LogTxtBrsr->append(trUtf8("Конец алгоритма. Найден минимум функции: %1. Количество ошибок: %2.").arg(F->rezulto(*Pl)).arg(KvantoEraroj));
 	QString str = trUtf8("Найден минимум. ");
 
-	qDebug()<<trUtf8("Конец алгоритма. Найден минимум"); // Вывожу дебажную инфу на консоль.
+	qDebug()<<trUtf8("Конец алгоритма."); // Вывожу дебажную инфу на консоль.
 
 	if(KvantoEraroj > D[6]){
 		// Слишком много ошибок.
@@ -440,6 +447,7 @@ void NeMiImpl::registriEraro(){
 
 void NeMiImpl::s3s1_triggered(){
 	*Ph = PR;
+	LogTxtBrsr->append(trUtf8("  Принята точка: (%1; %2).").arg(Ph->x()).arg(Ph->y()));
 }
 
 qreal NeMiImpl::averagxoDistanco(){
