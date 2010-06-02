@@ -25,7 +25,7 @@ public:
 	//! Возвращает длину шага для оптимизации функции одной переменной.
 	double lengthOfStep(const QVector<double> X, const double e) const;
 	//! Возвращает длину шага для оптимизации функции одной переменной.
-	double lengthOfStep(const QPointF X) const;
+	double lengthOfStep(const QPointF X, const double l) const;
 
 	//! Возвращает определитель гессиана.
 	virtual double detGessian(const QPointF * X) const = 0;
@@ -178,10 +178,10 @@ public:
 
 	//! Возвращает значение частной производной первого порядка по x1.
 	double df_dx1(const QVector<double> X) const
-	{ return -4*A*(X[1]*X[0] - pow(X[0], 3)) + 2*B*(1 - X[0]); };
+	{ return 2*A*(X[1] - X[0]*X[0])*(-2*X[0]) + 2*B*(1 - X[0]); };
 	//! Возвращает значение частной производной первого порядка по x1.
 	double df_dx1(const QPointF X) const
-	{ return -4*A*(X.y()*X.x() - pow(X.x(), 3)) + 2*B*(1 - X.x()); };
+	{ return 2*A*(X.y() - X.x()*X.x())*(-2*X.x()) + 2*B*(1 - X.x()); };
 
 	//! Возвращает значение частной производной первого порядка по x2.
 	double df_dx2(const QVector<double> X) const
@@ -196,10 +196,10 @@ public:
 	
 	//! Возвращает значение частной производной второго порядка.
 	double df_dx1dx1(const QPointF * X) const
-	{ return 12*A*X->x()*X->x() - 4*A*X->y() + 2*B; }
+	{ return 12*A*X->x()*X->x() - 4*A*X->y() - 2*B; }
 	//! Возвращает значение частной производной второго порядка.
 	double df_dx1dx2(const QPointF * X) const
-	{ return - 4*A*X->x(); }
+	{ return -4*A*X->x(); }
 	//! Возвращает значение частной производной второго порядка.
 	double df_dx2dx2() const
 	{ return 2*A; }

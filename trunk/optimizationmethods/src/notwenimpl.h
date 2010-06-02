@@ -45,7 +45,7 @@ public:
 	//! Возвращает противоположный знак числа.
 	static QString otrNumberSign(double a)
 	{
-		if(a > 0)
+		if(a >= 0)
 			return "-";
 		else
 			return "+";
@@ -53,7 +53,7 @@ public:
 	//! Возвращает знак числа.
 	static QString numberSign(double a)
 	{
-		if(a > 0)
+		if(a >= 0)
 			return "+";
 		else
 			return "-";
