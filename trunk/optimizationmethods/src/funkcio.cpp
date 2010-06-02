@@ -22,29 +22,29 @@
   		if (rezulto(X[0] - lam*df_dx1(X), X[1] - lam*df_dx2(X)) > rezulto(X[0] - mu*df_dx1(X), X[1] - mu*df_dx2(X)))
   		{
   			a = lam;
-  			lam = mu;
+  			lam = a + (1 - tau)*(b - a);
   			mu = a + tau*(b - a);
  		}
  		else
  		{
  			b = mu;
- 			mu = lam;
  			lam = a + (1 - tau)*(b - a);
+ 			mu = a + tau*(b - a);
 		}
  	}
  	return (a + b)/2;
   }
 
-//! Возвращает длину шага для оптимизации функции одной переменной по оси Х1.
-double funkcio::lengthOfStep(const QPointF X, const double l) const
+//! Возвращает длину шага для оптимизации функции одной переменной.
+double funkcio::lengthOfStep(const QPointF X) const
 {
 	// Найдя антиградиент, мы ввели новую ось, вдоль которой теперь надо найти
 	// минимум. Текущая точка (х1;х2) соответствует 0 на новой оси.
 	double a = 0;
 	// b надо взять такое, что бы в разрезе по новой оси функция имела форму чашки. 
-	double b = 10;
+	double b = 100;
 	// Изменяю b, пока не будет чашка.
-	while(rezulto(X.x() - b*(df_dx1(X) / l), X.y() - b*(df_dx2(X)) / l) < rezulto(X.x() - (b-5)*(df_dx1(X) / l), X.y() - (b-5)*(df_dx2(X)) / l))
+	while(rezulto(X.x() - b*df_dx1(X), X.y() - b*df_dx2(X)) < rezulto(X.x() - (b-5)*df_dx1(X), X.y() - (b-5)*df_dx2(X)))
 	{
 		b += 10;
 	}
@@ -53,9 +53,9 @@ double funkcio::lengthOfStep(const QPointF X, const double l) const
 	double lam = a + (1 - tau)*(b - a);
 	double mu = a + tau*(b - a);
 	
-	while ((b - a) > 0.0000001)
+	while (fabs(b - a) > 0.0000000001)
 	{
-		if (rezulto(X.x() - lam*(df_dx1(X) / l), X.y() - lam*(df_dx2(X) / l)) >= rezulto(X.x() - mu*(df_dx1(X) / l), X.y() - mu*(df_dx2(X)) / l))
+		if (rezulto(X.x() - lam*df_dx1(X), X.y() - lam*df_dx2(X)) > rezulto(X.x() - mu*df_dx1(X), X.y() - mu*df_dx2(X)))
 		{
 			a = lam;
 			lam = a + (1 - tau)*(b - a);
