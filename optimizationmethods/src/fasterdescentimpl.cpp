@@ -240,10 +240,10 @@ void FasterDescentImpl::s8_entered()
 	stackedWidget->setCurrentIndex(4);
 	
 	lengthStep = QPointF(F->lengthOfStep(grad), 0);
-LogTxtBrsr->append(trUtf8("%1").arg(lengthStep.x()));
+
 	LogTxtBrsr->append(trUtf8("  а вычислено успешно"));
 
-	if(F->metaObject()->className() == QString("RavinaFunkcio") && NumeroIteracio > 5 && KvantoEraroj <= quanError)
+	if(NumeroIteracio > 5 && KvantoEraroj <= quanError)
 		step_bt->click();
 
 	qDebug()<<trUtf8("Вошёл в s8"); // Вывожу дебажную инфу на консоль.
@@ -255,7 +255,7 @@ void FasterDescentImpl::s7_entered()
 
 	LogTxtBrsr->append(trUtf8("  Вычисляем а"));
 
-	if(F->metaObject()->className() == QString("RavinaFunkcio") && NumeroIteracio > 5 && KvantoEraroj <= quanError)
+	if(NumeroIteracio > 5 && KvantoEraroj <= quanError)
 	{
 		minf->setChecked(true);
 		next4_bt->click();
@@ -272,7 +272,7 @@ void FasterDescentImpl::s6_entered()
 	
 	LogTxtBrsr->append(trUtf8("  Проверка точности выполнена"));
 
-	if(F->metaObject()->className() == QString("RavinaFunkcio") && NumeroIteracio > 5 && KvantoEraroj <= quanError)
+	if(NumeroIteracio > 5 && KvantoEraroj <= quanError)
 	{
 		if(Length(grad) >= strikteco)
 			calcula_bt->click();
@@ -289,7 +289,7 @@ void FasterDescentImpl::s5_entered()
 
 	LogTxtBrsr->append(trUtf8("  Проверка точности"));
 
-	if(F->metaObject()->className() == QString("RavinaFunkcio") && NumeroIteracio > 5 && KvantoEraroj <= quanError)
+	if(NumeroIteracio > 5 && KvantoEraroj <= quanError)
 	{
 		gradfx->setChecked(true);
 		next3_bt->click();
@@ -309,7 +309,7 @@ void FasterDescentImpl::s4_entered()
 	else if (NumeroIteracio > 1)
 		LogTxtBrsr->append(trUtf8("  S определено успешно"));
 
-	if(F->metaObject()->className() == QString("RavinaFunkcio") && NumeroIteracio > 5 && KvantoEraroj <= quanError)
+	if(NumeroIteracio > 5 && KvantoEraroj <= quanError)
 		check_bt->click();
 
 	qDebug()<<trUtf8("Вошёл в s4"); // Вывожу дебажную инфу на консоль.
@@ -330,7 +330,7 @@ void FasterDescentImpl::s2_entered()
 
 	LogTxtBrsr->append(trUtf8("  Определяем S"));
 
-	if(F->metaObject()->className() == QString("RavinaFunkcio") && NumeroIteracio > 5 && KvantoEraroj <= quanError)
+	if(NumeroIteracio > 5 && KvantoEraroj <= quanError)
 	{
 		agrad_fx->setChecked(true);
 		next1_bt->click();
@@ -354,7 +354,7 @@ void FasterDescentImpl::s1_entered()
 	
 	LogTxtBrsr->append(trUtf8("Итерация № %1.").arg(++NumeroIteracio));
 
-	if(F->metaObject()->className() == QString("RavinaFunkcio") && NumeroIteracio > 5 && KvantoEraroj <= quanError)
+	if(NumeroIteracio > 5 && KvantoEraroj <= quanError)
 	{
 		qApp->processEvents();
 		inserts_bt->click();

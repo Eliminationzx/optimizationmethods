@@ -250,7 +250,7 @@ void NotWenImpl::s5_entered()
 	
 	LogTxtBrsr->append(trUtf8("  Критерий остановки определен успешно"));
 
-	if(F->metaObject()->className() == QString("RavinaFunkcio") && NumeroIteracio > 5 && KvantoEraroj <= quanError)
+	if(NumeroIteracio > 5 && KvantoEraroj <= quanError)
 	{
 		if(Length(grad) >= strikteco)
 		{
@@ -278,7 +278,7 @@ void NotWenImpl::s4_entered()
 	else if (NumeroIteracio > 1)
 		LogTxtBrsr->append(trUtf8("  Определение координат вектора градиента дано успешно"));
 
-	if(F->metaObject()->className() == QString("RavinaFunkcio") && NumeroIteracio > 5 && KvantoEraroj <= quanError)
+	if(NumeroIteracio > 5 && KvantoEraroj <= quanError)
 	{
 		gradfxk_less->setChecked(true);
 		next4_bt->click();
@@ -302,7 +302,7 @@ void NotWenImpl::s2_entered()
 	
 	LogTxtBrsr->append(trUtf8("  Направление поиска определено успешно"));
 
-	if(F->metaObject()->className() == QString("RavinaFunkcio") && NumeroIteracio > 5 && KvantoEraroj <= quanError)
+	if(NumeroIteracio > 5 && KvantoEraroj <= quanError)
 	{
 		part_proizvod_first->setChecked(true);
 		next2_bt->click();
@@ -322,7 +322,7 @@ void NotWenImpl::s1_entered()
 	
 	LogTxtBrsr->append(trUtf8("Итерация № %1.").arg(++NumeroIteracio));
 
-	if(F->metaObject()->className() == QString("RavinaFunkcio") && NumeroIteracio > 5 && KvantoEraroj <= quanError)
+	if(NumeroIteracio > 5 && KvantoEraroj <= quanError)
 	{
 		qApp->processEvents();
 		_g_xkgradfxk->setChecked(true);
