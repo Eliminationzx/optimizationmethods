@@ -330,7 +330,7 @@ p, li { white-space: pre-wrap; }
               </font>
              </property>
              <property name="title">
-              <string>Как считать S</string>
+              <string>Направление минимизации</string>
              </property>
              <layout class="QGridLayout" name="gridLayout_5">
               <item row="0" column="0">
@@ -538,7 +538,7 @@ p, li { white-space: pre-wrap; }
            <item row="0" column="0">
             <widget class="QGroupBox" name="groupBox_5">
              <property name="title">
-              <string>С чем сравнивать точность</string>
+              <string>Критерий остановки</string>
              </property>
              <layout class="QGridLayout" name="gridLayout_9">
               <item row="0" column="0">
@@ -549,7 +549,7 @@ p, li { white-space: pre-wrap; }
                  </font>
                 </property>
                 <property name="text">
-                 <string>|| f(xk) - f(x) ||</string>
+                 <string>|| f(xk) - f(x) || &lt; ℰ</string>
                 </property>
                </widget>
               </item>
@@ -561,7 +561,7 @@ p, li { white-space: pre-wrap; }
                  </font>
                 </property>
                 <property name="text">
-                 <string>|| xk - x ||</string>
+                 <string>|| xk - x || &lt; ℰ</string>
                 </property>
                </widget>
               </item>
@@ -573,7 +573,7 @@ p, li { white-space: pre-wrap; }
                  </font>
                 </property>
                 <property name="text">
-                 <string>|| grad f(x) ||</string>
+                 <string>|| grad f(x) || &lt; ℰ</string>
                 </property>
                </widget>
               </item>
@@ -629,7 +629,7 @@ p, li { white-space: pre-wrap; }
            <item row="0" column="0">
             <widget class="QGroupBox" name="groupBox_6">
              <property name="title">
-              <string>a  =</string>
+              <string>λ =</string>
              </property>
              <layout class="QGridLayout" name="gridLayout_11">
               <item row="0" column="0">
@@ -664,7 +664,7 @@ p, li { white-space: pre-wrap; }
                  </font>
                 </property>
                 <property name="text">
-                 <string>max f(x + a*S)</string>
+                 <string>max f(x + λ*S)</string>
                 </property>
                </widget>
               </item>
@@ -676,7 +676,7 @@ p, li { white-space: pre-wrap; }
                  </font>
                 </property>
                 <property name="text">
-                 <string>min f(x + a*S)</string>
+                 <string>min f(x + λ*S)</string>
                 </property>
                </widget>
               </item>
