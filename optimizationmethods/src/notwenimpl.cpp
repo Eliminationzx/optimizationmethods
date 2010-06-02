@@ -450,81 +450,81 @@ namespace SinkoNotWen
 					tmpX21 = QString("%1*(x2%2%3)-(x1%4%5)").arg(2*f->getC()).arg(NotWenImpl::otrNumberSign(f->getD())).arg(f->getD()).arg(NotWenImpl::otrNumberSign(f->getF())).arg(f->getF());
 
 				else if((2*f->getC() == 1) && (f->getE() != 1 && f->getE() != 0 && f->getE() != -1))
-					tmpX21 = QString("(x2%1%2)%3%4*(x1%5%6)").arg(NotWenImpl::otrNumberSign(f->getD())).arg(f->getD()).arg(NotWenImpl::numberSign(f->getE())).arg(f->getE()).arg(NotWenImpl::otrNumberSign(f->getF())).arg(f->getF());
+					tmpX21 = QString("(x2%1%2)%3%4*(x1%5%6)").arg(NotWenImpl::otrNumberSign(f->getD())).arg(fabs(f->getD())).arg(NotWenImpl::numberSign(f->getE())).arg(fabs(f->getE())).arg(NotWenImpl::otrNumberSign(f->getF())).arg(fabs(f->getF()));
 				else if((2*f->getC() == 1) && (f->getE() == 1))
-					tmpX21 = QString("(x2%1%2)+(x1%3%4)").arg(NotWenImpl::otrNumberSign(f->getD())).arg(f->getD()).arg(NotWenImpl::otrNumberSign(f->getF())).arg(f->getF());
+					tmpX21 = QString("(x2%1%2)+(x1%3%4)").arg(NotWenImpl::otrNumberSign(f->getD())).arg(fabs(f->getD())).arg(NotWenImpl::otrNumberSign(f->getF())).arg(fabs(f->getF()));
 				else if((2*f->getC() == 1) && (f->getE() == 0))
-					tmpX21 = QString("(x2%1%2)").arg(NotWenImpl::otrNumberSign(f->getD())).arg(f->getD());
+					tmpX21 = QString("(x2%1%2)").arg(NotWenImpl::otrNumberSign(f->getD())).arg(fabs(f->getD()));
 				else if((2*f->getC() == 1) && (f->getE() == -1))
-					tmpX21 = QString("(x2%1%2)-(x1%3%4)").arg(NotWenImpl::otrNumberSign(f->getD())).arg(f->getD()).arg(NotWenImpl::otrNumberSign(f->getF())).arg(f->getF());
+					tmpX21 = QString("(x2%1%2)-(x1%3%4)").arg(NotWenImpl::otrNumberSign(f->getD())).arg(fabs(f->getD())).arg(NotWenImpl::otrNumberSign(f->getF())).arg(fabs(f->getF()));
 
 				else if((2*f->getC() == 0) && (f->getE() != 1 && f->getE() != 0 && f->getE() != -1))
-					tmpX21 = QString("%1*(x1%2%3)").arg(f->getE()).arg(NotWenImpl::otrNumberSign(f->getF())).arg(f->getF());
+					tmpX21 = QString("%1*(x1%2%3)").arg(f->getE()).arg(NotWenImpl::otrNumberSign(f->getF())).arg(fabs(f->getF()));
 				else if((2*f->getC() == 0) && (f->getE() == 1))
-					tmpX21 = QString("(x1%1%2)").arg(NotWenImpl::otrNumberSign(f->getF())).arg(f->getF());
+					tmpX21 = QString("(x1%1%2)").arg(NotWenImpl::otrNumberSign(f->getF())).arg(fabs(f->getF()));
 				else if((2*f->getC() == 0) && (f->getE() == 0))
 					tmpX21 = QString("0");
 				else if((2*f->getC() == 0) && (f->getE() == -1))
-					tmpX21 = QString("-(x1%1%2)").arg(NotWenImpl::otrNumberSign(f->getF())).arg(f->getF());
+					tmpX21 = QString("-(x1%1%2)").arg(NotWenImpl::otrNumberSign(f->getF())).arg(fabs(f->getF()));
 
 				else if((2*f->getC() == -1) && (f->getE() != 1 && f->getE() != 0 && f->getE() != -1))
-					tmpX21 = QString("-(x2%1%2)%3%4*(x1%5%6)").arg(NotWenImpl::otrNumberSign(f->getD())).arg(f->getD()).arg(NotWenImpl::numberSign(f->getE())).arg(f->getE()).arg(NotWenImpl::otrNumberSign(f->getF())).arg(f->getF());
+					tmpX21 = QString("-(x2%1%2)%3%4*(x1%5%6)").arg(NotWenImpl::otrNumberSign(f->getD())).arg(fabs(f->getD())).arg(NotWenImpl::numberSign(f->getE())).arg(fabs(f->getE())).arg(NotWenImpl::otrNumberSign(f->getF())).arg(fabs(f->getF()));
 				else if((2*f->getC() == -1) && (f->getE() == 1))
-					tmpX21 = QString("-(x2%1%2)+(x1%3%4)").arg(NotWenImpl::otrNumberSign(f->getD())).arg(f->getD()).arg(NotWenImpl::otrNumberSign(f->getF())).arg(f->getF());
+					tmpX21 = QString("-(x2%1%2)+(x1%3%4)").arg(NotWenImpl::otrNumberSign(f->getD())).arg(fabs(f->getD())).arg(NotWenImpl::otrNumberSign(f->getF())).arg(fabs(f->getF()));
 				else if((2*f->getC() == -1) && (f->getE() == 0))
-					tmpX21 = QString("-(x2%1%2)").arg(NotWenImpl::otrNumberSign(f->getD())).arg(f->getD());
+					tmpX21 = QString("-(x2%1%2)").arg(NotWenImpl::otrNumberSign(f->getD())).arg(fabs(f->getD()));
 				else if((2*f->getC() == -1) && (f->getE() == -1))
-					tmpX21 = QString("-(x2%1%2)-(x1%3%4)").arg(NotWenImpl::otrNumberSign(f->getD())).arg(f->getD()).arg(NotWenImpl::otrNumberSign(f->getF())).arg(f->getF());
+					tmpX21 = QString("-(x2%1%2)-(x1%3%4)").arg(NotWenImpl::otrNumberSign(f->getD())).arg(fabs(f->getD())).arg(NotWenImpl::otrNumberSign(f->getF())).arg(fabs(f->getF()));
 
 				tmpX10 = QString("%1*(x1%2%3)%4%5*(x2%6%7)").arg(2*f->getA()).arg(NotWenImpl::otrNumberSign(f->getB())).arg(fabs(f->getB())).arg(NotWenImpl::numberSign(f->getE())).arg(fabs(f->getE())).arg(NotWenImpl::otrNumberSign(f->getG())).arg(fabs(f->getG()));
 				tmpX20 = QString("%1*(x2%2%3)%4%5*(x1%6^7)").arg(2*f->getC()).arg(NotWenImpl::otrNumberSign(f->getD())).arg(fabs(f->getD())).arg(NotWenImpl::numberSign(f->getE())).arg(fabs(f->getE())).arg(NotWenImpl::otrNumberSign(f->getF())).arg(fabs(f->getF()));
 			}
 			else if(f->metaObject()->className() == QString("RavinaFunkcio"))
 			{
-				if((-4*f->getA() != 1 && -4*f->getA() != 0 && -4*f->getA() != -1) && (2*f->getB() == 1))
-					tmpX11 = QString("%1*(x2*x1-x1^3)+(1-x1)").arg(-4*f->getA());
-				else if((-4*f->getA() != 1 && -4*f->getA() != 0  && -4*f->getA() != -1) && (2*f->getB() == 0))
-					tmpX11 = QString("%1*(x2*x1-x1^3)").arg(-4*f->getA());
-				else if((-4*f->getA() != 1 && -4*f->getA() != 0  && -4*f->getA() != -1) && (2*f->getB() == -1))
-					tmpX11 = QString("%1*(x2*x1-x1^3)-(1-x1)").arg(-4*f->getA());
+				if((2*f->getA() != 1 && 2*f->getA() != 0 && 2*f->getA() != -1) && (2*f->getB() == 1))
+					tmpX11 = QString("%1*(x2*-x1^2)*(-2*x1)+(1-x1)").arg(2*f->getA());
+				else if((2*f->getA() != 1 && 2*f->getA() != 0  && 2*f->getA() != -1) && (2*f->getB() == 0))
+					tmpX11 = QString("%1*(x2*-x1^2)*(-2*x1)").arg(2*f->getA());
+				else if((2*f->getA() != 1 && 2*f->getA() != 0  && 2*f->getA() != -1) && (2*f->getB() == -1))
+					tmpX11 = QString("%1*(x2*-x1^2)*(-2*x1)-(1-x1)").arg(2*f->getA());
 
-				else if((-4*f->getA() == 1) && (2*f->getB() != 1 && 2*f->getB() != 0 && 2*f->getB() != -1))
-					tmpX11 = QString("(x2*x1-x1^3)%1%2*(1-x1)").arg(NotWenImpl::otrNumberSign(f->getB())).arg(fabs(2*f->getB()));
-				else if((-4*f->getA() == 1) && (2*f->getB() == 1))
-					tmpX11 = QString("(x2*x1-x1^3)+(1-x1)");
-				else if((-4*f->getA() == 1) && (2*f->getB() == 0))
-					tmpX11 = QString("(x2*x1-x1^3)");
-				else if((-4*f->getA() == 1) && (2*f->getB() == -1))
-					tmpX11 = QString("(x2*x1-x1^3)-(1-x1)");
+				else if((2*f->getA() == 1) && (2*f->getB() != 1 && 2*f->getB() != 0 && 2*f->getB() != -1))
+					tmpX11 = QString("(x2*-x1^2)*(-2*x1)%1%2*(1-x1)").arg(NotWenImpl::otrNumberSign(f->getB())).arg(fabs(2*f->getB()));
+				else if((2*f->getA() == 1) && (2*f->getB() == 1))
+					tmpX11 = QString("(x2*-x1^2)*(-2*x1)+(1-x1)");
+				else if((2*f->getA() == 1) && (2*f->getB() == 0))
+					tmpX11 = QString("(x2*-x1^2)*(-2*x1)");
+				else if((2*f->getA() == 1) && (2*f->getB() == -1))
+					tmpX11 = QString("(x2*-x1^2)*(-2*x1)-(1-x1)");
 
-				else if((-4*f->getA() == 0) && (2*f->getB() != 1 && f->getE() != 0))
+				else if((2*f->getA() == 0) && (2*f->getB() != 1 && f->getB() != 0))
 					tmpX10 = QString("%1*(1-x1)").arg(2*f->getB());
-				else if((-4*f->getA() == 0) && (2*f->getB() == 1))
+				else if((2*f->getA() == 0) && (2*f->getB() == 1))
 					tmpX11 = QString("(1-x1)");
-				else if((-4*f->getA() == 0) && (2*f->getB() == 0))
+				else if((2*f->getA() == 0) && (2*f->getB() == 0))
 					tmpX11 = QString("0");
-				else if((-4*f->getA() == 0) && (2*f->getB() == -1))
+				else if((2*f->getA() == 0) && (2*f->getB() == -1))
 					tmpX11 = QString("-(1-x1)");
 				
-				else if((-4*f->getA() == -1) && (2*f->getB() != 1 && 2*f->getB() != 0 && 2*f->getB() != -1))
-					tmpX11 = QString("-(x2*x1-x1^3)%1%2*(1-x1)").arg(NotWenImpl::otrNumberSign(f->getB())).arg(fabs(2*f->getB()));
-				else if((-4*f->getA() == -1) && (2*f->getB() == 1))
-					tmpX11 = QString("-(x2*x1-x1^3)+(1-x1)");
-				else if((-4*f->getA() == -1) && (2*f->getB() == 0))
-					tmpX11 = QString("-(x2*x1-x1^3)");
-				else if((-4*f->getA() == -1) && (2*f->getB() == -1))
-					tmpX11 = QString("-(x2*x1-x1^3)-(1-x1)");
+				else if((2*f->getA() == -1) && (2*f->getB() != 1 && 2*f->getB() != 0 && 2*f->getB() != -1))
+					tmpX11 = QString("-(x2*-x1^2)*(-2*x1)%1%2*(1-x1)").arg(NotWenImpl::otrNumberSign(f->getB())).arg(fabs(2*f->getB()));
+				else if((2*f->getA() == -1) && (2*f->getB() == 1))
+					tmpX11 = QString("-(x2*-x1^2)*(-2*x1)+(1-x1)");
+				else if((2*f->getA() == -1) && (2*f->getB() == 0))
+					tmpX11 = QString("-(x2*-x1^2)*(-2*x1)");
+				else if((2*f->getA() == -1) && (2*f->getB() == -1))
+					tmpX11 = QString("-(x2*-x1^2)*(-2*x1)-(1-x1)");
 
 
-				if(f->getA() == 1)
+				if(2*f->getA() == 1)
 					tmpX21 = QString("(x2-x1^2)");
-				else if(f->getA() == 0)
+				else if(2*f->getA() == 0)
 					tmpX21 = QString("0");
-				else if(f->getA() == -1)
+				else if(2*f->getA() == -1)
 					tmpX21 = QString("-(x2-x1^2)");
 				
-				tmpX10 = QString("%1*(x2*x1-x1^3)%2%3*(1-x1)").arg(-4*f->getA()).arg(NotWenImpl::otrNumberSign(f->getB())).arg(fabs(2*f->getB()));
-				tmpX20 = QString("%1*(x2-x1^2)").arg(f->getA());
+				tmpX10 = QString("%1*(x2*-x1^2)*(-2*x1)%2%3*(1-x1)").arg(2*f->getA()).arg(NotWenImpl::otrNumberSign(f->getB())).arg(fabs(2*f->getB()));
+				tmpX20 = QString("%1*(x2-x1^2)").arg(2*f->getA());
 			}
 
 			if(df_dx1->text() == tmpX10 || df_dx1->text() == tmpX11)
@@ -618,7 +618,7 @@ namespace SinkoNotWen
 			else if(f->metaObject()->className() == QString("RavinaFunkcio"))
 			{
 				QString dfdx1dx1, dfdx1dx2, dfdx2dx1, dfdx2dx2;
-				dfdx1dx1 = QString("%1*x1^2%2%3*x2%3%4").arg(12*f->getA()).arg(NotWenImpl::otrNumberSign(-4*f->getA())).arg(-4*f->getA()).arg(NotWenImpl::otrNumberSign(f->getB())).arg(2*f->getB());
+				dfdx1dx1 = QString("%1*x1^2%2%3*x2%3%4").arg(12*f->getA()).arg(NotWenImpl::numberSign(-4*f->getA())).arg(fabs(-4*f->getA())).arg(NotWenImpl::numberSign(-2*f->getB())).arg(fabs(-2*f->getB()));
 				dfdx1dx2 = QString("%1*x1").arg(-4*f->getA());
 				dfdx2dx1 = QString("%1*x1").arg(-4*f->getA());
 				dfdx2dx2 = QString::number(2*f->getA());

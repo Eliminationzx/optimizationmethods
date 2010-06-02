@@ -36,7 +36,7 @@
   }
 
 //! Возвращает длину шага для оптимизации функции одной переменной по оси Х1.
-double funkcio::lengthOfStep(const QPointF X) const
+double funkcio::lengthOfStep(const QPointF X, const double l) const
 {
 	// Найдя антиградиент, мы ввели новую ось, вдоль которой теперь надо найти
 	// минимум. Текущая точка (х1;х2) соответствует 0 на новой оси.
@@ -44,7 +44,7 @@ double funkcio::lengthOfStep(const QPointF X) const
 	// b надо взять такое, что бы в разрезе по новой оси функция имела форму чашки. 
 	double b = 10;
 	// Изменяю b, пока не будет чашка.
-	while(rezulto(X.x() - b*df_dx1(X), X.y() - b*df_dx2(X)) < rezulto(X.x() - (b-5)*df_dx1(X), X.y() - (b-5)*df_dx2(X)))
+	while(rezulto(X.x() - b*(df_dx1(X) / l), X.y() - b*(df_dx2(X)) / l) < rezulto(X.x() - (b-5)*(df_dx1(X) / l), X.y() - (b-5)*(df_dx2(X)) / l))
 	{
 		b += 10;
 	}
@@ -55,7 +55,7 @@ double funkcio::lengthOfStep(const QPointF X) const
 	
 	while ((b - a) > 0.0000001)
 	{
-		if (rezulto(X.x() - lam*df_dx1(X), X.y() - lam*df_dx2(X)) >= rezulto(X.x() - mu*df_dx1(X), X.y() - mu*df_dx2(X)))
+		if (rezulto(X.x() - lam*(df_dx1(X) / l), X.y() - lam*(df_dx2(X) / l)) >= rezulto(X.x() - mu*(df_dx1(X) / l), X.y() - mu*(df_dx2(X)) / l))
 		{
 			a = lam;
 			lam = a + (1 - tau)*(b - a);
