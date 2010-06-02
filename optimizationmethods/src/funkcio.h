@@ -25,7 +25,7 @@ public:
 	//! Возвращает длину шага для оптимизации функции одной переменной.
 	double lengthOfStep(const QVector<double> X, const double e) const;
 	//! Возвращает длину шага для оптимизации функции одной переменной.
-	double lengthOfStep(const QPointF X, const double l) const;
+	double lengthOfStep(const QPointF X) const;
 
 	//! Возвращает определитель гессиана.
 	virtual double detGessian(const QPointF * X) const = 0;

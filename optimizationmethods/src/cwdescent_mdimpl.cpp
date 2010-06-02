@@ -172,14 +172,14 @@ DemonstrataQPointF CWdescent_mdImpl::LengthOfStepX2(DemonstrataQPointF X) const
 		if (F->rezulto(x, lam) > F->rezulto(x, mu))
 		{
 			a = lam;
-			lam = mu;
+			lam = a + (1 - tau)*(b - a);
 			mu = a + tau*(b - a);
 		}
 		else
 		{
 			b = mu;
-			mu = lam;
 			lam = a + (1 - tau)*(b - a);
+			mu = a + tau*(b - a);
 		}
 	}
 	
