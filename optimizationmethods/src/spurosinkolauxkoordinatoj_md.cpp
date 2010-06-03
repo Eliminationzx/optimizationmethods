@@ -44,6 +44,8 @@ void spuroSinkoLauxKoordinatoj_md::paint(QPainter *painter, const QStyleOptionGr
 void spuroSinkoLauxKoordinatoj_md::difiniUnuaPointo(QPointF p){
 	MomentaPointo = p;
 	MomentaPointoj.append(p);
+	// Центрирую карту на последней точке.
+	this->scene()->views()[0]->centerOn(p * skalo);
 	update();// Планирую перерисовку.
 }
 
@@ -72,5 +74,7 @@ void spuroSinkoLauxKoordinatoj_md::senspurigi(){
 void spuroSinkoLauxKoordinatoj_md::aldoniPointo(QPointF p){
 	MomentaPointo = p;
 	MomentaPointoj.append(p);
+	// Прокручиваю карту, чтобы не скрывать последнюю точку.
+	this->scene()->views()[0]->ensureVisible(p.x() * skalo, p.y() * skalo, 1, 1);
 	update();
 }
