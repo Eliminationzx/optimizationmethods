@@ -242,8 +242,8 @@ void CWdescent_mdImpl::s3_entered()
 	
 	// Вывожу на форму значение расстояния между предыдущей базовой точкой и
 	// текущей, а также разность между предыдущим значением функции и текущим. 
-	dx_lb->setText(QString::number(Length(BP - MP), 'f'));
-	df_lb->setText(QString::number(F->rezulto(BP) - F->rezulto(MP), 'f'));
+	dx_lb->setText(QString::number(Length(BP - MP), 'f', 2));
+	df_lb->setText(QString::number(F->rezulto(BP) - F->rezulto(MP), 'f', 6));
 
 	LogTxtBrsr->append(trUtf8("  Сделан шаг по оси Х2. Новая точка: %1; %2").arg(MP.x()).arg(MP.y()));
 
