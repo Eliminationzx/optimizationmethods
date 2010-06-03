@@ -191,14 +191,14 @@ void NotWenImpl::sf_entered()
 		str += trUtf8("Вы прошли тест. ");
 		if(F->metaObject()->className() == QString("KvadratigantoFunkcio"))
 		{
-			str += trUtf8("Сообщите преподавателю и перейдите к овражной функции. Количество ошибок: %1.").arg(KvantoEraroj);
+			str += trUtf8("Сообщите преподавателю и перейдите к овражной функции. Количество ошибок: <b>%1</b>.").arg(KvantoEraroj);
 			emit usiloPlenumis(A::NotWen);
 			QMessageBox::information(this, trUtf8("Поздравляем"), str);
 			close();
 		}
 		else if(F->metaObject()->className() == QString("RavinaFunkcio"))
 		{
-			str += trUtf8("Позовите преподавателя. Количество ошибок: %1.").arg(KvantoEraroj);
+			str += trUtf8("Позовите преподавателя. Количество ошибок: <b>%1</b>.").arg(KvantoEraroj);
 			QMessageBox::information(this, trUtf8("Поздравляем"), str);
 		}
 	}
@@ -238,7 +238,7 @@ void NotWenImpl::s6_entered()
 	{
 		groupBox_8->setVisible(true);
 		tmpX10 = QString("%1*(x1%2%3)%4%5*(x2%6%7)").arg(2*F->getA()).arg(NotWenImpl::otrNumberSign(F->getB())).arg(fabs(F->getB())).arg(NotWenImpl::numberSign(F->getE())).arg(fabs(F->getE())).arg(NotWenImpl::otrNumberSign(F->getG())).arg(fabs(F->getG()));
-		tmpX20 = QString("%1*(x2%2%3)%4%5*(x1%6^7)").arg(2*F->getC()).arg(NotWenImpl::otrNumberSign(F->getD())).arg(fabs(F->getD())).arg(NotWenImpl::numberSign(F->getE())).arg(fabs(F->getE())).arg(NotWenImpl::otrNumberSign(F->getF())).arg(fabs(F->getF()));
+		tmpX20 = QString("%1*(x2%2%3)%4%5*(x1%6%7)").arg(2*F->getC()).arg(NotWenImpl::otrNumberSign(F->getD())).arg(fabs(F->getD())).arg(NotWenImpl::numberSign(F->getE())).arg(fabs(F->getE())).arg(NotWenImpl::otrNumberSign(F->getF())).arg(fabs(F->getF()));
 	}
 	else if(F->metaObject()->className() == QString("RavinaFunkcio"))
 	{
