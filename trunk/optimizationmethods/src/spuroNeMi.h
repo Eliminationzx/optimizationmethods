@@ -33,9 +33,6 @@ public:
 	                          QGraphicsItem * parent = 0 //!< Элемент родитель.
 	                         );
 public slots:
-	/*! Завершить итерацию.
-	 */
-	void finisxiIteracio();
 	//! Установить первую точку.
 	void difiniP1(const QPointF &);
 	//! Установить вторую точку.
