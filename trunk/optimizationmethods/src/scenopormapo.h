@@ -5,6 +5,7 @@
 //
 class funkcio;
 class spuro;
+const qreal l = 0.025;
 //! Сцена для карты высот целевой функции.
 class ScenoPorMapo : public QGraphicsScene
 {
