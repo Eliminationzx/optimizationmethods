@@ -16,11 +16,6 @@ QRectF spuroNeMi::boundingRect() const{
 	return (SP.boundingRect() | p.boundingRect());
 }
 
-void spuroNeMi::finisxiIteracio(){
-	prepareGeometryChange ();
-	SP.clear();
-}
-
 
 void spuroNeMi::paint(QPainter *painter, const QStyleOptionGraphicsItem */*option*/, QWidget */*widge*/){
 	painter->save();
