@@ -8,6 +8,8 @@
 #include <QGraphicsItem>
 #include <QGraphicsSceneMouseEvent>
 #include <QDebug>
+
+#include <QMessageBox>
 //
 ScenoPorMapo::ScenoPorMapo( const funkcio * Funkcio, QObject * parent)
 	: QGraphicsScene(parent), F(Funkcio), skalo(1), koloro(Qt::red){}
@@ -29,7 +31,7 @@ void ScenoPorMapo::drawBackground(QPainter * painter, const QRectF & rect){
 	QPointF minP(F->minPoint(0.1)[0], F->minPoint(0.1)[1]);
 //--Ищу точку приближенную к максимальной в области карты.---------------------
 	double max = F->rezulto(ampleksoMapo, ampleksoMapo);
-	QPointF maxP;
+	QPointF maxP = QPointF(ampleksoMapo, ampleksoMapo);
 	if (F->rezulto(ampleksoMapo, -ampleksoMapo) > max){
 		max = F->rezulto(ampleksoMapo, -ampleksoMapo);
 		maxP = QPointF(ampleksoMapo, -ampleksoMapo);
@@ -58,25 +60,33 @@ void ScenoPorMapo::drawBackground(QPainter * painter, const QRectF & rect){
 		max = F->rezulto(-ampleksoMapo, 0);
 		maxP = QPointF(-ampleksoMapo, 0);
 	}
+	
+	QMessageBox::information(0, trUtf8(""), trUtf8("%1 %2").arg(maxP.x()).arg(maxP.y()));
 //-----------------------------------------------------------------------------
 	QPointF p = maxP - minP;
 //=============================================================================
 
 	QList<qreal> limoj;
-	limoj<<F->rezulto(p * 0.025)<<F->rezulto(p * 0.05)<<F->rezulto(p * 0.075)
-	     <<F->rezulto(p * 0.1)<<F->rezulto(p * 0.125)<<F->rezulto(p * 0.15)
-	     <<F->rezulto(p * 0.175)<<F->rezulto(p * 0.2)<<F->rezulto(p * 0.225)
-	     <<F->rezulto(p * 0.25)<<F->rezulto(p * 0.275)<<F->rezulto(p * 0.3)
-	     <<F->rezulto(p * 0.325)<<F->rezulto(p * 0.35)<<F->rezulto(p * 0.375)
-	     <<F->rezulto(p * 0.4)<<F->rezulto(p * 0.425)<<F->rezulto(p * 0.45)
-	     <<F->rezulto(p * 0.475)<<F->rezulto(p * 0.5)<<F->rezulto(p * 0.525)
-	     <<F->rezulto(p * 0.55)<<F->rezulto(p * 0.575)<<F->rezulto(p * 0.6)
-	     <<F->rezulto(p * 0.625)<<F->rezulto(p * 0.65)<<F->rezulto(p * 0.675)
-	     <<F->rezulto(p * 0.7)<<F->rezulto(p * 0.725)<<F->rezulto(p * 0.75)
-	     <<F->rezulto(p * 0.775)<<F->rezulto(p * 0.8)<<F->rezulto(p * 0.825)
-	     <<F->rezulto(p * 0.85)<<F->rezulto(p * 0.875)<<F->rezulto(p * 0.9)
-	     <<F->rezulto(p * 0.925)<<F->rezulto(p * 0.95)<<F->rezulto(p * 0.975)
-	     <<F->rezulto(p * 1);
+	limoj<<F->rezulto(minP + p * 0.025)<<F->rezulto(minP + p * 0.05)
+	     <<F->rezulto(minP + p * 0.075)<<F->rezulto(minP + p * 0.1)
+	     <<F->rezulto(minP + p * 0.125)<<F->rezulto(minP + p * 0.15)
+	     <<F->rezulto(minP + p * 0.175)<<F->rezulto(minP + p * 0.2)
+	     <<F->rezulto(minP + p * 0.225)<<F->rezulto(minP + p * 0.25)
+	     <<F->rezulto(minP + p * 0.275)<<F->rezulto(minP + p * 0.3)
+	     <<F->rezulto(minP + p * 0.325)<<F->rezulto(minP + p * 0.35)
+	     <<F->rezulto(minP + p * 0.375)<<F->rezulto(minP + p * 0.4)
+	     <<F->rezulto(minP + p * 0.425)<<F->rezulto(minP + p * 0.45)
+	     <<F->rezulto(minP + p * 0.475)<<F->rezulto(minP + p * 0.5)
+	     <<F->rezulto(minP + p * 0.525)<<F->rezulto(minP + p * 0.55)
+	     <<F->rezulto(minP + p * 0.575)<<F->rezulto(minP + p * 0.6)
+	     <<F->rezulto(minP + p * 0.625)<<F->rezulto(p * 0.65)
+	     <<F->rezulto(minP + p * 0.675)<<F->rezulto(minP + p * 0.7)
+	     <<F->rezulto(minP + p * 0.725)<<F->rezulto(minP + p * 0.75)
+	     <<F->rezulto(minP + p * 0.775)<<F->rezulto(minP + p * 0.8)
+	     <<F->rezulto(minP + p * 0.825)<<F->rezulto(minP + p * 0.85)
+	     <<F->rezulto(minP + p * 0.875)<<F->rezulto(minP + p * 0.9)
+	     <<F->rezulto(minP + p * 0.925)<<F->rezulto(minP + p * 0.95)
+	     <<F->rezulto(minP + p * 0.975)<<F->rezulto(minP + p * 1);
 	// Перебираю видимую область и каждую точку заполняю цветом в соответствии
 	// со значением целевой функции. Беру область с запасом на 1, иначе на краях
 	// могут возникать непрорисованные линии
