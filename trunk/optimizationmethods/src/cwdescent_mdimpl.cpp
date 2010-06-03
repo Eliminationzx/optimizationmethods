@@ -231,14 +231,14 @@ void CWdescent_mdImpl::sf_entered()
 		str += trUtf8("Вы прошли тест. ");
 		if(F->metaObject()->className() == QString("KvadratigantoFunkcio"))
 		{
-			str += trUtf8("Сообщите преподавателю и перейдите к овражной функции. Количество ошибок: %1.").arg(KvantoEraroj);
+			str += trUtf8("Сообщите преподавателю и перейдите к овражной функции. Количество ошибок: <b>%1</b>.").arg(KvantoEraroj);
 			emit usiloPlenumis(A::CWdescent_md);
 			QMessageBox::information(this, trUtf8("Поздравляем"), str);
 			close();
 		}
 		else if(F->metaObject()->className() == QString("RavinaFunkcio"))
 		{
-			str += trUtf8("Позовите преподавателя. Количество ошибок: %1.").arg(KvantoEraroj);
+			str += trUtf8("Позовите преподавателя. Количество ошибок: <b>%1</b>.").arg(KvantoEraroj);
 			QMessageBox::information(this, trUtf8("Поздравляем"), str);
 		}
 	}
