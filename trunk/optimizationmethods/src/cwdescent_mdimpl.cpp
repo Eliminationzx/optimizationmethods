@@ -100,13 +100,6 @@ CWdescent_mdImpl::CWdescent_mdImpl(funkcio *f, QVector<double> *d, QWidget * par
 	so->addTransition(te2);
 	connect(te2, SIGNAL(triggered()), SLOT(registriEraro()));
 
-	//---Настраиваю выделение цветом растояния между точками.
-	s3->assignProperty(dx_lb, "palette", QPalette(Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red));
-	s3->assignProperty(df_lb, "palette", QPalette(Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red));
-	s1->assignProperty(dx_lb, "palette", this->palette());
-	s1->assignProperty(df_lb, "palette", this->palette());
-
-
 	//---Прикручиваю карту---------------------------------------------------------
 	connect(sMP, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniMomentaPointo(QPointF)));
 
