@@ -16,7 +16,6 @@
 #include <QLabel>
 #include <QFontDialog>
 #include <QDebug>
-//#include <QGridLayout>
 //
 using namespace NeMi;
 	
@@ -310,6 +309,8 @@ void NeMiImpl::s3_entered(){
 	LogTxtBrsr->append(trUtf8("  Отражение."));
 
 	qDebug()<<trUtf8("Вошёл в s3"); // Вывожу дебажную инфу на консоль.
+	
+	emit stateHasEntered();
 }
 
 void NeMiImpl::s5_entered(){
@@ -477,8 +478,8 @@ namespace NeMi{
 		if(QSignalTransition::eventTest(e)){
 			qDebug()<<trUtf8("  Проверяю , что F(Xl) < F(Хотр) < F(Xm).");
 			// Проверяю своё условие.
-			return f->rezulto(**pl) < f->rezulto(*ps)
-			       && f->rezulto(*ps) < f->rezulto(**pm);
+			return f->rezulto(**pl) < f->rezulto(*pr)
+			       && f->rezulto(*pr) < f->rezulto(**pm);
 		}
 		return false;
 	}
