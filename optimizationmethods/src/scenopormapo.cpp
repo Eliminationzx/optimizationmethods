@@ -65,26 +65,26 @@ void ScenoPorMapo::drawBackground(QPainter * painter, const QRectF & rect){
 //=============================================================================
 
 	QList<qreal> limoj;
-	limoj<<F->rezulto(minP + p * 0.025)<<F->rezulto(minP + p * 0.05)
-	     <<F->rezulto(minP + p * 0.075)<<F->rezulto(minP + p * 0.1)
-	     <<F->rezulto(minP + p * 0.125)<<F->rezulto(minP + p * 0.15)
-	     <<F->rezulto(minP + p * 0.175)<<F->rezulto(minP + p * 0.2)
-	     <<F->rezulto(minP + p * 0.225)<<F->rezulto(minP + p * 0.25)
-	     <<F->rezulto(minP + p * 0.275)<<F->rezulto(minP + p * 0.3)
-	     <<F->rezulto(minP + p * 0.325)<<F->rezulto(minP + p * 0.35)
-	     <<F->rezulto(minP + p * 0.375)<<F->rezulto(minP + p * 0.4)
-	     <<F->rezulto(minP + p * 0.425)<<F->rezulto(minP + p * 0.45)
-	     <<F->rezulto(minP + p * 0.475)<<F->rezulto(minP + p * 0.5)
-	     <<F->rezulto(minP + p * 0.525)<<F->rezulto(minP + p * 0.55)
-	     <<F->rezulto(minP + p * 0.575)<<F->rezulto(minP + p * 0.6)
-	     <<F->rezulto(minP + p * 0.625)<<F->rezulto(p * 0.65)
-	     <<F->rezulto(minP + p * 0.675)<<F->rezulto(minP + p * 0.7)
-	     <<F->rezulto(minP + p * 0.725)<<F->rezulto(minP + p * 0.75)
-	     <<F->rezulto(minP + p * 0.775)<<F->rezulto(minP + p * 0.8)
-	     <<F->rezulto(minP + p * 0.825)<<F->rezulto(minP + p * 0.85)
-	     <<F->rezulto(minP + p * 0.875)<<F->rezulto(minP + p * 0.9)
-	     <<F->rezulto(minP + p * 0.925)<<F->rezulto(minP + p * 0.95)
-	     <<F->rezulto(minP + p * 0.975)<<F->rezulto(minP + p * 1);
+	limoj<<F->rezulto(minP + p * l)<<F->rezulto(minP + p * l * 2)
+	     <<F->rezulto(minP + p * l * 3)<<F->rezulto(minP + p * l * 4)
+	     <<F->rezulto(minP + p * l * 5)<<F->rezulto(minP + p * l * 6)
+	     <<F->rezulto(minP + p * l * 7)<<F->rezulto(minP + p * l * 8)
+	     <<F->rezulto(minP + p * l * 9)<<F->rezulto(minP + p * l * 10)
+	     <<F->rezulto(minP + p * l * 11)<<F->rezulto(minP + p * l * 12)
+	     <<F->rezulto(minP + p * l * 13)<<F->rezulto(minP + p * l * 14)
+	     <<F->rezulto(minP + p * l * 15)<<F->rezulto(minP + p * l * 16)
+	     <<F->rezulto(minP + p * l * 17)<<F->rezulto(minP + p * l * 18)
+	     <<F->rezulto(minP + p * l * 19)<<F->rezulto(minP + p * l * 20)
+	     <<F->rezulto(minP + p * l * 21)<<F->rezulto(minP + p * l * 22)
+	     <<F->rezulto(minP + p * l * 23)<<F->rezulto(minP + p * l * 24)
+	     <<F->rezulto(minP + p * l * 25)<<F->rezulto(p * l * 26)
+	     <<F->rezulto(minP + p * l * 27)<<F->rezulto(minP + p * l * 28)
+	     <<F->rezulto(minP + p * l * 29)<<F->rezulto(minP + p * l * 30)
+	     <<F->rezulto(minP + p * l * 31)<<F->rezulto(minP + p * l * 32)
+	     <<F->rezulto(minP + p * l * 33)<<F->rezulto(minP + p * l * 34)
+	     <<F->rezulto(minP + p * l * 35)<<F->rezulto(minP + p * l * 36)
+	     <<F->rezulto(minP + p * l * 37)<<F->rezulto(minP + p * l * 38)
+	     <<F->rezulto(minP + p * l * 39)<<F->rezulto(minP + p * l * 40);
 	// Перебираю видимую область и каждую точку заполняю цветом в соответствии
 	// со значением целевой функции. Беру область с запасом на 1, иначе на краях
 	// могут возникать непрорисованные линии
@@ -94,45 +94,46 @@ void ScenoPorMapo::drawBackground(QPainter * painter, const QRectF & rect){
 			// Ради скорости использую взаимоисключающие ветви вместо перебора в
 			// цикле.
 			if(f < limoj[0]) v = 0;
-			else if(f < limoj[1]) v = 0.025;
-			else if(f < limoj[2]) v = 0.05;
-			else if(f < limoj[3]) v = 0.075;
-			else if(f < limoj[4]) v = 0.1;
-			else if(f < limoj[5]) v = 0.125;
-			else if(f < limoj[6]) v = 0.15;
-			else if(f < limoj[7]) v = 0.175;
-			else if(f < limoj[8]) v = 0.2;
-			else if(f < limoj[9]) v = 0.225;
-			else if(f < limoj[10]) v = 0.25;
-			else if(f < limoj[11]) v = 0.275;
-			else if(f < limoj[12]) v = 0.3;
-			else if(f < limoj[13]) v = 0.325;
-			else if(f < limoj[14]) v = 0.35;
-			else if(f < limoj[15]) v = 0.375;
-			else if(f < limoj[16]) v = 0.4;
-			else if(f < limoj[17]) v = 0.425;
-			else if(f < limoj[18]) v = 0.45;
-			else if(f < limoj[19]) v = 0.475;
-			else if(f < limoj[20]) v = 0.5;
-			else if(f < limoj[21]) v = 0.525;
-			else if(f < limoj[22]) v = 0.55;
-			else if(f < limoj[23]) v = 0.575;
-			else if(f < limoj[24]) v = 0.6;
-			else if(f < limoj[25]) v = 0.625;
-			else if(f < limoj[26]) v = 0.65;
-			else if(f < limoj[27]) v = 0.675;
-			else if(f < limoj[28]) v = 0.7;
-			else if(f < limoj[29]) v = 0.725;
-			else if(f < limoj[30]) v = 0.75;
-			else if(f < limoj[31]) v = 0.775;
-			else if(f < limoj[32]) v = 0.8;
-			else if(f < limoj[33]) v = 0.825;
-			else if(f < limoj[34]) v = 0.85;
-			else if(f < limoj[35]) v = 0.875;
-			else if(f < limoj[36]) v = 0.9;
-			else if(f < limoj[37]) v = 0.925;
-			else if(f < limoj[38]) v = 0.95;
-			else if(f < limoj[39]) v = 0.975;
+			else if(f < limoj[1]) v = l;
+			else if(f < limoj[2]) v = l * 2;
+			else if(f < limoj[3]) v = l * 3;
+			else if(f < limoj[4]) v = l * 4;
+			else if(f < limoj[5]) v = l * 5;
+			else if(f < limoj[6]) v = l * 6;
+			else if(f < limoj[7]) v = l * 7;
+			else if(f < limoj[8]) v = l * 8;
+			else if(f < limoj[9]) v = l * 9;
+			else if(f < limoj[10]) v = l * 10;
+			else if(f < limoj[11]) v = l * 11;
+			else if(f < limoj[12]) v = l * 12;
+			else if(f < limoj[13]) v = l * 13;
+			else if(f < limoj[14]) v = l * 14;
+			else if(f < limoj[15]) v = l * 15;
+			else if(f < limoj[16]) v = l * 16;
+			else if(f < limoj[17]) v = l * 17;
+			else if(f < limoj[18]) v = l * 18;
+			else if(f < limoj[19]) v = l * 19;
+			else if(f < limoj[20]) v = l * 20;
+			else if(f < limoj[21]) v = l * 21;
+			else if(f < limoj[22]) v = l * 22;
+			else if(f < limoj[23]) v = l * 23;
+			else if(f < limoj[24]) v = l * 24;
+			else if(f < limoj[25]) v = l * 25;
+			else if(f < limoj[26]) v = l * 26;
+			else if(f < limoj[27]) v = l * 27;
+			else if(f < limoj[28]) v = l * 28;
+			else if(f < limoj[29]) v = l * 29;
+			else if(f < limoj[30]) v = l * 30;
+			else if(f < limoj[31]) v = l * 31;
+			else if(f < limoj[32]) v = l * 32;
+			else if(f < limoj[33]) v = l * 33;
+			else if(f < limoj[34]) v = l * 34;
+			else if(f < limoj[35]) v = l * 35;
+			else if(f < limoj[36]) v = l * 36;
+			else if(f < limoj[37]) v = l * 37;
+			else if(f < limoj[38]) v = l * 38;
+			else if(f < limoj[39]) v = l * 39;
+			else v = l * 40;
 			koloro.setHsvF(h, s, v);
 			painter->setPen(koloro);
 			painter->drawPoint(i, j);
