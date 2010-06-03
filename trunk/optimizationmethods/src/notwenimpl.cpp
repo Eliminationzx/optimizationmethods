@@ -251,7 +251,7 @@ void NotWenImpl::s5_entered()
 {
 	stackedWidget->setCurrentIndex(4);
 	
-	length_grad_lb->setText(QString::number(Length(grad), 'f'));
+	length_grad_lb->setText(QString::number(Length(grad), 'f', 3));
 	
 	LogTxtBrsr->append(trUtf8("  Критерий остановки определен успешно"));
 
