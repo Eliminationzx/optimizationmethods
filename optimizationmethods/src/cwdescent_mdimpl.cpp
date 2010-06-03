@@ -3,7 +3,7 @@
 #include "Konstantoj.h"
 #include "funkcio.h"
 #include "spuro.h"
-#include "spurosinkolauxkoordinatoj.h"
+#include "spurosinkolauxkoordinatoj_md.h"
 #include "demonstrataqpointf.h"
 #include "signalantoporpointf.h"
 #include "math.h"
@@ -47,7 +47,7 @@ CWdescent_mdImpl::CWdescent_mdImpl(funkcio *f, QVector<double> *d, QWidget * par
 
 	MapoWdg->setScale(20);// Ставлю масштаб побольше. Надо будет определться с оптимальным значением.
 
-	Sp = new spuroSinkoLauxKoordinatoj(Qt::white, Qt::blue);
+	Sp = new spuroSinkoLauxKoordinatoj_md(Qt::white, Qt::blue);
 	MapoWdg->difiniSpuro(Sp);
 	MapoWdg->difiniFonaKoloro(Qt::green);
 	
@@ -100,15 +100,12 @@ CWdescent_mdImpl::CWdescent_mdImpl(funkcio *f, QVector<double> *d, QWidget * par
 	so->addTransition(te2);
 	connect(te2, SIGNAL(triggered()), SLOT(registriEraro()));
 
-	//---Прикручиваю карту---------------------------------------------------------
-	connect(sMP, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniMomentaPointo(QPointF)));
-
-	connect(s2, SIGNAL(entered()), Sp, SLOT(reveniAlMomentoPointo()));
-	connect(s3, SIGNAL(entered()), Sp, SLOT(reveniAlMomentoPointo()));
+	//---Прикручиваю карту-------------------------------------------------------
+	connect(sMP, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(aldoniPointo(const QPointF &)));
 
 	connect(s1, SIGNAL(entered()), Sp, SLOT(finisxiIteracio()));
 	
-	//---Добавляю состояния в автомат и запускаю его.------------------------------
+	//---Добавляю состояния в автомат и запускаю его.----------------------------
 	SM->addState(so);
 	SM->addState(sf);
 	SM->setInitialState(so);
@@ -292,8 +289,8 @@ void CWdescent_mdImpl::init()
 	quanError = (int)D[6];
 	LogTxtBrsr->setText("");
 
-	static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->senspurigi();
-	static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->difiniUnuaPointo(MP);
+	static_cast<spuroSinkoLauxKoordinatoj_md*>(Sp)->senspurigi();
+	static_cast<spuroSinkoLauxKoordinatoj_md*>(Sp)->difiniUnuaPointo(MP);
 
 	qDebug()<<trUtf8("Задаю переменным начальные значения"); // Вывожу дебажную инфу на консоль.
 }
