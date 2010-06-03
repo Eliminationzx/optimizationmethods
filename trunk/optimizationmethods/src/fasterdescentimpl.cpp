@@ -239,7 +239,7 @@ void FasterDescentImpl::s8_entered()
 {
 	stackedWidget->setCurrentIndex(4);
 	
-	lengthStep = QPointF(F->lengthOfStep(grad)*Length(grad), 0);
+	lengthStep = QPointF(F->lengthOfStep(BP)*Length(grad), 0);
 
 	LogTxtBrsr->append(trUtf8("  а вычислено успешно"));
 
@@ -341,7 +341,7 @@ void FasterDescentImpl::s2_entered()
 
 void FasterDescentImpl::s1_entered()
 {
-	if(NumeroIteracio > 1)
+	if(NumeroIteracio >= 1)
 	{
 		grad_fx->setChecked(true);
 		fxk_fx->setChecked(true);
