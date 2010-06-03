@@ -341,14 +341,17 @@ void FasterDescentImpl::s2_entered()
 
 void FasterDescentImpl::s1_entered()
 {
+	if(NumeroIteracio > 1)
+	{
+		grad_fx->setChecked(true);
+		fxk_fx->setChecked(true);
+		two->setChecked(true);
+	}
+	
 	s_x1_lb->setText("");
 	s_x2_lb->setText("");
 	length_step_a_lb->setText("");
 	length_grad_lb->setText("");
-	
-	grad_fx->setChecked(true);
-	fxk_fx->setChecked(true);
-	two->setChecked(true);
 	
 	stackedWidget->setCurrentIndex(4);
 	
