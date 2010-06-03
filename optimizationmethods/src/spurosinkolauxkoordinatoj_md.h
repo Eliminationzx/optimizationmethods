@@ -35,7 +35,7 @@ public slots:
 	 * 
 	 * Устанавливает точку с которой начинается поиск.
 	 */
-	void difiniUnuaPointo( QPointF p );
+	void difiniUnuaPointo(const QPointF & p );
 	//! Перегружает difiniUnuaPointo(QPointF &p).
 	void difiniUnuaPointo( qreal x, qreal y );
 	/*! Завершить итерацию.
@@ -46,7 +46,7 @@ public slots:
 	 */
 	void finisxiIteracio();
 	//! Добавить точку.
-	void aldoniPointo(QPointF);
+	void aldoniPointo( const QPointF & p );
 	//! Установить базовый цвет.
 	void difiniBazaKoloro(QColor bazaKoloro);
 	//! Установить текущий цвет.
