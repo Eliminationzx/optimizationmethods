@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>716</width>
-    <height>533</height>
+    <height>549</height>
    </rect>
   </property>
   <property name="font">
@@ -636,12 +636,12 @@
      <x>0</x>
      <y>0</y>
      <width>716</width>
-     <height>23</height>
+     <height>28</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu">
     <property name="title">
-     <string>Меню</string>
+     <string>&amp;Меню</string>
     </property>
     <addaction name="allow"/>
     <addaction name="separator"/>
@@ -649,7 +649,7 @@
    </widget>
    <widget class="QMenu" name="menu_2">
     <property name="title">
-     <string>Помощь</string>
+     <string>&amp;Помощь</string>
     </property>
     <addaction name="help"/>
     <addaction name="separator"/>
@@ -661,7 +661,7 @@
   <widget class="QStatusBar" name="statusbar"/>
   <action name="help">
    <property name="text">
-    <string>Справка</string>
+    <string>&amp;Справка</string>
    </property>
    <property name="shortcut">
     <string>F1</string>
@@ -669,12 +669,12 @@
   </action>
   <action name="about">
    <property name="text">
-    <string>О программе...</string>
+    <string>О &amp;программе...</string>
    </property>
   </action>
   <action name="allow">
    <property name="text">
-    <string>Разблокировать овражную функцию</string>
+    <string>&amp;Разблокировать овражную функцию</string>
    </property>
    <property name="toolTip">
     <string>Разблокировать овражную функцию</string>
@@ -682,7 +682,7 @@
   </action>
   <action name="exit">
    <property name="text">
-    <string>Выход</string>
+    <string>&amp;Выход</string>
    </property>
   </action>
  </widget>
