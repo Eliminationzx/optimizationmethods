@@ -60,8 +60,6 @@ void ScenoPorMapo::drawBackground(QPainter * painter, const QRectF & rect){
 		max = F->rezulto(-ampleksoMapo, 0);
 		maxP = QPointF(-ampleksoMapo, 0);
 	}
-	
-	QMessageBox::information(0, trUtf8(""), trUtf8("%1 %2").arg(maxP.x()).arg(maxP.y()));
 //-----------------------------------------------------------------------------
 	QPointF p = maxP - minP;
 //=============================================================================
