@@ -237,7 +237,7 @@ void FasterDescentImpl::s8_entered()
 	
 	lengthStep = QPointF(F->lengthOfStep(BP)*Length(grad), 0);
 
-	LogTxtBrsr->append(trUtf8("  а вычислено успешно"));
+	LogTxtBrsr->append(trUtf8("  λ вычислено успешно"));
 
 	if(NumeroIteracio > 5 && KvantoEraroj <= quanError)
 		step_bt->click();
@@ -249,7 +249,7 @@ void FasterDescentImpl::s7_entered()
 {
 	stackedWidget->setCurrentIndex(3);
 
-	LogTxtBrsr->append(trUtf8("  Вычисляем а"));
+	LogTxtBrsr->append(trUtf8("  Вычисляем λ"));
 
 	if(NumeroIteracio > 5 && KvantoEraroj <= quanError)
 	{

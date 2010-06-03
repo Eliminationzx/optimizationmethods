@@ -35,9 +35,12 @@ connect(exit, SIGNAL(activated()), qApp, SLOT(closeAllWindows()));
 	func->setText(textoFunkcio());
 
 	// Создаю карту.
-	/*verticalLayout_4->addWidget(MapoWdg, 2);
+	// centralwidget->layout() - указатель на компановщик центрального виджета
+	// static_cast<QGridLayout*>(centralwidget->layout()) - обьясняю компилятору, что это именно QGridLayout
+	// добавляю вижет карты в позицию 1,1. Компановщик сам позаботится о назначении новому виджету родителя.
+	static_cast<QGridLayout*>(centralwidget->layout())->addWidget(MapoWdg, 2, 1);
 
-	MapoWdg->setScale(20);// Ставлю масштаб побольше. Надо будет определиться с оптимальным значением.
+	MapoWdg->setScale(20);// Ставлю масштаб побольше. Надо будет определться с оптимальным значением.
 
 	Sp = new spuroSinkoLauxKoordinatoj(Qt::white, Qt::blue);
 	MapoWdg->difiniSpuro(Sp);
@@ -45,7 +48,6 @@ connect(exit, SIGNAL(activated()), qApp, SLOT(closeAllWindows()));
 
 	connect(MapoWdg, SIGNAL(MusaPos(const QString &)), statusBar(), SLOT(showMessage( const QString &)));
 	
-	*/
 	//===Соединяю точки и надписи на форме=========================================
 	SignalantoPorPointF * sMP = new SignalantoPorPointF(&MP, F, this);
 	connect(sMP, SIGNAL(proviziXValoro(const QString &)), x1_b1_lb, SLOT(setText(const QString &)));

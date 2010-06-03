@@ -17,7 +17,7 @@
 #include "cwdescentwinimpl.h"
 #include "cwdescent_mdimpl.h"
 #include "fasterdescentimpl.h"
-//#include "HuGiImpl.h"
+#include "hugiimpl.h"
 #include "nemiimpl.h"
 #include "notwenimpl.h"
 
