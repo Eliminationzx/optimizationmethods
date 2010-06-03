@@ -169,23 +169,23 @@ namespace NeMi{
 	class s3s1Transiro: public QSignalTransition{
 		private:
 			DemonstrataQPointF ** pl;
-			DemonstrataQPointF * ps;
+			DemonstrataQPointF * pr;
 			DemonstrataQPointF ** pm;
 			funkcio * f;
 		public:
-			s3s1Transiro( DemonstrataQPointF ** Pl, DemonstrataQPointF * PS,
+			s3s1Transiro( DemonstrataQPointF ** Pl, DemonstrataQPointF * PR,
 			              DemonstrataQPointF ** Pm, funkcio * F,
 			              QState * sourceState = 0)
-				: QSignalTransition(sourceState), pl(Pl), ps(PS), pm(Pm), f(F){};
+				: QSignalTransition(sourceState), pl(Pl), pr(PR), pm(Pm), f(F){};
 			s3s1Transiro( DemonstrataQPointF ** Pl,
-			              DemonstrataQPointF * PS,
+			              DemonstrataQPointF * PR,
 			              DemonstrataQPointF ** Pm,
 			              funkcio * F,
 			              QObject * sender,
 			              const char * signal,
 			              QState * sourceState = 0
 			            )
-				: QSignalTransition(sender, signal, sourceState), pl(Pl), ps(PS),
+				: QSignalTransition(sender, signal, sourceState), pl(Pl), pr(PR),
 					pm(Pm), f(F){};
 		protected:
 			//! Переход срабатывает, только если F(Xl) < F(Хотр) < F(Xm).
