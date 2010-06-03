@@ -6,9 +6,7 @@
 #include <QGraphicsView>
 //
 spuroSinkoLauxKoordinatoj::spuroSinkoLauxKoordinatoj(QColor momentaKoloro, QColor bazaKoloro, qreal Skalo, QGraphicsItem * parent) 
-	: spuro( A::CWdescent_fix, bazaKoloro, Skalo, parent), MomentaKoloro(momentaKoloro){
-	// TODO
-}
+	: spuro( A::CWdescent_fix, bazaKoloro, Skalo, parent), MomentaKoloro(momentaKoloro){}
 //
 
 QRectF spuroSinkoLauxKoordinatoj::boundingRect() const{
@@ -35,6 +33,8 @@ void spuroSinkoLauxKoordinatoj::reveniAlMomentoPointo(){
 
 void spuroSinkoLauxKoordinatoj::aldoniSercxantaPointo(QPointF p){
 	MomentaPointoj.append(p);
+	// Прокручиваю карту, чтобы не скрывать последнюю точку.
+	this->scene()->views()[0]->ensureVisible(p.x() * skalo, p.y() * skalo, 1, 1);
 	update();// Планирую перерисовку.
 }
 void spuroSinkoLauxKoordinatoj::paint(QPainter *painter, const QStyleOptionGraphicsItem */*option*/, QWidget */*widge*/){
@@ -54,7 +54,7 @@ void spuroSinkoLauxKoordinatoj::difiniUnuaPointo(QPointF p){
 	MomentaPointo = p;
 	MomentaPointoj.append(p);
 	// Центрирую карту на последней точке.
-	this->scene()->views()[0]->centerOn(MomentaPointoj.last() * skalo);
+	this->scene()->views()[0]->centerOn(p * skalo);
 	update();// Планирую перерисовку.
 }
 
@@ -75,8 +75,6 @@ void spuroSinkoLauxKoordinatoj::difiniMomentaKoloro(QColor c){
 
 void spuroSinkoLauxKoordinatoj::difiniMomentaPointo(QPointF p){
 	MomentaPointo = p;
-	// Центрирую карту на последней точке.
-	this->scene()->views()[0]->centerOn(MomentaPointoj.last() * skalo);
 }
 
 
