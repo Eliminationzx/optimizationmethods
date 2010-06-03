@@ -57,20 +57,24 @@ void spuroNeMi::senspurigi(){
 void spuroNeMi::difiniP1(const QPointF & p){
 	prepareGeometryChange ();
 	P1 = p;
-	// Центрирую карту на первой точке.
-	this->scene()->views()[0]->centerOn(P1 * skalo);
+	// Прокручиваю карту, чтобы не скрывать последнюю точку.
+	this->scene()->views()[0]->ensureVisible(p.x() * skalo, p.y() * skalo, 1, 1);
 }
 
 
 void spuroNeMi::difiniP2(const QPointF & p){
 	prepareGeometryChange ();
 	P2 = p;
+	// Прокручиваю карту, чтобы не скрывать последнюю точку.
+	this->scene()->views()[0]->ensureVisible(p.x() * skalo, p.y() * skalo, 1, 1);
 }
 
 
 void spuroNeMi::difiniP3(const QPointF & p){
 	prepareGeometryChange ();
 	P3 = p;
+	// Прокручиваю карту, чтобы не скрывать последнюю точку.
+	this->scene()->views()[0]->ensureVisible(p.x() * skalo, p.y() * skalo, 1, 1);
 }
 
 
@@ -106,16 +110,22 @@ void spuroNeMi::difiniPRespegulo(const QPointF & p){
 			SP<<(P2);
 		}
 	}
+	// Прокручиваю карту, чтобы не скрывать последнюю точку.
+	this->scene()->views()[0]->ensureVisible(p.x() * skalo, p.y() * skalo, 1, 1);
 }
 
 
 void spuroNeMi::difiniPDilato(const QPointF & p){
 	prepareGeometryChange ();
 	SP<<p<<SP.first();
+	// Прокручиваю карту, чтобы не скрывать последнюю точку.
+	this->scene()->views()[0]->ensureVisible(p.x() * skalo, p.y() * skalo, 1, 1);
 }
 
 void spuroNeMi::difiniPKompakto(const QPointF & p){
 	prepareGeometryChange ();
 	SP.clear();
 	difiniPRespegulo(p);
+	// Прокручиваю карту, чтобы не скрывать последнюю точку.
+	this->scene()->views()[0]->ensureVisible(p.x() * skalo, p.y() * skalo, 1, 1);
 }
