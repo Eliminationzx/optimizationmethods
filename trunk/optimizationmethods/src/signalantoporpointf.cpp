@@ -20,7 +20,7 @@ void SignalantoPorPointF::SendiSignaloj(){
 	  emit proviziYValoro(QString::number(p->y(), 'f', 2));
 	  if(f != 0){
 		  emit proviziValoroFukcioEnPointo(f->rezulto(*p));
-		  emit proviziValoroFukcioEnPointo(QString::number(f->rezulto(*p), 'f', 3));
+		  emit proviziValoroFukcioEnPointo(QString::number(f->rezulto(*p), 'f', 6));
 	  }
   }
 }
