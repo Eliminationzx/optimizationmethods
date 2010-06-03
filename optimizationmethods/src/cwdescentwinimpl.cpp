@@ -320,7 +320,7 @@ void CWdescentWinImpl::s11_entered(){
 	// текущей, только если была принята новая точка.
 	if(BP.x() != MP.x() && BP.y() != MP.y()){
 		distance_lb->setPalette(QPalette(Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red));
-		distance_lb->setText(QString::number(Length(BP - MP), 'f'));
+		distance_lb->setText(QString::number(Length(BP - MP), 'f', 2));
 	}
 	if (BP == MP){
 		LogTxtBrsr->append(trUtf8("  Точка (%1; %2) не принята").arg(NP.x()).arg(NP.y()));
