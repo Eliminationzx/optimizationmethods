@@ -3,7 +3,7 @@
 #include "Konstantoj.h"
 #include "funkcio.h"
 #include "spuro.h"
-#include "spurosinkolauxkoordinatoj.h"
+#include "spurosinkolauxkoordinatoj_md.h"
 #include "demonstrataqpointf.h"
 #include "signalantoporpointf.h"
 #include "helpbrowserimpl.h"
@@ -44,7 +44,7 @@ FasterDescentImpl::FasterDescentImpl( funkcio *f, QVector<double> *d, QWidget * 
 
 	MapoWdg->setScale(20);// Ставлю масштаб побольше. Надо будет определться с оптимальным значением.
 
-	Sp = new spuroSinkoLauxKoordinatoj(Qt::white, Qt::blue);
+	Sp = new spuroSinkoLauxKoordinatoj_md(Qt::blue, Qt::blue);
 	MapoWdg->difiniSpuro(Sp);
 	MapoWdg->difiniFonaKoloro(Qt::green);
 
@@ -148,12 +148,8 @@ FasterDescentImpl::FasterDescentImpl( funkcio *f, QVector<double> *d, QWidget * 
 	connect(te9, SIGNAL(triggered()), SLOT(registriEraro()));
 
 	//---Прикручиваю карту---------------------------------------------------------
-	connect(sBP, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniMomentaPointo(QPointF)));
+	connect(sBP, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(aldoniPointo(const QPointF &)));
 
-	connect(s9, SIGNAL(entered()), Sp, SLOT(reveniAlMomentoPointo()));
-
-	connect(s1, SIGNAL(entered()), Sp, SLOT(finisxiIteracio()));
-	
 	//---Добавляю состояния в автомат и запускаю его.------------------------------
 	SM->addState(so);
 	SM->addState(sf);
@@ -376,8 +372,8 @@ void FasterDescentImpl::init()
 	quanError = (int)D[6];
 	LogTxtBrsr->setText("");
 
-	static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->senspurigi();
-	static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->difiniUnuaPointo(BP);
+	static_cast<spuroSinkoLauxKoordinatoj_md*>(Sp)->senspurigi();
+	static_cast<spuroSinkoLauxKoordinatoj_md*>(Sp)->difiniUnuaPointo(BP);
 
 	qDebug()<<trUtf8("Задаю переменным начальные значения"); // Вывожу дебажную инфу на консоль.
 }
