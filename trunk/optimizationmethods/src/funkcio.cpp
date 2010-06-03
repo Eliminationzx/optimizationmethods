@@ -55,14 +55,21 @@ double funkcio::lengthOfStep(const QPointF X) const
 	
 	while (fabs(b - a) > 0.0000000001)
 	{
-		if (rezulto(X.x() - lam*df_dx1(X), X.y() - lam*df_dx2(X)) > rezulto(X.x() - mu*df_dx1(X), X.y() - mu*df_dx2(X)))
+		if(rezulto(X.x() - lam*df_dx1(X), X.y() - lam*df_dx2(X)) > rezulto(X.x() - mu*df_dx1(X), X.y() - mu*df_dx2(X)))
 		{
 			a = lam;
 			lam = a + (1 - tau)*(b - a);
 			mu = a + tau*(b - a);
 		}
+		else if(rezulto(X.x() - lam*df_dx1(X), X.y() - lam*df_dx2(X)) < rezulto(X.x() - mu*df_dx1(X), X.y() - mu*df_dx2(X)))
+		{
+			b = mu;
+			lam = a + (1 - tau)*(b - a);
+			mu = a + tau*(b - a);
+		}
 		else
 		{
+			a = lam;
 			b = mu;
 			lam = a + (1 - tau)*(b - a);
 			mu = a + tau*(b - a);

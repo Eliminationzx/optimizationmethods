@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>914</width>
+    <width>975</width>
     <height>636</height>
    </rect>
   </property>
@@ -310,7 +310,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Times New Roman'; font-size:13pt;&quot;&gt;Ввести координаты градиента&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="text">
-          <string>Ввести S</string>
+          <string>Ввести направление</string>
          </property>
         </widget>
        </item>
@@ -754,7 +754,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Times New Roman'; font-size:13pt;&quot;&gt;Вычислить длину градиента&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="text">
-          <string>Проверить</string>
+          <string>Проверить критерий</string>
          </property>
         </widget>
        </item>
@@ -805,7 +805,7 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>914</width>
+     <width>975</width>
      <height>23</height>
     </rect>
    </property>

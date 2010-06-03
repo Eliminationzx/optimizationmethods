@@ -326,10 +326,13 @@ void NotWenImpl::s2_entered()
 
 void NotWenImpl::s1_entered()
 {
-	gxk->setChecked(true);
-	proizvod_first->setChecked(true);
-	fxk1_fxk->setChecked(true);
-	stop->setChecked(true);
+	if(NumeroIteracio > 1)
+	{
+		gxk->setChecked(true);
+		proizvod_first->setChecked(true);
+		fxk1_fxk->setChecked(true);
+		stop->setChecked(true);
+	}
 	
 	length_grad_lb->setText("");
 	
