@@ -326,7 +326,7 @@ void NotWenImpl::s2_entered()
 
 void NotWenImpl::s1_entered()
 {
-	if(NumeroIteracio > 1)
+	if(NumeroIteracio >= 1)
 	{
 		gxk->setChecked(true);
 		proizvod_first->setChecked(true);
