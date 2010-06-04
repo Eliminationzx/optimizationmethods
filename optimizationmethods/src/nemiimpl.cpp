@@ -122,9 +122,9 @@ NeMiImpl::NeMiImpl(  funkcio *f, QVector<double> *d, QWidget * parent, Qt::WFlag
 	s1->addTransition(reflexion_bt, SIGNAL(clicked()), s2);
 	s2s3Transiro * s2s3 = new s2s3Transiro( t1_ref_rb, t2_ref_rb, t3_ref_rb, &Ph, &P1, &P2, &P3, F, next1_bt, SIGNAL(clicked()), s2);
 	s2s3->setTargetState(s3);
-	s3s1Transiro * s3s1 = new s3s1Transiro( &Pl, &PR, &Pm, F, this, SIGNAL(stateHasEntered()), s3);
-	s3s1->setTargetState(s1);
-	connect(s3s1, SIGNAL(triggered()), SLOT(s3s1_triggered()));
+	s3s2Transiro * s3s2 = new s3s2Transiro( &Pl, &PR, &Pm, F, next1_bt, SIGNAL(clicked()), s3);
+	s3s2->setTargetState(s1);
+	connect(s3s2, SIGNAL(triggered()), SLOT(s3s2_triggered()));
 	s3s5Transiro * s3s5 = new s3s5Transiro( &Ph, &PR, &Pm, F, compression_bt, SIGNAL(clicked()), s3);
 	s3s5->setTargetState(s5);
 	s3s6Transiro * s3s6 = new s3s6Transiro( &Pl, &PR, F, stretching_bt, SIGNAL(clicked()), s3);
@@ -449,9 +449,11 @@ void NeMiImpl::registriEraro(){
 	qDebug()<<trUtf8("Пользователь ошибся"); // Вывожу дебажную инфу на консоль.
 }
 
-void NeMiImpl::s3s1_triggered(){
+void NeMiImpl::s3s2_triggered(){
 	*Ph = PR;
 	LogTxtBrsr->append(trUtf8("  Принята точка: (%1; %2).").arg(Ph->x()).arg(Ph->y()));
+
+	s1_entered();
 }
 
 qreal NeMiImpl::averagxoDistanco(){
@@ -474,7 +476,7 @@ namespace NeMi{
 		}
 		return false;
 	}
-	bool s3s1Transiro::eventTest(QEvent *e){
+	bool s3s2Transiro::eventTest(QEvent *e){
 		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
 		if(QSignalTransition::eventTest(e)){
 			qDebug()<<trUtf8("  Проверяю , что F(Xl) < F(Хотр) < F(Xm).");
