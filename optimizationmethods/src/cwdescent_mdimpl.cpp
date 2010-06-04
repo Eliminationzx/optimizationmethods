@@ -126,13 +126,13 @@ DemonstrataQPointF CWdescent_mdImpl::LengthOfStepX1(DemonstrataQPointF X) const
 
 	// Изменяю b, пока не будет чашка.
 	if(F->rezulto(b+0.1, y) > F->rezulto(b-0.1, y))
-		while(F->rezulto(b, y) < F->rezulto(b+0.1, y))
+		while(F->rezulto(b, y) < F->rezulto(b+0.01, y))
 		{
 			b -= i;
 			i += i;
 		}
 	else
-		while(F->rezulto(b, y) < F->rezulto(b-0.1, y))
+		while(F->rezulto(b, y) < F->rezulto(b-0.01, y))
 		{
 			b += i;
 			i += i;
@@ -174,13 +174,13 @@ DemonstrataQPointF CWdescent_mdImpl::LengthOfStepX2(DemonstrataQPointF X) const
 
 	// Изменяю b, пока не будет чашка.
 	if(F->rezulto(x, b+0.1) > F->rezulto(x, b-0.1))
-		while(F->rezulto(x, b) < F->rezulto(x, b+0.1))
+		while(F->rezulto(x, b) < F->rezulto(x, b+0.01))
 		{
 			b -= i;
 			i += i;
 		}
 	else
-		while(F->rezulto(x, b) < F->rezulto(x, b-0.1))
+		while(F->rezulto(x, b) < F->rezulto(x, b-0.01))
 		{
 			b += i;
 			i += i;
