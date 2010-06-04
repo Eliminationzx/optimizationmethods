@@ -290,6 +290,7 @@ void NeMiImpl::s1_entered(){
 	t1_ref_rb->setChecked(true);
 	t1_com_rb->setChecked(true);
 	t1_red_rb->setChecked(true);
+	t1_str_rb->setChecked(true);
 
 	LogTxtBrsr->append(trUtf8("Итерация № %1.").arg(++NumeroIteracio));
 	
