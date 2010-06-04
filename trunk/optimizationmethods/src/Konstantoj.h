@@ -17,7 +17,7 @@ namespace A{
   const int NotWen = 5;
 }
 //! Размер карты от -ampleksoMapo до ampleksoMapo.
-const int ampleksoMapo = 50;
+const int ampleksoMapo = 25;
 
 
 #endif // __KONSTANTOJ_H__
