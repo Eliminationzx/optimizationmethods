@@ -45,9 +45,7 @@ double funkcio::lengthOfStep(const QPointF X) const
 	double b = 0.1;
 	// Изменяю b, пока не будет чашка.
 	while(rezulto(X.x() - b*df_dx1(X), X.y() - b*df_dx2(X)) < rezulto(X.x() - (b-0.09)*df_dx1(X), X.y() - (b-0.09)*df_dx2(X)))
-	{
 		b += b;
-	}
 	
 	double tau = 0.618033988749894;
 	double lam = a + (1 - tau)*(b - a);

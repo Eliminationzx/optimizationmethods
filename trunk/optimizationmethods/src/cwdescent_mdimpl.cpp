@@ -119,15 +119,31 @@ DemonstrataQPointF CWdescent_mdImpl::LengthOfStepX1(DemonstrataQPointF X) const
 {
 	double y = X.y();
 
-	double a = - ampleksoMapo;
-	double b = ampleksoMapo;
+	double a = X.x();
+	double b = a;
+	
+	double i = 0.01;
+
+	// Изменяю b, пока не будет чашка.
+	if(F->rezulto(b+0.1, y) > F->rezulto(b-0.1, y))
+		while(F->rezulto(b, y) < F->rezulto(b+0.1, y))
+		{
+			b -= i;
+			i += i;
+		}
+	else
+		while(F->rezulto(b, y) < F->rezulto(b-0.1, y))
+		{
+			b += i;
+			i += i;
+		}
 
 	double tau = 0.618033988749894;
 	double lam = a + (1 - tau)*(b - a);
 	double mu = a + tau*(b - a);
-	while (b - a > 0.000001)
+	while (fabs(b - a) > 0.0000001)
 	{
-		if (F->rezulto(lam, y) > F->rezulto(mu, y))
+		if(F->rezulto(lam, y) > F->rezulto(mu, y))
 		{
 			a = lam;
 			lam = a + (1 - tau)*(b - a);
@@ -151,13 +167,29 @@ DemonstrataQPointF CWdescent_mdImpl::LengthOfStepX2(DemonstrataQPointF X) const
 {
 	double x = X.x();
 
-	double a = - ampleksoMapo;
-	double b = ampleksoMapo;
+	double a = X.y();
+	double b = a;
+
+	double i = 0.01;
+
+	// Изменяю b, пока не будет чашка.
+	if(F->rezulto(x, b+0.1) > F->rezulto(x, b-0.1))
+		while(F->rezulto(x, b) < F->rezulto(x, b+0.1))
+		{
+			b -= i;
+			i += i;
+		}
+	else
+		while(F->rezulto(x, b) < F->rezulto(x, b-0.1))
+		{
+			b += i;
+			i += i;
+		}
 
 	double tau = 0.618033988749894;
 	double lam = a + (1 - tau)*(b - a);
 	double mu = a + tau*(b - a);
-	while (b - a > 0.000001)
+	while (fabs(b - a) > 0.0000001)
 	{
 		if (F->rezulto(x, lam) > F->rezulto(x, mu))
 		{
