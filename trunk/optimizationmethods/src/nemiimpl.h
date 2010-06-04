@@ -199,23 +199,23 @@ namespace NeMi{
 	class s3s5Transiro: public QSignalTransition{
 		private:
 			DemonstrataQPointF ** ph;
-			DemonstrataQPointF * ps;
+			DemonstrataQPointF * pr;
 			DemonstrataQPointF ** pm;
 			funkcio * f;
 		public:
-			s3s5Transiro( DemonstrataQPointF ** Ph, DemonstrataQPointF * PS,
+			s3s5Transiro( DemonstrataQPointF ** Ph, DemonstrataQPointF * PR,
 			              DemonstrataQPointF ** Pm, funkcio * F,
 			              QState * sourceState = 0)
-				: QSignalTransition(sourceState), ph(Ph), ps(PS), pm(Pm), f(F){};
+				: QSignalTransition(sourceState), ph(Ph), pr(PR), pm(Pm), f(F){};
 			s3s5Transiro( DemonstrataQPointF ** Ph,
-			              DemonstrataQPointF * PS,
+			              DemonstrataQPointF * PR,
 			              DemonstrataQPointF ** Pm,
 			              funkcio * F,
 			              QObject * sender,
 			              const char * signal,
 			              QState * sourceState = 0
 			            )
-				: QSignalTransition(sender, signal, sourceState), ph(Ph), ps(PS),
+				: QSignalTransition(sender, signal, sourceState), ph(Ph), pr(PR),
 					pm(Pm), f(F){};
 		protected:
 			//! Переход срабатывает, только если F(Xm) < F(Хотр) < F(Xh).
@@ -229,20 +229,20 @@ namespace NeMi{
 	class s3s6Transiro: public QSignalTransition{
 		private:
 			DemonstrataQPointF ** pl;
-			DemonstrataQPointF * ps;
+			DemonstrataQPointF * pr;
 			funkcio * f;
 		public:
-			s3s6Transiro( DemonstrataQPointF ** Pl, DemonstrataQPointF * PS,
+			s3s6Transiro( DemonstrataQPointF ** Pl, DemonstrataQPointF * PR,
 			              funkcio * F,QState * sourceState = 0)
-				: QSignalTransition(sourceState), pl(Pl), ps(PS), f(F){};
+				: QSignalTransition(sourceState), pl(Pl), pr(PR), f(F){};
 			s3s6Transiro( DemonstrataQPointF ** Pl,
-			              DemonstrataQPointF * PS,
+			              DemonstrataQPointF * PR,
 			              funkcio * F,
 			              QObject * sender,
 			              const char * signal,
 			              QState * sourceState = 0
 			            )
-				: QSignalTransition(sender, signal, sourceState), pl(Pl), ps(PS),
+				: QSignalTransition(sender, signal, sourceState), pl(Pl), pr(PR),
 					f(F){};
 		protected:
 			//! Переход срабатывает, только если F(Хотр) < F(Хl).

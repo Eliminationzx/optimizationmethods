@@ -180,6 +180,9 @@ NeMiImpl::NeMiImpl(  funkcio *f, QVector<double> *d, QWidget * parent, Qt::WFlag
 	s1->assignProperty(x1_tk_lb, "text", trUtf8(""));
 	s1->assignProperty(x2_tk_lb, "text", trUtf8(""));
 	s1->assignProperty(fsign_tk_lb, "text", trUtf8(""));
+	s2->assignProperty(x1_totr_lb, "text", trUtf8(""));
+	s2->assignProperty(x2_totr_lb, "text", trUtf8(""));
+	s2->assignProperty(fsign_totr_lb, "text", trUtf8(""));
 //---Настраиваю некоторые состояния для отображения нужной страницы выбора точки.
 	s1->assignProperty(stackedWidget, "currentIndex", 4);
 	s2->assignProperty(stackedWidget, "currentIndex", 0);
@@ -299,6 +302,7 @@ void NeMiImpl::s1_entered(){
 
 
 void NeMiImpl::s2_entered(){
+	LogTxtBrsr->append(trUtf8("  Отражение."));
 
 	qDebug()<<trUtf8("Вошёл в s2"); // Вывожу дебажную инфу на консоль.
 }
@@ -306,8 +310,6 @@ void NeMiImpl::s2_entered(){
 void NeMiImpl::s3_entered(){
 	Pc = (*Pm + *Pl)/2;
 	PR = Pc + a*(Pc - *Ph);
-
-	LogTxtBrsr->append(trUtf8("  Отражение."));
 
 	qDebug()<<trUtf8("Вошёл в s3"); // Вывожу дебажную инфу на консоль.
 	
@@ -489,10 +491,10 @@ namespace NeMi{
 	bool s3s5Transiro::eventTest(QEvent *e){
 		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
 		if(QSignalTransition::eventTest(e)){
-			qDebug()<<trUtf8("  Проверяю , что F(Xm) < F(Хотр) < F(Xh).");
+			qDebug()<<trUtf8("  Проверяю , что F(Xm) < F(Хотр) < F(Xh).%1 %2 %3").arg(f->rezulto(**pm)).arg(f->rezulto(*pr)).arg(f->rezulto(**ph));
 			// Проверяю своё условие.
-			return f->rezulto(**pm) < f->rezulto(*ps)
-			       && f->rezulto(*ps) < f->rezulto(**ph);
+			return f->rezulto(**pm) < f->rezulto(*pr)
+			       && f->rezulto(*pr) < f->rezulto(**ph);
 		}
 		return false;
 	}
@@ -501,7 +503,7 @@ namespace NeMi{
 		if(QSignalTransition::eventTest(e)){
 			qDebug()<<trUtf8("  Проверяю , что F(Хотр) < F(Хl)");
 			// Проверяю своё условие.
-			return f->rezulto(*ps) < f->rezulto(**pl);
+			return f->rezulto(*pr) < f->rezulto(**pl);
 		}
 		return false;
 	}
