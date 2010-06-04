@@ -221,7 +221,7 @@ void FasterDescentImpl::sf_entered()
 void FasterDescentImpl::s9_entered()
 {
 	BP = QPointF(BP.x() - lengthStep.x()*(grad.x() / Length(grad)), BP.y() - lengthStep.x()*(grad.y() / Length(grad))); 
-
+//	BP = QPointF(BP.x() - 0.1*(grad.x() / Length(grad)), BP.y() - 0.1*(grad.y() / Length(grad))); 
 	qDebug()<<trUtf8("Вошёл в s9"); // Вывожу дебажную инфу на консоль.
 	
 	emit stateHasEntered(); // Переход по этому сигналу произойдёт, только если выполнится его условие.
@@ -427,13 +427,14 @@ namespace SinkoFD
 			qDebug()<<trUtf8("  Проверяю, что введен градиент");
 			// Проверяю своё условие.
 			
-			QString tmpX10, tmpX11;
-			QString tmpX20, tmpX21;
+			QString tmpX11, tmpX21;
 			
 			// Обрабатываю случаи, когда коэффициенты перед скобками равны 1, 0, -1 и другим значениям
 			if(f->metaObject()->className() == QString("KvadratigantoFunkcio"))
 			{
-				if((2*f->getA() != 1 && 2*f->getA() != 0 && 2*f->getA() != -1) && (f->getE() == 1))
+				if((2*f->getA() != 1 && 2*f->getA() != 0 && 2*f->getA() != -1) && (f->getE() != 1 && f->getE() != 0 && f->getE() != -1))
+					tmpX11 = QString("%1*(x1%2%3)%4%5*(x2%6%7)").arg(2*f->getA()).arg(FasterDescentImpl::otrNumberSign(f->getB())).arg(fabs(f->getB())).arg(FasterDescentImpl::numberSign(f->getE())).arg(fabs(f->getE())).arg(FasterDescentImpl::otrNumberSign(f->getG())).arg(fabs(f->getG()));
+				else if((2*f->getA() != 1 && 2*f->getA() != 0 && 2*f->getA() != -1) && (f->getE() == 1))
 					tmpX11 = QString("%1*(x1%2%3)+(x2%4%5)").arg(2*f->getA()).arg(FasterDescentImpl::otrNumberSign(f->getB())).arg(fabs(f->getB())).arg(FasterDescentImpl::otrNumberSign(f->getG())).arg(fabs(f->getG()));
 				else if((2*f->getA() != 1 && 2*f->getA() != 0 && 2*f->getA() != -1) && (f->getE() == 0))
 					tmpX11 = QString("%1*(x1%2%3)").arg(2*f->getA()).arg(FasterDescentImpl::otrNumberSign(f->getB())).arg(fabs(f->getB()));
@@ -467,13 +468,15 @@ namespace SinkoFD
 				else if((2*f->getA() == -1) && (f->getE() == -1))
 					tmpX11 = QString("-(x1%1%2)-(x2%3%4)").arg(FasterDescentImpl::otrNumberSign(f->getB())).arg(fabs(f->getB())).arg(FasterDescentImpl::otrNumberSign(f->getG())).arg(fabs(f->getG()));
 
-					
-				if((2*f->getC() != 1 && 2*f->getC() != 0) && 2*f->getC() != -1 && (f->getE() == 1))
-					tmpX21 = QString("%1*(x2%2%3)+(x1%4%5)").arg(2*f->getC()).arg(FasterDescentImpl::otrNumberSign(f->getD())).arg(f->getD()).arg(FasterDescentImpl::otrNumberSign(f->getF())).arg(f->getF());
+				
+				if((2*f->getC() != 1 && 2*f->getC() != 0) && 2*f->getC() != -1 && (f->getE() != 1 && f->getE() != 0 && f->getE() != -1))
+					tmpX21 = QString("%1*(x2%2%3)%4%5*(x1%6^7)").arg(2*f->getC()).arg(FasterDescentImpl::otrNumberSign(f->getD())).arg(fabs(f->getD())).arg(FasterDescentImpl::numberSign(f->getE())).arg(fabs(f->getE())).arg(FasterDescentImpl::otrNumberSign(f->getF())).arg(fabs(f->getF()));
+				else if((2*f->getC() != 1 && 2*f->getC() != 0) && 2*f->getC() != -1 && (f->getE() == 1))
+					tmpX21 = QString("%1*(x2%2%3)+(x1%4%5)").arg(2*f->getC()).arg(FasterDescentImpl::otrNumberSign(f->getD())).arg(fabs(f->getD())).arg(FasterDescentImpl::otrNumberSign(f->getF())).arg(fabs(f->getF()));
 				else if((2*f->getC() != 1 && 2*f->getC() != 0 && 2*f->getC() != -1) && (f->getE() == 0))
-					tmpX21 = QString("%1*(x2%2%3)").arg(2*f->getC()).arg(FasterDescentImpl::otrNumberSign(f->getD())).arg(f->getD());
-				if((2*f->getC() != 1 && 2*f->getC() != 0) && 2*f->getC() != -1 && (f->getE() == -1))
-					tmpX21 = QString("%1*(x2%2%3)-(x1%4%5)").arg(2*f->getC()).arg(FasterDescentImpl::otrNumberSign(f->getD())).arg(f->getD()).arg(FasterDescentImpl::otrNumberSign(f->getF())).arg(f->getF());
+					tmpX21 = QString("%1*(x2%2%3)").arg(2*f->getC()).arg(FasterDescentImpl::otrNumberSign(f->getD())).arg(fabs(f->getD()));
+				else if((2*f->getC() != 1 && 2*f->getC() != 0) && 2*f->getC() != -1 && (f->getE() == -1))
+					tmpX21 = QString("%1*(x2%2%3)-(x1%4%5)").arg(2*f->getC()).arg(FasterDescentImpl::otrNumberSign(f->getD())).arg(fabs(f->getD())).arg(FasterDescentImpl::otrNumberSign(f->getF())).arg(fabs(f->getF()));
 
 				else if((2*f->getC() == 1) && (f->getE() != 1 && f->getE() != 0 && f->getE() != -1))
 					tmpX21 = QString("(x2%1%2)%3%4*(x1%5%6)").arg(FasterDescentImpl::otrNumberSign(f->getD())).arg(fabs(f->getD())).arg(FasterDescentImpl::numberSign(f->getE())).arg(fabs(f->getE())).arg(FasterDescentImpl::otrNumberSign(f->getF())).arg(fabs(f->getF()));
@@ -501,30 +504,29 @@ namespace SinkoFD
 					tmpX21 = QString("-(x2%1%2)").arg(FasterDescentImpl::otrNumberSign(f->getD())).arg(fabs(f->getD()));
 				else if((2*f->getC() == -1) && (f->getE() == -1))
 					tmpX21 = QString("-(x2%1%2)-(x1%3%4)").arg(FasterDescentImpl::otrNumberSign(f->getD())).arg(fabs(f->getD())).arg(FasterDescentImpl::otrNumberSign(f->getF())).arg(fabs(f->getF()));
-
-				tmpX10 = QString("%1*(x1%2%3)%4%5*(x2%6%7)").arg(2*f->getA()).arg(FasterDescentImpl::otrNumberSign(f->getB())).arg(fabs(f->getB())).arg(FasterDescentImpl::numberSign(f->getE())).arg(fabs(f->getE())).arg(FasterDescentImpl::otrNumberSign(f->getG())).arg(fabs(f->getG()));
-				tmpX20 = QString("%1*(x2%2%3)%4%5*(x1%6^7)").arg(2*f->getC()).arg(FasterDescentImpl::otrNumberSign(f->getD())).arg(fabs(f->getD())).arg(FasterDescentImpl::numberSign(f->getE())).arg(fabs(f->getE())).arg(FasterDescentImpl::otrNumberSign(f->getF())).arg(fabs(f->getF()));
 			}
 			else if(f->metaObject()->className() == QString("RavinaFunkcio"))
 			{
-				if((2*f->getA() != 1 && 2*f->getA() != 0 && 2*f->getA() != -1) && (-2*f->getB() == 1))
-					tmpX11 = QString("%1*(x2*-x1^2)*(-2*x1)+(1-x1)").arg(2*f->getA());
+				if((2*f->getA() != 1 && 2*f->getA() != 0 && 2*f->getA() != -1) && (-2*f->getB() != 1 && -2*f->getB() != 0 && -2*f->getB() != -1))
+					tmpX11 = QString("%1*(x2-x1^2)*(-2*x1)%2%3*(1-x1)").arg(2*f->getA()).arg(FasterDescentImpl::numberSign(-2*f->getB())).arg(fabs(-2*f->getB()));
+				else if((2*f->getA() != 1 && 2*f->getA() != 0 && 2*f->getA() != -1) && (-2*f->getB() == 1))
+					tmpX11 = QString("%1*(x2-x1^2)*(-2*x1)+(1-x1)").arg(2*f->getA());
 				else if((2*f->getA() != 1 && 2*f->getA() != 0  && 2*f->getA() != -1) && (-2*f->getB() == 0))
-					tmpX11 = QString("%1*(x2*-x1^2)*(-2*x1)").arg(2*f->getA());
+					tmpX11 = QString("%1*(x2-x1^2)*(-2*x1)").arg(2*f->getA());
 				else if((2*f->getA() != 1 && 2*f->getA() != 0  && 2*f->getA() != -1) && (-2*f->getB() == -1))
-					tmpX11 = QString("%1*(x2*-x1^2)*(-2*x1)-(1-x1)").arg(2*f->getA());
+					tmpX11 = QString("%1*(x2-x1^2)*(-2*x1)-(1-x1)").arg(2*f->getA());
 
 				else if((2*f->getA() == 1) && (-2*f->getB() != 1 && -2*f->getB() != 0 && -2*f->getB() != -1))
-					tmpX11 = QString("(x2*-x1^2)*(-2*x1)%1%2*(1-x1)").arg(FasterDescentImpl::numberSign(-2*f->getB())).arg(fabs(-2*f->getB()));
+					tmpX11 = QString("(x2-x1^2)*(-2*x1)%1%2*(1-x1)").arg(FasterDescentImpl::numberSign(-2*f->getB())).arg(fabs(-2*f->getB()));
 				else if((2*f->getA() == 1) && (-2*f->getB() == 1))
-					tmpX11 = QString("(x2*-x1^2)*(-2*x1)+(1-x1)");
+					tmpX11 = QString("(x2-x1^2)*(-2*x1)+(1-x1)");
 				else if((2*f->getA() == 1) && (-2*f->getB() == 0))
-					tmpX11 = QString("(x2*-x1^2)*(-2*x1)");
+					tmpX11 = QString("(x2-x1^2)*(-2*x1)");
 				else if((2*f->getA() == 1) && (-2*f->getB() == -1))
-					tmpX11 = QString("(x2*-x1^2)*(-2*x1)-(1-x1)");
+					tmpX11 = QString("(x2-x1^2)*(-2*x1)-(1-x1)");
 
 				else if((2*f->getA() == 0) && (-2*f->getB() != 1 && -2*f->getB() != 0 && -2*f->getB() != -1))
-					tmpX10 = QString("%1*(1-x1)").arg(-2*f->getB());
+					tmpX11 = QString("%1*(1-x1)").arg(-2*f->getB());
 				else if((2*f->getA() == 0) && (-2*f->getB() == 1))
 					tmpX11 = QString("(1-x1)");
 				else if((2*f->getA() == 0) && (-2*f->getB() == 0))
@@ -533,29 +535,26 @@ namespace SinkoFD
 					tmpX11 = QString("-(1-x1)");
 				
 				else if((2*f->getA() == -1) && (-2*f->getB() != 1 && -2*f->getB() != 0 && -2*f->getB() != -1))
-					tmpX11 = QString("-(x2*-x1^2)*(-2*x1)%1%2*(1-x1)").arg(FasterDescentImpl::numberSign(-2*f->getB())).arg(fabs(-2*f->getB()));
+					tmpX11 = QString("-(x2-x1^2)*(-2*x1)%1%2*(1-x1)").arg(FasterDescentImpl::numberSign(-2*f->getB())).arg(fabs(-2*f->getB()));
 				else if((2*f->getA() == -1) && (-2*f->getB() == 1))
-					tmpX11 = QString("-(x2*-x1^2)*(-2*x1)+(1-x1)");
+					tmpX11 = QString("-(x2-x1^2)*(-2*x1)+(1-x1)");
 				else if((2*f->getA() == -1) && (-2*f->getB() == 0))
-					tmpX11 = QString("-(x2*-x1^2)*(-2*x1)");
+					tmpX11 = QString("-(x2-x1^2)*(-2*x1)");
 				else if((2*f->getA() == -1) && (-2*f->getB() == -1))
-					tmpX11 = QString("-(x2*-x1^2)*(-2*x1)-(1-x1)");
+					tmpX11 = QString("-(x2-x1^2)*(-2*x1)-(1-x1)");
 
 
-				if(2*f->getA() == 1)
+				if(2*f->getA() != 1 && 2*f->getA() != 0 && 2*f->getA() != -1)
+					tmpX21 = QString("%1*(x2-x1^2)").arg(2*f->getA());
+				else if(2*f->getA() == 1)
 					tmpX21 = QString("(x2-x1^2)");
 				else if(2*f->getA() == 0)
 					tmpX21 = QString("0");
 				else if(2*f->getA() == -1)
 					tmpX21 = QString("-(x2-x1^2)");
-				
-				tmpX10 = QString("%1*(x2-x1^2)*(-2*x1)%2%3*(1-x1)").arg(2*f->getA()).arg(FasterDescentImpl::numberSign(-2*f->getB())).arg(fabs(-2*f->getB()));
-				tmpX20 = QString("%1*(x2-x1^2)").arg(2*f->getA());
 			}
 
-			if(df_dx1->text() == tmpX10 || df_dx1->text() == tmpX11)
-				return true;
-			else if(df_dx2->text() == tmpX20 || df_dx2->text() == tmpX21)
+			if(df_dx1->text() == tmpX11 && df_dx2->text() == tmpX21)
 				return true;
 			else
 				return false;
