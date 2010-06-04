@@ -137,6 +137,8 @@ NeMiImpl::NeMiImpl(  funkcio *f, QVector<double> *d, QWidget * parent, Qt::WFlag
 	s6s8->setTargetState(s8);
 	s6s9Transiro * s6s9 = new s6s9Transiro( totr_str_rb, &Pl, &PD, F, next2_bt, SIGNAL(clicked()), s6);
 	s6s9->setTargetState(s9);
+	s11s7Transiro * s11s7 = new s11s7Transiro( t1_red_rb, t2_red_rb, t3_red_rb, &Pl, &P1, &P2, &P3, F, next4_bt, SIGNAL(clicked()), s11);
+	s11s7->setTargetState(s7);
 	sss1Transiro * sss1 = new sss1Transiro( strikteco, &Ph, &Pl, &Pm, &Pc, F, this, SIGNAL(stateHasEntered()), ss);
 	sss1->setTargetState(s1);
 	sssfTransiro * sssf = new sssfTransiro( strikteco, &Ph, &Pl, &Pm, &Pc, F, next2_bt, SIGNAL(clicked()), ss);
