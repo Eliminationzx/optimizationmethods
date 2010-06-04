@@ -122,8 +122,8 @@ NeMiImpl::NeMiImpl(  funkcio *f, QVector<double> *d, QWidget * parent, Qt::WFlag
 	s1->addTransition(reflexion_bt, SIGNAL(clicked()), s2);
 	s2s3Transiro * s2s3 = new s2s3Transiro( t1_ref_rb, t2_ref_rb, t3_ref_rb, &Ph, &P1, &P2, &P3, F, next1_bt, SIGNAL(clicked()), s2);
 	s2s3->setTargetState(s3);
-	s3s2Transiro * s3s2 = new s3s2Transiro( &Pl, &PR, &Pm, F, next1_bt, SIGNAL(clicked()), s3);
-	s3s2->setTargetState(s1);
+	s3s2Transiro * s3s2 = new s3s2Transiro( &Pl, &PR, &Pm, F, reflexion_bt, SIGNAL(clicked()), s3);
+	s3s2->setTargetState(s2);
 	connect(s3s2, SIGNAL(triggered()), SLOT(s3s2_triggered()));
 	s3s5Transiro * s3s5 = new s3s5Transiro( &Ph, &PR, &Pm, F, compression_bt, SIGNAL(clicked()), s3);
 	s3s5->setTargetState(s5);
