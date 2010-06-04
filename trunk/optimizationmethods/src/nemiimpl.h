@@ -105,7 +105,7 @@ private slots:
   //! Фиксирует совершение пользователем ошики.
   void registriEraro();
   //! Обработчик перехода s3s1.
-  void s3s1_triggered();
+  void s3s2_triggered();
 signals:
 	/*! Использую сигнал для прехода, который не требует действий пользователя,
 	 * а только проверяет условие.
@@ -166,18 +166,18 @@ namespace NeMi{
 	 * При создании требует указатели на переменные необходимые для принятия
 	 * решения о переходе.
 	 */
-	class s3s1Transiro: public QSignalTransition{
+	class s3s2Transiro: public QSignalTransition{
 		private:
 			DemonstrataQPointF ** pl;
 			DemonstrataQPointF * pr;
 			DemonstrataQPointF ** pm;
 			funkcio * f;
 		public:
-			s3s1Transiro( DemonstrataQPointF ** Pl, DemonstrataQPointF * PR,
+			s3s2Transiro( DemonstrataQPointF ** Pl, DemonstrataQPointF * PR,
 			              DemonstrataQPointF ** Pm, funkcio * F,
 			              QState * sourceState = 0)
 				: QSignalTransition(sourceState), pl(Pl), pr(PR), pm(Pm), f(F){};
-			s3s1Transiro( DemonstrataQPointF ** Pl,
+			s3s2Transiro( DemonstrataQPointF ** Pl,
 			              DemonstrataQPointF * PR,
 			              DemonstrataQPointF ** Pm,
 			              funkcio * F,
