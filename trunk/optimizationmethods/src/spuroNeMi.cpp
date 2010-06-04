@@ -9,11 +9,16 @@
 spuroNeMi::spuroNeMi(QColor momentaKoloro, QColor bazaKoloro, qreal Skalo, QGraphicsItem * parent) 
 	: spuro( A::CWdescent_fix, bazaKoloro, Skalo, parent), MomentaKoloro(momentaKoloro){}
 //
-
+ 
 QRectF spuroNeMi::boundingRect() const{
 	QPolygonF p;
 	p<<P1<<P2<<P3;
 	return (SP.boundingRect() | p.boundingRect());
+}
+
+void spuroNeMi::finisxiIteracio(){
+	prepareGeometryChange ();
+	SP.clear();
 }
 
 
