@@ -81,6 +81,7 @@ void spuroNeMi::difiniP3(const QPointF & p){
 void spuroNeMi::difiniPRespegulo(const QPointF & p){
 	prepareGeometryChange ();
 	// Создаю полигон Хl, p, Хm.
+	// Хl - наименьшая в триуголнике, Хm - средняя.
 	if(Length(p - P1) < Length(p - P2)){
 		if(Length(p - P1) < Length(p - P3)){
 			SP<<(P1);
