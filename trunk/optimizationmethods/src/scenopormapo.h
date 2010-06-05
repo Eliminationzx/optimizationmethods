@@ -5,8 +5,7 @@
 //
 class funkcio;
 class spuro;
-class QImage;
-const qreal l = 0.025;
+const qreal l = 0.1;
 //! Сцена для карты высот целевой функции.
 class ScenoPorMapo : public QGraphicsScene
 {
@@ -18,8 +17,6 @@ private:
 	qreal skalo;
 	//! Цвет карты.
 	QColor koloro;
-	//! Буфер, хранящий всю карту.
-	QImage * m;
 public:
 	//! Возвращает цвет карты.
 	inline QColor Koloro() const { return koloro; };
@@ -40,8 +37,6 @@ public:
 	              qreal height, //!< Высота сцены.
 	              QObject * parent = 0 //!< Родитель.
 	            );
-	
-	~ScenoPorMapo();
 public slots:
 	//! Устанавливает цвет карты.
 	void difiniKoloro(QColor &);
@@ -50,12 +45,21 @@ public slots:
 	 */
 	void setScale(qreal factor);
 protected:
+	//! Обработчик перемещения мыши.
+	/*! Высылаются сигналы о положении мыши. Затем вызывается реализация поумолчанию.
+	 */
+	void mouseMoveEvent(QGraphicsSceneMouseEvent * mouseEvent);
 	//! Отрисовывает фон сцены с использованием painter перед отрисовкой любого элемента или переднего плана.
 	void drawBackground(QPainter * painter, //!< Контекст рисования фона сцены.
 	                    const QRectF & rect //!< Область сцены.
 	                   );
-	//! Предварительно рисует карту целиком в буфере.
-	void desegniMapo();
+signals:
+	//! Передаёт координату Х мыши.
+	void MusaPosX(const qreal);
+	//! Передаёт координату Y мыши.
+	void MusaPosY(const qreal);
+	//! Передаёт координаты мыши в виде строки текста.
+	void MusaPos(const QString &);
 };
 
 #endif
