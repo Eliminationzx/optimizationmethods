@@ -17,6 +17,7 @@
 #include <QLabel>
 #include <QFontDialog>
 #include <QDebug>
+//#include <QTextCodec>
 //
 using namespace SinkoLauxKoordinatoj_hugi;
 HuGiImpl::HuGiImpl(  funkcio *f, QVector<double> *d, QWidget * parent, Qt::WFlags flags) 
@@ -27,10 +28,14 @@ connect(exit, SIGNAL(activated()), qApp, SLOT(closeAllWindows()));
 	if(F->metaObject()->className() == QString("RavinaFunkcio")){
 		menubar->removeAction(recomenci_acn);
 	}	
-	qDebug()<<trUtf8("Метод Хука Дживса"); // Вывожу дебажную инфу на консоль.
+	//QTextCodec *codec = QTextCodec::codecForName("KOI8-R");
+	//QCString dest = codec->fromUnicode(src);
+
+	
+	qDebug()<<trUtf8("============Method HuGi go on"); // Вывожу дебажную инфу на консоль.
 	
 	
-	
+ 	stackedWidget->setCurrentIndex(3);
 	//Вывожу формулу функции.
 	func->setText(textoFunkcio());
 
@@ -199,7 +204,8 @@ connect(exit, SIGNAL(activated()), qApp, SLOT(closeAllWindows()));
 	s19->addTransition(found_bt, SIGNAL(clicked()), s2);
 	s16->addTransition(found_bt, SIGNAL(clicked()), s17);
 	s14->addTransition(this, SIGNAL(stateHasEntered()), s2);
-	
+	s12->addTransition(this, SIGNAL(stateHasEntered()), s13);
+	s18->addTransition(this, SIGNAL(stateHasEntered()), s3);
 	
 //---Создаю переход по действию "Начать заново"
 	connect(so->addTransition(recomenci_acn, SIGNAL(activated()), s1), SIGNAL(triggered()), SLOT(init()));
@@ -306,7 +312,7 @@ void HuGiImpl::sf_entered()
 	LogTxtBrsr->append(trUtf8("Конец алгоритма. Найден: %1").arg(F->rezulto(MP)));
 	QString str = trUtf8("Найден минимум. ");
 
-	qDebug()<<trUtf8("Конец алгоритма. Найден минимум"); // Вывожу дебажную инфу на консоль.
+	qDebug()<<trUtf8("The end. Minimum found"); // Вывожу дебажную инфу на консоль.
 
 	if(KvantoEraroj > D[6]){
 		// Слишком много ошибок.
@@ -336,7 +342,7 @@ void HuGiImpl::s19_entered()
 	MP=PP;
 	MP2=PP;
 	stackedWidget->setCurrentIndex(3);
-	qDebug()<<trUtf8("Вошёл в s19"); // Вывожу дебажную инфу на консоль.
+	qDebug()<<trUtf8("Come in s19"); // Вывожу дебажную инфу на консоль.
 
 	emit stateHasEntered();
 }
@@ -349,7 +355,7 @@ void HuGiImpl::s18_entered()
 	TEMP_B=MP2;
 	MP2=PP;
 	stackedWidget->setCurrentIndex(3);
-	qDebug()<<trUtf8("Вошёл в s18"); // Вывожу дебажную инфу на консоль.
+	qDebug()<<trUtf8("Come in s18"); // Вывожу дебажную инфу на консоль.
 
 	emit stateHasEntered();
 }
@@ -357,7 +363,7 @@ void HuGiImpl::s18_entered()
 void HuGiImpl::s17_entered()
 {
 	stackedWidget->setCurrentIndex(0);
-	qDebug()<<trUtf8("Вошёл в s17"); // Вывожу дебажную инфу на консоль.
+	qDebug()<<trUtf8("Come in s17"); // Вывожу дебажную инфу на консоль.
 
 	emit stateHasEntered();
 }
@@ -366,7 +372,7 @@ void HuGiImpl::s16_entered()
 {
 	MP = TEMP_B;
 	stackedWidget->setCurrentIndex(3);
-	qDebug()<<trUtf8("Вошёл в s16"); // Вывожу дебажную инфу на консоль.
+	qDebug()<<trUtf8("Come in s16"); // Вывожу дебажную инфу на консоль.
 
 	emit stateHasEntered();
 }
@@ -375,7 +381,7 @@ void HuGiImpl::s15_entered()
 {
 	//LogTxtBrsr->append(trUtf8("  новая точка: (%1; %2) не принята").arg(MP.x()).arg(MP.y()));
 	stackedWidget->setCurrentIndex(0);
-	qDebug()<<trUtf8("Вошёл в s15"); // Вывожу дебажную инфу на консоль.
+	qDebug()<<trUtf8("Come in s15"); // Вывожу дебажную инфу на консоль.
 
 	emit stateHasEntered();
 }
@@ -386,7 +392,7 @@ void HuGiImpl::s14_entered()
 	PX2 /= ModPX;
 	LogTxtBrsr->append(trUtf8("  Изменена длина шагов: %1; %2.").arg(PX1.x()).arg(PX2.y()));
 
-	qDebug()<<trUtf8("Вошёл в s12"); // Вывожу дебажную инфу на консоль.
+	qDebug()<<trUtf8("Come in s12"); // Вывожу дебажную инфу на консоль.
 
 	emit stateHasEntered();
 }
@@ -397,6 +403,7 @@ void HuGiImpl::s13_entered()
 	stackedWidget->setCurrentIndex(2);
 	else
 	stackedWidget->setCurrentIndex(4);
+	qDebug()<<trUtf8("Come in s13"); // Вывожу дебажную инфу на консоль.
 	// Вывожу на форму значение расстояния между предыдущей базовой точкой и
 	// текущей, только если была принята новая точка.
 	//if(BP != MP){
@@ -408,8 +415,9 @@ void HuGiImpl::s13_entered()
 void HuGiImpl::s12_entered()
 {
 	MP = NP;
+	stackedWidget->setCurrentIndex(3);
 	LogTxtBrsr->append(trUtf8("  новая точка: (%1; %2) Принята").arg(MP.x()).arg(MP.y()));
-	qDebug()<<trUtf8("Вошёл в s12"); // Вывожу дебажную инфу на консоль.
+	qDebug()<<trUtf8("Come in s12"); // Вывожу дебажную инфу на консоль.
 
 	emit stateHasEntered(); // Переход по этому сигналу произойдёт, только если выполнится его условие.
 }
@@ -419,14 +427,14 @@ void HuGiImpl::s11_entered()
 	NP = MP - PX2;
 	LogTxtBrsr->append(trUtf8("  Сделан шаг в отрицательном направлении оси Х2."));
 
-	qDebug()<<trUtf8("Вошёл в s11"); // Вывожу дебажную инфу на консоль.
+	qDebug()<<trUtf8("Come in s11"); // Вывожу дебажную инфу на консоль.
 }
 
 void HuGiImpl::s10_entered()
 {
 	LogTxtBrsr->append(trUtf8("  новая точка: (%1; %2) не принята").arg(MP.x()).arg(MP.y()));
 
-	qDebug()<<trUtf8("Вошёл в s10"); // Вывожу дебажную инфу на консоль.
+	qDebug()<<trUtf8("Come in s10"); // Вывожу дебажную инфу на консоль.
 }
 
 void HuGiImpl::s9_entered()
@@ -434,14 +442,14 @@ void HuGiImpl::s9_entered()
 	NP = MP + PX2;
 	LogTxtBrsr->append(trUtf8("  Сделан шаг в положительном направлении оси Х2."));
 
-	qDebug()<<trUtf8("Вошёл в s9"); // Вывожу дебажную инфу на консоль.
+	qDebug()<<trUtf8("Come in s9"); // Вывожу дебажную инфу на консоль.
 }
 
 void HuGiImpl::s8_entered()
 {
 	LogTxtBrsr->append(trUtf8("  новая точка: (%1; %2) не принята").arg(MP.x()).arg(MP.y()));
 
-	qDebug()<<trUtf8("Вошёл в s8"); // Вывожу дебажную инфу на консоль.
+	qDebug()<<trUtf8("Come in s8"); // Вывожу дебажную инфу на консоль.
 }
 
 void HuGiImpl::s7_entered()
@@ -449,7 +457,7 @@ void HuGiImpl::s7_entered()
 	MP = NP;
 	LogTxtBrsr->append(trUtf8("  новая точка: (%1; %2) Принята").arg(MP.x()).arg(MP.y()));
 
-	qDebug()<<trUtf8("Вошёл в s7"); // Вывожу дебажную инфу на консоль.
+	qDebug()<<trUtf8("Come in s7"); // Вывожу дебажную инфу на консоль.
 }
 
 void HuGiImpl::s6_entered()
@@ -457,14 +465,14 @@ void HuGiImpl::s6_entered()
 	NP = MP - PX1;
 	LogTxtBrsr->append(trUtf8("  Сделан шаг в отрицательном направлении оси Х1."));
 
-	qDebug()<<trUtf8("Вошёл в s6"); // Вывожу дебажную инфу на консоль.
+	qDebug()<<trUtf8("Come in s6"); // Вывожу дебажную инфу на консоль.
 }
 
 void HuGiImpl::s5_entered()
 {
 	LogTxtBrsr->append(trUtf8("  новая точка: (%1; %2) не принята").arg(MP.x()).arg(MP.y()));
 
-	qDebug()<<trUtf8("Вошёл в s5"); // Вывожу дебажную инфу на консоль.
+	qDebug()<<trUtf8("Come in s5"); // Вывожу дебажную инфу на консоль.
 }
 
 void HuGiImpl::s4_entered()
@@ -472,7 +480,7 @@ void HuGiImpl::s4_entered()
 	NP = MP + PX1;
 	LogTxtBrsr->append(trUtf8("  Сделан шаг в положительном направлении оси Х1."));
 
-	qDebug()<<trUtf8("Вошёл в s4"); // Вывожу дебажную инфу на консоль.
+	qDebug()<<trUtf8("Come in s4"); // Вывожу дебажную инфу на консоль.
 }
 
 
@@ -482,31 +490,32 @@ void HuGiImpl::s3_entered()
 	BP = MP;
 	NP = BP;
 	LogTxtBrsr->append(trUtf8("Итерация № %1.").arg(++NumeroIteracio));
-	qDebug()<<trUtf8("Вошёл в s3"); // Вывожу дебажную инфу на консоль.
+	qDebug()<<trUtf8("Come in s3"); // Вывожу дебажную инфу на консоль.
 }
 
 
 void HuGiImpl::s2_entered()
 {
 stackedWidget->setCurrentIndex(0);
-	qDebug()<<trUtf8("Вошёл в s2"); // Вывожу дебажную инфу на консоль.
+	qDebug()<<trUtf8("Come in s2"); // Вывожу дебажную инфу на консоль.
 }
 
 void HuGiImpl::s1_entered()
 {
 	FLAG_SO=false;
-	qDebug()<<trUtf8("Вошёл в s1"); // Вывожу дебажную инфу на консоль.
+	qDebug()<<trUtf8("Come in s1 flag="+FLAG_SO); // Вывожу дебажную инфу на консоль.
 }
 
 
 void HuGiImpl::so_entered()
 {
-	qDebug()<<trUtf8("Вошёл в so"); // Вывожу дебажную инфу на консоль.
+	qDebug()<<trUtf8("Come in so"); // Вывожу дебажную инфу на консоль.
+	stackedWidget->setCurrentIndex(3);
 }
 
 void HuGiImpl::init()
 {
-	qDebug()<<trUtf8("Вхожу в init()"); // Вывожу дебажную инфу на консоль.
+	qDebug()<<trUtf8("Come in init()"); // Вывожу дебажную инфу на консоль.
 
 //	strikteco = (*D)[0];
 	precision_lb->setText(QString::number(strikteco));
@@ -535,7 +544,7 @@ namespace SinkoLauxKoordinatoj_hugi{
 	{
 		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
 		if(QSignalTransition::eventTest(e)){
-			qDebug()<<trUtf8("  Проверяю f(np) < f(mp)");
+			qDebug()<<trUtf8("  Check f(np) < f(mp)");
 			// Проверяю своё условие.
 			return f->rezulto(*np) < f->rezulto(*mp);
 		}else{
@@ -547,7 +556,7 @@ namespace SinkoLauxKoordinatoj_hugi{
 	{
 		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
 		if(QSignalTransition::eventTest(e)){
-			qDebug()<<trUtf8("  Проверяю f(np) >= f(mp)");
+			qDebug()<<trUtf8("  Check f(np) >= f(mp)");
 			// Проверяю своё условие.
 			return f->rezulto(*np) >= f->rezulto(*mp);
 		}else{
@@ -559,7 +568,7 @@ namespace SinkoLauxKoordinatoj_hugi{
 	{
 		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
 		if(QSignalTransition::eventTest(e)){
-			qDebug()<<trUtf8("  Проверяю, что выбран шаг в + по X1");
+			qDebug()<<trUtf8("  Check, that chose +  X1");
 			// Проверяю своё условие.
 			return up_x1->isChecked();
 		}else{
@@ -571,7 +580,7 @@ namespace SinkoLauxKoordinatoj_hugi{
 	{
 		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
 		if(QSignalTransition::eventTest(e)){
-			qDebug()<<trUtf8("  Проверяю, что выбран шаг в - по X1");
+			qDebug()<<trUtf8("  Check, that chose - X1");
 			// Проверяю своё условие и вызываю реализацию по умолчанию.
 			return down_x1->isChecked();
 		}else{
@@ -583,7 +592,7 @@ namespace SinkoLauxKoordinatoj_hugi{
 	{
 		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
 		if(QSignalTransition::eventTest(e)){
-			qDebug()<<trUtf8("  Проверяю, что выбран шаг в + по X2");
+			qDebug()<<trUtf8("  Check, that chose + X2");
 			// Проверяю своё условие.
 			return up_x2->isChecked();
 		}else{
@@ -595,7 +604,7 @@ namespace SinkoLauxKoordinatoj_hugi{
 	{
 		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
 		if(QSignalTransition::eventTest(e)){
-			qDebug()<<trUtf8("  Проверяю, что выбран шаг в - по X2");
+			qDebug()<<trUtf8("  Check, that chose - X2");
 			// Проверяю своё условие.
 			return down_x2->isChecked();
 		}else{
@@ -607,7 +616,7 @@ namespace SinkoLauxKoordinatoj_hugi{
 	{
 		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
 		if(QSignalTransition::eventTest(e)){
-			qDebug()<<trUtf8("  Проверяю шХ1 < е && шХ2 < е");
+			qDebug()<<trUtf8("  Check sX1 < е && sX2 < е");
 			// Проверяю своё условие.
 			return px1->x() < s && px2->y() < s;
 		}else{
@@ -619,7 +628,7 @@ namespace SinkoLauxKoordinatoj_hugi{
 	{
 		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
 		if(QSignalTransition::eventTest(e)){
-			qDebug()<<trUtf8("  Проверяю, что бт ==тт && (шХ1 >= е || шХ2 >= е) ");
+			qDebug()<<trUtf8(" s13s14 Check, that бт ==тт && (шХ1 >= е || шХ2 >= е) ");
 			// Проверяю своё условие.
 			return *bp == *mp && (px1->x() >= s || px2->y() >= s);
 		}else{
@@ -631,9 +640,12 @@ namespace SinkoLauxKoordinatoj_hugi{
 	{
 		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
 		if(QSignalTransition::eventTest(e)){
-			qDebug()<<trUtf8("пройден поиск по образцу = true && Выбран пункт принять образец &&  f(b2)<f(temp_b2)  ");
+			qDebug()<<trUtf8(" s13s16  пройден поиск по образцу = true && Выбран пункт принять образец &&  f(b2)<f(temp_b2)  ");
+			qDebug()<<trUtf8("======FBP=")<<(f->rezulto(*bp));
+			qDebug()<<trUtf8("======FTB=")<<(f->rezulto(*temp_b));
+			qDebug()<<trUtf8("======FLAG=")<<flag_so;
 			// Проверяю своё условие.
-			return &flag_so && ok_rb_->isChecked() && f->rezulto(*bp) <f->rezulto(*temp_b);
+			return &flag_so && ok_rb_->isChecked() && (f->rezulto(*bp)) < f->rezulto(*temp_b);
 		}else{
 			return false;
 		}
@@ -643,7 +655,7 @@ namespace SinkoLauxKoordinatoj_hugi{
 	{
 		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
 		if(QSignalTransition::eventTest(e)){
-			qDebug()<<trUtf8(" пройден поиск по образцу = true && Выбран пункт не принимать образец &&  f(b2)<f(temp_b2) ");
+			qDebug()<<trUtf8("s13s19  пройден поиск по образцу = true && Выбран пункт не принимать образец &&  f(b2)<f(temp_b2) ");
 			// Проверяю своё условие.
 			return &flag_so && no_rb_->isChecked() && f->rezulto(*bp) >=f->rezulto(*temp_b);
 		}else{
@@ -655,7 +667,7 @@ namespace SinkoLauxKoordinatoj_hugi{
 	{
 		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
 		if(QSignalTransition::eventTest(e)){
-			qDebug()<<trUtf8(" нажата кнопка далее выбран поиск по образцу");
+			qDebug()<<trUtf8("s15s18_s17s18 нажата кнопка далее выбран поиск по образцу");
 			// Проверяю своё условие.
 			return model->isChecked() ;
 		}else{
@@ -667,7 +679,7 @@ bool s2s3Transiro::eventTest(QEvent *e)
 	{
 		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
 		if(QSignalTransition::eventTest(e)){
-			qDebug()<<trUtf8(" нажата кнопка далее выбран поиск по образцу");
+			qDebug()<<trUtf8("s2s3 нажата кнопка далее выбран поиск по образцу");
 			// Проверяю своё условие.
 			return investigate->isChecked() ;
 		}else{
