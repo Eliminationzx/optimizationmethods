@@ -237,7 +237,7 @@ void NotWenImpl::s6_entered()
 	else if(F->metaObject()->className() == QString("RavinaFunkcio"))
 	{
 		groupBox_8->setVisible(false);
-		tmpX10 = QString("%1*(x2-x1^2)*(-2*x1)%2%3*(1-x1)").arg(2*F->getA()).arg(NotWenImpl::otrNumberSign(-2*F->getB())).arg(fabs(-2*F->getB()));
+		tmpX10 = QString("%1*(x2-x1^2)*(-2*x1)%2%3*(1-x1)").arg(2*F->getA()).arg(NotWenImpl::numberSign(-2*F->getB())).arg(fabs(-2*F->getB()));
 		tmpX20 = QString("%1*(x2-x1^2)").arg(2*F->getA());
 	}
 
