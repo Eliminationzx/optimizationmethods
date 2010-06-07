@@ -33,13 +33,13 @@ protected:
 	int NumeroIteracio;
 public:
 	AlgoritmoWin(funkcio *f, //!< Указатель на целевую функцию. ScenoPorMapo не заботится о назначении Funkcio родителя.
-               QVector<double> *d, //!< Массив с данными задания.
+               QVector<double> d, //!< Массив с данными задания.
                QWidget * parent = 0, //!< Родитель.
                Qt::WindowFlags flags = 0 //!< Флаги парамметров окна.
                );
 signals:
 	//! Пользователь прошёл тест.
-	void usiloPlenumis(int);};
+	void usiloPlenumis(int, int);};
 #endif
 
 /*! @class AlgoritmoWin

@@ -40,7 +40,7 @@ void mainPassImpl::on_Ok_clicked()
 	int flag = choiceMethods->currentIndex();
 	if (passInEdit == data)
 	{
-		emit setFlag(flag);
+		emit setFlag(flag, -1);
 		this->close();
 	}
 }

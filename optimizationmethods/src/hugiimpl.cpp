@@ -20,7 +20,7 @@
 //#include <QTextCodec>
 //
 using namespace SinkoLauxKoordinatoj_hugi;
-HuGiImpl::HuGiImpl(  funkcio *f, QVector<double> *d, QWidget * parent, Qt::WFlags flags) 
+HuGiImpl::HuGiImpl(  funkcio *f, QVector<double> d, QWidget * parent, Qt::WFlags flags) 
 	: AlgoritmoWin(f, d, parent, flags){
 	setupUi(this);
 connect(exit, SIGNAL(activated()), qApp, SLOT(closeAllWindows()));
@@ -319,20 +319,21 @@ void HuGiImpl::sf_entered()
 		str += trUtf8("Ваше количество ошибок (%1) превысило допустимый предел (%2). Начните заново.").arg(KvantoEraroj).arg(D[6]);
 		QMessageBox::information(this, trUtf8("Внимание"), str);
 		if(F->metaObject()->className() == QString("RavinaFunkcio"))
-			emit usiloPlenumis(A::HuGi);
+			close();
 		else recomenci_acn->trigger();
 	}else{
 		str += trUtf8("Вы прошли тест. ");
 		if(F->metaObject()->className() == QString("KvadratigantoFunkcio"))
 		{
 			str += trUtf8("Сообщите преподавателю и перейдите к овражной функции. Количество ошибок: %1.").arg(KvantoEraroj);
-			emit usiloPlenumis(A::HuGi);
+			emit usiloPlenumis(A::HuGi, KvantoEraroj);
+			close();
 		}
 		else if(F->metaObject()->className() == QString("RavinaFunkcio"))
 		{
 			str += trUtf8("Позовите преподавателя. Количество ошибок: %1.").arg(KvantoEraroj);
+			QMessageBox::information(this, trUtf8("Поздравляем"), str);
 		}
-		QMessageBox::information(this, trUtf8("Поздравляем"), str);
 	}
 }
 

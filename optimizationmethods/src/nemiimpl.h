@@ -40,7 +40,7 @@ protected:
 	DemonstrataQPointF PD;
 
 public:
-	NeMiImpl( funkcio * f, QVector<double> *d, QWidget * parent = 0,
+	NeMiImpl( funkcio * f, QVector<double> d, QWidget * parent = 0,
 	          Qt::WFlags flags = 0 );
 
 private slots:

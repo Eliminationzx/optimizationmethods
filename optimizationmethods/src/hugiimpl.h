@@ -41,7 +41,7 @@ protected:
 	//! Флаг поиска по образцу
 	bool FLAG_SO;
 public:
-	HuGiImpl( funkcio *f, QVector<double> *d,QWidget * parent = 0, Qt::WFlags flags = 0 );
+	HuGiImpl( funkcio *f, QVector<double> d,QWidget * parent = 0, Qt::WFlags flags = 0 );
 private slots:
 	void on_about_action_activated();
 	void on_helpo_action_activated();

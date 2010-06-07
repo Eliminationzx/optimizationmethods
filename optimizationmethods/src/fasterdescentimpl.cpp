@@ -20,7 +20,7 @@
 //
 using namespace SinkoFD;
 
-FasterDescentImpl::FasterDescentImpl( funkcio *f, QVector<double> *d, QWidget * parent, Qt::WFlags flags)
+FasterDescentImpl::FasterDescentImpl( funkcio *f, QVector<double> d, QWidget * parent, Qt::WFlags flags)
 	: AlgoritmoWin(f, d, parent, flags)
 {
 	setupUi(this);
@@ -204,7 +204,7 @@ void FasterDescentImpl::sf_entered()
 		if(F->metaObject()->className() == QString("KvadratigantoFunkcio"))
 		{
 			str += trUtf8("Сообщите преподавателю и перейдите к овражной функции. Количество ошибок: <b>%1</b>.").arg(KvantoEraroj);
-			emit usiloPlenumis(A::FasterDescent);
+			emit usiloPlenumis(A::FasterDescent, KvantoEraroj);
 			QMessageBox::information(this, trUtf8("Поздравляем"), str);
 			close();
 		}

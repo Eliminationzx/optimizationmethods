@@ -20,7 +20,7 @@
 //
 using namespace SinkoLauxKoordinatoj;
 
-CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> *d, QWidget * parent, Qt::WFlags flags)
+CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> d, QWidget * parent, Qt::WFlags flags)
 	: AlgoritmoWin(f, d, parent, flags){
 	setupUi(this);
 	connect(exit, SIGNAL(activated()), qApp, SLOT(closeAllWindows()));
@@ -293,7 +293,7 @@ void CWdescentWinImpl::sf_entered(){
 		if(F->metaObject()->className() == QString("KvadratigantoFunkcio"))
 		{
 			str += trUtf8("Сообщите преподавателю и перейдите к овражной функции. Количество ошибок: <b>%1</b>.").arg(KvantoEraroj);
-			emit usiloPlenumis(A::CWdescent_fix);
+			emit usiloPlenumis(A::CWdescent_fix, KvantoEraroj);
 			QMessageBox::information(this, trUtf8("Поздравляем"), str);
 			close();
 		}

@@ -19,7 +19,7 @@
 //
 using namespace NeMi;
 	
-NeMiImpl::NeMiImpl(  funkcio *f, QVector<double> *d, QWidget * parent, Qt::WFlags flags)
+NeMiImpl::NeMiImpl(  funkcio *f, QVector<double> d, QWidget * parent, Qt::WFlags flags)
 	: AlgoritmoWin(f, d, parent, flags){
 	setupUi(this);
 	label_2->hide();
@@ -430,7 +430,7 @@ void NeMiImpl::sf_entered(){
 		if(F->metaObject()->className() == QString("KvadratigantoFunkcio"))
 		{
 			str += trUtf8("Сообщите преподавателю и перейдите к овражной функции. Количество ошибок: <b>%1</b>.").arg(KvantoEraroj);
-			emit usiloPlenumis(A::NeMi);
+			emit usiloPlenumis(A::NeMi, KvantoEraroj);
 			QMessageBox::information(this, trUtf8("Поздравляем"), str);
 			close();
 		}

@@ -23,7 +23,7 @@ using namespace std;
 using namespace A;
 using namespace SinkoLauxKoordinatojMD;
 
-CWdescent_mdImpl::CWdescent_mdImpl(funkcio *f, QVector<double> *d, QWidget * parent, Qt::WFlags flags) 
+CWdescent_mdImpl::CWdescent_mdImpl(funkcio *f, QVector<double> d, QWidget * parent, Qt::WFlags flags) 
 	: AlgoritmoWin(f, d, parent, flags)
 {
 	setupUi(this);
@@ -254,7 +254,7 @@ void CWdescent_mdImpl::sf_entered()
 		if(F->metaObject()->className() == QString("KvadratigantoFunkcio"))
 		{
 			str += trUtf8("Сообщите преподавателю и перейдите к овражной функции. Количество ошибок: <b>%1</b>.").arg(KvantoEraroj);
-			emit usiloPlenumis(A::CWdescent_md);
+			emit usiloPlenumis(A::CWdescent_md, KvantoEraroj);
 			QMessageBox::information(this, trUtf8("Поздравляем"), str);
 			close();
 		}

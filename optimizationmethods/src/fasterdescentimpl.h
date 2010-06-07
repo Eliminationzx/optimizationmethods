@@ -36,7 +36,7 @@ public:
 	 * @param parent Родитель.
 	 * @param flags Флаги параметров окна.
 	 */
-	FasterDescentImpl( funkcio *f, QVector<double> *d, QWidget * parent = 0,
+	FasterDescentImpl( funkcio *f, QVector<double> d, QWidget * parent = 0,
                     Qt::WFlags flags = 0 );
 
 	//! Возвращает противоположный знак числа.
