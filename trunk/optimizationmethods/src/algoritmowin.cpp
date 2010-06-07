@@ -2,9 +2,9 @@
 #include "funkcio.h"
 #include "mapoporfunkcioimpl.h"
 //
-AlgoritmoWin::AlgoritmoWin( funkcio *f, QVector<double> *d, QWidget * parent, Qt::WindowFlags flags ) 
-	: QMainWindow(parent, flags), F(f), D(*d),
-		MapoWdg(new MapoPorFunkcioImpl(f, this)), strikteco((*d)[0]) {}
+AlgoritmoWin::AlgoritmoWin( funkcio *f, QVector<double> d, QWidget * parent, Qt::WindowFlags flags ) 
+	: QMainWindow(parent, flags), F(f), D(d),
+		MapoWdg(new MapoPorFunkcioImpl(f, this)), strikteco((d)[0]) {}
 //
 
 QString AlgoritmoWin::textoFunkcio(){

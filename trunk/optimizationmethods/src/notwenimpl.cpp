@@ -20,7 +20,7 @@
 //
 using namespace SinkoNotWen;
 
-NotWenImpl::NotWenImpl( funkcio *f, QVector<double> *d, QWidget * parent, Qt::WFlags flags)
+NotWenImpl::NotWenImpl( funkcio *f, QVector<double> d, QWidget * parent, Qt::WFlags flags)
 	: AlgoritmoWin(f, d, parent, flags)
 {
 	setupUi(this);
@@ -184,7 +184,7 @@ void NotWenImpl::sf_entered()
 		if(F->metaObject()->className() == QString("KvadratigantoFunkcio"))
 		{
 			str += trUtf8("Сообщите преподавателю и перейдите к овражной функции. Количество ошибок: <b>%1</b>.").arg(KvantoEraroj);
-			emit usiloPlenumis(A::NotWen);
+			emit usiloPlenumis(A::NotWen, KvantoEraroj);
 			QMessageBox::information(this, trUtf8("Поздравляем"), str);
 			close();
 		}

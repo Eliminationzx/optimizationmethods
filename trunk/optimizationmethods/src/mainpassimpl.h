@@ -20,7 +20,7 @@ public:
 	
 signals:
 	//! Сигнал класса, высылаемый при нажатии на кнопку "Ок".
-	void setFlag(int flag);
+	void setFlag(int flag, int numberError);
 
 private slots:
 	//! Слот класса, получающий сигнал при нажатии на кнопку "Ок".

@@ -3,7 +3,7 @@
 //
 #include <QMainWindow>
 #include <QMap>
-#include <QDir>
+//#include <QDir>
 #include <QFile>
 #include <QTextStream>
 #include <QVector>
@@ -37,7 +37,7 @@ class MainWindowImpl : public QMainWindow, public Ui::MainWindow
 Q_OBJECT
 
 	//! Флаг для проверки пройдености квадратичной функции каждым методом.
-	QMap<int, bool> takeQuadFun;
+	QVector< QVector<int> > takeQuadFun;
 	
 	//! Объект-родитель для создания окна ввода пароля.
 	mainPassImpl * Pass;
@@ -99,8 +99,8 @@ private slots:
 	 */
 	void on_choiceMethods_activated(int index);
 
-	//! Слот класса, получающий сигнал припрохождении квадратичной функции или вводе пароля на открытие овражной функции.
-	void openTakeQuadFun(int flag);
+	//! Слот класса, получающий сигнал при прохождении квадратичной функции или вводе пароля на открытие овражной функции.
+	void openTakeQuadFun(int flag, int numberError);
 
 	//! Слот класса, получающий сигнал при выборе пункта меню "Разрешить функцию".
 	/*! Выводит форму с выбором метода оптимизации и полем для ввода пароля

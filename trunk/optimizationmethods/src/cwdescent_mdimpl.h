@@ -37,7 +37,7 @@ public:
 	 * @param parent Родитель.
 	 * @param flags Флаги параметров окна.
 	 */
-	CWdescent_mdImpl( funkcio *f, QVector<double> *d, QWidget * parent = 0,
+	CWdescent_mdImpl( funkcio *f, QVector<double> d, QWidget * parent = 0,
 		Qt::WFlags flags = 0 );
 		
 private slots:

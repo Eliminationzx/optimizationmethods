@@ -44,9 +44,12 @@ MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WFlags flag)
 	choiceMethods->addItem(trUtf8("Метод Ньютона"), var);
 	choiceMethods->setCurrentIndex(0);
 	
+	takeQuadFun.resize(6);
 	for(int i = 0; i < 6; ++i)
 	{
-		takeQuadFun[i] = false;
+		takeQuadFun[i].resize(2);
+		takeQuadFun[i][0] = false;
+		takeQuadFun[i][1] = -1;
 	}
 }
 //
@@ -132,9 +135,10 @@ int MainWindowImpl::ReadError(int method)
 }
 
 //! Открытие овражной функции.
-void MainWindowImpl::openTakeQuadFun(int flag)
+void MainWindowImpl::openTakeQuadFun(int flag, int numberError)
 {
-	takeQuadFun[flag] = ravinFunction->isChecked() - 1;
+	takeQuadFun[flag][0] = ravinFunction->isChecked() - 1;
+	takeQuadFun[flag][1] = numberError;
 	choiceMethods->setCurrentIndex(flag);
 	on_choiceMethods_activated(flag);
 	quadFunction->setChecked(ravinFunction->isChecked());
@@ -204,8 +208,7 @@ void MainWindowImpl::on_next_button_clicked()
 //! Нажата кнопка "Далее" (2-ая страница).
 void MainWindowImpl::on_next_button_2_clicked()
 {
-	// TODO
-	QVector<double> data(7);
+	QVector<double> data(8);
 	data[0] = accuracy->text().toDouble();
 	data[1] = stepx1->text().toDouble();
 	data[2] = stepx2->text().toDouble();
@@ -213,6 +216,7 @@ void MainWindowImpl::on_next_button_2_clicked()
 	data[4] = x1->text().toDouble();
 	data[5] = x2->text().toDouble();
 	data[6] = ReadError(methFunc[0]);
+	data[7] = takeQuadFun[methFunc[0]][1];
 	
 	funkcio * funck;
 	if(methFunc[1] == 0)
@@ -240,57 +244,55 @@ void MainWindowImpl::on_next_button_2_clicked()
 	switch(methFunc[0])
 	{
 		case A::CWdescent_fix:
-			AW = new CWdescentWinImpl(funck, &data, this, Qt::Window);
+			AW = new CWdescentWinImpl(funck, data, this, Qt::Window);
 			break;
 		case A::CWdescent_md:
-			AW = new CWdescent_mdImpl(funck, &data, this, Qt::Window);
+			AW = new CWdescent_mdImpl(funck, data, this, Qt::Window);
 			break;
 		case A::FasterDescent:
-			AW = new FasterDescentImpl(funck, &data, this, Qt::Window);
+			AW = new FasterDescentImpl(funck, data, this, Qt::Window);
 			break;
 		case A::HuGi:
-			AW = new HuGiImpl(funck, &data, this, Qt::Window);
+			AW = new HuGiImpl(funck, data, this, Qt::Window);
 			break;
 		case A::NeMi:
-			AW = new NeMiImpl(funck, &data, this, Qt::Window);
+			AW = new NeMiImpl(funck, data, this, Qt::Window);
 			break;
 		case A::NotWen:
-			AW = new NotWenImpl(funck, &data, this, Qt::Window);
+			AW = new NotWenImpl(funck, data, this, Qt::Window);
 			break;
-/*		QMessageBox msg(QMessageBox::Warning, trUtf8("Ошибка"), trUtf8("Алгоритм ещё не реализован"));
-		msg.exec();
-*/	}
+	}
 
-	if(connect(AW, SIGNAL(usiloPlenumis(int)), SLOT(openTakeQuadFun(int))))
+	if(connect(AW, SIGNAL(usiloPlenumis(int, int)), SLOT(openTakeQuadFun(int, int))))
 	{
 		if(AW->metaObject()->className() == QString("CWdescentWinImpl"))
 		{
-			takeQuadFun[0] = false;
+			takeQuadFun[0][0] = false;
 			on_choiceMethods_activated(0);
 		}
 		else if(AW->metaObject()->className() == QString("CWdescent_mdImpl"))
 		{
-			takeQuadFun[1] = false;
+			takeQuadFun[1][0] = false;
 			on_choiceMethods_activated(1);
 		}
 		else if(AW->metaObject()->className() == QString("FasterDescentImpl"))
 		{
-			takeQuadFun[2] = false;
+			takeQuadFun[2][0] = false;
 			on_choiceMethods_activated(2);
 		}
 		else if(AW->metaObject()->className() == QString("HuGiImpl"))
 		{
-			takeQuadFun[3] = false;
+			takeQuadFun[3][0] = false;
 			on_choiceMethods_activated(3);
 		}
 		else if(AW->metaObject()->className() == QString("NeMiImpl"))
 		{
-			takeQuadFun[4] = false;
+			takeQuadFun[4][0] = false;
 			on_choiceMethods_activated(4);
 		}
 		else if(AW->metaObject()->className() == QString("NotWenImpl"))
 		{
-			takeQuadFun[5] = false;
+			takeQuadFun[5][0] = false;
 			on_choiceMethods_activated(5);
 		}
 		
@@ -369,7 +371,7 @@ void MainWindowImpl::on_about_activated()
 void MainWindowImpl::on_allow_activated()
 {
 	Pass = new mainPassImpl(choiceMethods->currentIndex(), this);
-	if(connect(Pass, SIGNAL(setFlag(int)), SLOT(openTakeQuadFun(int))))
+	if(connect(Pass, SIGNAL(setFlag(int, int)), SLOT(openTakeQuadFun(int, int))))
 		Pass->show();
 	else
 		QMessageBox::warning(this, trUtf8("Ошибка"), trUtf8("Ошибка соединения MainWindowImpl и mainPassImpl."));
@@ -379,12 +381,12 @@ void MainWindowImpl::on_allow_activated()
 void MainWindowImpl::on_choiceMethods_activated(int index)
 {
 	// TODO
-	if(takeQuadFun[index] == false)
+	if(takeQuadFun[index][0] == false)
 	{
 		quadFunction->setChecked(true);
 		ravinFunction->setCheckable(false);
 	}
-	else if(takeQuadFun[index] == true)
+	else if(takeQuadFun[index][0] == true)
 		ravinFunction->setCheckable(true);
 }
 
