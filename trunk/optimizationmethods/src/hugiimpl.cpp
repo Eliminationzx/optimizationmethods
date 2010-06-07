@@ -310,6 +310,8 @@ void HuGiImpl::registriEraro()
 void HuGiImpl::sf_entered()
 {
 	LogTxtBrsr->append(trUtf8("Конец алгоритма. Найден: %1").arg(F->rezulto(MP)));
+	if(F->metaObject()->className() == QString("RavinaFunkcio"))
+		LogTxtBrsr->append(trUtf8("Количество ошибок в квадратичной функции: %1.").arg(D[7]));
 	QString str = trUtf8("Найден минимум. ");
 
 	qDebug()<<trUtf8("The end. Minimum found"); // Вывожу дебажную инфу на консоль.
