@@ -414,20 +414,22 @@ namespace SinkoLauxKoordinatoj_hugi{
 			               DemonstrataQPointF * MP2,
 			              DemonstrataQPointF * TEMP_B,
 			              bool*FLAG_SO,
+			              funkcio * F,
 			               QState * sourceState = 0)
-				: QSignalTransition(sourceState),ok_rb_(ok_rb), bp(BP), mp(MP),mp2(MP2),temp_b(TEMP_B),flag_so(FLAG_SO){};
+				: QSignalTransition(sourceState),ok_rb_(ok_rb), bp(BP), mp(MP),mp2(MP2),temp_b(TEMP_B),flag_so(FLAG_SO),f(F){};
 			s13s16Transiro( QRadioButton * ok_rb,
 							DemonstrataQPointF * BP,
 			               DemonstrataQPointF * MP,
 			               DemonstrataQPointF * MP2,
 			                DemonstrataQPointF * TEMP_B,
 			              bool*FLAG_SO,
+			              funkcio * F,
 			               QObject * sender,
 			               const char * signal,
 			               QState * sourceState = 0
 			             )
 				: QSignalTransition(sender, signal, sourceState),ok_rb_(ok_rb), bp(BP), mp(MP),
-					mp2(MP2),temp_b(TEMP_B),flag_so(FLAG_SO){};
+					mp2(MP2),temp_b(TEMP_B),flag_so(FLAG_SO),f(F){};
 		protected:
     	bool eventTest(QEvent *e);
 	};	
@@ -474,20 +476,22 @@ namespace SinkoLauxKoordinatoj_hugi{
 			               DemonstrataQPointF * MP2,
 			              DemonstrataQPointF * TEMP_B,
 			              bool*FLAG_SO,
+			              funkcio * F,
 			               QState * sourceState = 0)
-				: QSignalTransition(sourceState),no_rb_(no_rb), bp(BP), mp(MP),mp2(MP2),temp_b(TEMP_B),flag_so(FLAG_SO){};
+				: QSignalTransition(sourceState),no_rb_(no_rb), bp(BP), mp(MP),mp2(MP2),temp_b(TEMP_B),flag_so(FLAG_SO),f(F){};
 			s13s19Transiro(QRadioButton * no_rb,
 							 DemonstrataQPointF * BP,
 			               DemonstrataQPointF * MP,
 			               DemonstrataQPointF * MP2,
 			                DemonstrataQPointF * TEMP_B,
 			              bool*FLAG_SO,
+			              funkcio * F,
 			               QObject * sender,
 			               const char * signal,
 			               QState * sourceState = 0
 			             )
 				: QSignalTransition(sender, signal, sourceState),no_rb_(no_rb), bp(BP), mp(MP),
-					mp2(MP2),temp_b(TEMP_B),flag_so(FLAG_SO){};
+					mp2(MP2),temp_b(TEMP_B),flag_so(FLAG_SO),f(F){};
 		protected:
     	bool eventTest(QEvent *e);
 	};	
