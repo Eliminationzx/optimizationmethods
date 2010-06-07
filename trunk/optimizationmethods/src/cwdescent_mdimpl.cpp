@@ -239,14 +239,14 @@ void CWdescent_mdImpl::registriEraro()
 
 void CWdescent_mdImpl::sf_entered()
 {
-	LogTxtBrsr->append(trUtf8("Конец алгоритма. Найден минимум функции: %1. Количество ошибок: %2.").arg(F->rezulto(MP)).arg(KvantoEraroj));
+	LogTxtBrsr->append(trUtf8("Конец алгоритма. Найден минимум функции: %1. Количество ошибок: <b>%2</b>.").arg(F->rezulto(MP)).arg(KvantoEraroj));
 	if(F->metaObject()->className() == QString("RavinaFunkcio"))
-		LogTxtBrsr->append(trUtf8("Количество ошибок в квадратичной функции: %1.").arg(D[7]));
+		LogTxtBrsr->append(trUtf8("Количество ошибок в квадратичной функции: <b>%1</b>.").arg(D[7]));
 	QString str = trUtf8("Найден минимум. ");
 	
 	if(KvantoEraroj > quanError){
 		// Слишком много ошибок.
-		str += trUtf8("Ваше количество ошибок (%1) превысило допустимый предел (%2). Начните заново.").arg(KvantoEraroj).arg(quanError);
+		str += trUtf8("Ваше количество ошибок (<b>%1</b>) превысило допустимый предел (%2). Начните заново.").arg(KvantoEraroj).arg(quanError);
 		QMessageBox::information(this, trUtf8("Внимание"), str);
 		if(F->metaObject()->className() == QString("RavinaFunkcio"))
 			close();
@@ -262,7 +262,7 @@ void CWdescent_mdImpl::sf_entered()
 		}
 		else if(F->metaObject()->className() == QString("RavinaFunkcio"))
 		{
-			str += trUtf8("Позовите преподавателя. Количество ошибок: <b>%1</b>.").arg(KvantoEraroj);
+			str += trUtf8("Позовите преподавателя. Количество ошибок: <b>%1</b>. Количество ошибок в квадратичной функции: <b>%2</b>.").arg(KvantoEraroj).arg(D[7]);
 			QMessageBox::information(this, trUtf8("Поздравляем"), str);
 		}
 	}
