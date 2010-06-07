@@ -240,6 +240,8 @@ void CWdescent_mdImpl::registriEraro()
 void CWdescent_mdImpl::sf_entered()
 {
 	LogTxtBrsr->append(trUtf8("Конец алгоритма. Найден минимум функции: %1. Количество ошибок: %2.").arg(F->rezulto(MP)).arg(KvantoEraroj));
+	if(F->metaObject()->className() == QString("RavinaFunkcio"))
+		LogTxtBrsr->append(trUtf8("Количество ошибок в квадратичной функции: %1.").arg(D[7]));
 	QString str = trUtf8("Найден минимум. ");
 	
 	if(KvantoEraroj > quanError){
