@@ -173,7 +173,7 @@ connect(exit, SIGNAL(activated()), qApp, SLOT(closeAllWindows()));
 	
 	s12->addTransition(this, SIGNAL(stateHasEntered()), s13); // Переход s12s13 совершается сразу при входе в s12.
 	
-	s13s16Transiro*s13s16 = new s13s16Transiro(ok_rb,&BP,&MP,&MP2,&TEMP_B,&FLAG_SO,next3_bt,SIGNAL(clicked()),s13);
+	s13s16Transiro*s13s16 = new s13s16Transiro(ok_rb,&BP,&MP,&MP2,&TEMP_B,&FLAG_SO,F,next3_bt,SIGNAL(clicked()),s13);
 	s13s16->setTargetState(s16);
 	
 	s15s18_s17s18Transiro*s15s18 = new s15s18_s17s18Transiro(model_rb, next1_bt, SIGNAL(clicked()), s15);
@@ -182,7 +182,7 @@ connect(exit, SIGNAL(activated()), qApp, SLOT(closeAllWindows()));
 	s15s18_s17s18Transiro*s17s18 = new s15s18_s17s18Transiro(model_rb, next1_bt, SIGNAL(clicked()), s17);
 	s17s18->setTargetState(s18);
 	
-	s13s19Transiro*s13s19 = new s13s19Transiro(no_rb,&BP,&MP,&MP2,&TEMP_B,&FLAG_SO,next3_bt,SIGNAL(clicked()),s13 );
+	s13s19Transiro*s13s19 = new s13s19Transiro(no_rb,&BP,&MP,&MP2,&TEMP_B,&FLAG_SO,F,next3_bt,SIGNAL(clicked()),s13 );
 	s13s19->setTargetState(s19);
 	
 	s13s14Transiro * s13s14 = new s13s14Transiro(&BP, &MP, &MP2, &PX1, &PX2, strikteco, change_step_bt, SIGNAL(clicked()), s11);
