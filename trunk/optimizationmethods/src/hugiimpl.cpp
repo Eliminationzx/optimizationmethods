@@ -131,6 +131,10 @@ connect(exit, SIGNAL(activated()), qApp, SLOT(closeAllWindows()));
 	
 	//---Создаю переходы, согласно диаграмме.--------------------------------------
 	//s1->addTransition(this, SIGNAL(stateHasEntered()), s2);
+	s1->addTransition(found_bt, SIGNAL(clicked()), s2);
+	
+	s2s3Transiro * s2s3 = new s2s3Transiro(investigate_rb, next1_bt, SIGNAL(clicked()), s2);
+	s2s3->setTargetState(s3);
 	
 	s3s4Transiro * s3s4 = new s3s4Transiro(up_x1_rb, next2_bt, SIGNAL(clicked()), s3);
 	s3s4->setTargetState(s4);
@@ -173,39 +177,37 @@ connect(exit, SIGNAL(activated()), qApp, SLOT(closeAllWindows()));
 	
 	s12->addTransition(this, SIGNAL(stateHasEntered()), s13); // Переход s12s13 совершается сразу при входе в s12.
 	
-	s13s16Transiro*s13s16 = new s13s16Transiro(ok_rb,&BP,&MP,&MP2,&TEMP_B,&FLAG_SO,F,next3_bt,SIGNAL(clicked()),s13);
-	s13s16->setTargetState(s16);
-	
-	s15s18_s17s18Transiro*s15s18 = new s15s18_s17s18Transiro(model_rb, next1_bt, SIGNAL(clicked()), s15);
-	s15s18->setTargetState(s18);
-	
-	s15s18_s17s18Transiro*s17s18 = new s15s18_s17s18Transiro(model_rb, next1_bt, SIGNAL(clicked()), s17);
-	s17s18->setTargetState(s18);
-	
-	s13s19Transiro*s13s19 = new s13s19Transiro(no_rb,&BP,&MP,&MP2,&TEMP_B,&FLAG_SO,F,next3_bt,SIGNAL(clicked()),s13 );
-	s13s19->setTargetState(s19);
-	
 	s13s14Transiro * s13s14 = new s13s14Transiro(&BP, &MP, &MP2, &PX1, &PX2, strikteco, change_step_bt, SIGNAL(clicked()), s11);
 	s13s14->setTargetState(s14);
 	
+	s13->addTransition(found_bt, SIGNAL(clicked()), s15);
+
+	s13s16Transiro * s13s16 = new s13s16Transiro(ok_rb,&BP,&MP,&MP2,&TEMP_B,&FLAG_SO,F,next3_bt,SIGNAL(clicked()),s13);
+	s13s16->setTargetState(s16);
+
+	s13s19Transiro * s13s19 = new s13s19Transiro(no_rb,&BP,&MP,&MP2,&TEMP_B,&FLAG_SO,F,next3_bt,SIGNAL(clicked()),s13 );
+	s13s19->setTargetState(s19);
 	
 	s13sfTransiro * s13sf = new s13sfTransiro( &PX1, &PX2, strikteco, end_bt, SIGNAL(clicked()), s13);
 	s13sf->setTargetState(sf);
+
+	s14->addTransition(found_bt, SIGNAL(clicked()), s2);
+//	s14->addTransition(this, SIGNAL(stateHasEntered()), s2);
+
+	s15s18_s17s18Transiro * s15s18 = new s15s18_s17s18Transiro(model_rb, next1_bt, SIGNAL(clicked()), s15);
+	s15s18->setTargetState(s18);
 	
-	s2s3Transiro * s2s3 = new s2s3Transiro(investigate_rb, next1_bt, SIGNAL(clicked()), s2);
-	s2s3->setTargetState(s3);
+	s16->addTransition(found_bt, SIGNAL(clicked()), s17);
+
+	s15s18_s17s18Transiro * s17s18 = new s15s18_s17s18Transiro(model_rb, next1_bt, SIGNAL(clicked()), s17);
+	s17s18->setTargetState(s18);
 	
+	s18->addTransition(this, SIGNAL(stateHasEntered()), s3);
+	
+	s19->addTransition(found_bt, SIGNAL(clicked()), s2);
+
 	//s2s3Transiro*s2s3 = new s2s3Transiro( found_bt, SIGNAL(clicked()), s2);
 	//s2s3->setTargetState(s3);
-	
-	s1->addTransition(found_bt, SIGNAL(clicked()), s2);
-	s13->addTransition(found_bt, SIGNAL(clicked()), s15);
-	s14->addTransition(found_bt, SIGNAL(clicked()), s2);
-	s19->addTransition(found_bt, SIGNAL(clicked()), s2);
-	s16->addTransition(found_bt, SIGNAL(clicked()), s17);
-	s14->addTransition(this, SIGNAL(stateHasEntered()), s2);
-	s12->addTransition(this, SIGNAL(stateHasEntered()), s13);
-	s18->addTransition(this, SIGNAL(stateHasEntered()), s3);
 	
 //---Создаю переход по действию "Начать заново"
 	connect(so->addTransition(recomenci_acn, SIGNAL(activated()), s1), SIGNAL(triggered()), SLOT(init()));
@@ -503,21 +505,23 @@ void HuGiImpl::s3_entered()
 {
 	stackedWidget->setCurrentIndex(1);
 	BP = MP;
-	NP = BP;
-	LogTxtBrsr->append(trUtf8("Итерация № %1.").arg(++NumeroIteracio));
+//	NP = BP;
 	qDebug()<<trUtf8("Come in s3"); // Вывожу дебажную инфу на консоль.
 }
 
 
 void HuGiImpl::s2_entered()
 {
-stackedWidget->setCurrentIndex(0);
+	stackedWidget->setCurrentIndex(0);
 	qDebug()<<trUtf8("Come in s2"); // Вывожу дебажную инфу на консоль.
 }
 
 void HuGiImpl::s1_entered()
 {
 	FLAG_SO=false;
+	
+	LogTxtBrsr->append(trUtf8("Итерация № %1.").arg(++NumeroIteracio));
+
 	qDebug()<<trUtf8("Come in s1 flag="+FLAG_SO); // Вывожу дебажную инфу на консоль.
 }
 
