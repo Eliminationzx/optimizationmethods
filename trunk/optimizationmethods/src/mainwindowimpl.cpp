@@ -47,9 +47,8 @@ MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WFlags flag)
 	takeQuadFun.resize(6);
 	for(int i = 0; i < 6; ++i)
 	{
-		takeQuadFun[i].resize(2);
-		takeQuadFun[i][0] = false;
-		takeQuadFun[i][1] = -1;
+		takeQuadFun[i].append(false);
+		takeQuadFun[i].append(-1);
 	}
 }
 //
