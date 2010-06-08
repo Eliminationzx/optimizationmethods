@@ -99,12 +99,6 @@ void MapoPorFunkcioImpl::difiniSpuro(spuro * S){
 //	s->addItem(Spuro);
 }
 
-
-void MapoPorFunkcioImpl::difiniFonaKoloro(QColor k){
-//	s->difiniKoloro(k);
-}
-
-
-QColor MapoPorFunkcioImpl::fonaKoloro() const {
+//QColor MapoPorFunkcioImpl::fonaKoloro() const {
 //	return s->Koloro();
-}
+//}

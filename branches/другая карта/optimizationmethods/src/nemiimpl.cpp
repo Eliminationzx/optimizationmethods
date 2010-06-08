@@ -45,7 +45,7 @@ NeMiImpl::NeMiImpl(  funkcio *f, QVector<double> d, QWidget * parent, Qt::WFlags
 
 	Sp = new spuroNeMi(Qt::white, Qt::blue);
 	MapoWdg->difiniSpuro(Sp);
-	MapoWdg->difiniFonaKoloro(Qt::green);
+//	MapoWdg->difiniFonaKoloro(Qt::green);
 	
 //===Соединяю точки и надписи на форме=========================================
 	SignalantoPorPointF * sP1 = new SignalantoPorPointF(&P1, F, this);

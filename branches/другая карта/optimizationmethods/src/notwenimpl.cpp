@@ -46,7 +46,7 @@ NotWenImpl::NotWenImpl( funkcio *f, QVector<double> d, QWidget * parent, Qt::WFl
 
 	Sp = new spuroSinkoLauxKoordinatoj_md(Qt::blue);
 	MapoWdg->difiniSpuro(Sp);
-	MapoWdg->difiniFonaKoloro(Qt::green);
+//	MapoWdg->difiniFonaKoloro(Qt::green);
 
 	connect(MapoWdg, SIGNAL(MusaPos(const QString &)), statusBar(), SLOT(showMessage( const QString &)));
 
