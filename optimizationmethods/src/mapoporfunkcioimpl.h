@@ -5,7 +5,7 @@
 #include "ui_mapoporfunkcio.h"
 #include "Konstantoj.h"
 //
-class ScenoPorMapo;
+class QwtPlotSpectrogram;
 class QGraphicsItem;
 class funkcio;
 class spuro;
@@ -21,7 +21,7 @@ private:
 	//! Целевая функция.
 	const funkcio * F;
 	//! Сцена
-	ScenoPorMapo *s;
+	QwtPlotSpectrogram * s;
 	//! "След"
 	spuro * Spuro;
 public:
