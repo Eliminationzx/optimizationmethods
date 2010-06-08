@@ -17,7 +17,7 @@ class MapoPorFunkcioImpl : public QWidget, public Ui::MapoPorFunkcio
 {
 Q_OBJECT
 Q_PROPERTY(qreal skalo READ Scale WRITE setScale)
-Q_PROPERTY(QColor fonaKoloro READ fonaKoloro WRITE difiniFonaKoloro)
+//Q_PROPERTY(QColor fonaKoloro READ fonaKoloro WRITE difiniFonaKoloro)
 private:
 	//! Целевая функция.
 	const funkcio * F;
@@ -29,7 +29,7 @@ private:
 	QwtPlotZoomer * skalo;
 public:
 	//! Возвращает цвет карты.
-	QColor fonaKoloro() const;
+//	QColor fonaKoloro() const;
 	
 	MapoPorFunkcioImpl( const funkcio * Funkcio, //!< Указатель на целевую функцию. ScenoPorMapo не заботится о назначении Funkcio родителя.
 	                    QWidget * parent = 0, //!< Родитель.
@@ -48,7 +48,7 @@ public:
 	qreal Scale() const;
 public slots:
 	//! Устанавливает цвет карты.
-	void difiniFonaKoloro(QColor);
+//	void difiniFonaKoloro(QColor);
 	/*! Устанавливает масштаб.
 	 * 
 	 * @param factor Множитель масштабирования. factor = 1 - масштаб 1:1.
@@ -58,23 +58,11 @@ public slots:
 	void difiniFunkcio(funkcio * f);
 	//! Устанавливает на сцене "след" алгоритма.
 	void difiniSpuro(spuro * Spuro);
-//	//! Создает на сцене "след" алгоритма.
-//	void kreiSpuro(
-//	               int IdAlgoritmo, //!< Порядковый номер алгоритма(см. A).
-//	               QColor bazaKoloro //!< Основной цвет "следа".
-//	              );
 private slots:
 	//! Увеличить масштаб.
 	void on_PligrandigiBtn_clicked();
 	//! Уменьшить масштаб.
 	void on_MalpliigiBtn_clicked();
-signals:
-	//! Передаёт координату Х мыши.
-	void MusaPosX(const qreal);
-	//! Передаёт координату Y мыши.
-	void MusaPosY(const qreal);
-	//! Передаёт координаты мыши в виде строки текста.
-	void MusaPos(const QString &);
 };
 #endif
 

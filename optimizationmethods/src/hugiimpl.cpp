@@ -49,7 +49,7 @@ connect(exit, SIGNAL(activated()), qApp, SLOT(closeAllWindows()));
 
 	Sp = new spuroSinkoLauxKoordinatoj(Qt::white, Qt::blue);
 	MapoWdg->difiniSpuro(Sp);
-	MapoWdg->difiniFonaKoloro(Qt::green);
+//	MapoWdg->difiniFonaKoloro(Qt::green);
 
 	connect(MapoWdg, SIGNAL(MusaPos(const QString &)), statusBar(), SLOT(showMessage( const QString &)));
 	
