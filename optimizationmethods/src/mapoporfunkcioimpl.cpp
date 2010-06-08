@@ -17,9 +17,10 @@ MapoPorFunkcioImpl::MapoPorFunkcioImpl( const funkcio * Funkcio, QWidget * paren
 	s = new QwtPlotSpectrogram();
 	
 	QwtLinearColorMap colorMap(Qt::darkCyan, Qt::red);
+	colorMap.addColorStop(0, Qt::darkCyan);
 	colorMap.addColorStop(0.1, Qt::cyan);
-	colorMap.addColorStop(0.6, Qt::green);
-	colorMap.addColorStop(0.95, Qt::yellow);
+	colorMap.addColorStop(0.5, Qt::green);
+	colorMap.addColorStop(0.99, Qt::yellow);
 	
 	s->setColorMap(colorMap);
 	
@@ -32,7 +33,19 @@ MapoPorFunkcioImpl::MapoPorFunkcioImpl( const funkcio * Funkcio, QWidget * paren
 	s->setContourLevels(contourLevels);
 //	s->setDisplayMode(QwtPlotSpectrogram::ContourMode, true);
 
-	QwtPlotZoomer* zoomer = new QwtPlotZoomer(qwtPlt->canvas());
+	skalo = new QwtPlotZoomer(qwtPlt->canvas());
+	
+	skalo->setMousePattern(QwtEventPattern::MouseSelect2,
+	                       Qt::RightButton, Qt::ControlModifier);
+	
+	skalo->setMousePattern(QwtEventPattern::MouseSelect3, Qt::RightButton);
+
+	QwtPlotPanner *panner = new QwtPlotPanner(qwtPlt->canvas());
+	panner->setAxisEnabled(QwtPlot::yRight, false);
+	panner->setMouseButton(Qt::MidButton);
+	
+	
+	
 }
 MapoPorFunkcioImpl::MapoPorFunkcioImpl( QWidget * parent, Qt::WFlags f){
 	MapoPorFunkcioImpl(new KvadratigantoFunkcio(0,0,0,0,0,0,0,parent), parent, f);

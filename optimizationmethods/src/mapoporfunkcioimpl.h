@@ -7,6 +7,7 @@
 //
 class QwtPlotSpectrogram;
 class QGraphicsItem;
+class QwtPlotZoomer;
 class funkcio;
 class spuro;
 //
@@ -24,6 +25,8 @@ private:
 	QwtPlotSpectrogram * s;
 	//! "След"
 	spuro * Spuro;
+	//! Масштаб
+	QwtPlotZoomer * skalo;
 public:
 	//! Возвращает цвет карты.
 	QColor fonaKoloro() const;
