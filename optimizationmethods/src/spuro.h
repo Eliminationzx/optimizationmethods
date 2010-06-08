@@ -30,8 +30,9 @@ public:
 	inline void difiniPlt( QwtPlot * Plt ){ plt = Plt; };
 	
 	spuro(
-	      const QColor bazaKoloro //!< Основной цвет "следа".
-	     ): BazaKoloro(bazaKoloro) {};
+	      const QColor bazaKoloro, //!< Основной цвет "следа".
+	      QwtPlot * Plt = 0 //!< Полотно, на котором будет нарисован след.
+	     ): BazaKoloro(bazaKoloro), plt(Plt) {};
 };
 #endif
 
