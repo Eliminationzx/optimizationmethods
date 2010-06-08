@@ -47,7 +47,6 @@ SOURCES = src/mainwindowimpl.cpp \
  src/funkcio.cpp \
  src/mapoporfunkcioimpl.cpp \
  src/scenopormapo.cpp \
- src/spuro.cpp \
  src/spurosinkolauxkoordinatoj.cpp \
  src/cwdescentwinimpl.cpp \
  src/algoritmowin.cpp \
