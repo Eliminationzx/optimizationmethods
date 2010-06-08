@@ -19,10 +19,11 @@ MapoPorFunkcioImpl::MapoPorFunkcioImpl( const funkcio * Funkcio, QWidget * paren
 	QwtLinearColorMap colorMap(Qt::darkCyan, Qt::red);
 	colorMap.addColorStop(0, Qt::darkBlue);
 	colorMap.addColorStop(0.0005, Qt::blue);
-	colorMap.addColorStop(0.01, Qt::darkCyan);
-	colorMap.addColorStop(0.1, Qt::cyan);
-	colorMap.addColorStop(0.4, Qt::green);
-	colorMap.addColorStop(0.99, Qt::yellow);
+	colorMap.addColorStop(0.001, Qt::darkGreen);
+	colorMap.addColorStop(0.01, Qt::green);
+	colorMap.addColorStop(0.1, Qt::yellow);
+	colorMap.addColorStop(0.4, Qt::cyan);
+	colorMap.addColorStop(0.99, Qt::white);
 	
 	s->setColorMap(colorMap);
 	
