@@ -47,9 +47,9 @@ CWdescent_mdImpl::CWdescent_mdImpl(funkcio *f, QVector<double> d, QWidget * pare
 
 	MapoWdg->setScale(20);// Ставлю масштаб побольше. Надо будет определться с оптимальным значением.
 
-	Sp = new spuroSinkoLauxKoordinatoj_md(Qt::white, Qt::blue);
+	Sp = new spuroSinkoLauxKoordinatoj_md(Qt::blue);
 	MapoWdg->difiniSpuro(Sp);
-	MapoWdg->difiniFonaKoloro(Qt::green);
+//	MapoWdg->difiniFonaKoloro(Qt::green);
 	
 	connect(MapoWdg, SIGNAL(MusaPos(const QString &)), statusBar(), SLOT(showMessage( const QString &)));
 
@@ -103,8 +103,6 @@ CWdescent_mdImpl::CWdescent_mdImpl(funkcio *f, QVector<double> d, QWidget * pare
 	//---Прикручиваю карту-------------------------------------------------------
 	connect(sMP, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(aldoniPointo(const QPointF &)));
 
-	connect(s1, SIGNAL(entered()), Sp, SLOT(finisxiIteracio()));
-	
 	//---Добавляю состояния в автомат и запускаю его.----------------------------
 	SM->addState(so);
 	SM->addState(sf);
@@ -324,7 +322,7 @@ void CWdescent_mdImpl::init()
 	LogTxtBrsr->setText("");
 
 	static_cast<spuroSinkoLauxKoordinatoj_md*>(Sp)->senspurigi();
-	static_cast<spuroSinkoLauxKoordinatoj_md*>(Sp)->difiniUnuaPointo(MP);
+//	static_cast<spuroSinkoLauxKoordinatoj_md*>(Sp)->difiniUnuaPointo(MP);
 
 	qDebug()<<trUtf8("Задаю переменным начальные значения"); // Вывожу дебажную инфу на консоль.
 }

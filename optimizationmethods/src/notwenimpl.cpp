@@ -44,7 +44,7 @@ NotWenImpl::NotWenImpl( funkcio *f, QVector<double> d, QWidget * parent, Qt::WFl
 	
 	MapoWdg->setScale(20);// Ставлю масштаб побольше. Надо будет определться с оптимальным значением.
 
-	Sp = new spuroSinkoLauxKoordinatoj_md(Qt::blue, Qt::blue);
+	Sp = new spuroSinkoLauxKoordinatoj_md(Qt::blue);
 	MapoWdg->difiniSpuro(Sp);
 	MapoWdg->difiniFonaKoloro(Qt::green);
 
@@ -359,7 +359,7 @@ void NotWenImpl::init()
 	LogTxtBrsr->setText("");
 
 	static_cast<spuroSinkoLauxKoordinatoj_md*>(Sp)->senspurigi();
-	static_cast<spuroSinkoLauxKoordinatoj_md*>(Sp)->difiniUnuaPointo(BP);
+//	static_cast<spuroSinkoLauxKoordinatoj_md*>(Sp)->difiniUnuaPointo(BP);
 
 	qDebug()<<trUtf8("Задаю переменным начальные значения"); // Вывожу дебажную инфу на консоль.
 }
