@@ -14,16 +14,6 @@
    <string>Уровни целевой функции</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0" colspan="2">
-    <widget class="QGraphicsView" name="grphVw">
-     <property name="cursor" stdset="0">
-      <cursorShape>OpenHandCursor</cursorShape>
-     </property>
-     <property name="dragMode">
-      <enum>QGraphicsView::ScrollHandDrag</enum>
-     </property>
-    </widget>
-   </item>
    <item row="1" column="0">
     <widget class="QPushButton" name="PligrandigiBtn">
      <property name="text">
@@ -38,8 +28,18 @@
      </property>
     </widget>
    </item>
+   <item row="0" column="0" colspan="2">
+    <widget class="QwtPlot" name="qwtPlt"/>
+   </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QwtPlot</class>
+   <extends>QFrame</extends>
+   <header>qwt_plot.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

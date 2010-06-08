@@ -40,7 +40,8 @@ HEADERS = src/mainwindowimpl.h \
  src/aboutprogramimpl.h \
  src/licenzodlgimpl.h \
  src/spurohugi.h \
- src/helpbrowserimpl.h
+ src/helpbrowserimpl.h \
+ src/spectrogramdata.h
 SOURCES = src/mainwindowimpl.cpp \
  src/main.cpp \
  src/funkcio.cpp \
@@ -63,5 +64,9 @@ SOURCES = src/mainwindowimpl.cpp \
  src/aboutprogramimpl.cpp \
  src/licenzodlgimpl.cpp \
  src/spurohugi.cpp \
- src/helpbrowserimpl.cpp
+ src/helpbrowserimpl.cpp \
+ src/spectrogramdata.cpp
 RESOURCES += ui/data.qrc
+INCLUDEPATH += /usr/include/qwt-qt4/
+LIBS += /usr/lib/libqwt-qt4.so
+DEPENDPATH += /usr/include/qwt-qt4
