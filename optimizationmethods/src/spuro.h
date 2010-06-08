@@ -3,6 +3,7 @@
 //
 #include <QObject>
 #include <QColor>
+#include <QPointF>
 #include "Konstantoj.h"
 //
 class QwtPlot;
