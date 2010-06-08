@@ -17,9 +17,11 @@ MapoPorFunkcioImpl::MapoPorFunkcioImpl( const funkcio * Funkcio, QWidget * paren
 	s = new QwtPlotSpectrogram();
 	
 	QwtLinearColorMap colorMap(Qt::darkCyan, Qt::red);
-	colorMap.addColorStop(0, Qt::darkCyan);
+	colorMap.addColorStop(0, Qt::darkBlue);
+	colorMap.addColorStop(0.0005, Qt::blue);
+	colorMap.addColorStop(0.01, Qt::darkCyan);
 	colorMap.addColorStop(0.1, Qt::cyan);
-	colorMap.addColorStop(0.5, Qt::green);
+	colorMap.addColorStop(0.4, Qt::green);
 	colorMap.addColorStop(0.99, Qt::yellow);
 	
 	s->setColorMap(colorMap);
@@ -37,8 +39,9 @@ MapoPorFunkcioImpl::MapoPorFunkcioImpl( const funkcio * Funkcio, QWidget * paren
 	
 	skalo->setMousePattern(QwtEventPattern::MouseSelect2,
 	                       Qt::RightButton, Qt::ControlModifier);
-	
 	skalo->setMousePattern(QwtEventPattern::MouseSelect3, Qt::RightButton);
+	
+	skalo->setTrackerMode(QwtPicker::AlwaysOn);
 
 	QwtPlotPanner *panner = new QwtPlotPanner(qwtPlt->canvas());
 	panner->setAxisEnabled(QwtPlot::yRight, false);
