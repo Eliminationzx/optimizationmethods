@@ -2,33 +2,24 @@
 #define SPUROSINKOLAUXKOORDINATOJ_H
 //
 #include "spuro.h"
+#include <QPointF>
 //
 //! Отображает "след" по координатного спуска с дискретным шагом.
-class spuroSinkoLauxKoordinatoj : public spuro
-{
+class spuroSinkoLauxKoordinatoj : public spuro{
 Q_OBJECT
 private:
 	//! Цвет текущей итерации.
 	QColor MomentaKoloro;
 	//! Точки прошедших итераций.
-	QPolygonF Vosto;
+//	QPolygonF Vosto;
 	//! Точки текущей итерации.
-	QPolygonF MomentaPointoj;
+//	QPolygonF MomentaPointoj;
 	//! Текущая точка.
-	QPointF MomentaPointo;
+//	QPointF MomentaPointo;
 public:
-	//! Реализует отрисовку элемента.
-	void paint(QPainter *painter, //!< Контекст рисования элемента.
-	           const QStyleOptionGraphicsItem *option, //!< Опции стилей для элементов, такие как его состояние, область отображения и подсказки степени его детализации.
-	           QWidget *widget = 0 //!< Указывает на виджет, который отрисовывается; в противном случае он равен 0. Для кэшированного рисования widget всегда равен 0.
-	          );
-	//! Возвращает приблизительную площадь отрисовываемую элементом.
-	QRectF boundingRect() const;
 	
 	spuroSinkoLauxKoordinatoj(QColor momentaKoloro, //!< Цвет текущей итерации.
-	                          QColor bazaKoloro, //!< Основной цвет "следа".
-	                          qreal Skalo = 1, //!< Коэффициент масштаба.
-	                          QGraphicsItem * parent = 0 //!< Элемент родитель.
+	                          QColor bazaKoloro //!< Основной цвет "следа".
 	                         );
 public slots:
 	/*! Установить первую точку.
@@ -46,13 +37,11 @@ public slots:
 	 */
 	void finisxiIteracio();
 	//! Вернуться к текущей точке.
-	void reveniAlMomentoPointo();
+//	void reveniAlMomentoPointo();
 	//! Добавить точку поиска.
 	void aldoniSercxantaPointo(QPointF);
 	//! Установить текущую точку.
 	void difiniMomentaPointo(QPointF);
-	//! Установить базовый цвет.
-	void difiniBazaKoloro(QColor bazaKoloro);
 	//! Установить текущий цвет.
 	void difiniMomentaKoloro(QColor momentaKoloro);
 	//! Очищает "след".

@@ -11,26 +11,16 @@ private:
 	//! Цвет отражения/растяжения/сжатия.
 	QColor MomentaKoloro;
 	//! Первая точка основного треугольника.
-	QPointF P1;
+//	QPointF P1;
 	//! Вторая точка основного треугольника.
-	QPointF P2;
+//	QPointF P2;
 	//! Третья точка основного треугольника.
-	QPointF P3;
+//	QPointF P3;
 	//! Полигон для отрисовки отражения/растяжения/зжатия.
-	QPolygonF SP;
+//	QPolygonF SP;
 public:
-	//! Реализует отрисовку элемента.
-	void paint(QPainter *painter, //!< Контекст рисования элемента.
-	           const QStyleOptionGraphicsItem *option, //!< Опции стилей для элементов, такие как его состояние, область отображения и подсказки степени его детализации.
-	           QWidget *widget = 0 //!< Указывает на виджет, который отрисовывается; в противном случае он равен 0. Для кэшированного рисования widget всегда равен 0.
-	          );
-	//! Возвращает приблизительную площадь отрисовываемую элементом.
-	QRectF boundingRect() const;
-	
 	spuroNeMi(QColor momentaKoloro, //!< Текущий цвет "следа".
-	          QColor bazaKoloro, //!< Основной цвет "следа".
-	          qreal Skalo = 1, //!< Коэффициент масштаба.
-	          QGraphicsItem * parent = 0 //!< Элемент родитель.
+	          QColor bazaKoloro //!< Основной цвет "следа".
 	         );
 public slots:
 	/*! Завершить итерацию.
@@ -48,8 +38,6 @@ public slots:
 	void difiniPDilato(const QPointF &);
 	//! Установить точку сжатия.
 	void difiniPKompakto(const QPointF &);
-	//! Установить базовый цвет.
-	void difiniBazaKoloro(QColor bazaKoloro);
 	//! Установить текущий цвет.
 	void difiniMomentaKoloro(QColor momentaKoloro);
 	//! Очищает "след".
