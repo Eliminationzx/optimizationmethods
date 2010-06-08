@@ -60,14 +60,14 @@ connect(exit, SIGNAL(activated()), qApp, SLOT(closeAllWindows()));
 	connect(sMP, SIGNAL(proviziValoroFukcioEnPointo(const QString &)), fsign_b1_lb, SLOT(setText(const QString &)));
 	
 	SignalantoPorPointF * sMP2 = new SignalantoPorPointF(&MP2, F, this);
-	connect(sMP, SIGNAL(proviziXValoro(const QString &)), x1_b2_lb, SLOT(setText(const QString &)));
-	connect(sMP, SIGNAL(proviziYValoro(const QString &)), x2_b2_lb, SLOT(setText(const QString &)));
-	connect(sMP, SIGNAL(proviziValoroFukcioEnPointo(const QString &)), fsign_b2_lb, SLOT(setText(const QString &)));	
+	connect(sMP2, SIGNAL(proviziXValoro(const QString &)), x1_b2_lb, SLOT(setText(const QString &)));
+	connect(sMP2, SIGNAL(proviziYValoro(const QString &)), x2_b2_lb, SLOT(setText(const QString &)));
+	connect(sMP2, SIGNAL(proviziValoroFukcioEnPointo(const QString &)), fsign_b2_lb, SLOT(setText(const QString &)));	
 	
 	SignalantoPorPointF * sPP = new SignalantoPorPointF(&PP, F, this);
-	connect(sMP, SIGNAL(proviziXValoro(const QString &)), x1_p_lb, SLOT(setText(const QString &)));
-	connect(sMP, SIGNAL(proviziYValoro(const QString &)), x2_p_lb, SLOT(setText(const QString &)));
-	connect(sMP, SIGNAL(proviziValoroFukcioEnPointo(const QString &)), fsign_p_lb, SLOT(setText(const QString &)));
+	connect(sPP, SIGNAL(proviziXValoro(const QString &)), x1_p_lb, SLOT(setText(const QString &)));
+	connect(sPP, SIGNAL(proviziYValoro(const QString &)), x2_p_lb, SLOT(setText(const QString &)));
+	connect(sPP, SIGNAL(proviziValoroFukcioEnPointo(const QString &)), fsign_p_lb, SLOT(setText(const QString &)));
 	
 	SignalantoPorPointF * sNP = new SignalantoPorPointF(&NP, F, this);
 	connect(sNP, SIGNAL(proviziXValoro(const QString &)), x1_new_lb, SLOT(setText(const QString &)));
@@ -139,19 +139,19 @@ connect(exit, SIGNAL(activated()), qApp, SLOT(closeAllWindows()));
 	s3s4Transiro * s3s4 = new s3s4Transiro(up_x1_rb, next2_bt, SIGNAL(clicked()), s3);
 	s3s4->setTargetState(s4);
 	
-	NoKonsideriPointoTransiro * s4s5 = new NoKonsideriPointoTransiro(&MP, &NP, F, not_accept_bt, SIGNAL(clicked()), s4);
+	NoKonsideriPointoTransiro * s4s5 = new NoKonsideriPointoTransiro(&NP, &PP,&MP2,FLAG_SO, F, not_accept_bt, SIGNAL(clicked()), s4);
 	s4s5->setTargetState(s5);
 	
-	KonsideriPointoTransiro * s4s7 = new KonsideriPointoTransiro(&MP, &NP, F, accept_bt, SIGNAL(clicked()), s4);
+	KonsideriPointoTransiro * s4s7 = new KonsideriPointoTransiro(&NP, &PP,&MP2,FLAG_SO, F, accept_bt, SIGNAL(clicked()), s4);
 	s4s7->setTargetState(s7);
 	
 	s5s6Transiro * s5s6 = new s5s6Transiro(down_x1_rb, next2_bt, SIGNAL(clicked()), s5);
 	s5s6->setTargetState(s6);
 	
-	KonsideriPointoTransiro * s6s7 = new KonsideriPointoTransiro(&MP, &NP, F, accept_bt, SIGNAL(clicked()), s6);
+	KonsideriPointoTransiro * s6s7 = new KonsideriPointoTransiro(&NP, &PP,&MP2,FLAG_SO, F, accept_bt, SIGNAL(clicked()), s6);
 	s6s7->setTargetState(s7);
 	
-	NoKonsideriPointoTransiro * s6s8 = new NoKonsideriPointoTransiro(&MP, &NP, F, not_accept_bt, SIGNAL(clicked()), s6);
+	NoKonsideriPointoTransiro * s6s8 = new NoKonsideriPointoTransiro(&NP, &PP,&MP2,FLAG_SO, F, not_accept_bt, SIGNAL(clicked()), s6);
 	s6s8->setTargetState(s8);
 	
 	s7s9_s8s9Transiro * s7s9 = new s7s9_s8s9Transiro(up_x2_rb, next2_bt, SIGNAL(clicked()), s7);
@@ -160,32 +160,32 @@ connect(exit, SIGNAL(activated()), qApp, SLOT(closeAllWindows()));
 	s7s9_s8s9Transiro * s8s9 = new s7s9_s8s9Transiro(up_x2_rb, next2_bt, SIGNAL(clicked()), s8);
 	s8s9->setTargetState(s9);
 	//======
-	NoKonsideriPointoTransiro * s9s10 = new NoKonsideriPointoTransiro(&MP, &NP, F, not_accept_bt, SIGNAL(clicked()), s9);
+	NoKonsideriPointoTransiro * s9s10 = new NoKonsideriPointoTransiro(&NP, &PP,&MP2,FLAG_SO, F, not_accept_bt, SIGNAL(clicked()), s9);
 	s9s10->setTargetState(s10);
 	
-	KonsideriPointoTransiro * s9s12 = new KonsideriPointoTransiro(&MP, &NP, F, accept_bt, SIGNAL(clicked()), s9);
+	KonsideriPointoTransiro * s9s12 = new KonsideriPointoTransiro(&NP, &PP,&MP2,FLAG_SO, F, accept_bt, SIGNAL(clicked()), s9);
 	s9s12->setTargetState(s12);
 	
 	s10s11Transiro * s10s11 = new s10s11Transiro(down_x2_rb, next2_bt, SIGNAL(clicked()), s10);
 	s10s11->setTargetState(s11);
 	
-	KonsideriPointoTransiro * s11s12 = new KonsideriPointoTransiro(&MP, &NP, F, accept_bt, SIGNAL(clicked()), s11);
+	KonsideriPointoTransiro * s11s12 = new KonsideriPointoTransiro(&NP, &PP,&MP2,FLAG_SO, F, accept_bt, SIGNAL(clicked()), s11);
 	s11s12->setTargetState(s12);
 	
-	NoKonsideriPointoTransiro * s11s13 = new NoKonsideriPointoTransiro(&MP, &NP, F, not_accept_bt, SIGNAL(clicked()), s11);
+	NoKonsideriPointoTransiro * s11s13 = new NoKonsideriPointoTransiro(&NP, &PP,&MP2,FLAG_SO, F, not_accept_bt, SIGNAL(clicked()), s11);
 	s11s13->setTargetState(s13);
 	
 	s12->addTransition(this, SIGNAL(stateHasEntered()), s13); // Переход s12s13 совершается сразу при входе в s12.
 	
-	s13s14Transiro * s13s14 = new s13s14Transiro(&BP, &MP, &MP2, &PX1, &PX2, strikteco, change_step_bt, SIGNAL(clicked()), s11);
+	s13s14Transiro * s13s14 = new s13s14Transiro(&MP, &MP2, &PX1, &PX2, strikteco, change_step_bt, SIGNAL(clicked()), s11);
 	s13s14->setTargetState(s14);
 	
 	s13->addTransition(found_bt, SIGNAL(clicked()), s15);
 
-	s13s16Transiro * s13s16 = new s13s16Transiro(ok_rb,&BP,&MP,&MP2,&TEMP_B,&FLAG_SO,F,next3_bt,SIGNAL(clicked()),s13);
+	s13s16Transiro * s13s16 = new s13s16Transiro(ok_rb,&PP,&MP2,&FLAG_SO,F,next3_bt,SIGNAL(clicked()),s13);
 	s13s16->setTargetState(s16);
 
-	s13s19Transiro * s13s19 = new s13s19Transiro(no_rb,&BP,&MP,&MP2,&TEMP_B,&FLAG_SO,F,next3_bt,SIGNAL(clicked()),s13 );
+	s13s19Transiro * s13s19 = new s13s19Transiro(no_rb,&PP,&MP2,&FLAG_SO,F,next3_bt,SIGNAL(clicked()),s13 );
 	s13s19->setTargetState(s19);
 	
 	s13sfTransiro * s13sf = new s13sfTransiro( &PX1, &PX2, strikteco, end_bt, SIGNAL(clicked()), s13);
@@ -298,6 +298,27 @@ connect(exit, SIGNAL(activated()), qApp, SLOT(closeAllWindows()));
 }
 //
 
+void HuGiImpl::on_difiniFonto_act_activated(){
+	bool b;
+	QFont fnt = QFontDialog::getFont(&b, font());
+	if(b){
+		// Была нажата кнопка ОК.
+		setFont(fnt);
+	}
+}
+
+void HuGiImpl::on_helpo_action_activated()
+{
+	helpBrowserImpl * hb = new helpBrowserImpl( "doc/", "method1.htm", this);
+	hb->resize(900, 600);
+	hb->show();
+}
+
+void HuGiImpl::on_about_action_activated()
+{
+	aboutProgramImpl * about = new aboutProgramImpl(this);
+	about->show();
+}
 
 void HuGiImpl::registriEraro()
 {
@@ -355,9 +376,8 @@ void HuGiImpl::sf_entered()
 
 void HuGiImpl::s19_entered()
 {
-	FLAG_SO=false;
-	MP=PP;
-	MP2=PP;
+	FLAG_SO = false;
+	MP = MP2;
 	stackedWidget->setCurrentIndex(3);
 	qDebug()<<trUtf8("Come in s19"); // Вывожу дебажную инфу на консоль.
 
@@ -366,11 +386,8 @@ void HuGiImpl::s19_entered()
 
 void HuGiImpl::s18_entered()
 {
-	PP=MP+2*(MP2-MP);
-	FLAG_SO=true;
-	MP=PP;
-	TEMP_B=MP2;
-	MP2=PP;
+	PP = QPointF((MP.x() + 2*(MP2.x() - MP.x())), (MP.y() + 2*(MP2.y() - MP.y())));
+	FLAG_SO = true;
 	stackedWidget->setCurrentIndex(3);
 	qDebug()<<trUtf8("Come in s18"); // Вывожу дебажную инфу на консоль.
 
@@ -387,7 +404,6 @@ void HuGiImpl::s17_entered()
 
 void HuGiImpl::s16_entered()
 {
-	MP = TEMP_B;
 	stackedWidget->setCurrentIndex(3);
 	qDebug()<<trUtf8("Come in s16"); // Вывожу дебажную инфу на консоль.
 
@@ -417,9 +433,17 @@ void HuGiImpl::s14_entered()
 void HuGiImpl::s13_entered()
 {
 	if(FLAG_SO==true)
-	stackedWidget->setCurrentIndex(2);
+		stackedWidget->setCurrentIndex(2);
 	else
-	stackedWidget->setCurrentIndex(4);
+	{
+		stackedWidget->setCurrentIndex(3);
+
+		x1_new_lb->setText("");
+		x2_new_lb->setText("");
+		fsign_new_lb->setText("");
+		
+		LogTxtBrsr->append(trUtf8("  Точка: (%1; %2) не принята").arg(NP.x()).arg(NP.y()));
+	}
 	qDebug()<<trUtf8("Come in s13"); // Вывожу дебажную инфу на консоль.
 	// Вывожу на форму значение расстояния между предыдущей базовой точкой и
 	// текущей, только если была принята новая точка.
@@ -431,9 +455,17 @@ void HuGiImpl::s13_entered()
 
 void HuGiImpl::s12_entered()
 {
-	MP = NP;
+	if(FLAG_SO == false)
+		MP2 = NP;
+	else if(FLAG_SO == true)
+		PP = NP;
+
+	x1_new_lb->setText("");
+	x2_new_lb->setText("");
+	fsign_new_lb->setText("");
+
 	stackedWidget->setCurrentIndex(3);
-	LogTxtBrsr->append(trUtf8("  новая точка: (%1; %2) Принята").arg(MP.x()).arg(MP.y()));
+	LogTxtBrsr->append(trUtf8("  Точка: (%1; %2) Принята").arg(NP.x()).arg(NP.y()));
 	qDebug()<<trUtf8("Come in s12"); // Вывожу дебажную инфу на консоль.
 
 	emit stateHasEntered(); // Переход по этому сигналу произойдёт, только если выполнится его условие.
@@ -441,7 +473,11 @@ void HuGiImpl::s12_entered()
 
 void HuGiImpl::s11_entered()
 {
-	NP = MP - PX2;
+	if(FLAG_SO == false)
+		NP = MP2 - PX2;
+	else if(FLAG_SO == true)
+		NP = PP - PX2;
+	
 	LogTxtBrsr->append(trUtf8("  Сделан шаг в отрицательном направлении оси Х2."));
 
 	qDebug()<<trUtf8("Come in s11"); // Вывожу дебажную инфу на консоль.
@@ -449,14 +485,22 @@ void HuGiImpl::s11_entered()
 
 void HuGiImpl::s10_entered()
 {
-	LogTxtBrsr->append(trUtf8("  новая точка: (%1; %2) не принята").arg(MP.x()).arg(MP.y()));
+	x1_new_lb->setText("");
+	x2_new_lb->setText("");
+	fsign_new_lb->setText("");
+	
+	LogTxtBrsr->append(trUtf8("  Точка: (%1; %2) не принята").arg(NP.x()).arg(NP.y()));
 
 	qDebug()<<trUtf8("Come in s10"); // Вывожу дебажную инфу на консоль.
 }
 
 void HuGiImpl::s9_entered()
 {
-	NP = MP + PX2;
+	if(FLAG_SO == false)
+		NP = MP2 + PX2;
+	else if(FLAG_SO == true)
+		NP = PP + PX2;
+	
 	LogTxtBrsr->append(trUtf8("  Сделан шаг в положительном направлении оси Х2."));
 
 	qDebug()<<trUtf8("Come in s9"); // Вывожу дебажную инфу на консоль.
@@ -464,22 +508,38 @@ void HuGiImpl::s9_entered()
 
 void HuGiImpl::s8_entered()
 {
-	LogTxtBrsr->append(trUtf8("  новая точка: (%1; %2) не принята").arg(MP.x()).arg(MP.y()));
+	x1_new_lb->setText("");
+	x2_new_lb->setText("");
+	fsign_new_lb->setText("");
+	
+	LogTxtBrsr->append(trUtf8("  Точка: (%1; %2) не принята").arg(NP.x()).arg(NP.y()));
 
 	qDebug()<<trUtf8("Come in s8"); // Вывожу дебажную инфу на консоль.
 }
 
 void HuGiImpl::s7_entered()
 {
-	MP = NP;
-	LogTxtBrsr->append(trUtf8("  новая точка: (%1; %2) Принята").arg(MP.x()).arg(MP.y()));
+	if(FLAG_SO == false)
+		MP2 = NP;
+	else if(FLAG_SO == true)
+		PP = NP;
+
+	x1_new_lb->setText("");
+	x2_new_lb->setText("");
+	fsign_new_lb->setText("");
+
+	LogTxtBrsr->append(trUtf8("  Точка: (%1; %2) Принята").arg(NP.x()).arg(NP.y()));
 
 	qDebug()<<trUtf8("Come in s7"); // Вывожу дебажную инфу на консоль.
 }
 
 void HuGiImpl::s6_entered()
 {
-	NP = MP - PX1;
+	if(FLAG_SO == false)
+		NP = MP2 - PX1;
+	else if(FLAG_SO == true)
+		NP = PP - PX1;
+
 	LogTxtBrsr->append(trUtf8("  Сделан шаг в отрицательном направлении оси Х1."));
 
 	qDebug()<<trUtf8("Come in s6"); // Вывожу дебажную инфу на консоль.
@@ -487,14 +547,25 @@ void HuGiImpl::s6_entered()
 
 void HuGiImpl::s5_entered()
 {
-	LogTxtBrsr->append(trUtf8("  новая точка: (%1; %2) не принята").arg(MP.x()).arg(MP.y()));
+	x1_new_lb->setText("");
+	x2_new_lb->setText("");
+	fsign_new_lb->setText("");
+	
+	LogTxtBrsr->append(trUtf8("  Точка: (%1; %2) не принята").arg(NP.x()).arg(NP.y()));
 
 	qDebug()<<trUtf8("Come in s5"); // Вывожу дебажную инфу на консоль.
 }
 
 void HuGiImpl::s4_entered()
 {
-	NP = MP + PX1;
+	if(FLAG_SO == false)
+	{
+		MP2 = MP;
+		NP = MP2 + PX1;
+	}
+	else if(FLAG_SO == true)
+		NP = PP + PX1;
+		
 	LogTxtBrsr->append(trUtf8("  Сделан шаг в положительном направлении оси Х1."));
 
 	qDebug()<<trUtf8("Come in s4"); // Вывожу дебажную инфу на консоль.
@@ -504,8 +575,6 @@ void HuGiImpl::s4_entered()
 void HuGiImpl::s3_entered()
 {
 	stackedWidget->setCurrentIndex(1);
-	BP = MP;
-//	NP = BP;
 	qDebug()<<trUtf8("Come in s3"); // Вывожу дебажную инфу на консоль.
 }
 
@@ -518,11 +587,11 @@ void HuGiImpl::s2_entered()
 
 void HuGiImpl::s1_entered()
 {
-	FLAG_SO=false;
+	FLAG_SO = false;
 	
 	LogTxtBrsr->append(trUtf8("Итерация № %1.").arg(++NumeroIteracio));
 
-	qDebug()<<trUtf8("Come in s1 flag="+FLAG_SO); // Вывожу дебажную инфу на консоль.
+	qDebug()<<trUtf8("Come in s1 flag=%1").arg(FLAG_SO); // Вывожу дебажную инфу на консоль.
 }
 
 
@@ -541,8 +610,6 @@ void HuGiImpl::init()
 	KvantoEraroj = 0;
 	NumeroIteracio = 0;
 	MP = QPointF(D[4],D[5]);
-	MP2 = QPointF(0,0);
-	PP = QPointF(0,0);
 	PX1 = QPointF(D[1], 0);
 	PX2 = QPointF(0, D[2]);
 	ModPX = 10;
@@ -554,9 +621,6 @@ void HuGiImpl::init()
 }
 
 
-
-
-
 namespace SinkoLauxKoordinatoj_hugi{
 	
 	bool KonsideriPointoTransiro::eventTest(QEvent *e)
@@ -565,7 +629,10 @@ namespace SinkoLauxKoordinatoj_hugi{
 		if(QSignalTransition::eventTest(e)){
 			qDebug()<<trUtf8("  Check f(np) < f(mp)");
 			// Проверяю своё условие.
-			return f->rezulto(*np) < f->rezulto(*mp);
+			if(flag_so == false)
+				return f->rezulto(*np) < f->rezulto(*mp2);
+			else
+				return f->rezulto(*np) < f->rezulto(*pp);
 		}else{
 			return false;
 		}
@@ -577,7 +644,22 @@ namespace SinkoLauxKoordinatoj_hugi{
 		if(QSignalTransition::eventTest(e)){
 			qDebug()<<trUtf8("  Check f(np) >= f(mp)");
 			// Проверяю своё условие.
-			return f->rezulto(*np) >= f->rezulto(*mp);
+			if(flag_so == false)
+				return f->rezulto(*np) >= f->rezulto(*mp2);
+			else
+				return f->rezulto(*np) >= f->rezulto(*pp);
+		}else{
+			return false;
+		}
+	}
+
+	bool s2s3Transiro::eventTest(QEvent *e)
+	{
+		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
+		if(QSignalTransition::eventTest(e)){
+			qDebug()<<trUtf8("s2s3 нажата кнопка далее выбран поиск по образцу");
+			// Проверяю своё условие.
+			return investigate->isChecked() ;
 		}else{
 			return false;
 		}
@@ -649,7 +731,7 @@ namespace SinkoLauxKoordinatoj_hugi{
 		if(QSignalTransition::eventTest(e)){
 			qDebug()<<trUtf8(" s13s14 Check, that бт ==тт && (шХ1 >= е || шХ2 >= е) ");
 			// Проверяю своё условие.
-			return *bp == *mp && (px1->x() >= s || px2->y() >= s);
+			return *mp == *mp2 && (px1->x() >= s || px2->y() >= s);
 		}else{
 			return false;
 		}
@@ -660,11 +742,11 @@ namespace SinkoLauxKoordinatoj_hugi{
 		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
 		if(QSignalTransition::eventTest(e)){
 			qDebug()<<trUtf8(" s13s16  пройден поиск по образцу = true && Выбран пункт принять образец &&  f(b2)<f(temp_b2)  ");
-			qDebug()<<trUtf8("======FBP=")<<(f->rezulto(*bp));
-			qDebug()<<trUtf8("======FTB=")<<(f->rezulto(*temp_b));
+			qDebug()<<trUtf8("======FBP=")<<(f->rezulto(*pp));
+			qDebug()<<trUtf8("======FTB=")<<(f->rezulto(*mp2));
 			qDebug()<<trUtf8("======FLAG=")<<flag_so;
 			// Проверяю своё условие.
-			return &flag_so && ok_rb_->isChecked() && (f->rezulto(*bp)) < f->rezulto(*temp_b);
+			return &flag_so && ok_rb_->isChecked() && (f->rezulto(*pp)) < f->rezulto(*mp2);
 		}else{
 			return false;
 		}
@@ -676,7 +758,7 @@ namespace SinkoLauxKoordinatoj_hugi{
 		if(QSignalTransition::eventTest(e)){
 			qDebug()<<trUtf8("s13s19  пройден поиск по образцу = true && Выбран пункт не принимать образец &&  f(b2)<f(temp_b2) ");
 			// Проверяю своё условие.
-			return &flag_so && no_rb_->isChecked() && f->rezulto(*bp) >=f->rezulto(*temp_b);
+			return &flag_so && no_rb_->isChecked() && f->rezulto(*pp) >= f->rezulto(*mp2);
 		}else{
 			return false;
 		}
@@ -693,39 +775,6 @@ namespace SinkoLauxKoordinatoj_hugi{
 			return false;
 		}
 	}
-
-bool s2s3Transiro::eventTest(QEvent *e)
-	{
-		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
-		if(QSignalTransition::eventTest(e)){
-			qDebug()<<trUtf8("s2s3 нажата кнопка далее выбран поиск по образцу");
-			// Проверяю своё условие.
-			return investigate->isChecked() ;
-		}else{
-			return false;
-		}
-	}
-
 };
 
-void HuGiImpl::on_difiniFonto_act_activated(){
-	bool b;
-	QFont fnt = QFontDialog::getFont(&b, font());
-	if(b){
-		// Была нажата кнопка ОК.
-		setFont(fnt);
-	}
-}
 
-void HuGiImpl::on_helpo_action_activated()
-{
-	helpBrowserImpl * hb = new helpBrowserImpl( "doc/", "method1.htm", this);
-	hb->resize(900, 600);
-	hb->show();
-}
-
-void HuGiImpl::on_about_action_activated()
-{
-	aboutProgramImpl * about = new aboutProgramImpl(this);
-	about->show();
-}
