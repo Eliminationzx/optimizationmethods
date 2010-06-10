@@ -1,6 +1,7 @@
 #include "mapoporfunkcioimpl.h"
 #include "funkcio.h"
 #include <QColor>
+#include <QGridLayout>
 #include <qwt_color_map.h>
 #include <qwt_plot_spectrogram.h>
 #include <qwt_scale_widget.h>
@@ -12,7 +13,11 @@
 //
 MapoPorFunkcioImpl::MapoPorFunkcioImpl( const funkcio * Funkcio, QWidget * parent, Qt::WFlags f) 
 	: QWidget(parent, f), F(Funkcio){
-	setupUi(this);
+//	setupUi(this);
+	
+	QGridLayout * gridLayout = new QGridLayout(this);
+	qwtPlt = new QwtPlot(this);
+	gridLayout->addWidget(qwtPlt, 0, 0, 1, 2);
 	
 	s = new QwtPlotSpectrogram();
 	
