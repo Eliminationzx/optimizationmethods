@@ -45,7 +45,7 @@ CWdescent_mdImpl::CWdescent_mdImpl(funkcio *f, QVector<double> d, QWidget * pare
 	// добавляю вижет карты в позицию 1,1. Компановщик сам позаботится о назначении новому виджету родителя.
 	static_cast<QGridLayout*>(centralwidget->layout())->addWidget(MapoWdg, 2, 1, 2, 1);
 
-	MapoWdg->setScale(20);// Ставлю масштаб побольше. Надо будет определться с оптимальным значением.
+//	MapoWdg->setScale(20);// Ставлю масштаб побольше. Надо будет определться с оптимальным значением.
 
 	Sp = new spuroSinkoLauxKoordinatoj_md(Qt::blue);
 	MapoWdg->difiniSpuro(Sp);
@@ -322,7 +322,6 @@ void CWdescent_mdImpl::init()
 	LogTxtBrsr->setText("");
 
 	static_cast<spuroSinkoLauxKoordinatoj_md*>(Sp)->senspurigi();
-//	static_cast<spuroSinkoLauxKoordinatoj_md*>(Sp)->difiniUnuaPointo(MP);
 
 	qDebug()<<trUtf8("Задаю переменным начальные значения"); // Вывожу дебажную инфу на консоль.
 }

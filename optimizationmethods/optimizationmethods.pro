@@ -19,7 +19,6 @@ FORMS = ui/mainwindow.ui \
 HEADERS = src/mainwindowimpl.h \
  src/funkcio.h \
  src/mapoporfunkcioimpl.h \
- src/scenopormapo.h \
  src/spuro.h \
  src/spurosinkolauxkoordinatoj.h \
  src/cwdescentwinimpl.h \
@@ -45,7 +44,6 @@ SOURCES = src/mainwindowimpl.cpp \
  src/main.cpp \
  src/funkcio.cpp \
  src/mapoporfunkcioimpl.cpp \
- src/scenopormapo.cpp \
  src/spurosinkolauxkoordinatoj.cpp \
  src/cwdescentwinimpl.cpp \
  src/algoritmowin.cpp \
@@ -63,7 +61,8 @@ SOURCES = src/mainwindowimpl.cpp \
  src/licenzodlgimpl.cpp \
  src/spurohugi.cpp \
  src/helpbrowserimpl.cpp \
- src/spectrogramdata.cpp
+ src/spectrogramdata.cpp \
+ src/spuro.cpp
 RESOURCES += ui/data.qrc
 INCLUDEPATH += /usr/include/qwt-qt4/
 LIBS += /usr/lib/libqwt-qt4.so

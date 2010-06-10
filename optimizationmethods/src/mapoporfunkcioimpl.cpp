@@ -1,5 +1,6 @@
 #include "mapoporfunkcioimpl.h"
 #include "funkcio.h"
+#include "spuro.h"
 #include <QColor>
 #include <QGridLayout>
 #include <qwt_color_map.h>
@@ -97,11 +98,8 @@ qreal MapoPorFunkcioImpl::Scale() const {
 
 
 void MapoPorFunkcioImpl::difiniSpuro(spuro * S){
-//	s->removeItem(Spuro);
-//	delete Spuro;
-//	Spuro = S;
-//	Spuro->setScale(s->scale());
-//	s->addItem(Spuro);
+	Spuro = S;
+	Spuro->difiniPlt(qwtPlt);
 }
 
 //QColor MapoPorFunkcioImpl::fonaKoloro() const {

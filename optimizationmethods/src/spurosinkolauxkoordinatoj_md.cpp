@@ -7,6 +7,7 @@ spuroSinkoLauxKoordinatoj_md::spuroSinkoLauxKoordinatoj_md(QColor bazaKoloro, Qw
 	: spuro(bazaKoloro, Plt){
 	vosto = new QwtPlotCurve();
 	vosto->setPen(BazaKoloro);
+//	vosto->setVisible(true);
 	vosto->attach(plt);
 }
 //
