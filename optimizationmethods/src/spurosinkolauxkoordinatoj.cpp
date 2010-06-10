@@ -1,11 +1,17 @@
 #include "spurosinkolauxkoordinatoj.h"
 #include "Konstantoj.h"
+#include <qwt_plot.h>
 #include <qwt_plot_curve.h>
 #include <QPolygonF>
 //
 spuroSinkoLauxKoordinatoj::spuroSinkoLauxKoordinatoj(QColor momentaKoloro, QColor bazaKoloro) 
 	: spuro( bazaKoloro), MomentaKoloro(momentaKoloro){}
 //
+
+void spuroSinkoLauxKoordinatoj::difiniPlt( QwtPlot * Plt ){
+	plt = Plt;
+	plt->replot();
+}
 
 void spuroSinkoLauxKoordinatoj::finisxiIteracio(){
 }

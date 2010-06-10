@@ -12,6 +12,11 @@ spuroSinkoLauxKoordinatoj_md::spuroSinkoLauxKoordinatoj_md(QColor bazaKoloro, Qw
 }
 //
 
+void spuroSinkoLauxKoordinatoj_md::difiniPlt( QwtPlot * Plt ){
+	plt = Plt;
+	plt->replot();
+}
+
 void spuroSinkoLauxKoordinatoj_md::senspurigi(){
 	vosto->setData(QPolygonF());
 	plt->replot();

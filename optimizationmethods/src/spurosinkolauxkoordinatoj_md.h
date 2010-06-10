@@ -18,6 +18,9 @@ private:
 	//! Текущая точка.
 //	QPointF MomentaPointo;
 public:
+	//! Устанавливает полотно, на котором будет нарисован след.
+	void difiniPlt( QwtPlot * Plt );
+	
 	spuroSinkoLauxKoordinatoj_md(QColor bazaKoloro, //!< Основной цвет "следа".
 	                             QwtPlot * Plt = 0 //!< Полотно, на котором будет нарисован след.
 	                            );
