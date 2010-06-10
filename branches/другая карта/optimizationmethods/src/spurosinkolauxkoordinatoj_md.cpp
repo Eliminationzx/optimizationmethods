@@ -14,6 +14,7 @@ spuroSinkoLauxKoordinatoj_md::spuroSinkoLauxKoordinatoj_md(QColor bazaKoloro, Qw
 
 void spuroSinkoLauxKoordinatoj_md::difiniPlt( QwtPlot * Plt ){
 	plt = Plt;
+	vosto->attach(plt);
 	plt->replot();
 }
 
