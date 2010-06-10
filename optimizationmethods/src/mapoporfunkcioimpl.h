@@ -2,23 +2,25 @@
 #define MAPOPORFUNKCIOIMPL_H
 //
 #include <QWidget>
-#include "ui_mapoporfunkcio.h"
+//#include "ui_mapoporfunkcio.h"
 #include "Konstantoj.h"
 //
+class QwtPlot;
 class QwtPlotSpectrogram;
-class QGraphicsItem;
 class QwtPlotZoomer;
 class funkcio;
 class spuro;
 //
 using namespace std;
 //! Виджет для отображения карты высот целевой функции и "следа алгоритма на ней"
-class MapoPorFunkcioImpl : public QWidget, public Ui::MapoPorFunkcio
+class MapoPorFunkcioImpl : public QWidget//, public Ui::MapoPorFunkcio
 {
 Q_OBJECT
 Q_PROPERTY(qreal skalo READ Scale WRITE setScale)
 //Q_PROPERTY(QColor fonaKoloro READ fonaKoloro WRITE difiniFonaKoloro)
 private:
+	//!
+	QwtPlot * qwtPlt;
 	//! Целевая функция.
 	const funkcio * F;
 	//! Сцена
