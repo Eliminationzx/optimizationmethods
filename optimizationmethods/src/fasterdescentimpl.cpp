@@ -48,8 +48,6 @@ FasterDescentImpl::FasterDescentImpl( funkcio *f, QVector<double> d, QWidget * p
 	MapoWdg->difiniSpuro(Sp);
 //	MapoWdg->difiniFonaKoloro(Qt::green);
 
-	connect(MapoWdg, SIGNAL(MusaPos(const QString &)), statusBar(), SLOT(showMessage( const QString &)));
-
 	//===Соединяю точки и надписи на форме=========================================
 	SignalantoPorPointF * sBP = new SignalantoPorPointF(&BP, F, this);
 	connect(sBP, SIGNAL(proviziXValoro(const QString &)), x1_lb, SLOT(setText(const QString &)));
