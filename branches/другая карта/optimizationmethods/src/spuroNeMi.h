@@ -19,6 +19,10 @@ private:
 	//! Полигон для отрисовки отражения/растяжения/зжатия.
 //	QPolygonF SP;
 public:
+	//! Устанавливает полотно, на котором будет нарисован след.
+	void difiniPlt( QwtPlot * Plt );
+	
+
 	spuroNeMi(QColor momentaKoloro, //!< Текущий цвет "следа".
 	          QColor bazaKoloro //!< Основной цвет "следа".
 	         );

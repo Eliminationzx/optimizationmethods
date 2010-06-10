@@ -28,7 +28,7 @@ public:
 	inline QwtPlot * proviziPlt() const { return plt; };
 	
 	//! Устанавливает полотно, на котором будет нарисован след.
-	void difiniPlt( QwtPlot * Plt );
+	virtual void difiniPlt( QwtPlot * Plt );
 	
 	spuro(
 	      const QColor bazaKoloro, //!< Основной цвет "следа".

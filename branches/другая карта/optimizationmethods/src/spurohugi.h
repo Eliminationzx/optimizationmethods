@@ -13,6 +13,9 @@ private:
 	//! Точки от B2 до P.
 //	QPolygonF B2gxisP;
 public:
+	//! Устанавливает полотно, на котором будет нарисован след.
+	void difiniPlt( QwtPlot * Plt );
+	
 	spuroHuGi(
 	          QColor bazaKoloro //!< Основной цвет "следа".
 	         );

@@ -1,12 +1,18 @@
 #include "spuroNeMi.h"
 #include "Konstantoj.h"
 #include "demonstrataqpointf.h"
+#include <qwt_plot.h>
 #include <qwt_plot_curve.h>
 #include <QPolygonF>
 //
 spuroNeMi::spuroNeMi(QColor momentaKoloro, QColor bazaKoloro ) 
 	: spuro(bazaKoloro), MomentaKoloro(momentaKoloro){}
 //
+
+void spuroNeMi::difiniPlt( QwtPlot * Plt ){
+	plt = Plt;
+	plt->replot();
+}
 
 void spuroNeMi::finisxiIteracio(){
 }
