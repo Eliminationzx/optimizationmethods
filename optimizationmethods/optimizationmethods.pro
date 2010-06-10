@@ -6,7 +6,6 @@ OBJECTS_DIR = build
 MOC_DIR = build
 UI_DIR = build
 FORMS = ui/mainwindow.ui \
- ui/mapoporfunkcio.ui \
  ui/CWdescent_fixwindow.ui \
  ui/mainwindowPass.ui \
  ui/CWdescent_md.ui \
