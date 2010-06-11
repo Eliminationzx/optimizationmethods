@@ -1,0 +1,8 @@
+<RCC>
+  <qresource prefix="icon">
+    <file>dfdx1.bmp</file>
+    <file>dfdx2.bmp</file>
+    <file>icon.bmp</file>
+    <file>icon_big.bmp</file>
+  </qresource>
+</RCC>

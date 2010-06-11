@@ -1,0 +1,69 @@
+TEMPLATE = app
+QT = gui core
+CONFIG += qt warn_on release console
+DESTDIR = bin
+OBJECTS_DIR = build
+MOC_DIR = build
+UI_DIR = build
+FORMS = ui/mainwindow.ui \
+ ui/CWdescent_fixwindow.ui \
+ ui/mainwindowPass.ui \
+ ui/CWdescent_md.ui \
+ ui/FasterDescent.ui \
+ ui/HuGi.ui \
+ ui/NeMi.ui \
+ ui/NotWen.ui \
+ ui/aboutProgram.ui \
+ ui/licenzo.ui \
+ ui/helpBrowser.ui
+HEADERS = src/mainwindowimpl.h \
+ src/funkcio.h \
+ src/mapoporfunkcioimpl.h \
+ src/spuro.h \
+ src/spurosinkolauxkoordinatoj.h \
+ src/cwdescentwinimpl.h \
+ src/algoritmowin.h \
+ src/Konstantoj.h \
+ src/demonstrataqpointf.h \
+ src/mainpassimpl.h \
+ src/signalantoporpointf.h \
+ src/cwdescent_mdimpl.h \
+ src/fasterdescentimpl.h \
+ src/hugiimpl.h \
+ src/nemiimpl.h \
+ src/spurosinkolauxkoordinatoj_md.h \
+ src/spuroNeMi.h \
+ src/HelpBrowser.h \
+ src/notwenimpl.h \
+ src/aboutprogramimpl.h \
+ src/licenzodlgimpl.h \
+ src/spurohugi.h \
+ src/helpbrowserimpl.h \
+ src/spectrogramdata.h
+SOURCES = src/mainwindowimpl.cpp \
+ src/main.cpp \
+ src/funkcio.cpp \
+ src/mapoporfunkcioimpl.cpp \
+ src/spurosinkolauxkoordinatoj.cpp \
+ src/cwdescentwinimpl.cpp \
+ src/algoritmowin.cpp \
+ src/demonstrataqpointf.cpp \
+ src/mainpassimpl.cpp \
+ src/signalantoporpointf.cpp \
+ src/cwdescent_mdimpl.cpp \
+ src/fasterdescentimpl.cpp \
+ src/hugiimpl.cpp \
+ src/nemiimpl.cpp \
+ src/spurosinkolauxkoordinatoj_md.cpp \
+ src/spuroNeMi.cpp \
+ src/notwenimpl.cpp \
+ src/aboutprogramimpl.cpp \
+ src/licenzodlgimpl.cpp \
+ src/spurohugi.cpp \
+ src/helpbrowserimpl.cpp \
+ src/spectrogramdata.cpp \
+ src/spuro.cpp
+RESOURCES += ui/data.qrc
+INCLUDEPATH += /usr/include/qwt-qt4/
+LIBS += /usr/lib/libqwt-qt4.so
+DEPENDPATH += /usr/include/qwt-qt4
