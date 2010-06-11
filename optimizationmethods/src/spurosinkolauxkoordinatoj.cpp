@@ -26,6 +26,9 @@ spuroSinkoLauxKoordinatoj::spuroSinkoLauxKoordinatoj(QColor momentaKoloro, QColo
 
 void spuroSinkoLauxKoordinatoj::difiniPlt( QwtPlot * Plt ){
 	plt = Plt;
+	vosto->attach(plt);
+	momentaPointoj->attach(plt);
+	MomentaPointo->attach(plt);	
 	plt->replot();
 }
 
