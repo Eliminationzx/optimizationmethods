@@ -530,7 +530,6 @@ void HuGiImpl::init()
 	ModPX = 10;
 	LogTxtBrsr->setText("");
 	static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->senspurigi();
-	static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->difiniUnuaPointo(MP);
 
 	qDebug()<<trUtf8("Задаю переменным начальные значения"); // Вывожу дебажную инфу на консоль.
 }

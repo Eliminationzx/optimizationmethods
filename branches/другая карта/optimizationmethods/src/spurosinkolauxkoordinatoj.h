@@ -3,7 +3,9 @@
 //
 #include "spuro.h"
 #include <QPointF>
+#include <QPolygonF>
 //
+class QwtPlotCurve;
 //! Отображает "след" по координатного спуска с дискретным шагом.
 class spuroSinkoLauxKoordinatoj : public spuro{
 Q_OBJECT
@@ -11,11 +13,13 @@ private:
 	//! Цвет текущей итерации.
 	QColor MomentaKoloro;
 	//! Точки прошедших итераций.
-//	QPolygonF Vosto;
+	QPolygonF Vosto;
+	QwtPlotCurve * vosto;
 	//! Точки текущей итерации.
-//	QPolygonF MomentaPointoj;
+	QPolygonF MomentaPointoj;
+	QwtPlotCurve * momentaPointoj;
 	//! Текущая точка.
-//	QPointF MomentaPointo;
+	QwtPlotCurve * MomentaPointo;
 public:
 	//! Устанавливает полотно, на котором будет нарисован след.
 	void difiniPlt( QwtPlot * Plt );
@@ -25,13 +29,6 @@ public:
 	                          QColor bazaKoloro //!< Основной цвет "следа".
 	                         );
 public slots:
-	/*! Установить первую точку.
-	 * 
-	 * Устанавливает точку с которой начинается поиск.
-	 */
-	void difiniUnuaPointo( QPointF p );
-	//! Перегружает difiniUnuaPointo(QPointF &p).
-	void difiniUnuaPointo( qreal x, qreal y );
 	/*! Завершить итерацию.
 	 * 
 	 * Делает последнюю точку из MomentaPointoj основной точкой текущей итерации.

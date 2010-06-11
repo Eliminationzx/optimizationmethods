@@ -2,10 +2,26 @@
 #include "Konstantoj.h"
 #include <qwt_plot.h>
 #include <qwt_plot_curve.h>
+#include <qwt_symbol.h>
 #include <QPolygonF>
 //
 spuroSinkoLauxKoordinatoj::spuroSinkoLauxKoordinatoj(QColor momentaKoloro, QColor bazaKoloro) 
-	: spuro( bazaKoloro), MomentaKoloro(momentaKoloro){}
+	: spuro( bazaKoloro), MomentaKoloro(momentaKoloro){
+	vosto = new QwtPlotCurve();
+	vosto->setPen(BazaKoloro);
+	vosto->attach(plt);
+
+	momentaPointoj = new QwtPlotCurve();
+	momentaPointoj->setPen(MomentaKoloro);
+	momentaPointoj->attach(plt);
+	
+	MomentaPointo = new QwtPlotCurve();
+	MomentaPointo->setPen(BazaKoloro);
+	QwtSymbol smbl(QwtSymbol::Ellipse, QBrush(Qt::lightGray), QPen(BazaKoloro),QSize(4,4));
+	MomentaPointo->setSymbol(smbl);
+	MomentaPointo->setStyle(QwtPlotCurve::Dots);
+	MomentaPointo->attach(plt);	
+}
 //
 
 void spuroSinkoLauxKoordinatoj::difiniPlt( QwtPlot * Plt ){
@@ -16,19 +32,7 @@ void spuroSinkoLauxKoordinatoj::difiniPlt( QwtPlot * Plt ){
 void spuroSinkoLauxKoordinatoj::finisxiIteracio(){
 }
 
-//void spuroSinkoLauxKoordinatoj::reveniAlMomentoPointo(){
-//	MomentaPointoj.append(MomentaPointo);
-//	update();// Планирую перерисовку.
-//}
-
 void spuroSinkoLauxKoordinatoj::aldoniSercxantaPointo(QPointF p){
-}
-
-void spuroSinkoLauxKoordinatoj::difiniUnuaPointo(QPointF p){
-}
-
-void spuroSinkoLauxKoordinatoj::difiniUnuaPointo( qreal x, qreal y ){
-	difiniUnuaPointo(QPointF(x, y));
 }
 
 void spuroSinkoLauxKoordinatoj::difiniMomentaKoloro(QColor c){

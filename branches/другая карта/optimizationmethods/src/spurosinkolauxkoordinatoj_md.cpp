@@ -9,9 +9,9 @@ spuroSinkoLauxKoordinatoj_md::spuroSinkoLauxKoordinatoj_md(QColor bazaKoloro, Qw
 	vosto = new QwtPlotCurve();
 	vosto->setPen(BazaKoloro);
 	vosto->attach(plt);
+	
 	MomentaPointo = new QwtPlotCurve();
 	MomentaPointo->setPen(BazaKoloro);
-	
 	QwtSymbol smbl(QwtSymbol::Ellipse, QBrush(Qt::lightGray), QPen(BazaKoloro),QSize(4,4));
 	MomentaPointo->setSymbol(smbl);
 	MomentaPointo->setStyle(QwtPlotCurve::Dots);
