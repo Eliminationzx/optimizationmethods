@@ -2,8 +2,10 @@
 #define SPUROSINKOLAUXKOORDINATOJ_H
 //
 #include "spuro.h"
+#include <QPolygonF>
 //
-//! Отображает "след" по координатного спуска с дискретным шагом.
+class QwtPlotCurve;
+//! Отображает "след" покоординатного спуска с дискретным шагом.
 class spuroNeMi : public spuro
 {
 Q_OBJECT
@@ -11,13 +13,16 @@ private:
 	//! Цвет отражения/растяжения/сжатия.
 	QColor MomentaKoloro;
 	//! Первая точка основного треугольника.
-//	QPointF P1;
+	QPointF P1;
 	//! Вторая точка основного треугольника.
-//	QPointF P2;
+	QPointF P2;
 	//! Третья точка основного треугольника.
-//	QPointF P3;
+	QPointF P3;
+	//! Треугольник.
+	QwtPlotCurve * triangulo;
 	//! Полигон для отрисовки отражения/растяжения/зжатия.
-//	QPolygonF SP;
+	QPolygonF SP;
+	QwtPlotCurve * sp;
 public:
 	//! Устанавливает полотно, на котором будет нарисован след.
 	void difiniPlt( QwtPlot * Plt );
