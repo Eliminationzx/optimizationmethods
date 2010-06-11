@@ -36,6 +36,10 @@ void spuroSinkoLauxKoordinatoj::finisxiIteracio(){
 }
 
 void spuroSinkoLauxKoordinatoj::aldoniSercxantaPointo(QPointF p){
+	MomentaPointoj<<p;
+	momentaPointoj->setData(MomentaPointoj);
+	MomentaPointo->setData(QPolygonF()<<p);
+	plt->replot();
 	
 }
 
