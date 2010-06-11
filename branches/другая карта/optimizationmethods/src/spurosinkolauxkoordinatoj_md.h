@@ -13,10 +13,10 @@ private:
 	QwtPlotCurve * vosto;
 	//! Точки прошедших итераций.
 	QPolygonF Vosto;
-	//! Точки текущей итерации.
-//	QPolygonF MomentaPointoj;
 	//! Текущая точка.
-//	QPointF MomentaPointo;
+	QwtPlotCurve * MomentaPointo;
+	double x;
+	double y;
 public:
 	//! Устанавливает полотно, на котором будет нарисован след.
 	void difiniPlt( QwtPlot * Plt );
