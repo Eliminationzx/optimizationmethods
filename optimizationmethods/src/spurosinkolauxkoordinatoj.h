@@ -37,7 +37,7 @@ public slots:
 	 */
 	void finisxiIteracio();
 	//! Вернуться к текущей точке.
-//	void reveniAlMomentoPointo();
+	void reveniAlMomentoPointo();
 	//! Добавить точку поиска.
 	void aldoniSercxantaPointo(QPointF);
 	//! Установить текущую точку.
