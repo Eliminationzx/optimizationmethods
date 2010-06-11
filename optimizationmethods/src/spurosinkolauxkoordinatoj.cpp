@@ -36,10 +36,12 @@ void spuroSinkoLauxKoordinatoj::finisxiIteracio(){
 }
 
 void spuroSinkoLauxKoordinatoj::aldoniSercxantaPointo(QPointF p){
+	
 }
 
 void spuroSinkoLauxKoordinatoj::difiniMomentaKoloro(QColor c){
 	MomentaKoloro = c;
+	momentaPointoj->setPen(MomentaKoloro);
 }
 
 
