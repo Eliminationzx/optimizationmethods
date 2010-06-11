@@ -49,6 +49,14 @@ void spuroHuGi::difiniPlt( QwtPlot * Plt ){
 }
 
 void spuroHuGi::difiniB1(QPointF & B1){
+	b1 = B1;
+	B1gxisB2.clear();
+	B1gxisB2<<B1;
+	B2gxisP.clear();
+	p1->setData(QPolygonF()<<B1);
+	b1gxisb2->setData(QPolygonF());
+	b2gxisp->setData(QPolygonF());
+	plt->replot();	
 }
 
 void spuroHuGi::difiniB2(QPointF & B2){
