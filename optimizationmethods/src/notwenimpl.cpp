@@ -42,9 +42,9 @@ NotWenImpl::NotWenImpl( funkcio *f, QVector<double> d, QWidget * parent, Qt::WFl
 	// добавляю вижет карты в позицию 1,1. Компановщик сам позаботится о назначении новому виджету родителя.
 	static_cast<QGridLayout*>(centralwidget->layout())->addWidget(MapoWdg, 2, 1);
 	
-	MapoWdg->setScale(20);// Ставлю масштаб побольше. Надо будет определться с оптимальным значением.
+//	MapoWdg->setScale(20);// Ставлю масштаб побольше. Надо будет определться с оптимальным значением.
 
-	Sp = new spuroSinkoLauxKoordinatoj_md(Qt::blue);
+	Sp = new spuroSinkoLauxKoordinatoj_md(Qt::black);
 	MapoWdg->difiniSpuro(Sp);
 //	MapoWdg->difiniFonaKoloro(Qt::green);
 
