@@ -56,10 +56,17 @@ void spuroHuGi::difiniB1(QPointF & B1){
 	p1->setData(QPolygonF()<<B1);
 	b1gxisb2->setData(QPolygonF());
 	b2gxisp->setData(QPolygonF());
-	plt->replot();	
+	plt->replot();
 }
 
 void spuroHuGi::difiniB2(QPointF & B2){
+	if(B1gxisB2.empty());else{
+		B1gxisB2<<B2;
+		b1gxisb2->setData(QPolygonF());
+		plt->replot();
+		B2gxisP.clear();
+		B2gxisP<<B2;
+	}
 }
 
 void spuroHuGi::difiniP(QPointF & P){
