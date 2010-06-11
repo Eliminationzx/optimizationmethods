@@ -166,15 +166,21 @@ void NotWenImpl::registriEraro()
 
 void NotWenImpl::sf_entered()
 {
-	LogTxtBrsr->append(trUtf8("Конец алгоритма. Найден минимум функции: %1. Количество ошибок: %2.").arg(F->rezulto(BP)).arg(KvantoEraroj));
+	LogTxtBrsr->append(trUtf8("Конец алгоритма. Найден минимум функции: %1. Количество ошибок: <b>%2</b>.").arg(F->rezulto(BP)).arg(KvantoEraroj));
 	if(F->metaObject()->className() == QString("RavinaFunkcio"))
-		LogTxtBrsr->append(trUtf8("Количество ошибок в квадратичной функции: %1.").arg(D[7]));
+	{
+		if(D[7] == -1)
+			LogTxtBrsr->append(trUtf8("Количество ошибок в квадратичной функции: не пройдена."));
+		else
+			LogTxtBrsr->append(trUtf8("Количество ошибок в квадратичной функции: <b>%1</b>.").arg(D[7]));
+	}
+	
 	
 	QString str = trUtf8("Найден минимум. ");
 	
 	if(KvantoEraroj > quanError){
 		// Слишком много ошибок.
-		str += trUtf8("Ваше количество ошибок (%1) превысило допустимый предел (%2). Начните заново.").arg(KvantoEraroj).arg(quanError);
+		str += trUtf8("Ваше количество ошибок (<b>%1</b>) превысило допустимый предел (%2). Начните заново.").arg(KvantoEraroj).arg(quanError);
 		QMessageBox::information(this, trUtf8("Внимание"), str);
 		if(F->metaObject()->className() == QString("RavinaFunkcio"))
 			close();
@@ -190,7 +196,13 @@ void NotWenImpl::sf_entered()
 		}
 		else if(F->metaObject()->className() == QString("RavinaFunkcio"))
 		{
-			str += trUtf8("Позовите преподавателя. Количество ошибок: <b>%1</b>.").arg(KvantoEraroj);
+			str += trUtf8("Позовите преподавателя. Количество ошибок: <b>%1</b>. ").arg(KvantoEraroj);
+		
+			if(D[7] == -1)
+				str += trUtf8("Количество ошибок в квадратичной функции: не пройдена.");
+			else
+				str += trUtf8("Количество ошибок в квадратичной функции: <b>%1</b>.").arg(D[7]);
+
 			QMessageBox::information(this, trUtf8("Поздравляем"), str);
 		}
 	}
@@ -338,7 +350,13 @@ void NotWenImpl::s1_entered()
 		_g_xkgradfxk->setChecked(true);
 		next1_bt->click();
 	}
-
+	else if(NumeroIteracio > 5 && KvantoEraroj > quanError)
+	{
+			QString str = trUtf8("Ваше количество ошибок (<b>%1</b>) превысило допустимый предел (%2). Вернитесь к квадратиной функции.").arg(KvantoEraroj).arg(quanError);
+			QMessageBox::information(this, trUtf8("Внимание"), str);
+			close();
+	}
+	
 	qDebug()<<trUtf8("Вошёл в s1"); // Вывожу дебажную инфу на консоль.
 }
 

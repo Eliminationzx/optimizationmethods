@@ -381,12 +381,12 @@ void MainWindowImpl::on_allow_activated()
 void MainWindowImpl::on_choiceMethods_activated(int index)
 {
 	// TODO
-	if(takeQuadFun[index][0] == false)
+	if((bool)takeQuadFun[index][0] == false)
 	{
 		quadFunction->setChecked(true);
 		ravinFunction->setCheckable(false);
 	}
-	else if(takeQuadFun[index][0] == true)
+	else if((bool)takeQuadFun[index][0] == true)
 		ravinFunction->setCheckable(true);
 }
 
