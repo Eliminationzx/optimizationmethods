@@ -62,7 +62,11 @@ void spuroSinkoLauxKoordinatoj::difiniMomentaPointo(QPointF p){
 }
 
 void spuroSinkoLauxKoordinatoj::reveniAlMomentoPointo(){
-	
+	MomentaPointoj<<Vosto.last();
+	vosto->setData(Vosto);
+	momentaPointoj->setData(MomentaPointoj);
+	MomentaPointo->setData(QPolygonF()<<MomentaPointoj.last());
+	plt->replot();
 }
 
 void spuroSinkoLauxKoordinatoj::senspurigi(){
