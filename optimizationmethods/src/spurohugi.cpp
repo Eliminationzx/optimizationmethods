@@ -20,14 +20,14 @@ spuroHuGi::spuroHuGi( QColor bazaKoloro )
 	QwtSymbol smbl(QwtSymbol::Ellipse, QBrush(Qt::lightGray), QPen(BazaKoloro),QSize(4,4));
 	p1->setSymbol(smbl);
 	p1->setStyle(QwtPlotCurve::Dots);
-	p1->attach(plt);	
+	p1->attach(plt);
 	
 	p2 = new QwtPlotCurve();
 	p2->setPen(BazaKoloro);
 //	QwtSymbol smbl(QwtSymbol::Ellipse, QBrush(Qt::lightGray), QPen(BazaKoloro),QSize(4,4));
 	p2->setSymbol(smbl);
 	p2->setStyle(QwtPlotCurve::Dots);
-	p2->attach(plt);	
+	p2->attach(plt);
 	
 	p = new QwtPlotCurve();
 	p->setPen(BazaKoloro);
@@ -40,6 +40,11 @@ spuroHuGi::spuroHuGi( QColor bazaKoloro )
 
 void spuroHuGi::difiniPlt( QwtPlot * Plt ){
 	plt = Plt;
+	b1gxisb2->attach(plt);
+	b2gxisp->attach(plt);
+	p1->attach(plt);
+	p2->attach(plt);
+	p->attach(plt);
 	plt->replot();
 }
 
