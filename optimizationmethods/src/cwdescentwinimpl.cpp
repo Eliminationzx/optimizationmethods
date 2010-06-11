@@ -40,8 +40,8 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> d, QWidget * par
 
 //	MapoWdg->setScale(20);// Ставлю масштаб побольше. Надо будет определиться с оптимальным значением.
 
-//	Sp = new spuroSinkoLauxKoordinatoj(Qt::white, Qt::blue);
-//	MapoWdg->difiniSpuro(Sp);
+	Sp = new spuroSinkoLauxKoordinatoj(Qt::white, Qt::black);
+	MapoWdg->difiniSpuro(Sp);
 //	MapoWdg->difiniFonaKoloro(Qt::green);
 
 //===Соединяю точки и надписи на форме=========================================
@@ -178,22 +178,17 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> d, QWidget * par
 	s1->assignProperty(distance_lb, "palette", this->palette());
 
 //---Прикручиваю карту---------------------------------------------------------
-//	connect(sNP, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(aldoniSercxantaPointo(QPointF)));
-//	connect(sMP, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniMomentaPointo(QPointF)));
+	connect(sNP, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(aldoniSercxantaPointo(QPointF)));
+	connect(sMP, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniMomentaPointo(QPointF)));
 
-//	connect(s3, SIGNAL(entered()), Sp, SLOT(reveniAlMomentoPointo()));
-//	connect(s6, SIGNAL(entered()), Sp, SLOT(reveniAlMomentoPointo()));
-//	connect(s8, SIGNAL(entered()), Sp, SLOT(reveniAlMomentoPointo()));
-//	connect(s9s11, SIGNAL(triggered()), Sp, SLOT(reveniAlMomentoPointo()));
-
-//	connect(s1, SIGNAL(entered()), Sp, SLOT(finisxiIteracio()));
+	connect(s1, SIGNAL(entered()), Sp, SLOT(finisxiIteracio()));
 //-------------------------------------------------------------------------------
 
 //---Добавляю состояния в автомат и запускаю его.------------------------------
 	SM->addState(so);
 	SM->addState(sf);
 	SM->setInitialState(so);
-//	init();
+	init();
 	SM->start();
 //=============================================================================
 
@@ -416,7 +411,6 @@ void CWdescentWinImpl::init(){
 	ModPX = D[3];
 	LogTxtBrsr->setText("");
 	static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->senspurigi();
-	static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->difiniUnuaPointo(MP);
 
 	qDebug()<<trUtf8("Задаю переменным начальные значения"); // Вывожу дебажную инфу на консоль.
 }
