@@ -33,6 +33,13 @@ void spuroSinkoLauxKoordinatoj::difiniPlt( QwtPlot * Plt ){
 }
 
 void spuroSinkoLauxKoordinatoj::finisxiIteracio(){
+	Vosto<<MomentaPointoj;
+	MomentaPointoj.clear();
+	MomentaPointoj<<Vosto.last();
+	vosto->setData(Vosto);
+	momentaPointoj->setData(MomentaPointoj);
+	MomentaPointo->setData(MomentaPointoj);
+	plt->replot();
 }
 
 void spuroSinkoLauxKoordinatoj::aldoniSercxantaPointo(QPointF p){
