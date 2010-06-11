@@ -2,10 +2,40 @@
 #include "Konstantoj.h"
 #include <qwt_plot.h>
 #include <qwt_plot_curve.h>
+#include <qwt_symbol.h>
 #include <QPolygonF>
 //
 spuroHuGi::spuroHuGi( QColor bazaKoloro )
-	: spuro(bazaKoloro)/*, b1(0, 0)*/{}
+	: spuro(bazaKoloro){
+	b1gxisb2 = new QwtPlotCurve();
+	b1gxisb2->setPen(BazaKoloro);
+	b1gxisb2->attach(plt);
+	
+	b2gxisp = new QwtPlotCurve();
+	b2gxisp->setPen(BazaKoloro);
+	b2gxisp->attach(plt);
+	
+	p1 = new QwtPlotCurve();
+	p1->setPen(BazaKoloro);
+	QwtSymbol smbl(QwtSymbol::Ellipse, QBrush(Qt::lightGray), QPen(BazaKoloro),QSize(4,4));
+	p1->setSymbol(smbl);
+	p1->setStyle(QwtPlotCurve::Dots);
+	p1->attach(plt);	
+	
+	p2 = new QwtPlotCurve();
+	p2->setPen(BazaKoloro);
+//	QwtSymbol smbl(QwtSymbol::Ellipse, QBrush(Qt::lightGray), QPen(BazaKoloro),QSize(4,4));
+	p2->setSymbol(smbl);
+	p2->setStyle(QwtPlotCurve::Dots);
+	p2->attach(plt);	
+	
+	p = new QwtPlotCurve();
+	p->setPen(BazaKoloro);
+//	QwtSymbol smbl(QwtSymbol::Ellipse, QBrush(Qt::lightGray), QPen(BazaKoloro),QSize(4,4));
+	p->setSymbol(smbl);
+	p->setStyle(QwtPlotCurve::Dots);
+	p->attach(plt);
+}
 //
 
 void spuroHuGi::difiniPlt( QwtPlot * Plt ){
