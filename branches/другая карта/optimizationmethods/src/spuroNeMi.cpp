@@ -44,19 +44,19 @@ void spuroNeMi::senspurigi(){
 
 void spuroNeMi::difiniP1(const QPointF & p){
 	P1 = p;
-	sp->setData(QPolygonF()<<P1<<P2<<P3<<P1);
+	triangulo->setData(QPolygonF()<<P1<<P2<<P3<<P1);
 	plt->replot();
 }
 
 void spuroNeMi::difiniP2(const QPointF & p){
 	P2 = p;
-	sp->setData(QPolygonF()<<P1<<P2<<P3<<P1);
+	triangulo->setData(QPolygonF()<<P1<<P2<<P3<<P1);
 	plt->replot();
 }
 
 void spuroNeMi::difiniP3(const QPointF & p){
 	P3 = p;
-	sp->setData(QPolygonF()<<P1<<P2<<P3<<P1);
+	triangulo->setData(QPolygonF()<<P1<<P2<<P3<<P1);
 	plt->replot();
 }
 

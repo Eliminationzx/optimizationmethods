@@ -41,9 +41,9 @@ NeMiImpl::NeMiImpl(  funkcio *f, QVector<double> d, QWidget * parent, Qt::WFlags
 	// Создаю карту.
 	verticalLayout_3->addWidget(MapoWdg, 2);
 
-	MapoWdg->setScale(20);// Ставлю масштаб побольше. Надо будет определться с оптимальным значением.
+//	MapoWdg->setScale(20);// Ставлю масштаб побольше. Надо будет определться с оптимальным значением.
 
-	Sp = new spuroNeMi(Qt::white, Qt::blue);
+	Sp = new spuroNeMi(Qt::white, Qt::black);
 	MapoWdg->difiniSpuro(Sp);
 //	MapoWdg->difiniFonaKoloro(Qt::green);
 	
@@ -237,7 +237,6 @@ void NeMiImpl::init(){
 	P2 = QPointF(D[4] + D[1],D[5]);
 	P3 = QPointF(D[4],D[5] + D[2]);
 	LogTxtBrsr->setText("");
-//	static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->senspurigi();
 
 	qDebug()<<trUtf8("Задаю переменным начальные значения"); // Вывожу дебажную инфу на консоль.
 }
