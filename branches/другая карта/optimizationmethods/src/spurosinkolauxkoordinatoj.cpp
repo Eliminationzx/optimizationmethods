@@ -56,11 +56,14 @@ void spuroSinkoLauxKoordinatoj::difiniMomentaKoloro(QColor c){
 
 
 void spuroSinkoLauxKoordinatoj::difiniMomentaPointo(QPointF p){
-	Vosto<<p;
+	MomentaPointoj<<p;
 	MomentaPointo->setData(QPolygonF()<<p);
 	plt->replot();
 }
 
+void spuroSinkoLauxKoordinatoj::reveniAlMomentoPointo(){
+	
+}
 
 void spuroSinkoLauxKoordinatoj::senspurigi(){
 	vosto->setData(QPolygonF());
