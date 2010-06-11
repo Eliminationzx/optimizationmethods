@@ -181,6 +181,12 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> d, QWidget * par
 	connect(sNP, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(aldoniSercxantaPointo(QPointF)));
 	connect(sMP, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniMomentaPointo(QPointF)));
 
+	connect(s3, SIGNAL(entered()), Sp, SLOT(reveniAlMomentoPointo()));
+	connect(s1, SIGNAL(entered()), Sp, SLOT(finisxiIteracio()));
+	connect(s6, SIGNAL(entered()), Sp, SLOT(reveniAlMomentoPointo()));
+	connect(s8, SIGNAL(entered()), Sp, SLOT(reveniAlMomentoPointo()));
+	connect(s9s11, SIGNAL(triggered()), Sp, SLOT(reveniAlMomentoPointo()));
+
 	connect(s1, SIGNAL(entered()), Sp, SLOT(finisxiIteracio()));
 //-------------------------------------------------------------------------------
 
