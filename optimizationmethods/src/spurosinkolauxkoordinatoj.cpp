@@ -15,12 +15,12 @@ spuroSinkoLauxKoordinatoj::spuroSinkoLauxKoordinatoj(QColor momentaKoloro, QColo
 	momentaPointoj->setPen(MomentaKoloro);
 	momentaPointoj->attach(plt);
 	
-	MomentaPointo = new QwtPlotCurve();
-	MomentaPointo->setPen(BazaKoloro);
+	momentaPointo = new QwtPlotCurve();
+	momentaPointo->setPen(BazaKoloro);
 	QwtSymbol smbl(QwtSymbol::Ellipse, QBrush(Qt::lightGray), QPen(BazaKoloro),QSize(4,4));
-	MomentaPointo->setSymbol(smbl);
-	MomentaPointo->setStyle(QwtPlotCurve::Dots);
-	MomentaPointo->attach(plt);	
+	momentaPointo->setSymbol(smbl);
+	momentaPointo->setStyle(QwtPlotCurve::Dots);
+	momentaPointo->attach(plt);	
 }
 //
 
@@ -28,7 +28,7 @@ void spuroSinkoLauxKoordinatoj::difiniPlt( QwtPlot * Plt ){
 	plt = Plt;
 	vosto->attach(plt);
 	momentaPointoj->attach(plt);
-	MomentaPointo->attach(plt);	
+	momentaPointo->attach(plt);	
 	plt->replot();
 }
 
@@ -38,14 +38,14 @@ void spuroSinkoLauxKoordinatoj::finisxiIteracio(){
 	MomentaPointoj<<Vosto.last();
 	vosto->setData(Vosto);
 	momentaPointoj->setData(MomentaPointoj);
-	MomentaPointo->setData(MomentaPointoj);
+	momentaPointo->setData(MomentaPointoj);
 	plt->replot();
 }
 
 void spuroSinkoLauxKoordinatoj::aldoniSercxantaPointo(QPointF p){
 	MomentaPointoj<<p;
 	momentaPointoj->setData(MomentaPointoj);
-	MomentaPointo->setData(QPolygonF()<<p);
+	momentaPointo->setData(QPolygonF()<<p);
 	plt->replot();
 }
 
@@ -56,22 +56,22 @@ void spuroSinkoLauxKoordinatoj::difiniMomentaKoloro(QColor c){
 
 
 void spuroSinkoLauxKoordinatoj::difiniMomentaPointo(QPointF p){
+	MomentaPointo = p;
 	MomentaPointoj<<p;
-	MomentaPointo->setData(QPolygonF()<<p);
+	momentaPointo->setData(QPolygonF()<<p);
 	plt->replot();
 }
 
 void spuroSinkoLauxKoordinatoj::reveniAlMomentoPointo(){
-	MomentaPointoj<<Vosto.last();
-	vosto->setData(Vosto);
+	MomentaPointoj<<MomentaPointo;
 	momentaPointoj->setData(MomentaPointoj);
-	MomentaPointo->setData(QPolygonF()<<MomentaPointoj.last());
+	momentaPointo->setData(QPolygonF()<<MomentaPointoj.last());
 	plt->replot();
 }
 
 void spuroSinkoLauxKoordinatoj::senspurigi(){
 	vosto->setData(QPolygonF());
-	MomentaPointo->setData(QPolygonF()<<Vosto.first());
+	momentaPointo->setData(QPolygonF()<<Vosto.first());
 	Vosto.clear();
 	momentaPointoj->setData(QPolygonF());
 	MomentaPointoj.clear();

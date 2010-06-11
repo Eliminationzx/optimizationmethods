@@ -19,7 +19,8 @@ private:
 	QPolygonF MomentaPointoj;
 	QwtPlotCurve * momentaPointoj;
 	//! Текущая точка.
-	QwtPlotCurve * MomentaPointo;
+	QwtPlotCurve * momentaPointo;
+	QPointF MomentaPointo;
 public:
 	//! Устанавливает полотно, на котором будет нарисован след.
 	void difiniPlt( QwtPlot * Plt );
