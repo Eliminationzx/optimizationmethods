@@ -42,13 +42,11 @@ FasterDescentImpl::FasterDescentImpl( funkcio *f, QVector<double> d, QWidget * p
 	// добавляю вижет карты в позицию 1,1. Компановщик сам позаботится о назначении новому виджету родителя.
 	static_cast<QGridLayout*>(centralwidget->layout())->addWidget(MapoWdg, 2, 1);
 
-	MapoWdg->setScale(20);// Ставлю масштаб побольше. Надо будет определться с оптимальным значением.
+//	MapoWdg->setScale(20);// Ставлю масштаб побольше. Надо будет определться с оптимальным значением.
 
-	Sp = new spuroSinkoLauxKoordinatoj_md(Qt::blue, Qt::blue);
+	Sp = new spuroSinkoLauxKoordinatoj_md(Qt::black);
 	MapoWdg->difiniSpuro(Sp);
-	MapoWdg->difiniFonaKoloro(Qt::green);
-
-	connect(MapoWdg, SIGNAL(MusaPos(const QString &)), statusBar(), SLOT(showMessage( const QString &)));
+//	MapoWdg->difiniFonaKoloro(Qt::green);
 
 	//===Соединяю точки и надписи на форме=========================================
 	SignalantoPorPointF * sBP = new SignalantoPorPointF(&BP, F, this);
@@ -188,20 +186,15 @@ void FasterDescentImpl::registriEraro()
 
 void FasterDescentImpl::sf_entered()
 {
-	LogTxtBrsr->append(trUtf8("Конец алгоритма. Найден минимум функции: %1. Количество ошибок: <b>%2</b>.").arg(F->rezulto(BP)).arg(KvantoEraroj));
+	LogTxtBrsr->append(trUtf8("Конец алгоритма. Найден минимум функции: %1. Количество ошибок: %2.").arg(F->rezulto(BP)).arg(KvantoEraroj));
 	if(F->metaObject()->className() == QString("RavinaFunkcio"))
-	{
-		if(D[7] == -1)
-			LogTxtBrsr->append(trUtf8("Количество ошибок в квадратичной функции: не пройдена."));
-		else
-			LogTxtBrsr->append(trUtf8("Количество ошибок в квадратичной функции: <b>%1</b>.").arg(D[7]));
-	}
+		LogTxtBrsr->append(trUtf8("Количество ошибок в квадратичной функции: %1.").arg(D[7]));
 	
 	QString str = trUtf8("Найден минимум. ");
 	
 	if(KvantoEraroj > quanError){
 		// Слишком много ошибок.
-		str += trUtf8("Ваше количество ошибок (<b>%1</b>) превысило допустимый предел (%2). Начните заново.").arg(KvantoEraroj).arg(quanError);
+		str += trUtf8("Ваше количество ошибок (%1) превысило допустимый предел (%2). Начните заново.").arg(KvantoEraroj).arg(quanError);
 		QMessageBox::information(this, trUtf8("Внимание"), str);
 		if(F->metaObject()->className() == QString("RavinaFunkcio"))
 			close();
@@ -217,13 +210,7 @@ void FasterDescentImpl::sf_entered()
 		}
 		else if(F->metaObject()->className() == QString("RavinaFunkcio"))
 		{
-			str += trUtf8("Позовите преподавателя. Количество ошибок: <b>%1</b>. ").arg(KvantoEraroj);
-		
-			if(D[7] == -1)
-				str += trUtf8("Количество ошибок в квадратичной функции: не пройдена.");
-			else
-				str += trUtf8("Количество ошибок в квадратичной функции: <b>%1</b>.").arg(D[7]);
-
+			str += trUtf8("Позовите преподавателя. Количество ошибок: <b>%1</b>.").arg(KvantoEraroj);
 			QMessageBox::information(this, trUtf8("Поздравляем"), str);
 		}
 	}
@@ -234,7 +221,7 @@ void FasterDescentImpl::sf_entered()
 void FasterDescentImpl::s9_entered()
 {
 	BP = QPointF(BP.x() - lengthStep.x()*(grad.x() / Length(grad)), BP.y() - lengthStep.x()*(grad.y() / Length(grad))); 
-
+//	BP = QPointF(BP.x() - 0.1*(grad.x() / Length(grad)), BP.y() - 0.1*(grad.y() / Length(grad))); 
 	qDebug()<<trUtf8("Вошёл в s9"); // Вывожу дебажную инфу на консоль.
 	
 	emit stateHasEntered(); // Переход по этому сигналу произойдёт, только если выполнится его условие.
@@ -367,13 +354,6 @@ void FasterDescentImpl::s1_entered()
 		qApp->processEvents();
 		inserts_bt->click();
 	}
-	else if(NumeroIteracio > 5 && KvantoEraroj > quanError)
-	{
-			QString str = trUtf8("Ваше количество ошибок (<b>%1</b>) превысило допустимый предел (%2). Вернитесь к квадратиной функции.").arg(KvantoEraroj).arg(quanError);
-			QMessageBox::information(this, trUtf8("Внимание"), str);
-			close();
-	}
-
 	
 	qDebug()<<trUtf8("Вошёл в s1"); // Вывожу дебажную инфу на консоль.
 }
@@ -393,7 +373,7 @@ void FasterDescentImpl::init()
 	LogTxtBrsr->setText("");
 
 	static_cast<spuroSinkoLauxKoordinatoj_md*>(Sp)->senspurigi();
-	static_cast<spuroSinkoLauxKoordinatoj_md*>(Sp)->difiniUnuaPointo(BP);
+//	static_cast<spuroSinkoLauxKoordinatoj_md*>(Sp)->difiniUnuaPointo(BP);
 
 	qDebug()<<trUtf8("Задаю переменным начальные значения"); // Вывожу дебажную инфу на консоль.
 }

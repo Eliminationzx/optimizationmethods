@@ -2,28 +2,30 @@
 #define SPUROHUGI_H
 //
 #include "spuro.h"
+#include <QPolygonF>
 //
+class QwtPlotCurve;
+//! Отображает "след" метода Хука-Дживса.
 class spuroHuGi : public spuro
 {
 private:
 	//! Точка B1.
 	QPointF b1;
+	QwtPlotCurve * p1;
 	//! Точки от B1 до B2.
 	QPolygonF B1gxisB2;
+	QwtPlotCurve * b1gxisb2;
+	QwtPlotCurve * p2;
 	//! Точки от B2 до P.
 	QPolygonF B2gxisP;
+	QwtPlotCurve * b2gxisp;
+	QwtPlotCurve * p;
 public:
-	//! Реализует отрисовку элемента.
-	void paint(QPainter *painter, //!< Контекст рисования элемента.
-	           const QStyleOptionGraphicsItem *option, //!< Опции стилей для элементов, такие как его состояние, область отображения и подсказки степени его детализации.
-	           QWidget *widget = 0 //!< Указывает на виджет, который отрисовывается; в противном случае он равен 0. Для кэшированного рисования widget всегда равен 0.
-	          );
-	//! Возвращает приблизительную площадь отрисовываемую элементом.
-	QRectF boundingRect() const;
+	//! Устанавливает полотно, на котором будет нарисован след.
+	void difiniPlt( QwtPlot * Plt );
 	
-	spuroHuGi( QColor bazaKoloro, //!< Основной цвет "следа".
-	           qreal Skalo = 1, //!< Коэффициент масштаба.
-	           QGraphicsItem * parent = 0 //!< Элемент родитель.
+	spuroHuGi(
+	          QColor bazaKoloro //!< Основной цвет "следа".
 	         );
 public slots:
 	/*! Установить точку B1.
@@ -39,5 +41,7 @@ public slots:
 	 * Вызывать её до difiniB2 бесполезно.
 	 */
 	void difiniP(QPointF & P);
+	//! Очищает "след".
+	void senspurigi();
 };
 #endif

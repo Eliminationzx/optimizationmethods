@@ -38,13 +38,11 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> d, QWidget * par
 	// Создаю карту.
 	verticalLayout_4->addWidget(MapoWdg, 2);
 
-	MapoWdg->setScale(20);// Ставлю масштаб побольше. Надо будет определиться с оптимальным значением.
+//	MapoWdg->setScale(20);// Ставлю масштаб побольше. Надо будет определиться с оптимальным значением.
 
-	Sp = new spuroSinkoLauxKoordinatoj(Qt::white, Qt::blue);
+	Sp = new spuroSinkoLauxKoordinatoj(Qt::white, Qt::black);
 	MapoWdg->difiniSpuro(Sp);
-	MapoWdg->difiniFonaKoloro(Qt::green);
-
-	connect(MapoWdg, SIGNAL(MusaPos(const QString &)), statusBar(), SLOT(showMessage( const QString &)));
+//	MapoWdg->difiniFonaKoloro(Qt::green);
 
 //===Соединяю точки и надписи на форме=========================================
 	SignalantoPorPointF * sMP = new SignalantoPorPointF(&MP, F, this);
@@ -184,6 +182,7 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> d, QWidget * par
 	connect(sMP, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniMomentaPointo(QPointF)));
 
 	connect(s3, SIGNAL(entered()), Sp, SLOT(reveniAlMomentoPointo()));
+	connect(s1, SIGNAL(entered()), Sp, SLOT(finisxiIteracio()));
 	connect(s6, SIGNAL(entered()), Sp, SLOT(reveniAlMomentoPointo()));
 	connect(s8, SIGNAL(entered()), Sp, SLOT(reveniAlMomentoPointo()));
 	connect(s9s11, SIGNAL(triggered()), Sp, SLOT(reveniAlMomentoPointo()));
@@ -276,22 +275,16 @@ void CWdescentWinImpl::registriEraro(){
 }
 
 void CWdescentWinImpl::sf_entered(){
-	LogTxtBrsr->append(trUtf8("Конец алгоритма. Найден минимум функции: %1 Количество ошибок: <b>%2</b>.").arg(F->rezulto(MP)).arg(KvantoEraroj));
+	LogTxtBrsr->append(trUtf8("Конец алгоритма. Найден минимум функции: %1 Количество ошибок: %2.").arg(F->rezulto(MP)).arg(KvantoEraroj));
 	if(F->metaObject()->className() == QString("RavinaFunkcio"))
-	{
-		if(D[7] == -1)
-			LogTxtBrsr->append(trUtf8("Количество ошибок в квадратичной функции: не пройдена."));
-		else
-			LogTxtBrsr->append(trUtf8("Количество ошибок в квадратичной функции: <b>%1</b>.").arg(D[7]));
-	}
-	
+		LogTxtBrsr->append(trUtf8("Количество ошибок в квадратичной функции: %1.").arg(D[7]));
 	QString str = trUtf8("Найден минимум. ");
 
 	qDebug()<<trUtf8("Конец алгоритма. Найден минимум"); // Вывожу дебажную инфу на консоль.
 
 	if(KvantoEraroj > D[6]){
 		// Слишком много ошибок.
-		str += trUtf8("Ваше количество ошибок (<b>%1</b>) превысило допустимый предел (%2). Начните заново.").arg(KvantoEraroj).arg(D[6]);
+		str += trUtf8("Ваше количество ошибок (%1) превысило допустимый предел (%2). Начните заново.").arg(KvantoEraroj).arg(D[6]);
 		QMessageBox::information(this, trUtf8("Внимание"), str);
 		if(F->metaObject()->className() == QString("RavinaFunkcio"))
 			close();
@@ -307,13 +300,7 @@ void CWdescentWinImpl::sf_entered(){
 		}
 		else if(F->metaObject()->className() == QString("RavinaFunkcio"))
 		{
-			str += trUtf8("Позовите преподавателя. Количество ошибок: <b>%1</b>. ").arg(KvantoEraroj);
-		
-			if(D[7] == -1)
-				str += trUtf8("Количество ошибок в квадратичной функции: не пройдена.");
-			else
-				str += trUtf8("Количество ошибок в квадратичной функции: <b>%1</b>.").arg(D[7]);
-
+			str += trUtf8("Позовите преподавателя. Количество ошибок: <b>%1</b>.").arg(KvantoEraroj);
 			QMessageBox::information(this, trUtf8("Поздравляем"), str);
 		}
 	}
@@ -430,7 +417,6 @@ void CWdescentWinImpl::init(){
 	ModPX = D[3];
 	LogTxtBrsr->setText("");
 	static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->senspurigi();
-	static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->difiniUnuaPointo(MP);
 
 	qDebug()<<trUtf8("Задаю переменным начальные значения"); // Вывожу дебажную инфу на консоль.
 }

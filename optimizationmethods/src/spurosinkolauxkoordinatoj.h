@@ -2,42 +2,34 @@
 #define SPUROSINKOLAUXKOORDINATOJ_H
 //
 #include "spuro.h"
+#include <QPointF>
+#include <QPolygonF>
 //
+class QwtPlotCurve;
 //! Отображает "след" по координатного спуска с дискретным шагом.
-class spuroSinkoLauxKoordinatoj : public spuro
-{
+class spuroSinkoLauxKoordinatoj : public spuro{
 Q_OBJECT
 private:
 	//! Цвет текущей итерации.
 	QColor MomentaKoloro;
 	//! Точки прошедших итераций.
 	QPolygonF Vosto;
+	QwtPlotCurve * vosto;
 	//! Точки текущей итерации.
 	QPolygonF MomentaPointoj;
+	QwtPlotCurve * momentaPointoj;
 	//! Текущая точка.
+	QwtPlotCurve * momentaPointo;
 	QPointF MomentaPointo;
 public:
-	//! Реализует отрисовку элемента.
-	void paint(QPainter *painter, //!< Контекст рисования элемента.
-	           const QStyleOptionGraphicsItem *option, //!< Опции стилей для элементов, такие как его состояние, область отображения и подсказки степени его детализации.
-	           QWidget *widget = 0 //!< Указывает на виджет, который отрисовывается; в противном случае он равен 0. Для кэшированного рисования widget всегда равен 0.
-	          );
-	//! Возвращает приблизительную площадь отрисовываемую элементом.
-	QRectF boundingRect() const;
+	//! Устанавливает полотно, на котором будет нарисован след.
+	void difiniPlt( QwtPlot * Plt );
 	
+
 	spuroSinkoLauxKoordinatoj(QColor momentaKoloro, //!< Цвет текущей итерации.
-	                          QColor bazaKoloro, //!< Основной цвет "следа".
-	                          qreal Skalo = 1, //!< Коэффициент масштаба.
-	                          QGraphicsItem * parent = 0 //!< Элемент родитель.
+	                          QColor bazaKoloro //!< Основной цвет "следа".
 	                         );
 public slots:
-	/*! Установить первую точку.
-	 * 
-	 * Устанавливает точку с которой начинается поиск.
-	 */
-	void difiniUnuaPointo( QPointF p );
-	//! Перегружает difiniUnuaPointo(QPointF &p).
-	void difiniUnuaPointo( qreal x, qreal y );
 	/*! Завершить итерацию.
 	 * 
 	 * Делает последнюю точку из MomentaPointoj основной точкой текущей итерации.
@@ -51,8 +43,6 @@ public slots:
 	void aldoniSercxantaPointo(QPointF);
 	//! Установить текущую точку.
 	void difiniMomentaPointo(QPointF);
-	//! Установить базовый цвет.
-	void difiniBazaKoloro(QColor bazaKoloro);
 	//! Установить текущий цвет.
 	void difiniMomentaKoloro(QColor momentaKoloro);
 	//! Очищает "след".

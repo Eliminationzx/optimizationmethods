@@ -41,11 +41,11 @@ NeMiImpl::NeMiImpl(  funkcio *f, QVector<double> d, QWidget * parent, Qt::WFlags
 	// Создаю карту.
 	verticalLayout_3->addWidget(MapoWdg, 2);
 
-	MapoWdg->setScale(20);// Ставлю масштаб побольше. Надо будет определться с оптимальным значением.
+//	MapoWdg->setScale(20);// Ставлю масштаб побольше. Надо будет определться с оптимальным значением.
 
-	Sp = new spuroNeMi(Qt::white, Qt::blue);
+	Sp = new spuroNeMi(Qt::white, Qt::black);
 	MapoWdg->difiniSpuro(Sp);
-	MapoWdg->difiniFonaKoloro(Qt::green);
+//	MapoWdg->difiniFonaKoloro(Qt::green);
 	
 //===Соединяю точки и надписи на форме=========================================
 	SignalantoPorPointF * sP1 = new SignalantoPorPointF(&P1, F, this);
@@ -237,7 +237,6 @@ void NeMiImpl::init(){
 	P2 = QPointF(D[4] + D[1],D[5]);
 	P3 = QPointF(D[4],D[5] + D[2]);
 	LogTxtBrsr->setText("");
-//	static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->senspurigi();
 
 	qDebug()<<trUtf8("Задаю переменным начальные значения"); // Вывожу дебажную инфу на консоль.
 }
@@ -413,22 +412,16 @@ void NeMiImpl::s11_entered(){
 }
 
 void NeMiImpl::sf_entered(){
-	LogTxtBrsr->append(trUtf8("Конец алгоритма. Найден минимум функции: %1. Количество ошибок: <b>%2</b>.").arg(F->rezulto(*Pl)).arg(KvantoEraroj));
+	LogTxtBrsr->append(trUtf8("Конец алгоритма. Найден минимум функции: %1. Количество ошибок: %2.").arg(F->rezulto(*Pl)).arg(KvantoEraroj));
 	if(F->metaObject()->className() == QString("RavinaFunkcio"))
-	{
-		if(D[7] == -1)
-			LogTxtBrsr->append(trUtf8("Количество ошибок в квадратичной функции: не пройдена."));
-		else
-			LogTxtBrsr->append(trUtf8("Количество ошибок в квадратичной функции: <b>%1</b>.").arg(D[7]));
-	}
-	
+		LogTxtBrsr->append(trUtf8("Количество ошибок в квадратичной функции: %1.").arg(D[7]));
 	QString str = trUtf8("Найден минимум. ");
 
 	qDebug()<<trUtf8("Конец алгоритма."); // Вывожу дебажную инфу на консоль.
 
 	if(KvantoEraroj > D[6]){
 		// Слишком много ошибок.
-		str += trUtf8("Ваше количество ошибок (<b>%1</b>) превысило допустимый предел (%2). Начните заново.").arg(KvantoEraroj).arg(D[6]);
+		str += trUtf8("Ваше количество ошибок (%1) превысило допустимый предел (%2). Начните заново.").arg(KvantoEraroj).arg(D[6]);
 		QMessageBox::information(this, trUtf8("Внимание"), str);
 		if(F->metaObject()->className() == QString("RavinaFunkcio"))
 			close();
@@ -444,13 +437,7 @@ void NeMiImpl::sf_entered(){
 		}
 		else if(F->metaObject()->className() == QString("RavinaFunkcio"))
 		{
-			str += trUtf8("Позовите преподавателя. Количество ошибок: <b>%1</b>. ").arg(KvantoEraroj);
-		
-			if(D[7] == -1)
-				str += trUtf8("Количество ошибок в квадратичной функции: не пройдена.");
-			else
-				str += trUtf8("Количество ошибок в квадратичной функции: <b>%1</b>.").arg(D[7]);
-
+			str += trUtf8("Позовите преподавателя. Количество ошибок: <b>%1</b>.").arg(KvantoEraroj);
 			QMessageBox::information(this, trUtf8("Поздравляем"), str);
 		}
 	}

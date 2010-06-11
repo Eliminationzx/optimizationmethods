@@ -47,8 +47,9 @@ MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WFlags flag)
 	takeQuadFun.resize(6);
 	for(int i = 0; i < 6; ++i)
 	{
-		takeQuadFun[i].append(false);
-		takeQuadFun[i].append(-1);
+		takeQuadFun[i].resize(2);
+		takeQuadFun[i][0] = false;
+		takeQuadFun[i][1] = -1;
 	}
 }
 //
@@ -380,12 +381,12 @@ void MainWindowImpl::on_allow_activated()
 void MainWindowImpl::on_choiceMethods_activated(int index)
 {
 	// TODO
-	if((bool)takeQuadFun[index][0] == false)
+	if(takeQuadFun[index][0] == false)
 	{
 		quadFunction->setChecked(true);
 		ravinFunction->setCheckable(false);
 	}
-	else if((bool)takeQuadFun[index][0] == true)
+	else if(takeQuadFun[index][0] == true)
 		ravinFunction->setCheckable(true);
 }
 

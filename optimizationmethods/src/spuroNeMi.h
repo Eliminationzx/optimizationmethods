@@ -2,8 +2,10 @@
 #define SPUROSINKOLAUXKOORDINATOJ_H
 //
 #include "spuro.h"
+#include <QPolygonF>
 //
-//! Отображает "след" по координатного спуска с дискретным шагом.
+class QwtPlotCurve;
+//! Отображает "след" покоординатного спуска с дискретным шагом.
 class spuroNeMi : public spuro
 {
 Q_OBJECT
@@ -16,21 +18,18 @@ private:
 	QPointF P2;
 	//! Третья точка основного треугольника.
 	QPointF P3;
+	//! Треугольник.
+	QwtPlotCurve * triangulo;
 	//! Полигон для отрисовки отражения/растяжения/зжатия.
 	QPolygonF SP;
+	QwtPlotCurve * sp;
 public:
-	//! Реализует отрисовку элемента.
-	void paint(QPainter *painter, //!< Контекст рисования элемента.
-	           const QStyleOptionGraphicsItem *option, //!< Опции стилей для элементов, такие как его состояние, область отображения и подсказки степени его детализации.
-	           QWidget *widget = 0 //!< Указывает на виджет, который отрисовывается; в противном случае он равен 0. Для кэшированного рисования widget всегда равен 0.
-	          );
-	//! Возвращает приблизительную площадь отрисовываемую элементом.
-	QRectF boundingRect() const;
+	//! Устанавливает полотно, на котором будет нарисован след.
+	void difiniPlt( QwtPlot * Plt );
 	
+
 	spuroNeMi(QColor momentaKoloro, //!< Текущий цвет "следа".
-	          QColor bazaKoloro, //!< Основной цвет "следа".
-	          qreal Skalo = 1, //!< Коэффициент масштаба.
-	          QGraphicsItem * parent = 0 //!< Элемент родитель.
+	          QColor bazaKoloro //!< Основной цвет "следа".
 	         );
 public slots:
 	/*! Завершить итерацию.
@@ -48,8 +47,6 @@ public slots:
 	void difiniPDilato(const QPointF &);
 	//! Установить точку сжатия.
 	void difiniPKompakto(const QPointF &);
-	//! Установить базовый цвет.
-	void difiniBazaKoloro(QColor bazaKoloro);
 	//! Установить текущий цвет.
 	void difiniMomentaKoloro(QColor momentaKoloro);
 	//! Очищает "след".

@@ -1,85 +1,66 @@
 #include "spuroNeMi.h"
 #include "Konstantoj.h"
 #include "demonstrataqpointf.h"
-#include <QPolygonF>
-#include <QPainter>
-#include <QGraphicsScene>
-#include <QGraphicsView>
+#include <qwt_plot.h>
+#include <qwt_plot_curve.h>
 //
-spuroNeMi::spuroNeMi(QColor momentaKoloro, QColor bazaKoloro, qreal Skalo, QGraphicsItem * parent) 
-	: spuro( A::CWdescent_fix, bazaKoloro, Skalo, parent), MomentaKoloro(momentaKoloro){}
+spuroNeMi::spuroNeMi(QColor momentaKoloro, QColor bazaKoloro ) 
+	: spuro(bazaKoloro), MomentaKoloro(momentaKoloro){
+	triangulo = new QwtPlotCurve();
+	triangulo->setPen(BazaKoloro);
+	triangulo->attach(plt);
+	
+	sp = new QwtPlotCurve();
+	sp->setPen(MomentaKoloro);
+	sp->attach(plt);
+}
 //
- 
-QRectF spuroNeMi::boundingRect() const{
-	QPolygonF p;
-	p<<P1<<P2<<P3;
-	return (SP.boundingRect() | p.boundingRect());
+
+void spuroNeMi::difiniPlt( QwtPlot * Plt ){
+	plt = Plt;
+	triangulo->attach(plt);
+	sp->attach(plt);
+	plt->replot();
 }
 
 void spuroNeMi::finisxiIteracio(){
-	prepareGeometryChange();
 	SP.clear();
+	sp->setData(SP);
+	plt->replot();
 }
-
-
-void spuroNeMi::paint(QPainter *painter, const QStyleOptionGraphicsItem */*option*/, QWidget */*widge*/){
-	painter->save();
-	
-	painter->setPen(MomentaKoloro);
-	painter->drawPolyline(aplikiScalo(SP));
-	painter->setPen(BazaKoloro);
-	QPolygonF p;
-	p<<P1<<P2<<P3;
-	painter->drawPolygon(aplikiScalo(p));
-	
-	painter->restore();
-}
-
-
-void spuroNeMi::difiniBazaKoloro(QColor c){
-	prepareGeometryChange();
-	BazaKoloro = c;
-}
-
 
 void spuroNeMi::difiniMomentaKoloro(QColor c){
-	prepareGeometryChange();
 	MomentaKoloro = c;
+	sp->setPen(MomentaKoloro);
+	plt->replot();
 }
-
 
 void spuroNeMi::senspurigi(){
-	prepareGeometryChange();
 	SP.clear();
+	sp->setData(SP);
+	triangulo->setData(QPolygonF());
+	plt->replot();
 }
-
 
 void spuroNeMi::difiniP1(const QPointF & p){
-	prepareGeometryChange();
 	P1 = p;
-	// Прокручиваю карту, чтобы не скрывать последнюю точку.
-	this->scene()->views()[0]->ensureVisible(p.x() * skalo, p.y() * skalo, 1, 1);
+	triangulo->setData(QPolygonF()<<P1<<P2<<P3<<P1);
+	plt->replot();
 }
-
 
 void spuroNeMi::difiniP2(const QPointF & p){
-	prepareGeometryChange();
 	P2 = p;
-	// Прокручиваю карту, чтобы не скрывать последнюю точку.
-	this->scene()->views()[0]->ensureVisible(p.x() * skalo, p.y() * skalo, 1, 1);
+	triangulo->setData(QPolygonF()<<P1<<P2<<P3<<P1);
+	plt->replot();
 }
-
 
 void spuroNeMi::difiniP3(const QPointF & p){
-	prepareGeometryChange();
 	P3 = p;
-	// Прокручиваю карту, чтобы не скрывать последнюю точку.
-	this->scene()->views()[0]->ensureVisible(p.x() * skalo, p.y() * skalo, 1, 1);
+	triangulo->setData(QPolygonF()<<P1<<P2<<P3<<P1);
+	plt->replot();
 }
 
-
 void spuroNeMi::difiniPRespegulo(const QPointF & p){
-	prepareGeometryChange();
 	// Создаю полигон Хl, p, Хm.
 	// Хl - наименьшая в триуголнике, Хm - средняя.
 	if(Length(p - P1) < Length(p - P2)){
@@ -111,22 +92,18 @@ void spuroNeMi::difiniPRespegulo(const QPointF & p){
 			SP<<(P2);
 		}
 	}
-	// Прокручиваю карту, чтобы не скрывать последнюю точку.
-	this->scene()->views()[0]->ensureVisible(p.x() * skalo, p.y() * skalo, 1, 1);
+	sp->setData(SP);
+	plt->replot();
 }
 
-
 void spuroNeMi::difiniPDilato(const QPointF & p){
-	prepareGeometryChange();
-	SP<<p<<SP.first();
-	// Прокручиваю карту, чтобы не скрывать последнюю точку.
-	this->scene()->views()[0]->ensureVisible(p.x() * skalo, p.y() * skalo, 1, 1);
+	SP<<p<<SP<<SP.first();
+	sp->setData(SP);
+	plt->replot();
 }
 
 void spuroNeMi::difiniPKompakto(const QPointF & p){
-	prepareGeometryChange();
-	SP.clear();
-	difiniPRespegulo(p);
-	// Прокручиваю карту, чтобы не скрывать последнюю точку.
-	this->scene()->views()[0]->ensureVisible(p.x() * skalo, p.y() * skalo, 1, 1);
+	SP<<p<<SP<<SP.first();
+	sp->setData(SP);
+	plt->replot();
 }

@@ -1,85 +1,79 @@
 #include "spurosinkolauxkoordinatoj.h"
 #include "Konstantoj.h"
+#include <qwt_plot.h>
+#include <qwt_plot_curve.h>
+#include <qwt_symbol.h>
 #include <QPolygonF>
-#include <QPainter>
-#include <QGraphicsScene>
-#include <QGraphicsView>
 //
-spuroSinkoLauxKoordinatoj::spuroSinkoLauxKoordinatoj(QColor momentaKoloro, QColor bazaKoloro, qreal Skalo, QGraphicsItem * parent) 
-	: spuro( A::CWdescent_fix, bazaKoloro, Skalo, parent), MomentaKoloro(momentaKoloro){}
+spuroSinkoLauxKoordinatoj::spuroSinkoLauxKoordinatoj(QColor momentaKoloro, QColor bazaKoloro) 
+	: spuro( bazaKoloro), MomentaKoloro(momentaKoloro){
+	vosto = new QwtPlotCurve();
+	vosto->setPen(BazaKoloro);
+	vosto->attach(plt);
+
+	momentaPointoj = new QwtPlotCurve();
+	momentaPointoj->setPen(MomentaKoloro);
+	momentaPointoj->attach(plt);
+	
+	momentaPointo = new QwtPlotCurve();
+	momentaPointo->setPen(BazaKoloro);
+	QwtSymbol smbl(QwtSymbol::Ellipse, QBrush(Qt::lightGray), QPen(BazaKoloro),QSize(4,4));
+	momentaPointo->setSymbol(smbl);
+	momentaPointo->setStyle(QwtPlotCurve::Dots);
+	momentaPointo->attach(plt);	
+}
 //
 
-QRectF spuroSinkoLauxKoordinatoj::boundingRect() const{
-	// Размер элемента - обьединённый размер "хвоста" и текущей итерации * на
-	// масштаб + поправка, чтоб не остался старый "указатель"
-	QRectF rez = MomentaPointoj.boundingRect() | Vosto.boundingRect();
-	rez.setTopLeft(rez.topLeft() * skalo - QPointF(2, 2));
-	rez.setBottomRight(rez.bottomRight() * skalo + QPointF(2, 2));
-	return rez;
+void spuroSinkoLauxKoordinatoj::difiniPlt( QwtPlot * Plt ){
+	plt = Plt;
+	vosto->attach(plt);
+	momentaPointoj->attach(plt);
+	momentaPointo->attach(plt);	
+	plt->replot();
 }
 
 void spuroSinkoLauxKoordinatoj::finisxiIteracio(){
-	MomentaPointo = MomentaPointoj.back();
-	Vosto += MomentaPointoj;
+	Vosto<<MomentaPointoj;
 	MomentaPointoj.clear();
-	MomentaPointoj.append(MomentaPointo);
-	update();// Планирую перерисовку.
-}
-
-void spuroSinkoLauxKoordinatoj::reveniAlMomentoPointo(){
-	MomentaPointoj.append(MomentaPointo);
-	update();// Планирую перерисовку.
+	MomentaPointoj<<Vosto.last();
+	vosto->setData(Vosto);
+	momentaPointoj->setData(MomentaPointoj);
+	momentaPointo->setData(MomentaPointoj);
+	plt->replot();
 }
 
 void spuroSinkoLauxKoordinatoj::aldoniSercxantaPointo(QPointF p){
-	MomentaPointoj.append(p);
-	// Прокручиваю карту, чтобы не скрывать последнюю точку.
-	this->scene()->views()[0]->ensureVisible(p.x() * skalo, p.y() * skalo, 1, 1);
-	update();// Планирую перерисовку.
+	MomentaPointoj<<p;
+	momentaPointoj->setData(MomentaPointoj);
+	momentaPointo->setData(QPolygonF()<<p);
+	plt->replot();
 }
-void spuroSinkoLauxKoordinatoj::paint(QPainter *painter, const QStyleOptionGraphicsItem */*option*/, QWidget */*widge*/){
-	painter->save();
-	
-	painter->setPen(BazaKoloro);
-	painter->drawPolyline(aplikiScalo(Vosto));
-	painter->setPen(MomentaKoloro);
-	painter->drawPolyline(aplikiScalo(MomentaPointoj));
-	painter->setPen(BazaKoloro);
-	painter->drawEllipse(MomentaPointoj.last() * skalo, 2, 2);
-	
-	painter->restore();
-}
-
-void spuroSinkoLauxKoordinatoj::difiniUnuaPointo(QPointF p){
-	MomentaPointo = p;
-	MomentaPointoj.append(p);
-	// Центрирую карту на последней точке.
-	this->scene()->views()[0]->centerOn(p * skalo);
-	update();// Планирую перерисовку.
-}
-
-void spuroSinkoLauxKoordinatoj::difiniUnuaPointo( qreal x, qreal y ){
-	difiniUnuaPointo(QPointF(x, y));
-}
-
-
-void spuroSinkoLauxKoordinatoj::difiniBazaKoloro(QColor c){
-	BazaKoloro = c;
-}
-
 
 void spuroSinkoLauxKoordinatoj::difiniMomentaKoloro(QColor c){
 	MomentaKoloro = c;
+	momentaPointoj->setPen(MomentaKoloro);
 }
 
 
 void spuroSinkoLauxKoordinatoj::difiniMomentaPointo(QPointF p){
 	MomentaPointo = p;
+	MomentaPointoj<<p;
+	momentaPointo->setData(QPolygonF()<<p);
+	plt->replot();
 }
 
+void spuroSinkoLauxKoordinatoj::reveniAlMomentoPointo(){
+	MomentaPointoj<<MomentaPointo;
+	momentaPointoj->setData(MomentaPointoj);
+	momentaPointo->setData(QPolygonF()<<MomentaPointoj.last());
+	plt->replot();
+}
 
 void spuroSinkoLauxKoordinatoj::senspurigi(){
-	prepareGeometryChange ();
-	MomentaPointoj.clear();
+	vosto->setData(QPolygonF());
+	momentaPointo->setData(QPolygonF()<<Vosto.first());
 	Vosto.clear();
+	momentaPointoj->setData(QPolygonF());
+	MomentaPointoj.clear();
+	plt->replot();
 }

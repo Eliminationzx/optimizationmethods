@@ -183,29 +183,103 @@ signals:
  * Объявления наследников QSignalTransition можно не смотреть. Важна только
  * реализация метода eventTest, ради которой и переопрделяю классы.
  */ 
-namespace SinkoLauxKoordinatoj_hugi
-{
-	/*! Переход от s2 к s3 .
+namespace SinkoLauxKoordinatoj_hugi{
+	/*! Переход принятия новой точки в качестве текщей.
+	 * 
+	 * Используется при переходе от s4 к s7, s6 к s7, s9 к s12, s11 к s12.
+	 * При создании требует указатели на переменные необходимые для принятия
+	 * решения о переходе.
+	 */
+	class KonsideriPointoTransiro: public QSignalTransition{
+		private:
+			DemonstrataQPointF * mp;
+			DemonstrataQPointF * np;
+			funkcio * f;
+		public:
+			KonsideriPointoTransiro( DemonstrataQPointF * MP,
+			                         DemonstrataQPointF * NP,
+			                         funkcio * F,
+			                         QState * sourceState = 0
+			            ) : QSignalTransition(sourceState), mp(MP), np(NP), f(F){};
+			KonsideriPointoTransiro( DemonstrataQPointF * MP,
+			                         DemonstrataQPointF * NP,
+			                         funkcio * F,
+			                         QObject * sender,
+			                         const char * signal,
+			                         QState * sourceState = 0
+			                       )
+			                        : QSignalTransition(sender, signal, sourceState),
+			                          mp(MP), np(NP), f(F){};
+		protected:
+    	bool eventTest(QEvent *e);
+	};
+	/*! Переход непринятия новой точки в качестве текуей.
+	 * 
+	 * Используется при переходе от s4 к s5, s6 к s8, s9 к s10, s11 к s13.
+	 * При создании требует указатели на переменные необходимые для принятия
+	 * решения о переходе.
+	 */
+	class NoKonsideriPointoTransiro: public QSignalTransition{
+		private:
+			DemonstrataQPointF * mp;
+			DemonstrataQPointF * np;
+			funkcio * f;
+		public:
+			NoKonsideriPointoTransiro( DemonstrataQPointF * MP,
+			                           DemonstrataQPointF * NP,
+			                           funkcio * F,
+			                           QState * sourceState = 0
+			            ) : QSignalTransition(sourceState), mp(MP), np(NP), f(F){};
+			NoKonsideriPointoTransiro( DemonstrataQPointF * MP,
+			                           DemonstrataQPointF * NP,
+			                           funkcio * F,
+			                           QObject * sender,
+			                           const char * signal,
+			                           QState * sourceState = 0
+			                          ) : QSignalTransition(sender, signal, sourceState),
+			                              mp(MP), np(NP), f(F){};
+		protected:
+    	bool eventTest(QEvent *e);
+	};
+	/*! Переход от s13 к s14.
 	 * 
 	 * При создании требует указатели на переменные необходимые для принятия
 	 * решения о переходе.
 	 */
-	class s2s3Transiro: public QSignalTransition{
+	class s13s14Transiro: public QSignalTransition{
 		private:
-			QRadioButton * investigate;
+			DemonstrataQPointF * bp;
+			DemonstrataQPointF * mp;
+			DemonstrataQPointF * mp2;
+			DemonstrataQPointF * px1;
+			DemonstrataQPointF * px2;
+			qreal s;//!< Точность.
 		public:
-			s2s3Transiro( QRadioButton * investigate_rb, QState * sourceState = 0
-			            ) : QSignalTransition(sourceState), investigate(investigate_rb){};
-			s2s3Transiro( QRadioButton * investigate_rb,
-			              QObject * sender,
-			              const char * signal,
-			              QState * sourceState = 0
-			            ) : QSignalTransition(sender, signal, sourceState),
-			                investigate(investigate_rb){};
+			s13s14Transiro( DemonstrataQPointF * BP,
+			                DemonstrataQPointF * MP,
+			                DemonstrataQPointF * MP2,
+			                DemonstrataQPointF * pX1,
+			                DemonstrataQPointF * pX2,
+			                qreal strikteco,
+			                QState * sourceState = 0)
+				: QSignalTransition(sourceState), bp(BP), mp(MP),mp2(MP2), px1(pX1), px2(pX2),
+					s(strikteco){};
+			s13s14Transiro( DemonstrataQPointF * BP,
+			                DemonstrataQPointF * MP,
+			                DemonstrataQPointF * MP2,
+			                DemonstrataQPointF * pX1,
+			                DemonstrataQPointF * pX2,
+			                qreal strikteco,
+			                QObject * sender,
+			                const char * signal,
+			                QState * sourceState = 0
+			              )
+				: QSignalTransition(sender, signal, sourceState), bp(BP), mp(MP),mp2(MP2),
+					px1(pX1), px2(pX2), s(strikteco){};
 		protected:
+			//! Перход срабатывает, только если выбран шаг в + по Х1 
     	bool eventTest(QEvent *e);
-	};
-
+	};	
 	/*! Переход от s3 к s4.
 	 * 
 	 * При создании требует указатели на переменные необходимые для принятия
@@ -226,100 +300,7 @@ namespace SinkoLauxKoordinatoj_hugi
 		protected:
 			//! Перход срабатывает, только если выбран шаг в + по Х1 
     	bool eventTest(QEvent *e);
-	};
-
-	/*! Переход принятия новой точки в качестве текщей.
-	 * 
-	 * Используется при переходе от s4 к s7, s6 к s7, s9 к s12, s11 к s12.
-	 * При создании требует указатели на переменные необходимые для принятия
-	 * решения о переходе.
-	 */
-	class KonsideriPointoTransiro: public QSignalTransition{
-		private:
-			DemonstrataQPointF * np;
-			DemonstrataQPointF * pp;
-			DemonstrataQPointF * mp2;
-			bool flag_so;
-			funkcio * f;
-		public:
-			KonsideriPointoTransiro( DemonstrataQPointF * NP,
-									DemonstrataQPointF * PP,
-			                         DemonstrataQPointF * MP2,
-			                         bool FLAG_SO,
-			                         funkcio * F,
-			                         QState * sourceState = 0
-			            ) : QSignalTransition(sourceState), np(NP), pp(PP), mp2(MP2), flag_so(FLAG_SO), f(F){};
-			KonsideriPointoTransiro( DemonstrataQPointF * NP,
-									DemonstrataQPointF * PP,
-			                         DemonstrataQPointF * MP2,
-			                         bool FLAG_SO,
-			                         funkcio * F,
-			                         QObject * sender,
-			                         const char * signal,
-			                         QState * sourceState = 0
-			                       )
-			                        : QSignalTransition(sender, signal, sourceState),
-			                          np(NP), pp(PP), mp2(MP2), flag_so(FLAG_SO), f(F){};
-		protected:
-    	bool eventTest(QEvent *e);
-	};
-
-	/*! Переход от s7 к s9.
-	 * 
-	 * При создании требует указатели на переменные необходимые для принятия
-	 * решения о переходе.
-	 */
-	class s7s9_s8s9Transiro: public QSignalTransition{
-		private:
-			QRadioButton * up_x2;
-		public:
-			s7s9_s8s9Transiro( QRadioButton * up_x2_rb, QState * sourceState = 0
-			                 ) : QSignalTransition(sourceState), up_x2(up_x2_rb){};
-			s7s9_s8s9Transiro( QRadioButton * up_x2_rb,
-			                   QObject * sender,
-			                   const char * signal,
-			                   QState * sourceState = 0
-			                 ) : QSignalTransition(sender, signal, sourceState),
-			                     up_x2(up_x2_rb){};
-		protected:
-    	bool eventTest(QEvent *e);
-	};
-
-	/*! Переход непринятия новой точки в качестве текуей.
-	 * 
-	 * Используется при переходе от s4 к s5, s6 к s8, s9 к s10, s11 к s13.
-	 * При создании требует указатели на переменные необходимые для принятия
-	 * решения о переходе.
-	 */
-	class NoKonsideriPointoTransiro: public QSignalTransition{
-		private:
-			DemonstrataQPointF * np;
-			DemonstrataQPointF * pp;
-			DemonstrataQPointF * mp2;
-			bool flag_so;
-			funkcio * f;
-		public:
-			NoKonsideriPointoTransiro( DemonstrataQPointF * NP,
-									DemonstrataQPointF * PP,
-			                           DemonstrataQPointF * MP2,
-			                           bool FLAG_SO,
-			                           funkcio * F,
-			                           QState * sourceState = 0
-			            ) : QSignalTransition(sourceState), np(NP), pp(PP), mp2(MP2), flag_so(FLAG_SO), f(F){};
-			NoKonsideriPointoTransiro( DemonstrataQPointF * NP,
-									DemonstrataQPointF * PP,
-			                           DemonstrataQPointF * MP2,
-			                           bool FLAG_SO,
-			                           funkcio * F,
-			                           QObject * sender,
-			                           const char * signal,
-			                           QState * sourceState = 0
-			                          ) : QSignalTransition(sender, signal, sourceState),
-			                              np(NP), pp(PP), mp2(MP2), flag_so(FLAG_SO), f(F){};
-		protected:
-    	bool eventTest(QEvent *e);
-	};
-
+	};	
 	/*! Переход от s5 к s6.
 	 * 
 	 * При создании требует указатели на переменные необходимые для принятия
@@ -340,8 +321,27 @@ namespace SinkoLauxKoordinatoj_hugi
 		protected:
 					//! Перход срабатывает, только если выбран шаг в - по Х1  
     	bool eventTest(QEvent *e);
-	};
-
+	};	
+	/*! Переход от s7 к s9.
+	 * 
+	 * При создании требует указатели на переменные необходимые для принятия
+	 * решения о переходе.
+	 */
+	class s7s9_s8s9Transiro: public QSignalTransition{
+		private:
+			QRadioButton * up_x2;
+		public:
+			s7s9_s8s9Transiro( QRadioButton * up_x2_rb, QState * sourceState = 0
+			                 ) : QSignalTransition(sourceState), up_x2(up_x2_rb){};
+			s7s9_s8s9Transiro( QRadioButton * up_x2_rb,
+			                   QObject * sender,
+			                   const char * signal,
+			                   QState * sourceState = 0
+			                 ) : QSignalTransition(sender, signal, sourceState),
+			                     up_x2(up_x2_rb){};
+		protected:
+    	bool eventTest(QEvent *e);
+	};	
 	/*! Переход от s10 к s11.
 	 * 
 	 * При создании требует указатели на переменные необходимые для принятия
@@ -361,80 +361,7 @@ namespace SinkoLauxKoordinatoj_hugi
 			                down_x2(down_x2_rb){};
 		protected:
     	bool eventTest(QEvent *e);
-	};
-
-	/*! Переход от s13 к s14.
-	 * 
-	 * При создании требует указатели на переменные необходимые для принятия
-	 * решения о переходе.
-	 */
-	class s13s14Transiro: public QSignalTransition{
-		private:
-			DemonstrataQPointF * mp;
-			DemonstrataQPointF * mp2;
-			DemonstrataQPointF * px1;
-			DemonstrataQPointF * px2;
-			qreal s;//!< Точность.
-		public:
-			s13s14Transiro( DemonstrataQPointF * MP,
-			                DemonstrataQPointF * MP2,
-			                DemonstrataQPointF * pX1,
-			                DemonstrataQPointF * pX2,
-			                qreal strikteco,
-			                QState * sourceState = 0)
-				: QSignalTransition(sourceState), mp(MP),mp2(MP2), px1(pX1), px2(pX2),
-					s(strikteco){};
-			s13s14Transiro( DemonstrataQPointF * MP,
-			                DemonstrataQPointF * MP2,
-			                DemonstrataQPointF * pX1,
-			                DemonstrataQPointF * pX2,
-			                qreal strikteco,
-			                QObject * sender,
-			                const char * signal,
-			                QState * sourceState = 0
-			              )
-				: QSignalTransition(sender, signal, sourceState), mp(MP),mp2(MP2),
-					px1(pX1), px2(pX2), s(strikteco){};
-		protected:
-			//! Перход срабатывает, только если выбран шаг в + по Х1 
-    	bool eventTest(QEvent *e);
-	};
-
-	/*! Переход от s13 к s16 .
-	 * 
-	 * При создании требует указатели на переменные необходимые для принятия
-	 * решения о переходе.
-	 */
-	class s13s16Transiro: public QSignalTransition{
-		private:
-			QRadioButton * ok_rb_;
-			DemonstrataQPointF * pp;
-			DemonstrataQPointF * mp2;
-			bool * flag_so;
-			funkcio * f;
-		public:
-			s13s16Transiro(QRadioButton * ok_rb, 
-			               DemonstrataQPointF * PP,
-			               DemonstrataQPointF * MP2,
-			              bool*FLAG_SO,
-			              funkcio * F,
-			               QState * sourceState = 0)
-				: QSignalTransition(sourceState),ok_rb_(ok_rb), pp(PP),mp2(MP2),flag_so(FLAG_SO),f(F){};
-			s13s16Transiro( QRadioButton * ok_rb,
-			               DemonstrataQPointF * PP,
-			               DemonstrataQPointF * MP2,
-			              bool*FLAG_SO,
-			              funkcio * F,
-			               QObject * sender,
-			               const char * signal,
-			               QState * sourceState = 0
-			             )
-				: QSignalTransition(sender, signal, sourceState),ok_rb_(ok_rb), pp(PP),
-					mp2(MP2),flag_so(FLAG_SO),f(F){};
-		protected:
-    	bool eventTest(QEvent *e);
 	};	
-
 	/*! Переход от s13 к sf.
 	 * 
 	 * При создании требует указатели на переменные необходимые для принятия
@@ -463,43 +390,50 @@ namespace SinkoLauxKoordinatoj_hugi
 					s(strikteco){};
 		protected:
     	bool eventTest(QEvent *e);
-	};
-
-	/*! Переход от s13 к s19 .
+	};	
+	
+	
+	
+	/*! Переход от s13 к s16 .
 	 * 
 	 * При создании требует указатели на переменные необходимые для принятия
 	 * решения о переходе.
 	 */
-	class s13s19Transiro: public QSignalTransition{
+	class s13s16Transiro: public QSignalTransition{
 		private:
-			QRadioButton * no_rb_;
-			DemonstrataQPointF * pp;
+			QRadioButton * ok_rb_;
+			DemonstrataQPointF * bp;
+			DemonstrataQPointF * mp;
 			DemonstrataQPointF * mp2;
-			bool * flag_so;
+			DemonstrataQPointF * temp_b;
+			bool*flag_so;
 			funkcio * f;
 		public:
-			s13s19Transiro(QRadioButton * no_rb,
-			               DemonstrataQPointF * PP,
+			s13s16Transiro(QRadioButton * ok_rb, DemonstrataQPointF * BP,
+			               DemonstrataQPointF * MP,
 			               DemonstrataQPointF * MP2,
-			              bool * FLAG_SO,
+			              DemonstrataQPointF * TEMP_B,
+			              bool*FLAG_SO,
 			              funkcio * F,
 			               QState * sourceState = 0)
-				: QSignalTransition(sourceState),no_rb_(no_rb), pp(PP),mp2(MP2),flag_so(FLAG_SO),f(F){};
-			s13s19Transiro(QRadioButton * no_rb,
-			               DemonstrataQPointF * PP,
+				: QSignalTransition(sourceState),ok_rb_(ok_rb), bp(BP), mp(MP),mp2(MP2),temp_b(TEMP_B),flag_so(FLAG_SO),f(F){};
+			s13s16Transiro( QRadioButton * ok_rb,
+							DemonstrataQPointF * BP,
+			               DemonstrataQPointF * MP,
 			               DemonstrataQPointF * MP2,
-			              bool * FLAG_SO,
+			                DemonstrataQPointF * TEMP_B,
+			              bool*FLAG_SO,
 			              funkcio * F,
 			               QObject * sender,
 			               const char * signal,
 			               QState * sourceState = 0
 			             )
-				: QSignalTransition(sender, signal, sourceState),no_rb_(no_rb), pp(PP),
-					mp2(MP2),flag_so(FLAG_SO),f(F){};
+				: QSignalTransition(sender, signal, sourceState),ok_rb_(ok_rb), bp(BP), mp(MP),
+					mp2(MP2),temp_b(TEMP_B),flag_so(FLAG_SO),f(F){};
 		protected:
     	bool eventTest(QEvent *e);
 	};	
-
+	
 	/*! Переход от s15 к s18 .
 	 * 
 	 * При создании требует указатели на переменные необходимые для принятия
@@ -519,7 +453,69 @@ namespace SinkoLauxKoordinatoj_hugi
 			                model(model_rb){};
 		protected:
     	bool eventTest(QEvent *e);
-	};
+	};	
+	
+	/*! Переход от s13 к s19 .
+	 * 
+	 * При создании требует указатели на переменные необходимые для принятия
+	 * решения о переходе.
+	 */
+	class s13s19Transiro: public QSignalTransition{
+		private:
+			QRadioButton * no_rb_;
+			DemonstrataQPointF * bp;
+			DemonstrataQPointF * mp;
+			DemonstrataQPointF * mp2;
+			DemonstrataQPointF * temp_b;
+			bool*flag_so;
+			funkcio * f;
+		public:
+			s13s19Transiro(QRadioButton * no_rb,
+						 DemonstrataQPointF * BP,
+			               DemonstrataQPointF * MP,
+			               DemonstrataQPointF * MP2,
+			              DemonstrataQPointF * TEMP_B,
+			              bool*FLAG_SO,
+			              funkcio * F,
+			               QState * sourceState = 0)
+				: QSignalTransition(sourceState),no_rb_(no_rb), bp(BP), mp(MP),mp2(MP2),temp_b(TEMP_B),flag_so(FLAG_SO),f(F){};
+			s13s19Transiro(QRadioButton * no_rb,
+							 DemonstrataQPointF * BP,
+			               DemonstrataQPointF * MP,
+			               DemonstrataQPointF * MP2,
+			                DemonstrataQPointF * TEMP_B,
+			              bool*FLAG_SO,
+			              funkcio * F,
+			               QObject * sender,
+			               const char * signal,
+			               QState * sourceState = 0
+			             )
+				: QSignalTransition(sender, signal, sourceState),no_rb_(no_rb), bp(BP), mp(MP),
+					mp2(MP2),temp_b(TEMP_B),flag_so(FLAG_SO),f(F){};
+		protected:
+    	bool eventTest(QEvent *e);
+	};	
+/*! Переход от s2 к s3 .
+	 * 
+	 * При создании требует указатели на переменные необходимые для принятия
+	 * решения о переходе.
+	 */
+	class s2s3Transiro: public QSignalTransition{
+		private:
+			QRadioButton * investigate;
+		public:
+			s2s3Transiro( QRadioButton * investigate_rb, QState * sourceState = 0
+			            ) : QSignalTransition(sourceState), investigate(investigate_rb){};
+			s2s3Transiro( QRadioButton * investigate_rb,
+			              QObject * sender,
+			              const char * signal,
+			              QState * sourceState = 0
+			            ) : QSignalTransition(sender, signal, sourceState),
+			                investigate(investigate_rb){};
+		protected:
+    	bool eventTest(QEvent *e);
+	};	
+
 };
 #endif
 
