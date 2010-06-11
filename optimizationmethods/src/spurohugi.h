@@ -41,5 +41,7 @@ public slots:
 	 * Вызывать её до difiniB2 бесполезно.
 	 */
 	void difiniP(QPointF & P);
+	//! Очищает "след".
+	void senspurigi();
 };
 #endif
