@@ -405,6 +405,9 @@ void HuGiImpl::s17_entered()
 void HuGiImpl::s16_entered()
 {
 	stackedWidget->setCurrentIndex(3);
+	x1_p_lb->setText("");
+	x2_p_lb->setText("");
+	fsign_p_lb->setText("");
 	qDebug()<<trUtf8("Come in s16"); // Вывожу дебажную инфу на консоль.
 
 	emit stateHasEntered();
@@ -745,6 +748,7 @@ namespace SinkoLauxKoordinatoj_hugi{
 			qDebug()<<trUtf8("======FBP=")<<(f->rezulto(*pp));
 			qDebug()<<trUtf8("======FTB=")<<(f->rezulto(*mp2));
 			qDebug()<<trUtf8("======FLAG=")<<flag_so;
+			//qDebug()<<trUtf8("Come in s1 flag=%1").arg(flag_so); 
 			// Проверяю своё условие.
 			return &flag_so && ok_rb_->isChecked() && (f->rezulto(*pp)) < f->rezulto(*mp2);
 		}else{
