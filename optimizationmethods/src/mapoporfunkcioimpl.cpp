@@ -35,12 +35,6 @@ MapoPorFunkcioImpl::MapoPorFunkcioImpl( const funkcio * Funkcio, QWidget * paren
 	
 	s->setData(SpectrogramData(F));
 	s->attach(qwtPlt);
-	
-	QwtValueList contourLevels;
-	for ( double level = s->data().range().minValue(); level < s->data().range().maxValue(); level += 1.0 )
-		contourLevels += level;
-	s->setContourLevels(contourLevels);
-//	s->setDisplayMode(QwtPlotSpectrogram::ContourMode, true);
 
 	skalo = new QwtPlotZoomer(qwtPlt->canvas());
 	
