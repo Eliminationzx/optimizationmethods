@@ -45,14 +45,12 @@ CWdescent_mdImpl::CWdescent_mdImpl(funkcio *f, QVector<double> d, QWidget * pare
 	// добавляю вижет карты в позицию 1,1. Компановщик сам позаботится о назначении новому виджету родителя.
 	static_cast<QGridLayout*>(centralwidget->layout())->addWidget(MapoWdg, 2, 1, 2, 1);
 
-	MapoWdg->setScale(20);// Ставлю масштаб побольше. Надо будет определться с оптимальным значением.
+//	MapoWdg->setScale(20);// Ставлю масштаб побольше. Надо будет определться с оптимальным значением.
 
-	Sp = new spuroSinkoLauxKoordinatoj_md(Qt::white, Qt::blue);
+	Sp = new spuroSinkoLauxKoordinatoj_md(Qt::black);
 	MapoWdg->difiniSpuro(Sp);
-	MapoWdg->difiniFonaKoloro(Qt::green);
+//	MapoWdg->difiniFonaKoloro(Qt::green);
 	
-	connect(MapoWdg, SIGNAL(MusaPos(const QString &)), statusBar(), SLOT(showMessage( const QString &)));
-
 	//===Соединяю точки и надписи на форме=========================================
 	SignalantoPorPointF * sMP = new SignalantoPorPointF(&MP, F, this);
 	connect(sMP, SIGNAL(proviziXValoro(const QString &)), x1_lb, SLOT(setText(const QString &)));
@@ -103,8 +101,6 @@ CWdescent_mdImpl::CWdescent_mdImpl(funkcio *f, QVector<double> d, QWidget * pare
 	//---Прикручиваю карту-------------------------------------------------------
 	connect(sMP, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(aldoniPointo(const QPointF &)));
 
-	connect(s1, SIGNAL(entered()), Sp, SLOT(finisxiIteracio()));
-	
 	//---Добавляю состояния в автомат и запускаю его.----------------------------
 	SM->addState(so);
 	SM->addState(sf);
@@ -336,7 +332,6 @@ void CWdescent_mdImpl::init()
 	LogTxtBrsr->setText("");
 
 	static_cast<spuroSinkoLauxKoordinatoj_md*>(Sp)->senspurigi();
-	static_cast<spuroSinkoLauxKoordinatoj_md*>(Sp)->difiniUnuaPointo(MP);
 
 	qDebug()<<trUtf8("Задаю переменным начальные значения"); // Вывожу дебажную инфу на консоль.
 }

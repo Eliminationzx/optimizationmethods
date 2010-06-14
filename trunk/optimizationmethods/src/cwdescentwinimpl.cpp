@@ -38,13 +38,11 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> d, QWidget * par
 	// Создаю карту.
 	verticalLayout_4->addWidget(MapoWdg, 2);
 
-	MapoWdg->setScale(20);// Ставлю масштаб побольше. Надо будет определиться с оптимальным значением.
+//	MapoWdg->setScale(20);// Ставлю масштаб побольше. Надо будет определиться с оптимальным значением.
 
-	Sp = new spuroSinkoLauxKoordinatoj(Qt::white, Qt::blue);
+	Sp = new spuroSinkoLauxKoordinatoj(Qt::white, Qt::black);
 	MapoWdg->difiniSpuro(Sp);
-	MapoWdg->difiniFonaKoloro(Qt::green);
-
-	connect(MapoWdg, SIGNAL(MusaPos(const QString &)), statusBar(), SLOT(showMessage( const QString &)));
+//	MapoWdg->difiniFonaKoloro(Qt::green);
 
 //===Соединяю точки и надписи на форме=========================================
 	SignalantoPorPointF * sMP = new SignalantoPorPointF(&MP, F, this);
@@ -184,6 +182,7 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> d, QWidget * par
 	connect(sMP, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniMomentaPointo(QPointF)));
 
 	connect(s3, SIGNAL(entered()), Sp, SLOT(reveniAlMomentoPointo()));
+	connect(s1, SIGNAL(entered()), Sp, SLOT(finisxiIteracio()));
 	connect(s6, SIGNAL(entered()), Sp, SLOT(reveniAlMomentoPointo()));
 	connect(s8, SIGNAL(entered()), Sp, SLOT(reveniAlMomentoPointo()));
 	connect(s9s11, SIGNAL(triggered()), Sp, SLOT(reveniAlMomentoPointo()));
@@ -430,7 +429,6 @@ void CWdescentWinImpl::init(){
 	ModPX = D[3];
 	LogTxtBrsr->setText("");
 	static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->senspurigi();
-	static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->difiniUnuaPointo(MP);
 
 	qDebug()<<trUtf8("Задаю переменным начальные значения"); // Вывожу дебажную инфу на консоль.
 }
