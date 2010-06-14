@@ -40,9 +40,9 @@ public slots:
 	//! Вернуться к текущей точке.
 	void reveniAlMomentoPointo();
 	//! Добавить точку поиска.
-	void aldoniSercxantaPointo(QPointF);
+	void aldoniSercxantaPointo(const QPointF &);
 	//! Установить текущую точку.
-	void difiniMomentaPointo(QPointF);
+	void difiniMomentaPointo(const QPointF &);
 	//! Установить текущий цвет.
 	void difiniMomentaKoloro(QColor momentaKoloro);
 	//! Очищает "след".
