@@ -42,7 +42,7 @@ void spuroSinkoLauxKoordinatoj::finisxiIteracio(){
 	plt->replot();
 }
 
-void spuroSinkoLauxKoordinatoj::aldoniSercxantaPointo(QPointF p){
+void spuroSinkoLauxKoordinatoj::aldoniSercxantaPointo(const QPointF & p){
 	MomentaPointoj<<p;
 	momentaPointoj->setData(MomentaPointoj);
 	momentaPointo->setData(QPolygonF()<<p);
@@ -55,7 +55,7 @@ void spuroSinkoLauxKoordinatoj::difiniMomentaKoloro(QColor c){
 }
 
 
-void spuroSinkoLauxKoordinatoj::difiniMomentaPointo(QPointF p){
+void spuroSinkoLauxKoordinatoj::difiniMomentaPointo(const QPointF & p){
 	MomentaPointo = p;
 	MomentaPointoj<<p;
 	momentaPointo->setData(QPolygonF()<<p);

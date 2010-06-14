@@ -178,8 +178,8 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> d, QWidget * par
 	s1->assignProperty(distance_lb, "palette", this->palette());
 
 //---Прикручиваю карту---------------------------------------------------------
-	connect(sNP, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(aldoniSercxantaPointo(QPointF)));
-	connect(sMP, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniMomentaPointo(QPointF)));
+	connect(sNP, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(aldoniSercxantaPointo(const QPointF &)));
+	connect(sMP, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniMomentaPointo(const QPointF &)));
 
 	connect(s3, SIGNAL(entered()), Sp, SLOT(reveniAlMomentoPointo()));
 	connect(s1, SIGNAL(entered()), Sp, SLOT(finisxiIteracio()));
