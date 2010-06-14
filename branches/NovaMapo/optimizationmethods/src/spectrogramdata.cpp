@@ -1,6 +1,7 @@
 #include "spectrogramdata.h"
 #include "funkcio.h"
 #include "Konstantoj.h"
+#include <QDebug>
 
 SpectrogramData::SpectrogramData(const funkcio * F)
 	: QwtRasterData(QwtDoubleRect(-ampleksoMapo, -ampleksoMapo, 2*ampleksoMapo, 2*ampleksoMapo)), f(F){
@@ -15,6 +16,7 @@ SpectrogramData::SpectrogramData(const funkcio * F)
 	if (F->rezulto(0, -ampleksoMapo) > max) max = F->rezulto(0, -ampleksoMapo);
 	if (F->rezulto(ampleksoMapo, 0) > max) max = F->rezulto(ampleksoMapo, 0);
 	if (F->rezulto(-ampleksoMapo, 0) > max) max = F->rezulto(-ampleksoMapo, 0);
+	qDebug()<<QObject::trUtf8("Создал данные для карты");
 }
 
 QwtRasterData * SpectrogramData::copy() const{
