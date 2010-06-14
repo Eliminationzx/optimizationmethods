@@ -49,9 +49,7 @@ connect(exit, SIGNAL(activated()), qApp, SLOT(closeAllWindows()));
 
 	Sp = new spuroSinkoLauxKoordinatoj(Qt::white, Qt::blue);
 	MapoWdg->difiniSpuro(Sp);
-	MapoWdg->difiniFonaKoloro(Qt::green);
-
-	connect(MapoWdg, SIGNAL(MusaPos(const QString &)), statusBar(), SLOT(showMessage( const QString &)));
+//	MapoWdg->difiniFonaKoloro(Qt::green);
 	
 	//===Соединяю точки и надписи на форме=========================================
 	SignalantoPorPointF * sMP = new SignalantoPorPointF(&MP, F, this);
@@ -618,7 +616,6 @@ void HuGiImpl::init()
 	ModPX = 10;
 	LogTxtBrsr->setText("");
 	static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->senspurigi();
-	static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->difiniUnuaPointo(MP);
 
 	qDebug()<<trUtf8("Задаю переменным начальные значения"); // Вывожу дебажную инфу на консоль.
 }

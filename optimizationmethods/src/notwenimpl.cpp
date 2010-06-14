@@ -42,13 +42,11 @@ NotWenImpl::NotWenImpl( funkcio *f, QVector<double> d, QWidget * parent, Qt::WFl
 	// добавляю вижет карты в позицию 1,1. Компановщик сам позаботится о назначении новому виджету родителя.
 	static_cast<QGridLayout*>(centralwidget->layout())->addWidget(MapoWdg, 2, 1);
 	
-	MapoWdg->setScale(20);// Ставлю масштаб побольше. Надо будет определться с оптимальным значением.
+//	MapoWdg->setScale(20);// Ставлю масштаб побольше. Надо будет определться с оптимальным значением.
 
-	Sp = new spuroSinkoLauxKoordinatoj_md(Qt::blue, Qt::blue);
+	Sp = new spuroSinkoLauxKoordinatoj_md(Qt::black);
 	MapoWdg->difiniSpuro(Sp);
-	MapoWdg->difiniFonaKoloro(Qt::green);
-
-	connect(MapoWdg, SIGNAL(MusaPos(const QString &)), statusBar(), SLOT(showMessage( const QString &)));
+//	MapoWdg->difiniFonaKoloro(Qt::green);
 
 	//===Соединяю точки и надписи на форме=========================================
 	SignalantoPorPointF * sBP = new SignalantoPorPointF(&BP, F, this);
@@ -249,7 +247,7 @@ void NotWenImpl::s6_entered()
 	else if(F->metaObject()->className() == QString("RavinaFunkcio"))
 	{
 		groupBox_8->setVisible(false);
-		tmpX10 = QString("%1*(x2-x1^2)*(-2*x1)%2%3*(1-x1)").arg(2*F->getA()).arg(NotWenImpl::numberSign(-2*F->getB())).arg(fabs(-2*F->getB()));
+		tmpX10 = QString("%1*(x2-x1^2)*(-2*x1)%2%3*(1-x1)").arg(2*F->getA()).arg(NotWenImpl::otrNumberSign(-2*F->getB())).arg(fabs(-2*F->getB()));
 		tmpX20 = QString("%1*(x2-x1^2)").arg(2*F->getA());
 	}
 
@@ -377,7 +375,7 @@ void NotWenImpl::init()
 	LogTxtBrsr->setText("");
 
 	static_cast<spuroSinkoLauxKoordinatoj_md*>(Sp)->senspurigi();
-	static_cast<spuroSinkoLauxKoordinatoj_md*>(Sp)->difiniUnuaPointo(BP);
+//	static_cast<spuroSinkoLauxKoordinatoj_md*>(Sp)->difiniUnuaPointo(BP);
 
 	qDebug()<<trUtf8("Задаю переменным начальные значения"); // Вывожу дебажную инфу на консоль.
 }
