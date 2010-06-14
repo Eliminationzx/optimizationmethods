@@ -3,7 +3,7 @@
 #include "Konstantoj.h"
 #include "funkcio.h"
 #include "spuro.h"
-#include "spurosinkolauxkoordinatoj.h"
+#include "spurohugi.h"
 #include "demonstrataqpointf.h"
 #include "signalantoporpointf.h"
 #include "helpbrowserimpl.h"
@@ -45,13 +45,13 @@ connect(exit, SIGNAL(activated()), qApp, SLOT(closeAllWindows()));
 	// добавляю вижет карты в позицию 1,1. Компановщик сам позаботится о назначении новому виджету родителя.
 	static_cast<QGridLayout*>(centralwidget->layout())->addWidget(MapoWdg, 2, 1);
 
-	MapoWdg->setScale(20);// Ставлю масштаб побольше. Надо будет определться с оптимальным значением.
+//	MapoWdg->setScale(20);// Ставлю масштаб побольше. Надо будет определться с оптимальным значением.
 
-	Sp = new spuroSinkoLauxKoordinatoj(Qt::white, Qt::blue);
+	Sp = new spuroHuGi(Qt::black);
 	MapoWdg->difiniSpuro(Sp);
 //	MapoWdg->difiniFonaKoloro(Qt::green);
 	
-	//===Соединяю точки и надписи на форме=========================================
+//===Соединяю точки и надписи на форме=========================================
 	SignalantoPorPointF * sMP = new SignalantoPorPointF(&MP, F, this);
 	connect(sMP, SIGNAL(proviziXValoro(const QString &)), x1_b1_lb, SLOT(setText(const QString &)));
 	connect(sMP, SIGNAL(proviziYValoro(const QString &)), x2_b1_lb, SLOT(setText(const QString &)));
@@ -77,6 +77,12 @@ connect(exit, SIGNAL(activated()), qApp, SLOT(closeAllWindows()));
 	
 	SignalantoPorPointF * sPX2 = new SignalantoPorPointF(&PX2, F, this);
 	connect(sPX2, SIGNAL(proviziYValoro(const QString &)), x2_step_lb, SLOT(setText(const QString &)));
+
+
+//========Прикручиваю карту====================================================
+	connect(sMP, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniB1(const QPointF &)));
+	connect(sMP2, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniB2(const QPointF &)));
+	connect(sPP, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniP(const QPointF &)));
 
 //===Создаю конечный автомат.==================================================
 	QStateMachine * SM = new QStateMachine();
@@ -274,17 +280,6 @@ connect(exit, SIGNAL(activated()), qApp, SLOT(closeAllWindows()));
 //---Настраиваю выделение цветом растояния между точками.
 	s1->assignProperty(distance_lb, "palette", this->palette());
 */
-/*---Прикручиваю карту---------------------------------------------------------
-	connect(sNP, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(aldoniSercxantaPointo(QPointF)));
-	connect(sMP, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniMomentaPointo(QPointF)));
-
-	connect(s3, SIGNAL(entered()), Sp, SLOT(reveniAlMomentoPointo()));
-	connect(s6, SIGNAL(entered()), Sp, SLOT(reveniAlMomentoPointo()));
-	connect(s8, SIGNAL(entered()), Sp, SLOT(reveniAlMomentoPointo()));
-	connect(s9s11, SIGNAL(triggered()), Sp, SLOT(reveniAlMomentoPointo()));
-
-	connect(s1, SIGNAL(entered()), Sp, SLOT(finisxiIteracio()));
-//-------------------------------------------------------------------------------*/
 
 //---Добавляю состояния в автомат и запускаю его.------------------------------
 	SM->addState(so);
@@ -615,7 +610,7 @@ void HuGiImpl::init()
 	PX2 = QPointF(0, D[2]);
 	ModPX = 10;
 	LogTxtBrsr->setText("");
-	static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->senspurigi();
+	static_cast<spuroHuGi*>(Sp)->senspurigi();
 
 	qDebug()<<trUtf8("Задаю переменным начальные значения"); // Вывожу дебажную инфу на консоль.
 }
