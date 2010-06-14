@@ -33,14 +33,14 @@ public slots:
 	 * Этот слот стирает старый след и переносит точку B1. difiniB2 и difiniP будут рисовать
 	 * новый след.
 	 */
-	void difiniB1(QPointF & B1);
+	void difiniB1(const QPointF & B1);
 	//! Установить точку B2.
-	void difiniB2(QPointF & B2);
+	void difiniB2(const QPointF & B2);
 	/*! Установить точку P.
 	 *
 	 * Вызывать её до difiniB2 бесполезно.
 	 */
-	void difiniP(QPointF & P);
+	void difiniP(const QPointF & P);
 	//! Очищает "след".
 	void senspurigi();
 };
