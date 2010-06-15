@@ -1,4 +1,5 @@
 #include "mainpassimpl.h"
+#include <QMessageBox>
 //
 mainPassImpl::mainPassImpl(int method, QWidget * parent, Qt::WFlags f) 
 	: QDialog(parent, f)
@@ -43,4 +44,6 @@ void mainPassImpl::on_Ok_clicked()
 		emit setFlag(flag, -1);
 		this->close();
 	}
+	else
+	QMessageBox::information(this, trUtf8("Ошибка"),trUtf8("Введеный пароль не валиден. Повторите попытку ввода. В случае очередной неудачи проверьте раскладку и регистр клавиатуры."));
 }
