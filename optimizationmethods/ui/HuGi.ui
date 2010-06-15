@@ -442,7 +442,7 @@ p, li { white-space: pre-wrap; }
        <item row="0" column="1" rowspan="5">
         <widget class="QStackedWidget" name="stackedWidget">
          <property name="currentIndex">
-          <number>3</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="type_found">
           <layout class="QGridLayout" name="gridLayout_4" rowstretch="1,0">
@@ -504,11 +504,11 @@ p, li { white-space: pre-wrap; }
               <widget class="QPushButton" name="next1_bt">
                <property name="font">
                 <font>
-                 <pointsize>12</pointsize>
+                 <pointsize>16</pointsize>
                 </font>
                </property>
                <property name="text">
-                <string>Далее</string>
+                <string>Выбрать действие</string>
                </property>
               </widget>
              </item>
@@ -613,11 +613,11 @@ p, li { white-space: pre-wrap; }
               <widget class="QPushButton" name="next2_bt">
                <property name="font">
                 <font>
-                 <pointsize>12</pointsize>
+                 <pointsize>16</pointsize>
                 </font>
                </property>
                <property name="text">
-                <string>Далее</string>
+                <string>Сделать шаг</string>
                </property>
               </widget>
              </item>
@@ -692,11 +692,11 @@ p, li { white-space: pre-wrap; }
               <widget class="QPushButton" name="next3_bt">
                <property name="font">
                 <font>
-                 <pointsize>12</pointsize>
+                 <pointsize>16</pointsize>
                 </font>
                </property>
                <property name="text">
-                <string>Далее</string>
+                <string>Выбрать действие</string>
                </property>
               </widget>
              </item>
@@ -796,7 +796,7 @@ p, li { white-space: pre-wrap; }
      <x>0</x>
      <y>0</y>
      <width>1035</width>
-     <height>23</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="testo_menu">
