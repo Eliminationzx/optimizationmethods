@@ -5,13 +5,15 @@
 #include <QPolygonF>
 //
 class QwtPlotCurve;
+class QwtPlotMarker;
 //! Отображает "след" метода Хука-Дживса.
 class spuroHuGi : public spuro{
 Q_OBJECT
 private:
 	//! Точка B1.
 	QPointF b1;
-	QwtPlotCurve * p1;
+	QwtPlotMarker * p1;
+//	QwtPlotMarker * B1;
 	//! Точки от B1 до B2.
 	QPolygonF B1gxisB2;
 	QwtPlotCurve * b1gxisb2;

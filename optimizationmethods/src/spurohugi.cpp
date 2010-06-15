@@ -2,6 +2,7 @@
 #include "Konstantoj.h"
 #include <qwt_plot.h>
 #include <qwt_plot_curve.h>
+#include <qwt_plot_marker.h>
 #include <qwt_symbol.h>
 #include <QPolygonF>
 
@@ -17,12 +18,6 @@ spuroHuGi::spuroHuGi( QColor bazaKoloro )
 	b2gxisp->setPen(BazaKoloro);
 	b2gxisp->attach(plt);
 	
-	p1 = new QwtPlotCurve(trUtf8("B1"));
-	p1->setPen(BazaKoloro);
-	QwtSymbol smbl(QwtSymbol::Ellipse, QBrush(Qt::lightGray), QPen(BazaKoloro),QSize(4,4));
-	p1->setSymbol(smbl);
-	p1->setStyle(QwtPlotCurve::Dots);
-	p1->attach(plt);
 	
 	p2 = new QwtPlotCurve(trUtf8("B2"));
 	p2->setPen(BazaKoloro);
@@ -37,6 +32,16 @@ spuroHuGi::spuroHuGi( QColor bazaKoloro )
 	p->setSymbol(smbl3);
 	p->setStyle(QwtPlotCurve::Dots);
 	p->attach(plt);
+	
+	p1 = new QwtPlotMarker();
+	p1->setLineStyle(QwtPlotMarker::NoLine);
+	p1->setLabelAlignment(Qt::AlignCenter | Qt::AlignTop);
+	QwtSymbol smbl(QwtSymbol::Ellipse, QBrush(Qt::lightGray), QPen(BazaKoloro),QSize(4,4));
+	p1->setSymbol(smbl);
+	QwtText text("B1");
+	text.setColor(BazaKoloro);
+	p1->setLabel(text);
+	p1->attach(plt);
 }
 //
 
@@ -55,7 +60,7 @@ void spuroHuGi::difiniB1(const QPointF & B1){
 	B1gxisB2.clear();
 	B1gxisB2<<B1;
 	B2gxisP.clear();
-	p1->setData(QPolygonF()<<B1);
+	p1->setValue(B1);
 	b1gxisb2->setData(QPolygonF());
 	b2gxisp->setData(QPolygonF());
 	plt->replot();
@@ -87,7 +92,7 @@ void spuroHuGi::senspurigi(){
 	B2gxisP.clear();
 	b1gxisb2->setData(QPolygonF());
 	b2gxisp->setData(QPolygonF());
-	p1->setData(QPolygonF());
+	p1->setValue(QPointF());
 	p2->setData(QPolygonF());
 	p->setData(QPolygonF());
 	plt->replot();
