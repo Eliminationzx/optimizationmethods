@@ -4,6 +4,8 @@
 #include <qwt_plot_curve.h>
 #include <qwt_symbol.h>
 #include <QPolygonF>
+
+#include <QMessageBox>
 //
 spuroHuGi::spuroHuGi( QColor bazaKoloro )
 	: spuro(bazaKoloro){
@@ -15,24 +17,24 @@ spuroHuGi::spuroHuGi( QColor bazaKoloro )
 	b2gxisp->setPen(BazaKoloro);
 	b2gxisp->attach(plt);
 	
-	p1 = new QwtPlotCurve();
+	p1 = new QwtPlotCurve(trUtf8("B1"));
 	p1->setPen(BazaKoloro);
 	QwtSymbol smbl(QwtSymbol::Ellipse, QBrush(Qt::lightGray), QPen(BazaKoloro),QSize(4,4));
 	p1->setSymbol(smbl);
 	p1->setStyle(QwtPlotCurve::Dots);
 	p1->attach(plt);
 	
-	p2 = new QwtPlotCurve();
+	p2 = new QwtPlotCurve(trUtf8("B2"));
 	p2->setPen(BazaKoloro);
-//	QwtSymbol smbl(QwtSymbol::Ellipse, QBrush(Qt::lightGray), QPen(BazaKoloro),QSize(4,4));
-	p2->setSymbol(smbl);
+	QwtSymbol smbl2(QwtSymbol::Ellipse, QBrush(Qt::lightGray), QPen(BazaKoloro),QSize(4,4));
+	p2->setSymbol(smbl2);
 	p2->setStyle(QwtPlotCurve::Dots);
 	p2->attach(plt);
 	
-	p = new QwtPlotCurve();
+	p = new QwtPlotCurve(trUtf8("p"));
 	p->setPen(BazaKoloro);
-//	QwtSymbol smbl(QwtSymbol::Ellipse, QBrush(Qt::lightGray), QPen(BazaKoloro),QSize(4,4));
-	p->setSymbol(smbl);
+	QwtSymbol smbl3(QwtSymbol::Ellipse, QBrush(Qt::lightGray), QPen(BazaKoloro),QSize(4,4));
+	p->setSymbol(smbl3);
 	p->setStyle(QwtPlotCurve::Dots);
 	p->attach(plt);
 }
@@ -62,7 +64,7 @@ void spuroHuGi::difiniB1(const QPointF & B1){
 void spuroHuGi::difiniB2(const QPointF & B2){
 	if(B1gxisB2.empty());else{
 		B1gxisB2<<B2;
-		b1gxisb2->setData(QPolygonF());
+		b1gxisb2->setData(B1gxisB2);
 		plt->replot();
 		B2gxisP.clear();
 		B2gxisP<<B2;
