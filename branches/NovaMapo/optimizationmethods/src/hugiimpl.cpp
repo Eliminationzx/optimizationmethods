@@ -136,19 +136,19 @@ HuGiImpl::HuGiImpl(  funkcio *f, QVector<double> d, QWidget * parent, Qt::WFlags
 	s3s4Transiro * s3s4 = new s3s4Transiro(up_x1_rb, next2_bt, SIGNAL(clicked()), s3);
 	s3s4->setTargetState(s4);
 	
-	NoKonsideriPointoTransiro * s4s5 = new NoKonsideriPointoTransiro(&NP, &PP,&MP2,FLAG_SO, F, not_accept_bt, SIGNAL(clicked()), s4);
+	NoKonsideriPointoTransiro * s4s5 = new NoKonsideriPointoTransiro(&NP, &PP,&MP2,&FLAG_SO, F, not_accept_bt, SIGNAL(clicked()), s4);
 	s4s5->setTargetState(s5);
 	
-	KonsideriPointoTransiro * s4s7 = new KonsideriPointoTransiro(&NP, &PP,&MP2,FLAG_SO, F, accept_bt, SIGNAL(clicked()), s4);
+	KonsideriPointoTransiro * s4s7 = new KonsideriPointoTransiro(&NP, &PP,&MP2,&FLAG_SO, F, accept_bt, SIGNAL(clicked()), s4);
 	s4s7->setTargetState(s7);
 	
 	s5s6Transiro * s5s6 = new s5s6Transiro(down_x1_rb, next2_bt, SIGNAL(clicked()), s5);
 	s5s6->setTargetState(s6);
 	
-	KonsideriPointoTransiro * s6s7 = new KonsideriPointoTransiro(&NP, &PP,&MP2,FLAG_SO, F, accept_bt, SIGNAL(clicked()), s6);
+	KonsideriPointoTransiro * s6s7 = new KonsideriPointoTransiro(&NP, &PP,&MP2,&FLAG_SO, F, accept_bt, SIGNAL(clicked()), s6);
 	s6s7->setTargetState(s7);
 	
-	NoKonsideriPointoTransiro * s6s8 = new NoKonsideriPointoTransiro(&NP, &PP,&MP2,FLAG_SO, F, not_accept_bt, SIGNAL(clicked()), s6);
+	NoKonsideriPointoTransiro * s6s8 = new NoKonsideriPointoTransiro(&NP, &PP,&MP2,&FLAG_SO, F, not_accept_bt, SIGNAL(clicked()), s6);
 	s6s8->setTargetState(s8);
 	
 	s7s9_s8s9Transiro * s7s9 = new s7s9_s8s9Transiro(up_x2_rb, next2_bt, SIGNAL(clicked()), s7);
@@ -157,19 +157,19 @@ HuGiImpl::HuGiImpl(  funkcio *f, QVector<double> d, QWidget * parent, Qt::WFlags
 	s7s9_s8s9Transiro * s8s9 = new s7s9_s8s9Transiro(up_x2_rb, next2_bt, SIGNAL(clicked()), s8);
 	s8s9->setTargetState(s9);
 	//======
-	NoKonsideriPointoTransiro * s9s10 = new NoKonsideriPointoTransiro(&NP, &PP,&MP2,FLAG_SO, F, not_accept_bt, SIGNAL(clicked()), s9);
+	NoKonsideriPointoTransiro * s9s10 = new NoKonsideriPointoTransiro(&NP, &PP,&MP2,&FLAG_SO, F, not_accept_bt, SIGNAL(clicked()), s9);
 	s9s10->setTargetState(s10);
 	
-	KonsideriPointoTransiro * s9s12 = new KonsideriPointoTransiro(&NP, &PP,&MP2,FLAG_SO, F, accept_bt, SIGNAL(clicked()), s9);
+	KonsideriPointoTransiro * s9s12 = new KonsideriPointoTransiro(&NP, &PP,&MP2,&FLAG_SO, F, accept_bt, SIGNAL(clicked()), s9);
 	s9s12->setTargetState(s12);
 	
 	s10s11Transiro * s10s11 = new s10s11Transiro(down_x2_rb, next2_bt, SIGNAL(clicked()), s10);
 	s10s11->setTargetState(s11);
 	
-	KonsideriPointoTransiro * s11s12 = new KonsideriPointoTransiro(&NP, &PP,&MP2,FLAG_SO, F, accept_bt, SIGNAL(clicked()), s11);
+	KonsideriPointoTransiro * s11s12 = new KonsideriPointoTransiro(&NP, &PP,&MP2,&FLAG_SO, F, accept_bt, SIGNAL(clicked()), s11);
 	s11s12->setTargetState(s12);
 	
-	NoKonsideriPointoTransiro * s11s13 = new NoKonsideriPointoTransiro(&NP, &PP,&MP2,FLAG_SO, F, not_accept_bt, SIGNAL(clicked()), s11);
+	NoKonsideriPointoTransiro * s11s13 = new NoKonsideriPointoTransiro(&NP, &PP,&MP2,&FLAG_SO, F, not_accept_bt, SIGNAL(clicked()), s11);
 	s11s13->setTargetState(s13);
 	
 	s12->addTransition(this, SIGNAL(stateHasEntered()), s13); // Переход s12s13 совершается сразу при входе в s12.
@@ -295,7 +295,7 @@ void HuGiImpl::on_difiniFonto_act_activated(){
 
 void HuGiImpl::on_helpo_action_activated()
 {
-	helpBrowserImpl * hb = new helpBrowserImpl( "doc/", "method1.htm", this);
+	helpBrowserImpl * hb = new helpBrowserImpl( "doc/", "method4.htm", this);
 	hb->resize(900, 600);
 	hb->show();
 }
@@ -614,11 +614,11 @@ namespace SinkoLauxKoordinatoj_hugi{
 	{
 		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
 		if(QSignalTransition::eventTest(e)){
-			qDebug()<<trUtf8("  Check f(np) < f(mp)");
+			qDebug()<<trUtf8("  Check f(np) < f(mp2(pp))")<<flag_so;
 			// Проверяю своё условие.
-			if(flag_so == false)
+			if(*flag_so == false)
 				return f->rezulto(*np) < f->rezulto(*mp2);
-			else
+			else if(*flag_so == true)
 				return f->rezulto(*np) < f->rezulto(*pp);
 		}else{
 			return false;
@@ -629,11 +629,11 @@ namespace SinkoLauxKoordinatoj_hugi{
 	{
 		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
 		if(QSignalTransition::eventTest(e)){
-			qDebug()<<trUtf8("  Check f(np) >= f(mp)");
+			qDebug()<<trUtf8("  Check f(np) >= f(mp2(pp))");
 			// Проверяю своё условие.
-			if(flag_so == false)
+			if(*flag_so == false)
 				return f->rezulto(*np) >= f->rezulto(*mp2);
-			else
+			else if(*flag_so == true)
 				return f->rezulto(*np) >= f->rezulto(*pp);
 		}else{
 			return false;
@@ -728,13 +728,13 @@ namespace SinkoLauxKoordinatoj_hugi{
 	{
 		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
 		if(QSignalTransition::eventTest(e)){
-			qDebug()<<trUtf8(" s13s16  пройден поиск по образцу = true && Выбран пункт принять образец &&  f(b2)<f(temp_b2)  ");
+			qDebug()<<trUtf8(" s13s16  пройден поиск по образцу = true && Выбран пункт принять образец &&  f(b2)<f(temp_b2)  ")<<&flag_so;
 			qDebug()<<trUtf8("======FBP=")<<(f->rezulto(*pp));
 			qDebug()<<trUtf8("======FTB=")<<(f->rezulto(*mp2));
 			qDebug()<<trUtf8("======FLAG=")<<flag_so;
 			//qDebug()<<trUtf8("Come in s1 flag=%1").arg(flag_so); 
 			// Проверяю своё условие.
-			return &flag_so && ok_rb_->isChecked() && (f->rezulto(*pp)) < f->rezulto(*mp2);
+			return *flag_so && ok_rb_->isChecked() && (f->rezulto(*pp)) < f->rezulto(*mp2);
 		}else{
 			return false;
 		}
@@ -744,9 +744,9 @@ namespace SinkoLauxKoordinatoj_hugi{
 	{
 		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
 		if(QSignalTransition::eventTest(e)){
-			qDebug()<<trUtf8("s13s19  пройден поиск по образцу = true && Выбран пункт не принимать образец &&  f(b2)<f(temp_b2) ");
+			qDebug()<<trUtf8("s13s19  пройден поиск по образцу = true && Выбран пункт не принимать образец &&  f(b2)<f(temp_b2) ")<<&flag_so;
 			// Проверяю своё условие.
-			return &flag_so && no_rb_->isChecked() && f->rezulto(*pp) >= f->rezulto(*mp2);
+			return *flag_so && no_rb_->isChecked() && f->rezulto(*pp) >= f->rezulto(*mp2);
 		}else{
 			return false;
 		}
