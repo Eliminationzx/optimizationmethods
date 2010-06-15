@@ -443,15 +443,16 @@ void HuGiImpl::s14_entered()
 
 void HuGiImpl::s13_entered()
 {
+		x1_new_lb->setText("");
+		x2_new_lb->setText("");
+		fsign_new_lb->setText("");
 	if(FLAG_SO==true)
 		stackedWidget->setCurrentIndex(2);
 	else
 	{
 		stackedWidget->setCurrentIndex(3);
 
-		x1_new_lb->setText("");
-		x2_new_lb->setText("");
-		fsign_new_lb->setText("");
+		
 		
 		LogTxtBrsr->append(trUtf8("  Точка: (%1; %2) не принята").arg(NP.x()).arg(NP.y()));
 	}
@@ -571,12 +572,12 @@ void HuGiImpl::s4_entered()
 {
 	
 	if(FLAG_SO == false)
-	{
-		x1_b2_lb->setText("");
-		x2_b2_lb->setText("");
-		fsign_b2_lb->setText("");		
+	{			
 		MP2 = MP;
 		NP = MP2 + PX1;
+		x1_b2_lb->setText("");
+		x2_b2_lb->setText("");
+		fsign_b2_lb->setText("");
 	}
 	else if(FLAG_SO == true)
 		NP = PP + PX1;
