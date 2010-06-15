@@ -2,12 +2,10 @@
 #include "mapoporfunkcioimpl.h"
 #include "Konstantoj.h"
 #include "funkcio.h"
-#include "spuro.h"
 #include "spurohugi.h"
 #include "demonstrataqpointf.h"
 #include "signalantoporpointf.h"
 #include "helpbrowserimpl.h"
-#include "math.h"
 #include "aboutprogramimpl.h"
 #include <QTextBrowser>
 #include <QString>
@@ -17,23 +15,18 @@
 #include <QLabel>
 #include <QFontDialog>
 #include <QDebug>
-//#include <QTextCodec>
 //
 using namespace SinkoLauxKoordinatoj_hugi;
 HuGiImpl::HuGiImpl(  funkcio *f, QVector<double> d, QWidget * parent, Qt::WFlags flags) 
 	: AlgoritmoWin(f, d, parent, flags){
 	setupUi(this);
-connect(exit, SIGNAL(activated()), qApp, SLOT(closeAllWindows()));
-// Для овражной функции убираю действие "Начать заново"
+	connect(exit, SIGNAL(activated()), qApp, SLOT(closeAllWindows()));
+	// Для овражной функции убираю действие "Начать заново"
 	if(F->metaObject()->className() == QString("RavinaFunkcio")){
 		menubar->removeAction(recomenci_acn);
-	}	
-	//QTextCodec *codec = QTextCodec::codecForName("KOI8-R");
-	//QCString dest = codec->fromUnicode(src);
-
+	}
 	
 	qDebug()<<trUtf8("============Method HuGi go on"); // Вывожу дебажную инфу на консоль.
-	
 	
  	stackedWidget->setCurrentIndex(3);
 	//Вывожу формулу функции.
@@ -281,7 +274,6 @@ connect(exit, SIGNAL(activated()), qApp, SLOT(closeAllWindows()));
 	//s12->assignProperty(distance_lb, "text", trUtf8(""));
 //---Настраиваю выделение цветом растояния между точками.
 //	s1->assignProperty(distance_lb, "palette", this->palette());
-
 
 //---Добавляю состояния в автомат и запускаю его.------------------------------
 	SM->addState(so);
@@ -613,7 +605,7 @@ void HuGiImpl::init()
 {
 	qDebug()<<trUtf8("Come in init()"); // Вывожу дебажную инфу на консоль.
 
-//	strikteco = (*D)[0];
+	static_cast<spuroHuGi*>(Sp)->senspurigi();
 //	static_cast<spuroHuGi*>(Sp)->senspurigi();
 	precision_lb->setText(QString::number(strikteco));
 	KvantoEraroj = 0;
@@ -623,7 +615,6 @@ void HuGiImpl::init()
 	PX2 = QPointF(0, D[2]);
 	ModPX = 10;
 	LogTxtBrsr->setText("");
-	//static_cast<spuroHuGi*>(Sp)->senspurigi();
 
 	qDebug()<<trUtf8("Задаю переменным начальные значения"); // Вывожу дебажную инфу на консоль.
 }
