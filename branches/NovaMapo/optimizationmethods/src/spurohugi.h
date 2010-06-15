@@ -17,11 +17,11 @@ private:
 	//! Точки от B1 до B2.
 	QPolygonF B1gxisB2;
 	QwtPlotCurve * b1gxisb2;
-	QwtPlotCurve * p2;
+	QwtPlotMarker * p2;
 	//! Точки от B2 до P.
 	QPolygonF B2gxisP;
 	QwtPlotCurve * b2gxisp;
-	QwtPlotCurve * p;
+	QwtPlotMarker * p;
 public:
 	//! Устанавливает полотно, на котором будет нарисован след.
 	void difiniPlt( QwtPlot * Plt );
