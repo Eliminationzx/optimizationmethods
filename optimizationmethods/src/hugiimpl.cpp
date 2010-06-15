@@ -2,12 +2,10 @@
 #include "mapoporfunkcioimpl.h"
 #include "Konstantoj.h"
 #include "funkcio.h"
-#include "spuro.h"
 #include "spurohugi.h"
 #include "demonstrataqpointf.h"
 #include "signalantoporpointf.h"
 #include "helpbrowserimpl.h"
-#include "math.h"
 #include "aboutprogramimpl.h"
 #include <QTextBrowser>
 #include <QString>
@@ -17,23 +15,18 @@
 #include <QLabel>
 #include <QFontDialog>
 #include <QDebug>
-//#include <QTextCodec>
 //
 using namespace SinkoLauxKoordinatoj_hugi;
 HuGiImpl::HuGiImpl(  funkcio *f, QVector<double> d, QWidget * parent, Qt::WFlags flags) 
 	: AlgoritmoWin(f, d, parent, flags){
 	setupUi(this);
-connect(exit, SIGNAL(activated()), qApp, SLOT(closeAllWindows()));
-// Для овражной функции убираю действие "Начать заново"
+	connect(exit, SIGNAL(activated()), qApp, SLOT(closeAllWindows()));
+	// Для овражной функции убираю действие "Начать заново"
 	if(F->metaObject()->className() == QString("RavinaFunkcio")){
 		menubar->removeAction(recomenci_acn);
-	}	
-	//QTextCodec *codec = QTextCodec::codecForName("KOI8-R");
-	//QCString dest = codec->fromUnicode(src);
-
+	}
 	
 	qDebug()<<trUtf8("============Method HuGi go on"); // Вывожу дебажную инфу на консоль.
-	
 	
  	stackedWidget->setCurrentIndex(3);
 	//Вывожу формулу функции.

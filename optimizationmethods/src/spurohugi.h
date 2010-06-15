@@ -6,8 +6,8 @@
 //
 class QwtPlotCurve;
 //! Отображает "след" метода Хука-Дживса.
-class spuroHuGi : public spuro
-{
+class spuroHuGi : public spuro{
+Q_OBJECT
 private:
 	//! Точка B1.
 	QPointF b1;
