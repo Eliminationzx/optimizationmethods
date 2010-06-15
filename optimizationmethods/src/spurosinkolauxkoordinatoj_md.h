@@ -25,8 +25,7 @@ public:
 	//! Возвращает приблизительную площадь отрисовываемую элементом.
 	QRectF boundingRect() const;
 	
-	spuroSinkoLauxKoordinatoj_md(QColor momentaKoloro, //!< Цвет текущей итерации.
-	                             QColor bazaKoloro, //!< Основной цвет "следа".
+	spuroSinkoLauxKoordinatoj_md(QColor bazaKoloro, //!< Основной цвет "следа".
 	                             qreal Skalo = 1, //!< Коэффициент масштаба.
 	                             QGraphicsItem * parent = 0 //!< Элемент родитель.
 	                            );
