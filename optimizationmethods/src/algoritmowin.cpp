@@ -12,7 +12,7 @@ QString AlgoritmoWin::textoFunkcio(){
 		"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">"
 		"p, li { white-space: pre-wrap; }"
 		"</style></head><body style=\" font-family:'Times New Roman'; font-size:16pt; font-weight:400; font-style:normal;\">"
-		"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">f(X)=";
+		"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">F(X)=";
 	if(F->metaObject()->className() == QString("KvadratigantoFunkcio"))
 		if (F->getA()){
 			if (abs(F->getA()) != 1){
