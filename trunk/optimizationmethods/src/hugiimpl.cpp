@@ -3,7 +3,7 @@
 #include "Konstantoj.h"
 #include "funkcio.h"
 #include "spuro.h"
-#include "spurosinkolauxkoordinatoj.h"
+#include "spurohugi.h"
 #include "demonstrataqpointf.h"
 #include "signalantoporpointf.h"
 #include "helpbrowserimpl.h"
@@ -45,13 +45,13 @@ connect(exit, SIGNAL(activated()), qApp, SLOT(closeAllWindows()));
 	// добавляю вижет карты в позицию 1,1. Компановщик сам позаботится о назначении новому виджету родителя.
 	static_cast<QGridLayout*>(centralwidget->layout())->addWidget(MapoWdg, 2, 1);
 
-	MapoWdg->setScale(20);// Ставлю масштаб побольше. Надо будет определться с оптимальным значением.
+//	MapoWdg->setScale(20);// Ставлю масштаб побольше. Надо будет определться с оптимальным значением.
 
-	Sp = new spuroSinkoLauxKoordinatoj(Qt::white, Qt::blue);
+	Sp = new spuroHuGi(Qt::black);
 	MapoWdg->difiniSpuro(Sp);
 //	MapoWdg->difiniFonaKoloro(Qt::green);
 	
-	//===Соединяю точки и надписи на форме=========================================
+//===Соединяю точки и надписи на форме=========================================
 	SignalantoPorPointF * sMP = new SignalantoPorPointF(&MP, F, this);
 	connect(sMP, SIGNAL(proviziXValoro(const QString &)), x1_b1_lb, SLOT(setText(const QString &)));
 	connect(sMP, SIGNAL(proviziYValoro(const QString &)), x2_b1_lb, SLOT(setText(const QString &)));
@@ -77,6 +77,12 @@ connect(exit, SIGNAL(activated()), qApp, SLOT(closeAllWindows()));
 	
 	SignalantoPorPointF * sPX2 = new SignalantoPorPointF(&PX2, F, this);
 	connect(sPX2, SIGNAL(proviziYValoro(const QString &)), x2_step_lb, SLOT(setText(const QString &)));
+
+
+//========Прикручиваю карту====================================================
+	connect(sMP, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniB1(const QPointF &)));
+	connect(sMP2, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniB2(const QPointF &)));
+	connect(sPP, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniP(const QPointF &)));
 
 //===Создаю конечный автомат.==================================================
 	QStateMachine * SM = new QStateMachine();
@@ -175,7 +181,7 @@ connect(exit, SIGNAL(activated()), qApp, SLOT(closeAllWindows()));
 	
 	s12->addTransition(this, SIGNAL(stateHasEntered()), s13); // Переход s12s13 совершается сразу при входе в s12.
 	
-	s13s14Transiro * s13s14 = new s13s14Transiro(&MP, &MP2, &PX1, &PX2, strikteco, change_step_bt, SIGNAL(clicked()), s11);
+	s13s14Transiro * s13s14 = new s13s14Transiro(&MP, &MP2, &PX1, &PX2, strikteco, change_step_bt, SIGNAL(clicked()), s13);
 	s13s14->setTargetState(s14);
 	
 	s13->addTransition(found_bt, SIGNAL(clicked()), s15);
@@ -247,44 +253,35 @@ connect(exit, SIGNAL(activated()), qApp, SLOT(closeAllWindows()));
 	connect(te8, SIGNAL(triggered()), SLOT(registriEraro()));
 
 
-/*---Настраиваю некоторые состояния, чтоб затирали надпись со значениями новой точки, дабы не смущать пользователя.
-	s1->assignProperty(distance_lb, "text", trUtf8(""));
-	s1->assignProperty(new_x1_lb, "text", trUtf8(""));
-	s1->assignProperty(new_x2_lb, "text", trUtf8(""));
-	s1->assignProperty(new_fsign_lb, "text", trUtf8(""));
-	s3->assignProperty(new_x1_lb, "text", trUtf8(""));
-	s3->assignProperty(new_x2_lb, "text", trUtf8(""));
-	s3->assignProperty(new_fsign_lb, "text", trUtf8(""));
-	s5->assignProperty(new_x1_lb, "text", trUtf8(""));
-	s5->assignProperty(new_x2_lb, "text", trUtf8(""));
-	s5->assignProperty(new_fsign_lb, "text", trUtf8(""));
-	s6->assignProperty(new_x1_lb, "text", trUtf8(""));
-	s6->assignProperty(new_x2_lb, "text", trUtf8(""));
-	s6->assignProperty(new_fsign_lb, "text", trUtf8(""));
-	s8->assignProperty(new_x1_lb, "text", trUtf8(""));
-	s8->assignProperty(new_x2_lb, "text", trUtf8(""));
-	s8->assignProperty(new_fsign_lb, "text", trUtf8(""));
-	s11->assignProperty(new_x1_lb, "text", trUtf8(""));
-	s11->assignProperty(new_x2_lb, "text", trUtf8(""));
-	s11->assignProperty(new_fsign_lb, "text", trUtf8(""));
-	s10->assignProperty(new_x1_lb, "text", trUtf8(""));
-	s10->assignProperty(new_x2_lb, "text", trUtf8(""));
-	s10->assignProperty(new_fsign_lb, "text", trUtf8(""));
-	s12->assignProperty(distance_lb, "text", trUtf8(""));
+//---Настраиваю некоторые состояния, чтоб затирали надпись со значениями новой точки, дабы не смущать пользователя.
+	//s3->assignProperty(x1_b1_lb, "text", trUtf8(""));
+	//s3->assignProperty(x2_b1_lb, "text", trUtf8(""));
+	//s3->assignProperty(fsign_b1_lb, "text", trUtf8(""));
+	//s1->assignProperty(new_x1_lb, "text", trUtf8(""));
+	//s1->assignProperty(new_x2_lb, "text", trUtf8(""));
+	//s1->assignProperty(new_fsign_lb, "text", trUtf8(""));
+	//s3->assignProperty(new_x1_lb, "text", trUtf8(""));
+	//s3->assignProperty(new_x2_lb, "text", trUtf8(""));
+	//s3->assignProperty(new_fsign_lb, "text", trUtf8(""));
+	//s5->assignProperty(new_x1_lb, "text", trUtf8(""));
+	//s5->assignProperty(new_x2_lb, "text", trUtf8(""));
+	//s5->assignProperty(new_fsign_lb, "text", trUtf8(""));
+	//s6->assignProperty(new_x1_lb, "text", trUtf8(""));
+	//s6->assignProperty(new_x2_lb, "text", trUtf8(""));
+	//s6->assignProperty(new_fsign_lb, "text", trUtf8(""));
+	//s8->assignProperty(new_x1_lb, "text", trUtf8(""));
+	//s8->assignProperty(new_x2_lb, "text", trUtf8(""));
+	//s8->assignProperty(new_fsign_lb, "text", trUtf8(""));
+	//s11->assignProperty(new_x1_lb, "text", trUtf8(""));
+	//s11->assignProperty(new_x2_lb, "text", trUtf8(""));
+	//s11->assignProperty(new_fsign_lb, "text", trUtf8(""));
+	//s10->assignProperty(new_x1_lb, "text", trUtf8(""));
+	//s10->assignProperty(new_x2_lb, "text", trUtf8(""));
+	//s10->assignProperty(new_fsign_lb, "text", trUtf8(""));
+	//s12->assignProperty(distance_lb, "text", trUtf8(""));
 //---Настраиваю выделение цветом растояния между точками.
-	s1->assignProperty(distance_lb, "palette", this->palette());
-*/
-/*---Прикручиваю карту---------------------------------------------------------
-	connect(sNP, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(aldoniSercxantaPointo(QPointF)));
-	connect(sMP, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniMomentaPointo(QPointF)));
+//	s1->assignProperty(distance_lb, "palette", this->palette());
 
-	connect(s3, SIGNAL(entered()), Sp, SLOT(reveniAlMomentoPointo()));
-	connect(s6, SIGNAL(entered()), Sp, SLOT(reveniAlMomentoPointo()));
-	connect(s8, SIGNAL(entered()), Sp, SLOT(reveniAlMomentoPointo()));
-	connect(s9s11, SIGNAL(triggered()), Sp, SLOT(reveniAlMomentoPointo()));
-
-	connect(s1, SIGNAL(entered()), Sp, SLOT(finisxiIteracio()));
-//-------------------------------------------------------------------------------*/
 
 //---Добавляю состояния в автомат и запускаю его.------------------------------
 	SM->addState(so);
@@ -374,8 +371,16 @@ void HuGiImpl::sf_entered()
 
 void HuGiImpl::s19_entered()
 {
+	x1_p_lb->setText("");
+	x2_p_lb->setText("");
+	fsign_p_lb->setText("");
+	
+	x1_new_lb->setText("");
+	x2_new_lb->setText("");
+	fsign_new_lb->setText("");
+	
 	FLAG_SO = false;
-	MP = MP2;
+	MP=MP2;
 	stackedWidget->setCurrentIndex(3);
 	qDebug()<<trUtf8("Come in s19"); // Вывожу дебажную инфу на консоль.
 
@@ -402,6 +407,8 @@ void HuGiImpl::s17_entered()
 
 void HuGiImpl::s16_entered()
 {
+	MP=MP2;
+	MP2=PP;	
 	stackedWidget->setCurrentIndex(3);
 	x1_p_lb->setText("");
 	x2_p_lb->setText("");
@@ -569,21 +576,21 @@ void HuGiImpl::s4_entered()
 		
 	LogTxtBrsr->append(trUtf8("  Сделан шаг в положительном направлении оси Х1."));
 
-	qDebug()<<trUtf8("Come in s4"); // Вывожу дебажную инфу на консоль.
+	qDebug()<<trUtf8("Come in s4").arg(MP.x()).arg(MP.y()).arg(MP2.x()).arg(MP2.y()).arg(NP.x()).arg(NP.y()); // Вывожу дебажную инфу на консоль.
 }
 
 
 void HuGiImpl::s3_entered()
 {
 	stackedWidget->setCurrentIndex(1);
-	qDebug()<<trUtf8("Come in s3"); // Вывожу дебажную инфу на консоль.
+	qDebug()<<trUtf8("Come in s3 bp=").arg(MP.x()).arg(MP.y()).arg(MP2.x()).arg(MP2.y()).arg(NP.x()).arg(NP.y()); // Вывожу дебажную инфу на консоль.
 }
 
 
 void HuGiImpl::s2_entered()
 {
 	stackedWidget->setCurrentIndex(0);
-	qDebug()<<trUtf8("Come in s2"); // Вывожу дебажную инфу на консоль.
+	qDebug()<<trUtf8("Come in s2").arg(MP.x()).arg(MP.y()).arg(MP2.x()).arg(MP2.y()).arg(NP.x()).arg(NP.y()); // Вывожу дебажную инфу на консоль.
 }
 
 void HuGiImpl::s1_entered()
@@ -592,7 +599,7 @@ void HuGiImpl::s1_entered()
 	
 	LogTxtBrsr->append(trUtf8("Итерация № %1.").arg(++NumeroIteracio));
 
-	qDebug()<<trUtf8("Come in s1 flag=%1").arg(FLAG_SO); // Вывожу дебажную инфу на консоль.
+	qDebug()<<trUtf8("Come in s1 flag=%1").arg(FLAG_SO).arg(MP.x()).arg(MP.y()).arg(MP2.x()).arg(MP2.y()).arg(NP.x()).arg(NP.y()); // Вывожу дебажную инфу на консоль.
 }
 
 
@@ -607,6 +614,7 @@ void HuGiImpl::init()
 	qDebug()<<trUtf8("Come in init()"); // Вывожу дебажную инфу на консоль.
 
 //	strikteco = (*D)[0];
+//	static_cast<spuroHuGi*>(Sp)->senspurigi();
 	precision_lb->setText(QString::number(strikteco));
 	KvantoEraroj = 0;
 	NumeroIteracio = 0;
@@ -615,7 +623,7 @@ void HuGiImpl::init()
 	PX2 = QPointF(0, D[2]);
 	ModPX = 10;
 	LogTxtBrsr->setText("");
-	static_cast<spuroSinkoLauxKoordinatoj*>(Sp)->senspurigi();
+	//static_cast<spuroHuGi*>(Sp)->senspurigi();
 
 	qDebug()<<trUtf8("Задаю переменным начальные значения"); // Вывожу дебажную инфу на консоль.
 }
