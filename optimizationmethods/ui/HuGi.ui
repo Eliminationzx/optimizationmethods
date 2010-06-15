@@ -448,23 +448,12 @@ p, li { white-space: pre-wrap; }
           <layout class="QGridLayout" name="gridLayout_4" rowstretch="1,0">
            <item row="0" column="0">
             <widget class="QGroupBox" name="groupBox">
-             <property name="font">
-              <font>
-               <weight>50</weight>
-               <bold>false</bold>
-              </font>
-             </property>
              <property name="title">
               <string>Тип поиска</string>
              </property>
              <layout class="QGridLayout" name="gridLayout_5">
               <item row="0" column="0">
                <widget class="QRadioButton" name="investigate_rb">
-                <property name="font">
-                 <font>
-                  <pointsize>14</pointsize>
-                 </font>
-                </property>
                 <property name="text">
                  <string>Исследующий</string>
                 </property>
@@ -472,11 +461,6 @@ p, li { white-space: pre-wrap; }
               </item>
               <item row="1" column="0">
                <widget class="QRadioButton" name="model_rb">
-                <property name="font">
-                 <font>
-                  <pointsize>14</pointsize>
-                 </font>
-                </property>
                 <property name="text">
                  <string>По образцу</string>
                 </property>
@@ -504,11 +488,11 @@ p, li { white-space: pre-wrap; }
               <widget class="QPushButton" name="next1_bt">
                <property name="font">
                 <font>
-                 <pointsize>12</pointsize>
+                 <pointsize>16</pointsize>
                 </font>
                </property>
                <property name="text">
-                <string>Далее</string>
+                <string>Выбрать действие</string>
                </property>
               </widget>
              </item>
@@ -533,23 +517,12 @@ p, li { white-space: pre-wrap; }
           <layout class="QGridLayout" name="gridLayout_7">
            <item row="0" column="0">
             <widget class="QGroupBox" name="groupBox_4">
-             <property name="font">
-              <font>
-               <weight>50</weight>
-               <bold>false</bold>
-              </font>
-             </property>
              <property name="title">
               <string>Направление движения</string>
              </property>
              <layout class="QVBoxLayout" name="verticalLayout_2">
               <item>
                <widget class="QRadioButton" name="up_x1_rb">
-                <property name="font">
-                 <font>
-                  <pointsize>14</pointsize>
-                 </font>
-                </property>
                 <property name="text">
                  <string>положительное направление по оси Х1</string>
                 </property>
@@ -557,11 +530,6 @@ p, li { white-space: pre-wrap; }
               </item>
               <item>
                <widget class="QRadioButton" name="down_x1_rb">
-                <property name="font">
-                 <font>
-                  <pointsize>14</pointsize>
-                 </font>
-                </property>
                 <property name="text">
                  <string>отрицательное направление по оси Х1</string>
                 </property>
@@ -569,11 +537,6 @@ p, li { white-space: pre-wrap; }
               </item>
               <item>
                <widget class="QRadioButton" name="up_x2_rb">
-                <property name="font">
-                 <font>
-                  <pointsize>14</pointsize>
-                 </font>
-                </property>
                 <property name="text">
                  <string>положительное направление по оси Х2</string>
                 </property>
@@ -581,11 +544,6 @@ p, li { white-space: pre-wrap; }
               </item>
               <item>
                <widget class="QRadioButton" name="down_x2_rb">
-                <property name="font">
-                 <font>
-                  <pointsize>14</pointsize>
-                 </font>
-                </property>
                 <property name="text">
                  <string>отрицательное направление по оси Х2</string>
                 </property>
@@ -611,13 +569,8 @@ p, li { white-space: pre-wrap; }
              </item>
              <item>
               <widget class="QPushButton" name="next2_bt">
-               <property name="font">
-                <font>
-                 <pointsize>12</pointsize>
-                </font>
-               </property>
                <property name="text">
-                <string>Далее</string>
+                <string>Сделать шаг</string>
                </property>
               </widget>
              </item>
@@ -648,11 +601,6 @@ p, li { white-space: pre-wrap; }
              <layout class="QGridLayout" name="gridLayout_9">
               <item row="0" column="0">
                <widget class="QRadioButton" name="ok_rb">
-                <property name="font">
-                 <font>
-                  <pointsize>14</pointsize>
-                 </font>
-                </property>
                 <property name="text">
                  <string>Да</string>
                 </property>
@@ -660,11 +608,6 @@ p, li { white-space: pre-wrap; }
               </item>
               <item row="1" column="0">
                <widget class="QRadioButton" name="no_rb">
-                <property name="font">
-                 <font>
-                  <pointsize>14</pointsize>
-                 </font>
-                </property>
                 <property name="text">
                  <string>Нет</string>
                 </property>
@@ -690,13 +633,8 @@ p, li { white-space: pre-wrap; }
              </item>
              <item>
               <widget class="QPushButton" name="next3_bt">
-               <property name="font">
-                <font>
-                 <pointsize>12</pointsize>
-                </font>
-               </property>
                <property name="text">
-                <string>Далее</string>
+                <string>Выбрать действие</string>
                </property>
               </widget>
              </item>
@@ -796,7 +734,7 @@ p, li { white-space: pre-wrap; }
      <x>0</x>
      <y>0</y>
      <width>1035</width>
-     <height>23</height>
+     <height>30</height>
     </rect>
    </property>
    <widget class="QMenu" name="testo_menu">
