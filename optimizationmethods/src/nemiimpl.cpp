@@ -319,8 +319,6 @@ void NeMiImpl::s3_entered(){
 
 void NeMiImpl::s5_entered(){
 	PK = Pc + c*(*Ph - Pc);
-	
-	QMessageBox::information(this, "", QString::number(c));
 
 // Скрываю надписи точки растяжения и отображаю точку сжатия. При выходе из
 // состояния верну назад.
