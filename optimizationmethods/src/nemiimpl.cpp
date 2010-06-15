@@ -131,7 +131,7 @@ NeMiImpl::NeMiImpl(  funkcio *f, QVector<double> d, QWidget * parent, Qt::WFlags
 	s11s7->setTargetState(s7);
 	sss1Transiro * sss1 = new sss1Transiro( strikteco, &Ph, &Pl, &Pm, &Pc, F, this, SIGNAL(stateHasEntered()), ss);
 	sss1->setTargetState(s1);
-	sssfTransiro * sssf = new sssfTransiro( strikteco, &Ph, &Pl, &Pm, &Pc, F, next2_bt, SIGNAL(clicked()), ss);
+	sssfTransiro * sssf = new sssfTransiro( strikteco, &Ph, &Pl, &Pm, &Pc, F, end_bt, SIGNAL(clicked()), ss);
 	sssf->setTargetState(sf);
 //---Создаю переход по действию "Начать заново"
 	connect(so->addTransition(recomenci_acn, SIGNAL(activated()), s1), SIGNAL(triggered()), SLOT(init()));
@@ -319,6 +319,8 @@ void NeMiImpl::s3_entered(){
 
 void NeMiImpl::s5_entered(){
 	PK = Pc + c*(*Ph - Pc);
+	
+	QMessageBox::information(this, "", QString::number(c));
 
 // Скрываю надписи точки растяжения и отображаю точку сжатия. При выходе из
 // состояния верну назад.
