@@ -2,10 +2,12 @@
 #include "funkcio.h"
 #include "Konstantoj.h"
 #include <QDebug>
+#include <QVector>
 
 SpectrogramData::SpectrogramData(const funkcio * F)
 	: QwtRasterData(QwtDoubleRect(-ampleksoMapo, -ampleksoMapo, 2*ampleksoMapo, 2*ampleksoMapo)), f(F){
-	min = f->rezulto(f->minPoint(0.1)[0], f->minPoint(0.1)[1]);
+	QVector<double> minPointo(f->minPoint(0.0000000001));
+	min = f->rezulto(minPointo[0], minPointo[1]);
 	//--Ищу точку приближенную к максимальной в области карты.---------------------
 	max = F->rezulto(ampleksoMapo, ampleksoMapo);
 	QPointF maxP = QPointF(ampleksoMapo, ampleksoMapo);
