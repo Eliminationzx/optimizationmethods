@@ -174,7 +174,7 @@ HuGiImpl::HuGiImpl(  funkcio *f, QVector<double> d, QWidget * parent, Qt::WFlags
 	
 	s12->addTransition(this, SIGNAL(stateHasEntered()), s13); // Переход s12s13 совершается сразу при входе в s12.
 	
-	s13s14Transiro * s13s14 = new s13s14Transiro(&MP, &MP2, &PX1, &PX2, strikteco, change_step_bt, SIGNAL(clicked()), s11);
+	s13s14Transiro * s13s14 = new s13s14Transiro(&MP, &MP2, &PX1, &PX2, strikteco, change_step_bt, SIGNAL(clicked()), s13);
 	s13s14->setTargetState(s14);
 	
 	s13->addTransition(found_bt, SIGNAL(clicked()), s15);
@@ -246,33 +246,34 @@ HuGiImpl::HuGiImpl(  funkcio *f, QVector<double> d, QWidget * parent, Qt::WFlags
 	connect(te8, SIGNAL(triggered()), SLOT(registriEraro()));
 
 
-/*---Настраиваю некоторые состояния, чтоб затирали надпись со значениями новой точки, дабы не смущать пользователя.
-	s1->assignProperty(distance_lb, "text", trUtf8(""));
-	s1->assignProperty(new_x1_lb, "text", trUtf8(""));
-	s1->assignProperty(new_x2_lb, "text", trUtf8(""));
-	s1->assignProperty(new_fsign_lb, "text", trUtf8(""));
-	s3->assignProperty(new_x1_lb, "text", trUtf8(""));
-	s3->assignProperty(new_x2_lb, "text", trUtf8(""));
-	s3->assignProperty(new_fsign_lb, "text", trUtf8(""));
-	s5->assignProperty(new_x1_lb, "text", trUtf8(""));
-	s5->assignProperty(new_x2_lb, "text", trUtf8(""));
-	s5->assignProperty(new_fsign_lb, "text", trUtf8(""));
-	s6->assignProperty(new_x1_lb, "text", trUtf8(""));
-	s6->assignProperty(new_x2_lb, "text", trUtf8(""));
-	s6->assignProperty(new_fsign_lb, "text", trUtf8(""));
-	s8->assignProperty(new_x1_lb, "text", trUtf8(""));
-	s8->assignProperty(new_x2_lb, "text", trUtf8(""));
-	s8->assignProperty(new_fsign_lb, "text", trUtf8(""));
-	s11->assignProperty(new_x1_lb, "text", trUtf8(""));
-	s11->assignProperty(new_x2_lb, "text", trUtf8(""));
-	s11->assignProperty(new_fsign_lb, "text", trUtf8(""));
-	s10->assignProperty(new_x1_lb, "text", trUtf8(""));
-	s10->assignProperty(new_x2_lb, "text", trUtf8(""));
-	s10->assignProperty(new_fsign_lb, "text", trUtf8(""));
-	s12->assignProperty(distance_lb, "text", trUtf8(""));
+//---Настраиваю некоторые состояния, чтоб затирали надпись со значениями новой точки, дабы не смущать пользователя.
+	//s3->assignProperty(x1_b1_lb, "text", trUtf8(""));
+	//s3->assignProperty(x2_b1_lb, "text", trUtf8(""));
+	//s3->assignProperty(fsign_b1_lb, "text", trUtf8(""));
+	//s1->assignProperty(new_x1_lb, "text", trUtf8(""));
+	//s1->assignProperty(new_x2_lb, "text", trUtf8(""));
+	//s1->assignProperty(new_fsign_lb, "text", trUtf8(""));
+	//s3->assignProperty(new_x1_lb, "text", trUtf8(""));
+	//s3->assignProperty(new_x2_lb, "text", trUtf8(""));
+	//s3->assignProperty(new_fsign_lb, "text", trUtf8(""));
+	//s5->assignProperty(new_x1_lb, "text", trUtf8(""));
+	//s5->assignProperty(new_x2_lb, "text", trUtf8(""));
+	//s5->assignProperty(new_fsign_lb, "text", trUtf8(""));
+	//s6->assignProperty(new_x1_lb, "text", trUtf8(""));
+	//s6->assignProperty(new_x2_lb, "text", trUtf8(""));
+	//s6->assignProperty(new_fsign_lb, "text", trUtf8(""));
+	//s8->assignProperty(new_x1_lb, "text", trUtf8(""));
+	//s8->assignProperty(new_x2_lb, "text", trUtf8(""));
+	//s8->assignProperty(new_fsign_lb, "text", trUtf8(""));
+	//s11->assignProperty(new_x1_lb, "text", trUtf8(""));
+	//s11->assignProperty(new_x2_lb, "text", trUtf8(""));
+	//s11->assignProperty(new_fsign_lb, "text", trUtf8(""));
+	//s10->assignProperty(new_x1_lb, "text", trUtf8(""));
+	//s10->assignProperty(new_x2_lb, "text", trUtf8(""));
+	//s10->assignProperty(new_fsign_lb, "text", trUtf8(""));
+	//s12->assignProperty(distance_lb, "text", trUtf8(""));
 //---Настраиваю выделение цветом растояния между точками.
-	s1->assignProperty(distance_lb, "palette", this->palette());
-*/
+//	s1->assignProperty(distance_lb, "palette", this->palette());
 
 //---Добавляю состояния в автомат и запускаю его.------------------------------
 	SM->addState(so);
@@ -362,8 +363,16 @@ void HuGiImpl::sf_entered()
 
 void HuGiImpl::s19_entered()
 {
+	x1_p_lb->setText("");
+	x2_p_lb->setText("");
+	fsign_p_lb->setText("");
+	
+	x1_new_lb->setText("");
+	x2_new_lb->setText("");
+	fsign_new_lb->setText("");
+	
 	FLAG_SO = false;
-	MP = MP2;
+	MP=MP2;
 	stackedWidget->setCurrentIndex(3);
 	qDebug()<<trUtf8("Come in s19"); // Вывожу дебажную инфу на консоль.
 
@@ -390,6 +399,8 @@ void HuGiImpl::s17_entered()
 
 void HuGiImpl::s16_entered()
 {
+	MP=MP2;
+	MP2=PP;	
 	stackedWidget->setCurrentIndex(3);
 	x1_p_lb->setText("");
 	x2_p_lb->setText("");
@@ -557,21 +568,21 @@ void HuGiImpl::s4_entered()
 		
 	LogTxtBrsr->append(trUtf8("  Сделан шаг в положительном направлении оси Х1."));
 
-	qDebug()<<trUtf8("Come in s4"); // Вывожу дебажную инфу на консоль.
+	qDebug()<<trUtf8("Come in s4").arg(MP.x()).arg(MP.y()).arg(MP2.x()).arg(MP2.y()).arg(NP.x()).arg(NP.y()); // Вывожу дебажную инфу на консоль.
 }
 
 
 void HuGiImpl::s3_entered()
 {
 	stackedWidget->setCurrentIndex(1);
-	qDebug()<<trUtf8("Come in s3"); // Вывожу дебажную инфу на консоль.
+	qDebug()<<trUtf8("Come in s3 bp=").arg(MP.x()).arg(MP.y()).arg(MP2.x()).arg(MP2.y()).arg(NP.x()).arg(NP.y()); // Вывожу дебажную инфу на консоль.
 }
 
 
 void HuGiImpl::s2_entered()
 {
 	stackedWidget->setCurrentIndex(0);
-	qDebug()<<trUtf8("Come in s2"); // Вывожу дебажную инфу на консоль.
+	qDebug()<<trUtf8("Come in s2").arg(MP.x()).arg(MP.y()).arg(MP2.x()).arg(MP2.y()).arg(NP.x()).arg(NP.y()); // Вывожу дебажную инфу на консоль.
 }
 
 void HuGiImpl::s1_entered()
@@ -580,7 +591,7 @@ void HuGiImpl::s1_entered()
 	
 	LogTxtBrsr->append(trUtf8("Итерация № %1.").arg(++NumeroIteracio));
 
-	qDebug()<<trUtf8("Come in s1 flag=%1").arg(FLAG_SO); // Вывожу дебажную инфу на консоль.
+	qDebug()<<trUtf8("Come in s1 flag=%1").arg(FLAG_SO).arg(MP.x()).arg(MP.y()).arg(MP2.x()).arg(MP2.y()).arg(NP.x()).arg(NP.y()); // Вывожу дебажную инфу на консоль.
 }
 
 
@@ -595,6 +606,7 @@ void HuGiImpl::init()
 	qDebug()<<trUtf8("Come in init()"); // Вывожу дебажную инфу на консоль.
 
 	static_cast<spuroHuGi*>(Sp)->senspurigi();
+//	static_cast<spuroHuGi*>(Sp)->senspurigi();
 	precision_lb->setText(QString::number(strikteco));
 	KvantoEraroj = 0;
 	NumeroIteracio = 0;

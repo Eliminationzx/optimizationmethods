@@ -16,7 +16,7 @@ class HuGiImpl : public AlgoritmoWin, public Ui::HuGi
 Q_OBJECT
 protected:
  	//! Базовая точка итерации.
-	DemonstrataQPointF BP;
+	//DemonstrataQPointF BP;
 	//! Текущая базовая точка.
 	DemonstrataQPointF MP;
 	//! Текущая базовая точка2.
