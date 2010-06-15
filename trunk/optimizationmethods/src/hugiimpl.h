@@ -239,20 +239,20 @@ namespace SinkoLauxKoordinatoj_hugi
 			DemonstrataQPointF * np;
 			DemonstrataQPointF * pp;
 			DemonstrataQPointF * mp2;
-			bool flag_so;
+			bool * flag_so;
 			funkcio * f;
 		public:
 			KonsideriPointoTransiro( DemonstrataQPointF * NP,
 									DemonstrataQPointF * PP,
 			                         DemonstrataQPointF * MP2,
-			                         bool FLAG_SO,
+			                         bool * FLAG_SO,
 			                         funkcio * F,
 			                         QState * sourceState = 0
 			            ) : QSignalTransition(sourceState), np(NP), pp(PP), mp2(MP2), flag_so(FLAG_SO), f(F){};
 			KonsideriPointoTransiro( DemonstrataQPointF * NP,
 									DemonstrataQPointF * PP,
 			                         DemonstrataQPointF * MP2,
-			                         bool FLAG_SO,
+			                         bool * FLAG_SO,
 			                         funkcio * F,
 			                         QObject * sender,
 			                         const char * signal,
@@ -296,20 +296,20 @@ namespace SinkoLauxKoordinatoj_hugi
 			DemonstrataQPointF * np;
 			DemonstrataQPointF * pp;
 			DemonstrataQPointF * mp2;
-			bool flag_so;
+			bool * flag_so;
 			funkcio * f;
 		public:
 			NoKonsideriPointoTransiro( DemonstrataQPointF * NP,
 									DemonstrataQPointF * PP,
 			                           DemonstrataQPointF * MP2,
-			                           bool FLAG_SO,
+			                           bool * FLAG_SO,
 			                           funkcio * F,
 			                           QState * sourceState = 0
 			            ) : QSignalTransition(sourceState), np(NP), pp(PP), mp2(MP2), flag_so(FLAG_SO), f(F){};
 			NoKonsideriPointoTransiro( DemonstrataQPointF * NP,
 									DemonstrataQPointF * PP,
 			                           DemonstrataQPointF * MP2,
-			                           bool FLAG_SO,
+			                           bool * FLAG_SO,
 			                           funkcio * F,
 			                           QObject * sender,
 			                           const char * signal,
