@@ -594,7 +594,7 @@ void HuGiImpl::init()
 {
 	qDebug()<<trUtf8("Come in init()"); // Вывожу дебажную инфу на консоль.
 
-//	strikteco = (*D)[0];
+	static_cast<spuroHuGi*>(Sp)->senspurigi();
 	precision_lb->setText(QString::number(strikteco));
 	KvantoEraroj = 0;
 	NumeroIteracio = 0;
@@ -603,7 +603,6 @@ void HuGiImpl::init()
 	PX2 = QPointF(0, D[2]);
 	ModPX = 10;
 	LogTxtBrsr->setText("");
-	static_cast<spuroHuGi*>(Sp)->senspurigi();
 
 	qDebug()<<trUtf8("Задаю переменным начальные значения"); // Вывожу дебажную инфу на консоль.
 }
