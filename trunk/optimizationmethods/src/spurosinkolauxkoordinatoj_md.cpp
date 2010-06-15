@@ -4,9 +4,11 @@
 #include <QPainter>
 #include <QGraphicsScene>
 #include <QGraphicsView>
+
+#include <QColor>
 //
-spuroSinkoLauxKoordinatoj_md::spuroSinkoLauxKoordinatoj_md(QColor momentaKoloro, QColor bazaKoloro, qreal Skalo, QGraphicsItem * parent) 
-	: spuro( A::CWdescent_md, bazaKoloro, Skalo, parent), MomentaKoloro(momentaKoloro){}
+spuroSinkoLauxKoordinatoj_md::spuroSinkoLauxKoordinatoj_md(QColor bazaKoloro, qreal Skalo, QGraphicsItem * parent) 
+	: spuro( A::CWdescent_md, bazaKoloro, Skalo, parent), MomentaKoloro(Qt::white){}
 //
 
 QRectF spuroSinkoLauxKoordinatoj_md::boundingRect() const{
