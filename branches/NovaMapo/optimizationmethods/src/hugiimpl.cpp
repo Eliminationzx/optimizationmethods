@@ -583,6 +583,9 @@ void HuGiImpl::s4_entered()
 
 void HuGiImpl::s3_entered()
 {
+	investigate_rb->setChecked(true);
+  	up_x1_rb->setChecked(true);
+  	ok_rb->setChecked(true);
 	stackedWidget->setCurrentIndex(1);
 	qDebug()<<trUtf8("Come in s3 bp="); // Вывожу дебажную инфу на консоль.
 }
