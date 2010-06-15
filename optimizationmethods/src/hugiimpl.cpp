@@ -367,6 +367,10 @@ void HuGiImpl::s19_entered()
 	x2_p_lb->setText("");
 	fsign_p_lb->setText("");
 	
+	x1_b2_lb->setText("");
+	x2_b2_lb->setText("");
+	fsign_b2_lb->setText("");	
+	
 	x1_new_lb->setText("");
 	x2_new_lb->setText("");
 	fsign_new_lb->setText("");
@@ -405,6 +409,11 @@ void HuGiImpl::s16_entered()
 	x1_p_lb->setText("");
 	x2_p_lb->setText("");
 	fsign_p_lb->setText("");
+	
+	x1_new_lb->setText("");
+	x2_new_lb->setText("");
+	fsign_new_lb->setText("");
+	
 	qDebug()<<trUtf8("Come in s16"); // Вывожу дебажную инфу на консоль.
 
 	emit stateHasEntered();
@@ -568,21 +577,21 @@ void HuGiImpl::s4_entered()
 		
 	LogTxtBrsr->append(trUtf8("  Сделан шаг в положительном направлении оси Х1."));
 
-	qDebug()<<trUtf8("Come in s4").arg(MP.x()).arg(MP.y()).arg(MP2.x()).arg(MP2.y()).arg(NP.x()).arg(NP.y()); // Вывожу дебажную инфу на консоль.
+	qDebug()<<trUtf8("Come in s4"); // Вывожу дебажную инфу на консоль.
 }
 
 
 void HuGiImpl::s3_entered()
 {
 	stackedWidget->setCurrentIndex(1);
-	qDebug()<<trUtf8("Come in s3 bp=").arg(MP.x()).arg(MP.y()).arg(MP2.x()).arg(MP2.y()).arg(NP.x()).arg(NP.y()); // Вывожу дебажную инфу на консоль.
+	qDebug()<<trUtf8("Come in s3 bp="); // Вывожу дебажную инфу на консоль.
 }
 
 
 void HuGiImpl::s2_entered()
 {
 	stackedWidget->setCurrentIndex(0);
-	qDebug()<<trUtf8("Come in s2").arg(MP.x()).arg(MP.y()).arg(MP2.x()).arg(MP2.y()).arg(NP.x()).arg(NP.y()); // Вывожу дебажную инфу на консоль.
+	qDebug()<<trUtf8("Come in s2"); // Вывожу дебажную инфу на консоль.
 }
 
 void HuGiImpl::s1_entered()
@@ -591,7 +600,7 @@ void HuGiImpl::s1_entered()
 	
 	LogTxtBrsr->append(trUtf8("Итерация № %1.").arg(++NumeroIteracio));
 
-	qDebug()<<trUtf8("Come in s1 flag=%1").arg(FLAG_SO).arg(MP.x()).arg(MP.y()).arg(MP2.x()).arg(MP2.y()).arg(NP.x()).arg(NP.y()); // Вывожу дебажную инфу на консоль.
+	qDebug()<<trUtf8("Come in s1 flag=%1").arg(FLAG_SO); // Вывожу дебажную инфу на консоль.
 }
 
 
