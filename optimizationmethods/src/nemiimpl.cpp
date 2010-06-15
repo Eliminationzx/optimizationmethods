@@ -74,15 +74,6 @@ NeMiImpl::NeMiImpl(  funkcio *f, QVector<double> d, QWidget * parent, Qt::WFlags
 	connect(sPK, SIGNAL(proviziValoroFukcioEnPointo(const QString &)),fsign_tk_lb , SLOT(setText(const QString &)));
 //=============================================================================
 
-//===Соединяю точки и карту====================================================
-	connect(sP1, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniP1(const QPointF &)));
-	connect(sP2, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniP2(const QPointF &)));
-	connect(sP3, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniP3(const QPointF &)));
-	connect(sPR, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniPRespegulo(const QPointF &)));
-	connect(sPD, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniPDilato(const QPointF &)));
-	connect(sPK, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniPKompakto(const QPointF &)));
-//=============================================================================
-
 //===Создаю конечный автомат.==================================================
 	QStateMachine * SM = new QStateMachine();
 //---Создаю состояния, согласно диаграмме.-------------------------------------
@@ -116,7 +107,6 @@ NeMiImpl::NeMiImpl(  funkcio *f, QVector<double> d, QWidget * parent, Qt::WFlags
 	connect(s10, SIGNAL(entered()), SLOT(s10_entered()));
 	connect(s11, SIGNAL(entered()), SLOT(s11_entered()));
 	connect(sf, SIGNAL(entered()), SLOT(sf_entered()));
-	connect(s1, SIGNAL(entered()), Sp, SLOT(finisxiIteracio()));
 
 //---Создаю переходы, согласно диаграмме.--------------------------------------
 	s1->addTransition(reflexion_bt, SIGNAL(clicked()), s2);
@@ -141,7 +131,7 @@ NeMiImpl::NeMiImpl(  funkcio *f, QVector<double> d, QWidget * parent, Qt::WFlags
 	s11s7->setTargetState(s7);
 	sss1Transiro * sss1 = new sss1Transiro( strikteco, &Ph, &Pl, &Pm, &Pc, F, this, SIGNAL(stateHasEntered()), ss);
 	sss1->setTargetState(s1);
-	sssfTransiro * sssf = new sssfTransiro( strikteco, &Ph, &Pl, &Pm, &Pc, F, next2_bt, SIGNAL(clicked()), ss);
+	sssfTransiro * sssf = new sssfTransiro( strikteco, &Ph, &Pl, &Pm, &Pc, F, end_bt, SIGNAL(clicked()), ss);
 	sssf->setTargetState(sf);
 //---Создаю переход по действию "Начать заново"
 	connect(so->addTransition(recomenci_acn, SIGNAL(activated()), s1), SIGNAL(triggered()), SLOT(init()));
@@ -198,6 +188,16 @@ NeMiImpl::NeMiImpl(  funkcio *f, QVector<double> d, QWidget * parent, Qt::WFlags
 	s11->assignProperty(stackedWidget, "currentIndex", 3);
 	
 
+//---Соединяю точки и карту----------------------------------------------------
+	connect(sP1, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniP1(const QPointF &)));
+	connect(sP2, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniP2(const QPointF &)));
+	connect(sP3, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniP3(const QPointF &)));
+	connect(sPR, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniPRespegulo(const QPointF &)));
+	connect(sPD, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniPDilato(const QPointF &)));
+	connect(sPK, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniPKompakto(const QPointF &)));
+	connect(s1, SIGNAL(entered()), Sp, SLOT(finisxiIteracio()));
+	connect(s3s2, SIGNAL(triggered()), Sp, SLOT(finisxiIteracio()));
+//-----------------------------------------------------------------------------
 	
 
 //---Добавляю состояния в автомат и запускаю его.------------------------------
