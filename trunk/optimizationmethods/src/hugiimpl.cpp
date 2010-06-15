@@ -363,6 +363,8 @@ void HuGiImpl::sf_entered()
 
 void HuGiImpl::s19_entered()
 {
+	//меняю номер итерации
+	LogTxtBrsr->append(trUtf8("Итерация № %1.").arg(++NumeroIteracio));
 	x1_p_lb->setText("");
 	x2_p_lb->setText("");
 	fsign_p_lb->setText("");
@@ -567,8 +569,12 @@ void HuGiImpl::s5_entered()
 
 void HuGiImpl::s4_entered()
 {
+	
 	if(FLAG_SO == false)
 	{
+		x1_b2_lb->setText("");
+		x2_b2_lb->setText("");
+		fsign_b2_lb->setText("");		
 		MP2 = MP;
 		NP = MP2 + PX1;
 	}
@@ -583,6 +589,10 @@ void HuGiImpl::s4_entered()
 
 void HuGiImpl::s3_entered()
 {
+	if(FLAG_SO == false)
+	LogTxtBrsr->append(trUtf8(" Инициирован исследующий поиск."));
+	else if(FLAG_SO == true)
+	LogTxtBrsr->append(trUtf8(" Инициирован поиск по образцу."));
 	investigate_rb->setChecked(true);
   	up_x1_rb->setChecked(true);
   	ok_rb->setChecked(true);
