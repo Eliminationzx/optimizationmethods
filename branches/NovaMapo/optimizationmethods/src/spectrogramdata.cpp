@@ -4,13 +4,12 @@
 #include <QDebug>
 #include <QVector>
 
-SpectrogramData::SpectrogramData(const funkcio * F)
+SpectrogramData::SpectrogramData(const funkcio * F, qreal MIN)
 	: QwtRasterData(QwtDoubleRect(-ampleksoMapo, -ampleksoMapo, 2*ampleksoMapo, 2*ampleksoMapo)), f(F){
-	QVector<double> minPointo(f->minPoint(0.001));
-	min = f->rezulto(minPointo[0], minPointo[1]);
+//	QVector<double> minPointo(f->minPoint(0.00000000001));
+	min = MIN;
 	//--Ищу точку приближенную к максимальной в области карты.---------------------
 	max = F->rezulto(ampleksoMapo, ampleksoMapo);
-	QPointF maxP = QPointF(ampleksoMapo, ampleksoMapo);
 	if (F->rezulto(ampleksoMapo, -ampleksoMapo) > max) max = F->rezulto(ampleksoMapo, -ampleksoMapo);
 	if (F->rezulto(-ampleksoMapo, ampleksoMapo) > max) max = F->rezulto(-ampleksoMapo, ampleksoMapo);
 	if (F->rezulto(-ampleksoMapo, -ampleksoMapo) > max) max = F->rezulto(-ampleksoMapo, -ampleksoMapo);
@@ -22,7 +21,7 @@ SpectrogramData::SpectrogramData(const funkcio * F)
 }
 
 QwtRasterData * SpectrogramData::copy() const{
-	return new SpectrogramData(f);
+	return new SpectrogramData(f, min);
 }
 
 QwtDoubleInterval SpectrogramData::range() const{

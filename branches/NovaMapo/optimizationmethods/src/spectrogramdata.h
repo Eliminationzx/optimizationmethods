@@ -14,7 +14,7 @@ private:
 	
 	qreal min;
 public:
-	SpectrogramData(const funkcio * F);
+	SpectrogramData(const funkcio * F, qreal MIN);
 	
 	virtual QwtRasterData * copy() const;
 	
