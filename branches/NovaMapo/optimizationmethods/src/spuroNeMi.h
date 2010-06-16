@@ -5,6 +5,7 @@
 #include <QPolygonF>
 //
 class QwtPlotCurve;
+class funkcio;
 //! Отображает "след" покоординатного спуска с дискретным шагом.
 class spuroNeMi : public spuro
 {
@@ -23,13 +24,23 @@ private:
 	//! Полигон для отрисовки отражения/растяжения/зжатия.
 	QPolygonF SP;
 	QwtPlotCurve * sp;
+	//! Указатель на целевую функцию.
+	funkcio * f;
+	
+	bool menshe( const QPointF & p1, const QPointF & p2 );
+	bool bolshe( const QPointF & p1, const QPointF & p2 );
+	//! Наименьшая из 2 точек. Если точки равны вернёт первую.
+	const QPointF & minValue( const QPointF & p1, const QPointF & p2);
+	//! Наибольшая из 2 точек. Если точки равны вернёт первую.
+	const QPointF & maxValue( const QPointF & p1, const QPointF & p2);
 public:
 	//! Устанавливает полотно, на котором будет нарисован след.
 	void difiniPlt( QwtPlot * Plt );
 	
 
 	spuroNeMi(QColor momentaKoloro, //!< Текущий цвет "следа".
-	          QColor bazaKoloro //!< Основной цвет "следа".
+	          QColor bazaKoloro, //!< Основной цвет "следа".
+	          funkcio *F //!< Указатель на целевую функцию.
 	         );
 public slots:
 	/*! Завершить итерацию.

@@ -43,7 +43,7 @@ NeMiImpl::NeMiImpl(  funkcio *f, QVector<double> d, QWidget * parent, Qt::WFlags
 
 //	MapoWdg->setScale(20);// Ставлю масштаб побольше. Надо будет определться с оптимальным значением.
 
-	Sp = new spuroNeMi(Qt::white, Qt::blue);
+	Sp = new spuroNeMi(Qt::white, Qt::blue, F);
 	MapoWdg->difiniSpuro(Sp);
 //	MapoWdg->difiniFonaKoloro(Qt::green);
 	
