@@ -330,9 +330,7 @@ void HuGiImpl::sf_entered()
 	}
 	
 	QString str = trUtf8("Найден минимум. ");
-
-	qDebug()<<trUtf8("The end. Minimum found"); // Вывожу дебажную инфу на консоль.
-
+	
 	if(KvantoEraroj > D[6]){
 		// Слишком много ошибок.
 		str += trUtf8("Ваше количество ошибок (<b>%1</b>) превысило допустимый предел (%2). Начните заново.").arg(KvantoEraroj).arg(D[6]);
@@ -346,6 +344,7 @@ void HuGiImpl::sf_entered()
 		{
 			str += trUtf8("Сообщите преподавателю и перейдите к овражной функции. Количество ошибок: <b>%1</b>.").arg(KvantoEraroj);
 			emit usiloPlenumis(A::HuGi, KvantoEraroj);
+			QMessageBox::information(this, trUtf8("Поздравляем"), str);
 			close();
 		}
 		else if(F->metaObject()->className() == QString("RavinaFunkcio"))
