@@ -13,9 +13,6 @@
 #include <qwt_plot_panner.h>
 #include <qwt_plot_layout.h>
 #include "spectrogramdata.h"
-
-
-#include <QMessageBox>
 //
 MapoPorFunkcioImpl::MapoPorFunkcioImpl( const funkcio * Funkcio, QWidget * parent, Qt::WFlags f) 
 	: QWidget(parent, f), F(Funkcio){
@@ -68,25 +65,21 @@ MapoPorFunkcioImpl::MapoPorFunkcioImpl( const funkcio * Funkcio, QWidget * paren
 		colorMap.addColorStop(F->rezulto(maxP*0.6)/max, Qt::darkGreen);
 		colorMap.addColorStop(0.99, Qt::green);
 	}
-	
-	
 	s->setColorMap(colorMap);
 	
 	s->setData(SpectrogramData(F, min));
 	s->attach(qwtPlt);
 
 	skalo = new QwtPlotZoomer(qwtPlt->canvas());
-	skalo->zoom(QRectF(-5, -5, 10, 10));// Предварительно увеличиваю масштаб.
-	
-	skalo->setMousePattern(QwtEventPattern::MouseSelect2,
-	                       Qt::RightButton, Qt::ControlModifier);
-	skalo->setMousePattern(QwtEventPattern::MouseSelect3, Qt::RightButton);
-	
+	skalo->setSelectionFlags(QwtPicker::NoSelection);
 	skalo->setTrackerMode(QwtPicker::AlwaysOn);
-
+	skalo->zoom(QRectF(-5, -5, 10, 10));// Предварительно увеличиваю масштаб.
+	skalo->setMousePattern(QwtEventPattern::MouseSelect1,
+	                       Qt::LeftButton, Qt::ControlModifier);
+	
 	QwtPlotPanner *panner = new QwtPlotPanner(qwtPlt->canvas());
-	panner->setAxisEnabled(QwtPlot::yRight, false);
-	panner->setMouseButton(Qt::MidButton);
+//	panner->setAxisEnabled(QwtPlot::yRight, false);
+	panner->setMouseButton(Qt::LeftButton);
 	
 }
 MapoPorFunkcioImpl::MapoPorFunkcioImpl( QWidget * parent, Qt::WFlags f){
