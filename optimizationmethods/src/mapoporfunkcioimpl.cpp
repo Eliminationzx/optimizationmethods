@@ -96,13 +96,13 @@ MapoPorFunkcioImpl::MapoPorFunkcioImpl( QWidget * parent, Qt::WFlags f){
 
 
 void MapoPorFunkcioImpl::on_PligrandigiBtn_clicked(){
-//	s->setScale((s->scale() * 1.1));
-//	Spuro->setScale(s->scale());
+	skalo->zoom(QRectF(skalo->zoomRect().topLeft() + QPointF(1,1),
+	                   skalo->zoomRect().bottomRight() - QPointF(1,1)));
 }
 
 void MapoPorFunkcioImpl::on_MalpliigiBtn_clicked(){
-//	s->setScale((s->scale() * 0.9));
-//	Spuro->setScale(s->scale());
+	skalo->zoom(QRectF(skalo->zoomRect().topLeft() - QPointF(1,1),
+	                   skalo->zoomRect().bottomRight() + QPointF(1,1)));
 }
 
 
