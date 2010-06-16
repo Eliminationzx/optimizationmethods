@@ -177,7 +177,8 @@ HuGiImpl::HuGiImpl(  funkcio *f, QVector<double> d, QWidget * parent, Qt::WFlags
 	s13s14Transiro * s13s14 = new s13s14Transiro(&MP, &MP2, &PX1, &PX2, strikteco, change_step_bt, SIGNAL(clicked()), s13);
 	s13s14->setTargetState(s14);
 	
-	s13->addTransition(found_bt, SIGNAL(clicked()), s15);
+	s13s15Transiro * s13s15 = new s13s15Transiro(&MP, &MP2, &FLAG_SO, &PX1, &PX2, strikteco, found_bt, SIGNAL(clicked()), s13);
+	s13s15->setTargetState(s15);
 
 	s13s16Transiro * s13s16 = new s13s16Transiro(ok_rb,&PP,&MP2,&FLAG_SO,F,next3_bt,SIGNAL(clicked()),s13);
 	s13s16->setTargetState(s16);
@@ -758,7 +759,19 @@ namespace SinkoLauxKoordinatoj_hugi{
 			return false;
 		}
 	}
-	
+
+	bool s13s15Transiro::eventTest(QEvent *e)
+	{
+		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
+		if(QSignalTransition::eventTest(e)){
+			qDebug()<<trUtf8(" s13s15 Check, that бт ==тт && (шХ1 >= е || шХ2 >= е) ");
+			// Проверяю своё условие.
+			return !(*flag_so) && *mp != *mp2 && (px1->x() >= s || px2->y() >= s);
+		}else{
+			return false;
+		}
+	}
+
 	bool s13s16Transiro::eventTest(QEvent *e)
 	{
 		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
