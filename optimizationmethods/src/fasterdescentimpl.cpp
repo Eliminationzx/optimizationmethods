@@ -44,7 +44,7 @@ FasterDescentImpl::FasterDescentImpl( funkcio *f, QVector<double> d, QWidget * p
 
 //	MapoWdg->setScale(20);// Ставлю масштаб побольше. Надо будет определться с оптимальным значением.
 
-	Sp = new spuroSinkoLauxKoordinatoj_md(Qt::black);
+	Sp = new spuroSinkoLauxKoordinatoj_md(Qt::blue);
 	MapoWdg->difiniSpuro(Sp);
 //	MapoWdg->difiniFonaKoloro(Qt::green);
 

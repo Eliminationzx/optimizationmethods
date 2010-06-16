@@ -40,7 +40,7 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> d, QWidget * par
 
 //	MapoWdg->setScale(20);// Ставлю масштаб побольше. Надо будет определиться с оптимальным значением.
 
-	Sp = new spuroSinkoLauxKoordinatoj(Qt::white, Qt::black);
+	Sp = new spuroSinkoLauxKoordinatoj(Qt::white, Qt::blue);
 	MapoWdg->difiniSpuro(Sp);
 //	MapoWdg->difiniFonaKoloro(Qt::green);
 
