@@ -163,15 +163,15 @@ NeMiImpl::NeMiImpl(  funkcio *f, QVector<double> d, QWidget * parent, Qt::WFlags
 	connect(te8, SIGNAL(triggered()), SLOT(registriEraro()));
 
 //---Настраиваю некоторые состояния, чтоб затирали надписи со значениями точек, дабы не смущать пользователя.
-	s1->assignProperty(x1_totr_lb, "text", trUtf8(""));
-	s1->assignProperty(x2_totr_lb, "text", trUtf8(""));
-	s1->assignProperty(fsign_totr_lb, "text", trUtf8(""));
-	s1->assignProperty(x1_tras_lb, "text", trUtf8(""));
-	s1->assignProperty(x2_tras_lb, "text", trUtf8(""));
-	s1->assignProperty(fsign_tras_lb, "text", trUtf8(""));
-	s1->assignProperty(x1_tk_lb, "text", trUtf8(""));
-	s1->assignProperty(x2_tk_lb, "text", trUtf8(""));
-	s1->assignProperty(fsign_tk_lb, "text", trUtf8(""));
+	ss->assignProperty(x1_totr_lb, "text", trUtf8(""));
+	ss->assignProperty(x2_totr_lb, "text", trUtf8(""));
+	ss->assignProperty(fsign_totr_lb, "text", trUtf8(""));
+	ss->assignProperty(x1_tras_lb, "text", trUtf8(""));
+	ss->assignProperty(x2_tras_lb, "text", trUtf8(""));
+	ss->assignProperty(fsign_tras_lb, "text", trUtf8(""));
+	ss->assignProperty(x1_tk_lb, "text", trUtf8(""));
+	ss->assignProperty(x2_tk_lb, "text", trUtf8(""));
+	ss->assignProperty(fsign_tk_lb, "text", trUtf8(""));
 	s2->assignProperty(x1_totr_lb, "text", trUtf8(""));
 	s2->assignProperty(x2_totr_lb, "text", trUtf8(""));
 	s2->assignProperty(fsign_totr_lb, "text", trUtf8(""));
@@ -195,7 +195,7 @@ NeMiImpl::NeMiImpl(  funkcio *f, QVector<double> d, QWidget * parent, Qt::WFlags
 	connect(sPR, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniPRespegulo(const QPointF &)));
 	connect(sPD, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniPDilato(const QPointF &)));
 	connect(sPK, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniPKompakto(const QPointF &)));
-	connect(s1, SIGNAL(entered()), Sp, SLOT(finisxiIteracio()));
+	connect(ss, SIGNAL(entered()), Sp, SLOT(finisxiIteracio()));
 	connect(s3s2, SIGNAL(triggered()), Sp, SLOT(finisxiIteracio()));
 //-----------------------------------------------------------------------------
 	
