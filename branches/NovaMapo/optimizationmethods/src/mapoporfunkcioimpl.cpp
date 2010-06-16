@@ -4,6 +4,7 @@
 #include <QColor>
 #include <QGridLayout>
 #include <QVector>
+#include <QPushButton>
 #include <qwt_color_map.h>
 #include <qwt_plot_spectrogram.h>
 #include <qwt_scale_widget.h>
@@ -23,6 +24,13 @@ MapoPorFunkcioImpl::MapoPorFunkcioImpl( const funkcio * Funkcio, QWidget * paren
 	QGridLayout * gridLayout = new QGridLayout(this);
 	qwtPlt = new QwtPlot(this);
 	gridLayout->addWidget(qwtPlt, 0, 0, 1, 2);
+	QPushButton * PligrandigiBtn = new QPushButton("+", this);
+	gridLayout->addWidget(PligrandigiBtn, 1, 0, 1, 1);
+	QPushButton * MalpliigiBtn = new QPushButton("-", this);
+	gridLayout->addWidget(MalpliigiBtn, 1, 1, 1, 1);
+	
+	connect(PligrandigiBtn, SIGNAL(clicked()), SLOT(on_PligrandigiBtn_clicked()));
+	connect(MalpliigiBtn, SIGNAL(clicked()), SLOT(on_MalpliigiBtn_clicked()));
 	
 	s = new QwtPlotSpectrogram();
 	
@@ -79,8 +87,6 @@ MapoPorFunkcioImpl::MapoPorFunkcioImpl( const funkcio * Funkcio, QWidget * paren
 	QwtPlotPanner *panner = new QwtPlotPanner(qwtPlt->canvas());
 	panner->setAxisEnabled(QwtPlot::yRight, false);
 	panner->setMouseButton(Qt::MidButton);
-	
-	
 	
 }
 MapoPorFunkcioImpl::MapoPorFunkcioImpl( QWidget * parent, Qt::WFlags f){
