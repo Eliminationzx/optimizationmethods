@@ -177,7 +177,8 @@ HuGiImpl::HuGiImpl(  funkcio *f, QVector<double> d, QWidget * parent, Qt::WFlags
 	s13s14Transiro * s13s14 = new s13s14Transiro(&MP, &MP2, &PX1, &PX2, strikteco, change_step_bt, SIGNAL(clicked()), s13);
 	s13s14->setTargetState(s14);
 	
-	s13->addTransition(found_bt, SIGNAL(clicked()), s15);
+	s13s15Transiro * s13s15 = new s13s15Transiro(&MP, &MP2, &FLAG_SO, &PX1, &PX2, strikteco, found_bt, SIGNAL(clicked()), s13);
+	s13s15->setTargetState(s15);
 
 	s13s16Transiro * s13s16 = new s13s16Transiro(ok_rb,&PP,&MP2,&FLAG_SO,F,next3_bt,SIGNAL(clicked()),s13);
 	s13s16->setTargetState(s16);
@@ -329,9 +330,7 @@ void HuGiImpl::sf_entered()
 	}
 	
 	QString str = trUtf8("Найден минимум. ");
-
-	qDebug()<<trUtf8("The end. Minimum found"); // Вывожу дебажную инфу на консоль.
-
+	
 	if(KvantoEraroj > D[6]){
 		// Слишком много ошибок.
 		str += trUtf8("Ваше количество ошибок (<b>%1</b>) превысило допустимый предел (%2). Начните заново.").arg(KvantoEraroj).arg(D[6]);
@@ -345,6 +344,7 @@ void HuGiImpl::sf_entered()
 		{
 			str += trUtf8("Сообщите преподавателю и перейдите к овражной функции. Количество ошибок: <b>%1</b>.").arg(KvantoEraroj);
 			emit usiloPlenumis(A::HuGi, KvantoEraroj);
+			QMessageBox::information(this, trUtf8("Поздравляем"), str);
 			close();
 		}
 		else if(F->metaObject()->className() == QString("RavinaFunkcio"))
@@ -758,7 +758,19 @@ namespace SinkoLauxKoordinatoj_hugi{
 			return false;
 		}
 	}
-	
+
+	bool s13s15Transiro::eventTest(QEvent *e)
+	{
+		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
+		if(QSignalTransition::eventTest(e)){
+			qDebug()<<trUtf8(" s13s15 Check, that бт ==тт && (шХ1 >= е || шХ2 >= е) ");
+			// Проверяю своё условие.
+			return !(*flag_so) && *mp != *mp2 && (px1->x() >= s || px2->y() >= s);
+		}else{
+			return false;
+		}
+	}
+
 	bool s13s16Transiro::eventTest(QEvent *e)
 	{
 		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
