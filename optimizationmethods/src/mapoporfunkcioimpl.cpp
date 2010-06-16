@@ -27,7 +27,12 @@ MapoPorFunkcioImpl::MapoPorFunkcioImpl( const funkcio * Funkcio, QWidget * paren
 	s = new QwtPlotSpectrogram();
 	
 	QwtLinearColorMap colorMap(Qt::black, Qt::green);
-	QVector<double> minPointo(F->minPoint(0.001));
+	QVector<double> minPointo;
+	if(F->metaObject()->className() == QString("KvadratigantoFunkcio")){
+		minPointo = F->minPoint(0.1);
+	}else{
+		minPointo = F->minPoint(0.00000000001);
+	}	
 	qreal min = F->rezulto(minPointo[0], minPointo[1]);
 	//--Ищу точку приближенную к максимальной в области карты.---------------------
 	qreal max = F->rezulto(ampleksoMapo, ampleksoMapo);
@@ -42,14 +47,15 @@ MapoPorFunkcioImpl::MapoPorFunkcioImpl( const funkcio * Funkcio, QWidget * paren
 	if(F->metaObject()->className() == QString("KvadratigantoFunkcio")){
 		colorMap.addColorStop(0, Qt::black);
 		colorMap.addColorStop(F->rezulto(maxP*0.05)/max, Qt::green);
-		colorMap.addColorStop(F->rezulto(maxP*0.2)/max, Qt::darkGreen);
+		colorMap.addColorStop(F->rezulto(maxP*0.1)/max, Qt::darkGreen);
 		colorMap.addColorStop(F->rezulto(maxP*0.3)/max, Qt::green);
 		colorMap.addColorStop(F->rezulto(maxP*0.6)/max, Qt::darkGreen);
 		colorMap.addColorStop(0.99, Qt::green);
 	}else{
 		colorMap.addColorStop(0, Qt::black);
-		colorMap.addColorStop(F->rezulto(maxP*0.000001)/max, Qt::green);
-		colorMap.addColorStop(F->rezulto(maxP*0.05)/max, Qt::darkGreen);
+		colorMap.addColorStop(F->rezulto(maxP*0.02)/max, Qt::darkGreen);
+		colorMap.addColorStop(F->rezulto(maxP*0.04)/max, Qt::green);
+		colorMap.addColorStop(F->rezulto(maxP*0.1)/max, Qt::darkGreen);
 		colorMap.addColorStop(F->rezulto(maxP*0.3)/max, Qt::green);
 		colorMap.addColorStop(F->rezulto(maxP*0.6)/max, Qt::darkGreen);
 		colorMap.addColorStop(0.99, Qt::green);
@@ -58,7 +64,7 @@ MapoPorFunkcioImpl::MapoPorFunkcioImpl( const funkcio * Funkcio, QWidget * paren
 	
 	s->setColorMap(colorMap);
 	
-	s->setData(SpectrogramData(F));
+	s->setData(SpectrogramData(F, min));
 	s->attach(qwtPlt);
 
 	skalo = new QwtPlotZoomer(qwtPlt->canvas());
