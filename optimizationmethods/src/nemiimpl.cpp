@@ -161,6 +161,9 @@ NeMiImpl::NeMiImpl(  funkcio *f, QVector<double> d, QWidget * parent, Qt::WFlags
 	QSignalTransition * te8 = new QSignalTransition(next3_bt, SIGNAL(clicked()));
 	so->addTransition(te8);
 	connect(te8, SIGNAL(triggered()), SLOT(registriEraro()));
+	QSignalTransition * te9 = new QSignalTransition(next4_bt, SIGNAL(clicked()));
+	so->addTransition(te9);
+	connect(te9, SIGNAL(triggered()), SLOT(registriEraro()));
 
 //---Настраиваю некоторые состояния, чтоб затирали надписи со значениями точек, дабы не смущать пользователя.
 	ss->assignProperty(x1_totr_lb, "text", trUtf8(""));
