@@ -6,7 +6,7 @@
 
 SpectrogramData::SpectrogramData(const funkcio * F)
 	: QwtRasterData(QwtDoubleRect(-ampleksoMapo, -ampleksoMapo, 2*ampleksoMapo, 2*ampleksoMapo)), f(F){
-	QVector<double> minPointo(f->minPoint(0.1));
+	QVector<double> minPointo(f->minPoint(0.001));
 	min = f->rezulto(minPointo[0], minPointo[1]);
 	//--Ищу точку приближенную к максимальной в области карты.---------------------
 	max = F->rezulto(ampleksoMapo, ampleksoMapo);

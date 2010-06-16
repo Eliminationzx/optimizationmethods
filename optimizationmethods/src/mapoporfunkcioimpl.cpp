@@ -3,6 +3,7 @@
 #include "spuro.h"
 #include <QColor>
 #include <QGridLayout>
+#include <QVector>
 #include <qwt_color_map.h>
 #include <qwt_plot_spectrogram.h>
 #include <qwt_scale_widget.h>
@@ -11,6 +12,9 @@
 #include <qwt_plot_panner.h>
 #include <qwt_plot_layout.h>
 #include "spectrogramdata.h"
+
+
+#include <QMessageBox>
 //
 MapoPorFunkcioImpl::MapoPorFunkcioImpl( const funkcio * Funkcio, QWidget * parent, Qt::WFlags f) 
 	: QWidget(parent, f), F(Funkcio){
@@ -22,14 +26,35 @@ MapoPorFunkcioImpl::MapoPorFunkcioImpl( const funkcio * Funkcio, QWidget * paren
 	
 	s = new QwtPlotSpectrogram();
 	
-	QwtLinearColorMap colorMap(Qt::darkCyan, Qt::red);
-	colorMap.addColorStop(0, Qt::black);
-	colorMap.addColorStop(0.0000005, Qt::darkGreen);
-	colorMap.addColorStop(0.00001, Qt::green);
-	colorMap.addColorStop(0.01, Qt::darkGreen);
-	colorMap.addColorStop(0.1, Qt::green);
-	colorMap.addColorStop(0.4, Qt::darkGreen);
-	colorMap.addColorStop(0.99, Qt::green);
+	QwtLinearColorMap colorMap(Qt::black, Qt::green);
+	QVector<double> minPointo(F->minPoint(0.001));
+	qreal min = F->rezulto(minPointo[0], minPointo[1]);
+	//--Ищу точку приближенную к максимальной в области карты.---------------------
+	qreal max = F->rezulto(ampleksoMapo, ampleksoMapo);
+	QPointF maxP = QPointF(ampleksoMapo, ampleksoMapo);
+	if (F->rezulto(ampleksoMapo, -ampleksoMapo) > max) max = F->rezulto(ampleksoMapo, -ampleksoMapo);
+	if (F->rezulto(-ampleksoMapo, ampleksoMapo) > max) max = F->rezulto(-ampleksoMapo, ampleksoMapo);
+	if (F->rezulto(-ampleksoMapo, -ampleksoMapo) > max) max = F->rezulto(-ampleksoMapo, -ampleksoMapo);
+	if (F->rezulto(0, ampleksoMapo) > max) max = F->rezulto(0, ampleksoMapo);
+	if (F->rezulto(0, -ampleksoMapo) > max) max = F->rezulto(0, -ampleksoMapo);
+	if (F->rezulto(ampleksoMapo, 0) > max) max = F->rezulto(ampleksoMapo, 0);
+	if (F->rezulto(-ampleksoMapo, 0) > max) max = F->rezulto(-ampleksoMapo, 0);
+	if(F->metaObject()->className() == QString("KvadratigantoFunkcio")){
+		colorMap.addColorStop(0, Qt::black);
+		colorMap.addColorStop(F->rezulto(maxP*0.05)/max, Qt::green);
+		colorMap.addColorStop(F->rezulto(maxP*0.2)/max, Qt::darkGreen);
+		colorMap.addColorStop(F->rezulto(maxP*0.3)/max, Qt::green);
+		colorMap.addColorStop(F->rezulto(maxP*0.6)/max, Qt::darkGreen);
+		colorMap.addColorStop(0.99, Qt::green);
+	}else{
+		colorMap.addColorStop(0, Qt::black);
+		colorMap.addColorStop(F->rezulto(maxP*0.000001)/max, Qt::green);
+		colorMap.addColorStop(F->rezulto(maxP*0.05)/max, Qt::darkGreen);
+		colorMap.addColorStop(F->rezulto(maxP*0.3)/max, Qt::green);
+		colorMap.addColorStop(F->rezulto(maxP*0.6)/max, Qt::darkGreen);
+		colorMap.addColorStop(0.99, Qt::green);
+	}
+	
 	
 	s->setColorMap(colorMap);
 	
