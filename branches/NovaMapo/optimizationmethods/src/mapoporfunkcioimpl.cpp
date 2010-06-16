@@ -71,7 +71,7 @@ MapoPorFunkcioImpl::MapoPorFunkcioImpl( const funkcio * Funkcio, QWidget * paren
 	s->attach(qwtPlt);
 
 	skalo = new QwtPlotZoomer(qwtPlt->canvas());
-	skalo->setSelectionFlags(QwtPicker::NoSelection);
+	skalo->setTrackerPen(QColor(Qt::lightGray));
 	skalo->setTrackerMode(QwtPicker::AlwaysOn);
 	skalo->zoom(QRectF(-5, -5, 10, 10));// Предварительно увеличиваю масштаб.
 	skalo->setMousePattern(QwtEventPattern::MouseSelect1,
