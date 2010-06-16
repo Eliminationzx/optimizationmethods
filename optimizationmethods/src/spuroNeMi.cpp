@@ -1,11 +1,15 @@
 #include "spuroNeMi.h"
+#include "funkcio.h"
 #include "Konstantoj.h"
 #include "demonstrataqpointf.h"
 #include <qwt_plot.h>
 #include <qwt_plot_curve.h>
+
+
+#include <QMessageBox>
 //
-spuroNeMi::spuroNeMi(QColor momentaKoloro, QColor bazaKoloro ) 
-	: spuro(bazaKoloro), MomentaKoloro(momentaKoloro){
+spuroNeMi::spuroNeMi(QColor momentaKoloro, QColor bazaKoloro, funkcio *F ) 
+	: spuro(bazaKoloro), MomentaKoloro(momentaKoloro), f(F){
 	triangulo = new QwtPlotCurve();
 	triangulo->setPen(BazaKoloro);
 	triangulo->attach(plt);
@@ -63,35 +67,17 @@ void spuroNeMi::difiniP3(const QPointF & p){
 void spuroNeMi::difiniPRespegulo(const QPointF & p){
 	// Создаю полигон Хl, p, Хm.
 	// Хl - наименьшая в триуголнике, Хm - средняя.
-	if(Length(p - P1) < Length(p - P2)){
-		if(Length(p - P1) < Length(p - P3)){
-			SP<<(P1);
-			SP<<(p);
-			if(Length(p - P2) < Length(p - P3)){
-				SP<<(P2);
-			}else{
-				SP<<(P3);
-			}
-		}else{
-			SP<<(P3);
-			SP<<(p);
-			SP<<(P1);
-		}
-	}else{
-		if(Length(p - P2) < Length(p - P3)){
-			SP<<(P2);
-			SP<<(p);
-			if(Length(p - P1) < Length(p - P3)){
-				SP<<(P1);
-			}else{
-				SP<<(P3);
-			}
-		}else{
-			SP<<(P3);
-			SP<<(p);
-			SP<<(P2);
-		}
+	SP<<minValue(P1, minValue(P2, P3));
+	SP<<p;
+	QPointF M = maxValue(P1, maxValue(P2, P3));
+	if(bolshe(M, P1) && bolshe(P1, SP.first())){
+		SP<<P1;
+	}else if(bolshe(M, P2) && bolshe(P2, SP.first())){
+		SP<<P2;
+	}else if(bolshe(M, P3) && bolshe(P3, SP.first())){
+		SP<<P3;
 	}
+	
 	sp->setData(SP);
 	plt->replot();
 }
@@ -106,4 +92,28 @@ void spuroNeMi::difiniPKompakto(const QPointF & p){
 	SP<<p<<SP<<SP.first();
 	sp->setData(SP);
 	plt->replot();
+}
+
+const QPointF & spuroNeMi::minValue( const QPointF & p1, const QPointF & p2){
+	if(f->rezulto(p1) <= f->rezulto(p2)){
+		return p1;
+	}else{
+		return p2;
+	}
+}
+
+const QPointF & spuroNeMi::maxValue( const QPointF & p1, const QPointF & p2){
+	if(f->rezulto(p1) >= f->rezulto(p2)){
+		return p1;
+	}else{
+		return p2;
+	}
+}
+
+bool spuroNeMi::menshe( const QPointF & p1, const QPointF & p2 ){
+	return (f->rezulto(p1) < f->rezulto(p2));
+}
+
+bool spuroNeMi::bolshe( const QPointF & p1, const QPointF & p2 ){
+	return (f->rezulto(p1) > f->rezulto(p2));
 }
