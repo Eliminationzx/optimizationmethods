@@ -11,8 +11,8 @@
 	double b = 0.01;
 
 	// Изменяю b, пока не будет чашка.
-	while(rezulto(X[0] - b*df_dx1(X), X[1] - b*df_dx2(X)) < rezulto(X[0] - (b-50)*df_dx1(X), X[1] - (b-50)*df_dx2(X)))
-		b += 0.5*b;
+	while(rezulto(X[0] - b*df_dx1(X), X[1] - b*df_dx2(X)) < rezulto(X[0] - (b-0.01)*df_dx1(X), X[1] - (b-0.01)*df_dx2(X)))
+		b += b;
 
     double tau = 0.618033988749894;
   	double lam = a + (1 - tau)*(b - a);
@@ -45,7 +45,7 @@ double funkcio::lengthOfStep(const QPointF X) const
 	double b = 0.01;
 	// Изменяю b, пока не будет чашка.
 	while(rezulto(X.x() - b*df_dx1(X), X.y() - b*df_dx2(X)) < rezulto(X.x() - (b-0.01)*df_dx1(X), X.y() - (b-0.01)*df_dx2(X)))
-		b += 0.5*b;
+		b += b;
 	
 	double tau = 0.618033988749894;
 	double lam = a + (1 - tau)*(b - a);
