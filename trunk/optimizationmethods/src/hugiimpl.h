@@ -400,6 +400,46 @@ namespace SinkoLauxKoordinatoj_hugi
     	bool eventTest(QEvent *e);
 	};
 
+	/*! Переход от s13 к s14.
+	 * 
+	 * При создании требует указатели на переменные необходимые для принятия
+	 * решения о переходе.
+	 */
+	class s13s15Transiro: public QSignalTransition{
+		private:
+			DemonstrataQPointF * mp;
+			DemonstrataQPointF * mp2;
+			bool * flag_so;
+			DemonstrataQPointF * px1;
+			DemonstrataQPointF * px2;
+			qreal s;//!< Точность.
+		public:
+			s13s15Transiro( DemonstrataQPointF * MP,
+			                DemonstrataQPointF * MP2,
+			                bool * FLAG_SO,
+			                DemonstrataQPointF * pX1,
+			                DemonstrataQPointF * pX2,
+			                qreal strikteco,
+			                QState * sourceState = 0)
+				: QSignalTransition(sourceState), mp(MP),mp2(MP2), flag_so(FLAG_SO), px1(pX1), px2(pX2),
+					s(strikteco){};
+			s13s15Transiro( DemonstrataQPointF * MP,
+			                DemonstrataQPointF * MP2,
+			                bool * FLAG_SO,
+			                DemonstrataQPointF * pX1,
+			                DemonstrataQPointF * pX2,
+			                qreal strikteco,
+			                QObject * sender,
+			                const char * signal,
+			                QState * sourceState = 0
+			              )
+				: QSignalTransition(sender, signal, sourceState), mp(MP),mp2(MP2), flag_so(FLAG_SO),
+					px1(pX1), px2(pX2), s(strikteco){};
+		protected:
+			//! Перход срабатывает, только если выбран шаг в + по Х1 
+    	bool eventTest(QEvent *e);
+	};
+
 	/*! Переход от s13 к s16 .
 	 * 
 	 * При создании требует указатели на переменные необходимые для принятия
