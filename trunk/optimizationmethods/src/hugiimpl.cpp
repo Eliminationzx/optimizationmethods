@@ -40,7 +40,7 @@ HuGiImpl::HuGiImpl(  funkcio *f, QVector<double> d, QWidget * parent, Qt::WFlags
 
 //	MapoWdg->setScale(20);// Ставлю масштаб побольше. Надо будет определться с оптимальным значением.
 
-	Sp = new spuroHuGi(Qt::black);
+	Sp = new spuroHuGi(Qt::blue);
 	MapoWdg->difiniSpuro(Sp);
 //	MapoWdg->difiniFonaKoloro(Qt::green);
 	
