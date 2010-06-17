@@ -412,6 +412,10 @@ void HuGiImpl::s16_entered()
 	x1_p_lb->setText("");
 	x2_p_lb->setText("");
 	fsign_p_lb->setText("");
+	
+	x1_new_lb->setText("");
+	x2_new_lb->setText("");
+	fsign_new_lb->setText("");
 	qDebug()<<trUtf8("Come in s16"); // Вывожу дебажную инфу на консоль.
 
 	emit stateHasEntered();
@@ -777,7 +781,7 @@ namespace SinkoLauxKoordinatoj_hugi{
 			qDebug()<<trUtf8("======FLAG=")<<flag_so;
 			//qDebug()<<trUtf8("Come in s1 flag=%1").arg(flag_so);
 			// Проверяю своё условие.
-			return *flag_so && ok_rb_->isChecked() && (f->rezulto(*pp)) < f->rezulto(*mp2);
+			return *flag_so && ok_rb_->isChecked() && (f->rezulto(*pp) < f->rezulto(*mp2));
 		}else{
 			return false;
 		}
