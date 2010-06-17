@@ -3,6 +3,7 @@
 //
 #include "spuro.h"
 //
+class funkcio;
 //! Отображает "след" по координатного спуска с дискретным шагом.
 class spuroNeMi : public spuro
 {
@@ -29,6 +30,7 @@ public:
 	
 	spuroNeMi(QColor momentaKoloro, //!< Текущий цвет "следа".
 	          QColor bazaKoloro, //!< Основной цвет "следа".
+	          funkcio *f,
 	          qreal Skalo = 1, //!< Коэффициент масштаба.
 	          QGraphicsItem * parent = 0 //!< Элемент родитель.
 	         );
