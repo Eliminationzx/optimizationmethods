@@ -324,7 +324,7 @@ void HuGiImpl::sf_entered()
 	if(F->metaObject()->className() == QString("RavinaFunkcio"))
 	{
 		if(D[7] == -1)
-			LogTxtBrsr->append(trUtf8("Количество ошибок в квадратичной функции: не пройдена."));
+			LogTxtBrsr->append(trUtf8("Квадратичная функция не пройдена."));
 		else
 			LogTxtBrsr->append(trUtf8("Количество ошибок в квадратичной функции: <b>%1</b>.").arg(D[7]));
 	}
@@ -649,7 +649,7 @@ namespace SinkoLauxKoordinatoj_hugi{
 	{
 		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
 		if(QSignalTransition::eventTest(e)){
-			qDebug()<<trUtf8("  Check f(np) < f(mp2(pp))")<<flag_so;
+			qDebug()<<trUtf8("  Check f(np) < f(mp2(pp))")<<*flag_so;
 			// Проверяю своё условие.
 			if(*flag_so == false)
 				return f->rezulto(*np) < f->rezulto(*mp2);
@@ -664,7 +664,7 @@ namespace SinkoLauxKoordinatoj_hugi{
 	{
 		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
 		if(QSignalTransition::eventTest(e)){
-			qDebug()<<trUtf8("  Check f(np) >= f(mp2(pp))");
+			qDebug()<<trUtf8("  Check f(np) >= f(mp2(pp))")<<*flag_so;
 			// Проверяю своё условие.
 			if(*flag_so == false)
 				return f->rezulto(*np) >= f->rezulto(*mp2);
@@ -781,6 +781,7 @@ namespace SinkoLauxKoordinatoj_hugi{
 			qDebug()<<trUtf8("======FLAG=")<<flag_so;
 			//qDebug()<<trUtf8("Come in s1 flag=%1").arg(flag_so);
 			// Проверяю своё условие.
+			qDebug()<<trUtf8("pp= %1 mp2= %2").arg(f->rezulto(*pp)).arg(f->rezulto(*mp2)) ;
 			return *flag_so && ok_rb_->isChecked() && (f->rezulto(*pp) < f->rezulto(*mp2));
 		}else{
 			return false;
