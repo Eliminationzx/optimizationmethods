@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>1131</width>
-    <height>572</height>
+    <height>569</height>
    </rect>
   </property>
   <property name="font">
@@ -61,7 +61,7 @@
                 <enum>QFrame::Box</enum>
                </property>
                <property name="text">
-                <string>T1</string>
+                <string>X1</string>
                </property>
                <property name="alignment">
                 <set>Qt::AlignCenter</set>
@@ -83,7 +83,7 @@
                 <enum>QFrame::Box</enum>
                </property>
                <property name="text">
-                <string>T2</string>
+                <string>X2</string>
                </property>
                <property name="alignment">
                 <set>Qt::AlignCenter</set>
@@ -105,7 +105,7 @@
                 <enum>QFrame::Box</enum>
                </property>
                <property name="text">
-                <string>T3</string>
+                <string>X3</string>
                </property>
                <property name="alignment">
                 <set>Qt::AlignCenter</set>
@@ -127,7 +127,7 @@
                 <enum>QFrame::Box</enum>
                </property>
                <property name="text">
-                <string>Tотр</string>
+                <string>Xотр</string>
                </property>
                <property name="alignment">
                 <set>Qt::AlignCenter</set>
@@ -149,7 +149,7 @@
                 <enum>QFrame::Box</enum>
                </property>
                <property name="text">
-                <string>Tрас</string>
+                <string>Xрас</string>
                </property>
                <property name="alignment">
                 <set>Qt::AlignCenter</set>
@@ -441,7 +441,7 @@
                 <enum>QFrame::Box</enum>
                </property>
                <property name="text">
-                <string>Tсжат.</string>
+                <string>Xсжат.</string>
                </property>
               </widget>
              </item>
