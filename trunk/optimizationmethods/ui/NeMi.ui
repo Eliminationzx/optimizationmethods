@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>1131</width>
-    <height>569</height>
+    <height>614</height>
    </rect>
   </property>
   <property name="font">
@@ -35,9 +35,9 @@
      </widget>
     </item>
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="0,1">
+     <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="1,0">
       <item>
-       <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,1">
+       <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0">
         <item>
          <widget class="QGroupBox" name="groupBox_2">
           <property name="title">
@@ -552,19 +552,10 @@
           </layout>
          </widget>
         </item>
-        <item>
-         <widget class="QTextBrowser" name="LogTxtBrsr">
-          <property name="font">
-           <font>
-            <pointsize>14</pointsize>
-           </font>
-          </property>
-         </widget>
-        </item>
        </layout>
       </item>
       <item>
-       <layout class="QVBoxLayout" name="verticalLayout_3" stretch="0">
+       <layout class="QVBoxLayout" name="verticalLayout_3" stretch="0,1">
         <item>
          <widget class="QGroupBox" name="groupBox_3">
           <property name="title">
@@ -974,6 +965,15 @@ p, li { white-space: pre-wrap; }
             </widget>
            </item>
           </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTextBrowser" name="LogTxtBrsr">
+          <property name="font">
+           <font>
+            <pointsize>14</pointsize>
+           </font>
+          </property>
          </widget>
         </item>
        </layout>

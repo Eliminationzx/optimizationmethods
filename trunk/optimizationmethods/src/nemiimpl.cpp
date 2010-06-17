@@ -39,7 +39,7 @@ NeMiImpl::NeMiImpl(  funkcio *f, QVector<double> d, QWidget * parent, Qt::WFlags
 	func->setText(textoFunkcio());
 
 	// Создаю карту.
-	verticalLayout_3->addWidget(MapoWdg, 2);
+	verticalLayout_2->addWidget(MapoWdg, 1);
 
 //	MapoWdg->setScale(20);// Ставлю масштаб побольше. Надо будет определться с оптимальным значением.
 
