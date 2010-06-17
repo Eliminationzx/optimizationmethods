@@ -27,7 +27,7 @@
     <normaloff>:/icon/icon.bmp</normaloff>:/icon/icon.bmp</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout_17" columnstretch="1,0">
+   <layout class="QGridLayout" name="gridLayout_17" columnstretch="1,2" rowminimumheight="0,0,1">
     <item row="0" column="0" colspan="2">
      <widget class="QLabel" name="func">
       <property name="alignment">
@@ -42,7 +42,7 @@
       </property>
       <layout class="QGridLayout" name="gridLayout_6">
        <item row="0" column="0">
-        <layout class="QGridLayout" name="gridLayout_3" columnstretch="1,0">
+        <layout class="QGridLayout" name="gridLayout_3" columnstretch="1,1">
          <property name="spacing">
           <number>0</number>
          </property>
@@ -214,15 +214,6 @@
         </layout>
        </item>
       </layout>
-     </widget>
-    </item>
-    <item row="2" column="0">
-     <widget class="QTextBrowser" name="LogTxtBrsr">
-      <property name="font">
-       <font>
-        <pointsize>14</pointsize>
-       </font>
-      </property>
      </widget>
     </item>
     <item row="1" column="1">
@@ -904,69 +895,7 @@ p, li { white-space: pre-wrap; }
       </widget>
       <widget class="QWidget" name="gessian">
        <layout class="QGridLayout" name="gridLayout_16">
-        <item row="0" column="0">
-         <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,1">
-          <item>
-           <layout class="QVBoxLayout" name="verticalLayout_2">
-            <item>
-             <widget class="QLabel" name="label_25">
-              <property name="text">
-               <string/>
-              </property>
-              <property name="pixmap">
-               <pixmap resource="data.qrc">:/icon/dfdx1.bmp</pixmap>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLabel" name="label_26">
-              <property name="text">
-               <string/>
-              </property>
-              <property name="pixmap">
-               <pixmap resource="data.qrc">:/icon/dfdx2.bmp</pixmap>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <layout class="QVBoxLayout" name="verticalLayout">
-            <item>
-             <widget class="QLabel" name="label_23">
-              <property name="font">
-               <font>
-                <pointsize>14</pointsize>
-               </font>
-              </property>
-              <property name="text">
-               <string>ы</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLabel" name="label_24">
-              <property name="font">
-               <font>
-                <pointsize>14</pointsize>
-               </font>
-              </property>
-              <property name="text">
-               <string>ы</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-         </layout>
-        </item>
-        <item row="1" column="0">
+        <item row="2" column="0">
          <widget class="QGroupBox" name="groupBox_7">
           <property name="title">
            <string>Введите гессиан</string>
@@ -1027,7 +956,7 @@ p, li { white-space: pre-wrap; }
           </layout>
          </widget>
         </item>
-        <item row="2" column="0">
+        <item row="4" column="0">
          <widget class="QGroupBox" name="groupBox_8">
           <property name="title">
            <string>Введите обратный гессиан</string>
@@ -1088,7 +1017,7 @@ p, li { white-space: pre-wrap; }
           </layout>
          </widget>
         </item>
-        <item row="3" column="0">
+        <item row="5" column="0">
          <layout class="QHBoxLayout" name="horizontalLayout_9">
           <item>
            <spacer name="horizontalSpacer_11">
@@ -1130,9 +1059,48 @@ p, li { white-space: pre-wrap; }
           </item>
          </layout>
         </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_23">
+          <property name="font">
+           <font>
+            <pointsize>14</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_24">
+          <property name="font">
+           <font>
+            <pointsize>14</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
        </layout>
       </widget>
       <widget class="QWidget" name="blank"/>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QTextBrowser" name="LogTxtBrsr">
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+       </font>
+      </property>
      </widget>
     </item>
    </layout>
