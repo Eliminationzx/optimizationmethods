@@ -279,7 +279,7 @@ void CWdescentWinImpl::sf_entered(){
 	if(F->metaObject()->className() == QString("RavinaFunkcio"))
 	{
 		if(D[7] == -1)
-			LogTxtBrsr->append(trUtf8("Количество ошибок в квадратичной функции: не пройдена."));
+			LogTxtBrsr->append(trUtf8("Квадратичная функция не пройдена."));
 		else
 			LogTxtBrsr->append(trUtf8("Количество ошибок в квадратичной функции: <b>%1</b>.").arg(D[7]));
 	}
