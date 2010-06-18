@@ -324,14 +324,14 @@ void CWdescent_mdImpl::so_entered()
 
 void CWdescent_mdImpl::init()
 {
+	static_cast<spuroSinkoLauxKoordinatoj_md*>(Sp)->senspurigi();
+
 	precision_lb->setText(QString::number(strikteco));
 	KvantoEraroj = 0;
 	NumeroIteracio = 0;
 	MP = QPointF(D[4],D[5]);
 	quanError = (int)D[6];
 	LogTxtBrsr->setText("");
-
-	static_cast<spuroSinkoLauxKoordinatoj_md*>(Sp)->senspurigi();
 
 	qDebug()<<trUtf8("Задаю переменным начальные значения"); // Вывожу дебажную инфу на консоль.
 }
