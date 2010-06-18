@@ -383,15 +383,14 @@ void FasterDescentImpl::so_entered()
 
 void FasterDescentImpl::init()
 {
+	static_cast<spuroSinkoLauxKoordinatoj_md*>(Sp)->senspurigi();
+
 	precision_lb->setText(QString::number(strikteco));
 	KvantoEraroj = 0;
 	NumeroIteracio = 0;
 	BP = QPointF(D[4],D[5]);
 	quanError = (int)D[6];
 	LogTxtBrsr->setText("");
-
-	static_cast<spuroSinkoLauxKoordinatoj_md*>(Sp)->senspurigi();
-//	static_cast<spuroSinkoLauxKoordinatoj_md*>(Sp)->difiniUnuaPointo(BP);
 
 	qDebug()<<trUtf8("Задаю переменным начальные значения"); // Вывожу дебажную инфу на консоль.
 }
