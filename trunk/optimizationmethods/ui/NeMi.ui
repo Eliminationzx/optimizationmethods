@@ -5,18 +5,10 @@
   <property name="windowModality">
    <enum>Qt::ApplicationModal</enum>
   </property>
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>1076</width>
-    <height>672</height>
-   </rect>
-  </property>
   <property name="font">
    <font>
     <family>Times New Roman</family>
-    <pointsize>16</pointsize>
+    <pointsize>14</pointsize>
    </font>
   </property>
   <property name="windowTitle">
@@ -478,7 +470,7 @@
             </layout>
            </item>
            <item row="1" column="0">
-            <layout class="QHBoxLayout" name="horizontalLayout" stretch="1,1">
+            <layout class="QHBoxLayout" name="horizontalLayout" stretch="1,0">
              <property name="spacing">
               <number>0</number>
              </property>
@@ -497,6 +489,12 @@
              </item>
              <item>
               <widget class="QLabel" name="precision_lb">
+               <property name="minimumSize">
+                <size>
+                 <width>150</width>
+                 <height>0</height>
+                </size>
+               </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
                </property>
@@ -514,7 +512,7 @@
             </layout>
            </item>
            <item row="2" column="0">
-            <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="1,1">
+            <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="1,0">
              <property name="spacing">
               <number>0</number>
              </property>
@@ -536,6 +534,12 @@
              </item>
              <item>
               <widget class="QLabel" name="x1_step_lb">
+               <property name="minimumSize">
+                <size>
+                 <width>150</width>
+                 <height>0</height>
+                </size>
+               </property>
                <property name="frameShape">
                 <enum>QFrame::Box</enum>
                </property>
@@ -1064,7 +1068,7 @@ p, li { white-space: pre-wrap; }
      <x>0</x>
      <y>0</y>
      <width>1076</width>
-     <height>30</height>
+     <height>28</height>
     </rect>
    </property>
    <widget class="QMenu" name="testo_menu">
