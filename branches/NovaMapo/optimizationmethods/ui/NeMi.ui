@@ -593,14 +593,14 @@
                   <item row="3" column="0">
                    <widget class="QRadioButton" name="t2_ref_rb">
                     <property name="text">
-                     <string>T2</string>
+                     <string>X2</string>
                     </property>
                    </widget>
                   </item>
                   <item row="4" column="0">
                    <widget class="QRadioButton" name="t3_ref_rb">
                     <property name="text">
-                     <string>T3</string>
+                     <string>X3</string>
                     </property>
                    </widget>
                   </item>
@@ -626,7 +626,7 @@
                   <item row="2" column="0">
                    <widget class="QRadioButton" name="t1_ref_rb">
                     <property name="text">
-                     <string>T1</string>
+                     <string>X1</string>
                     </property>
                    </widget>
                   </item>
@@ -680,35 +680,35 @@
                   <item row="1" column="0">
                    <widget class="QRadioButton" name="t1_str_rb">
                     <property name="text">
-                     <string>T1</string>
+                     <string>X1</string>
                     </property>
                    </widget>
                   </item>
                   <item row="2" column="0">
                    <widget class="QRadioButton" name="t2_str_rb">
                     <property name="text">
-                     <string>T2</string>
+                     <string>X2</string>
                     </property>
                    </widget>
                   </item>
                   <item row="3" column="0">
                    <widget class="QRadioButton" name="t3_str_rb">
                     <property name="text">
-                     <string>T3</string>
+                     <string>X3</string>
                     </property>
                    </widget>
                   </item>
                   <item row="4" column="0">
                    <widget class="QRadioButton" name="totr_str_rb">
                     <property name="text">
-                     <string>Tотр</string>
+                     <string>Xотр</string>
                     </property>
                    </widget>
                   </item>
                   <item row="5" column="0">
                    <widget class="QRadioButton" name="tras_str_rb">
                     <property name="text">
-                     <string>Трас</string>
+                     <string>Xрас</string>
                     </property>
                    </widget>
                   </item>
@@ -784,28 +784,21 @@
                   <item row="1" column="0">
                    <widget class="QRadioButton" name="t1_com_rb">
                     <property name="text">
-                     <string>Т1</string>
+                     <string>X1</string>
                     </property>
                    </widget>
                   </item>
                   <item row="2" column="0">
                    <widget class="QRadioButton" name="t2_com_rb">
                     <property name="text">
-                     <string>Т2</string>
+                     <string>X2</string>
                     </property>
                    </widget>
                   </item>
                   <item row="3" column="0">
                    <widget class="QRadioButton" name="t3_com_rb">
                     <property name="text">
-                     <string>Т3</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="4" column="0">
-                   <widget class="QRadioButton" name="tsj_com_rb">
-                    <property name="text">
-                     <string>Тсж</string>
+                     <string>X3</string>
                     </property>
                    </widget>
                   </item>
@@ -825,6 +818,13 @@
                     </property>
                     <property name="wordWrap">
                      <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="0">
+                   <widget class="QRadioButton" name="tsj_com_rb">
+                    <property name="text">
+                     <string>Xсж</string>
                     </property>
                    </widget>
                   </item>
@@ -881,28 +881,28 @@
                   <item row="2" column="0">
                    <widget class="QRadioButton" name="t1_red_rb">
                     <property name="text">
-                     <string>Т1</string>
+                     <string>X1</string>
                     </property>
                    </widget>
                   </item>
                   <item row="3" column="0">
                    <widget class="QRadioButton" name="t2_red_rb">
                     <property name="text">
-                     <string>Т2</string>
+                     <string>X2</string>
                     </property>
                    </widget>
                   </item>
                   <item row="4" column="0">
                    <widget class="QRadioButton" name="t3_red_rb">
                     <property name="text">
-                     <string>Т3</string>
+                     <string>X3</string>
                     </property>
                    </widget>
                   </item>
                   <item row="5" column="0">
                    <widget class="QRadioButton" name="totr_red_rb">
                     <property name="text">
-                     <string>Тотр</string>
+                     <string>Xотр</string>
                     </property>
                    </widget>
                   </item>
