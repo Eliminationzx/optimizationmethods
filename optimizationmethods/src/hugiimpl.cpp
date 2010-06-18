@@ -373,6 +373,8 @@ void HuGiImpl::s19_entered()
 	x2_b2_lb->setText("");
 	fsign_b2_lb->setText("");
 
+	label_14->setText("P");
+
 	x1_new_lb->setText("");
 	x2_new_lb->setText("");
 	fsign_new_lb->setText("");
@@ -412,6 +414,8 @@ void HuGiImpl::s16_entered()
 	x1_p_lb->setText("");
 	x2_p_lb->setText("");
 	fsign_p_lb->setText("");
+
+	label_14->setText("P");	
 	
 	x1_new_lb->setText("");
 	x2_new_lb->setText("");
@@ -469,9 +473,11 @@ void HuGiImpl::s12_entered()
 {
 	if(FLAG_SO == false)
 		MP2 = NP;
-	else if(FLAG_SO == true)
-		PP = NP;
-
+	else if(FLAG_SO == true){
+	PP = NP;
+	label_14->setText("P1");
+	}
+	
 	x1_new_lb->setText("");
 	x2_new_lb->setText("");
 	fsign_new_lb->setText("");
@@ -534,7 +540,10 @@ void HuGiImpl::s7_entered()
 	if(FLAG_SO == false)
 		MP2 = NP;
 	else if(FLAG_SO == true)
+	{
 		PP = NP;
+		label_14->setText("P1");
+	}
 
 	x1_new_lb->setText("");
 	x2_new_lb->setText("");
@@ -594,6 +603,7 @@ void HuGiImpl::s3_entered()
 	LogTxtBrsr->append(trUtf8(" Инициирован исследующий поиск."));
 	else if(FLAG_SO == true)
 	LogTxtBrsr->append(trUtf8(" Инициирован поиск по образцу."));
+	label_14->setText("P");	
 	investigate_rb->setChecked(true);
   	up_x1_rb->setChecked(true);
   	ok_rb->setChecked(true);
@@ -776,13 +786,17 @@ namespace SinkoLauxKoordinatoj_hugi{
 		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
 		if(QSignalTransition::eventTest(e)){
 			qDebug()<<trUtf8(" s13s16  пройден поиск по образцу = true && Выбран пункт принять образец &&  f(b2)<f(temp_b2)  ")<<&flag_so;
-			qDebug()<<trUtf8("======FBP=")<<(f->rezulto(*pp));
-			qDebug()<<trUtf8("======FTB=")<<(f->rezulto(*mp2));
-			qDebug()<<trUtf8("======FLAG=")<<flag_so;
-			//qDebug()<<trUtf8("Come in s1 flag=%1").arg(flag_so);
-			// Проверяю своё условие.
-			qDebug()<<trUtf8("pp= %1 mp2= %2").arg(f->rezulto(*pp)).arg(f->rezulto(*mp2)) ;
-			return *flag_so && ok_rb_->isChecked() && (f->rezulto(*pp) < f->rezulto(*mp2));
+			qDebug()<<trUtf8("======p=")<<(f->rezulto(*pp));
+			qDebug()<<trUtf8("======b2=")<<(f->rezulto(*mp2));
+			qDebug()<<trUtf8("======FLAG=")<<*flag_so;
+			//Дальше идет хитрое условие. Работает только так. Иначе никак. 
+			//Попытка понять логику автора а также попытка исправить приведет к (!) взрыву мозга. 
+			//P.S.При создании этого условия чуть не пострадал рассудок создателя.  
+			bool fuck;
+			fuck=(f->rezulto(*pp) < f->rezulto(*mp2));
+			if(*pp==*mp2)
+			fuck=false;
+			return ((*flag_so==true) && (ok_rb_->isChecked()==true) && (fuck==true));
 		}else{
 			return false;
 		}
@@ -790,11 +804,21 @@ namespace SinkoLauxKoordinatoj_hugi{
 
 	bool s13s19Transiro::eventTest(QEvent *e)
 	{
-		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
 		if(QSignalTransition::eventTest(e)){
-			qDebug()<<trUtf8("s13s19  пройден поиск по образцу = true && Выбран пункт не принимать образец &&  f(b2)<f(temp_b2) ")<<&flag_so;
+		qDebug()<<trUtf8("s13s19  пройден поиск по образцу = true && Выбран пункт не принимать образец &&  f(b2)<f(temp_b2) ")<<&flag_so;
 			// Проверяю своё условие.
-			return *flag_so && no_rb_->isChecked() && f->rezulto(*pp) >= f->rezulto(*mp2);
+			qDebug()<<trUtf8("======p=")<<(f->rezulto(*pp));
+			qDebug()<<trUtf8("======b2=")<<(f->rezulto(*mp2));
+			qDebug()<<trUtf8("======FLAG=")<<*flag_so;
+			//Дальше идет хитрое условие. Работает только так. Иначе никак. 
+			//Попытка понять логику автора а также попытка исправить приведет к (!) взрыву мозга. 
+			//P.S.При создании этого условия чуть не пострадал рассудок создателя.  			
+			bool fuck2;
+			fuck2=(f->rezulto(*pp) >= f->rezulto(*mp2));
+			if(*pp==*mp2)
+			fuck2=true;
+			
+			return ((*flag_so==true) && (no_rb_->isChecked()==true) && (fuck2==true));
 		}else{
 			return false;
 		}
