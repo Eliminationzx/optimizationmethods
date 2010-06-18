@@ -175,7 +175,7 @@ CWdescentWinImpl::CWdescentWinImpl( funkcio *f, QVector<double> d, QWidget * par
 	s10->assignProperty(new_fsign_lb, "text", trUtf8(""));
 	s12->assignProperty(distance_lb, "text", trUtf8(""));
 //---Настраиваю выделение цветом растояния между точками.
-	s1->assignProperty(distance_lb, "palette", this->palette());
+//	s1->assignProperty(distance_lb, "palette", this->palette());
 
 //---Прикручиваю карту---------------------------------------------------------
 	connect(sNP, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(aldoniSercxantaPointo(const QPointF &)));
@@ -332,7 +332,7 @@ void CWdescentWinImpl::s11_entered(){
 	// Вывожу на форму значение расстояния между предыдущей базовой точкой и
 	// текущей, только если была принята новая точка.
 	if(BP.x() != MP.x() && BP.y() != MP.y()){
-		distance_lb->setPalette(QPalette(Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red));
+//		distance_lb->setPalette(QPalette(Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red, Qt::red));
 		distance_lb->setText(QString::number(Length(BP - MP), 'f', 2));
 	}
 	if (BP == MP){

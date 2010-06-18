@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1131</width>
-    <height>614</height>
+    <width>1076</width>
+    <height>672</height>
    </rect>
   </property>
   <property name="font">
@@ -555,9 +555,15 @@
        </layout>
       </item>
       <item>
-       <layout class="QVBoxLayout" name="verticalLayout_3" stretch="0,1">
+       <layout class="QVBoxLayout" name="verticalLayout_3">
         <item>
          <widget class="QGroupBox" name="groupBox_3">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
+          </property>
           <property name="title">
            <string>Выберите правильное действие</string>
           </property>
@@ -571,7 +577,7 @@
            <item row="0" column="1" rowspan="5">
             <widget class="QStackedWidget" name="stackedWidget">
              <property name="currentIndex">
-              <number>1</number>
+              <number>4</number>
              </property>
              <widget class="QWidget" name="reflexion">
               <layout class="QGridLayout" name="gridLayout_4" rowstretch="1,0">
@@ -583,28 +589,44 @@
                    <bold>false</bold>
                   </font>
                  </property>
-                 <property name="title">
-                  <string>Какую точку отразить?</string>
-                 </property>
                  <layout class="QGridLayout" name="gridLayout_5">
-                  <item row="0" column="0">
-                   <widget class="QRadioButton" name="t1_ref_rb">
-                    <property name="text">
-                     <string>T1</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="0">
+                  <item row="3" column="0">
                    <widget class="QRadioButton" name="t2_ref_rb">
                     <property name="text">
                      <string>T2</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="2" column="0">
+                  <item row="4" column="0">
                    <widget class="QRadioButton" name="t3_ref_rb">
                     <property name="text">
                      <string>T3</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="label_4">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="text">
+                     <string>Выберите вершину, отнасительно которой проводить отражение</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignJustify|Qt::AlignTop</set>
+                    </property>
+                    <property name="wordWrap">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="0">
+                   <widget class="QRadioButton" name="t1_ref_rb">
+                    <property name="text">
+                     <string>T1</string>
                     </property>
                    </widget>
                   </item>
@@ -654,42 +676,58 @@
               <layout class="QGridLayout" name="gridLayout_7">
                <item row="0" column="0">
                 <widget class="QGroupBox" name="groupBox_4">
-                 <property name="title">
-                  <string>Какую точку принять?</string>
-                 </property>
-                 <layout class="QGridLayout" name="gridLayout_9">
-                  <item row="0" column="0">
+                 <layout class="QGridLayout" name="gridLayout_9" rowstretch="1,0,0,0,0,0">
+                  <item row="1" column="0">
                    <widget class="QRadioButton" name="t1_str_rb">
                     <property name="text">
                      <string>T1</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="1" column="0">
+                  <item row="2" column="0">
                    <widget class="QRadioButton" name="t2_str_rb">
                     <property name="text">
                      <string>T2</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="2" column="0">
+                  <item row="3" column="0">
                    <widget class="QRadioButton" name="t3_str_rb">
                     <property name="text">
                      <string>T3</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="3" column="0">
+                  <item row="4" column="0">
                    <widget class="QRadioButton" name="totr_str_rb">
                     <property name="text">
                      <string>Tотр</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="4" column="0">
+                  <item row="5" column="0">
                    <widget class="QRadioButton" name="tras_str_rb">
                     <property name="text">
                      <string>Трас</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="label_7">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="text">
+                     <string>Выберите вершину, которую следует принять</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignJustify|Qt::AlignTop</set>
+                    </property>
+                    <property name="wordWrap">
+                     <bool>true</bool>
                     </property>
                    </widget>
                   </item>
@@ -740,34 +778,53 @@
                <item row="0" column="0">
                 <widget class="QGroupBox" name="groupBox_5">
                  <property name="title">
-                  <string>Какую точку заменить?</string>
+                  <string/>
                  </property>
                  <layout class="QGridLayout" name="gridLayout_8">
-                  <item row="0" column="0">
+                  <item row="1" column="0">
                    <widget class="QRadioButton" name="t1_com_rb">
                     <property name="text">
                      <string>Т1</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="1" column="0">
+                  <item row="2" column="0">
                    <widget class="QRadioButton" name="t2_com_rb">
                     <property name="text">
                      <string>Т2</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="2" column="0">
+                  <item row="3" column="0">
                    <widget class="QRadioButton" name="t3_com_rb">
                     <property name="text">
                      <string>Т3</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="3" column="0">
+                  <item row="4" column="0">
                    <widget class="QRadioButton" name="tsj_com_rb">
                     <property name="text">
                      <string>Тсж</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="label_9">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="text">
+                     <string>Выберите  вершину, которую следует заменить</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignJustify|Qt::AlignTop</set>
+                    </property>
+                    <property name="wordWrap">
+                     <bool>true</bool>
                     </property>
                    </widget>
                   </item>
@@ -818,34 +875,53 @@
                <item row="0" column="0">
                 <widget class="QGroupBox" name="groupBox_6">
                  <property name="title">
-                  <string>Выберите точку.</string>
+                  <string/>
                  </property>
                  <layout class="QGridLayout" name="gridLayout_11">
-                  <item row="0" column="0">
+                  <item row="2" column="0">
                    <widget class="QRadioButton" name="t1_red_rb">
                     <property name="text">
                      <string>Т1</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="1" column="0">
+                  <item row="3" column="0">
                    <widget class="QRadioButton" name="t2_red_rb">
                     <property name="text">
                      <string>Т2</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="2" column="0">
+                  <item row="4" column="0">
                    <widget class="QRadioButton" name="t3_red_rb">
                     <property name="text">
                      <string>Т3</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="3" column="0">
+                  <item row="5" column="0">
                    <widget class="QRadioButton" name="totr_red_rb">
                     <property name="text">
                      <string>Тотр</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="label_8">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="text">
+                     <string>Выберите вершину, относительно которой производить редукцию</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignJustify|Qt::AlignTop</set>
+                    </property>
+                    <property name="wordWrap">
+                     <bool>true</bool>
                     </property>
                    </widget>
                   </item>
@@ -987,7 +1063,7 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1131</width>
+     <width>1076</width>
      <height>30</height>
     </rect>
    </property>
