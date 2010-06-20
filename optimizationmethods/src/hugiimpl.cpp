@@ -161,17 +161,42 @@ namespace HuGi
 		}
 	}	
 
-/*bool s1s2Transiro::eventTest(QEvent *e){
+
+bool s2s3Transiro::eventTest(QEvent *e)
+	{
 		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
 		if(QSignalTransition::eventTest(e)){
-			qDebug()<<trUtf8("  Проверяю, что выбран шаг в + по X1");
+			qDebug()<<trUtf8(" s2s3  flag == false && investigate search has chosen");
+			// Проверяю своё условие.
+			return !(*flag) && investigate_rb->isChecked();
+		}else{
+			return false;
+		}
+	}
+
+bool s2s4Transiro::eventTest(QEvent *e)
+	{
+		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
+		if(QSignalTransition::eventTest(e)){
+			qDebug()<<trUtf8(" s2s4  flag == true && model search has chosen");
+			// Проверяю своё условие.
+			return *flag && model_rb->isChecked();
+		}else{
+			return false;
+		}
+	}
+
+bool s3s5s4s5Transiro::eventTest(QEvent *e)
+	{
+		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
+		if(QSignalTransition::eventTest(e)){
+			qDebug()<<trUtf8(" s3s5s4s5  flag == true && up to x1  has chosen");
 			// Проверяю своё условие.
 			return up_x1->isChecked();
 		}else{
 			return false;
 		}
 	}
-*/
 }
 
 
