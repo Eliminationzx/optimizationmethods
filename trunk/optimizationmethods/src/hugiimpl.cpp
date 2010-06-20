@@ -251,10 +251,99 @@ void HuGiImpl::s1_entered()
 void HuGiImpl::s3_entered()
 {
 	IP=&B2;
-	qDebug()<<trUtf8("come in s1"); // Вывожу дебажную инфу на консоль.
+	qDebug()<<trUtf8("come in s3"); // Вывожу дебажную инфу на консоль.
 	//emit stateHasEntered();
 }
 
+void HuGiImpl::s4_entered()
+{
+	qDebug()<<trUtf8("come in s4"); // Вывожу дебажную инфу на консоль.
+	P= QPointF((B1.x() + 2*(B2.x() - B1.x())), (B1.y() + 2*(B2.y() - B1.y())));
+	IP=&P;
+	label_14->setText("P1");
+	//emit stateHasEntered();
+}
+
+
+void HuGiImpl::s5_entered()
+{
+	NP = *IP + PX1;
+	LogTxtBrsr->append(trUtf8("  Сделан шаг в положительном направлении оси Х1."));
+	qDebug()<<trUtf8("come in s5"); // Вывожу дебажную инфу на консоль.
+	//emit stateHasEntered();
+}
+
+void HuGiImpl::s7_entered()
+{
+	NP = *IP - PX1;
+	LogTxtBrsr->append(trUtf8("  Сделан шаг в отрицательном направлении оси Х1."));
+	qDebug()<<trUtf8("come in s7"); // Вывожу дебажную инфу на консоль.
+	//emit stateHasEntered();
+}
+
+void HuGiImpl::s8_entered()
+{
+	*IP = NP;
+	LogTxtBrsr->append(trUtf8("  Точка (%1; %2) принята").arg(NP.x()).arg(NP.y()));
+	qDebug()<<trUtf8("come in s8"); // Вывожу дебажную инфу на консоль.
+	//emit stateHasEntered();
+}
+
+void HuGiImpl::s10_entered()
+{
+	NP = *IP + PX2;
+	LogTxtBrsr->append(trUtf8("  Сделан шаг в положительном направлении оси Х2."));
+	qDebug()<<trUtf8("come in s10"); // Вывожу дебажную инфу на консоль.
+	//emit stateHasEntered();
+}
+
+void HuGiImpl::s12_entered()
+{
+	NP = *IP - PX2;
+	LogTxtBrsr->append(trUtf8("  Сделан шаг в jnhbwfntkmyjv направлении оси Х2."));
+	qDebug()<<trUtf8("come in s12"); // Вывожу дебажную инфу на консоль.
+	//emit stateHasEntered();
+}
+
+void HuGiImpl::s13_entered()
+{
+	*IP = NP;
+	LogTxtBrsr->append(trUtf8("  Точка (%1; %2) принята").arg(NP.x()).arg(NP.y()));
+	qDebug()<<trUtf8("come in s13"); // Вывожу дебажную инфу на консоль.
+	//emit stateHasEntered();
+}
+
+void HuGiImpl::s15_entered()
+{
+	PX1 *= ModPX;
+	PX2 *= ModPX;
+	LogTxtBrsr->append(trUtf8("  Изменена длина шагов: %1; %2.").arg(PX1.x()).arg(PX2.y()));
+	qDebug()<<trUtf8("Come in s15"); // Вывожу дебажную инфу на консоль.
+	//emit stateHasEntered();
+}
+
+void HuGiImpl::s16_entered()
+{
+	FLG=true;
+	qDebug()<<trUtf8("Come in s16"); // Вывожу дебажную инфу на консоль.
+	//emit stateHasEntered();
+}
+
+void HuGiImpl::s17_entered()
+{
+	label_14->setText("P");
+	qDebug()<<trUtf8("Come in s17"); // Вывожу дебажную инфу на консоль.
+	//emit stateHasEntered();
+}
+
+void HuGiImpl::s18_entered()
+{
+	B1=B2;
+	B2=P;
+	FLG=true;
+	qDebug()<<trUtf8("Come in s18"); // Вывожу дебажную инфу на консоль.
+	//emit stateHasEntered();
+}
 
 namespace HuGi
 {
