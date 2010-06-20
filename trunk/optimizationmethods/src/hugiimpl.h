@@ -50,6 +50,10 @@ private slots:
 	void on_about_action_activated();
 	void on_helpo_action_activated();
 	void on_difiniFonto_act_activated();
+	
+	void registriEraro();
+	
+	void sf_entered();
 	/*! "Обнуление" переменных.
 	 *
 	 * Этим методом задаются начальные значения всем переменным алгоритма.
