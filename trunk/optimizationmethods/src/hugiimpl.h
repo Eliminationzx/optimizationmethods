@@ -456,21 +456,21 @@ namespace HuGi{
 	class s14s15Transiro: public QSignalTransition{
 		private:
 			DemonstrataQPointF ** ip;
-			DemonstrataQPointF * np;
+			DemonstrataQPointF * b1;
 			DemonstrataQPointF * px1;
 			DemonstrataQPointF * px2;
 			qreal s;
 		public:
 			s14s15Transiro( DemonstrataQPointF ** IP,
-			                DemonstrataQPointF * NP,
+			                DemonstrataQPointF * B1,
 			                DemonstrataQPointF * pX1,
 			                DemonstrataQPointF * pX2,
 			                qreal strikteco,
 			                QState * sourceState = 0)
-				: QSignalTransition(sourceState), ip(IP), np(NP), px1(pX1), px2(pX2),
+				: QSignalTransition(sourceState), ip(IP), b1(B1), px1(pX1), px2(pX2),
 					s(strikteco){};
 			s14s15Transiro( DemonstrataQPointF ** IP,
-			                DemonstrataQPointF * NP,
+			                DemonstrataQPointF * B1,
 			                DemonstrataQPointF * pX1,
 			                DemonstrataQPointF * pX2,
 			                qreal strikteco,
@@ -478,7 +478,7 @@ namespace HuGi{
 			                const char * signal,
 			                QState * sourceState = 0
 			              )
-				: QSignalTransition(sender, signal, sourceState), ip(IP), np(NP),
+				: QSignalTransition(sender, signal, sourceState), ip(IP), b1(B1),
 					px1(pX1), px2(pX2), s(strikteco){};
 		protected:
 			/*! Переход срабатывает, только если не была принята новая точка и шаги больше
