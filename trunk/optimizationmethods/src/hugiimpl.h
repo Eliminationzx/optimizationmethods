@@ -277,15 +277,15 @@ namespace HuGi{
 		private:
 			QRadioButton * rb;
 		public:
-			s6s7Transiro( QRadioButton * doun_x1_rb,
+			s6s7Transiro( QRadioButton * down_x1_rb,
 										QState * sourceState = 0)
-				: QSignalTransition(sourceState), rb(doun_x1_rb){};
-			s6s7Transiro( QRadioButton * doun_x1_rb,
+				: QSignalTransition(sourceState), rb(down_x1_rb){};
+			s6s7Transiro( QRadioButton * down_x1_rb,
 									  QObject * sender,
 			              const char * signal,
 			              QState * sourceState = 0
 			              )
-				: QSignalTransition(sender, signal, sourceState), rb(doun_x1_rb){};
+				: QSignalTransition(sender, signal, sourceState), rb(down_x1_rb){};
 		protected:
 			//! Переход срабатывает, только если выбран шаг в - по Х1.
 			bool eventTest(QEvent *e);
@@ -558,6 +558,7 @@ namespace HuGi{
 	 */
 	class s17s18Transiro: public QSignalTransition{
 		private:
+			QRadioButton * rb;
 			DemonstrataQPointF ** ip;
 			DemonstrataQPointF * b2;
 			funkcio * f;
@@ -565,16 +566,19 @@ namespace HuGi{
 			s17s18Transiro( DemonstrataQPointF ** IP,
 			                DemonstrataQPointF * B2,
 			                funkcio * F,
+			                QRadioButton * ok_rb,
 			                QState * sourceState = 0)
-				: QSignalTransition(sourceState), ip(IP), b2(B2),f(F){};
+				: QSignalTransition(sourceState), ip(IP), b2(B2), f(F), rb(ok_rb){};
 			s17s18Transiro( DemonstrataQPointF ** IP,
 			                DemonstrataQPointF * B2,
 			                funkcio * F,
+			                QRadioButton * ok_rb,
 			                QObject * sender,
 			                const char * signal,
 			                QState * sourceState = 0
 			              )
-				: QSignalTransition(sender, signal, sourceState), ip(IP), b2(B2),f(F){};
+				: QSignalTransition(sender, signal, sourceState), ip(IP), b2(B2),f(F),
+					rb(ok_rb){};
 		protected:
 			//! Переход срабатывает, только если искомая точка меньше В2.
 			bool eventTest(QEvent *e);
@@ -585,6 +589,7 @@ namespace HuGi{
 	 */
 	class s17s1Transiro: public QSignalTransition{
 		private:
+			QRadioButton * rb;
 			DemonstrataQPointF ** ip;
 			DemonstrataQPointF * b2;
 			funkcio * f;
@@ -592,16 +597,19 @@ namespace HuGi{
 			s17s1Transiro( DemonstrataQPointF ** IP,
 			               DemonstrataQPointF * B2,
 			               funkcio * F,
+			               QRadioButton * no_rb,
 			               QState * sourceState = 0)
-				: QSignalTransition(sourceState), ip(IP), b2(B2),f(F){};
+				: QSignalTransition(sourceState), ip(IP), b2(B2), f(F), rb(no_rb){};
 			s17s1Transiro( DemonstrataQPointF ** IP,
 			               DemonstrataQPointF * B2,
 			               funkcio * F,
+			               QRadioButton * no_rb,
 			               QObject * sender,
 			               const char * signal,
 			               QState * sourceState = 0
 			              )
-				: QSignalTransition(sender, signal, sourceState), ip(IP), b2(B2),f(F){};
+				: QSignalTransition(sender, signal, sourceState), ip(IP), b2(B2), f(F),
+					rb(no_rb){};
 		protected:
 			//! Переход срабатывает, только если точка больше или равна В2.
 			bool eventTest(QEvent *e);
