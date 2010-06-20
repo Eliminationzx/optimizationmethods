@@ -269,6 +269,11 @@ void HuGiImpl::s1_entered()
 	qDebug()<<trUtf8("come in s1"); // Вывожу дебажную инфу на консоль.
 }
 
+void HuGiImpl::s2_entered()
+{
+	qDebug()<<trUtf8("come in s2"); // Вывожу дебажную инфу на консоль.
+	//emit stateHasEntered();
+}
 
 void HuGiImpl::s3_entered()
 {
@@ -295,6 +300,12 @@ void HuGiImpl::s5_entered()
 	//emit stateHasEntered();
 }
 
+void HuGiImpl::s6_entered()
+{
+	qDebug()<<trUtf8("come in s6"); // Вывожу дебажную инфу на консоль.
+	//emit stateHasEntered();
+}
+
 void HuGiImpl::s7_entered()
 {
 	NP = *IP - PX1;
@@ -311,11 +322,23 @@ void HuGiImpl::s8_entered()
 	//emit stateHasEntered();
 }
 
+void HuGiImpl::s9_entered()
+{
+	qDebug()<<trUtf8("come in s9"); // Вывожу дебажную инфу на консоль.
+	//emit stateHasEntered();
+}
+
 void HuGiImpl::s10_entered()
 {
 	NP = *IP + PX2;
 	LogTxtBrsr->append(trUtf8("  Сделан шаг в положительном направлении оси Х2."));
 	qDebug()<<trUtf8("come in s10"); // Вывожу дебажную инфу на консоль.
+	//emit stateHasEntered();
+}
+
+void HuGiImpl::s11_entered()
+{
+	qDebug()<<trUtf8("come in s11"); // Вывожу дебажную инфу на консоль.
 	//emit stateHasEntered();
 }
 
@@ -332,6 +355,12 @@ void HuGiImpl::s13_entered()
 	*IP = NP;
 	LogTxtBrsr->append(trUtf8("  Точка (%1; %2) принята").arg(NP.x()).arg(NP.y()));
 	qDebug()<<trUtf8("come in s13"); // Вывожу дебажную инфу на консоль.
+	//emit stateHasEntered();
+}
+
+void HuGiImpl::s14_entered()
+{
+	qDebug()<<trUtf8("come in s2"); // Вывожу дебажную инфу на консоль.
 	//emit stateHasEntered();
 }
 
