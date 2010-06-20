@@ -184,6 +184,28 @@ HuGiImpl::HuGiImpl( funkcio *f, QVector<double> d, QWidget * parent, Qt::WFlags 
 //===Создаю конечный автомат.==================================================
 }
 
+void HuGiImpl::on_about_action_activated()
+{
+	aboutProgramImpl * about = new aboutProgramImpl(this);
+	about->show();
+}
+
+void HuGiImpl::on_difiniFonto_act_activated(){
+	bool b;
+	QFont fnt = QFontDialog::getFont(&b, font());
+	if(b){
+		// Была нажата кнопка ОК.
+		setFont(fnt);
+	}
+}
+
+void HuGiImpl::on_helpo_action_activated()
+{
+	helpBrowserImpl * hb = new helpBrowserImpl( "doc/", "method1.htm", this);
+	hb->resize(900, 600);
+	hb->show();
+}
+
 void HuGiImpl::registriEraro()
 {
   ++KvantoEraroj;
