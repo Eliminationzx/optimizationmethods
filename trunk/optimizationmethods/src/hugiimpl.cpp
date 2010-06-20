@@ -651,7 +651,7 @@ bool s13s17Transiro::eventTest(QEvent *e)
 		if(QSignalTransition::eventTest(e)){
 			qDebug()<<trUtf8(" s13s17Transiro flag==true");
 			// Проверяю своё условие.
-			return !(*flag);
+			return *flag;
 		}else{
 			return false;
 		}
