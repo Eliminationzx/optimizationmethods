@@ -142,7 +142,7 @@ HuGiImpl::HuGiImpl( funkcio *f, QVector<double> d, QWidget * parent, Qt::WFlags 
 	KonsideriPointoTransiro * s5s8 = new KonsideriPointoTransiro(&IP, &NP, F, accept_bt, SIGNAL(clicked()), s5);
 	s5s8->setTargetState(s8);
 	s6s7Transiro * s6s7 = new s6s7Transiro(down_x1_rb, next2_bt, SIGNAL(clicked()), s6);
-	s6s7->setTargetState(s6);
+	s6s7->setTargetState(s7);
 	KonsideriPointoTransiro * s7s8 = new KonsideriPointoTransiro(&IP, &NP, F, accept_bt, SIGNAL(clicked()), s7);
 	s7s8->setTargetState(s8);
 	NoKonsideriPointoTransiro * s7s9 = new NoKonsideriPointoTransiro(&IP, &NP, F, not_accept_bt, SIGNAL(clicked()), s7);
@@ -206,6 +206,47 @@ HuGiImpl::HuGiImpl( funkcio *f, QVector<double> d, QWidget * parent, Qt::WFlags 
 	QSignalTransition * te8 = new QSignalTransition(next3_bt, SIGNAL(clicked()));
 	so->addTransition(te8);
 	connect(te8, SIGNAL(triggered()), SLOT(registriEraro()));
+
+//---Настраиваю некоторые состояния, чтоб затирали надпись со значениями новой точки, дабы не смущать пользователя.
+	s1->assignProperty(x1_b2_lb, "text", trUtf8(""));
+	s1->assignProperty(x2_b2_lb, "text", trUtf8(""));
+	s1->assignProperty(fsign_b2_lb, "text", trUtf8(""));
+
+	s1->assignProperty(x1_p_lb, "text", trUtf8(""));
+	s1->assignProperty(x2_p_lb, "text", trUtf8(""));
+	s1->assignProperty(fsign_p_lb, "text", trUtf8(""));
+
+	s6->assignProperty(x1_new_lb, "text", trUtf8(""));
+	s6->assignProperty(x2_new_lb, "text", trUtf8(""));
+	s6->assignProperty(fsign_new_lb, "text", trUtf8(""));
+
+	s8->assignProperty(x1_new_lb, "text", trUtf8(""));
+	s8->assignProperty(x2_new_lb, "text", trUtf8(""));
+	s8->assignProperty(fsign_new_lb, "text", trUtf8(""));
+
+	s9->assignProperty(x1_new_lb, "text", trUtf8(""));
+	s9->assignProperty(x2_new_lb, "text", trUtf8(""));
+	s9->assignProperty(fsign_new_lb, "text", trUtf8(""));
+
+	s11->assignProperty(x1_new_lb, "text", trUtf8(""));
+	s11->assignProperty(x2_new_lb, "text", trUtf8(""));
+	s11->assignProperty(fsign_new_lb, "text", trUtf8(""));
+
+	s14->assignProperty(x1_new_lb, "text", trUtf8(""));
+	s14->assignProperty(x2_new_lb, "text", trUtf8(""));
+	s14->assignProperty(fsign_new_lb, "text", trUtf8(""));
+
+	s16->assignProperty(x1_new_lb, "text", trUtf8(""));
+	s16->assignProperty(x2_new_lb, "text", trUtf8(""));
+	s16->assignProperty(fsign_new_lb, "text", trUtf8(""));
+
+	s17->assignProperty(x1_new_lb, "text", trUtf8(""));
+	s17->assignProperty(x2_new_lb, "text", trUtf8(""));
+	s17->assignProperty(fsign_new_lb, "text", trUtf8(""));
+
+	s18->assignProperty(x1_p_lb, "text", trUtf8(""));
+	s18->assignProperty(x2_p_lb, "text", trUtf8(""));
+	s18->assignProperty(fsign_p_lb, "text", trUtf8(""));
 
 	//---Добавляю состояния в автомат и запускаю его.------------------------------
 	SM->addState(so);
