@@ -163,6 +163,8 @@ void NotWenImpl::registriEraro()
 
 void NotWenImpl::sf_entered()
 {
+	stackedWidget->setCurrentIndex(6);
+	
 	LogTxtBrsr->append(trUtf8("Конец алгоритма. Найден минимум функции: %1. Количество ошибок: <b>%2</b>.").arg(F->rezulto(BP)).arg(KvantoEraroj));
 	if(F->metaObject()->className() == QString("RavinaFunkcio"))
 	{
@@ -209,8 +211,6 @@ void NotWenImpl::sf_entered()
 
 void NotWenImpl::s7_entered()
 {
-	stackedWidget->setCurrentIndex(6);
-	
 	if(F->metaObject()->className() == QString("KvadratigantoFunkcio"))
 	{
 		gessian1 = QPointF(2*F->getC(), - F->getE());
