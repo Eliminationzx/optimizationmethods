@@ -494,21 +494,21 @@ namespace HuGi{
 	class s14s16Transiro: public QSignalTransition{
 		private:
 			DemonstrataQPointF ** ip;
-			DemonstrataQPointF * np;
+			DemonstrataQPointF * b1;
 			DemonstrataQPointF * px1;
 			DemonstrataQPointF * px2;
 			qreal s;
 		public:
 			s14s16Transiro( DemonstrataQPointF ** IP,
-			                DemonstrataQPointF * NP,
+			                DemonstrataQPointF * B1,
 			                DemonstrataQPointF * pX1,
 			                DemonstrataQPointF * pX2,
 			                qreal strikteco,
 			                QState * sourceState = 0)
-				: QSignalTransition(sourceState), ip(IP), np(NP), px1(pX1), px2(pX2),
+				: QSignalTransition(sourceState), ip(IP), b1(B1), px1(pX1), px2(pX2),
 					s(strikteco){};
 			s14s16Transiro( DemonstrataQPointF ** IP,
-			                DemonstrataQPointF * NP,
+			                DemonstrataQPointF * B1,
 			                DemonstrataQPointF * pX1,
 			                DemonstrataQPointF * pX2,
 			                qreal strikteco,
@@ -516,7 +516,7 @@ namespace HuGi{
 			                const char * signal,
 			                QState * sourceState = 0
 			              )
-				: QSignalTransition(sender, signal, sourceState), ip(IP), np(NP),
+				: QSignalTransition(sender, signal, sourceState), ip(IP), b1(B1),
 					px1(pX1), px2(pX2), s(strikteco){};
 		protected:
 			/*! Переход срабатывает, только если была принята новая точка и шаги больше
@@ -560,18 +560,21 @@ namespace HuGi{
 		private:
 			DemonstrataQPointF ** ip;
 			DemonstrataQPointF * b2;
+			funkcio * f;
 		public:
 			s17s18Transiro( DemonstrataQPointF ** IP,
 			                DemonstrataQPointF * B2,
+			                funkcio * F,
 			                QState * sourceState = 0)
-				: QSignalTransition(sourceState), ip(IP), b2(B2){};
+				: QSignalTransition(sourceState), ip(IP), b2(B2),f(F){};
 			s17s18Transiro( DemonstrataQPointF ** IP,
 			                DemonstrataQPointF * B2,
+			                funkcio * F,
 			                QObject * sender,
 			                const char * signal,
 			                QState * sourceState = 0
 			              )
-				: QSignalTransition(sender, signal, sourceState), ip(IP), b2(B2){};
+				: QSignalTransition(sender, signal, sourceState), ip(IP), b2(B2),f(F){};
 		protected:
 			//! Переход срабатывает, только если искомая точка меньше В2.
 			bool eventTest(QEvent *e);
@@ -584,18 +587,21 @@ namespace HuGi{
 		private:
 			DemonstrataQPointF ** ip;
 			DemonstrataQPointF * b2;
+			funkcio * f;
 		public:
 			s17s1Transiro( DemonstrataQPointF ** IP,
 			               DemonstrataQPointF * B2,
+			               funkcio * F,
 			               QState * sourceState = 0)
-				: QSignalTransition(sourceState), ip(IP), b2(B2){};
+				: QSignalTransition(sourceState), ip(IP), b2(B2),f(F){};
 			s17s1Transiro( DemonstrataQPointF ** IP,
 			               DemonstrataQPointF * B2,
+			               funkcio * F,
 			               QObject * sender,
 			               const char * signal,
 			               QState * sourceState = 0
 			              )
-				: QSignalTransition(sender, signal, sourceState), ip(IP), b2(B2){};
+				: QSignalTransition(sender, signal, sourceState), ip(IP), b2(B2),f(F){};
 		protected:
 			//! Переход срабатывает, только если точка больше или равна В2.
 			bool eventTest(QEvent *e);

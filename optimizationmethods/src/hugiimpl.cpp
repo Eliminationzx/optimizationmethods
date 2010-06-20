@@ -203,7 +203,7 @@ namespace HuGi
 {
 	
 	
-	bool KonsideriPointoTransiro::eventTest(QEvent *e)
+bool KonsideriPointoTransiro::eventTest(QEvent *e)
 	{
 		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
 		if(QSignalTransition::eventTest(e)){
@@ -216,7 +216,7 @@ namespace HuGi
 		}
 	}
 
-	bool NoKonsideriPointoTransiro::eventTest(QEvent *e)
+bool NoKonsideriPointoTransiro::eventTest(QEvent *e)
 	{
 		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
 		if(QSignalTransition::eventTest(e)){
@@ -361,10 +361,57 @@ bool s14s15Transiro::eventTest(QEvent *e)
 			return false;
 		}
 	}
+	
+bool s14s16Transiro::eventTest(QEvent *e)
+	{
+		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
+		if(QSignalTransition::eventTest(e)){
+			qDebug()<<trUtf8(" s14s16Transiro *ip != B1 and (px1 >= е || px2 >= е)");
+			// Проверяю своё условие.
+			return **ip!=*b1 && (px1->x() >= s || px2->y() >= s);
+		}else{
+			return false;
+		}
+	}
+
+bool s14sfTransiro::eventTest(QEvent *e)
+	{
+		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
+		if(QSignalTransition::eventTest(e)){
+			qDebug()<<trUtf8(" s14sfTransiro  (px1 < е || px2 < е)");
+			// Проверяю своё условие.
+			return px1->x() < s || px2->y() < s;
+		}else{
+			return false;
+		}
+	}
+
+bool s17s18Transiro::eventTest(QEvent *e)
+	{
+		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
+		if(QSignalTransition::eventTest(e)){
+			qDebug()<<trUtf8(" s17s18Transiro f(*ip)<f(b2) ");
+			// Проверяю своё условие.
+			return f->rezulto(**ip)<f->rezulto(*b2);
+		}else{
+			return false;
+		}
+}
+
+bool s17s1Transiro::eventTest(QEvent *e)
+	{
+		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
+		if(QSignalTransition::eventTest(e)){
+			qDebug()<<trUtf8(" s17s1Transiro f(*ip)<f(b2) ");
+			// Проверяю своё условие.
+			return f->rezulto(**ip)>=f->rezulto(*b2);
+		}else{
+			return false;
+		}
 }
 
 
-
+}
 
 //
 
