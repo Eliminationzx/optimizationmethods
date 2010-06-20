@@ -2,12 +2,10 @@
 #include "mapoporfunkcioimpl.h"
 #include "Konstantoj.h"
 #include "funkcio.h"
-#include "spuro.h"
 #include "spurosinkolauxkoordinatoj.h"
 #include "demonstrataqpointf.h"
 #include "signalantoporpointf.h"
 #include "helpbrowserimpl.h"
-#include "math.h"
 #include "aboutprogramimpl.h"
 #include <QTextBrowser>
 #include <QString>
@@ -79,7 +77,7 @@ void HuGiImpl::sf_entered()
 		if(F->metaObject()->className() == QString("KvadratigantoFunkcio"))
 		{
 			str += trUtf8("Сообщите преподавателю и перейдите к овражной функции. Количество ошибок: <b>%1</b>.").arg(KvantoEraroj);
-			emit usiloPlenumis(A::HuGiImpl, KvantoEraroj);
+			emit usiloPlenumis(A::HuGi, KvantoEraroj);
 			QMessageBox::information(this, trUtf8("Поздравляем"), str);
 			close();
 		}
