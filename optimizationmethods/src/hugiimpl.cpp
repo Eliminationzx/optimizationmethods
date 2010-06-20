@@ -181,6 +181,12 @@ HuGiImpl::HuGiImpl( funkcio *f, QVector<double> d, QWidget * parent, Qt::WFlags 
 	s17s1->setTargetState(s1);
 	s18->addTransition(found_bt, SIGNAL(clicked()), s2);
 
+//---Добавляю состояния в автомат и запускаю его.------------------------------
+	SM->addState(so);
+	SM->addState(sf);
+	SM->setInitialState(so);
+	init();
+	SM->start();
 //=============================================================================
 }
 
