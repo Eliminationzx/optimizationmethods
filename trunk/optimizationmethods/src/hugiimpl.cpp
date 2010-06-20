@@ -77,33 +77,25 @@ HuGiImpl::HuGiImpl( funkcio *f, QVector<double> d, QWidget * parent, Qt::WFlags 
 	connect(sB2, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniB1));
 	connect(sP, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniB1));
 //=============================================================================
-	void so_entered();
-	void s1_entered();
-	void s3_entered();
-	void s4_entered();
-	void s5_entered();
-	void s7_entered();
-	void s8_entered();
-	void s10_entered();
-	void s12_entered();
-	void s13_entered();
-	void s15_entered();
-	void s16_entered();
-	void s17_entered();
-	void s18_entered();
+
 //===Создаю конечный автомат.==================================================
 	QStateMachine * SM = new QStateMachine();
 //---Создаю состояния, согласно диаграмме.-------------------------------------
 	QState * so = new QState();
 	QState * s1 = new QState(so);
+	QState * s2 = new QState(so);
 	QState * s3 = new QState(so);
 	QState * s4 = new QState(so);
 	QState * s5 = new QState(so);
+	QState * s6 = new QState(so);
 	QState * s7 = new QState(so);
 	QState * s8 = new QState(so);
+	QState * s9 = new QState(so);
 	QState * s10 = new QState(so);
+	QState * s11 = new QState(so);
 	QState * s12 = new QState(so);
 	QState * s13 = new QState(so);
+	QState * s14 = new QState(so);
 	QState * s15 = new QState(so);
 	QState * s16 = new QState(so);
 	QState * s17 = new QState(so);
@@ -114,20 +106,25 @@ HuGiImpl::HuGiImpl( funkcio *f, QVector<double> d, QWidget * parent, Qt::WFlags 
 //---Соединяю состояния и обрабодчики входа в них.-----------------------------
 	connect(so, SIGNAL(entered()), SLOT(so_entered()));
 	connect(s1, SIGNAL(entered()), SLOT(s1_entered()));
+	connect(s2, SIGNAL(entered()), SLOT(s2_entered()));
 	connect(s3, SIGNAL(entered()), SLOT(s3_entered()));
 	connect(s4, SIGNAL(entered()), SLOT(s4_entered()));
 	connect(s5, SIGNAL(entered()), SLOT(s5_entered()));
+	connect(s6, SIGNAL(entered()), SLOT(s6_entered()));
 	connect(s7, SIGNAL(entered()), SLOT(s7_entered()));
 	connect(s8, SIGNAL(entered()), SLOT(s8_entered()));
+	connect(s9, SIGNAL(entered()), SLOT(s9_entered()));
 	connect(s10, SIGNAL(entered()), SLOT(s10_entered()));
+	connect(s11, SIGNAL(entered()), SLOT(s11_entered()));
 	connect(s12, SIGNAL(entered()), SLOT(s12_entered()));
 	connect(s13, SIGNAL(entered()), SLOT(s13_entered()));
+	connect(s14, SIGNAL(entered()), SLOT(s14_entered()));
 	connect(s15, SIGNAL(entered()), SLOT(s15_entered()));
 	connect(s16, SIGNAL(entered()), SLOT(s16_entered()));
 	connect(s17, SIGNAL(entered()), SLOT(s17_entered()));
 	connect(s18, SIGNAL(entered()), SLOT(s18_entered()));
 	connect(sf, SIGNAL(entered()), SLOT(sf_entered()));
-
+//===Создаю конечный автомат.==================================================
 }
 
 void HuGiImpl::registriEraro()
@@ -196,99 +193,11 @@ void HuGiImpl::s1_entered()
 
 void HuGiImpl::s3_entered()
 {
-	qDebug()<<trUtf8("come in s3"); // Вывожу дебажную инфу на консоль.
 	IP=&B2;
+	qDebug()<<trUtf8("come in s1"); // Вывожу дебажную инфу на консоль.
 	//emit stateHasEntered();
 }
 
-void HuGiImpl::s4_entered()
-{
-	qDebug()<<trUtf8("come in s4"); // Вывожу дебажную инфу на консоль.
-	P= QPointF((B1.x() + 2*(B2.x() - B1.x())), (B1.y() + 2*(B2.y() - B1.y())));
-	IP=&P;
-	label_14->setText("P1");
-	//emit stateHasEntered();
-}
-
-void HuGiImpl::s5_entered()
-{
-	NP = *IP + PX1;
-	LogTxtBrsr->append(trUtf8("  Сделан шаг в положительном направлении оси Х1."));
-	qDebug()<<trUtf8("come in s5"); // Вывожу дебажную инфу на консоль.
-	//emit stateHasEntered();
-}
-
-void HuGiImpl::s7_entered()
-{
-	NP = *IP - PX1;
-	LogTxtBrsr->append(trUtf8("  Сделан шаг в отрицательном направлении оси Х1."));
-	qDebug()<<trUtf8("come in s7"); // Вывожу дебажную инфу на консоль.
-	//emit stateHasEntered();
-}
-
-void HuGiImpl::s8_entered()
-{
-	*IP = NP;
-	LogTxtBrsr->append(trUtf8("  Точка (%1; %2) принята").arg(NP.x()).arg(NP.y()));
-	qDebug()<<trUtf8("come in s8"); // Вывожу дебажную инфу на консоль.
-	//emit stateHasEntered();
-}
-
-void HuGiImpl::s10_entered()
-{
-	NP = *IP + PX2;
-	LogTxtBrsr->append(trUtf8("  Сделан шаг в положительном направлении оси Х2."));
-	qDebug()<<trUtf8("come in s10"); // Вывожу дебажную инфу на консоль.
-	//emit stateHasEntered();
-}
-
-void HuGiImpl::s12_entered()
-{
-	NP = *IP - PX2;
-	LogTxtBrsr->append(trUtf8("  Сделан шаг в jnhbwfntkmyjv направлении оси Х2."));
-	qDebug()<<trUtf8("come in s12"); // Вывожу дебажную инфу на консоль.
-	//emit stateHasEntered();
-}
-
-void HuGiImpl::s13_entered()
-{
-	*IP = NP;
-	LogTxtBrsr->append(trUtf8("  Точка (%1; %2) принята").arg(NP.x()).arg(NP.y()));
-	qDebug()<<trUtf8("come in s13"); // Вывожу дебажную инфу на консоль.
-	//emit stateHasEntered();
-}
-
-void HuGiImpl::s15_entered()
-{
-	PX1 *= ModPX;
-	PX2 *= ModPX;
-	LogTxtBrsr->append(trUtf8("  Изменена длина шагов: %1; %2.").arg(PX1.x()).arg(PX2.y()));
-	qDebug()<<trUtf8("Come in s15"); // Вывожу дебажную инфу на консоль.
-	//emit stateHasEntered();
-}
-
-void HuGiImpl::s16_entered()
-{
-	FLG=true;
-	qDebug()<<trUtf8("Come in s16"); // Вывожу дебажную инфу на консоль.
-	//emit stateHasEntered();
-}
-
-void HuGiImpl::s17_entered()
-{
-	label_14->setText("P");
-	qDebug()<<trUtf8("Come in s17"); // Вывожу дебажную инфу на консоль.
-	//emit stateHasEntered();
-}
-
-void HuGiImpl::s18_entered()
-{
-	B1=B2;
-	B2=P;
-	FLG=true;
-	qDebug()<<trUtf8("Come in s18"); // Вывожу дебажную инфу на консоль.
-	//emit stateHasEntered();
-}
 
 namespace HuGi
 {
