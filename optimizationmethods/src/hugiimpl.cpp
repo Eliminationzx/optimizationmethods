@@ -20,6 +20,26 @@
 HuGiImpl::HuGiImpl( funkcio *f, QVector<double> d, QWidget * parent, Qt::WFlags flags ) 
 	: AlgoritmoWin(f, d, parent, flags){
 	setupUi(this);
+	connect(exit, SIGNAL(activated()), qApp, SLOT(closeAllWindows()));
+	
+// Для овражной функции убираю действие "Начать заново"
+	if(F->metaObject()->className() == QString("RavinaFunkcio")){
+		recomenci_acn->setEnabled(false);
+	}
+
+	qDebug()<<trUtf8("Покоординатный спуск с минимизацией по направлению"); // Вывожу дебажныю инфу на консоль.
+	
+	//Вывожу формулу функции.
+	func->setText(textoFunkcio());
+	
+	// Создаю карту.
+	// centralwidget->layout() - указатель на компановщик центрального виджета
+	// static_cast<QGridLayout*>(centralwidget->layout()) - обьясняю компилятору, что это именно QGridLayout
+	// добавляю вижет карты в позицию 1,1. Компановщик сам позаботится о назначении новому виджету родителя.
+	static_cast<QGridLayout*>(centralwidget->layout())->addWidget(MapoWdg, 2, 1, 2, 1);
+
+//	MapoWdg->setScale(20);// Ставлю масштаб побольше. Надо будет определться с оптимальным значением.
+	
 //===Создаю конечный автомат.==================================================
 	QStateMachine * SM = new QStateMachine();
 //---Создаю состояния, согласно диаграмме.-------------------------------------
