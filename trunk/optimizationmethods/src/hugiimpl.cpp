@@ -49,29 +49,29 @@ HuGiImpl::HuGiImpl( funkcio *f, QVector<double> d, QWidget * parent, Qt::WFlags 
 //===Соединяю точки и надписи на форме=========================================
 	SignalantoPorPointF * sB1 = new SignalantoPorPointF(&B1, F, this);
 	connect(sB1, SIGNAL(proviziXValoro(const QString &)), x1_b1_lb, SLOT(setText(const QString &)));
-	connect(sB1, SIGNAL(proviziXValoro(const QString &)), x2_b1_lb, SLOT(setText(const QString &)));
-	connect(sB1, SIGNAL(proviziXValoro(const QString &)), fsign_b1_lb, SLOT(setText(const QString &)));
+	connect(sB1, SIGNAL(proviziYValoro(const QString &)), x2_b1_lb, SLOT(setText(const QString &)));
+	connect(sB1, SIGNAL(proviziValoroFukcioEnPointo(const QString &)), fsign_b1_lb, SLOT(setText(const QString &)));
 
 	SignalantoPorPointF * sB2 = new SignalantoPorPointF(&B2, F, this);
 	connect(sB2, SIGNAL(proviziXValoro(const QString &)), x1_b2_lb, SLOT(setText(const QString &)));
-	connect(sB2, SIGNAL(proviziXValoro(const QString &)), x2_b2_lb, SLOT(setText(const QString &)));
-	connect(sB2, SIGNAL(proviziXValoro(const QString &)), fsign_b2_lb, SLOT(setText(const QString &)));
+	connect(sB2, SIGNAL(proviziYValoro(const QString &)), x2_b2_lb, SLOT(setText(const QString &)));
+	connect(sB2, SIGNAL(proviziValoroFukcioEnPointo(const QString &)), fsign_b2_lb, SLOT(setText(const QString &)));
 
 	SignalantoPorPointF * sP = new SignalantoPorPointF(&P, F, this);
 	connect(sP, SIGNAL(proviziXValoro(const QString &)), x1_p_lb, SLOT(setText(const QString &)));
-	connect(sP, SIGNAL(proviziXValoro(const QString &)), x2_p_lb, SLOT(setText(const QString &)));
-	connect(sP, SIGNAL(proviziXValoro(const QString &)), fsign_p_lb, SLOT(setText(const QString &)));
+	connect(sP, SIGNAL(proviziYValoro(const QString &)), x2_p_lb, SLOT(setText(const QString &)));
+	connect(sP, SIGNAL(proviziValoroFukcioEnPointo(const QString &)), fsign_p_lb, SLOT(setText(const QString &)));
 
 	SignalantoPorPointF * sNP = new SignalantoPorPointF(&NP, F, this);
 	connect(sNP, SIGNAL(proviziXValoro(const QString &)), x1_new_lb, SLOT(setText(const QString &)));
-	connect(sNP, SIGNAL(proviziXValoro(const QString &)), x2_new_lb, SLOT(setText(const QString &)));
-	connect(sNP, SIGNAL(proviziXValoro(const QString &)), fsign_new_lb, SLOT(setText(const QString &)));
+	connect(sNP, SIGNAL(proviziYValoro(const QString &)), x2_new_lb, SLOT(setText(const QString &)));
+	connect(sNP, SIGNAL(proviziValoroFukcioEnPointo(const QString &)), fsign_new_lb, SLOT(setText(const QString &)));
 
 	SignalantoPorPointF * sPX1 = new SignalantoPorPointF(&PX1, F, this);
 	connect(sPX1, SIGNAL(proviziXValoro(const QString &)), x1_step_lb, SLOT(setText(const QString &)));
 
 	SignalantoPorPointF * sPX2 = new SignalantoPorPointF(&PX2, F, this);
-	connect(sPX2, SIGNAL(proviziXValoro(const QString &)), x2_step_lb, SLOT(setText(const QString &)));
+	connect(sPX2, SIGNAL(proviziYValoro(const QString &)), x2_step_lb, SLOT(setText(const QString &)));
 //=============================================================================
 
 //===Прикручиваю карту=========================================================
@@ -181,7 +181,33 @@ HuGiImpl::HuGiImpl( funkcio *f, QVector<double> d, QWidget * parent, Qt::WFlags 
 	s17s1->setTargetState(s1);
 	s18->addTransition(found_bt, SIGNAL(clicked()), s2);
 
-//---Добавляю состояния в автомат и запускаю его.------------------------------
+	//---Создаю переходы не имеющие цели. С помощью них фиксирую ошибки ползователя
+	QSignalTransition * te1 = new QSignalTransition(found_bt, SIGNAL(clicked()));
+	so->addTransition(te1);
+	connect(te1, SIGNAL(triggered()), SLOT(registriEraro()));
+	QSignalTransition * te2 = new QSignalTransition(accept_bt, SIGNAL(clicked()));
+	so->addTransition(te2);
+	connect(te2, SIGNAL(triggered()), SLOT(registriEraro()));
+	QSignalTransition * te3 = new QSignalTransition(not_accept_bt, SIGNAL(clicked()));
+	so->addTransition(te3);
+	connect(te3, SIGNAL(triggered()), SLOT(registriEraro()));
+	QSignalTransition * te4 = new QSignalTransition(change_step_bt, SIGNAL(clicked()));
+	so->addTransition(te4);
+	connect(te4, SIGNAL(triggered()), SLOT(registriEraro()));
+	QSignalTransition * te5 = new QSignalTransition(end_bt, SIGNAL(clicked()));
+	so->addTransition(te5);
+	connect(te5, SIGNAL(triggered()), SLOT(registriEraro()));
+	QSignalTransition * te6 = new QSignalTransition(next1_bt, SIGNAL(clicked()));
+	so->addTransition(te6);
+	connect(te6, SIGNAL(triggered()), SLOT(registriEraro()));
+	QSignalTransition * te7 = new QSignalTransition(next2_bt, SIGNAL(clicked()));
+	so->addTransition(te7);
+	connect(te7, SIGNAL(triggered()), SLOT(registriEraro()));
+	QSignalTransition * te8 = new QSignalTransition(next3_bt, SIGNAL(clicked()));
+	so->addTransition(te8);
+	connect(te8, SIGNAL(triggered()), SLOT(registriEraro()));
+
+	//---Добавляю состояния в автомат и запускаю его.------------------------------
 	SM->addState(so);
 	SM->addState(sf);
 	SM->setInitialState(so);
@@ -207,7 +233,7 @@ void HuGiImpl::on_difiniFonto_act_activated(){
 
 void HuGiImpl::on_helpo_action_activated()
 {
-	helpBrowserImpl * hb = new helpBrowserImpl( "doc/", "method1.htm", this);
+	helpBrowserImpl * hb = new helpBrowserImpl( "doc/", "method4.htm", this);
 	hb->resize(900, 600);
 	hb->show();
 }
@@ -294,6 +320,8 @@ void HuGiImpl::s1_entered()
 
 void HuGiImpl::s2_entered()
 {
+	stackedWidget->setCurrentIndex(0);
+	
 	qDebug()<<trUtf8("come in s2"); // Вывожу дебажную инфу на консоль.
 	//emit stateHasEntered();
 }
