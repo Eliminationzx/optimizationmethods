@@ -80,7 +80,7 @@ void HuGiImpl::sf_entered()
 	}
 }
 
-void CWdescentWinImpl::s1_entered()
+void HuGiImpl::s1_entered()
 {
 	FLG=false;
 	B1=B2;
@@ -90,13 +90,13 @@ void CWdescentWinImpl::s1_entered()
 }
 
 
-void CWdescentWinImpl::s2_entered()
+void HuGiImpl::s2_entered()
 {
 	qDebug()<<trUtf8("come in s2"); // Вывожу дебажную инфу на консоль.
 	emit stateHasEntered();
 }
 
-void CWdescentWinImpl::s3_entered()
+void HuGiImpl::s3_entered()
 {
 	IP=&B2;
 	qDebug()<<trUtf8("come in s1"); // Вывожу дебажную инфу на консоль.
@@ -106,23 +106,28 @@ void CWdescentWinImpl::s3_entered()
 
 namespace HuGi
 {
-bool KonsideriPointoTransiro::eventTest(QEvent *e){
+	
+	
+bool KonsideriPointoTransiro::eventTest(QEvent *e)
+	{
 		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
 		if(QSignalTransition::eventTest(e)){
-			qDebug()<<trUtf8("  Проверяю f(np) < f(mp)");
+
+			qDebug()<<trUtf8("Check  f(*IT) < f(np)");
 			// Проверяю своё условие.
-			return f->rezulto(*np) < f->rezulto(*mp);
+			return f->rezulto(**it) < f->rezulto(*np);
 		}else{
 			return false;
 		}
 	}
 
-	bool NoKonsideriPointoTransiro::eventTest(QEvent *e){
+	bool NoKonsideriPointoTransiro::eventTest(QEvent *e)
+	{
 		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
 		if(QSignalTransition::eventTest(e)){
 			qDebug()<<trUtf8("  Проверяю f(np) >= f(mp)");
 			// Проверяю своё условие.
-			return f->rezulto(*np) >= f->rezulto(*mp);
+			return f->rezulto(**it) >= f->rezulto(*np);
 		}else{
 			return false;
 		}
