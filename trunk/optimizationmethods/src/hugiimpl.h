@@ -19,6 +19,9 @@ private:
 	//! Точка P.
 	DemonstrataQPointF P;
 
+	//! Новая точка.
+	DemonstrataQPointF NP;
+
 	//! Флаг наличия образца. Использую, чтобы избежать "взрыва состояний".
 	bool FLG;
 
