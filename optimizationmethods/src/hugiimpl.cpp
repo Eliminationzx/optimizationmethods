@@ -521,7 +521,13 @@ bool KonsideriPointoTransiro::eventTest(QEvent *e)
 
 			qDebug()<<trUtf8("Check  f(np) < f(*ip) ");
 			// Проверяю своё условие.
-			return f->rezulto(*np) < f->rezulto(**ip);
+			QString nps = QString::number(f->rezulto(*np));
+			QString ips = QString::number(f->rezulto(**ip));
+			if(nps.toDouble()< ips.toDouble())
+				return true;
+			else
+				return false;
+			//return f->rezulto(*np) < f->rezulto(**ip);
 		}else{
 			return false;
 		}
@@ -533,7 +539,13 @@ bool NoKonsideriPointoTransiro::eventTest(QEvent *e)
 		if(QSignalTransition::eventTest(e)){
 			qDebug()<<trUtf8("Check f(np) >= f(*ip)  ");
 			// Проверяю своё условие.
-			return f->rezulto(*np) >= f->rezulto(**ip);
+			QString nps = QString::number(f->rezulto(*np));
+			QString ips = QString::number(f->rezulto(**ip));
+			if(nps.toDouble() >= ips.toDouble())
+				return true;
+			else
+				return false;
+			//return f->rezulto(*np) >= f->rezulto(**ip);
 		}else{
 			return false;
 		}
@@ -632,6 +644,7 @@ bool s12s17Transiro::eventTest(QEvent *e)
 		if(QSignalTransition::eventTest(e)){
 			qDebug()<<trUtf8(" s12s17Transiro   Check f(np) >= f(*ip) and flag==true");
 			// Проверяю своё условие.
+			
 			return f->rezulto(*np) >= f->rezulto(**ip) && *flag;
 		}else{
 			return false;
@@ -703,7 +716,12 @@ bool s17s18Transiro::eventTest(QEvent *e)
 		if(QSignalTransition::eventTest(e)){
 			qDebug()<<trUtf8(" s17s18Transiro f(*ip)<f(b2) ");
 			// Проверяю своё условие.
-			return f->rezulto(**ip)<f->rezulto(*b2) && rb->isChecked();
+			bool trouble;
+			QString bps = QString::number(f->rezulto(*b2));
+			QString ips = QString::number(f->rezulto(**ip));
+			return ips.toDouble() < bps.toDouble() && rb->isChecked();
+			
+			//return f->rezulto(**ip)<f->rezulto(*b2) && rb->isChecked();
 		}else{
 			return false;
 		}
@@ -715,7 +733,12 @@ bool s17s1Transiro::eventTest(QEvent *e)
 		if(QSignalTransition::eventTest(e)){
 			qDebug()<<trUtf8(" s17s1Transiro f(*ip)<f(b2) ");
 			// Проверяю своё условие.
-			return f->rezulto(**ip)>=f->rezulto(*b2) && rb->isChecked();
+			bool trouble;
+			QString bps = QString::number(f->rezulto(*b2));
+			QString ips = QString::number(f->rezulto(**ip));
+			return ips.toDouble() >= bps.toDouble() && rb->isChecked();
+			
+			//return f->rezulto(**ip)>=f->rezulto(*b2) && rb->isChecked();
 		}else{
 			return false;
 		}
