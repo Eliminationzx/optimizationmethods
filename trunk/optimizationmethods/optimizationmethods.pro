@@ -31,7 +31,6 @@ HEADERS = src/mainwindowimpl.h \
  src/signalantoporpointf.h \
  src/cwdescent_mdimpl.h \
  src/fasterdescentimpl.h \
- src/hugiimpl.h \
  src/nemiimpl.h \
  src/spurosinkolauxkoordinatoj_md.h \
  src/spuroNeMi.h \
@@ -40,7 +39,8 @@ HEADERS = src/mainwindowimpl.h \
  src/aboutprogramimpl.h \
  src/licenzodlgimpl.h \
  src/spurohugi.h \
- src/helpbrowserimpl.h
+ src/helpbrowserimpl.h \
+ src/hugiimpl.h
 SOURCES = src/mainwindowimpl.cpp \
  src/main.cpp \
  src/funkcio.cpp \
@@ -55,7 +55,6 @@ SOURCES = src/mainwindowimpl.cpp \
  src/signalantoporpointf.cpp \
  src/cwdescent_mdimpl.cpp \
  src/fasterdescentimpl.cpp \
- src/hugiimpl.cpp \
  src/nemiimpl.cpp \
  src/spurosinkolauxkoordinatoj_md.cpp \
  src/spuroNeMi.cpp \
@@ -63,5 +62,6 @@ SOURCES = src/mainwindowimpl.cpp \
  src/aboutprogramimpl.cpp \
  src/licenzodlgimpl.cpp \
  src/spurohugi.cpp \
- src/helpbrowserimpl.cpp
+ src/helpbrowserimpl.cpp \
+ src/hugiimpl.cpp
 RESOURCES += ui/data.qrc
