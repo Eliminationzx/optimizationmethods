@@ -181,7 +181,7 @@ HuGiImpl::HuGiImpl( funkcio *f, QVector<double> d, QWidget * parent, Qt::WFlags 
 	s17s1->setTargetState(s1);
 	s18->addTransition(found_bt, SIGNAL(clicked()), s2);
 
-//===Создаю конечный автомат.==================================================
+//=============================================================================
 }
 
 void HuGiImpl::on_about_action_activated()
@@ -204,6 +204,23 @@ void HuGiImpl::on_helpo_action_activated()
 	helpBrowserImpl * hb = new helpBrowserImpl( "doc/", "method1.htm", this);
 	hb->resize(900, 600);
 	hb->show();
+}
+
+void HuGiImpl::init(){
+	qDebug()<<trUtf8("Вхожу в init()"); // Вывожу дебажную инфу на консоль.
+
+	static_cast<spuroHuGi*>(Sp)->senspurigi();
+
+	precision_lb->setText(QString::number(strikteco));
+	KvantoEraroj = 0;
+	NumeroIteracio = 0;
+	B2 = QPointF(D[4],D[5]);
+	PX1 = QPointF(D[1], 0);
+	PX2 = QPointF(0, D[2]);
+//	ModPX = D[3];
+	LogTxtBrsr->setText("");
+
+	qDebug()<<trUtf8("Задаю переменным начальные значения"); // Вывожу дебажную инфу на консоль.
 }
 
 void HuGiImpl::registriEraro()
