@@ -1,391 +1,496 @@
 #ifndef HUGIIMPL_H
 #define HUGIIMPL_H
 //
-#include "ui_HuGi.h"
 #include "algoritmowin.h"
+#include "ui_HuGi.h"
 #include "demonstrataqpointf.h"
 #include <QSignalTransition>
-#include <QState>
-#include <QRadioButton>
-//
-class funkcio;
 //
 //! Окно для прохождения метода Хука-Дживса.
-class HuGiImpl : public AlgoritmoWin, public Ui::HuGi
-{
+class HuGiImpl : public AlgoritmoWin, public Ui::HuGi{
 Q_OBJECT
-protected:
- 	//! Базовая точка итерации.
-	//DemonstrataQPointF BP;
-	//! Текущая базовая точка.
-	DemonstrataQPointF MP;
-	//! Текущая базовая точка2.
-	DemonstrataQPointF MP2;
-	//! Промежуточная точка.
-	DemonstrataQPointF PP;
+private:
+	//! Точка В1.
+	DemonstrataQPointF B1;
+
+	//! Точка В2.
+	DemonstrataQPointF B2;
+
+	//! Точка P.
+	DemonstrataQPointF P;
+
 	//! Новая точка.
 	DemonstrataQPointF NP;
+
+	//! Флаг наличия образца. Использую, чтобы избежать "взрыва состояний".
+	bool FLG;
+
+	//! Указатель на искомую точку. Использую, чтобы избежать "взрыва состояний".
+	DemonstrataQPointF *IP;
+
 	//! Шаг по х1.
 	/*! Для удобства задаю в виде точки (длина, 0).
 	 */
 	DemonstrataQPointF PX1;
+
 	//! Шаг по х2.
 	/*! Для удобства задаю в виде точки (0, длина).
 	 */
-	DemonstrataQPointF PX2; 
-	//! Переменная - буфер для базовой точки
-	DemonstrataQPointF TEMP_B; 
-	
-	//! Модификатор шага.	
-	qreal ModPX;
-	//! Флаг поиска по образцу
-	bool FLAG_SO;
+	DemonstrataQPointF PX2;
+
+	//! Модификатор шага.
+	static const qreal ModPX = 0.1;
 public:
-	HuGiImpl( funkcio *f, QVector<double> d,QWidget * parent = 0, Qt::WFlags flags = 0 );
+	/*! Конструктор.
+	 * @param f Указатель на целевую функцию. HuGiImpl не заботится о назначении Funkcio родителя.
+	 * @param d Массив с данными задания.Структура: 0 - точность; 1 - шаг по оси х1; 2 - шаг по оси х2; 3 - коэффициент изменения шага; 4 - х1; 5 - х2; 6 - максимальное количество ошибок.
+	 * @param parent Родитель.
+	 * @param flags Флаги параметров окна.
+	 */
+	HuGiImpl( funkcio *f, QVector<double> d, QWidget * parent = 0,
+	          Qt::WFlags flags = 0 );
 private slots:
 	void on_about_action_activated();
 	void on_helpo_action_activated();
 	void on_difiniFonto_act_activated();
+	
+	void registriEraro();
+	
+	void sf_entered();
 	/*! "Обнуление" переменных.
-	 * 
-	 * Этим методом задаются началные знаения всем переменным алгоритма.
-	 * Используется перед запуском конецного автомата и в переходе вызванным 
+	 *
+	 * Этим методом задаются начальные значения всем переменным алгоритма.
+	 * Используется перед запуском конечного автомата и в переходе вызванном
 	 * действием "Начать заново".
 	 */
 	void init();
 	/*! Обработчик входа в состояние so.
-	 * 
-	 * Исполизую для дебага.
+	 *
+	 * Использую для дебага.
 	 */
 	void so_entered();
 	/*! Обработчик входа в состояние s1.
-	 * 
-	 * В этом состоянии задается флаг о прохождении поиска по образцу (ставится false).
+	 *
 	 */
 	void s1_entered();
 	/*! Обработчик входа в состояние s2.
-	 * 
-	 * Использую для дебага.
+	 *
 	 */
 	void s2_entered();
 	/*! Обработчик входа в состояние s3.
-	 * 
-	 * В этом состоянии задаются начальные значения переменых для итерации.
+	 *
 	 */
 	void s3_entered();
 	/*! Обработчик входа в состояние s4.
-	 * 
-	 * В этом состоянии проверяется точка смещённая от текщей в + по Х1.
+	 *
 	 */
 	void s4_entered();
 	/*! Обработчик входа в состояние s5.
-	 * 
-	 *Исполизую для дебага.
 	 *
 	 */
 	void s5_entered();
 	/*! Обработчик входа в состояние s6.
-	 * 
-	 *  В этом состоянии проверяется точка смещённая от текщей в - по Х1.
-	 * 
+	 *
 	 */
 	void s6_entered();
 	/*! Обработчик входа в состояние s7.
-	 * 
-	 * В этом состоянии текущей точке присваевается значение новой.После поиска
-	 * по Х1.
+	 *
 	 */
 	void s7_entered();
 	/*! Обработчик входа в состояние s8.
-	 * 
-	 * Исполизую для дебага.
+	 *
 	 */
 	void s8_entered();
 	/*! Обработчик входа в состояние s9.
-	 * 
-	 * В этом состоянии проверяется точка смещённая от текщей в + по Х2.
+	 *
 	 */
 	void s9_entered();
 	/*! Обработчик входа в состояние s10.
-	 * 
-	 * Исполизую для дебага.
-	 * 
+	 *
 	 */
 	void s10_entered();
 	/*! Обработчик входа в состояние s11.
-	 * 
-	 *  В этом состоянии проверяется точка смещённая от текщей в - по Х2.
+	 *
 	 */
 	void s11_entered();
 	/*! Обработчик входа в состояние s12.
-	 * 
-	 * В этом состоянии текущей точке присваевается значение новой. После поиска
-	 * по всем осям.
+	 *
 	 */
 	void s12_entered();
 	/*! Обработчик входа в состояние s13.
-	 * 
-	 *Исполизую для дебага.
-	 * 
+	 *
 	 */
 	void s13_entered();
 	/*! Обработчик входа в состояние s14.
-	 * 
-	 *В этом состоянии уменьшаем длины шагов в 10 раз.
-	 * 
+	 *
 	 */
 	void s14_entered();
 	/*! Обработчик входа в состояние s15.
-	 * 
-	 *В этом состоянии выводим варианты поиска. Использую для дебага.
-	 * 
+	 *
 	 */
 	void s15_entered();
 	/*! Обработчик входа в состояние s16.
-	 * 
-	 *В этом состоянии присваиваем базовой точке итерации значение b2_temp (b2 становится базисной точкой).
-	 * 
+	 *
 	 */
 	void s16_entered();
-	/*! Обработчик входа в состояние s18.
-	 * 
-	 *В этом состоянии  вычисляется промежуточная точка. Принимаем ее как базовую. Точку b2 сохраняем в буфер.
-	 * 
+	/*! Обработчик входа в состояние s17.
+	 *
 	 */
-	 void s17_entered();
+	void s17_entered();
 	/*! Обработчик входа в состояние s18.
-	 * 
-	 *В этом состоянии  вычисляется промежуточная точка. Принимаем ее как базовую. Точку b2 сохраняем в буфер.
-	 * 
+	 *
 	 */
 	void s18_entered();
-	/*! Обработчик входа в состояние s19.
-	 * 
-	 *В этом состоянии  за b1 и за b2 принимается промежуточная точка. Флаг прохождения поиска по образцу принимает значение false.
-	 * 
-	 */
-	void s19_entered();
-	//! Обработчик входа в состояние sf - конец поиска.
-	void sf_entered();
-  //! Фиксирует совершение пользователем ошики.
-  void registriEraro();
-signals:
-	/*! Использую сигнал для прехода, который не требует действий пользователя,
-	 * а только проверяет условие.
-	 */
-	void stateHasEntered();
 };
-
+#endif
 
 /*! В этом пространстве имён содержаться классы относящиеся к конечному автомату
- * для покоординатного спуска с фиксированным шагом.
- * 
+ * для метода Хука-Дживса.
+ *
  * Объявления наследников QSignalTransition можно не смотреть. Важна только
- * реализация метода eventTest, ради которой и переопрделяю классы.
- */ 
-namespace SinkoLauxKoordinatoj_hugi
-{
-	/*! Переход от s2 к s3 .
-	 * 
-	 * При создании требует указатели на переменные необходимые для принятия
-	 * решения о переходе.
-	 */
-	class s2s3Transiro: public QSignalTransition{
-		private:
-			QRadioButton * investigate;
-		public:
-			s2s3Transiro( QRadioButton * investigate_rb, QState * sourceState = 0
-			            ) : QSignalTransition(sourceState), investigate(investigate_rb){};
-			s2s3Transiro( QRadioButton * investigate_rb,
-			              QObject * sender,
-			              const char * signal,
-			              QState * sourceState = 0
-			            ) : QSignalTransition(sender, signal, sourceState),
-			                investigate(investigate_rb){};
-		protected:
-    	bool eventTest(QEvent *e);
-	};
-
-	/*! Переход от s3 к s4.
-	 * 
-	 * При создании требует указатели на переменные необходимые для принятия
-	 * решения о переходе.
-	 */
-	class s3s4Transiro: public QSignalTransition{
-		private:
-			QRadioButton * up_x1;
-		public:
-			s3s4Transiro( QRadioButton * up_x1_rb, QState * sourceState = 0)
-				: QSignalTransition(sourceState), up_x1(up_x1_rb){};
-			s3s4Transiro( QRadioButton * up_x1_rb,
-			              QObject * sender,
-			              const char * signal,
-			              QState * sourceState = 0
-			            )
-				: QSignalTransition(sender, signal, sourceState), up_x1(up_x1_rb){};
-		protected:
-			//! Перход срабатывает, только если выбран шаг в + по Х1 
-    	bool eventTest(QEvent *e);
-	};
-
-	/*! Переход принятия новой точки в качестве текщей.
-	 * 
-	 * Используется при переходе от s4 к s7, s6 к s7, s9 к s12, s11 к s12.
-	 * При создании требует указатели на переменные необходимые для принятия
-	 * решения о переходе.
+ * реализация метода eventTest, ради которой и переопределяю классы.
+ */
+namespace HuGi{
+	/*! Переход принятия новой точки на место искомой.
+	 *
+	 * Переход срабатывает, только если новая точка < текущего значения искомой.
+	 * Используется при переходе от s5 к s8, s7 к s8, s10 к s13, s12 к s13.
 	 */
 	class KonsideriPointoTransiro: public QSignalTransition{
 		private:
+			DemonstrataQPointF ** ip;
 			DemonstrataQPointF * np;
-			DemonstrataQPointF * pp;
-			DemonstrataQPointF * mp2;
-			bool * flag_so;
 			funkcio * f;
 		public:
-			KonsideriPointoTransiro( DemonstrataQPointF * NP,
-									DemonstrataQPointF * PP,
-			                         DemonstrataQPointF * MP2,
-			                         bool * FLAG_SO,
+			KonsideriPointoTransiro( DemonstrataQPointF ** IP,
+			                         DemonstrataQPointF * NP,
 			                         funkcio * F,
 			                         QState * sourceState = 0
-			            ) : QSignalTransition(sourceState), np(NP), pp(PP), mp2(MP2), flag_so(FLAG_SO), f(F){};
-			KonsideriPointoTransiro( DemonstrataQPointF * NP,
-									DemonstrataQPointF * PP,
-			                         DemonstrataQPointF * MP2,
-			                         bool * FLAG_SO,
+			                       ) : QSignalTransition(sourceState), ip(IP), np(NP),
+			                           f(F){};
+			KonsideriPointoTransiro( DemonstrataQPointF ** IP,
+			                         DemonstrataQPointF * NP,
 			                         funkcio * F,
 			                         QObject * sender,
 			                         const char * signal,
 			                         QState * sourceState = 0
 			                       )
 			                        : QSignalTransition(sender, signal, sourceState),
-			                          np(NP), pp(PP), mp2(MP2), flag_so(FLAG_SO), f(F){};
+			                          ip(IP), np(NP), f(F){};
 		protected:
-    	bool eventTest(QEvent *e);
+			//! Переход срабатывает, только если новая точка < текущего значения искомой.
+			bool eventTest(QEvent *e);
 	};
 
-	/*! Переход от s7 к s9.
-	 * 
-	 * При создании требует указатели на переменные необходимые для принятия
-	 * решения о переходе.
-	 */
-	class s7s9_s8s9Transiro: public QSignalTransition{
-		private:
-			QRadioButton * up_x2;
-		public:
-			s7s9_s8s9Transiro( QRadioButton * up_x2_rb, QState * sourceState = 0
-			                 ) : QSignalTransition(sourceState), up_x2(up_x2_rb){};
-			s7s9_s8s9Transiro( QRadioButton * up_x2_rb,
-			                   QObject * sender,
-			                   const char * signal,
-			                   QState * sourceState = 0
-			                 ) : QSignalTransition(sender, signal, sourceState),
-			                     up_x2(up_x2_rb){};
-		protected:
-    	bool eventTest(QEvent *e);
-	};
-
-	/*! Переход непринятия новой точки в качестве текуей.
-	 * 
-	 * Используется при переходе от s4 к s5, s6 к s8, s9 к s10, s11 к s13.
-	 * При создании требует указатели на переменные необходимые для принятия
-	 * решения о переходе.
+	/*! Переход непринятия новой точки на место искомой.
+	 *
+	 * Переход срабатывает, только если новая точка >= текущего значения искомой.
+	 * Используется при переходе от s5 к s6, s7 к s9, s10 к s11.
 	 */
 	class NoKonsideriPointoTransiro: public QSignalTransition{
 		private:
+			DemonstrataQPointF ** ip;
 			DemonstrataQPointF * np;
-			DemonstrataQPointF * pp;
-			DemonstrataQPointF * mp2;
-			bool * flag_so;
 			funkcio * f;
 		public:
-			NoKonsideriPointoTransiro( DemonstrataQPointF * NP,
-			                           DemonstrataQPointF * PP,
-			                           DemonstrataQPointF * MP2,
-			                           bool * FLAG_SO,
+			NoKonsideriPointoTransiro( DemonstrataQPointF ** IP,
+			                           DemonstrataQPointF * NP,
 			                           funkcio * F,
 			                           QState * sourceState = 0
-			            ) : QSignalTransition(sourceState), np(NP), pp(PP), mp2(MP2), flag_so(FLAG_SO), f(F){};
-			NoKonsideriPointoTransiro( DemonstrataQPointF * NP,
-			                           DemonstrataQPointF * PP,
-			                           DemonstrataQPointF * MP2,
-			                           bool * FLAG_SO,
+			                         ) : QSignalTransition(sourceState), ip(IP),
+			                             np(NP), f(F){};
+			NoKonsideriPointoTransiro( DemonstrataQPointF ** IP,
+			                           DemonstrataQPointF * NP,
 			                           funkcio * F,
 			                           QObject * sender,
 			                           const char * signal,
 			                           QState * sourceState = 0
-			                          ) : QSignalTransition(sender, signal, sourceState),
-			                              np(NP), pp(PP), mp2(MP2), flag_so(FLAG_SO), f(F){};
+			                         ) : QSignalTransition(sender, signal, sourceState),
+			                              ip(IP), np(NP), f(F){};
 		protected:
-    	bool eventTest(QEvent *e);
+		//! Переход срабатывает, только если новая точка >= текущего значения искомой
+		bool eventTest(QEvent *e);
 	};
 
-	/*! Переход от s5 к s6.
-	 * 
-	 * При создании требует указатели на переменные необходимые для принятия
-	 * решения о переходе.
+	/*! Переход от s2 к s3.
+	 *
+	 * Переход срабатывает, только если не имеется образец и выбран исследующий
+	 * поиск.
 	 */
-	class s5s6Transiro: public QSignalTransition{
+	class s2s3Transiro: public QSignalTransition{
 		private:
-			QRadioButton * down_x1;
+			bool * flag;
+			QRadioButton * rb;
 		public:
-			s5s6Transiro( QRadioButton * down_x1_rb, QState * sourceState = 0
-			            ) : QSignalTransition(sourceState), down_x1(down_x1_rb){};
-			s5s6Transiro( QRadioButton * down_x1_rb,
+			s2s3Transiro( bool * FLG,
+			              QRadioButton * investigate_rb,
+			              QState * sourceState = 0)
+				: QSignalTransition(sourceState), flag(FLG), rb(investigate_rb){};
+			s2s3Transiro( bool * FLG,
+			              QRadioButton * investigate_rb,
 			              QObject * sender,
 			              const char * signal,
 			              QState * sourceState = 0
-			            ) : QSignalTransition(sender, signal, sourceState),
-			                down_x1(down_x1_rb){};
+			            )
+				: QSignalTransition(sender, signal, sourceState), flag(FLG),
+					rb(investigate_rb){};
 		protected:
-					//! Перход срабатывает, только если выбран шаг в - по Х1  
-    	bool eventTest(QEvent *e);
+			/*! Переход срабатывает, только если не имеется образец и выбран исследующий
+			 * поиск.
+			 */
+			bool eventTest(QEvent *e);
 	};
 
-	/*! Переход от s10 к s11.
-	 * 
-	 * При создании требует указатели на переменные необходимые для принятия
-	 * решения о переходе.
+	/*! Переход от s2 к s4.
+	 *
+	 * Переход срабатывает, только если имеется образец и выбран поиск по образцу.
 	 */
-	class s10s11Transiro: public QSignalTransition{
+	class s2s4Transiro: public QSignalTransition{
 		private:
-			QRadioButton * down_x2;
+			bool * flag;
+			QRadioButton * rb;
 		public:
-			s10s11Transiro( QRadioButton * down_x2_rb, QState * sourceState = 0
-			            ) : QSignalTransition(sourceState), down_x2(down_x2_rb){};
-			s10s11Transiro( QRadioButton * down_x2_rb,
+			s2s4Transiro( bool * FLG,
+			              QRadioButton * model_rb,
+			              QState * sourceState = 0)
+				: QSignalTransition(sourceState), flag(FLG), rb(model_rb){};
+			s2s4Transiro( bool * FLG,
+			              QRadioButton * model_rb,
 			              QObject * sender,
 			              const char * signal,
 			              QState * sourceState = 0
-			            ) : QSignalTransition(sender, signal, sourceState),
-			                down_x2(down_x2_rb){};
+			              )
+				: QSignalTransition(sender, signal, sourceState), flag(FLG),
+					rb(model_rb){};
 		protected:
-    	bool eventTest(QEvent *e);
+			//! Переход срабатывает, только если имеется образец и выбран поиск по образцу..
+			bool eventTest(QEvent *e);
+	};
+
+	/*! Переход от s3 к s5 и от s4 к s5.
+	 *
+	 * Переход срабатывает, только если выбран шаг в + по Х1.
+	 */
+	class s3s5s4s5Transiro: public QSignalTransition{
+		private:
+			QRadioButton * rb;
+		public:
+			s3s5s4s5Transiro( QRadioButton * up_x1_rb,
+			                  QState * sourceState = 0)
+				: QSignalTransition(sourceState), rb(up_x1_rb){};
+			s3s5s4s5Transiro( QRadioButton * up_x1_rb,
+			                  QObject * sender,
+			                  const char * signal,
+			                  QState * sourceState = 0
+			                )
+				: QSignalTransition(sender, signal, sourceState), rb(up_x1_rb){};
+		protected:
+			//! Переход срабатывает, только если выбран шаг в + по Х1.
+			bool eventTest(QEvent *e);
+	};
+
+	/*! Переход от s6 к s7.
+	 *
+	 * Переход срабатывает, только если выбран шаг в - по Х1.
+	 */
+	class s6s7Transiro: public QSignalTransition{
+		private:
+			QRadioButton * rb;
+		public:
+			s6s7Transiro( QRadioButton * down_x1_rb,
+										QState * sourceState = 0)
+				: QSignalTransition(sourceState), rb(down_x1_rb){};
+			s6s7Transiro( QRadioButton * down_x1_rb,
+									  QObject * sender,
+			              const char * signal,
+			              QState * sourceState = 0
+			              )
+				: QSignalTransition(sender, signal, sourceState), rb(down_x1_rb){};
+		protected:
+			//! Переход срабатывает, только если выбран шаг в - по Х1.
+			bool eventTest(QEvent *e);
+	};
+
+	/*! Переход от s8 к s10 и от s9 к s10.
+	 *
+	 * Переход срабатывает, только если выбран шаг в + по Х2.
+	 */
+	class s8s10s9s10Transiro: public QSignalTransition{
+		private:
+			QRadioButton * rb;
+		public:
+			s8s10s9s10Transiro( QRadioButton * up_x2_rb,
+			                  QState * sourceState = 0)
+				: QSignalTransition(sourceState), rb(up_x2_rb){};
+			s8s10s9s10Transiro( QRadioButton * up_x2_rb,
+			                  QObject * sender,
+			                  const char * signal,
+			                  QState * sourceState = 0
+			                )
+				: QSignalTransition(sender, signal, sourceState), rb(up_x2_rb){};
+		protected:
+			//! Переход срабатывает, только если выбран шаг в + по Х2.
+			bool eventTest(QEvent *e);
+	};
+
+	/*! Переход от s11 к s12.
+	 *
+	 * Переход срабатывает, только если выбран шаг в - по Х2.
+	 */
+	class s11s12Transiro: public QSignalTransition{
+		private:
+			QRadioButton * rb;
+		public:
+			s11s12Transiro( QRadioButton * doun_x2_rb,
+										QState * sourceState = 0)
+				: QSignalTransition(sourceState), rb(doun_x2_rb){};
+			s11s12Transiro( QRadioButton * doun_x2_rb,
+									  QObject * sender,
+			              const char * signal,
+			              QState * sourceState = 0
+			              )
+				: QSignalTransition(sender, signal, sourceState), rb(doun_x2_rb){};
+		protected:
+			//! Переход срабатывает, только если выбран шаг в - по Х1.
+			bool eventTest(QEvent *e);
+	};
+
+	/*! Переход от s12 к s14.
+	 *
+	 * Переход срабатывает, только если не имеется образца и новая точка >=
+	 * текущего значения искомой.
+	 */
+	class s12s14Transiro: public QSignalTransition{
+		private:
+			bool * flag;
+			DemonstrataQPointF ** ip;
+			DemonstrataQPointF * np;
+			funkcio * f;
+		public:
+			s12s14Transiro( bool * FLG,
+			                DemonstrataQPointF ** IP,
+			                DemonstrataQPointF * NP,
+			                funkcio * F,
+			                QState * sourceState = 0)
+				: QSignalTransition(sourceState), flag(FLG), ip(IP), np(NP), f(F){};
+			s12s14Transiro( bool * FLG,
+			                DemonstrataQPointF ** IP,
+			                DemonstrataQPointF * NP,
+			                funkcio * F,
+			                QObject * sender,
+			                const char * signal,
+			                QState * sourceState = 0
+			              )
+				: QSignalTransition(sender, signal, sourceState), flag(FLG), ip(IP),
+					np(NP), f(F){};
+		protected:
+			/*! Переход срабатывает, только если если не имеется образца , на новую точку и
+			 * на искомую.
+			 */
+			bool eventTest(QEvent *e);
+	};
+
+	/*! Переход от s12 к s17.
+	 *
+	 * Переход срабатывает, только если имеется образец и новая точка >=
+	 * текущего значения искомой.
+	 */
+	class s12s17Transiro: public QSignalTransition{
+		private:
+			bool * flag;
+			DemonstrataQPointF ** ip;
+			DemonstrataQPointF * np;
+			funkcio * f;
+		public:
+			s12s17Transiro( bool * FLG,
+			                DemonstrataQPointF ** IP,
+			                DemonstrataQPointF * NP,
+			                funkcio * F,
+			                QState * sourceState = 0)
+				: QSignalTransition(sourceState), flag(FLG), ip(IP), np(NP), f(F){};
+			s12s17Transiro( bool * FLG,
+			                DemonstrataQPointF ** IP,
+			                DemonstrataQPointF * NP,
+			                funkcio * F,
+			                QObject * sender,
+			                const char * signal,
+			                QState * sourceState = 0
+			              )
+				: QSignalTransition(sender, signal, sourceState), flag(FLG), ip(IP),
+					np(NP), f(F){};
+		protected:
+			/*! Переход срабатывает, только если имеется образец и новая точка >=
+			 * текущего значения искомой.
+			 */
+			bool eventTest(QEvent *e);
 	};
 
 	/*! Переход от s13 к s14.
-	 * 
-	 * При создании требует указатели на переменные необходимые для принятия
-	 * решения о переходе.
+	 *
+	 * Переход срабатывает, только если не имеется образца.
 	 */
 	class s13s14Transiro: public QSignalTransition{
 		private:
-			DemonstrataQPointF * mp;
-			DemonstrataQPointF * mp2;
+			bool * flag;
+		public:
+			s13s14Transiro( bool * FLG,
+			                QState * sourceState = 0)
+				: QSignalTransition(sourceState), flag(FLG){};
+			s13s14Transiro( bool * FLG,
+			                QObject * sender,
+			                const char * signal,
+			                QState * sourceState = 0
+			              )
+				: QSignalTransition(sender, signal, sourceState), flag(FLG){};
+		protected:
+			//! Переход срабатывает, только если не имеется образца.
+			bool eventTest(QEvent *e);
+	};
+
+	/*! Переход от s13 к s17.
+	 *
+	 * Переход срабатывает, только если имеется образец.
+	 */
+	class s13s17Transiro: public QSignalTransition{
+		private:
+			bool * flag;
+		public:
+			s13s17Transiro( bool * FLG,
+			                QState * sourceState = 0)
+				: QSignalTransition(sourceState), flag(FLG){};
+			s13s17Transiro( bool * FLG,
+			                QObject * sender,
+			                const char * signal,
+			                QState * sourceState = 0
+			              )
+				: QSignalTransition(sender, signal, sourceState), flag(FLG){};
+		protected:
+			//! Переход срабатывает, только если имеется образец.
+			bool eventTest(QEvent *e);
+	};
+	/*! Переход от s14 к s15.
+	 *
+	 * Переход срабатывает, только если не была принята новая точка и шаги больше
+	 * или равны погрешности.
+	 */
+	class s14s15Transiro: public QSignalTransition{
+		private:
+			DemonstrataQPointF ** ip;
+			DemonstrataQPointF * b1;
 			DemonstrataQPointF * px1;
 			DemonstrataQPointF * px2;
-			qreal s;//!< Точность.
+			qreal s;
 		public:
-			s13s14Transiro( DemonstrataQPointF * MP,
-			                DemonstrataQPointF * MP2,
+			s14s15Transiro( DemonstrataQPointF ** IP,
+			                DemonstrataQPointF * B1,
 			                DemonstrataQPointF * pX1,
 			                DemonstrataQPointF * pX2,
 			                qreal strikteco,
 			                QState * sourceState = 0)
-				: QSignalTransition(sourceState), mp(MP),mp2(MP2), px1(pX1), px2(pX2),
+				: QSignalTransition(sourceState), ip(IP), b1(B1), px1(pX1), px2(pX2),
 					s(strikteco){};
-			s13s14Transiro( DemonstrataQPointF * MP,
-			                DemonstrataQPointF * MP2,
+			s14s15Transiro( DemonstrataQPointF ** IP,
+			                DemonstrataQPointF * B1,
 			                DemonstrataQPointF * pX1,
 			                DemonstrataQPointF * pX2,
 			                qreal strikteco,
@@ -393,39 +498,37 @@ namespace SinkoLauxKoordinatoj_hugi
 			                const char * signal,
 			                QState * sourceState = 0
 			              )
-				: QSignalTransition(sender, signal, sourceState), mp(MP),mp2(MP2),
+				: QSignalTransition(sender, signal, sourceState), ip(IP), b1(B1),
 					px1(pX1), px2(pX2), s(strikteco){};
 		protected:
-			//! Перход срабатывает, только если выбран шаг в + по Х1 
-    	bool eventTest(QEvent *e);
+			/*! Переход срабатывает, только если не была принята новая точка и шаги больше
+			 * или равны погрешности.
+			 */
+			bool eventTest(QEvent *e);
 	};
-
-	/*! Переход от s13 к s14.
-	 * 
-	 * При создании требует указатели на переменные необходимые для принятия
-	 * решения о переходе.
+	/*! Переход от s14 к s16.
+	 *
+	 * Переход срабатывает, только если была принята новая точка и шаги больше
+	 * или равны погрешности.
 	 */
-	class s13s15Transiro: public QSignalTransition{
+	class s14s16Transiro: public QSignalTransition{
 		private:
-			DemonstrataQPointF * mp;
-			DemonstrataQPointF * mp2;
-			bool * flag_so;
+			DemonstrataQPointF ** ip;
+			DemonstrataQPointF * b1;
 			DemonstrataQPointF * px1;
 			DemonstrataQPointF * px2;
-			qreal s;//!< Точность.
+			qreal s;
 		public:
-			s13s15Transiro( DemonstrataQPointF * MP,
-			                DemonstrataQPointF * MP2,
-			                bool * FLAG_SO,
+			s14s16Transiro( DemonstrataQPointF ** IP,
+			                DemonstrataQPointF * B1,
 			                DemonstrataQPointF * pX1,
 			                DemonstrataQPointF * pX2,
 			                qreal strikteco,
 			                QState * sourceState = 0)
-				: QSignalTransition(sourceState), mp(MP),mp2(MP2), flag_so(FLAG_SO), px1(pX1), px2(pX2),
+				: QSignalTransition(sourceState), ip(IP), b1(B1), px1(pX1), px2(pX2),
 					s(strikteco){};
-			s13s15Transiro( DemonstrataQPointF * MP,
-			                DemonstrataQPointF * MP2,
-			                bool * FLAG_SO,
+			s14s16Transiro( DemonstrataQPointF ** IP,
+			                DemonstrataQPointF * B1,
 			                DemonstrataQPointF * pX1,
 			                DemonstrataQPointF * pX2,
 			                qreal strikteco,
@@ -433,67 +536,31 @@ namespace SinkoLauxKoordinatoj_hugi
 			                const char * signal,
 			                QState * sourceState = 0
 			              )
-				: QSignalTransition(sender, signal, sourceState), mp(MP),mp2(MP2), flag_so(FLAG_SO),
+				: QSignalTransition(sender, signal, sourceState), ip(IP), b1(B1),
 					px1(pX1), px2(pX2), s(strikteco){};
 		protected:
-			//! Перход срабатывает, только если выбран шаг в + по Х1 
-    	bool eventTest(QEvent *e);
+			/*! Переход срабатывает, только если была принята новая точка и шаги больше
+			 * или равны погрешности.
+			 */
+			bool eventTest(QEvent *e);
 	};
-
-	/*! Переход от s13 к s16 .
-	 * 
-	 * При создании требует указатели на переменные необходимые для принятия
-	 * решения о переходе.
+	/*! Переход от s14 к sf.
+	 *
+	 * Переход срабатывает, только если шаги меньше погрешности.
 	 */
-	class s13s16Transiro: public QSignalTransition{
+	class s14sfTransiro: public QSignalTransition{
 		private:
-			QRadioButton * ok_rb_;
-			DemonstrataQPointF * pp;
-			DemonstrataQPointF * mp2;
-			bool * flag_so;
-			funkcio * f;
+			DemonstrataQPointF * px1;
+			DemonstrataQPointF * px2;
+			qreal s;
 		public:
-			s13s16Transiro(QRadioButton * ok_rb, 
-			               DemonstrataQPointF * PP,
-			               DemonstrataQPointF * MP2,
-			              bool*FLAG_SO,
-			              funkcio * F,
-			               QState * sourceState = 0)
-				: QSignalTransition(sourceState),ok_rb_(ok_rb), pp(PP),mp2(MP2),flag_so(FLAG_SO),f(F){};
-			s13s16Transiro( QRadioButton * ok_rb,
-			               DemonstrataQPointF * PP,
-			               DemonstrataQPointF * MP2,
-			              bool*FLAG_SO,
-			              funkcio * F,
-			               QObject * sender,
-			               const char * signal,
-			               QState * sourceState = 0
-			             )
-				: QSignalTransition(sender, signal, sourceState),ok_rb_(ok_rb), pp(PP),
-					mp2(MP2),flag_so(FLAG_SO),f(F){};
-		protected:
-    	bool eventTest(QEvent *e);
-	};	
-
-	/*! Переход от s13 к sf.
-	 * 
-	 * При создании требует указатели на переменные необходимые для принятия
-	 * решения о переходе.
-	 */
-	class s13sfTransiro: public QSignalTransition{
-		private:
-			QPointF * px1;
-			QPointF * px2;
-			qreal s;//!< Точность.
-		public:
-			s13sfTransiro( QPointF * pX1,
-			               QPointF * pX2,
+			s14sfTransiro( DemonstrataQPointF * pX1,
+			               DemonstrataQPointF * pX2,
 			               qreal strikteco,
-			               QState * sourceState = 0
-			             ) : QSignalTransition(sourceState), px1(pX1),
-				px2(pX2), s(strikteco){};
-			s13sfTransiro( QPointF * pX1,
-			               QPointF * pX2,
+			               QState * sourceState = 0)
+				: QSignalTransition(sourceState), px1(pX1), px2(pX2), s(strikteco){};
+			s14sfTransiro( DemonstrataQPointF * pX1,
+			               DemonstrataQPointF * pX2,
 			               qreal strikteco,
 			               QObject * sender,
 			               const char * signal,
@@ -502,68 +569,74 @@ namespace SinkoLauxKoordinatoj_hugi
 				: QSignalTransition(sender, signal, sourceState), px1(pX1), px2(pX2),
 					s(strikteco){};
 		protected:
-    	bool eventTest(QEvent *e);
+			//! Переход срабатывает, только если шаги меньше погрешности.
+			bool eventTest(QEvent *e);
 	};
-
-	/*! Переход от s13 к s19 .
-	 * 
-	 * При создании требует указатели на переменные необходимые для принятия
-	 * решения о переходе.
+	/*! Переход от s17 к s18.
+	 *
+	 * Переход срабатывает, только если искомая точка меньше В2.
 	 */
-	class s13s19Transiro: public QSignalTransition{
+	class s17s18Transiro: public QSignalTransition{
 		private:
-			QRadioButton * no_rb_;
-			DemonstrataQPointF * pp;
-			DemonstrataQPointF * mp2;
-			bool * flag_so;
+			QRadioButton * rb;
+			DemonstrataQPointF ** ip;
+			DemonstrataQPointF * b2;
 			funkcio * f;
 		public:
-			s13s19Transiro(QRadioButton * no_rb,
-			               DemonstrataQPointF * PP,
-			               DemonstrataQPointF * MP2,
-			              bool * FLAG_SO,
-			              funkcio * F,
+			s17s18Transiro( DemonstrataQPointF ** IP,
+			                DemonstrataQPointF * B2,
+			                funkcio * F,
+			                QRadioButton * ok_rb,
+			                QState * sourceState = 0)
+				: QSignalTransition(sourceState), ip(IP), b2(B2), f(F), rb(ok_rb){};
+			s17s18Transiro( DemonstrataQPointF ** IP,
+			                DemonstrataQPointF * B2,
+			                funkcio * F,
+			                QRadioButton * ok_rb,
+			                QObject * sender,
+			                const char * signal,
+			                QState * sourceState = 0
+			              )
+				: QSignalTransition(sender, signal, sourceState), ip(IP), b2(B2),f(F),
+					rb(ok_rb){};
+		protected:
+			//! Переход срабатывает, только если искомая точка меньше В2.
+			bool eventTest(QEvent *e);
+	};
+	/*! Переход от s17 к s1.
+	 *
+	 * Переход срабатывает, только если искомая точка больше или равна В2.
+	 */
+	class s17s1Transiro: public QSignalTransition{
+		private:
+			QRadioButton * rb;
+			DemonstrataQPointF ** ip;
+			DemonstrataQPointF * b2;
+			funkcio * f;
+		public:
+			s17s1Transiro( DemonstrataQPointF ** IP,
+			               DemonstrataQPointF * B2,
+			               funkcio * F,
+			               QRadioButton * no_rb,
 			               QState * sourceState = 0)
-				: QSignalTransition(sourceState),no_rb_(no_rb), pp(PP),mp2(MP2),flag_so(FLAG_SO),f(F){};
-			s13s19Transiro(QRadioButton * no_rb,
-			               DemonstrataQPointF * PP,
-			               DemonstrataQPointF * MP2,
-			              bool * FLAG_SO,
-			              funkcio * F,
+				: QSignalTransition(sourceState), ip(IP), b2(B2), f(F), rb(no_rb){};
+			s17s1Transiro( DemonstrataQPointF ** IP,
+			               DemonstrataQPointF * B2,
+			               funkcio * F,
+			               QRadioButton * no_rb,
 			               QObject * sender,
 			               const char * signal,
 			               QState * sourceState = 0
-			             )
-				: QSignalTransition(sender, signal, sourceState),no_rb_(no_rb), pp(PP),
-					mp2(MP2),flag_so(FLAG_SO),f(F){};
+			              )
+				: QSignalTransition(sender, signal, sourceState), ip(IP), b2(B2), f(F),
+					rb(no_rb){};
 		protected:
-    	bool eventTest(QEvent *e);
-	};	
-
-	/*! Переход от s15 к s18 .
-	 * 
-	 * При создании требует указатели на переменные необходимые для принятия
-	 * решения о переходе.
-	 */
-	class s15s18_s17s18Transiro: public QSignalTransition{
-		private:
-			QRadioButton * model;
-		public:
-			s15s18_s17s18Transiro( QRadioButton * model_rb, QState * sourceState = 0
-			            ) : QSignalTransition(sourceState), model(model_rb){};
-			s15s18_s17s18Transiro( QRadioButton * model_rb,
-			              QObject * sender,
-			              const char * signal,
-			              QState * sourceState = 0
-			            ) : QSignalTransition(sender, signal, sourceState),
-			                model(model_rb){};
-		protected:
-    	bool eventTest(QEvent *e);
+			//! Переход срабатывает, только если точка больше или равна В2.
+			bool eventTest(QEvent *e);
 	};
 };
-#endif
 
-
-
-
-
+/*! @class HuGiImpl
+ *
+ * @author Александр Белоконь, Василий Почкаенко.
+ */
