@@ -94,8 +94,37 @@ HuGiImpl::HuGiImpl( funkcio *f, QVector<double> d, QWidget * parent, Qt::WFlags 
 	QState * s10 = new QState(so);
 	QState * s11 = new QState(so);
 	QState * s12 = new QState(so);
+	QState * s13 = new QState(so);
+	QState * s14 = new QState(so);
+	QState * s15 = new QState(so);
+	QState * s16 = new QState(so);
+	QState * s17 = new QState(so);
+	QState * s18 = new QState(so);
 	QState * sf = new QState(/*so*/);
 	so->setInitialState(s1);
+	
+//---Соединяю состояния и обрабодчики входа в них.-----------------------------
+	connect(so, SIGNAL(entered()), SLOT(so_entered()));
+	connect(s1, SIGNAL(entered()), SLOT(s1_entered()));
+	connect(s2, SIGNAL(entered()), SLOT(s2_entered()));
+	connect(s3, SIGNAL(entered()), SLOT(s3_entered()));
+	connect(s4, SIGNAL(entered()), SLOT(s4_entered()));
+	connect(s5, SIGNAL(entered()), SLOT(s5_entered()));
+	connect(s6, SIGNAL(entered()), SLOT(s6_entered()));
+	connect(s7, SIGNAL(entered()), SLOT(s7_entered()));
+	connect(s8, SIGNAL(entered()), SLOT(s8_entered()));
+	connect(s9, SIGNAL(entered()), SLOT(s9_entered()));
+	connect(s10, SIGNAL(entered()), SLOT(s10_entered()));
+	connect(s11, SIGNAL(entered()), SLOT(s11_entered()));
+	connect(s12, SIGNAL(entered()), SLOT(s12_entered()));
+	connect(s13, SIGNAL(entered()), SLOT(s13_entered()));
+	connect(s14, SIGNAL(entered()), SLOT(s14_entered()));
+	connect(s15, SIGNAL(entered()), SLOT(s15_entered()));
+	connect(s16, SIGNAL(entered()), SLOT(s16_entered()));
+	connect(s17, SIGNAL(entered()), SLOT(s17_entered()));
+	connect(s18, SIGNAL(entered()), SLOT(s18_entered()));
+	connect(sf, SIGNAL(entered()), SLOT(sf_entered()));
+//===Создаю конечный автомат.==================================================
 }
 
 void HuGiImpl::registriEraro()
