@@ -17,6 +17,11 @@
 #include <QLabel>
 #include <QFontDialog>
 #include <QDebug>
+
+#include <math.h>
+#include <QtScript>
+#include <QScriptEngine>
+#include <QTranslator>
 //
 using namespace SinkoNotWen;
 
@@ -376,6 +381,24 @@ void NotWenImpl::init()
 	qDebug()<<trUtf8("Задаю переменным начальные значения"); // Вывожу дебажную инфу на консоль.
 }
 
+bool NotWenImpl::aGessQuad(funkcio * F, DemonstrataQPointF * BP,
+					QLineEdit * gess11, QLineEdit * gess12,
+					QLineEdit * gess21, QLineEdit * gess22)
+{
+	//создаем исполняемую среду скрипта
+	QScriptEngine engine;
+	
+	QScriptValue Gess11 = engine.evaluate(gess11->text());
+	QScriptValue Gess12 = engine.evaluate(gess12->text());
+	QScriptValue Gess21 = engine.evaluate(gess21->text());
+	QScriptValue Gess22 = engine.evaluate(gess22->text());
+	
+	return fabs(Gess11.toNumber() - (2*F->getC() / F->detGessian(BP))) <= 0.000001 &&
+			fabs(Gess12.toNumber() - (-F->getE() / F->detGessian(BP))) <= 0.000001 &&
+			fabs(Gess21.toNumber() - (-F->getE() / F->detGessian(BP))) <= 0.000001 &&
+			fabs(Gess22.toNumber() - (2*F->getA() / F->detGessian(BP))) <= 0.000001 ;
+}
+
 namespace SinkoNotWen
 {
 	bool s1s2Transiro::eventTest(QEvent *e)
@@ -622,7 +645,7 @@ namespace SinkoNotWen
 
 			if(f->metaObject()->className() == QString("KvadratigantoFunkcio"))
 			{
-				QString ges11, ges12, ges21, ges22;
+/*				QString ges11, ges12, ges21, ges22;
 				ges11 = QString("%1/%2").arg(2*f->getC()).arg(f->detGessian(bp));
 				ges12 = QString("%1/%2").arg(-f->getE()).arg(f->detGessian(bp));
 				ges21 = QString("%1/%2").arg(-f->getE()).arg(f->detGessian(bp));
@@ -631,6 +654,9 @@ namespace SinkoNotWen
 				if(Dfdx1dx1->text() == QString::number(2*f->getA()) && Dfdx1dx2->text() == QString::number(f->getE()) && 
 					Dfdx2dx1->text() == QString::number(f->getE()) && Dfdx2dx2->text() == QString::number(2*f->getC()) &&
 					Gess11->text() == ges11 && Gess12->text() == ges12 && Gess21->text() == ges21 && Gess22->text() == ges22)
+*/				if(Dfdx1dx1->text() == QString::number(2*f->getA()) && Dfdx1dx2->text() == QString::number(f->getE()) && 
+					Dfdx2dx1->text() == QString::number(f->getE()) && Dfdx2dx2->text() == QString::number(2*f->getC()) &&
+					NotWenImpl::aGessQuad(f, bp, Gess11, Gess12, Gess21, Gess22))
 				{
 					return true;
 				}

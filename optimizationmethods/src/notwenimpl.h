@@ -121,6 +121,12 @@ private slots:
 	
 	//! Фиксирует совершение пользователем ошибки.
 	void registriEraro();
+
+public slots:
+	//! Слот, для выполнения скрипта проверки обратного гессиана в квадратичной функции.
+	static bool aGessQuad(funkcio * F, DemonstrataQPointF * BP,
+					QLineEdit * gess11, QLineEdit * gess12,
+					QLineEdit * gess21, QLineEdit * gess22);
 	
 signals:
 	/*! Использую сигнал для прехода, который не требует действий пользователя,
