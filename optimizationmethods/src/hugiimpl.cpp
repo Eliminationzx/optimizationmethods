@@ -2,9 +2,9 @@
 #include "mapoporfunkcioimpl.h"
 #include "Konstantoj.h"
 #include "funkcio.h"
-#include "spurosinkolauxkoordinatoj.h"
 #include "demonstrataqpointf.h"
 #include "signalantoporpointf.h"
+#include "spurohugi.h"
 #include "helpbrowserimpl.h"
 #include "aboutprogramimpl.h"
 #include <QTextBrowser>
@@ -40,6 +40,10 @@ HuGiImpl::HuGiImpl( funkcio *f, QVector<double> d, QWidget * parent, Qt::WFlags 
 
 //	MapoWdg->setScale(20);// Ставлю масштаб побольше. Надо будет определться с оптимальным значением.
 	
+	Sp = new spuroHuGi(Qt::blue);
+	MapoWdg->difiniSpuro(Sp);
+//	MapoWdg->difiniFonaKoloro(Qt::green);
+	
 //===Соединяю точки и надписи на форме=========================================
 	SignalantoPorPointF * sB1 = new SignalantoPorPointF(&B1, F, this);
 	connect(sB1, SIGNAL(proviziXValoro(const QString &)), x1_b1_lb, SLOT(setText(const QString &)));
@@ -66,6 +70,10 @@ HuGiImpl::HuGiImpl( funkcio *f, QVector<double> d, QWidget * parent, Qt::WFlags 
 
 	SignalantoPorPointF * sPX2 = new SignalantoPorPointF(&PX2, F, this);
 	connect(sPX2, SIGNAL(proviziXValoro(const QString &)), x2_step_lb, SLOT(setText(const QString &)));
+//=============================================================================
+
+//===Прикручиваю карту=========================================================
+	
 //=============================================================================
 
 //===Создаю конечный автомат.==================================================
