@@ -17,6 +17,8 @@
 #include <QDebug>
 #include <QRadioButton>
 //
+using namespace HuGi;
+
 HuGiImpl::HuGiImpl( funkcio *f, QVector<double> d, QWidget * parent, Qt::WFlags flags ) 
 	: AlgoritmoWin(f, d, parent, flags){
 	setupUi(this);
@@ -124,6 +126,61 @@ HuGiImpl::HuGiImpl( funkcio *f, QVector<double> d, QWidget * parent, Qt::WFlags 
 	connect(s17, SIGNAL(entered()), SLOT(s17_entered()));
 	connect(s18, SIGNAL(entered()), SLOT(s18_entered()));
 	connect(sf, SIGNAL(entered()), SLOT(sf_entered()));
+
+//---Создаю переходы, согласно диаграмме.--------------------------------------
+	s1->addTransition(found_bt, SIGNAL(clicked()), s2);
+	s2s3Transiro * s2s3 = new s2s3Transiro(&FLG, investigate_rb, next1_bt, SIGNAL(clicked()), s2);
+	s2s3->setTargetState(s3);
+	s2s4Transiro * s2s4 = new s2s4Transiro(&FLG, model_rb, next1_bt, SIGNAL(clicked()), s2);
+	s2s4->setTargetState(s4);
+	s3s5s4s5Transiro * s3s5 = new s3s5s4s5Transiro(up_x1_rb, next2_bt, SIGNAL(clicked()), s3);
+	s3s5->setTargetState(s5);
+	s3s5s4s5Transiro * s4s5 = new s3s5s4s5Transiro(up_x1_rb, next2_bt, SIGNAL(clicked()), s4);
+	s4s5->setTargetState(s5);
+	NoKonsideriPointoTransiro * s5s6 = new NoKonsideriPointoTransiro(&IP, &NP, F, not_accept_bt, SIGNAL(clicked()), s5);
+	s5s6->setTargetState(s6);
+	KonsideriPointoTransiro * s5s8 = new KonsideriPointoTransiro(&IP, &NP, F, accept_bt, SIGNAL(clicked()), s5);
+	s5s8->setTargetState(s8);
+	s6s7Transiro * s6s7 = new s6s7Transiro(down_x1_rb, next2_bt, SIGNAL(clicked()), s6);
+	s6s7->setTargetState(s6);
+	KonsideriPointoTransiro * s7s8 = new KonsideriPointoTransiro(&IP, &NP, F, accept_bt, SIGNAL(clicked()), s7);
+	s7s8->setTargetState(s8);
+	NoKonsideriPointoTransiro * s7s9 = new NoKonsideriPointoTransiro(&IP, &NP, F, not_accept_bt, SIGNAL(clicked()), s7);
+	s7s9->setTargetState(s9);
+	s8s10s9s10Transiro * s8s10 = new s8s10s9s10Transiro(up_x2_rb, next2_bt, SIGNAL(clicked()), s8);
+	s8s10->setTargetState(s10);
+	s8s10s9s10Transiro * s9s10 = new s8s10s9s10Transiro(up_x2_rb, next2_bt, SIGNAL(clicked()), s9);
+	s9s10->setTargetState(s10);
+	NoKonsideriPointoTransiro * s10s11 = new NoKonsideriPointoTransiro(&IP, &NP, F, not_accept_bt, SIGNAL(clicked()), s10);
+	s10s11->setTargetState(s11);
+	KonsideriPointoTransiro * s10s13 = new KonsideriPointoTransiro(&IP, &NP, F, accept_bt, SIGNAL(clicked()), s10);
+	s10s13->setTargetState(s13);
+	s11s12Transiro * s11s12 = new s11s12Transiro(down_x2_rb, next2_bt, SIGNAL(clicked()), s11);
+	s11s12->setTargetState(s12);
+	KonsideriPointoTransiro * s12s13 = new KonsideriPointoTransiro(&IP, &NP, F, accept_bt, SIGNAL(clicked()), s12);
+	s12s13->setTargetState(s13);
+	s12s14Transiro * s12s14 = new s12s14Transiro(&FLG, &IP, &NP, F, not_accept_bt, SIGNAL(clicked()), s12);
+	s12s14->setTargetState(s14);
+	s12s17Transiro * s12s17 = new s12s17Transiro(&FLG, &IP, &NP, F, accept_bt, SIGNAL(clicked()), s12);
+	s12s17->setTargetState(s17);
+	s13s14Transiro * s13s14 = new s13s14Transiro(&FLG, s13, SIGNAL(entered()), s13);
+	s13s14->setTargetState(s14);
+	s13s17Transiro * s13s17 = new s13s17Transiro(&FLG, s13, SIGNAL(entered()), s13);
+	s13s17->setTargetState(s17);
+	s14s15Transiro * s14s15 = new s14s15Transiro(&IP, &B1, &PX1, &PX2, strikteco, change_step_bt, SIGNAL(clicked()), s14);
+	s14s15->setTargetState(s15);
+	s14s16Transiro * s14s16 = new s14s16Transiro(&IP, &B1, &PX1, &PX2, strikteco, s14, SIGNAL(entered()), s14);
+	s14s16->setTargetState(s16);
+	s14sfTransiro * s14sf = new s14sfTransiro(&PX1, &PX2, strikteco, end_bt, SIGNAL(clicked()), s14);
+	s14sf->setTargetState(sf);
+	s15->addTransition(found_bt, SIGNAL(clicked()), s2);
+	s16->addTransition(found_bt, SIGNAL(clicked()), s2);
+	s17s18Transiro * s17s18 = new s17s18Transiro( &IP, &B2, F, ok_rb, next3_bt, SIGNAL(clicked()), s17);
+	s17s18->setTargetState(s18);
+	s17s1Transiro * s17s1 = new s17s1Transiro( &IP, &B2, F, no_rb, next3_bt, SIGNAL(clicked()), s17);
+	s17s1->setTargetState(s1);
+	s18->addTransition(found_bt, SIGNAL(clicked()), s2);
+
 //===Создаю конечный автомат.==================================================
 }
 
@@ -392,7 +449,7 @@ bool s17s18Transiro::eventTest(QEvent *e)
 		if(QSignalTransition::eventTest(e)){
 			qDebug()<<trUtf8(" s17s18Transiro f(*ip)<f(b2) ");
 			// Проверяю своё условие.
-			return f->rezulto(**ip)<f->rezulto(*b2);
+			return f->rezulto(**ip)<f->rezulto(*b2) && rb->isChecked();
 		}else{
 			return false;
 		}
@@ -404,7 +461,7 @@ bool s17s1Transiro::eventTest(QEvent *e)
 		if(QSignalTransition::eventTest(e)){
 			qDebug()<<trUtf8(" s17s1Transiro f(*ip)<f(b2) ");
 			// Проверяю своё условие.
-			return f->rezulto(**ip)>=f->rezulto(*b2);
+			return f->rezulto(**ip)>=f->rezulto(*b2) && rb->isChecked();
 		}else{
 			return false;
 		}
