@@ -218,7 +218,7 @@ bool s3s5s4s5Transiro::eventTest(QEvent *e)
 	{
 		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
 		if(QSignalTransition::eventTest(e)){
-			qDebug()<<trUtf8(" s3s5s4s5  flag == true && up to x1  has chosen");
+			qDebug()<<trUtf8(" s3s5s4s5   up to x1  has chosen");
 			// Проверяю своё условие.
 			return rb->isChecked();
 		}else{
@@ -226,6 +226,67 @@ bool s3s5s4s5Transiro::eventTest(QEvent *e)
 		}
 	}
 
+
+bool s6s7Transiro::eventTest(QEvent *e)
+	{
+		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
+		if(QSignalTransition::eventTest(e)){
+			qDebug()<<trUtf8(" s6s7Transiro   down to x1  has chosen");
+			// Проверяю своё условие.
+			return rb->isChecked();
+		}else{
+			return false;
+		}
+	}
+
+bool s8s10s9s10Transiro::eventTest(QEvent *e)
+	{
+		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
+		if(QSignalTransition::eventTest(e)){
+			qDebug()<<trUtf8(" s8s10s9s10Transiro   up to x2  has chosen");
+			// Проверяю своё условие.
+			return rb->isChecked();
+		}else{
+			return false;
+		}
+	}
+
+bool s11s12Transiro::eventTest(QEvent *e)
+	{
+		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
+		if(QSignalTransition::eventTest(e)){
+			qDebug()<<trUtf8(" s11s12Transiro   down to x2  has chosen");
+			// Проверяю своё условие.
+			return rb->isChecked();
+		}else{
+			return false;
+		}
+	}
+
+bool s12s14Transiro::eventTest(QEvent *e)
+	{
+		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
+		if(QSignalTransition::eventTest(e)){
+			qDebug()<<trUtf8(" s12s14Transiro   Check f(np) >= f(*ip) and flag==false");
+			// Проверяю своё условие.
+			return f->rezulto(*np) >= f->rezulto(**ip) && !(*flag);
+		}else{
+			return false;
+		}
+	}
+
+
+bool s12s17Transiro::eventTest(QEvent *e)
+	{
+		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
+		if(QSignalTransition::eventTest(e)){
+			qDebug()<<trUtf8(" s12s17Transiro   Check f(np) >= f(*ip) and flag==true");
+			// Проверяю своё условие.
+			return f->rezulto(*np) >= f->rezulto(**ip) && *flag;
+		}else{
+			return false;
+		}
+	}
 
 }
 
