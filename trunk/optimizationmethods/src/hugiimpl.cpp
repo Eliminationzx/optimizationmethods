@@ -22,7 +22,24 @@
 HuGiImpl::HuGiImpl( funkcio *f, QVector<double> d, QWidget * parent, Qt::WFlags flags ) 
 	: AlgoritmoWin(f, d, parent, flags){
 	setupUi(this);
-
+//===Создаю конечный автомат.==================================================
+	QStateMachine * SM = new QStateMachine();
+//---Создаю состояния, согласно диаграмме.-------------------------------------
+	QState * so = new QState();
+	QState * s1 = new QState(so);
+	QState * s2 = new QState(so);
+	QState * s3 = new QState(so);
+	QState * s4 = new QState(so);
+	QState * s5 = new QState(so);
+	QState * s6 = new QState(so);
+	QState * s7 = new QState(so);
+	QState * s8 = new QState(so);
+	QState * s9 = new QState(so);
+	QState * s10 = new QState(so);
+	QState * s11 = new QState(so);
+	QState * s12 = new QState(so);
+	QState * sf = new QState(/*so*/);
+	so->setInitialState(s1);
 }
 
 void HuGiImpl::registriEraro()
@@ -37,7 +54,7 @@ void HuGiImpl::registriEraro()
 
 void HuGiImpl::sf_entered()
 {
-	LogTxtBrsr->append(trUtf8("Конец алгоритма. Найден минимум функции: %1 Количество ошибок: <b>%2</b>.").arg(F->rezulto(MP)).arg(KvantoEraroj));
+	LogTxtBrsr->append(trUtf8("Конец алгоритма. Найден минимум функции: %1 Количество ошибок: <b>%2</b>.").arg(F->rezulto(B2)).arg(KvantoEraroj));
 	if(F->metaObject()->className() == QString("RavinaFunkcio"))
 	{
 		if(D[7] == -1)
@@ -86,21 +103,14 @@ void HuGiImpl::s1_entered()
 	B1=B2;
 	LogTxtBrsr->append(trUtf8("Итерация № %1.").arg(++NumeroIteracio));
 	qDebug()<<trUtf8("come in s1"); // Вывожу дебажную инфу на консоль.
-	emit stateHasEntered();
 }
 
-
-void HuGiImpl::s2_entered()
-{
-	qDebug()<<trUtf8("come in s2"); // Вывожу дебажную инфу на консоль.
-	emit stateHasEntered();
-}
 
 void HuGiImpl::s3_entered()
 {
 	IP=&B2;
 	qDebug()<<trUtf8("come in s1"); // Вывожу дебажную инфу на консоль.
-	emit stateHasEntered();
+	//emit stateHasEntered();
 }
 
 
@@ -108,14 +118,14 @@ namespace HuGi
 {
 	
 	
-bool KonsideriPointoTransiro::eventTest(QEvent *e)
+	bool KonsideriPointoTransiro::eventTest(QEvent *e)
 	{
 		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
 		if(QSignalTransition::eventTest(e)){
 
-			qDebug()<<trUtf8("Check  f(*IT) < f(np)");
+			qDebug()<<trUtf8("Check  f(np) < f(*ip) ");
 			// Проверяю своё условие.
-			return f->rezulto(**it) < f->rezulto(*np);
+			return f->rezulto(*np) < f->rezulto(**ip);
 		}else{
 			return false;
 		}
@@ -125,16 +135,25 @@ bool KonsideriPointoTransiro::eventTest(QEvent *e)
 	{
 		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
 		if(QSignalTransition::eventTest(e)){
-			qDebug()<<trUtf8("  Проверяю f(np) >= f(mp)");
+			qDebug()<<trUtf8("Check f(np) >= f(*ip)  ");
 			// Проверяю своё условие.
-			return f->rezulto(**it) >= f->rezulto(*np);
+			return f->rezulto(*np) >= f->rezulto(**ip);
 		}else{
 			return false;
 		}
 	}	
 
-
-
+/*bool s1s2Transiro::eventTest(QEvent *e){
+		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
+		if(QSignalTransition::eventTest(e)){
+			qDebug()<<trUtf8("  Проверяю, что выбран шаг в + по X1");
+			// Проверяю своё условие.
+			return up_x1->isChecked();
+		}else{
+			return false;
+		}
+	}
+*/
 }
 
 
