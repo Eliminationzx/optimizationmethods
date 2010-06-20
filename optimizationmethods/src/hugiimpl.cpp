@@ -161,7 +161,7 @@ HuGiImpl::HuGiImpl( funkcio *f, QVector<double> d, QWidget * parent, Qt::WFlags 
 	s12s13->setTargetState(s13);
 	s12s14Transiro * s12s14 = new s12s14Transiro(&FLG, &IP, &NP, F, not_accept_bt, SIGNAL(clicked()), s12);
 	s12s14->setTargetState(s14);
-	s12s17Transiro * s12s17 = new s12s17Transiro(&FLG, &IP, &NP, F, accept_bt, SIGNAL(clicked()), s12);
+	s12s17Transiro * s12s17 = new s12s17Transiro(&FLG, &IP, &NP, F, not_accept_bt, SIGNAL(clicked()), s12);
 	s12s17->setTargetState(s17);
 	s13s14Transiro * s13s14 = new s13s14Transiro(&FLG, s13, SIGNAL(entered()), s13);
 	s13s14->setTargetState(s14);
@@ -312,6 +312,8 @@ void HuGiImpl::sf_entered()
 
 void HuGiImpl::s1_entered()
 {
+	stackedWidget->setCurrentIndex(3);
+	
 	FLG=false;
 	B1=B2;
 	LogTxtBrsr->append(trUtf8("Итерация № %1.").arg(++NumeroIteracio));
@@ -328,6 +330,8 @@ void HuGiImpl::s2_entered()
 
 void HuGiImpl::s3_entered()
 {
+	stackedWidget->setCurrentIndex(1);
+	
 	IP=&B2;
 	qDebug()<<trUtf8("come in s3"); // Вывожу дебажную инфу на консоль.
 	//emit stateHasEntered();
@@ -335,6 +339,8 @@ void HuGiImpl::s3_entered()
 
 void HuGiImpl::s4_entered()
 {
+	stackedWidget->setCurrentIndex(1);
+	
 	qDebug()<<trUtf8("come in s4"); // Вывожу дебажную инфу на консоль.
 	P= QPointF((B1.x() + 2*(B2.x() - B1.x())), (B1.y() + 2*(B2.y() - B1.y())));
 	IP=&P;
@@ -396,7 +402,7 @@ void HuGiImpl::s11_entered()
 void HuGiImpl::s12_entered()
 {
 	NP = *IP - PX2;
-	LogTxtBrsr->append(trUtf8("  Сделан шаг в jnhbwfntkmyjv направлении оси Х2."));
+	LogTxtBrsr->append(trUtf8("  Сделан шаг в отрицательном направлении оси Х2."));
 	qDebug()<<trUtf8("come in s12"); // Вывожу дебажную инфу на консоль.
 	//emit stateHasEntered();
 }
@@ -411,6 +417,8 @@ void HuGiImpl::s13_entered()
 
 void HuGiImpl::s14_entered()
 {
+	stackedWidget->setCurrentIndex(3);
+	
 	qDebug()<<trUtf8("come in s2"); // Вывожу дебажную инфу на консоль.
 	//emit stateHasEntered();
 }
@@ -433,6 +441,8 @@ void HuGiImpl::s16_entered()
 
 void HuGiImpl::s17_entered()
 {
+	stackedWidget->setCurrentIndex(2);
+	
 	label_14->setText("P");
 	qDebug()<<trUtf8("Come in s17"); // Вывожу дебажную инфу на консоль.
 	//emit stateHasEntered();
@@ -440,6 +450,8 @@ void HuGiImpl::s17_entered()
 
 void HuGiImpl::s18_entered()
 {
+	stackedWidget->setCurrentIndex(3);
+	
 	B1=B2;
 	B2=P;
 	FLG=true;
