@@ -40,6 +40,34 @@ HuGiImpl::HuGiImpl( funkcio *f, QVector<double> d, QWidget * parent, Qt::WFlags 
 
 //	MapoWdg->setScale(20);// Ставлю масштаб побольше. Надо будет определться с оптимальным значением.
 	
+//===Соединяю точки и надписи на форме=========================================
+	SignalantoPorPointF * sB1 = new SignalantoPorPointF(&B1, F, this);
+	connect(sB1, SIGNAL(proviziXValoro(const QString &)), x1_b1_lb, SLOT(setText(const QString &)));
+	connect(sB1, SIGNAL(proviziXValoro(const QString &)), x2_b1_lb, SLOT(setText(const QString &)));
+	connect(sB1, SIGNAL(proviziXValoro(const QString &)), fsign_b1_lb, SLOT(setText(const QString &)));
+
+	SignalantoPorPointF * sB2 = new SignalantoPorPointF(&B2, F, this);
+	connect(sB2, SIGNAL(proviziXValoro(const QString &)), x1_b2_lb, SLOT(setText(const QString &)));
+	connect(sB2, SIGNAL(proviziXValoro(const QString &)), x2_b2_lb, SLOT(setText(const QString &)));
+	connect(sB2, SIGNAL(proviziXValoro(const QString &)), fsign_b2_lb, SLOT(setText(const QString &)));
+
+	SignalantoPorPointF * sP = new SignalantoPorPointF(&P, F, this);
+	connect(sP, SIGNAL(proviziXValoro(const QString &)), x1_p_lb, SLOT(setText(const QString &)));
+	connect(sP, SIGNAL(proviziXValoro(const QString &)), x2_p_lb, SLOT(setText(const QString &)));
+	connect(sP, SIGNAL(proviziXValoro(const QString &)), fsign_p_lb, SLOT(setText(const QString &)));
+
+	SignalantoPorPointF * sNP = new SignalantoPorPointF(&NP, F, this);
+	connect(sNP, SIGNAL(proviziXValoro(const QString &)), x1_new_lb, SLOT(setText(const QString &)));
+	connect(sNP, SIGNAL(proviziXValoro(const QString &)), x2_new_lb, SLOT(setText(const QString &)));
+	connect(sNP, SIGNAL(proviziXValoro(const QString &)), fsign_new_lb, SLOT(setText(const QString &)));
+
+	SignalantoPorPointF * sPX1 = new SignalantoPorPointF(&PX1, F, this);
+	connect(sPX1, SIGNAL(proviziXValoro(const QString &)), x1_step_lb, SLOT(setText(const QString &)));
+
+	SignalantoPorPointF * sPX2 = new SignalantoPorPointF(&PX2, F, this);
+	connect(sPX2, SIGNAL(proviziXValoro(const QString &)), x2_step_lb, SLOT(setText(const QString &)));
+//=============================================================================
+
 //===Создаю конечный автомат.==================================================
 	QStateMachine * SM = new QStateMachine();
 //---Создаю состояния, согласно диаграмме.-------------------------------------
