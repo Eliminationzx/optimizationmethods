@@ -235,6 +235,9 @@ void CWdescent_mdImpl::registriEraro()
 
 void CWdescent_mdImpl::sf_entered()
 {
+	dx_lb->setText("");
+	df_lb->setText("");
+	
 	LogTxtBrsr->append(trUtf8("Конец алгоритма. Найден минимум функции: %1. Количество ошибок: <b>%2</b>.").arg(F->rezulto(MP)).arg(KvantoEraroj));
 	if(F->metaObject()->className() == QString("RavinaFunkcio"))
 	{

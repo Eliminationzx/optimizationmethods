@@ -148,6 +148,12 @@ FasterDescentImpl::FasterDescentImpl( funkcio *f, QVector<double> d, QWidget * p
 	//---Прикручиваю карту---------------------------------------------------------
 	connect(sBP, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(aldoniPointo(const QPointF &)));
 
+	//---Настраиваю некоторые состояния, чтоб затирали надпись со значениями новой точки, дабы не смущать пользователя.
+	s1->assignProperty(s_x1_lb, "text", trUtf8(""));
+	s1->assignProperty(s_x2_lb, "text", trUtf8(""));
+	s1->assignProperty(length_step_a_lb, "text", trUtf8(""));
+	s1->assignProperty(length_grad_lb, "text", trUtf8(""));
+
 	//---Добавляю состояния в автомат и запускаю его.------------------------------
 	SM->addState(so);
 	SM->addState(sf);
@@ -350,11 +356,6 @@ void FasterDescentImpl::s1_entered()
 		fxk_fx->setChecked(true);
 		two->setChecked(true);
 	}
-	
-	s_x1_lb->setText("");
-	s_x2_lb->setText("");
-	length_step_a_lb->setText("");
-	length_grad_lb->setText("");
 	
 	stackedWidget->setCurrentIndex(4);
 	
