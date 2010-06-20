@@ -207,7 +207,7 @@ HuGiImpl::HuGiImpl( funkcio *f, QVector<double> d, QWidget * parent, Qt::WFlags 
 	so->addTransition(te8);
 	connect(te8, SIGNAL(triggered()), SLOT(registriEraro()));
 
-//---Настраиваю некоторые состояния, чтоб затирали надпись со значениями новой точки, дабы не смущать пользователя.
+	//---Настраиваю некоторые состояния, чтоб затирали надпись со значениями новой точки, дабы не смущать пользователя.
 	s1->assignProperty(x1_b2_lb, "text", trUtf8(""));
 	s1->assignProperty(x2_b2_lb, "text", trUtf8(""));
 	s1->assignProperty(fsign_b2_lb, "text", trUtf8(""));
@@ -364,6 +364,10 @@ void HuGiImpl::s1_entered()
 void HuGiImpl::s2_entered()
 {
 	stackedWidget->setCurrentIndex(0);
+	
+	investigate_rb->setChecked(true);
+	up_x1_rb->setChecked(true);
+	ok_rb->setChecked(true);
 	
 	qDebug()<<trUtf8("come in s2"); // Вывожу дебажную инфу на консоль.
 	//emit stateHasEntered();
@@ -687,7 +691,7 @@ bool s14sfTransiro::eventTest(QEvent *e)
 		if(QSignalTransition::eventTest(e)){
 			qDebug()<<trUtf8(" s14sfTransiro  (px1 < е || px2 < е)");
 			// Проверяю своё условие.
-			return px1->x() < s || px2->y() < s;
+			return px1->x() < s && px2->y() < s;
 		}else{
 			return false;
 		}
