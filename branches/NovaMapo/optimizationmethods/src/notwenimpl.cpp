@@ -31,7 +31,7 @@ NotWenImpl::NotWenImpl( funkcio *f, QVector<double> d, QWidget * parent, Qt::WFl
 	//Вывожу формулу функции.
 	func->setText(textoFunkcio());
 
-// Для овражной функции убираю действие "Начать заново"
+	// Для овражной функции убираю действие "Начать заново"
 	if(F->metaObject()->className() == QString("RavinaFunkcio")){
 		recomenc_acn->setEnabled(false);
 	}
@@ -196,7 +196,7 @@ void NotWenImpl::sf_entered()
 			str += trUtf8("Позовите преподавателя. Количество ошибок: <b>%1</b>. ").arg(KvantoEraroj);
 		
 			if(D[7] == -1)
-				str += trUtf8("Количество ошибок в квадратичной функции: не пройдена.");
+				str += trUtf8("Квадратичная функция не пройдена.");
 			else
 				str += trUtf8("Количество ошибок в квадратичной функции: <b>%1</b>.").arg(D[7]);
 
