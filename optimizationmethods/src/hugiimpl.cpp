@@ -327,6 +327,40 @@ bool s12s17Transiro::eventTest(QEvent *e)
 		}
 	}
 
+bool s13s14Transiro::eventTest(QEvent *e)
+	{
+		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
+		if(QSignalTransition::eventTest(e)){
+			qDebug()<<trUtf8(" s13s14Transiro   flag==false");
+			// Проверяю своё условие.
+			return !(*flag);
+		}else{
+			return false;
+		}
+	}
+bool s13s17Transiro::eventTest(QEvent *e)
+	{
+		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
+		if(QSignalTransition::eventTest(e)){
+			qDebug()<<trUtf8(" s13s17Transiro flag==true");
+			// Проверяю своё условие.
+			return !(*flag);
+		}else{
+			return false;
+		}
+	}
+
+bool s14s15Transiro::eventTest(QEvent *e)
+	{
+		// Реализация по умолчанию проверяет, что сигнал пришёл от связанной кнопки.
+		if(QSignalTransition::eventTest(e)){
+			qDebug()<<trUtf8(" s14s15Transiro *ip == B1 and (px1 >= е || px2 >= е)");
+			// Проверяю своё условие.
+			return **ip==*b1 && (px1->x() >= s || px2->y() >= s);
+		}else{
+			return false;
+		}
+	}
 }
 
 
