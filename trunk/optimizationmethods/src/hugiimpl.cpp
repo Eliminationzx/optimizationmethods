@@ -168,7 +168,7 @@ bool s2s3Transiro::eventTest(QEvent *e)
 		if(QSignalTransition::eventTest(e)){
 			qDebug()<<trUtf8(" s2s3  flag == false && investigate search has chosen");
 			// Проверяю своё условие.
-			return !(*flag) && investigate_rb->isChecked();
+			return !(*flag) && rb->isChecked();
 		}else{
 			return false;
 		}
@@ -180,7 +180,7 @@ bool s2s4Transiro::eventTest(QEvent *e)
 		if(QSignalTransition::eventTest(e)){
 			qDebug()<<trUtf8(" s2s4  flag == true && model search has chosen");
 			// Проверяю своё условие.
-			return *flag && model_rb->isChecked();
+			return *flag && rb->isChecked();
 		}else{
 			return false;
 		}
@@ -192,11 +192,13 @@ bool s3s5s4s5Transiro::eventTest(QEvent *e)
 		if(QSignalTransition::eventTest(e)){
 			qDebug()<<trUtf8(" s3s5s4s5  flag == true && up to x1  has chosen");
 			// Проверяю своё условие.
-			return up_x1->isChecked();
+			return rb->isChecked();
 		}else{
 			return false;
 		}
 	}
+
+
 }
 
 
