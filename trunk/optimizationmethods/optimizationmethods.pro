@@ -1,5 +1,5 @@
 TEMPLATE = app
-QT = gui core
+QT = gui core script
 CONFIG += qt warn_on release console
 DESTDIR = bin
 OBJECTS_DIR = build
