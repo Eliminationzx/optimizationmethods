@@ -396,6 +396,12 @@ void HuGiImpl::s18_entered()
 	//emit stateHasEntered();
 }
 
+void HuGiImpl::so_entered()
+{
+	qDebug()<<trUtf8("Come in so"); // Вывожу дебажную инфу на консоль.
+}
+
+
 namespace HuGi
 {
 	
