@@ -25,6 +25,7 @@ spuroHuGi::spuroHuGi( QColor bazaKoloro )
 	p1->setSymbol(smbl);
 	QwtText text("B1");
 	text.setColor(BazaKoloro);
+	text.setBackgroundBrush(Qt::lightGray);
 	p1->setLabel(text);
 	p1->attach(plt);
 	
@@ -35,6 +36,7 @@ spuroHuGi::spuroHuGi( QColor bazaKoloro )
 	p2->setSymbol(smbl);
 	QwtText text2("B2");
 	text2.setColor(BazaKoloro);
+	text2.setBackgroundBrush(Qt::lightGray);
 	p2->setLabel(text2);
 	p2->attach(plt);
 	
@@ -44,7 +46,8 @@ spuroHuGi::spuroHuGi( QColor bazaKoloro )
 //	QwtSymbol smbl3(QwtSymbol::Ellipse, QBrush(Qt::lightGray), QPen(BazaKoloro),QSize(4,4));
 	p->setSymbol(smbl);
 	QwtText text3("P");
-	text2.setColor(BazaKoloro);
+	text3.setColor(BazaKoloro);
+	text3.setBackgroundBrush(Qt::lightGray);
 	p->setLabel(text3);
 	p->attach(plt);
 }
