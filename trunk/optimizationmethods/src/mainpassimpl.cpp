@@ -29,7 +29,7 @@ void mainPassImpl::on_Ok_clicked()
 {
 	// TODO
 	QByteArray data;
-	QFile file(QDir::toNativeSeparators("variants/ps"));
+	QFile file(QDir::toNativeSeparators("variants/ps.dll"));
 	if(file.open(QIODevice::ReadOnly))
 	{
 		QTextStream stream(&file);

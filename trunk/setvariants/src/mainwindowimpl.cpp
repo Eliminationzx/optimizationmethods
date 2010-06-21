@@ -107,7 +107,7 @@ bool MainWindowImpl::WriteVariants(const int typeFunction, const QVector<double>
 //! Запись максимального количества ошибок для перехода к овражной функции в текстовый файл.
 bool MainWindowImpl::WriteError(const QVector<int> data)
 {
-	QFile file(QDir::toNativeSeparators("variants/maxError"));
+	QFile file(QDir::toNativeSeparators("variants/me.dll"));
 	if(file.open(QIODevice::WriteOnly))
 	{
 		QTextStream stream(&file);
@@ -133,7 +133,7 @@ bool MainWindowImpl::WriteError(const QVector<int> data)
 //! Запись пароля для разблокирования овражной функции в текстовый файл.
 bool MainWindowImpl::WritePass(const QByteArray data)
 {
-	QFile file(QDir::toNativeSeparators("variants/ps"));
+	QFile file(QDir::toNativeSeparators("variants/ps.dll"));
 	if(file.open(QIODevice::WriteOnly))
 	{
 		QTextStream stream(&file);
@@ -201,7 +201,7 @@ QVector<double> MainWindowImpl::ReadVariants(const int typeFunction, const int n
 QVector<int> MainWindowImpl::ReadError()
 {
 	QVector<int> data(0);
-	QFile file(QDir::toNativeSeparators("variants/maxError"));
+	QFile file(QDir::toNativeSeparators("variants/me.dll"));
 	if(file.open(QIODevice::ReadOnly))
 	{
 		QTextStream stream(&file);
@@ -218,7 +218,7 @@ QVector<int> MainWindowImpl::ReadError()
 QByteArray MainWindowImpl::ReadPass()
 {
 	QByteArray data;
-	QFile file(QDir::toNativeSeparators("variants/ps"));
+	QFile file(QDir::toNativeSeparators("variants/ps.dll"));
 	if(file.open(QIODevice::ReadOnly))
 	{
 		QTextStream stream(&file);
