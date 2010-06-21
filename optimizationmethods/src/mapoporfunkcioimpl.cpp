@@ -12,10 +12,8 @@
 #include <qwt_plot_zoomer.h>
 #include <qwt_plot_panner.h>
 #include <qwt_plot_layout.h>
+#include <qwt_plot_canvas.h>
 #include "spectrogramdata.h"
-
-
-#include <QMessageBox>
 //
 MapoPorFunkcioImpl::MapoPorFunkcioImpl( const funkcio * Funkcio, QWidget * parent, Qt::WFlags f) 
 	: QWidget(parent, f), F(Funkcio){
@@ -76,7 +74,8 @@ MapoPorFunkcioImpl::MapoPorFunkcioImpl( const funkcio * Funkcio, QWidget * paren
 	skalo = new QwtPlotZoomer(qwtPlt->canvas());
 	skalo->setTrackerPen(QColor(Qt::lightGray));
 	skalo->setTrackerMode(QwtPicker::AlwaysOn);
-	skalo->zoom(QRectF(-5, -5, 10, 10));// Предварительно увеличиваю масштаб.
+//	double q = (double)(qwtPlt->canvas()->paintCache()->size().height())/qwtPlt->canvas()->paintCache()->size().width();
+//	skalo->zoom(QRectF(-5, -5, 10, q*10));// Предварительно увеличиваю масштаб.
 	skalo->setMousePattern(QwtEventPattern::MouseSelect1,
 	                       Qt::LeftButton, Qt::ControlModifier);
 	
@@ -97,10 +96,8 @@ void MapoPorFunkcioImpl::on_PligrandigiBtn_clicked(){
 }
 
 void MapoPorFunkcioImpl::on_MalpliigiBtn_clicked(){
-//	skalo->zoom(QRectF(skalo->zoomRect().topLeft() - QPointF(1,1),
-//	                   skalo->zoomRect().bottomRight() + QPointF(1,1)));
-
-	QMessageBox::information(this, "", trUtf8("%1 %2 %3 %4").arg(skalo->zoomRect().topLeft().x()).arg(skalo->zoomRect().topLeft().y()).arg(skalo->zoomRect().bottomRight().x()).arg(skalo->zoomRect().bottomRight().y()));
+	skalo->zoom(QRectF(skalo->zoomRect().topLeft() - QPointF(1,1),
+	                   skalo->zoomRect().bottomRight() + QPointF(1,1)));
 }
 
 
@@ -114,11 +111,8 @@ const spuro * MapoPorFunkcioImpl::proviziSpuro() const{
 
 
 void MapoPorFunkcioImpl::setScale(qreal factor){
-	// Перед изменением масштаба сцены, установлю его для следа.
-	// В ScenoPorMapo::setScale изменить масштаб "следа" не возможно из-за
-	// проблем с приведением типа.
-//	Spuro->setScale(factor);
-//	s->setScale(factor);
+	double q = (double)(qwtPlt->canvas()->paintCache()->size().height())/qwtPlt->canvas()->paintCache()->size().width();
+	skalo->zoom(QRectF(-5, 0, 100/factor, q*100/factor));// Предварительно увеличиваю масштаб.
 }
 
 
