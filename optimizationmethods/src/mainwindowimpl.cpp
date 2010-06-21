@@ -120,7 +120,7 @@ void MainWindowImpl::initializationComboBox(const int typeFunction)
 int MainWindowImpl::ReadError(int method)
 {
 	QVector<int> data(0);
-	QFile file(QDir::toNativeSeparators("variants/maxError"));
+	QFile file(QDir::toNativeSeparators("variants/me.dll"));
 	if(file.open(QIODevice::ReadOnly))
 	{
 		QTextStream stream(&file);
