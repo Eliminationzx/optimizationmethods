@@ -227,7 +227,7 @@
         <item>
          <widget class="QStackedWidget" name="stackedWidget">
           <property name="currentIndex">
-           <number>6</number>
+           <number>2</number>
           </property>
           <widget class="QWidget" name="direction_search">
            <layout class="QGridLayout" name="gridLayout_4" rowstretch="1,0">
@@ -520,7 +520,7 @@ p, li { white-space: pre-wrap; }
                     </font>
                    </property>
                    <property name="pixmap">
-                    <pixmap resource="data.qrc">:/icon/dfdx2.bmp</pixmap>
+                    <pixmap resource="data.qrc">:/icon/dfdx2.PNG</pixmap>
                    </property>
                   </widget>
                  </item>
@@ -539,7 +539,7 @@ p, li { white-space: pre-wrap; }
                     </font>
                    </property>
                    <property name="pixmap">
-                    <pixmap resource="data.qrc">:/icon/dfdx1.bmp</pixmap>
+                    <pixmap resource="data.qrc">:/icon/dfdx1.PNG</pixmap>
                    </property>
                   </widget>
                  </item>
@@ -1050,7 +1050,7 @@ p, li { white-space: pre-wrap; }
      <x>0</x>
      <y>0</y>
      <width>768</width>
-     <height>23</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu">
