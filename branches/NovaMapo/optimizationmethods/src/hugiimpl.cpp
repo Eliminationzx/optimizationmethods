@@ -506,6 +506,8 @@ void HuGiImpl::s18_entered()
 
 void HuGiImpl::so_entered()
 {
+	MapoWdg->setScale(10);// Ставлю масштаб побольше. Надо будет определться с оптимальным значением.
+
 	qDebug()<<trUtf8("Come in so"); // Вывожу дебажную инфу на консоль.
 }
 

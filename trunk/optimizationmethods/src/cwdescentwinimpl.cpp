@@ -413,6 +413,8 @@ void CWdescentWinImpl::s1_entered(){
 }
 
 void CWdescentWinImpl::so_entered(){
+	MapoWdg->setScale(10);// Ставлю масштаб побольше. Надо будет определться с оптимальным значением.
+
 	qDebug()<<trUtf8("Вошёл в so"); // Вывожу дебажную инфу на консоль.
 }
 
