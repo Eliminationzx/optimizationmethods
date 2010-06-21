@@ -412,7 +412,7 @@ bool NotWenImpl::aGessRavin(funkcio * F, DemonstrataQPointF * BP,
 	
 	QString tmp = Dfdx1dx1->text();
 	int j = 0;
-	while(tmp[j] != '^')
+	while(!(tmp[j] == '^' && tmp[j+1] == '2'))
 		++j;
 	for(int i = j; i >= 0; --i)
 		if(tmp[i] == '1')

@@ -1050,7 +1050,7 @@ p, li { white-space: pre-wrap; }
      <x>0</x>
      <y>0</y>
      <width>768</width>
-     <height>28</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu">
@@ -1115,9 +1115,46 @@ p, li { white-space: pre-wrap; }
    </property>
   </action>
  </widget>
+ <tabstops>
+  <tabstop>gxk</tabstop>
+  <tabstop>gradfxk</tabstop>
+  <tabstop>_g_xkgradfxk</tabstop>
+  <tabstop>g_xkgradfxk</tabstop>
+  <tabstop>gxkgradfxk</tabstop>
+  <tabstop>gradfxkgxk</tabstop>
+  <tabstop>gradfxkg_xk</tabstop>
+  <tabstop>next1_bt</tabstop>
+  <tabstop>proizvod_first</tabstop>
+  <tabstop>part_proizvod_first</tabstop>
+  <tabstop>proizvod_second</tabstop>
+  <tabstop>part_proizvod_second</tabstop>
+  <tabstop>next2_bt</tabstop>
+  <tabstop>dfdx1</tabstop>
+  <tabstop>dfdx2</tabstop>
+  <tabstop>next3_bt</tabstop>
+  <tabstop>fxk1_fxk</tabstop>
+  <tabstop>gradfxk_more</tabstop>
+  <tabstop>xk1_xk</tabstop>
+  <tabstop>gradfxk_less</tabstop>
+  <tabstop>gxk_less</tabstop>
+  <tabstop>next4_bt</tabstop>
+  <tabstop>stop</tabstop>
+  <tabstop>to_continue</tabstop>
+  <tabstop>next5_bt</tabstop>
+  <tabstop>dfdx1dx1</tabstop>
+  <tabstop>dfdx1dx2</tabstop>
+  <tabstop>dfdx2dx1</tabstop>
+  <tabstop>dfdx2dx2</tabstop>
+  <tabstop>gess11</tabstop>
+  <tabstop>gess12</tabstop>
+  <tabstop>gess21</tabstop>
+  <tabstop>gess22</tabstop>
+  <tabstop>next6_bt</tabstop>
+  <tabstop>LogTxtBrsr</tabstop>
+ </tabstops>
  <resources>
   <include location="data.qrc"/>
-  <include location="../Исходники/c++/мо/svn/trunk/optimizationmethods/ui/data.qrc"/>
+  <include location="data.qrc"/>
  </resources>
  <connections>
   <connection>
