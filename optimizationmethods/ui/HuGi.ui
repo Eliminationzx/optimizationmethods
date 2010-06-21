@@ -442,7 +442,7 @@ p, li { white-space: pre-wrap; }
        <item row="0" column="1" rowspan="5">
         <widget class="QStackedWidget" name="stackedWidget">
          <property name="currentIndex">
-          <number>3</number>
+          <number>1</number>
          </property>
          <widget class="QWidget" name="type_found">
           <layout class="QGridLayout" name="gridLayout_4" rowstretch="1,0">
@@ -570,7 +570,7 @@ p, li { white-space: pre-wrap; }
              <item>
               <widget class="QPushButton" name="next2_bt">
                <property name="text">
-                <string>Сделать шаг</string>
+                <string>Вычислить</string>
                </property>
               </widget>
              </item>
