@@ -354,7 +354,7 @@ void HuGiImpl::sf_entered()
 void HuGiImpl::s1_entered()
 {
 	stackedWidget->setCurrentIndex(3);
-	
+	label_14->setText("P");
 	FLG=false;
 	B1=B2;
 	LogTxtBrsr->append(trUtf8("Итерация № %1.").arg(++NumeroIteracio));
@@ -389,7 +389,7 @@ void HuGiImpl::s4_entered()
 	qDebug()<<trUtf8("come in s4"); // Вывожу дебажную инфу на консоль.
 	P= QPointF((B1.x() + 2*(B2.x() - B1.x())), (B1.y() + 2*(B2.y() - B1.y())));
 	IP=&P;
-	label_14->setText("P1");
+	label_14->setText("P");
 	//emit stateHasEntered();
 }
 
@@ -419,6 +419,8 @@ void HuGiImpl::s7_entered()
 void HuGiImpl::s8_entered()
 {
 	*IP = NP;
+	if(FLG)
+	label_14->setText("P1");
 	LogTxtBrsr->append(trUtf8("  Точка (%1; %2) принята").arg(NP.x()).arg(NP.y()));
 	qDebug()<<trUtf8("come in s8"); // Вывожу дебажную инфу на консоль.
 	//emit stateHasEntered();
@@ -455,6 +457,8 @@ void HuGiImpl::s12_entered()
 void HuGiImpl::s13_entered()
 {
 	*IP = NP;
+	if(FLG)
+	label_14->setText("P1");
 	LogTxtBrsr->append(trUtf8("  Точка (%1; %2) принята").arg(NP.x()).arg(NP.y()));
 	qDebug()<<trUtf8("come in s13"); // Вывожу дебажную инфу на консоль.
 	//emit stateHasEntered();
@@ -487,8 +491,6 @@ void HuGiImpl::s16_entered()
 void HuGiImpl::s17_entered()
 {
 	stackedWidget->setCurrentIndex(2);
-	
-	label_14->setText("P");
 	qDebug()<<trUtf8("Come in s17"); // Вывожу дебажную инфу на консоль.
 	//emit stateHasEntered();
 }
@@ -496,7 +498,7 @@ void HuGiImpl::s17_entered()
 void HuGiImpl::s18_entered()
 {
 	stackedWidget->setCurrentIndex(3);
-	
+	label_14->setText("P");
 	B1=B2;
 	B2=P;
 	FLG=true;

@@ -236,9 +236,9 @@ void NeMiImpl::init(){
 	precision_lb->setText(QString::number(strikteco));
 	KvantoEraroj = 0;
 	NumeroIteracio = 0;
-	P1 = QPointF(D[4],D[5]);
-	P2 = QPointF(D[4] + D[1],D[5]);
-	P3 = QPointF(D[4],D[5] + D[2]);
+	P1 = QPointF(D[4], D[5]);
+	P2 = QPointF(D[4] + 1, D[5]);
+	P3 = QPointF(D[4] + 0.5, D[5] + 0.866);
 	LogTxtBrsr->setText("");
 
 	qDebug()<<trUtf8("Задаю переменным начальные значения"); // Вывожу дебажную инфу на консоль.
