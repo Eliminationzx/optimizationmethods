@@ -49,29 +49,29 @@ HuGiImpl::HuGiImpl( funkcio *f, QVector<double> d, QWidget * parent, Qt::WFlags 
 //===Соединяю точки и надписи на форме=========================================
 	SignalantoPorPointF * sB1 = new SignalantoPorPointF(&B1, F, this);
 	connect(sB1, SIGNAL(proviziXValoro(const QString &)), x1_b1_lb, SLOT(setText(const QString &)));
-	connect(sB1, SIGNAL(proviziXValoro(const QString &)), x2_b1_lb, SLOT(setText(const QString &)));
-	connect(sB1, SIGNAL(proviziXValoro(const QString &)), fsign_b1_lb, SLOT(setText(const QString &)));
+	connect(sB1, SIGNAL(proviziYValoro(const QString &)), x2_b1_lb, SLOT(setText(const QString &)));
+	connect(sB1, SIGNAL(proviziValoroFukcioEnPointo(const QString &)), fsign_b1_lb, SLOT(setText(const QString &)));
 
 	SignalantoPorPointF * sB2 = new SignalantoPorPointF(&B2, F, this);
 	connect(sB2, SIGNAL(proviziXValoro(const QString &)), x1_b2_lb, SLOT(setText(const QString &)));
-	connect(sB2, SIGNAL(proviziXValoro(const QString &)), x2_b2_lb, SLOT(setText(const QString &)));
-	connect(sB2, SIGNAL(proviziXValoro(const QString &)), fsign_b2_lb, SLOT(setText(const QString &)));
+	connect(sB2, SIGNAL(proviziYValoro(const QString &)), x2_b2_lb, SLOT(setText(const QString &)));
+	connect(sB2, SIGNAL(proviziValoroFukcioEnPointo(const QString &)), fsign_b2_lb, SLOT(setText(const QString &)));
 
 	SignalantoPorPointF * sP = new SignalantoPorPointF(&P, F, this);
 	connect(sP, SIGNAL(proviziXValoro(const QString &)), x1_p_lb, SLOT(setText(const QString &)));
-	connect(sP, SIGNAL(proviziXValoro(const QString &)), x2_p_lb, SLOT(setText(const QString &)));
-	connect(sP, SIGNAL(proviziXValoro(const QString &)), fsign_p_lb, SLOT(setText(const QString &)));
+	connect(sP, SIGNAL(proviziYValoro(const QString &)), x2_p_lb, SLOT(setText(const QString &)));
+	connect(sP, SIGNAL(proviziValoroFukcioEnPointo(const QString &)), fsign_p_lb, SLOT(setText(const QString &)));
 
 	SignalantoPorPointF * sNP = new SignalantoPorPointF(&NP, F, this);
 	connect(sNP, SIGNAL(proviziXValoro(const QString &)), x1_new_lb, SLOT(setText(const QString &)));
-	connect(sNP, SIGNAL(proviziXValoro(const QString &)), x2_new_lb, SLOT(setText(const QString &)));
-	connect(sNP, SIGNAL(proviziXValoro(const QString &)), fsign_new_lb, SLOT(setText(const QString &)));
+	connect(sNP, SIGNAL(proviziYValoro(const QString &)), x2_new_lb, SLOT(setText(const QString &)));
+	connect(sNP, SIGNAL(proviziValoroFukcioEnPointo(const QString &)), fsign_new_lb, SLOT(setText(const QString &)));
 
 	SignalantoPorPointF * sPX1 = new SignalantoPorPointF(&PX1, F, this);
 	connect(sPX1, SIGNAL(proviziXValoro(const QString &)), x1_step_lb, SLOT(setText(const QString &)));
 
 	SignalantoPorPointF * sPX2 = new SignalantoPorPointF(&PX2, F, this);
-	connect(sPX2, SIGNAL(proviziXValoro(const QString &)), x2_step_lb, SLOT(setText(const QString &)));
+	connect(sPX2, SIGNAL(proviziYValoro(const QString &)), x2_step_lb, SLOT(setText(const QString &)));
 //=============================================================================
 
 //===Прикручиваю карту=========================================================
@@ -142,7 +142,7 @@ HuGiImpl::HuGiImpl( funkcio *f, QVector<double> d, QWidget * parent, Qt::WFlags 
 	KonsideriPointoTransiro * s5s8 = new KonsideriPointoTransiro(&IP, &NP, F, accept_bt, SIGNAL(clicked()), s5);
 	s5s8->setTargetState(s8);
 	s6s7Transiro * s6s7 = new s6s7Transiro(down_x1_rb, next2_bt, SIGNAL(clicked()), s6);
-	s6s7->setTargetState(s6);
+	s6s7->setTargetState(s7);
 	KonsideriPointoTransiro * s7s8 = new KonsideriPointoTransiro(&IP, &NP, F, accept_bt, SIGNAL(clicked()), s7);
 	s7s8->setTargetState(s8);
 	NoKonsideriPointoTransiro * s7s9 = new NoKonsideriPointoTransiro(&IP, &NP, F, not_accept_bt, SIGNAL(clicked()), s7);
@@ -161,7 +161,7 @@ HuGiImpl::HuGiImpl( funkcio *f, QVector<double> d, QWidget * parent, Qt::WFlags 
 	s12s13->setTargetState(s13);
 	s12s14Transiro * s12s14 = new s12s14Transiro(&FLG, &IP, &NP, F, not_accept_bt, SIGNAL(clicked()), s12);
 	s12s14->setTargetState(s14);
-	s12s17Transiro * s12s17 = new s12s17Transiro(&FLG, &IP, &NP, F, accept_bt, SIGNAL(clicked()), s12);
+	s12s17Transiro * s12s17 = new s12s17Transiro(&FLG, &IP, &NP, F, not_accept_bt, SIGNAL(clicked()), s12);
 	s12s17->setTargetState(s17);
 	s13s14Transiro * s13s14 = new s13s14Transiro(&FLG, s13, SIGNAL(entered()), s13);
 	s13s14->setTargetState(s14);
@@ -181,7 +181,74 @@ HuGiImpl::HuGiImpl( funkcio *f, QVector<double> d, QWidget * parent, Qt::WFlags 
 	s17s1->setTargetState(s1);
 	s18->addTransition(found_bt, SIGNAL(clicked()), s2);
 
-//---Добавляю состояния в автомат и запускаю его.------------------------------
+	//---Создаю переходы не имеющие цели. С помощью них фиксирую ошибки ползователя
+	QSignalTransition * te1 = new QSignalTransition(found_bt, SIGNAL(clicked()));
+	so->addTransition(te1);
+	connect(te1, SIGNAL(triggered()), SLOT(registriEraro()));
+	QSignalTransition * te2 = new QSignalTransition(accept_bt, SIGNAL(clicked()));
+	so->addTransition(te2);
+	connect(te2, SIGNAL(triggered()), SLOT(registriEraro()));
+	QSignalTransition * te3 = new QSignalTransition(not_accept_bt, SIGNAL(clicked()));
+	so->addTransition(te3);
+	connect(te3, SIGNAL(triggered()), SLOT(registriEraro()));
+	QSignalTransition * te4 = new QSignalTransition(change_step_bt, SIGNAL(clicked()));
+	so->addTransition(te4);
+	connect(te4, SIGNAL(triggered()), SLOT(registriEraro()));
+	QSignalTransition * te5 = new QSignalTransition(end_bt, SIGNAL(clicked()));
+	so->addTransition(te5);
+	connect(te5, SIGNAL(triggered()), SLOT(registriEraro()));
+	QSignalTransition * te6 = new QSignalTransition(next1_bt, SIGNAL(clicked()));
+	so->addTransition(te6);
+	connect(te6, SIGNAL(triggered()), SLOT(registriEraro()));
+	QSignalTransition * te7 = new QSignalTransition(next2_bt, SIGNAL(clicked()));
+	so->addTransition(te7);
+	connect(te7, SIGNAL(triggered()), SLOT(registriEraro()));
+	QSignalTransition * te8 = new QSignalTransition(next3_bt, SIGNAL(clicked()));
+	so->addTransition(te8);
+	connect(te8, SIGNAL(triggered()), SLOT(registriEraro()));
+
+	//---Настраиваю некоторые состояния, чтоб затирали надпись со значениями новой точки, дабы не смущать пользователя.
+	s1->assignProperty(x1_b2_lb, "text", trUtf8(""));
+	s1->assignProperty(x2_b2_lb, "text", trUtf8(""));
+	s1->assignProperty(fsign_b2_lb, "text", trUtf8(""));
+
+	s1->assignProperty(x1_p_lb, "text", trUtf8(""));
+	s1->assignProperty(x2_p_lb, "text", trUtf8(""));
+	s1->assignProperty(fsign_p_lb, "text", trUtf8(""));
+
+	s6->assignProperty(x1_new_lb, "text", trUtf8(""));
+	s6->assignProperty(x2_new_lb, "text", trUtf8(""));
+	s6->assignProperty(fsign_new_lb, "text", trUtf8(""));
+
+	s8->assignProperty(x1_new_lb, "text", trUtf8(""));
+	s8->assignProperty(x2_new_lb, "text", trUtf8(""));
+	s8->assignProperty(fsign_new_lb, "text", trUtf8(""));
+
+	s9->assignProperty(x1_new_lb, "text", trUtf8(""));
+	s9->assignProperty(x2_new_lb, "text", trUtf8(""));
+	s9->assignProperty(fsign_new_lb, "text", trUtf8(""));
+
+	s11->assignProperty(x1_new_lb, "text", trUtf8(""));
+	s11->assignProperty(x2_new_lb, "text", trUtf8(""));
+	s11->assignProperty(fsign_new_lb, "text", trUtf8(""));
+
+	s14->assignProperty(x1_new_lb, "text", trUtf8(""));
+	s14->assignProperty(x2_new_lb, "text", trUtf8(""));
+	s14->assignProperty(fsign_new_lb, "text", trUtf8(""));
+
+	s16->assignProperty(x1_new_lb, "text", trUtf8(""));
+	s16->assignProperty(x2_new_lb, "text", trUtf8(""));
+	s16->assignProperty(fsign_new_lb, "text", trUtf8(""));
+
+	s17->assignProperty(x1_new_lb, "text", trUtf8(""));
+	s17->assignProperty(x2_new_lb, "text", trUtf8(""));
+	s17->assignProperty(fsign_new_lb, "text", trUtf8(""));
+
+	s18->assignProperty(x1_p_lb, "text", trUtf8(""));
+	s18->assignProperty(x2_p_lb, "text", trUtf8(""));
+	s18->assignProperty(fsign_p_lb, "text", trUtf8(""));
+
+	//---Добавляю состояния в автомат и запускаю его.------------------------------
 	SM->addState(so);
 	SM->addState(sf);
 	SM->setInitialState(so);
@@ -207,7 +274,7 @@ void HuGiImpl::on_difiniFonto_act_activated(){
 
 void HuGiImpl::on_helpo_action_activated()
 {
-	helpBrowserImpl * hb = new helpBrowserImpl( "doc/", "method1.htm", this);
+	helpBrowserImpl * hb = new helpBrowserImpl( "doc/", "method4.htm", this);
 	hb->resize(900, 600);
 	hb->show();
 }
@@ -286,6 +353,8 @@ void HuGiImpl::sf_entered()
 
 void HuGiImpl::s1_entered()
 {
+	stackedWidget->setCurrentIndex(3);
+	
 	FLG=false;
 	B1=B2;
 	LogTxtBrsr->append(trUtf8("Итерация № %1.").arg(++NumeroIteracio));
@@ -294,12 +363,20 @@ void HuGiImpl::s1_entered()
 
 void HuGiImpl::s2_entered()
 {
+	stackedWidget->setCurrentIndex(0);
+	
+	investigate_rb->setChecked(true);
+	up_x1_rb->setChecked(true);
+	ok_rb->setChecked(true);
+	
 	qDebug()<<trUtf8("come in s2"); // Вывожу дебажную инфу на консоль.
 	//emit stateHasEntered();
 }
 
 void HuGiImpl::s3_entered()
 {
+	stackedWidget->setCurrentIndex(1);
+	
 	IP=&B2;
 	qDebug()<<trUtf8("come in s3"); // Вывожу дебажную инфу на консоль.
 	//emit stateHasEntered();
@@ -307,6 +384,8 @@ void HuGiImpl::s3_entered()
 
 void HuGiImpl::s4_entered()
 {
+	stackedWidget->setCurrentIndex(1);
+	
 	qDebug()<<trUtf8("come in s4"); // Вывожу дебажную инфу на консоль.
 	P= QPointF((B1.x() + 2*(B2.x() - B1.x())), (B1.y() + 2*(B2.y() - B1.y())));
 	IP=&P;
@@ -368,7 +447,7 @@ void HuGiImpl::s11_entered()
 void HuGiImpl::s12_entered()
 {
 	NP = *IP - PX2;
-	LogTxtBrsr->append(trUtf8("  Сделан шаг в jnhbwfntkmyjv направлении оси Х2."));
+	LogTxtBrsr->append(trUtf8("  Сделан шаг в отрицательном направлении оси Х2."));
 	qDebug()<<trUtf8("come in s12"); // Вывожу дебажную инфу на консоль.
 	//emit stateHasEntered();
 }
@@ -383,6 +462,8 @@ void HuGiImpl::s13_entered()
 
 void HuGiImpl::s14_entered()
 {
+	stackedWidget->setCurrentIndex(3);
+	
 	qDebug()<<trUtf8("come in s2"); // Вывожу дебажную инфу на консоль.
 	//emit stateHasEntered();
 }
@@ -405,6 +486,8 @@ void HuGiImpl::s16_entered()
 
 void HuGiImpl::s17_entered()
 {
+	stackedWidget->setCurrentIndex(2);
+	
 	label_14->setText("P");
 	qDebug()<<trUtf8("Come in s17"); // Вывожу дебажную инфу на консоль.
 	//emit stateHasEntered();
@@ -412,6 +495,8 @@ void HuGiImpl::s17_entered()
 
 void HuGiImpl::s18_entered()
 {
+	stackedWidget->setCurrentIndex(3);
+	
 	B1=B2;
 	B2=P;
 	FLG=true;
@@ -436,7 +521,13 @@ bool KonsideriPointoTransiro::eventTest(QEvent *e)
 
 			qDebug()<<trUtf8("Check  f(np) < f(*ip) ");
 			// Проверяю своё условие.
-			return f->rezulto(*np) < f->rezulto(**ip);
+			QString nps = QString::number(f->rezulto(*np));
+			QString ips = QString::number(f->rezulto(**ip));
+			if(nps.toDouble()< ips.toDouble())
+				return true;
+			else
+				return false;
+			//return f->rezulto(*np) < f->rezulto(**ip);
 		}else{
 			return false;
 		}
@@ -448,7 +539,13 @@ bool NoKonsideriPointoTransiro::eventTest(QEvent *e)
 		if(QSignalTransition::eventTest(e)){
 			qDebug()<<trUtf8("Check f(np) >= f(*ip)  ");
 			// Проверяю своё условие.
-			return f->rezulto(*np) >= f->rezulto(**ip);
+			QString nps = QString::number(f->rezulto(*np));
+			QString ips = QString::number(f->rezulto(**ip));
+			if(nps.toDouble() >= ips.toDouble())
+				return true;
+			else
+				return false;
+			//return f->rezulto(*np) >= f->rezulto(**ip);
 		}else{
 			return false;
 		}
@@ -534,7 +631,11 @@ bool s12s14Transiro::eventTest(QEvent *e)
 		if(QSignalTransition::eventTest(e)){
 			qDebug()<<trUtf8(" s12s14Transiro   Check f(np) >= f(*ip) and flag==false");
 			// Проверяю своё условие.
-			return f->rezulto(*np) >= f->rezulto(**ip) && !(*flag);
+			QString nps = QString::number(f->rezulto(*np));
+			QString ips = QString::number(f->rezulto(**ip));
+			return nps.toDouble() >= ips.toDouble() && !(*flag);	
+			
+			//return f->rezulto(*np) >= f->rezulto(**ip) && !(*flag);
 		}else{
 			return false;
 		}
@@ -547,7 +648,10 @@ bool s12s17Transiro::eventTest(QEvent *e)
 		if(QSignalTransition::eventTest(e)){
 			qDebug()<<trUtf8(" s12s17Transiro   Check f(np) >= f(*ip) and flag==true");
 			// Проверяю своё условие.
-			return f->rezulto(*np) >= f->rezulto(**ip) && *flag;
+			QString nps = QString::number(f->rezulto(*np));
+			QString ips = QString::number(f->rezulto(**ip));
+			return nps.toDouble() >= ips.toDouble() && *flag;
+			//return f->rezulto(*np) >= f->rezulto(**ip) && *flag;
 		}else{
 			return false;
 		}
@@ -570,7 +674,7 @@ bool s13s17Transiro::eventTest(QEvent *e)
 		if(QSignalTransition::eventTest(e)){
 			qDebug()<<trUtf8(" s13s17Transiro flag==true");
 			// Проверяю своё условие.
-			return !(*flag);
+			return *flag;
 		}else{
 			return false;
 		}
@@ -606,7 +710,7 @@ bool s14sfTransiro::eventTest(QEvent *e)
 		if(QSignalTransition::eventTest(e)){
 			qDebug()<<trUtf8(" s14sfTransiro  (px1 < е || px2 < е)");
 			// Проверяю своё условие.
-			return px1->x() < s || px2->y() < s;
+			return px1->x() < s && px2->y() < s;
 		}else{
 			return false;
 		}
@@ -618,7 +722,11 @@ bool s17s18Transiro::eventTest(QEvent *e)
 		if(QSignalTransition::eventTest(e)){
 			qDebug()<<trUtf8(" s17s18Transiro f(*ip)<f(b2) ");
 			// Проверяю своё условие.
-			return f->rezulto(**ip)<f->rezulto(*b2) && rb->isChecked();
+			QString bps = QString::number(f->rezulto(*b2));
+			QString ips = QString::number(f->rezulto(**ip));
+			return ips.toDouble() < bps.toDouble() && rb->isChecked();
+			
+			//return f->rezulto(**ip)<f->rezulto(*b2) && rb->isChecked();
 		}else{
 			return false;
 		}
@@ -630,7 +738,11 @@ bool s17s1Transiro::eventTest(QEvent *e)
 		if(QSignalTransition::eventTest(e)){
 			qDebug()<<trUtf8(" s17s1Transiro f(*ip)<f(b2) ");
 			// Проверяю своё условие.
-			return f->rezulto(**ip)>=f->rezulto(*b2) && rb->isChecked();
+			QString bps = QString::number(f->rezulto(*b2));
+			QString ips = QString::number(f->rezulto(**ip));
+			return ips.toDouble() >= bps.toDouble() && rb->isChecked();
+			
+			//return f->rezulto(**ip)>=f->rezulto(*b2) && rb->isChecked();
 		}else{
 			return false;
 		}
