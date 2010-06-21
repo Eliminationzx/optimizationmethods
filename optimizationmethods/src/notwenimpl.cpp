@@ -17,6 +17,11 @@
 #include <QLabel>
 #include <QFontDialog>
 #include <QDebug>
+
+#include <math.h>
+#include <QtScript>
+#include <QScriptEngine>
+#include <QTranslator>
 //
 using namespace SinkoNotWen;
 
@@ -163,6 +168,8 @@ void NotWenImpl::registriEraro()
 
 void NotWenImpl::sf_entered()
 {
+	stackedWidget->setCurrentIndex(6);
+	
 	LogTxtBrsr->append(trUtf8("Конец алгоритма. Найден минимум функции: %1. Количество ошибок: <b>%2</b>.").arg(F->rezulto(BP)).arg(KvantoEraroj));
 	if(F->metaObject()->className() == QString("RavinaFunkcio"))
 	{
@@ -209,8 +216,6 @@ void NotWenImpl::sf_entered()
 
 void NotWenImpl::s7_entered()
 {
-	stackedWidget->setCurrentIndex(6);
-	
 	if(F->metaObject()->className() == QString("KvadratigantoFunkcio"))
 	{
 		gessian1 = QPointF(2*F->getC(), - F->getE());
@@ -374,6 +379,67 @@ void NotWenImpl::init()
 	LogTxtBrsr->setText("");
 
 	qDebug()<<trUtf8("Задаю переменным начальные значения"); // Вывожу дебажную инфу на консоль.
+}
+
+bool NotWenImpl::aGessQuad(funkcio * F, DemonstrataQPointF * BP,
+					QLineEdit * gess11, QLineEdit * gess12,
+					QLineEdit * gess21, QLineEdit * gess22)
+{
+	//создаем исполняемую среду скрипта
+	QScriptEngine engine;
+	
+	QScriptValue Gess11 = engine.evaluate(gess11->text());
+	QScriptValue Gess12 = engine.evaluate(gess12->text());
+	QScriptValue Gess21 = engine.evaluate(gess21->text());
+	QScriptValue Gess22 = engine.evaluate(gess22->text());
+	
+	return fabs(Gess11.toNumber() - (2*F->getC() / F->detGessian(BP))) <= 0.000001 &&
+			fabs(Gess12.toNumber() - (-F->getE() / F->detGessian(BP))) <= 0.000001 &&
+			fabs(Gess21.toNumber() - (-F->getE() / F->detGessian(BP))) <= 0.000001 &&
+			fabs(Gess22.toNumber() - (2*F->getA() / F->detGessian(BP))) <= 0.000001 ;
+}
+
+bool NotWenImpl::aGessRavin(funkcio * F, DemonstrataQPointF * BP,
+					QLineEdit * Dfdx1dx1, QLineEdit * Dfdx1dx2,
+					QLineEdit * Dfdx2dx1, QLineEdit * Dfdx2dx2)
+{
+	//создаем исполняемую среду скрипта
+	QScriptEngine engine;
+	
+	QString dfdx1dx1 = trUtf8("x1=%1; x2=%2;").arg(BP->x()).arg(BP->y());
+	
+	QString tmp = Dfdx1dx1->text();
+	int j = 0;
+	while(tmp[j] != '^')
+		++j;
+	for(int i = j; i >= 0; --i)
+		if(tmp[i] == '1')
+		{
+			tmp.replace(j, 2, "*x1");
+			break;
+		}
+	
+	dfdx1dx1 += tmp + ";";
+	QString dfdx1dx2 = trUtf8("x1=%1; x2=%2;").arg(BP->x()).arg(BP->y());
+	dfdx1dx2 += Dfdx1dx2->text() + ";";
+	QString dfdx2dx1 = trUtf8("x1=%1; x2=%2;").arg(BP->x()).arg(BP->y());
+	dfdx2dx1 += Dfdx2dx1->text() + ";";
+	QString dfdx2dx2 = Dfdx2dx2->text();
+	
+	QScriptValue Gess11 = engine.evaluate(dfdx1dx1);
+	QScriptValue Gess12 = engine.evaluate(dfdx1dx2);
+	QScriptValue Gess21 = engine.evaluate(dfdx2dx1);
+	QScriptValue Gess22 = engine.evaluate(dfdx2dx2);
+	
+	qDebug()<<dfdx1dx1<<Gess11.toNumber()<<static_cast<RavinaFunkcio*>(F)->df_dx1dx1(BP);
+	qDebug()<<dfdx1dx2<<Gess12.toNumber()<<static_cast<RavinaFunkcio*>(F)->df_dx1dx2(BP);
+	qDebug()<<dfdx2dx1<<Gess21.toNumber()<<static_cast<RavinaFunkcio*>(F)->df_dx1dx2(BP);
+	qDebug()<<dfdx2dx2<<Gess22.toNumber()<<static_cast<RavinaFunkcio*>(F)->df_dx2dx2();
+	
+	return fabs(Gess11.toNumber() - static_cast<RavinaFunkcio*>(F)->df_dx1dx1(BP)) <= 0.000001 &&
+			fabs(Gess12.toNumber() - static_cast<RavinaFunkcio*>(F)->df_dx1dx2(BP)) <= 0.000001 &&
+			fabs(Gess21.toNumber() - static_cast<RavinaFunkcio*>(F)->df_dx1dx2(BP)) <= 0.000001 &&
+			fabs(Gess22.toNumber() - static_cast<RavinaFunkcio*>(F)->df_dx2dx2()) <= 0.000001 ;
 }
 
 namespace SinkoNotWen
@@ -622,15 +688,9 @@ namespace SinkoNotWen
 
 			if(f->metaObject()->className() == QString("KvadratigantoFunkcio"))
 			{
-				QString ges11, ges12, ges21, ges22;
-				ges11 = QString("%1/%2").arg(2*f->getC()).arg(f->detGessian(bp));
-				ges12 = QString("%1/%2").arg(-f->getE()).arg(f->detGessian(bp));
-				ges21 = QString("%1/%2").arg(-f->getE()).arg(f->detGessian(bp));
-				ges22 = QString("%1/%2").arg(2*f->getA()).arg(f->detGessian(bp));
-				
 				if(Dfdx1dx1->text() == QString::number(2*f->getA()) && Dfdx1dx2->text() == QString::number(f->getE()) && 
 					Dfdx2dx1->text() == QString::number(f->getE()) && Dfdx2dx2->text() == QString::number(2*f->getC()) &&
-					Gess11->text() == ges11 && Gess12->text() == ges12 && Gess21->text() == ges21 && Gess22->text() == ges22)
+					NotWenImpl::aGessQuad(f, bp, Gess11, Gess12, Gess21, Gess22))
 				{
 					return true;
 				}
@@ -640,13 +700,7 @@ namespace SinkoNotWen
 			}
 			else if(f->metaObject()->className() == QString("RavinaFunkcio"))
 			{
-				QString dfdx1dx1, dfdx1dx2, dfdx2dx1, dfdx2dx2;
-				dfdx1dx1 = QString("%1*x1^2%2%3*x2%4%5").arg(12*f->getA()).arg(NotWenImpl::numberSign(-4*f->getA())).arg(fabs(-4*f->getA())).arg(NotWenImpl::numberSign(2*f->getB())).arg(fabs(2*f->getB()));
-				dfdx1dx2 = QString("%1*x1").arg(-4*f->getA());
-				dfdx2dx1 = QString("%1*x1").arg(-4*f->getA());
-				dfdx2dx2 = QString::number(2*f->getA());
-				
-				if(Dfdx1dx1->text() == dfdx1dx1 && Dfdx1dx2->text() == dfdx1dx2 && Dfdx2dx1->text() == dfdx2dx1 && Dfdx2dx2->text() == dfdx2dx2)
+				if(NotWenImpl::aGessRavin(f, bp, Dfdx1dx1, Dfdx1dx2, Dfdx2dx1, Dfdx2dx2))
 				{
 					return true;
 				}

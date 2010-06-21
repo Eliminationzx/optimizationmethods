@@ -13,6 +13,9 @@
 #include <qwt_plot_panner.h>
 #include <qwt_plot_layout.h>
 #include "spectrogramdata.h"
+
+
+#include <QMessageBox>
 //
 MapoPorFunkcioImpl::MapoPorFunkcioImpl( const funkcio * Funkcio, QWidget * parent, Qt::WFlags f) 
 	: QWidget(parent, f), F(Funkcio){
@@ -94,8 +97,10 @@ void MapoPorFunkcioImpl::on_PligrandigiBtn_clicked(){
 }
 
 void MapoPorFunkcioImpl::on_MalpliigiBtn_clicked(){
-	skalo->zoom(QRectF(skalo->zoomRect().topLeft() - QPointF(1,1),
-	                   skalo->zoomRect().bottomRight() + QPointF(1,1)));
+//	skalo->zoom(QRectF(skalo->zoomRect().topLeft() - QPointF(1,1),
+//	                   skalo->zoomRect().bottomRight() + QPointF(1,1)));
+
+	QMessageBox::information(this, "", trUtf8("%1 %2 %3 %4").arg(skalo->zoomRect().topLeft().x()).arg(skalo->zoomRect().topLeft().y()).arg(skalo->zoomRect().bottomRight().x()).arg(skalo->zoomRect().bottomRight().y()));
 }
 
 
