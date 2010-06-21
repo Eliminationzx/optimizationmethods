@@ -76,8 +76,8 @@ HuGiImpl::HuGiImpl( funkcio *f, QVector<double> d, QWidget * parent, Qt::WFlags 
 
 //===Прикручиваю карту=========================================================
 	connect(sB1, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniB1(const QPointF &)));
-	connect(sB2, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniB1(const QPointF &)));
-	connect(sP, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniB1(const QPointF &)));
+	connect(sB2, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniB2(const QPointF &)));
+	connect(sP, SIGNAL(proviziValoro(const QPointF &)), Sp, SLOT(difiniP(const QPointF &)));
 //=============================================================================
 
 //===Создаю конечный автомат.==================================================
