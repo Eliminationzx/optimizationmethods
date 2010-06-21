@@ -123,13 +123,21 @@ private slots:
 	void registriEraro();
 
 public slots:
+	//! Слот, для выполнения скрипта проверки производной в квадратичной функции.
+	static bool DerivativeQuad(funkcio * F, DemonstrataQPointF * BP,
+					QLineEdit * dfdx1, QLineEdit * dfdx2);
+
+	//! Слот, для выполнения скрипта проверки производной в овражной функции.
+	static bool DerivativeRavin(funkcio * F, DemonstrataQPointF * BP,
+					QLineEdit * dfdx1, QLineEdit * dfdx2);
+
 	//! Слот, для выполнения скрипта проверки обратного гессиана в квадратичной функции.
 	static bool aGessQuad(funkcio * F, DemonstrataQPointF * BP,
 					QLineEdit * gess11, QLineEdit * gess12,
 					QLineEdit * gess21, QLineEdit * gess22);
 
 	//! Слот, для выполнения скрипта проверки обратного гессиана в овражной функции.
-	static bool aGessRavin(funkcio * F, DemonstrataQPointF * BP,
+	static bool GessRavin(funkcio * F, DemonstrataQPointF * BP,
 					QLineEdit * Dfdx1dx1, QLineEdit * Dfdx1dx2,
 					QLineEdit * Dfdx2dx1, QLineEdit * Dfdx2dx2);
 
@@ -219,19 +227,21 @@ namespace SinkoNotWen
 	{
 		private:
 			funkcio * f;
+			DemonstrataQPointF * bp;
 			QLineEdit * df_dx1;
 			QLineEdit * df_dx2;
 		public:
-			s3s4Transiro(funkcio * F, QLineEdit * dfdx1, QLineEdit * dfdx2,
-						QState * sourceState = 0) : QSignalTransition(sourceState), f(F), df_dx1(dfdx1), df_dx2(dfdx2){};
+			s3s4Transiro(funkcio * F, DemonstrataQPointF * BP, QLineEdit * dfdx1, QLineEdit * dfdx2,
+						QState * sourceState = 0) : QSignalTransition(sourceState), f(F), bp(BP), df_dx1(dfdx1), df_dx2(dfdx2){};
 			s3s4Transiro(funkcio * F,
+						DemonstrataQPointF * BP,
 						QLineEdit * dfdx1,
 						QLineEdit * dfdx2,
 						QObject * sender,
 						const char * signal,
 						QState * sourceState = 0)
 						 : QSignalTransition(sender, signal, sourceState),
-						  f(F), df_dx1(dfdx1), df_dx2(dfdx2){};
+						  f(F), bp(BP), df_dx1(dfdx1), df_dx2(dfdx2){};
 		protected:
 			//! Перход срабатывает, только если нажата кнопка next3
 		bool eventTest(QEvent *e);

@@ -130,6 +130,15 @@ private slots:
 	//! Фиксирует совершение пользователем ошибки.
 	void registriEraro();
 
+public slots:
+	//! Слот, для выполнения скрипта проверки производной в квадратичной функции.
+	static bool DerivativeQuad(funkcio * F, DemonstrataQPointF * BP,
+					QLineEdit * dfdx1, QLineEdit * dfdx2);
+
+	//! Слот, для выполнения скрипта проверки производной в овражной функции.
+	static bool DerivativeRavin(funkcio * F, DemonstrataQPointF * BP,
+					QLineEdit * dfdx1, QLineEdit * dfdx2);
+
 signals:
 	/*! Использую сигнал для прехода, который не требует действий пользователя,
 	 * а только проверяет условие.
@@ -208,18 +217,20 @@ namespace SinkoFD
 	{
 		private:
 			funkcio * f;
+			DemonstrataQPointF * bp;
 			QLineEdit * df_dx1;
 			QLineEdit * df_dx2;
 		public:
-			s3s4Transiro(funkcio * F, QLineEdit * dfdx1, QLineEdit * dfdx2,
-						QState * sourceState = 0) : QSignalTransition(sourceState), f(F), df_dx1(dfdx1), df_dx2(dfdx2){};
+			s3s4Transiro(funkcio * F, DemonstrataQPointF * BP, QLineEdit * dfdx1, QLineEdit * dfdx2,
+						QState * sourceState = 0) : QSignalTransition(sourceState), f(F), bp(BP), df_dx1(dfdx1), df_dx2(dfdx2){};
 			s3s4Transiro(funkcio * F,
+						DemonstrataQPointF * BP,
 						QLineEdit * dfdx1,
 						QLineEdit * dfdx2,
 						QObject * sender,
 			             const char * signal,
 			             QState * sourceState = 0
-				) : QSignalTransition(sender, signal, sourceState), f(F), df_dx1(dfdx1), df_dx2(dfdx2){};
+				) : QSignalTransition(sender, signal, sourceState), f(F), bp(BP), df_dx1(dfdx1), df_dx2(dfdx2){};
 		protected:
 			//! Перход срабатывает, только если нажата кнопка ввести S 
 		bool eventTest(QEvent *e);
