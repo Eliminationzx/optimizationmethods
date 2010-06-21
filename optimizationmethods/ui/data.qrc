@@ -4,5 +4,7 @@
     <file>dfdx2.bmp</file>
     <file>icon.bmp</file>
     <file>icon_big.bmp</file>
+    <file>dfdx1.PNG</file>
+    <file>dfdx2.PNG</file>
   </qresource>
 </RCC>
