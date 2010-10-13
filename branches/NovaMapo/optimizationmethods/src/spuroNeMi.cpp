@@ -2,8 +2,8 @@
 #include "funkcio.h"
 #include "Konstantoj.h"
 #include "demonstrataqpointf.h"
-#include <qwt_plot.h>
-#include <qwt_plot_curve.h>
+#include "qwt_plot.h"
+#include "qwt_plot_curve.h"
 
 
 #include <QMessageBox>

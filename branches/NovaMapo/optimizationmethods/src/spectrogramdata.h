@@ -1,6 +1,6 @@
 #ifndef __SPECTROGRAMDATA_H__
 #define __SPECTROGRAMDATA_H__
-#include <qwt_raster_data.h>
+#include "qwt_raster_data.h"
 
 class funkcio;
 
