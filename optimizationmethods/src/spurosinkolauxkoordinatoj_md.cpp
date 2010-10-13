@@ -1,8 +1,8 @@
 #include "spurosinkolauxkoordinatoj_md.h"
 #include "Konstantoj.h"
-#include <qwt_plot_curve.h>
-#include <qwt_plot.h>
-#include <qwt_symbol.h>
+#include "qwt_plot_curve.h"
+#include "qwt_plot.h"
+#include "qwt_symbol.h"
 //
 spuroSinkoLauxKoordinatoj_md::spuroSinkoLauxKoordinatoj_md(QColor bazaKoloro, QwtPlot * Plt ) 
 	: spuro(bazaKoloro, Plt){
