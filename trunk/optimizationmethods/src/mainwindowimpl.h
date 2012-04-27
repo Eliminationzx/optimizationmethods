@@ -38,10 +38,10 @@ Q_OBJECT
 
 	//! Флаг для проверки пройдености квадратичной функции каждым методом.
 	QVector< QVector<int> > takeQuadFun;
-	
+
 	//! Объект-родитель для создания окна ввода пароля.
 	mainPassImpl * Pass;
-	
+
 	//! Объект-родитель для создания окон прохождения алгоритмов.
 	AlgoritmoWin * AW;
 
@@ -67,10 +67,10 @@ private:
 	 * Заполняет выпадающий список существующими вариантами.
 	 */
 	void initializationComboBox(const int );
-	
+
 	//! Чтение максимального количества ошибок для перехода к овражной функции из текстового файла.
 	int ReadError(int method);
-	
+
 public:
 	//! Конструктор класса.
 	MainWindowImpl( QWidget * parent = 0, Qt::WFlags f = 0 );
@@ -90,7 +90,7 @@ private slots:
 
 	//! Слот класса, получающий сигнал при выборе ввода информации вручную.
 	void on_inArm_clicked(bool checked);
-	
+
 	//! Слот класса, получающий сигнал при выборе ввода информации через выбор варианта.
 	void on_choiceVar_clicked(bool checked);
 
@@ -127,5 +127,7 @@ private slots:
 	 * Заполняет lineEdit-ы данными варианта.
 	 */
 	void on_comboBox_activated(int index);
+	void on_next_button_3_clicked();
+	void on_back_button_2_clicked();
 };
 #endif
