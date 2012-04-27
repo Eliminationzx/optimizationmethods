@@ -4,11 +4,11 @@
 #include <QDoubleValidator>
 //
 //! Конструктор класса.
-MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WFlags flag) 
+MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WFlags flag)
 	: QMainWindow(parent, flag)
 {
 	setupUi(this);
-	
+
 // Прикручиваю валидаторы к полям ввода.
 	a->setValidator(new QDoubleValidator(a));
 	b->setValidator(new QDoubleValidator(b));
@@ -23,12 +23,12 @@ MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WFlags flag)
 	stepChange->setValidator(new QDoubleValidator(stepChange));
 	x1->setValidator(new QDoubleValidator(x1));
 	x2->setValidator(new QDoubleValidator(x2));
-	
+
 	methFunc.append(0);
 	methFunc.append(0);
-	
+
 	stackedWidget->setCurrentIndex(0);
-	
+
 	QVariant var;
 	var.setValue(0);
 	choiceMethods->addItem(trUtf8("Метод покоординатного спуска с дискретным шагом"), var);
@@ -43,7 +43,7 @@ MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WFlags flag)
 	var.setValue(5);
 	choiceMethods->addItem(trUtf8("Метод Ньютона"), var);
 	choiceMethods->setCurrentIndex(0);
-	
+
 	takeQuadFun.resize(6);
 	for(int i = 0; i < 6; ++i)
 	{
@@ -148,12 +148,17 @@ void MainWindowImpl::openTakeQuadFun(int flag, int numberError)
 //! Нажата кнопка "Далее" (1-ая страница).
 void MainWindowImpl::on_next_button_clicked()
 {
-	// TODO
+	stackedWidget->setCurrentIndex(1);
+}
+
+//! Нажата кнопка "Далее" (2-ая страница).
+void MainWindowImpl::on_next_button_2_clicked()
+{
 	methFunc[0] = choiceMethods->currentIndex();
 	if(quadFunction->isChecked())
 	{
 		methFunc[1] = 0;
-		
+
 		c->setVisible(true);
 		d->setVisible(true);
 		e->setVisible(true);
@@ -164,8 +169,7 @@ void MainWindowImpl::on_next_button_clicked()
 		label_6->setVisible(true);
 		label_7->setVisible(true);
 		label_8->setVisible(true);
-		
-		stackedWidget->setCurrentIndex(1);
+
 		func->setText("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">"
 			"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">"
 			"p, li { white-space: pre-wrap; }"
@@ -178,7 +182,7 @@ void MainWindowImpl::on_next_button_clicked()
 	else if(ravinFunction->isChecked())
 	{
 		methFunc[1] = 1;
-		
+
 		c->setVisible(false);
 		d->setVisible(false);
 		e->setVisible(false);
@@ -189,8 +193,7 @@ void MainWindowImpl::on_next_button_clicked()
 		label_6->setVisible(false);
 		label_7->setVisible(false);
 		label_8->setVisible(false);
-		
-		stackedWidget->setCurrentIndex(1);
+
 		func->setText("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">"
 			"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">"
 			"p, li { white-space: pre-wrap; }"
@@ -200,114 +203,15 @@ void MainWindowImpl::on_next_button_clicked()
 			"<span style=\" vertical-align:super;\">2</span>)<span style=\" vertical-align:super;\">2</span> + B*(1-x"
 			"<span style=\" vertical-align:sub;\">1</span>)<span style=\" vertical-align:super;\">2</span></p></body></html>");
 	}
-	
+
 	on_choiceVar_clicked(true);
 	initializationComboBox(methFunc[1]);
-}
-
-//! Нажата кнопка "Далее" (2-ая страница).
-void MainWindowImpl::on_next_button_2_clicked()
-{
-	QVector<double> data(8);
-	data[0] = accuracy->text().toDouble();
-	data[1] = stepx1->text().toDouble();
-	data[2] = stepx2->text().toDouble();
-	data[3] = stepChange->text().toDouble();
-	data[4] = x1->text().toDouble();
-	data[5] = x2->text().toDouble();
-	data[6] = ReadError(methFunc[0]);
-	data[7] = takeQuadFun[methFunc[0]][1];
-	
-	funkcio * funck;
-	if(methFunc[1] == 0)
-	{
-		QVector<double> koef(7);
-		koef[0] = a->text().toDouble();
-		koef[1] = b->text().toDouble();
-		koef[2] = c->text().toDouble();
-		koef[3] = d->text().toDouble();
-		koef[4] = e->text().toDouble();
-		koef[5] = f->text().toDouble();
-		koef[6] = g->text().toDouble();
-		
-		funck = new KvadratigantoFunkcio(koef);
-	}
-	else if(methFunc[1] == 1)
-	{
-		QVector<double> koef(2);
-		koef[0] = a->text().toDouble();
-		koef[1] = b->text().toDouble();
-		
-		funck = new RavinaFunkcio(koef);
-	}
-
-	switch(methFunc[0])
-	{
-		case A::CWdescent_fix:
-			AW = new CWdescentWinImpl(funck, data, this, Qt::Window);
-			break;
-		case A::CWdescent_md:
-			AW = new CWdescent_mdImpl(funck, data, this, Qt::Window);
-			break;
-		case A::FasterDescent:
-			AW = new FasterDescentImpl(funck, data, this, Qt::Window);
-			break;
-		case A::HuGi:
-			AW = new HuGiImpl(funck, data, this, Qt::Window);
-			break;
-		case A::NeMi:
-			AW = new NeMiImpl(funck, data, this, Qt::Window);
-			break;
-		case A::NotWen:
-			AW = new NotWenImpl(funck, data, this, Qt::Window);
-			break;
-	}
-
-	if(connect(AW, SIGNAL(usiloPlenumis(int, int)), SLOT(openTakeQuadFun(int, int))))
-	{
-		if(AW->metaObject()->className() == QString("CWdescentWinImpl"))
-		{
-			takeQuadFun[0][0] = false;
-			on_choiceMethods_activated(0);
-		}
-		else if(AW->metaObject()->className() == QString("CWdescent_mdImpl"))
-		{
-			takeQuadFun[1][0] = false;
-			on_choiceMethods_activated(1);
-		}
-		else if(AW->metaObject()->className() == QString("FasterDescentImpl"))
-		{
-			takeQuadFun[2][0] = false;
-			on_choiceMethods_activated(2);
-		}
-		else if(AW->metaObject()->className() == QString("HuGiImpl"))
-		{
-			takeQuadFun[3][0] = false;
-			on_choiceMethods_activated(3);
-		}
-		else if(AW->metaObject()->className() == QString("NeMiImpl"))
-		{
-			takeQuadFun[4][0] = false;
-			on_choiceMethods_activated(4);
-		}
-		else if(AW->metaObject()->className() == QString("NotWenImpl"))
-		{
-			takeQuadFun[5][0] = false;
-			on_choiceMethods_activated(5);
-		}
-		
-		AW->showMaximized();
-		
-		on_back_button_clicked();
-	}
-	else
-		QMessageBox::warning(this, trUtf8("Ошибка"), trUtf8("Ошибка соединения MainWindowImpl и AlgoritmoWin."));
+	stackedWidget->setCurrentIndex(2);
 }
 
 //! Нажата кнопка "Назад" (2-ая страница).
 void MainWindowImpl::on_back_button_clicked()
 {
-	// TODO
 	comboBox->clear();
 	quadFunction->setChecked(true);
 	ravinFunction->setChecked(false);
@@ -397,10 +301,10 @@ void MainWindowImpl::on_choiceVar_clicked(bool checked)
 	choiceVar->setChecked(true);
 	comboBox->setVisible(checked);
 	label->setVisible(checked);
-	
+
 	quadKoef->setEnabled(checked - 1);
 	quadSimpleCon->setEnabled(checked - 1);
-	
+
 	on_comboBox_activated(0);
 }
 
@@ -411,10 +315,10 @@ void MainWindowImpl::on_inArm_clicked(bool checked)
 	inArm->setChecked(true);
 	comboBox->setVisible(checked - 1);
 	label->setVisible(checked - 1);
-	
+
 	quadKoef->setEnabled(checked);
 	quadSimpleCon->setEnabled(checked);
-	
+
 	a->setText("");
 	b->setText("");
 	c->setText("");
@@ -429,4 +333,107 @@ void MainWindowImpl::on_inArm_clicked(bool checked)
 	stepChange->setText("");
 	x1->setText("");
 	x2->setText("");
+}
+
+void MainWindowImpl::on_next_button_3_clicked()
+{
+	QVector<double> data(8);
+	data[0] = accuracy->text().toDouble();
+	data[1] = stepx1->text().toDouble();
+	data[2] = stepx2->text().toDouble();
+	data[3] = stepChange->text().toDouble();
+	data[4] = x1->text().toDouble();
+	data[5] = x2->text().toDouble();
+	data[6] = ReadError(methFunc[0]);
+	data[7] = takeQuadFun[methFunc[0]][1];
+
+	funkcio * funck;
+	if(methFunc[1] == 0)
+	{
+		QVector<double> koef(7);
+		koef[0] = a->text().toDouble();
+		koef[1] = b->text().toDouble();
+		koef[2] = c->text().toDouble();
+		koef[3] = d->text().toDouble();
+		koef[4] = e->text().toDouble();
+		koef[5] = f->text().toDouble();
+		koef[6] = g->text().toDouble();
+
+		funck = new KvadratigantoFunkcio(koef);
+	}
+	else if(methFunc[1] == 1)
+	{
+		QVector<double> koef(2);
+		koef[0] = a->text().toDouble();
+		koef[1] = b->text().toDouble();
+
+		funck = new RavinaFunkcio(koef);
+	}
+
+	switch(methFunc[0])
+	{
+		case A::CWdescent_fix:
+			AW = new CWdescentWinImpl(funck, data, this, Qt::Window);
+			break;
+		case A::CWdescent_md:
+			AW = new CWdescent_mdImpl(funck, data, this, Qt::Window);
+			break;
+		case A::FasterDescent:
+			AW = new FasterDescentImpl(funck, data, this, Qt::Window);
+			break;
+		case A::HuGi:
+			AW = new HuGiImpl(funck, data, this, Qt::Window);
+			break;
+		case A::NeMi:
+			AW = new NeMiImpl(funck, data, this, Qt::Window);
+			break;
+		case A::NotWen:
+			AW = new NotWenImpl(funck, data, this, Qt::Window);
+			break;
+	}
+
+	if(connect(AW, SIGNAL(usiloPlenumis(int, int)), SLOT(openTakeQuadFun(int, int))))
+	{
+		if(AW->metaObject()->className() == QString("CWdescentWinImpl"))
+		{
+			takeQuadFun[0][0] = false;
+			on_choiceMethods_activated(0);
+		}
+		else if(AW->metaObject()->className() == QString("CWdescent_mdImpl"))
+		{
+			takeQuadFun[1][0] = false;
+			on_choiceMethods_activated(1);
+		}
+		else if(AW->metaObject()->className() == QString("FasterDescentImpl"))
+		{
+			takeQuadFun[2][0] = false;
+			on_choiceMethods_activated(2);
+		}
+		else if(AW->metaObject()->className() == QString("HuGiImpl"))
+		{
+			takeQuadFun[3][0] = false;
+			on_choiceMethods_activated(3);
+		}
+		else if(AW->metaObject()->className() == QString("NeMiImpl"))
+		{
+			takeQuadFun[4][0] = false;
+			on_choiceMethods_activated(4);
+		}
+		else if(AW->metaObject()->className() == QString("NotWenImpl"))
+		{
+			takeQuadFun[5][0] = false;
+			on_choiceMethods_activated(5);
+		}
+
+		AW->showMaximized();
+
+		on_back_button_clicked();
+	}
+	else
+		QMessageBox::warning(this, trUtf8("Ошибка"), trUtf8("Ошибка соединения MainWindowImpl и AlgoritmoWin."));
+}
+
+void MainWindowImpl::on_back_button_2_clicked()
+{
+	stackedWidget->setCurrentIndex(1);
 }
