@@ -10,6 +10,9 @@
 #include <QCryptographicHash>
 #include "helpbrowserimpl.h"
 #include "ui_mainwindow.h"
+
+class QStringListModel;
+class resultsModel;
 //
 //! Производный класс от класса формы приложения setvariants.
 /*! Предназначен для сохранения и редактирования данных вариантов целевых функций.
@@ -101,6 +104,8 @@ private:
 	 */
 	void initializationError();
 
+	QStringListModel * m_gropList;
+	resultsModel * m_resultsModel;
 public:
 	//! Конструктор класса.
 	MainWindowImpl( QWidget * parent = 0, Qt::WFlags f = 0 );
