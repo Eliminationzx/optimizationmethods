@@ -53,7 +53,21 @@ MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WFlags flag)
 	gropListCmbBx->setModel(m_gropList);
 	gropListCmbBx->setModelColumn(0);
 	
-	resultTblVw->setModel(m_resultsModel);
+//	resultTblVw->setModel(m_resultsModel);
+	QStringList heders;
+	heders.append(trUtf8("Группа"));
+	heders.append(trUtf8("Ф.И.О."));
+	heders.append(trUtf8("Квадратичная"));
+	heders.append(trUtf8("Квадратичная"));
+	heders.append(trUtf8("Квадратичная"));
+	heders.append(trUtf8("Овражная"));
+	heders.append(trUtf8("Квадратичная"));
+	heders.append(trUtf8("Квадратичная"));
+	heders.append(trUtf8("Овражная"));
+	resultTblVw->setColumnCount(10);
+	resultTblVw->setRowCount(8);
+	resultTblVw->setHorizontalHeaderLabels(heders);
+	resultTblVw->setItem(0, 0, new QTableWidgetItem("ololo"));
 }
 
 //! Запись данных варианта в текстовый файл.

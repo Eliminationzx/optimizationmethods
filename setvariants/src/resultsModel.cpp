@@ -1,4 +1,5 @@
 #include "resultsModel.h"
+#include <QDebug>
 
 resultsModel::resultsModel(QObject *parent) :
   QAbstractTableModel(parent),
@@ -125,36 +126,43 @@ Qt::ItemFlags resultsModel::flags( const QModelIndex & index ) const{
 
 /** Снабжает представления и делегаты данными элементов.*/
 QVariant resultsModel::data( const QModelIndex & index, int role) const{
-	if(index.parent() == QModelIndex())
+	qDebug()<<"data";
+	if(index.parent() != QModelIndex())
 		return QVariant();
 	
 	if(index.row() >= m_data.count() || index.column() >= m_data.at(0).count())
 		return QVariant();
 	
-	return m_data.at(index.row()).at(index.column());
+	qDebug()<<2;
+	return m_data.at(index.row()).at(index.column() );
 }
 
 /** Предоставляется представлениям с информацией для показа в их заголовках..*/
 QVariant resultsModel::headerData( int section, Qt::Orientation orientation, int role) const{
 	if(orientation == Qt::Horizontal)
 	{
+		qDebug()<<"headerData"<<section;
 		switch (section)
 		{
 			case 0:
-				return trUtf8("Квадратичная");
+				return trUtf8("Группа");
 			case 1:
-				return trUtf8("Квадратичная");
+				return trUtf8("Ф.И.О.");
 			case 2:
 				return trUtf8("Квадратичная");
 			case 3:
 				return trUtf8("Квадратичная");
 			case 4:
-				return trUtf8("Овражная");
+				return trUtf8("Квадратичная");
 			case 5:
 				return trUtf8("Квадратичная");
 			case 6:
-				return trUtf8("Квадратичная");
+				return trUtf8("Овражная");
 			case 7:
+				return trUtf8("Квадратичная");
+			case 8:
+				return trUtf8("Квадратичная");
+			case 9:
 				return trUtf8("Овражная");
 			default:
 				return QVariant();
@@ -162,11 +170,11 @@ QVariant resultsModel::headerData( int section, Qt::Orientation orientation, int
 	}
 	else
 		return section + 1;
-	
 }
 
 /** Количество строк данных, доступных в модели.*/
 int resultsModel::rowCount( const QModelIndex & parent) const{
+	qDebug()<<trUtf8("Столбцов %0").arg(m_data.count());
 	return m_data.count();
 }
 
@@ -177,12 +185,15 @@ int resultsModel::columnCount( const QModelIndex & parent) const{
 
 /** Получая модельный индекс родительского элемента, эта функция позволяет представлениям и делегатам обращаться к дочерним элементам этого элемента.*/
 QModelIndex resultsModel::index( int row, int column, const QModelIndex & parent) const{
+	qDebug()<<"index"<<row<<column;
 	if(parent != QModelIndex())
+	{
+		qDebug()<<"index"<<10;
 		return QModelIndex();
+	}
 	
-//	return index(row, column, parent);
-//	QModelIndex(row, column, &(m_data[row][column]), this);
-	createIndex(row, column, row*column);
+	qDebug()<<"index"<<11;
+	return createIndex(row, column, row*column);
 }
 
 /** Возвращает модельный индекс, соответствующий родителю какого-либо дочернего элемента..*/

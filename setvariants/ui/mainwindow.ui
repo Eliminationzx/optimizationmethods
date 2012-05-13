@@ -761,7 +761,7 @@
          <widget class="QComboBox" name="gropListCmbBx"/>
         </item>
         <item>
-         <widget class="QTableView" name="resultTblVw"/>
+         <widget class="QTableWidget" name="resultTblVw"/>
         </item>
        </layout>
       </widget>
