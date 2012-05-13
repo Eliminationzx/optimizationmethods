@@ -1,9 +1,13 @@
 #include "mainwindowimpl.h"
 #include "helpbrowserimpl.h"
 #include "aboutprogramimpl.h"
+#include <QStringListModel>
+#include "resultsModel.h"
 //
 MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WFlags flag) 
-	: QMainWindow(parent, flag)
+	: QMainWindow(parent, flag),
+    m_gropList(new QStringListModel(this)),
+    m_resultsModel(new resultsModel(this))
 {
 	setupUi(this);
 	
@@ -41,6 +45,15 @@ MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WFlags flag)
 	initializationRavinComboBox();
 	on_comboBox_ravin_activated(0);
 	initializationError();
+	
+	m_gropList->insertRows(0, 3);
+	m_gropList->setData(m_gropList->index(0), trUtf8("Все"));
+	m_gropList->setData(m_gropList->index(1), trUtf8("БИ71"));
+	m_gropList->setData(m_gropList->index(2), trUtf8("БИ72"));
+	gropListCmbBx->setModel(m_gropList);
+	gropListCmbBx->setModelColumn(0);
+	
+	resultTblVw->setModel(m_resultsModel);
 }
 
 //! Запись данных варианта в текстовый файл.
