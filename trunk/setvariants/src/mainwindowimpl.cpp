@@ -59,6 +59,7 @@ MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WFlags flag)
 	heders.append(trUtf8("Ф.И.О."));
 	heders.append(trUtf8("Квадратичная"));
 	heders.append(trUtf8("Квадратичная"));
+    heders.append(trUtf8("Квадратичная"));
 	heders.append(trUtf8("Квадратичная"));
 	heders.append(trUtf8("Овражная"));
 	heders.append(trUtf8("Квадратичная"));
@@ -67,7 +68,94 @@ MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WFlags flag)
 	resultTblVw->setColumnCount(10);
 	resultTblVw->setRowCount(8);
 	resultTblVw->setHorizontalHeaderLabels(heders);
-	resultTblVw->setItem(0, 0, new QTableWidgetItem("ololo"));
+
+    resultTblVw->setItem(0, 0, new QTableWidgetItem(trUtf8("БИ71")));
+    resultTblVw->setItem(0, 1, new QTableWidgetItem(trUtf8("Иванов Иван Иванович")));
+    resultTblVw->setItem(0, 2, new QTableWidgetItem("3"));
+    resultTblVw->setItem(0, 3, new QTableWidgetItem("8"));
+    resultTblVw->setItem(0, 4, new QTableWidgetItem("4"));
+    resultTblVw->setItem(0, 5, new QTableWidgetItem("4"));
+    resultTblVw->setItem(0, 6, new QTableWidgetItem("5"));
+    resultTblVw->setItem(0, 7, new QTableWidgetItem("2"));
+    resultTblVw->setItem(0, 8, new QTableWidgetItem("7"));
+    resultTblVw->setItem(0, 9, new QTableWidgetItem("2"));
+
+    resultTblVw->setItem(1, 0, new QTableWidgetItem(trUtf8("БИ71")));
+    resultTblVw->setItem(1, 1, new QTableWidgetItem(trUtf8("Петров Пётр Петрович")));
+    resultTblVw->setItem(1, 2, new QTableWidgetItem("9"));
+    resultTblVw->setItem(1, 3, new QTableWidgetItem("7"));
+    resultTblVw->setItem(1, 4, new QTableWidgetItem("4"));
+    resultTblVw->setItem(1, 5, new QTableWidgetItem("5"));
+    resultTblVw->setItem(1, 6, new QTableWidgetItem("2"));
+    resultTblVw->setItem(1, 7, new QTableWidgetItem("4"));
+    resultTblVw->setItem(1, 8, new QTableWidgetItem("1"));
+    resultTblVw->setItem(1, 9, new QTableWidgetItem("4"));
+
+    resultTblVw->setItem(2, 0, new QTableWidgetItem(trUtf8("БИ71")));
+    resultTblVw->setItem(2, 1, new QTableWidgetItem(trUtf8("Сидоров Сидор Сидорович")));
+    resultTblVw->setItem(2, 2, new QTableWidgetItem("1"));
+    resultTblVw->setItem(2, 3, new QTableWidgetItem("4"));
+    resultTblVw->setItem(2, 4, new QTableWidgetItem("4"));
+    resultTblVw->setItem(2, 5, new QTableWidgetItem("5"));
+    resultTblVw->setItem(2, 6, new QTableWidgetItem("3"));
+    resultTblVw->setItem(2, 7, new QTableWidgetItem("8"));
+    resultTblVw->setItem(2, 8, new QTableWidgetItem("4"));
+    resultTblVw->setItem(2, 9, new QTableWidgetItem("4"));
+
+    resultTblVw->setItem(3, 0, new QTableWidgetItem(trUtf8("БИ71")));
+    resultTblVw->setItem(3, 1, new QTableWidgetItem(trUtf8("Никитин Никита Никитович")));
+    resultTblVw->setItem(3, 2, new QTableWidgetItem("5"));
+    resultTblVw->setItem(3, 3, new QTableWidgetItem("7"));
+    resultTblVw->setItem(3, 4, new QTableWidgetItem("2"));
+    resultTblVw->setItem(3, 5, new QTableWidgetItem("6"));
+    resultTblVw->setItem(3, 6, new QTableWidgetItem("7"));
+    resultTblVw->setItem(3, 7, new QTableWidgetItem("2"));
+    resultTblVw->setItem(3, 8, new QTableWidgetItem("3"));
+    resultTblVw->setItem(3, 9, new QTableWidgetItem("2"));
+
+    resultTblVw->setItem(4, 0, new QTableWidgetItem(trUtf8("БИ72")));
+    resultTblVw->setItem(4, 1, new QTableWidgetItem(trUtf8("Кириллов Кирилл Кириллович")));
+    resultTblVw->setItem(4, 2, new QTableWidgetItem("3"));
+    resultTblVw->setItem(4, 3, new QTableWidgetItem("2"));
+    resultTblVw->setItem(4, 4, new QTableWidgetItem("5"));
+    resultTblVw->setItem(4, 5, new QTableWidgetItem("3"));
+    resultTblVw->setItem(4, 6, new QTableWidgetItem("4"));
+    resultTblVw->setItem(4, 7, new QTableWidgetItem("5"));
+    resultTblVw->setItem(4, 8, new QTableWidgetItem("3"));
+    resultTblVw->setItem(4, 9, new QTableWidgetItem("7"));
+
+    resultTblVw->setItem(5, 0, new QTableWidgetItem(trUtf8("БИ72")));
+    resultTblVw->setItem(5, 1, new QTableWidgetItem(trUtf8("Семенов Семен Семенович")));
+    resultTblVw->setItem(5, 2, new QTableWidgetItem("0"));
+    resultTblVw->setItem(5, 3, new QTableWidgetItem("3"));
+    resultTblVw->setItem(5, 4, new QTableWidgetItem("8"));
+    resultTblVw->setItem(5, 5, new QTableWidgetItem("4"));
+    resultTblVw->setItem(5, 6, new QTableWidgetItem("2"));
+    resultTblVw->setItem(5, 7, new QTableWidgetItem("1"));
+    resultTblVw->setItem(5, 8, new QTableWidgetItem("7"));
+    resultTblVw->setItem(5, 9, new QTableWidgetItem("5"));
+
+    resultTblVw->setItem(6, 0, new QTableWidgetItem(trUtf8("БИ72")));
+    resultTblVw->setItem(6, 1, new QTableWidgetItem(trUtf8("Андреев Андрей Андреевич")));
+    resultTblVw->setItem(6, 2, new QTableWidgetItem("7"));
+    resultTblVw->setItem(6, 3, new QTableWidgetItem("3"));
+    resultTblVw->setItem(6, 4, new QTableWidgetItem("1"));
+    resultTblVw->setItem(6, 5, new QTableWidgetItem("2"));
+    resultTblVw->setItem(6, 6, new QTableWidgetItem("5"));
+    resultTblVw->setItem(6, 7, new QTableWidgetItem("7"));
+    resultTblVw->setItem(6, 8, new QTableWidgetItem("4"));
+    resultTblVw->setItem(6, 9, new QTableWidgetItem("1"));
+
+    resultTblVw->setItem(7, 0, new QTableWidgetItem(trUtf8("БИ72")));
+    resultTblVw->setItem(7, 1, new QTableWidgetItem(trUtf8("Александрова Александра Александровна")));
+    resultTblVw->setItem(7, 2, new QTableWidgetItem("3"));
+    resultTblVw->setItem(7, 3, new QTableWidgetItem("8"));
+    resultTblVw->setItem(7, 4, new QTableWidgetItem("5"));
+    resultTblVw->setItem(7, 5, new QTableWidgetItem("2"));
+    resultTblVw->setItem(7, 6, new QTableWidgetItem("9"));
+    resultTblVw->setItem(7, 7, new QTableWidgetItem("2"));
+    resultTblVw->setItem(7, 8, new QTableWidgetItem("9"));
+    resultTblVw->setItem(7, 9, new QTableWidgetItem("1"));
 }
 
 //! Запись данных варианта в текстовый файл.
